@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1010709845883-ldh911j2n6db8vplmmj6kd65jucgd2pc.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1010709845883-ldh911j2n6db8vplmmj6kd65jucgd2pc</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCq3YxlcJ8RPv24FEqy-5f5ptm46W40So4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1010709845883</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Pritesh.Elite</string>
+	<key>PROJECT_ID</key>
+	<string>elite-69c9c</string>
+	<key>STORAGE_BUCKET</key>
+	<string>elite-69c9c.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1010709845883:ios:74478c37de99c921</string>
+	<key>DATABASE_URL</key>
+	<string>https://elite-69c9c.firebaseio.com</string>
+</dict>
+</plist>
