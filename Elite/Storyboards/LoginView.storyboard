@@ -55,11 +55,11 @@
                                     <constraint firstAttribute="height" constant="40" id="903-XM-Mcz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="24"/>
-                                <state key="normal" title="LOGIN WITH FACEBOOK">
+                                <state key="normal" title="LOGIN WITH SNAPCHAT">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="facebookButtonPressed:" destination="o8m-Fg-Q1U" eventType="touchUpInside" id="Fmn-VM-UTp"/>
+                                    <action selector="snapchatButtonPressed:" destination="o8m-Fg-Q1U" eventType="touchUpInside" id="Fmn-VM-UTp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBt-ny-0TZ" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
@@ -194,11 +194,11 @@
                                     <constraint firstAttribute="height" constant="40" id="D0r-bt-Oet"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="24"/>
-                                <state key="normal" title="LOGIN WITH FACEBOOK">
+                                <state key="normal" title="LOGIN WITH SNAPCHAT">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="facebookButtonPressed:" destination="Eja-oC-eYF" eventType="touchUpInside" id="YVW-5D-y4p"/>
+                                    <action selector="snapchatButtonPressed:" destination="Eja-oC-eYF" eventType="touchUpInside" id="YVW-5D-y4p"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9o-ws-8fL" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
