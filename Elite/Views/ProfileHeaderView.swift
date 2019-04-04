@@ -9,13 +9,36 @@
 import UIKit
 
 class ProfileHeaderView: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    @IBOutlet weak var profileImage: CircularButton!
+    @IBOutlet weak var status: CircularImageView!
+    @IBOutlet weak var edit: UIButton!
+    @IBOutlet weak var requestMatch: UIButton!
+    @IBOutlet weak var addFriend: UIButton!
+    @IBOutlet weak var settings: UIButton!
+    @IBOutlet weak var fullname: UILabel!
+    @IBOutlet weak var username: UILabel!
+    @IBOutlet weak var bio: UITextView!
+    
+    
+    @IBAction func profileImageButtonPressed(_ sender: CircularButton) {
     }
-    */
-
+    
+    @IBAction func editButtonPressed(_ sender: UIButton) {
+    }
+    
+    
+    @IBAction func requestMatchButtonPressed(_ sender: UIButton) {
+    }
+   
+    
+    @IBAction func addFriendButtonPressed(_ sender: UIButton) {
+    }
+    
+    
+    @IBAction func settingsButtonPressed(_ sender: UIButton) {
+    }
+    
+    
+    
 }
