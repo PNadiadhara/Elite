@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j4d-gv-gp0">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="siS-C1-Ztk">
+            <objects>
+                <viewController id="o8m-Fg-Q1U" customClass="LoginViewController" customModule="Elite" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wHh-Yh-JIW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login To Compete" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fIw-dx-hAy">
+                                <rect key="frame" x="16" y="226" width="382" height="34"/>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="28"/>
+                                <color key="textColor" red="1" green="0.91034481140000001" blue="0.43615998950000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aoG-iN-1j2">
+                                <rect key="frame" x="20" y="295" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="YJp-qd-isL"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j1H-Cs-S1H">
+                                <rect key="frame" x="20" y="365" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="3o9-XI-stx"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How would you like to Login?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SqE-bU-QhY">
+                                <rect key="frame" x="16" y="425" width="382" height="20"/>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohe-Kf-ebR" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
+                                <rect key="frame" x="16" y="453" width="382" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="903-XM-Mcz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="24"/>
+                                <state key="normal" title="LOGIN WITH FACEBOOK">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="facebookButtonPressed:" destination="o8m-Fg-Q1U" eventType="touchUpInside" id="Fmn-VM-UTp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBt-ny-0TZ" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
+                                <rect key="frame" x="16" y="501" width="382" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Ss9-LK-rjl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="24"/>
+                                <state key="normal" title="LOGIN WITH GMAIL">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="gmailButtonPressed:" destination="o8m-Fg-Q1U" eventType="touchUpInside" id="f9e-LB-IL2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="st6-vO-7OY">
+                                <rect key="frame" x="130" y="549" width="154" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.91034481140000001" blue="0.43615998950000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="M1w-90-KWI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="24"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="o8m-Fg-Q1U" eventType="touchUpInside" id="bwO-zv-6qh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6A-FR-cXb">
+                                <rect key="frame" x="16" y="597" width="382" height="33"/>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="17"/>
+                                <state key="normal" title="New User? Create an account here">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Eja-oC-eYF" kind="show" id="GfB-tb-vfF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cBt-ny-0TZ" firstAttribute="top" secondItem="ohe-Kf-ebR" secondAttribute="bottom" constant="8" id="2RO-94-4uF"/>
+                            <constraint firstItem="st6-vO-7OY" firstAttribute="top" secondItem="cBt-ny-0TZ" secondAttribute="bottom" constant="8" id="2ph-gd-OuN"/>
+                            <constraint firstItem="fIw-dx-hAy" firstAttribute="top" secondItem="hSo-MJ-VqZ" secondAttribute="top" constant="138" id="5L3-FN-xZO"/>
+                            <constraint firstItem="hSo-MJ-VqZ" firstAttribute="trailing" secondItem="SqE-bU-QhY" secondAttribute="trailing" constant="16" id="70T-4m-xUo"/>
+                            <constraint firstItem="j1H-Cs-S1H" firstAttribute="top" secondItem="aoG-iN-1j2" secondAttribute="bottom" constant="20" id="7Wh-yv-KXl"/>
+                            <constraint firstItem="hSo-MJ-VqZ" firstAttribute="trailing" secondItem="aoG-iN-1j2" secondAttribute="trailing" constant="20" id="C40-aT-JS8"/>
+                            <constraint firstItem="F6A-FR-cXb" firstAttribute="leading" secondItem="hSo-MJ-VqZ" secondAttribute="leading" constant="16" id="D7U-8w-KCS"/>
+                            <constraint firstItem="st6-vO-7OY" firstAttribute="leading" secondItem="hSo-MJ-VqZ" secondAttribute="leading" constant="130" id="EtM-kH-0jq"/>
+                            <constraint firstItem="j1H-Cs-S1H" firstAttribute="leading" secondItem="hSo-MJ-VqZ" secondAttribute="leading" constant="20" id="G4W-4b-aEs"/>
+                            <constraint firstItem="aoG-iN-1j2" firstAttribute="leading" secondItem="hSo-MJ-VqZ" secondAttribute="leading" constant="20" id="GT1-I2-tLW"/>
+                            <constraint firstItem="hSo-MJ-VqZ" firstAttribute="trailing" secondItem="F6A-FR-cXb" secondAttribute="trailing" constant="16" id="IOs-9o-oiA"/>
+                            <constraint firstItem="hSo-MJ-VqZ" firstAttribute="trailing" secondItem="st6-vO-7OY" secondAttribute="trailing" constant="130" id="LzX-5z-59E"/>
+                            <constraint firstItem="cBt-ny-0TZ" firstAttribute="leading" secondItem="hSo-MJ-VqZ" secondAttribute="leading" constant="16" id="MVo-Hl-zy1"/>
+                            <constraint firstItem="hSo-MJ-VqZ" firstAttribute="trailing" secondItem="cBt-ny-0TZ" secondAttribute="trailing" constant="16" id="Mf7-AN-EQh"/>
+                            <constraint firstItem="aoG-iN-1j2" firstAttribute="top" secondItem="fIw-dx-hAy" secondAttribute="bottom" constant="35" id="OKW-xy-YaQ"/>
+                            <constraint firstItem="SqE-bU-QhY" firstAttribute="leading" secondItem="hSo-MJ-VqZ" secondAttribute="leading" constant="16" id="RcB-RI-W2o"/>
+                            <constraint firstItem="hSo-MJ-VqZ" firstAttribute="trailing" secondItem="ohe-Kf-ebR" secondAttribute="trailing" constant="16" id="ULI-jK-N81"/>
+                            <constraint firstItem="F6A-FR-cXb" firstAttribute="top" secondItem="st6-vO-7OY" secondAttribute="bottom" constant="8" id="WvK-Nv-MvE"/>
+                            <constraint firstItem="hSo-MJ-VqZ" firstAttribute="trailing" secondItem="j1H-Cs-S1H" secondAttribute="trailing" constant="20" id="Zjo-Om-Vwn"/>
+                            <constraint firstItem="ohe-Kf-ebR" firstAttribute="leading" secondItem="hSo-MJ-VqZ" secondAttribute="leading" constant="16" id="bL0-Td-iRj"/>
+                            <constraint firstItem="hSo-MJ-VqZ" firstAttribute="trailing" secondItem="fIw-dx-hAy" secondAttribute="trailing" constant="16" id="fYJ-t1-O7I"/>
+                            <constraint firstItem="ohe-Kf-ebR" firstAttribute="top" secondItem="SqE-bU-QhY" secondAttribute="bottom" constant="8" id="hOw-gi-ZLO"/>
+                            <constraint firstItem="SqE-bU-QhY" firstAttribute="top" secondItem="j1H-Cs-S1H" secondAttribute="bottom" constant="10" id="uPg-5C-rWP"/>
+                            <constraint firstItem="fIw-dx-hAy" firstAttribute="leading" secondItem="hSo-MJ-VqZ" secondAttribute="leading" constant="16" id="zGA-NW-bTK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hSo-MJ-VqZ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="m1s-1x-Mal"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="aoG-iN-1j2" id="F8o-B2-Efm"/>
+                        <outlet property="passwordTextField" destination="j1H-Cs-S1H" id="W3w-2v-1LR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="obw-aH-iQX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="939.13043478260875" y="119.86607142857142"/>
+        </scene>
+        <!--Create Account View Controller-->
+        <scene sceneID="NSe-SK-tag">
+            <objects>
+                <viewController id="Eja-oC-eYF" customClass="CreateAccountViewController" customModule="Elite" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="71a-3V-l2u">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up To Compete" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scG-1S-sj9">
+                                <rect key="frame" x="16" y="226" width="382" height="34"/>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="28"/>
+                                <color key="textColor" red="1" green="0.91034481140000001" blue="0.43615998950000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xsw-A6-IWB">
+                                <rect key="frame" x="20" y="295" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="BQS-JC-RLD"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yaH-9o-Qdv">
+                                <rect key="frame" x="20" y="365" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="zA2-vi-tnM"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="feq-xL-dwj">
+                                <rect key="frame" x="20" y="435" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Cmb-7S-Hle"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How would you like to Signup?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOz-TN-gth">
+                                <rect key="frame" x="16" y="495" width="382" height="21"/>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dxR-oZ-avw" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
+                                <rect key="frame" x="16" y="524" width="382" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="D0r-bt-Oet"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="24"/>
+                                <state key="normal" title="LOGIN WITH FACEBOOK">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="facebookButtonPressed:" destination="Eja-oC-eYF" eventType="touchUpInside" id="YVW-5D-y4p"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9o-ws-8fL" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
+                                <rect key="frame" x="16" y="572" width="382" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="9vj-TB-ebV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="24"/>
+                                <state key="normal" title="LOGIN WITH GMAIL">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="gmailButtonPressed:" destination="Eja-oC-eYF" eventType="touchUpInside" id="Sb1-IT-yBF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2y-GD-Wqv">
+                                <rect key="frame" x="130" y="620" width="154" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.91034481140000001" blue="0.43615998950000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="rva-pt-741"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="24"/>
+                                <state key="normal" title="Create">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="createButtonPressed:" destination="Eja-oC-eYF" eventType="touchUpInside" id="Uy8-Qg-Sw8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X8f-9j-lTw">
+                                <rect key="frame" x="16" y="668" width="382" height="33"/>
+                                <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="17"/>
+                                <state key="normal" title="Already have an account? Login here">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="showLoginView:" destination="Eja-oC-eYF" eventType="touchUpInside" id="gpE-tl-ZIh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dxR-oZ-avw" firstAttribute="leading" secondItem="gUW-sw-pg2" secondAttribute="leading" constant="16" id="2zu-bS-pS4"/>
+                            <constraint firstItem="d2y-GD-Wqv" firstAttribute="top" secondItem="V9o-ws-8fL" secondAttribute="bottom" constant="8" id="5bg-Ph-k8G"/>
+                            <constraint firstItem="xsw-A6-IWB" firstAttribute="leading" secondItem="gUW-sw-pg2" secondAttribute="leading" constant="20" id="Ay5-k7-GhF"/>
+                            <constraint firstItem="X8f-9j-lTw" firstAttribute="top" secondItem="d2y-GD-Wqv" secondAttribute="bottom" constant="8" id="Ebo-0N-Lqa"/>
+                            <constraint firstItem="gUW-sw-pg2" firstAttribute="trailing" secondItem="d2y-GD-Wqv" secondAttribute="trailing" constant="130" id="Gch-Oc-tZn"/>
+                            <constraint firstItem="V9o-ws-8fL" firstAttribute="leading" secondItem="gUW-sw-pg2" secondAttribute="leading" constant="16" id="I6f-pT-KVL"/>
+                            <constraint firstItem="xsw-A6-IWB" firstAttribute="top" secondItem="scG-1S-sj9" secondAttribute="bottom" constant="35" id="Js6-SD-t2K"/>
+                            <constraint firstItem="V9o-ws-8fL" firstAttribute="top" secondItem="dxR-oZ-avw" secondAttribute="bottom" constant="8" id="RA0-re-fW1"/>
+                            <constraint firstItem="scG-1S-sj9" firstAttribute="top" secondItem="gUW-sw-pg2" secondAttribute="top" constant="138" id="VjL-DF-BBK"/>
+                            <constraint firstItem="gUW-sw-pg2" firstAttribute="trailing" secondItem="X8f-9j-lTw" secondAttribute="trailing" constant="16" id="VpM-XR-yar"/>
+                            <constraint firstItem="scG-1S-sj9" firstAttribute="leading" secondItem="gUW-sw-pg2" secondAttribute="leading" constant="16" id="XP5-nD-PLa"/>
+                            <constraint firstItem="gUW-sw-pg2" firstAttribute="trailing" secondItem="scG-1S-sj9" secondAttribute="trailing" constant="16" id="ZcN-s0-xU6"/>
+                            <constraint firstItem="KOz-TN-gth" firstAttribute="leading" secondItem="gUW-sw-pg2" secondAttribute="leading" constant="16" id="a4x-tA-HDW"/>
+                            <constraint firstItem="yaH-9o-Qdv" firstAttribute="leading" secondItem="gUW-sw-pg2" secondAttribute="leading" constant="20" id="aaF-Ge-QQ4"/>
+                            <constraint firstItem="gUW-sw-pg2" firstAttribute="trailing" secondItem="xsw-A6-IWB" secondAttribute="trailing" constant="20" id="bnm-9u-Uoi"/>
+                            <constraint firstItem="yaH-9o-Qdv" firstAttribute="top" secondItem="xsw-A6-IWB" secondAttribute="bottom" constant="20" id="d5U-re-Wl8"/>
+                            <constraint firstItem="gUW-sw-pg2" firstAttribute="trailing" secondItem="V9o-ws-8fL" secondAttribute="trailing" constant="16" id="fSY-Zw-MLc"/>
+                            <constraint firstItem="feq-xL-dwj" firstAttribute="top" secondItem="yaH-9o-Qdv" secondAttribute="bottom" constant="20" id="fmo-Zu-O3U"/>
+                            <constraint firstItem="feq-xL-dwj" firstAttribute="leading" secondItem="gUW-sw-pg2" secondAttribute="leading" constant="20" id="hSc-Xt-qjF"/>
+                            <constraint firstItem="gUW-sw-pg2" firstAttribute="trailing" secondItem="yaH-9o-Qdv" secondAttribute="trailing" constant="20" id="lBw-Wh-5Pj"/>
+                            <constraint firstItem="gUW-sw-pg2" firstAttribute="trailing" secondItem="feq-xL-dwj" secondAttribute="trailing" constant="20" id="lzO-ra-Anx"/>
+                            <constraint firstItem="KOz-TN-gth" firstAttribute="top" secondItem="feq-xL-dwj" secondAttribute="bottom" constant="10" id="mnG-i6-val"/>
+                            <constraint firstItem="gUW-sw-pg2" firstAttribute="trailing" secondItem="dxR-oZ-avw" secondAttribute="trailing" constant="16" id="nWu-p1-xGk"/>
+                            <constraint firstItem="dxR-oZ-avw" firstAttribute="top" secondItem="KOz-TN-gth" secondAttribute="bottom" constant="8" id="oVI-Kg-W3f"/>
+                            <constraint firstItem="d2y-GD-Wqv" firstAttribute="leading" secondItem="gUW-sw-pg2" secondAttribute="leading" constant="130" id="psD-0n-ig3"/>
+                            <constraint firstItem="X8f-9j-lTw" firstAttribute="leading" secondItem="gUW-sw-pg2" secondAttribute="leading" constant="16" id="sp8-q8-h4i"/>
+                            <constraint firstItem="gUW-sw-pg2" firstAttribute="trailing" secondItem="KOz-TN-gth" secondAttribute="trailing" constant="16" id="y1Q-oD-OKe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gUW-sw-pg2"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="yaH-9o-Qdv" id="XwL-uW-qlu"/>
+                        <outlet property="passwordTextField" destination="feq-xL-dwj" id="bV1-pK-rTf"/>
+                        <outlet property="usernameTextField" destination="xsw-A6-IWB" id="PSo-bz-gDZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YqI-b4-yRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1697.1014492753625" y="119.86607142857142"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="UHI-NA-Dcx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="j4d-gv-gp0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fjy-hD-dx8">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="o8m-Fg-Q1U" kind="relationship" relationship="rootViewController" id="dPt-eg-6Ah"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V2Y-0A-tbd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="178" y="120"/>
+        </scene>
+    </scenes>
+</document>
