@@ -34,6 +34,7 @@
 		2EF480962256523F008212DC /* GamePostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF480952256523F008212DC /* GamePostModel.swift */; };
 		2EF480982256526B008212DC /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF480972256526B008212DC /* ProfileHeaderView.swift */; };
 		2EF4809A2256527F008212DC /* ProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EF480992256527F008212DC /* ProfileHeaderView.xib */; };
+		2EF4809C22565A73008212DC /* SnapchatLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF4809B22565A73008212DC /* SnapchatLoginViewController.swift */; };
 		4651EF13D0643CF9E55F05B3 /* Pods_Elite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 647649F00844096F9E907D7A /* Pods_Elite.framework */; };
 		BFADB58F22553FB200E746B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFADB58E22553FB200E746B5 /* AppDelegate.swift */; };
 		BFADB59422553FB200E746B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59222553FB200E746B5 /* Main.storyboard */; };
@@ -70,6 +71,7 @@
 		2EF480952256523F008212DC /* GamePostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePostModel.swift; sourceTree = "<group>"; };
 		2EF480972256526B008212DC /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		2EF480992256527F008212DC /* ProfileHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderView.xib; sourceTree = "<group>"; };
+		2EF4809B22565A73008212DC /* SnapchatLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapchatLoginViewController.swift; sourceTree = "<group>"; };
 		647649F00844096F9E907D7A /* Pods_Elite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Elite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2B205210B3DCCE14EFD090 /* Pods-Elite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elite.release.xcconfig"; path = "Target Support Files/Pods-Elite/Pods-Elite.release.xcconfig"; sourceTree = "<group>"; };
 		BFADB58B22553FB200E746B5 /* Elite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elite.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +122,7 @@
 			children = (
 				2E9FE65C22557BA9004CA00B /* ProfileViewController.swift */,
 				2E9FE65E22557BC6004CA00B /* EditProfileViewController.swift */,
+				2EF4809B22565A73008212DC /* SnapchatLoginViewController.swift */,
 			);
 			path = "Profile View Controllers";
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				2EF480962256523F008212DC /* GamePostModel.swift in Sources */,
 				2E9FE6742255806E004CA00B /* AuthService.swift in Sources */,
 				2EF4808722565100008212DC /* GameDetailViewController.swift in Sources */,
+				2EF4809C22565A73008212DC /* SnapchatLoginViewController.swift in Sources */,
 				2E9FE67A225581E4004CA00B /* DBService+User.swift in Sources */,
 				2E9FE67C2255820A004CA00B /* DBService+GamePost.swift in Sources */,
 			);

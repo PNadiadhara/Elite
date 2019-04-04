@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
 
     }
     
-    @IBAction func facebookButtonPressed(_ sender: RoundedButton) {
+    @IBAction func snapchatButtonPressed(_ sender: RoundedButton) {
     }
     
     @IBAction func gmailButtonPressed(_ sender: RoundedButton) {
