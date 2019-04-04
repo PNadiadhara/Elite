@@ -17,13 +17,7 @@ class CreateAccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    @IBAction func snapchatButtonPressed(_ sender: RoundedButton) {
-    }
-    
-    @IBAction func gmailButtonPressed(_ sender: RoundedButton) {
-    }
-    
+ 
     @IBAction func createButtonPressed(_ sender: UIButton) {
     }
     
