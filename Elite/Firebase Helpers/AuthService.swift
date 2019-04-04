@@ -11,7 +11,7 @@ import FirebaseAuth
 
 protocol AuthServiceCreateNewAccountDelegate: AnyObject {
     func didRecieveErrorCreatingAccount(_ authservice: AuthService, error: Error)
-    //func didCreateNewAccount(_ authservice: AuthService, user: )
+    func didCreateNewAccount(_ authservice: AuthService, user: GamerModel)
 }
 
 protocol AuthServiceExistingAccountDelegate: AnyObject {
