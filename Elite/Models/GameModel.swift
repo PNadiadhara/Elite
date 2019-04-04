@@ -9,30 +9,55 @@
 import Foundation
 
 class GameModel {
-    let category: String
-    let gameLocation: String
+    let gameName: String
+    let gameType: String
     let numberOfGamers: Int
-    let games: String
-    let user: [GamerModel]
-    let gameEndTime: Double
-    let duration: Double
+    let users: String
+    let eliteStatus: String
     let gameDescription: String
+    let gameEndTime: Double
+    let winner: String
+    let loser: String
+    let isTie: Bool
+    let location: String
+    let gameID: Int
+    let points: Int
+    let witness: String
+    let scoreCount: Int
+    let duration: Double
     
-    init(category: String,
-    gameLocation: String,
+    
+    init(gameName: String,
+    gameType: String,
     numberOfPlayers: Int,
-    games: String,
-    user: [GamerModel],
+    users: String,
+    eliteStatus: String,
+    gameDescription: String,
     gameEndTime: Double,
-    duration: Double,
-    gameDescription: String) {
-        self.category = category
-        self.gameLocation = gameLocation
+    winner: String,
+    loser: String,
+    isTie: Bool,
+    location: String,
+    gameID: Int,
+    points: Int,
+    witness: String,
+    scoreCount: Int,
+    duration: Double) {
+        self.gameName = gameName
+        self.gameType = gameType
         self.numberOfGamers = numberOfPlayers
-        self.games = games
-        self.user = user
-        self.gameEndTime = gameEndTime
-        self.duration = duration
+        self.users = users
+        self.eliteStatus = eliteStatus
         self.gameDescription = gameDescription
+        self.gameEndTime = gameEndTime
+        self.winner = winner
+        self.loser = loser
+        self.isTie = isTie
+        self.location = location
+        self.gameID = gameID
+        self.points = points
+        self.witness = witness
+        self.scoreCount = scoreCount
+        self.duration = duration
     }
 }

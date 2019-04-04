@@ -13,17 +13,11 @@ class GamerModel {
     let firstname: String
     let lastname: String
     let username: String
-    let wins: Int
-    let losses: Int
-    let rank: String
+    let email: String
     let status: String
-    let statusLocation: String
-    let eliteStatus: String
-    let eliteStatusLocation: String
     let bio: String
     let qrCode: String
-    let date: Int
-    let game: [GameModel]
+    let joinedDate: Int
     let gamerID: String
     
     public var fullname: String {
@@ -35,33 +29,21 @@ class GamerModel {
     firstname: String,
     lastname: String,
     username: String,
-    wins: Int,
-    losses: Int,
-    rank: String,
+    email: String,
     status: String,
-    statusLocation: String,
-    eliteStatus: String,
-    eliteStatusLocation: String,
     bio: String,
     qrCode: String,
-    date: Int,
-    game: [GameModel],
+    joinedDate: Int,
     gamerID: String) {
         self.profileImage = profileImage
         self.firstname = firstname
         self.lastname = lastname
         self.username = username
-        self.wins = wins
-        self.losses = losses
-        self.rank = rank
+        self.email = email
         self.status = status
-        self.statusLocation = statusLocation
-        self.eliteStatus = eliteStatus
-        self.eliteStatusLocation = eliteStatusLocation
         self.bio = bio
         self.qrCode = qrCode
-        self.date = date
-        self.game = game
+        self.joinedDate = joinedDate
         self.gamerID = gamerID
     }
 }
