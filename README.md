@@ -38,7 +38,25 @@ It's hard to find new competition for the casual player. In most analog games th
 Elite is an app targeted towards preteens, teens, and young adults. Elite is user-friendly and interactive. It gives young people a new way to play literally any game they want with an added competition aspect. Elite can be played as a single, double, multiplayer game with an optional Witness to corroborate who won. You can add friends and play a customized private game. Invite challengers to a game of your choosing and if you defeat enough players you   Elite status! Once you achieve Elite status people can come and challenge you to overthrow your Elite status.
 
 ## Views
-
+* Login
+* Create Account
+* Map 
+  * Game Selection
+  * Detail Popup
+* Parkboard 
+* Feed
+  * Detail
+* Leader baord
+  * Challenge Elite Popup
+* Create Game
+  * QR Popup
+  * 1 on 1
+  * Team 
+  * Tourney
+* Versus View
+* Profile View
+ * QRCode
+ 
 ## Contributors
 - [Manolova Yusuf](https://github.com/manolovayusuf)
 - [Leandro Wauters](https://github.com/leandrowauters)
