@@ -5,7 +5,7 @@ The app Designed to create healthy competitve competition amongst users
 * [Getting Started](#getting-started)
 * [Prerequisites](#prerequisites)
 * [Installation](#installation)
-* [General Info](#general-info)
+* [App Background](#app-background)
 * [Views](#views)
 * [Features](#features)
 * [Status](#status)
@@ -32,7 +32,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 pod 'GoogleMaps'
 pod 'GooglePlaces'
 ```
-## General Info
+## App Background
 It's hard to find new competition for the casual player. In most analog games there is no casual competitive scene. Finding other players who would like an equal challenge but don’t have the time, or wouldn’t like to commit the time for more formal competition formats can be difficult. 
 
 Elite is an app targeted towards preteens, teens, and young adults. Elite is user-friendly and interactive. It gives young people a new way to play literally any game they want with an added competition aspect. Elite can be played as a single, double, multiplayer game with an optional Witness to corroborate who won. You can add friends and play a customized private game. Invite challengers to a game of your choosing and if you defeat enough players you   Elite status! Once you achieve Elite status people can come and challenge you to overthrow your Elite status.
