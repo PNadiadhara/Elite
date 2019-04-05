@@ -39,10 +39,16 @@ Elite is an app targeted towards preteens, teens, and young adults. Elite is use
 
 ## Views
 * Login
+ - The User is able to login to the app with a email and a password (FMO login using, Gmail & Facebook)
 * Create Account
+ - The User is able to create and account  with a username, email and a password (FMO login using, Gmail & Facebook)
 * Map 
+ - Displays a collection of annotations on the park View.
   * Game Selection
+  - The map view annotations can be changes by selecting the bar button item for called Game
+  - Contains a list of the games you can choose, image and the name of game
   * Detail Popup
+  - when the collection of annotations changes the user can select the actual anotation and it will have:
 * Parkboard 
 * Feed
   * Detail
