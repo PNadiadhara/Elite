@@ -1,5 +1,14 @@
 # Elite
 The app Designed to create healthy competitve competition amongst users
+## Table of contents
+* [General info](#getting-started)
+* [Prerequisites](#prerequisites)
+* [Installation](#installation)
+* [Setup](#setup)
+* [Features](#features)
+* [Status](#status)
+* [Inspiration](#inspiration)
+* [Contributors](#contributors)
 
 ## Getting Started
 If you are instrested in downloading this project please look at the prerequisites and installations for the app. You can alos keep scrolling to look at more about the app
