@@ -19,8 +19,14 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
         authservice.authserviceExistingAccountDelegate = self
-        
+        let screenTap = UITapGestureRecognizer.init(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(screenTap)
     }
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+        
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         guard let email = emailTextField.text,
