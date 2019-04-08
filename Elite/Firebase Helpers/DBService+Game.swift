@@ -15,40 +15,43 @@ struct GameCollectionKeys {
     static let GameNameKey = "gameName"
     static let GameTypeKey = "gameType"
     static let NumberOfGamersKey = "numberOfGamers"
-    static let UsersKey = "users"
-    static let EliteStatusKey = "eliteStatus"
+    static let TeamA = "teamA"
+    static let TeamB = "teamB"
+    static let ParkId = "parkId"
     static let GameDescriptionKey = "gameDescription"
     static let GameEndTimeKey = "gameEndTime"
-    static let WinnerKey = "winner"
-    static let LoserKey = "loser"
+    static let WinnersKey = "winners"
+    static let LosersKey = "losers"
     static let IsTieKey = "isTie"
     static let LocationKey = "location"
     static let GameIDKey = "gameID"
-    static let PointsKey = "points"
+    static let UserID = "userID"
     static let WitnessKey = "witness"
-    static let ScoreCountKey = "scoreCount"
+    static let TeamAScore = "teamAScore"
+    static let TeamBScore = "teamBScore"
     static let DurationKey = "duration"
 }
 
 extension DBService {
     static public func postGame(gamePost: GameModel, completion: @escaping (Error?) -> Void)  {
         firestoreDB.collection(GameCollectionKeys.CollectionKey)
-            .document(String(gamePost.gameID)).setData([
+            .document(gamePost.gameID).setData([
                 GameCollectionKeys.GameNameKey : gamePost.gameName,
                 GameCollectionKeys.GameTypeKey : gamePost.gameType,
                 GameCollectionKeys.NumberOfGamersKey : gamePost.numberOfGamers,
-                GameCollectionKeys.UsersKey : gamePost.users,
-                GameCollectionKeys.EliteStatusKey : gamePost.eliteStatus,
+                GameCollectionKeys.TeamA : gamePost.teamA,
+                GameCollectionKeys.TeamB : gamePost.teamB,
                 GameCollectionKeys.GameDescriptionKey : gamePost.gameDescription,
                 GameCollectionKeys.GameEndTimeKey : gamePost.gameEndTime,
-                GameCollectionKeys.WinnerKey : gamePost.winner,
-                GameCollectionKeys.LoserKey : gamePost.loser,
+                GameCollectionKeys.WinnersKey : gamePost.winners,
+                GameCollectionKeys.LosersKey : gamePost.losers,
                 GameCollectionKeys.IsTieKey : gamePost.isTie,
                 GameCollectionKeys.LocationKey : gamePost.location,
                 GameCollectionKeys.GameIDKey : gamePost.gameID,
-                GameCollectionKeys.PointsKey : gamePost.points,
+                GameCollectionKeys.UserID : gamePost.userID,
                 GameCollectionKeys.WitnessKey : gamePost.witness,
-                GameCollectionKeys.ScoreCountKey : gamePost.scoreCount,
+                GameCollectionKeys.TeamAScore : gamePost.teamAScore,
+                GameCollectionKeys.TeamBScore : gamePost.teamBScore,
                 GameCollectionKeys.DurationKey : gamePost.duration])
             { (error) in
                 if let error = error {

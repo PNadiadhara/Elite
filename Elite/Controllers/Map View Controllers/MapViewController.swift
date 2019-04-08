@@ -8,8 +8,10 @@
 
 import UIKit
 
-class MapViewController: UIViewController {
 
+class MapViewController: UIViewController {
+    
+    @IBOutlet weak var postGame: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,5 +28,12 @@ class MapViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
 
+    @IBAction func postGamePress(_ sender: Any) {
+        let docRef = DBService.firestoreDB.collection(GamerCollectionKeys.CollectionKey).document()
+        
+        
+    }
+    
 }
