@@ -38,4 +38,16 @@ class PlaygroundModel {
         self.rank = rank
         self.parkID = parkID
     }
+    
+    init(dict: [String: Any]) {
+        self.location = dict[PlaygroundCollectionKeys.LocationKey] as? String ?? ""
+        self.name = dict[PlaygroundCollectionKeys.NameKey] as? String ?? ""
+        self.users = dict[PlaygroundCollectionKeys.UsersKey] as? String ?? ""
+        self.isAnElite = dict[PlaygroundCollectionKeys.IsAnEliteKey] as? Bool ?? true
+        self.game = dict[PlaygroundCollectionKeys.GameKey] as? String ?? ""
+        self.wins = dict[PlaygroundCollectionKeys.WinsKey] as? Int ?? 0
+        self.losses = dict[PlaygroundCollectionKeys.LossesKey] as? Int ?? 0
+        self.rank = dict[PlaygroundCollectionKeys.RankKey] as? Int ?? 0
+        self.parkID = dict[PlaygroundCollectionKeys.ParkIDKey] as? String ?? ""
+    }
 }

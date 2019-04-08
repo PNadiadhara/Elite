@@ -44,7 +44,7 @@ extension CreateAccountViewController : AuthServiceCreateNewAccountDelegate {
         showAlert(title: "Account Creation Error", message: error.localizedDescription)
     }
     
-    func didCreateNewAccount(_ authservice: AuthService, Gamer: GamerModel) {
+    func didCreateNewAccount(_ authservice: AuthService, user gamer: GamerModel) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarViewController") as! UITabBarController
         mainTabBarController.modalTransitionStyle = .crossDissolve

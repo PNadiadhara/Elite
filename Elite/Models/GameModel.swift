@@ -60,4 +60,23 @@ class GameModel {
         self.scoreCount = scoreCount
         self.duration = duration
     }
+    
+    init(dict: [String: Any]) {
+        self.gameName = dict[GameCollectionKeys.GameNameKey] as? String ?? ""
+        self.gameType = dict[GameCollectionKeys.GameTypeKey] as? String ?? ""
+        self.numberOfGamers = dict[GameCollectionKeys.NumberOfGamersKey] as? Int ?? 0
+        self.users = dict[GameCollectionKeys.UsersKey] as? String ?? ""
+        self.eliteStatus = dict[GameCollectionKeys.EliteStatusKey] as? String ?? ""
+        self.gameDescription = dict[GameCollectionKeys.GameDescriptionKey] as? String ?? ""
+        self.gameEndTime =  dict[GameCollectionKeys.GameEndTimeKey] as? Double ?? 0
+        self.winner = dict[GameCollectionKeys.WinnerKey] as? String ?? ""
+        self.loser = dict[GameCollectionKeys.LoserKey] as? String ?? ""
+        self.isTie = dict[GameCollectionKeys.IsTieKey] as? Bool ?? true
+        self.location = dict[GameCollectionKeys.LocationKey] as? String ?? ""
+        self.gameID = dict[GameCollectionKeys.GameIDKey] as? Int ?? 0
+        self.points = dict[GameCollectionKeys.PointsKey] as? Int ?? 0
+        self.witness = dict[GameCollectionKeys.WitnessKey] as? String ?? ""
+        self.scoreCount = dict[GameCollectionKeys.ScoreCountKey] as? Int ?? 0
+        self.duration = dict[GameCollectionKeys.DurationKey] as? Double ?? 0
+    }
 }

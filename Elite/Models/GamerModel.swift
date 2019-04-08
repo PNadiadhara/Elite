@@ -46,4 +46,18 @@ class GamerModel {
         self.joinedDate = joinedDate
         self.gamerID = gamerID
     }
+    
+    init(dict: [String: Any]) {
+        self.profileImage = dict[GamerCollectionKeys.ProfileImageURLKey] as? String ?? ""
+        self.firstname = dict[GamerCollectionKeys.FirstNameKey] as? String ?? ""
+        self.lastname = dict[GamerCollectionKeys.LastNameKey] as? String ?? ""
+        self.username = dict[GamerCollectionKeys.UserNameKey] as? String ?? ""
+        self.email = dict[GamerCollectionKeys.EmailKey] as? String ?? ""
+        self.status = dict[GamerCollectionKeys.StatusKey] as? String ?? ""
+        self.bio = dict[GamerCollectionKeys.BioKey] as? String ?? "FirstName"
+        self.qrCode = dict[GamerCollectionKeys.QRcodeKey] as? String ?? "LastName"
+        self.joinedDate = dict[GamerCollectionKeys.JoinedDateKey] as? Int ?? 0
+        self.gamerID = dict[GamerCollectionKeys.GamerIDKey] as? String ?? ""
+        
+    }
 }

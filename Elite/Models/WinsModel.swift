@@ -23,4 +23,11 @@ class WinsModel {
         self.location = location
         self.scoreCount = scoreCount
     }
+    
+    init(dict: [String: Any]) {
+        self.gameName = dict[WinsCollectionKeys.GameNameKey] as? String ?? ""
+        self.gamer = dict[WinsCollectionKeys.GamerKey] as? String ?? ""
+        self.location = dict[WinsCollectionKeys.LocationKey] as? String ?? ""
+        self.scoreCount = dict[WinsCollectionKeys.ScoreCountKey] as? Int ?? 0
+    }
 }
