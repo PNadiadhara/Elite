@@ -43,6 +43,9 @@
 		2EF480A02256BE38008212DC /* PlaygroundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF4809F2256BE38008212DC /* PlaygroundModel.swift */; };
 		2EF480A22256BE69008212DC /* WinsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF480A12256BE69008212DC /* WinsModel.swift */; };
 		4651EF13D0643CF9E55F05B3 /* Pods_Elite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 647649F00844096F9E907D7A /* Pods_Elite.framework */; };
+		48D5C81A225D20F700AFDE8F /* GeocodingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D5C819225D20F700AFDE8F /* GeocodingData.swift */; };
+		48D5C81C225D213B00AFDE8F /* GeolocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D5C81B225D213B00AFDE8F /* GeolocationData.swift */; };
+		48D5C81E225D216400AFDE8F /* JsonParkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D5C81D225D216400AFDE8F /* JsonParkData.swift */; };
 		BFADB58F22553FB200E746B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFADB58E22553FB200E746B5 /* AppDelegate.swift */; };
 		BFADB59422553FB200E746B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59222553FB200E746B5 /* Main.storyboard */; };
 		BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59522553FB300E746B5 /* Assets.xcassets */; };
@@ -86,6 +89,9 @@
 		2EF4809B22565A73008212DC /* SnapchatLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapchatLoginViewController.swift; sourceTree = "<group>"; };
 		2EF4809F2256BE38008212DC /* PlaygroundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundModel.swift; sourceTree = "<group>"; };
 		2EF480A12256BE69008212DC /* WinsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinsModel.swift; sourceTree = "<group>"; };
+		48D5C819225D20F700AFDE8F /* GeocodingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingData.swift; sourceTree = "<group>"; };
+		48D5C81B225D213B00AFDE8F /* GeolocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolocationData.swift; sourceTree = "<group>"; };
+		48D5C81D225D216400AFDE8F /* JsonParkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParkData.swift; sourceTree = "<group>"; };
 		647649F00844096F9E907D7A /* Pods_Elite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Elite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2B205210B3DCCE14EFD090 /* Pods-Elite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elite.release.xcconfig"; path = "Target Support Files/Pods-Elite/Pods-Elite.release.xcconfig"; sourceTree = "<group>"; };
 		BFADB58B22553FB200E746B5 /* Elite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elite.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -246,6 +252,9 @@
 				2EF4809F2256BE38008212DC /* PlaygroundModel.swift */,
 				2EF480A12256BE69008212DC /* WinsModel.swift */,
 				2E171BA9225D011800D40DDF /* JsonModel.json */,
+				48D5C819225D20F700AFDE8F /* GeocodingData.swift */,
+				48D5C81B225D213B00AFDE8F /* GeolocationData.swift */,
+				48D5C81D225D216400AFDE8F /* JsonParkData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -495,6 +504,7 @@
 				2E9FE67122557F02004CA00B /* String+Date.swift in Sources */,
 				2E171BA7225CF95100D40DDF /* FeedTableViewController.swift in Sources */,
 				2E9FE66C22557E8C004CA00B /* TabBarViewController.swift in Sources */,
+				48D5C81E225D216400AFDE8F /* JsonParkData.swift in Sources */,
 				2E171BA3225CF93100D40DDF /* CreateGameViewController.swift in Sources */,
 				2E9FE65F22557BC6004CA00B /* EditProfileViewController.swift in Sources */,
 				2EF4809222565216008212DC /* GameModel.swift in Sources */,
@@ -515,6 +525,8 @@
 				2EF480A02256BE38008212DC /* PlaygroundModel.swift in Sources */,
 				2E9FE67A225581E4004CA00B /* DBService+Gamer.swift in Sources */,
 				2E9FE67C2255820A004CA00B /* DBService+Game.swift in Sources */,
+				48D5C81C225D213B00AFDE8F /* GeolocationData.swift in Sources */,
+				48D5C81A225D20F700AFDE8F /* GeocodingData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
