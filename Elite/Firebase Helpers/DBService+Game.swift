@@ -23,7 +23,10 @@ struct GameCollectionKeys {
     static let WinnersKey = "winners"
     static let LosersKey = "losers"
     static let IsTieKey = "isTie"
-    static let LocationKey = "location"
+    static let FormattedAdresssKey = "formattedAdresss"
+    static let ParkNameKey = "parkName"
+    static let LatKey = "lat"
+    static let LonKey = "lon"
     static let GameIDKey = "gameID"
     static let UserID = "userID"
     static let WitnessKey = "witness"
@@ -46,10 +49,13 @@ extension DBService {
                 GameCollectionKeys.WinnersKey : gamePost.winners,
                 GameCollectionKeys.LosersKey : gamePost.losers,
                 GameCollectionKeys.IsTieKey : gamePost.isTie,
-                GameCollectionKeys.LocationKey : gamePost.location,
+                GameCollectionKeys.FormattedAdresssKey : gamePost.formattedAdresss,
+                GameCollectionKeys.ParkNameKey : gamePost.parkName,
+                GameCollectionKeys.LatKey : gamePost.lat,
+                GameCollectionKeys.LonKey : gamePost.lon,
                 GameCollectionKeys.GameIDKey : gamePost.gameID,
                 GameCollectionKeys.UserID : gamePost.userID,
-                GameCollectionKeys.WitnessKey : gamePost.witness,
+                GameCollectionKeys.WitnessKey : gamePost.witness ?? "",
                 GameCollectionKeys.TeamAScore : gamePost.teamAScore,
                 GameCollectionKeys.TeamBScore : gamePost.teamBScore,
                 GameCollectionKeys.DurationKey : gamePost.duration])
