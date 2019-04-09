@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		2E171B92225BA61000D40DDF /* DBService+Playground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E171B91225BA61000D40DDF /* DBService+Playground.swift */; };
 		2E171B94225BA62900D40DDF /* DBService+Wins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E171B93225BA62900D40DDF /* DBService+Wins.swift */; };
+		2E171B97225CF86C00D40DDF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E171B95225CF86C00D40DDF /* MapViewController.swift */; };
+		2E171B98225CF86C00D40DDF /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E171B96225CF86C00D40DDF /* MapViewController.xib */; };
+		2E171B9F225CF90700D40DDF /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E171B9D225CF90700D40DDF /* LeaderboardViewController.swift */; };
+		2E171BA0225CF90700D40DDF /* LeaderboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E171B9E225CF90700D40DDF /* LeaderboardViewController.xib */; };
+		2E171BA3225CF93100D40DDF /* CreateGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E171BA1225CF93100D40DDF /* CreateGameViewController.swift */; };
+		2E171BA4225CF93100D40DDF /* CreateGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E171BA2225CF93100D40DDF /* CreateGameViewController.xib */; };
+		2E171BA7225CF95100D40DDF /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E171BA5225CF95100D40DDF /* FeedTableViewController.swift */; };
+		2E171BA8225CF95100D40DDF /* FeedTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E171BA6225CF95100D40DDF /* FeedTableViewController.xib */; };
+		2E171BAA225D011800D40DDF /* JsonModel.json in Sources */ = {isa = PBXBuildFile; fileRef = 2E171BA9225D011800D40DDF /* JsonModel.json */; };
 		2E9FE656225579E5004CA00B /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9FE655225579E5004CA00B /* CreateAccountViewController.swift */; };
 		2E9FE65822557AC4004CA00B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9FE65722557AC4004CA00B /* LoginViewController.swift */; };
 		2E9FE65D22557BA9004CA00B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9FE65C22557BA9004CA00B /* ProfileViewController.swift */; };
@@ -26,11 +35,6 @@
 		2E9FE67A225581E4004CA00B /* DBService+Gamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9FE679225581E4004CA00B /* DBService+Gamer.swift */; };
 		2E9FE67C2255820A004CA00B /* DBService+Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9FE67B2255820A004CA00B /* DBService+Game.swift */; };
 		2E9FE67F22558282004CA00B /* LoginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E9FE67E22558282004CA00B /* LoginView.storyboard */; };
-		2EF48085225650E3008212DC /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF48084225650E3008212DC /* GameViewController.swift */; };
-		2EF4808722565100008212DC /* GameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF4808622565100008212DC /* GameDetailViewController.swift */; };
-		2EF480892256513F008212DC /* AddGamePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF480882256513F008212DC /* AddGamePostViewController.swift */; };
-		2EF4808B22565151008212DC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF4808A22565151008212DC /* MapViewController.swift */; };
-		2EF4808E22565173008212DC /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF4808D22565173008212DC /* LeaderboardViewController.swift */; };
 		2EF4809222565216008212DC /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF4809122565216008212DC /* GameModel.swift */; };
 		2EF4809422565227008212DC /* GamerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF4809322565227008212DC /* GamerModel.swift */; };
 		2EF480982256526B008212DC /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF480972256526B008212DC /* ProfileHeaderView.swift */; };
@@ -49,6 +53,15 @@
 /* Begin PBXFileReference section */
 		2E171B91225BA61000D40DDF /* DBService+Playground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBService+Playground.swift"; sourceTree = "<group>"; };
 		2E171B93225BA62900D40DDF /* DBService+Wins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBService+Wins.swift"; sourceTree = "<group>"; };
+		2E171B95225CF86C00D40DDF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		2E171B96225CF86C00D40DDF /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		2E171B9D225CF90700D40DDF /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
+		2E171B9E225CF90700D40DDF /* LeaderboardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardViewController.xib; sourceTree = "<group>"; };
+		2E171BA1225CF93100D40DDF /* CreateGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameViewController.swift; sourceTree = "<group>"; };
+		2E171BA2225CF93100D40DDF /* CreateGameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateGameViewController.xib; sourceTree = "<group>"; };
+		2E171BA5225CF95100D40DDF /* FeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
+		2E171BA6225CF95100D40DDF /* FeedTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedTableViewController.xib; sourceTree = "<group>"; };
+		2E171BA9225D011800D40DDF /* JsonModel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JsonModel.json; sourceTree = "<group>"; };
 		2E9FE655225579E5004CA00B /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		2E9FE65722557AC4004CA00B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2E9FE65C22557BA9004CA00B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -66,11 +79,6 @@
 		2E9FE679225581E4004CA00B /* DBService+Gamer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBService+Gamer.swift"; sourceTree = "<group>"; };
 		2E9FE67B2255820A004CA00B /* DBService+Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBService+Game.swift"; sourceTree = "<group>"; };
 		2E9FE67E22558282004CA00B /* LoginView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginView.storyboard; sourceTree = "<group>"; };
-		2EF48084225650E3008212DC /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		2EF4808622565100008212DC /* GameDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailViewController.swift; sourceTree = "<group>"; };
-		2EF480882256513F008212DC /* AddGamePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGamePostViewController.swift; sourceTree = "<group>"; };
-		2EF4808A22565151008212DC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		2EF4808D22565173008212DC /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		2EF4809122565216008212DC /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		2EF4809322565227008212DC /* GamerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamerModel.swift; sourceTree = "<group>"; };
 		2EF480972256526B008212DC /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
@@ -195,7 +203,8 @@
 		2EF4808222565037008212DC /* Map View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2EF4808A22565151008212DC /* MapViewController.swift */,
+				2E171B95225CF86C00D40DDF /* MapViewController.swift */,
+				2E171B96225CF86C00D40DDF /* MapViewController.xib */,
 			);
 			path = "Map View Controllers";
 			sourceTree = "<group>";
@@ -203,9 +212,10 @@
 		2EF4808322565049008212DC /* Game View Controllers  */ = {
 			isa = PBXGroup;
 			children = (
-				2EF48084225650E3008212DC /* GameViewController.swift */,
-				2EF4808622565100008212DC /* GameDetailViewController.swift */,
-				2EF480882256513F008212DC /* AddGamePostViewController.swift */,
+				2E171BA1225CF93100D40DDF /* CreateGameViewController.swift */,
+				2E171BA2225CF93100D40DDF /* CreateGameViewController.xib */,
+				2E171BA5225CF95100D40DDF /* FeedTableViewController.swift */,
+				2E171BA6225CF95100D40DDF /* FeedTableViewController.xib */,
 			);
 			path = "Game View Controllers ";
 			sourceTree = "<group>";
@@ -213,7 +223,8 @@
 		2EF4808C22565158008212DC /* Leaderboard View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2EF4808D22565173008212DC /* LeaderboardViewController.swift */,
+				2E171B9D225CF90700D40DDF /* LeaderboardViewController.swift */,
+				2E171B9E225CF90700D40DDF /* LeaderboardViewController.xib */,
 			);
 			path = "Leaderboard View Controller";
 			sourceTree = "<group>";
@@ -234,6 +245,7 @@
 				2EF4809322565227008212DC /* GamerModel.swift */,
 				2EF4809F2256BE38008212DC /* PlaygroundModel.swift */,
 				2EF480A12256BE69008212DC /* WinsModel.swift */,
+				2E171BA9225D011800D40DDF /* JsonModel.json */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -354,11 +366,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E171BA0225CF90700D40DDF /* LeaderboardViewController.xib in Resources */,
 				BFADB59922553FB300E746B5 /* LaunchScreen.storyboard in Resources */,
 				2EF4809A2256527F008212DC /* ProfileHeaderView.xib in Resources */,
+				2E171BA8225CF95100D40DDF /* FeedTableViewController.xib in Resources */,
 				BFADB5A5225544EA00E746B5 /* GoogleService-Info.plist in Resources */,
 				BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */,
+				2E171B98225CF86C00D40DDF /* MapViewController.xib in Resources */,
 				BFADB59422553FB200E746B5 /* Main.storyboard in Resources */,
+				2E171BA4225CF93100D40DDF /* CreateGameViewController.xib in Resources */,
 				2E9FE67F22558282004CA00B /* LoginView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,26 +491,26 @@
 				2EF480A22256BE69008212DC /* WinsModel.swift in Sources */,
 				2E171B94225BA62900D40DDF /* DBService+Wins.swift in Sources */,
 				2E9FE67822558191004CA00B /* DBService.swift in Sources */,
-				2EF480892256513F008212DC /* AddGamePostViewController.swift in Sources */,
 				2E9FE656225579E5004CA00B /* CreateAccountViewController.swift in Sources */,
 				2E9FE67122557F02004CA00B /* String+Date.swift in Sources */,
-				2EF48085225650E3008212DC /* GameViewController.swift in Sources */,
+				2E171BA7225CF95100D40DDF /* FeedTableViewController.swift in Sources */,
 				2E9FE66C22557E8C004CA00B /* TabBarViewController.swift in Sources */,
+				2E171BA3225CF93100D40DDF /* CreateGameViewController.swift in Sources */,
 				2E9FE65F22557BC6004CA00B /* EditProfileViewController.swift in Sources */,
-				2EF4808E22565173008212DC /* LeaderboardViewController.swift in Sources */,
 				2EF4809222565216008212DC /* GameModel.swift in Sources */,
 				2E9FE66822557DF4004CA00B /* UIViewController+Navigation.swift in Sources */,
 				2E9FE66F22557EE8004CA00B /* Date+Extensions.swift in Sources */,
+				2E171BAA225D011800D40DDF /* JsonModel.json in Sources */,
+				2E171B9F225CF90700D40DDF /* LeaderboardViewController.swift in Sources */,
 				2E9FE66422557D02004CA00B /* IBADesignableViews.swift in Sources */,
 				2E9FE66A22557E23004CA00B /* UIViewController+Alert.swift in Sources */,
 				2E9FE65D22557BA9004CA00B /* ProfileViewController.swift in Sources */,
-				2EF4808B22565151008212DC /* MapViewController.swift in Sources */,
 				2E9FE67622558164004CA00B /* StorageService.swift in Sources */,
 				2E9FE66222557CE6004CA00B /* Constants.swift in Sources */,
 				2EF480982256526B008212DC /* ProfileHeaderView.swift in Sources */,
+				2E171B97225CF86C00D40DDF /* MapViewController.swift in Sources */,
 				BFADB58F22553FB200E746B5 /* AppDelegate.swift in Sources */,
 				2E9FE6742255806E004CA00B /* AuthService.swift in Sources */,
-				2EF4808722565100008212DC /* GameDetailViewController.swift in Sources */,
 				2EF4809C22565A73008212DC /* SnapchatLoginViewController.swift in Sources */,
 				2EF480A02256BE38008212DC /* PlaygroundModel.swift in Sources */,
 				2E9FE67A225581E4004CA00B /* DBService+Gamer.swift in Sources */,
