@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileView" customModule="Elite" customModuleProvider="target">
+            <connections>
+                <outlet property="achievementsView" destination="BPD-eI-ERA" id="fzH-Rw-k26"/>
+                <outlet property="friendListView" destination="bCH-cM-qti" id="eSX-oh-uUR"/>
+                <outlet property="gamePostView" destination="bgQ-0p-nbo" id="alX-ck-wi7"/>
+                <outlet property="profileTableView" destination="Kvn-d2-QKN" id="G4n-U4-65t"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bgQ-0p-nbo" customClass="RoundedView" customModule="Elite" customModuleProvider="target">
+                    <rect key="frame" x="15" y="44" width="115" height="80"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="Muq-0q-wxm"/>
+                        <constraint firstAttribute="width" constant="115" id="XpP-RL-GJz"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BPD-eI-ERA" customClass="RoundedView" customModule="Elite" customModuleProvider="target">
+                    <rect key="frame" x="150" y="44" width="115" height="80"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="115" id="0CT-pP-M7T"/>
+                        <constraint firstAttribute="height" constant="80" id="cKB-9V-AGQ"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCH-cM-qti" customClass="RoundedView" customModule="Elite" customModuleProvider="target">
+                    <rect key="frame" x="285" y="44" width="115" height="80"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="LIX-Se-RT8"/>
+                        <constraint firstAttribute="width" constant="115" id="LJl-6u-fyX"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kvn-d2-QKN">
+                    <rect key="frame" x="0.0" y="132" width="414" height="730"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Kvn-d2-QKN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="3zy-ab-K7x"/>
+                <constraint firstItem="Kvn-d2-QKN" firstAttribute="top" secondItem="bgQ-0p-nbo" secondAttribute="bottom" constant="8" id="7VX-hG-65D"/>
+                <constraint firstItem="bCH-cM-qti" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="EsR-DO-ezA"/>
+                <constraint firstItem="bgQ-0p-nbo" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="QoA-1O-CZv"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Kvn-d2-QKN" secondAttribute="trailing" id="Rm5-4u-aOb"/>
+                <constraint firstItem="bgQ-0p-nbo" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Y3p-7e-DFv"/>
+                <constraint firstItem="bCH-cM-qti" firstAttribute="leading" secondItem="BPD-eI-ERA" secondAttribute="trailing" constant="20" id="eY1-pg-nb5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Kvn-d2-QKN" secondAttribute="bottom" id="gUV-Sp-5qX"/>
+                <constraint firstItem="BPD-eI-ERA" firstAttribute="leading" secondItem="bgQ-0p-nbo" secondAttribute="trailing" constant="20" id="hyj-J1-hfH"/>
+                <constraint firstItem="BPD-eI-ERA" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="xjR-nA-dGa"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-833.33333333333337" y="-165.40178571428569"/>
+        </view>
+    </objects>
+</document>

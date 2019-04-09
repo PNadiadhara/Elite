@@ -82,3 +82,14 @@ class CircularViewRed: UIView {
         clipsToBounds = true
     }
 }
+
+@IBDesignable
+class RoundedView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = 20.0
+        layer.borderColor = UIColor.lightGray.cgColor
+        layer.borderWidth = 0.5
+        clipsToBounds = true
+    }
+}
