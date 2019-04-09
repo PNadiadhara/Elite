@@ -9,13 +9,14 @@
 import Foundation
 
 class GamerModel {
-    let profileImage: String?
-    let firstname: String
-    let lastname: String
-    let username: String
+    let profileImage: String? //(Bitmoji image)
+    let firstname: String?
+    let lastname: String?
+    let username: String?
     let email: String
-    let status: String
-    let bio: String
+    let status: String? //(rank i.e. Bronze, Gold< Diamond)
+    let achievements: [String]?
+    let bio: String?
     let qrCode: String
     let joinedDate: Int
     let gamerID: String
@@ -25,13 +26,14 @@ class GamerModel {
     }
     
     init(profileImage: String?,
-    fullname: String,
-    firstname: String,
-    lastname: String,
+    fullname: String?,
+    firstname: String?,
+    lastname: String?,
     username: String,
     email: String,
-    status: String,
-    bio: String,
+    status: String?,
+    achievements: [String]?,
+    bio: String?,
     qrCode: String,
     joinedDate: Int,
     gamerID: String) {
@@ -41,6 +43,7 @@ class GamerModel {
         self.username = username
         self.email = email
         self.status = status
+        self.achievements = achievements
         self.bio = bio
         self.qrCode = qrCode
         self.joinedDate = joinedDate
@@ -54,6 +57,7 @@ class GamerModel {
         self.username = dict[GamerCollectionKeys.UserNameKey] as? String ?? ""
         self.email = dict[GamerCollectionKeys.EmailKey] as? String ?? ""
         self.status = dict[GamerCollectionKeys.StatusKey] as? String ?? ""
+        self.achievements = dict[GamerCollectionKeys.AchievementsKey] as? [String] ?? ["",""]
         self.bio = dict[GamerCollectionKeys.BioKey] as? String ?? "FirstName"
         self.qrCode = dict[GamerCollectionKeys.QRcodeKey] as? String ?? "LastName"
         self.joinedDate = dict[GamerCollectionKeys.JoinedDateKey] as? Int ?? 0

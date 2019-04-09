@@ -46,7 +46,14 @@ final class AuthService {
                         return
                     }
                 })
-                
+                let user = GamerModel(profileImage: nil, fullname: nil, firstname: nil, lastname: nil, username: username, email: authDataResult.user.email!, status: nil, achievements: nil, bio: nil, qrCode: "fd", joinedDate: 2, gamerID: authDataResult.user.uid)
+                DBService.createUser(gamer: user, completion: { (error) in
+                    if let error = error {
+                        print("Show Alert Error")
+                    } else {
+                        print("user created")
+                    }
+                })
                 // create user (user) on firestore database
             }
         }

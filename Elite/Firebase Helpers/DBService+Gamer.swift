@@ -18,6 +18,7 @@ struct GamerCollectionKeys {
     static let UserNameKey = "userName"
     static let EmailKey = "email"
     static let StatusKey = "status"
+    static let AchievementsKey = "achievements"
     static let BioKey = "bio"
     static let QRcodeKey = "qrCode"
     static let JoinedDateKey = "joinedDate"
@@ -27,14 +28,18 @@ extension DBService {
     static public func createUser(gamer: GamerModel, completion: @escaping (Error?) -> Void) {
         firestoreDB.collection(GamerCollectionKeys.CollectionKey)
             .document(gamer.gamerID)
-            .setData([ GamerCollectionKeys.GamerIDKey : gamer.gamerID,
+            .setData([ GamerCollectionKeys.ProfileImageURLKey : gamer.profileImage ?? "",
+                       GamerCollectionKeys.FirstNameKey : gamer.firstname,
+                       GamerCollectionKeys.LastNameKey : gamer.lastname,
                        GamerCollectionKeys.UserNameKey : gamer.username,
-                       GamerCollectionKeys.EmailKey       : gamer.email,
-                       GamerCollectionKeys.ProfileImageURLKey    : gamer.profileImage ?? "",
+                       GamerCollectionKeys.EmailKey : gamer.email,
+                       GamerCollectionKeys.StatusKey : gamer.status,
+                       GamerCollectionKeys.AchievementsKey : gamer.achievements,
+                       GamerCollectionKeys.BioKey : gamer.bio,
+                       GamerCollectionKeys.QRcodeKey : gamer.qrCode,
                        GamerCollectionKeys.JoinedDateKey  : gamer.joinedDate,
-                       GamerCollectionKeys.BioKey         : gamer.bio ,
-                       GamerCollectionKeys.FirstNameKey   : gamer.firstname,
-                       GamerCollectionKeys.LastNameKey    : gamer.lastname
+                       GamerCollectionKeys.GamerIDKey : gamer.gamerID
+                    
             ]) { (error) in
                 if let error = error {
                     completion(error)

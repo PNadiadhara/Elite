@@ -2,7 +2,7 @@
 //  LeaderboardViewController.swift
 //  Elite
 //
-//  Created by Manny Yusuf on 4/4/19.
+//  Created by Manny Yusuf on 4/9/19.
 //  Copyright © 2019 Pritesh Nadiadhara. All rights reserved.
 //
 
@@ -15,7 +15,7 @@ class LeaderboardViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
+
 
     /*
     // MARK: - Navigation
