@@ -54,6 +54,7 @@
 		BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59522553FB300E746B5 /* Assets.xcassets */; };
 		BFADB59922553FB300E746B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59722553FB300E746B5 /* LaunchScreen.storyboard */; };
 		BFADB5A5225544EA00E746B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFADB5A4225544EA00E746B5 /* GoogleService-Info.plist */; };
+		BFED970F225E6E2900CC360B /* EloRankMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFED970E225E6E2900CC360B /* EloRankMethods.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +108,7 @@
 		BFADB59822553FB300E746B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFADB59A22553FB300E746B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFADB5A4225544EA00E746B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BFED970E225E6E2900CC360B /* EloRankMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EloRankMethods.swift; sourceTree = "<group>"; };
 		F84EED13AF1CC6349F726937 /* Pods-Elite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elite.debug.xcconfig"; path = "Target Support Files/Pods-Elite/Pods-Elite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +160,7 @@
 			children = (
 				2E9FE66322557D02004CA00B /* IBADesignableViews.swift */,
 				2E9FE66122557CE6004CA00B /* Constants.swift */,
+				BFED970E225E6E2900CC360B /* EloRankMethods.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 				2E9FE6742255806E004CA00B /* AuthService.swift in Sources */,
 				2EF4809C22565A73008212DC /* SnapchatLoginViewController.swift in Sources */,
 				2EF480A02256BE38008212DC /* PlaygroundModel.swift in Sources */,
+				BFED970F225E6E2900CC360B /* EloRankMethods.swift in Sources */,
 				2E9FE67A225581E4004CA00B /* DBService+Gamer.swift in Sources */,
 				2E9FE67C2255820A004CA00B /* DBService+Game.swift in Sources */,
 				48D5C81C225D213B00AFDE8F /* GeolocationData.swift in Sources */,
@@ -694,7 +698,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TZT7J4D9W8;
+				DEVELOPMENT_TEAM = 2X456QR9DN;
 				INFOPLIST_FILE = Elite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -713,7 +717,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TZT7J4D9W8;
+				DEVELOPMENT_TEAM = 2X456QR9DN;
 				INFOPLIST_FILE = Elite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
