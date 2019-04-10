@@ -58,7 +58,6 @@ class ProfileViewController: UIViewController {
 //        profileTableView.delegate = self
         profileView.profileTableView.tableHeaderView = profileHeaderView
         profileView.profileTableView.register(UINib(nibName: "ProfileView", bundle: nil), forCellReuseIdentifier: "ProfileView")
-        profileView.profileTableView.register("Name of the cell", forCellReuseIdentifier: "Identifier")
     }
     
     private func fetchCurrentUser() {
@@ -76,53 +75,53 @@ class ProfileViewController: UIViewController {
     }
 }
 
-extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return gameCreator.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = profileView.profileTableView.dequeueReusableCell(withIdentifier: "ProfileView", for: indexPath) as? ProfileView else {
-            fatalError("ProfileView not found")
-        }
-            return cell
-        }
-        
-    
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "Segue to JobPostDetail", sender: indexPath)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
-    }
-}
+//extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return gameCreator.count
+//    }
 
-extension ProfileViewController: ProfileHeaderViewDelegate {
-    func willSignOutCurrentUser(_ profileHeaderView: ProfileHeaderView) {
-        authservice.signOutAccount()
-        showLoginView()
-    }
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        guard let cell = profileView.profileTableView.dequeueReusableCell(withIdentifier: "ProfileView", for: indexPath) as? ProfileView else {
+//            fatalError("ProfileView not found")
+//        }
+//            return cell
+//        }
+//
+//
+    //}
     
-    func willEditUsersProfile(_ profileHeaderView: ProfileHeaderView) {
-        <#code#>
-    }
-    
-    func willDeleteAccount(_ profileHeaderView: ProfileHeaderView) {
-        <#code#>
-    }
-    
-    func willRequestMatch(_ profileHeaderView: ProfileHeaderView) {
-        <#code#>
-    }
-    
-    func willAddFriends(_ profileHeaderView: ProfileHeaderView) {
-        <#code#>
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        performSegue(withIdentifier: "Segue to JobPostDetail", sender: indexPath)
+//    }
+//
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 200
+//    }
 
-    func willEditProfile(profileHeaderView: ProfileHeaderView) {
-        performSegue(withIdentifier: "Segue to EditOwnerProfile", sender: nil)
-    }
-}
+
+//extension ProfileViewController: ProfileHeaderViewDelegate {
+//    func willSignOutCurrentUser(_ profileHeaderView: ProfileHeaderView) {
+//        authservice.signOutAccount()
+//        showLoginView()
+//    }
+//
+//    func willEditUsersProfile(_ profileHeaderView: ProfileHeaderView) {
+//        <#code#>
+//    }
+//
+//    func willDeleteAccount(_ profileHeaderView: ProfileHeaderView) {
+//        <#code#>
+//    }
+//
+//    func willRequestMatch(_ profileHeaderView: ProfileHeaderView) {
+//        <#code#>
+//    }
+//
+//    func willAddFriends(_ profileHeaderView: ProfileHeaderView) {
+//        <#code#>
+//    }
+//
+//    func willEditProfile(profileHeaderView: ProfileHeaderView) {
+//        performSegue(withIdentifier: "Segue to EditOwnerProfile", sender: nil)
+//    }
+//}
