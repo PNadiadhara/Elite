@@ -40,6 +40,8 @@ class CreateGameViewController: UIViewController {
         selectedSportView.layer.borderColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
         selectedSportView.layer.cornerRadius = selectedSportView.bounds.width / 2
         selectedSportView.layer.masksToBounds = true
+        parkLabel.layer.cornerRadius = 20
+        parkLabel.layer.masksToBounds = true
     }
     func setupViewTapGestures(){
         let oneVsOneTap = UITapGestureRecognizer(target: self, action: #selector(oneVsOnePressed))
@@ -54,7 +56,14 @@ class CreateGameViewController: UIViewController {
         let changeSportTap = UITapGestureRecognizer(target: self, action: #selector(changeSportPressed))
         changeSportView.addGestureRecognizer(changeSportTap)
         
+        let changeParkTap = UITapGestureRecognizer(target: self, action: #selector(changeParkPressed))
+        parkLabel.addGestureRecognizer(changeParkTap)
+        parkLabel.isUserInteractionEnabled = true
         
+        
+    }
+    func animateViews() {
+        view
     }
     
     @objc func oneVsOnePressed() {
@@ -67,7 +76,11 @@ class CreateGameViewController: UIViewController {
         print("5 vs 5")
     }
     @objc func changeSportPressed() {
-        print("1 vs 1")
+        print("change sport")
+    }
+    
+    @objc func changeParkPressed() {
+        print("change park")
     }
     
 
