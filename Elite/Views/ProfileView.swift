@@ -28,22 +28,29 @@ class ProfileView: UIView {
     
     private func commonInit() {
         Bundle.main.loadNibNamed("ProfileView", owner: self, options: nil)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         
-        gamePostView.addGestureRecognizer(tap)
-        gamePostView.isUserInteractionEnabled = true
+        let gamePostTap = UITapGestureRecognizer(target: self, action: #selector(gamePostHandleTap))
+        gamePostView.addGestureRecognizer(gamePostTap)
         self.addSubview(gamePostView)
         
-        achievementsView.addGestureRecognizer(tap)
-        achievementsView.isUserInteractionEnabled = true
+        let achievementTap = UITapGestureRecognizer(target: self, action: #selector(achievementsHandleTap))
+        achievementsView.addGestureRecognizer(achievementTap)
         self.addSubview(achievementsView)
         
-        friendListView.addGestureRecognizer(tap)
-        friendListView.isUserInteractionEnabled = true
+        let friendListTap = UITapGestureRecognizer(target: self, action: #selector(friendListHandleTap))
+        friendListView.addGestureRecognizer(friendListTap)
         self.addSubview(friendListView)
     }
     
-    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+    @objc func gamePostHandleTap(_ sender: UITapGestureRecognizer) {
+        print("Hello World")
+    }
+    
+    @objc func achievementsHandleTap(_ sender: UITapGestureRecognizer) {
+        print("Hello World")
+    }
+    
+    @objc func friendListHandleTap(_ sender: UITapGestureRecognizer) {
         print("Hello World")
     }
 }
