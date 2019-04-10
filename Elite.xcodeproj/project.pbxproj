@@ -101,8 +101,8 @@
 		2EC6D554225E799F00336362 /* OneVsOneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OneVsOneViewController.xib; sourceTree = "<group>"; };
 		2EC6D557225E79B300336362 /* TwoVsTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoVsTwoViewController.swift; sourceTree = "<group>"; };
 		2EC6D558225E79B300336362 /* TwoVsTwoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoVsTwoViewController.xib; sourceTree = "<group>"; };
-		2EC6D55B225E79CB00336362 /* FiveVsFiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveVsFiveViewController.swift; sourceTree = "<group>"; };
-		2EC6D55C225E79CB00336362 /* FiveVsFiveViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FiveVsFiveViewController.xib; sourceTree = "<group>"; };
+		2EC6D55B225E79CB00336362 /* FiveVsFiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FiveVsFiveViewController.swift; path = ../FiveVsFiveViewController.swift; sourceTree = "<group>"; };
+		2EC6D55C225E79CB00336362 /* FiveVsFiveViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FiveVsFiveViewController.xib; path = ../FiveVsFiveViewController.xib; sourceTree = "<group>"; };
 		2EC6D55F225E7A0B00336362 /* ParkListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkListViewController.swift; sourceTree = "<group>"; };
 		2EC6D560225E7A0B00336362 /* ParkListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkListViewController.xib; sourceTree = "<group>"; };
 		2EF4809122565216008212DC /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
@@ -149,8 +149,6 @@
 				2EF4808C22565158008212DC /* Leaderboard View Controller */,
 				2E9FE65A22557B0F004CA00B /* Account Login View Controllers */,
 				2E9FE65B22557B50004CA00B /* Profile View Controllers */,
-				2EC6D55B225E79CB00336362 /* FiveVsFiveViewController.swift */,
-				2EC6D55C225E79CB00336362 /* FiveVsFiveViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -249,6 +247,8 @@
 				2EC6D554225E799F00336362 /* OneVsOneViewController.xib */,
 				2EC6D557225E79B300336362 /* TwoVsTwoViewController.swift */,
 				2EC6D558225E79B300336362 /* TwoVsTwoViewController.xib */,
+				2EC6D55B225E79CB00336362 /* FiveVsFiveViewController.swift */,
+				2EC6D55C225E79CB00336362 /* FiveVsFiveViewController.xib */,
 			);
 			path = "Players View Controllers";
 			sourceTree = "<group>";
