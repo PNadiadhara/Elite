@@ -15,17 +15,42 @@ class ProfileView: UIView {
     @IBOutlet weak var achievementsView: RoundedView!
     @IBOutlet weak var friendListView: RoundedView!
     @IBOutlet weak var profileTableView: UITableView!
+   
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+            commonInit()
+        }
     
-    let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        required init?(coder aDecoder: NSCoder) {
+                super.init(coder: aDecoder)
+                commonInit()
+            }
     
-    gamePostView.addGestureRecognizer(tap)
+    private func commonInit() {
+        Bundle.main.loadNibNamed("ProfileView", owner: self, options: nil)
+        
+        let gamePostTap = UITapGestureRecognizer(target: self, action: #selector(gamePostHandleTap))
+        gamePostView.addGestureRecognizer(gamePostTap)
+        self.addSubview(gamePostView)
+        
+        let achievementTap = UITapGestureRecognizer(target: self, action: #selector(achievementsHandleTap))
+        achievementsView.addGestureRecognizer(achievementTap)
+        self.addSubview(achievementsView)
+        
+        let friendListTap = UITapGestureRecognizer(target: self, action: #selector(friendListHandleTap))
+        friendListView.addGestureRecognizer(friendListTap)
+        self.addSubview(friendListView)
+    }
     
-    gamePostView.userInteractionEnabled = true
-    
-    self.view.addSubview(gamePostView)
-    
-    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+    @objc func gamePostHandleTap(_ sender: UITapGestureRecognizer) {
         print("Hello World")
     }
-
+    
+    @objc func achievementsHandleTap(_ sender: UITapGestureRecognizer) {
+        print("Hello World")
+    }
+    
+    @objc func friendListHandleTap(_ sender: UITapGestureRecognizer) {
+        print("Hello World")
+    }
 }

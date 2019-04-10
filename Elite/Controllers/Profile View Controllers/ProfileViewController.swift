@@ -26,16 +26,17 @@ class ProfileViewController: UIViewController {
     
     private var authservice = AppDelegate.authservice
     var userLocation = CLLocationCoordinate2D()
-    private var owner: GamerModel? {
+    
+    private var gamer: GamerModel? {
         didSet {
             //updateProfileUI(user: owner!)
             //fetchOwnerPosts(user: owner!)
         }
     }
-    private var gamer = [GamerModel]() {
+    private var gamerCreator = [GamerModel]() {
         didSet {
             DispatchQueue.main.async {
-                //self.profileTableView.reloadData()
+                self.profileView.profileTableView.reloadData()
             }
         }
     }
@@ -44,6 +45,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         //profileHeaderView.delegate = self
         configureTableView()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,10 +54,10 @@ class ProfileViewController: UIViewController {
     }
     
     private func configureTableView() {
-//        profileTableView.tableHeaderView = profileHeaderView
 //        profileTableView.dataSource = self
 //        profileTableView.delegate = self
-//        profileTableView.register(UINib(nibName: "ProfileHeaderView", bundle: nil), forCellReuseIdentifier: "ProfileHeaderView")
+        profileView.profileTableView.tableHeaderView = profileHeaderView
+        profileView.profileTableView.register(UINib(nibName: "ProfileView", bundle: nil), forCellReuseIdentifier: "ProfileView")
     }
     
     private func fetchCurrentUser() {
@@ -63,12 +65,12 @@ class ProfileViewController: UIViewController {
             print("No logged user")
             return
         }
-        //DBService.fetchUser(userId: currentUser.uid) { [weak self] (error, owner) in
-            //if let error = error {
-                //self?.showAlert(title: "Error fetching account info", message: //error.localizedDescription)
-            //} else if let owner = owner {
-                //self?.owner = owner
-            //}
-        //}
+        DBService.fetchGamer(gamerID: currentUser.uid) { [weak self] (error, gamer) in
+            if let error = error {
+                self?.showAlert(title: "Error fetching Gamer information", message: error.localizedDescription)
+            } else if let gamer = gamer {
+                self?.gamer = gamer
+            }
+        }
     }
 }

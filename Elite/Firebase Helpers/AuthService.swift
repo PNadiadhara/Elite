@@ -30,7 +30,7 @@ final class AuthService {
     weak var authserviceSignOutDelegate: AuthServiceSignOutDelegate?
     
     
-    public func createNewAccount(username: String, email: String, password: String) {
+    public func createNewAccount(email: String, password: String, firstName: String, lastName: String, username: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (authDataResult, error) in
             if let error = error {
                 self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
@@ -46,15 +46,14 @@ final class AuthService {
                         return
                     }
                 })
-                let user = GamerModel(profileImage: nil, fullname: nil, firstname: nil, lastname: nil, username: username, email: authDataResult.user.email!, status: nil, achievements: nil, bio: nil, qrCode: "fd", joinedDate: 2, gamerID: authDataResult.user.uid)
+                let user = GamerModel(profileImage: nil, fullname: "\(firstName) \(lastName)", firstname: firstName, lastname: lastName, username: username, email: authDataResult.user.email!, status: nil, achievements: nil, bio: nil, qrCode: "fd", joinedDate: 2, gamerID: authDataResult.user.uid)
                 DBService.createUser(gamer: user, completion: { (error) in
                     if let error = error {
-                        print("Show Alert Error")
+                       self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
                     } else {
-                        print("user created")
+                        self.authserviceCreateNewAccountDelegate?.didCreateNewAccount(self, user: user)
                     }
                 })
-                // create user (user) on firestore database
             }
         }
     }
