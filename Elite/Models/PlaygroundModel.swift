@@ -18,6 +18,7 @@ class PlaygroundModel {
     let losses: Int
     let rank: Int
     let parkID: String
+    let jsonParkId: String
     
     init(location: String,
     name: String,
@@ -27,7 +28,8 @@ class PlaygroundModel {
     wins: Int,
     losses: Int,
     rank: Int,
-    parkID: String) {
+    parkID: String,
+    jsonParkId: String) {
         self.location = location
         self.name = name
         self.users = users
@@ -37,6 +39,7 @@ class PlaygroundModel {
         self.losses = losses
         self.rank = rank
         self.parkID = parkID
+        self.jsonParkId = jsonParkId
     }
     
     init(dict: [String: Any]) {
@@ -49,5 +52,6 @@ class PlaygroundModel {
         self.losses = dict[PlaygroundCollectionKeys.LossesKey] as? Int ?? 0
         self.rank = dict[PlaygroundCollectionKeys.RankKey] as? Int ?? 0
         self.parkID = dict[PlaygroundCollectionKeys.ParkIDKey] as? String ?? ""
+        self.jsonParkId = dict[PlaygroundCollectionKeys.JsonParkID] as? String ?? ""
     }
 }

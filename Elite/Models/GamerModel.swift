@@ -10,9 +10,9 @@ import Foundation
 
 class GamerModel {
     let profileImage: String? //(Bitmoji image)
-    let firstname: String?
-    let lastname: String?
-    let username: String?
+    let firstname: String
+    let lastname: String
+    let username: String
     let email: String
     let status: String? //(rank i.e. Bronze, Gold< Diamond)
     let achievements: [String]?
@@ -26,9 +26,9 @@ class GamerModel {
     }
     
     init(profileImage: String?,
-    fullname: String?,
-    firstname: String?,
-    lastname: String?,
+    fullname: String,
+    firstname: String,
+    lastname: String,
     username: String,
     email: String,
     status: String?,

@@ -21,6 +21,7 @@ struct PlaygroundCollectionKeys {
     static let LossesKey = "losses"
     static let RankKey = "rank"
     static let ParkIDKey = "parkID"
+    static let JsonParkID = "jsonParkId"
 }
 
 extension DBService {
