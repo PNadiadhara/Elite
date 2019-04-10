@@ -50,13 +50,23 @@ Elite is an app targeted towards preteens, teens, and young adults. Elite is use
    * Detail Popup
    - when the collection of annotations changes the user can select the actual anotation and it will have:
 * Parkboard 
+   -  
 * Feed
+   - Displays a list of the acheivements you and your friends have and the games you played
+   
   * Detail
 * Leader baord
+   - Displays a collection view at the top that shows you and the rank you are in that sport
+   - At the bottom is of list of everyone who play that sport and is organized by ranking 
   * Challenge Elite Popup
+    - when you select the user icon you are able request a challenge an Elite 
 * Create Game
+   - The user has the ability select a gametype(1 on 1, Team, & Tourney)
+   - The user has the ability to select the middle icon to choose the type of game (Basketball, Chess, Football, etc)
   * QR Popup
+   - User is able to add a player using their profile QRCode
   * 1 on 1
+   - It displays a  view
   * Team 
   * Tourney
 * Versus View
