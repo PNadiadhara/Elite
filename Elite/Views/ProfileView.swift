@@ -28,7 +28,6 @@ class ProfileView: UIView {
     
     private func commonInit() {
         Bundle.main.loadNibNamed("ProfileView", owner: self, options: nil)
-        
         let gamePostTap = UITapGestureRecognizer(target: self, action: #selector(gamePostHandleTap))
         gamePostView.addGestureRecognizer(gamePostTap)
         self.addSubview(gamePostView)
