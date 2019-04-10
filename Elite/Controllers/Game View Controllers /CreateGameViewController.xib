@@ -51,7 +51,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8da-aY-NKa">
-                    <rect key="frame" x="219.5" y="190" width="194.5" height="349.5"/>
+                    <rect key="frame" x="25" y="190" width="389" height="349.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2 vs 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQs-4b-woV">
                             <rect key="frame" x="43" y="124" width="107" height="47"/>
@@ -64,10 +64,10 @@
                     <color key="backgroundColor" red="0.67450980390000004" green="0.8980392157" blue="0.41568627450000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y6F-Ao-E9w">
-                    <rect key="frame" x="0.0" y="291.5" width="194.5" height="241.5"/>
+                    <rect key="frame" x="0.0" y="291.5" width="0.0" height="241.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 vs 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpS-Tc-ynl">
-                            <rect key="frame" x="44" y="49" width="107" height="47"/>
+                            <rect key="frame" x="-53.5" y="49" width="107" height="47"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -76,7 +76,7 @@
                     <color key="backgroundColor" red="0.23707997798919678" green="0.43392100930213928" blue="0.65492916107177734" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstItem="vpS-Tc-ynl" firstAttribute="top" secondItem="Y6F-Ao-E9w" secondAttribute="top" constant="49" id="50Y-G0-E8v"/>
-                        <constraint firstAttribute="width" constant="194.5" id="dwW-0O-z9J"/>
+                        <constraint firstAttribute="width" id="dwW-0O-z9J"/>
                         <constraint firstItem="vpS-Tc-ynl" firstAttribute="centerX" secondItem="Y6F-Ao-E9w" secondAttribute="centerX" id="xGI-NC-2Vb"/>
                     </constraints>
                 </view>

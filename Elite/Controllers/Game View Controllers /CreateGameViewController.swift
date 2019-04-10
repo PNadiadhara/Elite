@@ -60,10 +60,10 @@ class CreateGameViewController: UIViewController {
         parkLabel.addGestureRecognizer(changeParkTap)
         parkLabel.isUserInteractionEnabled = true
         
+        let selectedSportTap = UITapGestureRecognizer(target: self, action: #selector(selectedSportPressed))
+        selectedSportView.addGestureRecognizer(selectedSportTap)
         
-    }
-    func animateViews() {
-        view
+        
     }
     
     @objc func oneVsOnePressed() {
@@ -83,6 +83,11 @@ class CreateGameViewController: UIViewController {
         print("change park")
     }
     
+    @objc func selectedSportPressed() {
+        UIView.animate(withDuration: 1.0, delay: 0, options: [], animations: {
+            self.oneVsOneView.transform = CGAffineTransform(translationX: 600, y: 0)
+        })
+    }
 
 
 }
