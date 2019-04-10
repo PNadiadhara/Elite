@@ -46,6 +46,7 @@
 		2EC6D55E225E79CB00336362 /* FiveVsFiveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EC6D55C225E79CB00336362 /* FiveVsFiveViewController.xib */; };
 		2EC6D561225E7A0B00336362 /* ParkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6D55F225E7A0B00336362 /* ParkListViewController.swift */; };
 		2EC6D562225E7A0B00336362 /* ParkListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EC6D560225E7A0B00336362 /* ParkListViewController.xib */; };
+		2EC6D569225E95FD00336362 /* DummyFileTwoForCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6D568225E95FD00336362 /* DummyFileTwoForCells.swift */; };
 		2EF4809222565216008212DC /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF4809122565216008212DC /* GameModel.swift */; };
 		2EF4809422565227008212DC /* GamerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF4809322565227008212DC /* GamerModel.swift */; };
 		2EF480982256526B008212DC /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF480972256526B008212DC /* ProfileHeaderView.swift */; };
@@ -105,6 +106,7 @@
 		2EC6D55C225E79CB00336362 /* FiveVsFiveViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FiveVsFiveViewController.xib; path = ../FiveVsFiveViewController.xib; sourceTree = "<group>"; };
 		2EC6D55F225E7A0B00336362 /* ParkListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkListViewController.swift; sourceTree = "<group>"; };
 		2EC6D560225E7A0B00336362 /* ParkListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkListViewController.xib; sourceTree = "<group>"; };
+		2EC6D568225E95FD00336362 /* DummyFileTwoForCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyFileTwoForCells.swift; sourceTree = "<group>"; };
 		2EF4809122565216008212DC /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		2EF4809322565227008212DC /* GamerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamerModel.swift; sourceTree = "<group>"; };
 		2EF480972256526B008212DC /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 		2E9FE65922557AD7004CA00B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2EC6D563225E939900336362 /* Cells */,
 				2EC6D552225E795600336362 /* Players View Controllers */,
 				2EF4808322565049008212DC /* Game View Controllers  */,
 				2EF4808222565037008212DC /* Map View Controllers */,
@@ -251,6 +254,14 @@
 				2EC6D55C225E79CB00336362 /* FiveVsFiveViewController.xib */,
 			);
 			path = "Players View Controllers";
+			sourceTree = "<group>";
+		};
+		2EC6D563225E939900336362 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2EC6D568225E95FD00336362 /* DummyFileTwoForCells.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		2EF4808222565037008212DC /* Map View Controllers */ = {
@@ -587,6 +598,7 @@
 				2EF480A02256BE38008212DC /* PlaygroundModel.swift in Sources */,
 				BFED970F225E6E2900CC360B /* EloRankMethods.swift in Sources */,
 				2E9FE67A225581E4004CA00B /* DBService+Gamer.swift in Sources */,
+				2EC6D569225E95FD00336362 /* DummyFileTwoForCells.swift in Sources */,
 				2E9FE67C2255820A004CA00B /* DBService+Game.swift in Sources */,
 				2EC6D55D225E79CB00336362 /* FiveVsFiveViewController.swift in Sources */,
 				48D5C81C225D213B00AFDE8F /* GeolocationData.swift in Sources */,
