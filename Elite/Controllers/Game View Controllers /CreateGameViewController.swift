@@ -16,7 +16,7 @@ class CreateGameViewController: UIViewController {
     @IBOutlet weak var changeSportView: UIView!
     @IBOutlet weak var selectedSportView: UIView!
     @IBOutlet weak var locationHeader: UIView!
-    @IBOutlet weak var animatedView: UIView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,15 +64,12 @@ class CreateGameViewController: UIViewController {
         
     }
     func animateViews(){
-        var finalFrame = selectedSportView.frame
-        finalFrame.size.width = -100
-        
-        UIView.animate(withDuration: 3, animations: {
-            self.animatedView.frame = finalFrame
-        })
+
     }
     @objc func oneVsOnePressed() {
-        
+        let oneVsOneVc = OneVsOneViewController.init(nibName: "OneVsOneViewController", bundle: nil)
+        oneVsOneVc.modalPresentationStyle = .fullScreen
+        present(oneVsOneVc, animated: true)
     }
     @objc func twoVstwoPressed() {
         print("2 vs 2")
@@ -91,7 +88,7 @@ class CreateGameViewController: UIViewController {
     }
     
     @objc func selectedSportPressed() {
-        animateViews()
+        
     }
 
 
