@@ -31,6 +31,8 @@
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
 		<string>snapchat</string>
 		<string>bitmoji-sdk</string>
 		<string>itms-apps</string>
