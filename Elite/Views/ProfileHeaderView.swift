@@ -9,11 +9,10 @@
 import UIKit
 
 protocol ProfileHeaderViewDelegate: AnyObject {
-    func willSignOutCurrentUser(_ profileHeaderView: ProfileHeaderView)
     func willEditUsersProfile(_ profileHeaderView: ProfileHeaderView)
-    func willDeleteAccount(_ profileHeaderView: ProfileHeaderView)
     func willRequestMatch(_ profileHeaderView: ProfileHeaderView)
     func willAddFriends(_ profileHeaderView: ProfileHeaderView)
+    func settingsPressed(_ profileHeaderView: ProfileHeaderView)
 }
 
 class ProfileHeaderView: UIView {
@@ -49,8 +48,9 @@ class ProfileHeaderView: UIView {
     
     
     @IBAction func settingsButtonPressed(_ sender: UIButton) {
-        delegate?.willSignOutCurrentUser(self)
-        delegate?.willDeleteAccount(self)
+        delegate?.settingsPressed(self)
+//        delegate?.willSignOutCurrentUser(self)
+//        delegate?.willDeleteAccount(self)
     }
 }
 

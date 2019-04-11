@@ -10,12 +10,20 @@ import UIKit
 
 class ParkListViewController: UIViewController {
 
+    @IBOutlet weak var parkListTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        parkListTableView.dataSource = self
+        parkListTableView.delegate = self
+        parkListTableView.register(UINib(nibName: "ParkInfoCell", bundle: nil), forCellReuseIdentifier: "ParkInfoCell")
+        parkListTableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
         // Do any additional setup after loading the view.
     }
-
+    
+    @IBAction func tapPressed(){
+        dismiss(animated: true)
+    }
 
     /*
     // MARK: - Navigation
@@ -27,4 +35,23 @@ class ParkListViewController: UIViewController {
     }
     */
 
+}
+
+extension ParkListViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ParkInfoCell", for: indexPath) as? ParkInfoCell else {return UITableViewCell()}
+        cell.parkNameLabel.text = "Washington Park"
+        cell.parkAddressLabel.text = "23-60 Washigton Ave"
+        cell.basketballImage.alpha = 0.1
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 86
+    }
+    
 }
