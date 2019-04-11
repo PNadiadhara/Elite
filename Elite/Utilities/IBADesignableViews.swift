@@ -112,7 +112,7 @@ class CircularViewBlue: UIView {
         super.layoutSubviews()
         contentMode = .scaleAspectFill
         layer.cornerRadius = bounds.width / 2.0
-        layer.borderColor = UIColor.lightGray.cgColor
+        layer.borderColor = #colorLiteral(red: 0.2274509804, green: 0.4392156863, blue: 0.6549019608, alpha: 1)
         layer.borderWidth = 5
         backgroundColor = .clear
         clipsToBounds = true
@@ -125,7 +125,7 @@ class CircularViewRed: UIView {
         super.layoutSubviews()
         contentMode = .scaleAspectFill
         layer.cornerRadius = bounds.width / 2.0
-        layer.borderColor = UIColor.lightGray.cgColor
+        layer.borderColor = #colorLiteral(red: 0.995932281, green: 0.2765177786, blue: 0.3620784283, alpha: 1)
         layer.borderWidth = 5
         backgroundColor = .clear
         clipsToBounds = true
