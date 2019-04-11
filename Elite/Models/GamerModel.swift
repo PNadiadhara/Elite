@@ -18,7 +18,7 @@ class GamerModel {
     let achievements: [String]?
     let bio: String?
     let qrCode: String
-    let joinedDate: Int
+    let joinedDate: String
     let gamerID: String
     
     public var fullname: String {
@@ -35,7 +35,7 @@ class GamerModel {
     achievements: [String]?,
     bio: String?,
     qrCode: String,
-    joinedDate: Int,
+    joinedDate: String,
     gamerID: String) {
         self.profileImage = profileImage
         self.firstname = firstname
@@ -60,8 +60,7 @@ class GamerModel {
         self.achievements = dict[GamerCollectionKeys.AchievementsKey] as? [String] ?? ["",""]
         self.bio = dict[GamerCollectionKeys.BioKey] as? String ?? "FirstName"
         self.qrCode = dict[GamerCollectionKeys.QRcodeKey] as? String ?? "LastName"
-        self.joinedDate = dict[GamerCollectionKeys.JoinedDateKey] as? Int ?? 0
+        self.joinedDate = dict[GamerCollectionKeys.JoinedDateKey] as? String ?? ""
         self.gamerID = dict[GamerCollectionKeys.GamerIDKey] as? String ?? ""
-        
     }
 }

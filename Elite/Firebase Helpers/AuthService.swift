@@ -46,7 +46,7 @@ final class AuthService {
                         return
                     }
                 })
-                let user = GamerModel(profileImage: nil, fullname: "\(firstName) \(lastName)", firstname: firstName, lastname: lastName, username: username, email: authDataResult.user.email!, status: nil, achievements: nil, bio: nil, qrCode: "fd", joinedDate: 2, gamerID: authDataResult.user.uid)
+                let user = GamerModel(profileImage: nil, fullname: "\(firstName) \(lastName)", firstname: firstName, lastname: lastName, username: username, email: authDataResult.user.email!, status: nil, achievements: nil, bio: nil, qrCode: "fd", joinedDate: Date.getISOTimestamp(), gamerID: authDataResult.user.uid)
                 DBService.createUser(gamer: user, completion: { (error) in
                     if let error = error {
                        self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
