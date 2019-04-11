@@ -57,7 +57,7 @@ class ProfileViewController: UIViewController {
 //        profileTableView.dataSource = self
 //        profileTableView.delegate = self
         profileView.profileTableView.tableHeaderView = profileHeaderView
-        profileView.profileTableView.register(UINib(nibName: "ProfileView", bundle: nil), forCellReuseIdentifier: "ProfileView")
+        profileView.profileTableView.register(UINib(nibName: "UserFeedCell", bundle: nil), forCellReuseIdentifier: "UserFeedCell")
     }
     
     private func fetchCurrentUser() {
@@ -75,10 +75,18 @@ class ProfileViewController: UIViewController {
     }
 }
 
-//extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return gameCreator.count
-//    }
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return gameCreator.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = profileView.profileTableView.dequeueReusableCell(withIdentifier: "UserFeedCell", for: indexPath) as? UserFeedCell else {
+            fatalError("UserFeedCell not found")
+        }
+        return cell
+    }
+}
 
 //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        guard let cell = profileView.profileTableView.dequeueReusableCell(withIdentifier: "ProfileView", for: indexPath) as? ProfileView else {
