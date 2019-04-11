@@ -15,12 +15,7 @@
 		2E171BA0225CF90700D40DDF /* LeaderboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E171B9E225CF90700D40DDF /* LeaderboardViewController.xib */; };
 		2E171BA3225CF93100D40DDF /* CreateGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E171BA1225CF93100D40DDF /* CreateGameViewController.swift */; };
 		2E171BA4225CF93100D40DDF /* CreateGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E171BA2225CF93100D40DDF /* CreateGameViewController.xib */; };
-<<<<<<< HEAD
-		2E171BA7225CF95100D40DDF /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E171BA5225CF95100D40DDF /* FeedTableViewController.swift */; };
-		2E171BA8225CF95100D40DDF /* FeedTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E171BA6225CF95100D40DDF /* FeedTableViewController.xib */; };
-=======
 		2E171BAA225D011800D40DDF /* JsonModel.json in Sources */ = {isa = PBXBuildFile; fileRef = 2E171BA9225D011800D40DDF /* JsonModel.json */; };
->>>>>>> d310380fd7b9e2bf761880e576a02c1d85d82217
 		2E9FE656225579E5004CA00B /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9FE655225579E5004CA00B /* CreateAccountViewController.swift */; };
 		2E9FE65822557AC4004CA00B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9FE65722557AC4004CA00B /* LoginViewController.swift */; };
 		2E9FE65D22557BA9004CA00B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9FE65C22557BA9004CA00B /* ProfileViewController.swift */; };
@@ -97,12 +92,8 @@
 		2E171B9E225CF90700D40DDF /* LeaderboardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardViewController.xib; sourceTree = "<group>"; };
 		2E171BA1225CF93100D40DDF /* CreateGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameViewController.swift; sourceTree = "<group>"; };
 		2E171BA2225CF93100D40DDF /* CreateGameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateGameViewController.xib; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		2E171BA5225CF95100D40DDF /* FeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		2E171BA6225CF95100D40DDF /* FeedTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedTableViewController.xib; sourceTree = "<group>"; };
-=======
 		2E171BA9225D011800D40DDF /* JsonModel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JsonModel.json; sourceTree = "<group>"; };
->>>>>>> d310380fd7b9e2bf761880e576a02c1d85d82217
 		2E9FE655225579E5004CA00B /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		2E9FE65722557AC4004CA00B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2E9FE65C22557BA9004CA00B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -380,6 +371,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		482B263F225F918D006F31BB /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				2E171BA9225D011800D40DDF /* JsonModel.json */,
+				2E171BA6225CF95100D40DDF /* FeedTableViewController.xib */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		7F7357D47953A43F01A032E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,6 +404,7 @@
 				BFADB58C22553FB200E746B5 /* Products */,
 				9E744B84D7F8198F6AF506F3 /* Pods */,
 				7F7357D47953A43F01A032E3 /* Frameworks */,
+				482B263F225F918D006F31BB /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -510,11 +511,7 @@
 				2EF4809A2256527F008212DC /* ProfileHeaderView.xib in Resources */,
 				D5210882225E960B0044C440 /* FeedCell.xib in Resources */,
 				D5210874225E956B0044C440 /* FiveVsFiveFeedCell.xib in Resources */,
-<<<<<<< HEAD
-				2E171BA8225CF95100D40DDF /* FeedTableViewController.xib in Resources */,
 				48980A4D225E346B0034D04F /* JsonModel.json in Resources */,
-=======
->>>>>>> d310380fd7b9e2bf761880e576a02c1d85d82217
 				BFADB5A5225544EA00E746B5 /* GoogleService-Info.plist in Resources */,
 				BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */,
 				2E171B98225CF86C00D40DDF /* MapViewController.xib in Resources */,
@@ -644,11 +641,8 @@
 				48D5C822225D325F00AFDE8F /* GeolocationClient.swift in Sources */,
 				2E9FE67822558191004CA00B /* DBService.swift in Sources */,
 				2E9FE656225579E5004CA00B /* CreateAccountViewController.swift in Sources */,
-<<<<<<< HEAD
 				48D5C824225D328A00AFDE8F /* JsonParkDataClient.swift in Sources */,
-=======
 				2EC6D572225E9BCB00336362 /* UserFeedTableViewController.swift in Sources */,
->>>>>>> d310380fd7b9e2bf761880e576a02c1d85d82217
 				2E9FE67122557F02004CA00B /* String+Date.swift in Sources */,
 				2E9FE66C22557E8C004CA00B /* TabBarViewController.swift in Sources */,
 				48D5C828225D430700AFDE8F /* AppError.swift in Sources */,
@@ -659,7 +653,6 @@
 				2EC6D559225E79B300336362 /* TwoVsTwoViewController.swift in Sources */,
 				2E9FE66822557DF4004CA00B /* UIViewController+Navigation.swift in Sources */,
 				2E9FE66F22557EE8004CA00B /* Date+Extensions.swift in Sources */,
-
 				2E171BAA225D011800D40DDF /* JsonModel.json in Sources */,
 				2E171B9F225CF90700D40DDF /* LeaderboardViewController.swift in Sources */,
 				2E9FE66422557D02004CA00B /* IBADesignableViews.swift in Sources */,
