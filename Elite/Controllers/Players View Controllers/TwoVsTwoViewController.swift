@@ -16,7 +16,10 @@ class TwoVsTwoViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func cancelPressed(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 

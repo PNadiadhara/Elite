@@ -72,7 +72,9 @@ class CreateGameViewController: UIViewController {
         present(oneVsOneVc, animated: true)
     }
     @objc func twoVstwoPressed() {
-        print("2 vs 2")
+        let twoVsTwoVc = TwoVsTwoViewController.init(nibName: "TwoVsTwoViewController", bundle: nil)
+        twoVsTwoVc.modalPresentationStyle = .fullScreen
+        present(twoVsTwoVc, animated: true)
     }
     @objc func fiveVsFivePressed() {
         print("5 vs 5")

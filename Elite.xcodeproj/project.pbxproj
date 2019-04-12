@@ -77,6 +77,8 @@
 		D5210882225E960B0044C440 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5210880225E960A0044C440 /* FeedCell.xib */; };
 		D5210885225EB3D20044C440 /* ParkInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5210883225EB3D20044C440 /* ParkInfoCell.swift */; };
 		D5210886225EB3D20044C440 /* ParkInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5210884225EB3D20044C440 /* ParkInfoCell.xib */; };
+		D5DE77F1225FF61200439407 /* SearchPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DE77EF225FF61200439407 /* SearchPlayerViewController.swift */; };
+		D5DE77F2225FF61200439407 /* SearchPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5DE77F0225FF61200439407 /* SearchPlayerViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -153,6 +155,8 @@
 		D5210880225E960A0044C440 /* FeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedCell.xib; sourceTree = "<group>"; };
 		D5210883225EB3D20044C440 /* ParkInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkInfoCell.swift; sourceTree = "<group>"; };
 		D5210884225EB3D20044C440 /* ParkInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkInfoCell.xib; sourceTree = "<group>"; };
+		D5DE77EF225FF61200439407 /* SearchPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerViewController.swift; sourceTree = "<group>"; };
+		D5DE77F0225FF61200439407 /* SearchPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchPlayerViewController.xib; sourceTree = "<group>"; };
 		F84EED13AF1CC6349F726937 /* Pods-Elite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elite.debug.xcconfig"; path = "Target Support Files/Pods-Elite/Pods-Elite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -280,6 +284,8 @@
 				2EC6D55C225E79CB00336362 /* FiveVsFiveViewController.xib */,
 				2EC6D570225E9BCB00336362 /* UserFeedTableViewController.swift */,
 				2EC6D571225E9BCB00336362 /* UserFeedTableViewController.xib */,
+				D5DE77EF225FF61200439407 /* SearchPlayerViewController.swift */,
+				D5DE77F0225FF61200439407 /* SearchPlayerViewController.xib */,
 			);
 			path = "Players View Controllers";
 			sourceTree = "<group>";
@@ -490,6 +496,7 @@
 				D5210882225E960B0044C440 /* FeedCell.xib in Resources */,
 				D5210874225E956B0044C440 /* FiveVsFiveFeedCell.xib in Resources */,
 				BFADB5A5225544EA00E746B5 /* GoogleService-Info.plist in Resources */,
+				D5DE77F2225FF61200439407 /* SearchPlayerViewController.xib in Resources */,
 				BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */,
 				2E171B98225CF86C00D40DDF /* MapViewController.xib in Resources */,
 				BFADB59422553FB200E746B5 /* Main.storyboard in Resources */,
@@ -650,6 +657,7 @@
 				2E9FE67A225581E4004CA00B /* DBService+Gamer.swift in Sources */,
 				2E9FE67C2255820A004CA00B /* DBService+Game.swift in Sources */,
 				2EC6D55D225E79CB00336362 /* FiveVsFiveViewController.swift in Sources */,
+				D5DE77F1225FF61200439407 /* SearchPlayerViewController.swift in Sources */,
 				48D5C81C225D213B00AFDE8F /* GeolocationData.swift in Sources */,
 				D521087A225E95A70044C440 /* TwoVsTwoFeedCell.swift in Sources */,
 				D521087E225E95E20044C440 /* FeedHeaderView.swift in Sources */,
