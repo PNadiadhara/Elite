@@ -22,7 +22,7 @@ class GamerModel {
     let gamerID: String
     
     public var fullname: String {
-        return ((firstname ?? "") + " " + (lastname ?? "")).trimmingCharacters(in: .whitespacesAndNewlines)
+        return ((firstname ) + " " + (lastname )).trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
     init(profileImage: String?,
