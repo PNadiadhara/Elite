@@ -34,7 +34,7 @@ class MapViewController: UIViewController {
     // Create a GMSCameraPosition that tells the map to display the
     // coordinate 40.712776,-74.005974 at zoom level 6.
     loadParkData()
-        let camera = GMSCameraPosition.camera(withLatitude: 40.712776, longitude: -74.005974, zoom: 6.0)
+        let camera = GMSCameraPosition.camera(withLatitude: 40.712776, longitude: -74.005974, zoom: 12.0)
         self.mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         self.view = self.mapView
         // Creates a marker in the center of the map.
@@ -45,11 +45,16 @@ class MapViewController: UIViewController {
             let locations = CLLocationCoordinate2D(latitude: Double(park.lat ?? "0.0")!, longitude:  Double(park.lng ?? "0.0")!)
             let marker = GMSMarker()
             marker.position = locations
+            
             markers.append(marker)
-            //marker.map = mapView
+            if markers.count == 30 {
+                break
+            }
         }
     markers.forEach { (marker) in
-        marker.map = mapView
+           marker.map = mapView
+        
+        
     }
     
     }
