@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let feed = FeedTableViewController()
             let create = CreateGameViewController()
             let board = LeaderboardViewController()
-            let profile = ProfileViewController()
+            let profile = ProfileViewController.init(nibName: "ProfileViewController", bundle: nil)
             let tab = TabBarViewController()
             map.title = "Map"
             map.tabBarItem = UITabBarItem.init(title: "Map", image: UIImage(named: "map_marker"), tag: 0)
@@ -40,10 +40,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             profile.title = "Profile"
             profile.tabBarItem = UITabBarItem.init(title: "Profile", image: UIImage(named: "user_male"), tag: 4)
             let controller = [map, board, create, feed, profile]
+<<<<<<< HEAD
             tab.viewControllers = controller
+=======
+            
+            tab.viewControllers = controller.map{UINavigationController.init(rootViewController: $0)}
+>>>>>>> 02c790906cff33ac7adbc0d583fc173c30b6d7ac
             window = UIWindow(frame: UIScreen.main.bounds)
             window?.rootViewController = tab
             window?.makeKeyAndVisible()
+            
         } else {
             let storyboard = UIStoryboard(name: "LoginView", bundle: nil)
             let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
