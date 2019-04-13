@@ -24,6 +24,9 @@ class SearchPlayerViewController: UIViewController {
     @IBAction func scanCodePressed(_ sender: UIButton) {
     }
 
+    @IBAction func cancelPressed(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
     
 
 

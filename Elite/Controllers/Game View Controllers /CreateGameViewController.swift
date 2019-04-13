@@ -16,11 +16,17 @@ class CreateGameViewController: UIViewController {
     @IBOutlet weak var changeSportView: UIView!
     @IBOutlet weak var selectedSportView: UIView!
     @IBOutlet weak var locationHeader: UIView!
-
+    @IBOutlet weak var currentLocationLabel: UILabel!
+    @IBOutlet weak var animatedTopLeft: UIView!
+    @IBOutlet weak var animatedTopRight: UIView!
+    @IBOutlet weak var animatedBottomLeft: UIView!
+    @IBOutlet weak var chooseSportLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewTapGestures()
+        currentLocationLabel.text = "Astoria Park"
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -37,10 +43,12 @@ class CreateGameViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     override func viewDidLayoutSubviews() {
-       selectedSportView.layer.borderWidth = 25
         selectedSportView.layer.borderColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
+        selectedSportView.layer.borderWidth = 25
         selectedSportView.layer.cornerRadius = selectedSportView.bounds.width / 2
         selectedSportView.layer.masksToBounds = true
+        
+        changeSportView.layer.borderWidth = 0
     }
     func setupViewTapGestures(){
         let oneVsOneTap = UITapGestureRecognizer(target: self, action: #selector(oneVsOnePressed))
@@ -64,7 +72,25 @@ class CreateGameViewController: UIViewController {
         
     }
     func animateViews(){
-
+        UIView.animate(withDuration: 2.0, delay: 0, options: [], animations: {
+            self.animatedTopLeft.transform = CGAffineTransform(translationX: -600, y: 0)
+            
+        })
+        UIView.animate(withDuration: 2.0, delay: 0 , options: [], animations: {
+            self.animatedTopRight.transform = CGAffineTransform(translationX: 600, y: 0)
+            
+        })
+        UIView.animate(withDuration: 2.0, delay: 0 , options: [], animations: {
+            self.animatedBottomLeft.transform = CGAffineTransform(translationX: 0, y: 600)
+            
+        })
+        UIView.animate(withDuration: 0.5) {
+            self.chooseSportLabel.alpha = 0
+        }
+        
+        UIView.animate(withDuration: 2) {
+            self.selectedSportView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+        }
     }
     @objc func oneVsOnePressed() {
         let oneVsOneVc = OneVsOneViewController.init(nibName: "OneVsOneViewController", bundle: nil)
@@ -77,10 +103,12 @@ class CreateGameViewController: UIViewController {
         present(twoVsTwoVc, animated: true)
     }
     @objc func fiveVsFivePressed() {
-        print("5 vs 5")
+        let fiveVsFiveVc = FiveVsFiveViewController.init(nibName: "FiveVsFiveViewController", bundle: nil)
+        fiveVsFiveVc.modalPresentationStyle = .fullScreen
+        present(fiveVsFiveVc, animated: true)
     }
     @objc func changeSportPressed() {
-        
+       
     }
     
     @objc func changeParkPressed() {
@@ -90,7 +118,7 @@ class CreateGameViewController: UIViewController {
     }
     
     @objc func selectedSportPressed() {
-        
+         animateViews()
     }
 
 

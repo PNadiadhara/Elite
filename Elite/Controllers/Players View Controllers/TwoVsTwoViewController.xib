@@ -128,7 +128,7 @@
                     </constraints>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IG1-5l-epf">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="144"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="149"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCS-pO-7L7">
                             <rect key="frame" x="10" y="10" width="48" height="30"/>
@@ -140,13 +140,13 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Two Vs. Two" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQf-AQ-27M">
-                            <rect key="frame" x="11" y="94" width="392" height="30"/>
+                            <rect key="frame" x="11" y="99" width="392" height="30"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZp-8F-Ggt">
-                            <rect key="frame" x="11" y="74" width="383" height="20"/>
+                            <rect key="frame" x="11" y="79" width="383" height="20"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -172,7 +172,7 @@
                 <constraint firstItem="NPt-No-Ep0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="LID-Cq-I34"/>
                 <constraint firstItem="NPt-No-Ep0" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="Nea-Ke-FEK"/>
                 <constraint firstItem="30X-In-m7a" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="RMc-6t-tJs"/>
-                <constraint firstItem="NPt-No-Ep0" firstAttribute="top" secondItem="IG1-5l-epf" secondAttribute="bottom" id="Swe-A3-GgE"/>
+                <constraint firstItem="IG1-5l-epf" firstAttribute="height" secondItem="30X-In-m7a" secondAttribute="height" multiplier="0.15" id="TTg-8T-Uun"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="IG1-5l-epf" secondAttribute="trailing" id="kAW-zO-0Mp"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="NPt-No-Ep0" secondAttribute="bottom" id="vZF-2Y-KTX"/>
                 <constraint firstItem="30X-In-m7a" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="wNC-fz-ifr"/>
