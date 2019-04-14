@@ -34,13 +34,13 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="134.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sport - Park" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKI-cq-OH6">
-                            <rect key="frame" x="11" y="15" width="392" height="20"/>
+                            <rect key="frame" x="11" y="25" width="392" height="20"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ow3-vl-TWa">
-                            <rect key="frame" x="102" y="37" width="210.5" height="60"/>
+                            <rect key="frame" x="102" y="50.5" width="210.5" height="60"/>
                             <fontDescription key="fontDescription" type="system" pointSize="50"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -52,6 +52,9 @@
                             <state key="normal" title="Start">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <connections>
+                                <action selector="startButtonPressed:" destination="-1" eventType="touchUpInside" id="VV7-zP-qsJ"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -61,8 +64,8 @@
                         <constraint firstItem="gLZ-yC-ia0" firstAttribute="centerX" secondItem="I3r-qf-4NR" secondAttribute="centerX" id="Lu6-KR-Esx"/>
                         <constraint firstItem="ow3-vl-TWa" firstAttribute="centerX" secondItem="I3r-qf-4NR" secondAttribute="centerX" id="MDv-IZ-dW1"/>
                         <constraint firstItem="gLZ-yC-ia0" firstAttribute="width" secondItem="I3r-qf-4NR" secondAttribute="width" id="MvL-xX-bv1"/>
-                        <constraint firstItem="hKI-cq-OH6" firstAttribute="top" secondItem="I3r-qf-4NR" secondAttribute="top" constant="15" id="TD2-ci-Jyi"/>
-                        <constraint firstItem="ow3-vl-TWa" firstAttribute="centerY" secondItem="I3r-qf-4NR" secondAttribute="centerY" id="YDh-3B-ObH"/>
+                        <constraint firstItem="hKI-cq-OH6" firstAttribute="top" secondItem="I3r-qf-4NR" secondAttribute="top" constant="25" id="TD2-ci-Jyi"/>
+                        <constraint firstItem="ow3-vl-TWa" firstAttribute="centerY" secondItem="I3r-qf-4NR" secondAttribute="centerY" multiplier="1.2" id="YDh-3B-ObH"/>
                         <constraint firstItem="gLZ-yC-ia0" firstAttribute="centerY" secondItem="I3r-qf-4NR" secondAttribute="centerY" id="cTz-v8-K3s"/>
                         <constraint firstAttribute="trailing" secondItem="hKI-cq-OH6" secondAttribute="trailing" constant="11" id="oNE-mo-Hl6"/>
                     </constraints>
@@ -146,6 +149,9 @@
                     <state key="normal" title="Pause">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="pausePressed:" destination="-1" eventType="touchUpInside" id="eYA-jE-K1d"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HzD-39-Fll" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
                     <rect key="frame" x="289" y="650" width="86" height="41"/>
@@ -154,6 +160,9 @@
                     <state key="normal" title="End">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="endPressed:" destination="-1" eventType="touchUpInside" id="STX-aH-6pp"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odj-rn-jgU" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
                     <rect key="frame" x="39" y="650" width="86" height="41"/>
@@ -162,6 +171,9 @@
                     <state key="normal" title="Cancel">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="cancelPressed:" destination="-1" eventType="touchUpInside" id="FvZ-um-wPu"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

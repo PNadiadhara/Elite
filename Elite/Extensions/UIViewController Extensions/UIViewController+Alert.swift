@@ -32,6 +32,15 @@ extension UIViewController {
         self.present(alertController, animated: true)
     }
     
+    public func confirmActionSheet(title: String, message: String, handler: ((UIAlertAction) -> Void)?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: handler)
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true)
+    }
+    
     public func showActionSheet(title: String?, message: String?, actionTitles: [String], handlers: [((UIAlertAction) -> Void)]) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         for (index, actionTitle) in actionTitles.enumerated() {

@@ -102,7 +102,7 @@ class CreateGameViewController: UIViewController {
             self.chooseSportLabel.alpha = 0
         }
         
-        UIView.animate(withDuration: 2) {
+        UIView.animate(withDuration: 1) {
             self.middleAnimatedView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         }
         
@@ -110,6 +110,7 @@ class CreateGameViewController: UIViewController {
     @objc func oneVsOnePressed() {
         let oneVsOneVc = OneVsOneViewController.init(nibName: "OneVsOneViewController", bundle: nil)
         oneVsOneVc.modalPresentationStyle = .fullScreen
+        oneVsOneVc.modalTransitionStyle = .flipHorizontal
         present(oneVsOneVc, animated: true)
     }
     @objc func twoVstwoPressed() {
@@ -134,6 +135,7 @@ class CreateGameViewController: UIViewController {
     
     @objc func basketBallPressed() {
         print("basketBall PRessed")
+        middleAnimatedView.transform = CGAffineTransform.identity
          animateViews()
             basketBallView.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.6078431373, blue: 0.1450980392, alpha: 1)
             handBallView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
@@ -146,7 +148,8 @@ class CreateGameViewController: UIViewController {
     }
     @objc func handBallPressed() {
         print("handBall PRessed")
-            animateViews()
+        middleAnimatedView.transform = CGAffineTransform.identity
+        animateViews()
         handBallView.backgroundColor = #colorLiteral(red: 0.01176470588, green: 0.6078431373, blue: 0.8980392157, alpha: 1)
         basketBallView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
         handballImage.image = UIImage(named: "handballWhite")
