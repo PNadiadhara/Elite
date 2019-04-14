@@ -25,9 +25,7 @@ class RoundedButton: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
         imageView?.contentMode = .scaleAspectFill
-        layer.cornerRadius = 12.0
-        layer.borderColor = UIColor.lightGray.cgColor
-        layer.borderWidth = 0.5
+        layer.cornerRadius = 20.0
         clipsToBounds = true
     }
 }
@@ -77,6 +75,22 @@ class versusLeft: UIImageView {
         let mask = CAShapeLayer()
         mask.path = path.cgPath
         layer.mask = mask
+    }
+}
+
+@IBDesignable
+class topSemiCircle: UIImageView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let corners = UIRectCorner(arrayLiteral: .topLeft, .topRight)
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: 150, height: 150))
+        let mask = CAShapeLayer()
+        layer.borderColor = #colorLiteral(red: 0.9725490196, green: 0.6078431373, blue: 0.1450980392, alpha: 1)
+        layer.borderWidth = 3
+        mask.path = path.cgPath
+        layer.mask?.borderWidth = 3
+        layer.mask = mask
+
     }
 }
 @IBDesignable
@@ -155,6 +169,14 @@ class CircularViewRed: UIView {
     }
 }
 @IBDesignable
+class CircularView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = bounds.width / 2.0
+        clipsToBounds = true
+    }
+}
+@IBDesignable
 class CircularImage: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -175,3 +197,6 @@ class RoundedView: UIView {
         clipsToBounds = true
     }
 }
+
+
+

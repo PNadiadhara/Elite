@@ -15,6 +15,7 @@
                 <outlet property="bluePlayerImage" destination="L62-gZ-OFz" id="PL4-P7-bDB"/>
                 <outlet property="bluePlayerLabel" destination="Yad-VG-Wku" id="6R7-dx-N02"/>
                 <outlet property="cancelButton" destination="Ycv-Oy-LqF" id="awj-4W-m5f"/>
+                <outlet property="playButton" destination="Swl-b6-MxJ" id="gft-Xk-TEP"/>
                 <outlet property="redPlayerImage" destination="nff-gy-Y99" id="VHo-Yb-0Tn"/>
                 <outlet property="redPlayerLabel" destination="ygR-Ex-BaJ" id="3Gm-gH-inW"/>
                 <outlet property="searchPlayerView" destination="XPj-14-2ms" id="Oxv-Zu-3ss"/>
@@ -130,14 +131,26 @@
                         <constraint firstItem="0ni-aF-y2i" firstAttribute="top" secondItem="n5x-ke-yor" secondAttribute="bottom" id="gK6-Sz-ZQq"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Swl-b6-MxJ">
+                    <rect key="frame" x="174.5" y="700" width="65" height="47"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                    <state key="normal" title="Play!">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="playButtonPressed:" destination="-1" eventType="touchUpInside" id="lFA-1V-u9e"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Z6P-Rg-Isn" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.15" id="2VS-HS-g4R"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Z6P-Rg-Isn" secondAttribute="trailing" id="9b1-hT-waQ"/>
                 <constraint firstItem="PSo-JH-dYs" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="Aef-t6-Yaf"/>
+                <constraint firstItem="Swl-b6-MxJ" firstAttribute="top" secondItem="XPj-14-2ms" secondAttribute="bottom" constant="100" id="BOv-NN-jOY"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="du9-If-FpX" secondAttribute="trailing" constant="40" id="IFx-vO-y6B"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XPj-14-2ms" secondAttribute="trailing" constant="158" id="M1J-Sc-fCc"/>
+                <constraint firstItem="Swl-b6-MxJ" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="NXO-yy-oIL"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="L62-gZ-OFz" secondAttribute="trailing" constant="43" id="Uwx-Tx-b6t"/>
                 <constraint firstItem="PSo-JH-dYs" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="ZvS-jF-gbS"/>
                 <constraint firstItem="nff-gy-Y99" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="43" id="cby-Jw-kb4"/>

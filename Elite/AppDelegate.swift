@@ -40,12 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             profile.title = "Profile"
             profile.tabBarItem = UITabBarItem.init(title: "Profile", image: UIImage(named: "user_male"), tag: 4)
             let controller = [map, board, create, feed, profile]
-<<<<<<< HEAD
             tab.viewControllers = controller
-=======
-            
-            tab.viewControllers = controller.map{UINavigationController.init(rootViewController: $0)}
->>>>>>> 02c790906cff33ac7adbc0d583fc173c30b6d7ac
             window = UIWindow(frame: UIScreen.main.bounds)
             window?.rootViewController = tab
             window?.makeKeyAndVisible()

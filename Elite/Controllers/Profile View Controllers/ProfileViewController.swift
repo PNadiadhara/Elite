@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var friendListView: RoundedView!
     
     private var authservice = AppDelegate.authservice
-
+    
     var userLocation = CLLocationCoordinate2D()
     private var gamer: GamerModel?
     let gamePostViewContent = GamePostView()
@@ -40,12 +40,14 @@ class ProfileViewController: UIViewController {
     let friendListViewContent = FriendListView()
     var typeOfViews: Views = .gamePost
     private var gameCreator = [GamerModel]()
+    var views = [UIView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         commonInit()
         configureTableViews()
-        setupViews(views: [gamePostViewContent,achievementsViewContent, friendListViewContent])
+        views = [gamePostViewContent,achievementsViewContent, friendListViewContent]
+        setupViews(views: views)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,6 +92,9 @@ class ProfileViewController: UIViewController {
     
     @objc func gamePostHandleTap(_ sender: UITapGestureRecognizer) {
         typeOfViews = .gamePost
+        views[0].isHidden = false
+        views[1].isHidden = true
+        views[2].isHidden = true
         
         print(typeOfViews)
     }
@@ -97,11 +102,16 @@ class ProfileViewController: UIViewController {
         @objc func achievementsHandleTap(_ sender: UITapGestureRecognizer) {
             typeOfViews = .achievements
             print(typeOfViews)
+            views[0].isHidden = true
+            views[1].isHidden = false
+            views[2].isHidden = true
         }
     
         @objc func friendListHandleTap(_ sender: UITapGestureRecognizer) {
             typeOfViews = .friendList
-            print(typeOfViews)
+            views[0].isHidden = true
+            views[1].isHidden = true
+            views[2].isHidden = false
         }
     
     
@@ -146,10 +156,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         if tableView == achievementsViewContent.achievementsTableView {
-            
+
         }
         if tableView == friendListViewContent.friendListTableView {
-            
         }
        return UITableViewCell()
     }

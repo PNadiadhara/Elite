@@ -16,6 +16,7 @@ class OneVsOneViewController: UIViewController {
     @IBOutlet weak var redPlayerLabel: UILabel!
     @IBOutlet weak var bluePlayerLabel: UILabel!
     @IBOutlet weak var sportLabel: UILabel!
+    @IBOutlet weak var playButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,13 @@ class OneVsOneViewController: UIViewController {
     
         // Do any additional setup after loading the view.
     }
-
+    @IBAction func playButtonPressed(_ sender: UIButton) {
+        //To do: CREATE INSTANSE OF GAME
+        let oneVsoneProgressVc = OneVsOneProgressViewController.init(nibName: "OneVsOneProgressViewController", bundle: nil)
+        oneVsoneProgressVc.modalPresentationStyle = .fullScreen
+        present(oneVsoneProgressVc, animated: true)
+    }
+    
     @IBAction func cancelPressed(_ sender: UIButton) {
         dismiss(animated: true)
     }

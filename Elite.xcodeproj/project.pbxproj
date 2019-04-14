@@ -83,6 +83,9 @@
 		D5210882225E960B0044C440 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5210880225E960A0044C440 /* FeedCell.xib */; };
 		D5210885225EB3D20044C440 /* ParkInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5210883225EB3D20044C440 /* ParkInfoCell.swift */; };
 		D5210886225EB3D20044C440 /* ParkInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5210884225EB3D20044C440 /* ParkInfoCell.xib */; };
+		D56FE69E2262B28800A5553E /* MainTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56FE69D2262B28800A5553E /* MainTimer.swift */; };
+		D5B57D422262698400DB73E2 /* OneVsOneProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B57D402262698400DB73E2 /* OneVsOneProgressViewController.swift */; };
+		D5B57D432262698400DB73E2 /* OneVsOneProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B57D412262698400DB73E2 /* OneVsOneProgressViewController.xib */; };
 		D5DE77F1225FF61200439407 /* SearchPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DE77EF225FF61200439407 /* SearchPlayerViewController.swift */; };
 		D5DE77F2225FF61200439407 /* SearchPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5DE77F0225FF61200439407 /* SearchPlayerViewController.xib */; };
 /* End PBXBuildFile section */
@@ -168,6 +171,9 @@
 		D5210880225E960A0044C440 /* FeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedCell.xib; sourceTree = "<group>"; };
 		D5210883225EB3D20044C440 /* ParkInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkInfoCell.swift; sourceTree = "<group>"; };
 		D5210884225EB3D20044C440 /* ParkInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkInfoCell.xib; sourceTree = "<group>"; };
+		D56FE69D2262B28800A5553E /* MainTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTimer.swift; sourceTree = "<group>"; };
+		D5B57D402262698400DB73E2 /* OneVsOneProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneVsOneProgressViewController.swift; sourceTree = "<group>"; };
+		D5B57D412262698400DB73E2 /* OneVsOneProgressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OneVsOneProgressViewController.xib; sourceTree = "<group>"; };
 		D5DE77EF225FF61200439407 /* SearchPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerViewController.swift; sourceTree = "<group>"; };
 		D5DE77F0225FF61200439407 /* SearchPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchPlayerViewController.xib; sourceTree = "<group>"; };
 		F84EED13AF1CC6349F726937 /* Pods-Elite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elite.debug.xcconfig"; path = "Target Support Files/Pods-Elite/Pods-Elite.debug.xcconfig"; sourceTree = "<group>"; };
@@ -226,6 +232,7 @@
 				2E9FE66122557CE6004CA00B /* Constants.swift */,
 				48D5C827225D430700AFDE8F /* AppError.swift */,
 				BFED970E225E6E2900CC360B /* EloRankMethods.swift */,
+				D56FE69D2262B28800A5553E /* MainTimer.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -305,6 +312,8 @@
 				2EC6D571225E9BCB00336362 /* UserFeedTableViewController.xib */,
 				D5DE77EF225FF61200439407 /* SearchPlayerViewController.swift */,
 				D5DE77F0225FF61200439407 /* SearchPlayerViewController.xib */,
+				D5B57D402262698400DB73E2 /* OneVsOneProgressViewController.swift */,
+				D5B57D412262698400DB73E2 /* OneVsOneProgressViewController.xib */,
 			);
 			path = "Players View Controllers";
 			sourceTree = "<group>";
@@ -515,6 +524,7 @@
 				BFADB59922553FB300E746B5 /* LaunchScreen.storyboard in Resources */,
 				2EC6D56F225E9B5D00336362 /* FeedTableViewController.xib in Resources */,
 				D5210879225E95A70044C440 /* TwoVsTwoFeedCell.xib in Resources */,
+				D5B57D432262698400DB73E2 /* OneVsOneProgressViewController.xib in Resources */,
 				2EC6D55A225E79B300336362 /* TwoVsTwoViewController.xib in Resources */,
 				D521086F225E95540044C440 /* UserFeedCell.xib in Resources */,
 				2EC6D556225E799F00336362 /* OneVsOneViewController.xib in Resources */,
@@ -662,9 +672,11 @@
 				48D5C81E225D216400AFDE8F /* JsonParkData.swift in Sources */,
 				2E171BA3225CF93100D40DDF /* CreateGameViewController.swift in Sources */,
 				2E381EA72260F3BC0075C1CD /* FriendListView.swift in Sources */,
+				D5B57D422262698400DB73E2 /* OneVsOneProgressViewController.swift in Sources */,
 				2E9FE65F22557BC6004CA00B /* EditProfileViewController.swift in Sources */,
 				2EF4809222565216008212DC /* GameModel.swift in Sources */,
 				2EC6D559225E79B300336362 /* TwoVsTwoViewController.swift in Sources */,
+				D56FE69E2262B28800A5553E /* MainTimer.swift in Sources */,
 				2E381E9F2260F31D0075C1CD /* GamePostView.swift in Sources */,
 				2E9FE66822557DF4004CA00B /* UIViewController+Navigation.swift in Sources */,
 				2E9FE66F22557EE8004CA00B /* Date+Extensions.swift in Sources */,
