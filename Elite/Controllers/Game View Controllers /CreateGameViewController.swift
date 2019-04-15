@@ -13,15 +13,29 @@ class CreateGameViewController: UIViewController {
     @IBOutlet weak var fiveVsFiveView: UIView!
     @IBOutlet weak var oneVsOneView: UIView!
     @IBOutlet weak var twoVsTwoView: UIView!
-    @IBOutlet weak var changeSportView: UIView!
+//    @IBOutlet weak var changeSportView: UIView!
     @IBOutlet weak var selectedSportView: UIView!
     @IBOutlet weak var locationHeader: UIView!
-    @IBOutlet weak var animatedView: UIView!
+    @IBOutlet weak var currentLocationLabel: UILabel!
+    @IBOutlet weak var animatedTopLeft: UIView!
+    @IBOutlet weak var animatedTopRight: UIView!
+    @IBOutlet weak var animatedBottomLeft: UIView!
+    @IBOutlet weak var chooseSportLabel: UILabel!
+    @IBOutlet weak var middleAnimatedView: UIView!
+    @IBOutlet weak var handBallView: UIView!
+    @IBOutlet weak var basketBallView: UIView!
+    @IBOutlet weak var basketBallImage: UIImageView!
+    @IBOutlet weak var basketBallLabel: UILabel!
+    @IBOutlet weak var handballLabel: UILabel!
+    @IBOutlet weak var handballImage: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewTapGestures()
-        // Do any additional setup after loading the view.
+        currentLocationLabel.text = "Astoria Park"
+
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -37,10 +51,14 @@ class CreateGameViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     override func viewDidLayoutSubviews() {
-       selectedSportView.layer.borderWidth = 25
-        selectedSportView.layer.borderColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
+        selectedSportView.layer.borderColor = #colorLiteral(red: 0.1607843137, green: 0.1725490196, blue: 0.1843137255, alpha: 1)
+        selectedSportView.layer.borderWidth = 5
         selectedSportView.layer.cornerRadius = selectedSportView.bounds.width / 2
         selectedSportView.layer.masksToBounds = true
+        middleAnimatedView.layer.cornerRadius = selectedSportView.bounds.width / 2
+        middleAnimatedView.layer.masksToBounds = true
+        
+    //        changeSportView.layer.borderWidth = 0
     }
     func setupViewTapGestures(){
         let oneVsOneTap = UITapGestureRecognizer(target: self, action: #selector(oneVsOnePressed))
@@ -52,36 +70,61 @@ class CreateGameViewController: UIViewController {
         let fiveVsFiveTap = UITapGestureRecognizer(target: self, action: #selector(fiveVsFivePressed))
         fiveVsFiveView.addGestureRecognizer(fiveVsFiveTap)
         
-        let changeSportTap = UITapGestureRecognizer(target: self, action: #selector(changeSportPressed))
-        changeSportView.addGestureRecognizer(changeSportTap)
+//        let changeSportTap = UITapGestureRecognizer(target: self, action: #selector(changeSportPressed))
+//        changeSportView.addGestureRecognizer(changeSportTap)
         
         let changeParkTap = UITapGestureRecognizer(target: self, action: #selector(changeParkPressed))
         locationHeader.addGestureRecognizer(changeParkTap)
         
-        let selectedSportTap = UITapGestureRecognizer(target: self, action: #selector(selectedSportPressed))
-        selectedSportView.addGestureRecognizer(selectedSportTap)
+        let basketBallTap = UITapGestureRecognizer(target: self, action: #selector(basketBallPressed))
+        basketBallView.addGestureRecognizer(basketBallTap)
+        let handBallTap = UITapGestureRecognizer(target: self, action: #selector(handBallPressed))
+        handBallView.addGestureRecognizer(handBallTap)
+//        let selectedSportTap = UITapGestureRecognizer(target: self, action: #selector(selectedSportPressed))
+//        selectedSportView.addGestureRecognizer(selectedSportTap)
         
         
     }
     func animateViews(){
-        var finalFrame = selectedSportView.frame
-        finalFrame.size.width = -100
-        
-        UIView.animate(withDuration: 3, animations: {
-            self.animatedView.frame = finalFrame
+        UIView.animate(withDuration: 2.0, delay: 0, options: [], animations: {
+            self.animatedTopLeft.transform = CGAffineTransform(translationX: -600, y: 0)
+            
         })
+        UIView.animate(withDuration: 2.0, delay: 0 , options: [], animations: {
+            self.animatedTopRight.transform = CGAffineTransform(translationX: 600, y: 0)
+            
+        })
+        UIView.animate(withDuration: 2.0, delay: 0 , options: [], animations: {
+            self.animatedBottomLeft.transform = CGAffineTransform(translationX: 0, y: 600)
+            
+        })
+        UIView.animate(withDuration: 0.5) {
+            self.chooseSportLabel.alpha = 0
+        }
+        
+        UIView.animate(withDuration: 1) {
+            self.middleAnimatedView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        }
+        
     }
     @objc func oneVsOnePressed() {
-        
+        let oneVsOneVc = OneVsOneViewController.init(nibName: "OneVsOneViewController", bundle: nil)
+        oneVsOneVc.modalPresentationStyle = .fullScreen
+        oneVsOneVc.modalTransitionStyle = .flipHorizontal
+        present(oneVsOneVc, animated: true)
     }
     @objc func twoVstwoPressed() {
-        print("2 vs 2")
+        let twoVsTwoVc = TwoVsTwoViewController.init(nibName: "TwoVsTwoViewController", bundle: nil)
+        twoVsTwoVc.modalPresentationStyle = .fullScreen
+        present(twoVsTwoVc, animated: true)
     }
     @objc func fiveVsFivePressed() {
-        print("5 vs 5")
+        let fiveVsFiveVc = FiveVsFiveViewController.init(nibName: "FiveVsFiveViewController", bundle: nil)
+        fiveVsFiveVc.modalPresentationStyle = .fullScreen
+        present(fiveVsFiveVc, animated: true)
     }
     @objc func changeSportPressed() {
-        
+       
     }
     
     @objc func changeParkPressed() {
@@ -90,9 +133,30 @@ class CreateGameViewController: UIViewController {
         present(parkListVC, animated: true)
     }
     
-    @objc func selectedSportPressed() {
-        animateViews()
+    @objc func basketBallPressed() {
+        print("basketBall PRessed")
+        middleAnimatedView.transform = CGAffineTransform.identity
+         animateViews()
+            basketBallView.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.6078431373, blue: 0.1450980392, alpha: 1)
+            handBallView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
+        basketBallImage.image = UIImage(named: "basketballEmptyWhite")
+        basketBallLabel.textColor = .white
+        handballImage.image = UIImage(named: "handballBlueEmpty")
+        handballLabel.textColor = #colorLiteral(red: 0.01176470588, green: 0.6078431373, blue: 0.8980392157, alpha: 1)
+        middleAnimatedView.backgroundColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
+        
     }
-
+    @objc func handBallPressed() {
+        print("handBall PRessed")
+        middleAnimatedView.transform = CGAffineTransform.identity
+        animateViews()
+        handBallView.backgroundColor = #colorLiteral(red: 0.01176470588, green: 0.6078431373, blue: 0.8980392157, alpha: 1)
+        basketBallView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
+        handballImage.image = UIImage(named: "handballWhite")
+        handballLabel.textColor = .white
+        basketBallImage.image = UIImage(named: "basketballEmpty")
+        basketBallLabel.textColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
+        middleAnimatedView.backgroundColor = #colorLiteral(red: 0.01176470588, green: 0.6078431373, blue: 0.8980392157, alpha: 1)
+    }
 
 }

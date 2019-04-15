@@ -40,7 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             profile.title = "Profile"
             profile.tabBarItem = UITabBarItem.init(title: "Profile", image: UIImage(named: "user_male"), tag: 4)
             let controller = [map, board, create, feed, profile]
-            
             tab.viewControllers = controller
             window = UIWindow(frame: UIScreen.main.bounds)
             window?.rootViewController = tab

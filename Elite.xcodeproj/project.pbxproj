@@ -83,6 +83,15 @@
 		D5210882225E960B0044C440 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5210880225E960A0044C440 /* FeedCell.xib */; };
 		D5210885225EB3D20044C440 /* ParkInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5210883225EB3D20044C440 /* ParkInfoCell.swift */; };
 		D5210886225EB3D20044C440 /* ParkInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5210884225EB3D20044C440 /* ParkInfoCell.xib */; };
+		D56FE69E2262B28800A5553E /* MainTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56FE69D2262B28800A5553E /* MainTimer.swift */; };
+		D5B57D422262698400DB73E2 /* OneVsOneProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B57D402262698400DB73E2 /* OneVsOneProgressViewController.swift */; };
+		D5B57D432262698400DB73E2 /* OneVsOneProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B57D412262698400DB73E2 /* OneVsOneProgressViewController.xib */; };
+		D5DE77F1225FF61200439407 /* SearchPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DE77EF225FF61200439407 /* SearchPlayerViewController.swift */; };
+		D5DE77F2225FF61200439407 /* SearchPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5DE77F0225FF61200439407 /* SearchPlayerViewController.xib */; };
+		D5EFCBFB2263DD6A00D3C2E7 /* BoroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EFCBF92263DD6A00D3C2E7 /* BoroughCollectionViewCell.swift */; };
+		D5EFCBFC2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EFCBFA2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib */; };
+		D5EFCBFF2264000700D3C2E7 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EFCBFD2264000700D3C2E7 /* LeaderboardCell.swift */; };
+		D5EFCC002264000700D3C2E7 /* LeaderboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EFCBFE2264000700D3C2E7 /* LeaderboardCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -166,6 +175,15 @@
 		D5210880225E960A0044C440 /* FeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedCell.xib; sourceTree = "<group>"; };
 		D5210883225EB3D20044C440 /* ParkInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkInfoCell.swift; sourceTree = "<group>"; };
 		D5210884225EB3D20044C440 /* ParkInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkInfoCell.xib; sourceTree = "<group>"; };
+		D56FE69D2262B28800A5553E /* MainTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTimer.swift; sourceTree = "<group>"; };
+		D5B57D402262698400DB73E2 /* OneVsOneProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneVsOneProgressViewController.swift; sourceTree = "<group>"; };
+		D5B57D412262698400DB73E2 /* OneVsOneProgressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OneVsOneProgressViewController.xib; sourceTree = "<group>"; };
+		D5DE77EF225FF61200439407 /* SearchPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerViewController.swift; sourceTree = "<group>"; };
+		D5DE77F0225FF61200439407 /* SearchPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchPlayerViewController.xib; sourceTree = "<group>"; };
+		D5EFCBF92263DD6A00D3C2E7 /* BoroughCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoroughCollectionViewCell.swift; sourceTree = "<group>"; };
+		D5EFCBFA2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BoroughCollectionViewCell.xib; sourceTree = "<group>"; };
+		D5EFCBFD2264000700D3C2E7 /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
+		D5EFCBFE2264000700D3C2E7 /* LeaderboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardCell.xib; sourceTree = "<group>"; };
 		F84EED13AF1CC6349F726937 /* Pods-Elite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elite.debug.xcconfig"; path = "Target Support Files/Pods-Elite/Pods-Elite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -222,6 +240,7 @@
 				2E9FE66122557CE6004CA00B /* Constants.swift */,
 				48D5C827225D430700AFDE8F /* AppError.swift */,
 				BFED970E225E6E2900CC360B /* EloRankMethods.swift */,
+				D56FE69D2262B28800A5553E /* MainTimer.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -299,6 +318,10 @@
 				2EC6D55C225E79CB00336362 /* FiveVsFiveViewController.xib */,
 				2EC6D570225E9BCB00336362 /* UserFeedTableViewController.swift */,
 				2EC6D571225E9BCB00336362 /* UserFeedTableViewController.xib */,
+				D5DE77EF225FF61200439407 /* SearchPlayerViewController.swift */,
+				D5DE77F0225FF61200439407 /* SearchPlayerViewController.xib */,
+				D5B57D402262698400DB73E2 /* OneVsOneProgressViewController.swift */,
+				D5B57D412262698400DB73E2 /* OneVsOneProgressViewController.xib */,
 			);
 			path = "Players View Controllers";
 			sourceTree = "<group>";
@@ -316,6 +339,10 @@
 				D5210872225E956B0044C440 /* FiveVsFiveFeedCell.xib */,
 				D521087C225E95E20044C440 /* FeedHeaderView.swift */,
 				D521087B225E95E20044C440 /* FeedView.xib */,
+				D5EFCBF92263DD6A00D3C2E7 /* BoroughCollectionViewCell.swift */,
+				D5EFCBFA2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib */,
+				D5EFCBFD2264000700D3C2E7 /* LeaderboardCell.swift */,
+				D5EFCBFE2264000700D3C2E7 /* LeaderboardCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -508,7 +535,9 @@
 				2E171BA0225CF90700D40DDF /* LeaderboardViewController.xib in Resources */,
 				BFADB59922553FB300E746B5 /* LaunchScreen.storyboard in Resources */,
 				2EC6D56F225E9B5D00336362 /* FeedTableViewController.xib in Resources */,
+				D5EFCC002264000700D3C2E7 /* LeaderboardCell.xib in Resources */,
 				D5210879225E95A70044C440 /* TwoVsTwoFeedCell.xib in Resources */,
+				D5B57D432262698400DB73E2 /* OneVsOneProgressViewController.xib in Resources */,
 				2EC6D55A225E79B300336362 /* TwoVsTwoViewController.xib in Resources */,
 				D521086F225E95540044C440 /* UserFeedCell.xib in Resources */,
 				2EC6D556225E799F00336362 /* OneVsOneViewController.xib in Resources */,
@@ -516,8 +545,10 @@
 				D5210882225E960B0044C440 /* FeedCell.xib in Resources */,
 				D5210874225E956B0044C440 /* FiveVsFiveFeedCell.xib in Resources */,
 				48980A4D225E346B0034D04F /* JsonModel.json in Resources */,
+				D5EFCBFC2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib in Resources */,
 				2E381EB122613A1E0075C1CD /* ProfileViewController.xib in Resources */,
 				BFADB5A5225544EA00E746B5 /* GoogleService-Info.plist in Resources */,
+				D5DE77F2225FF61200439407 /* SearchPlayerViewController.xib in Resources */,
 				BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */,
 				2E171B98225CF86C00D40DDF /* MapViewController.xib in Resources */,
 				BFADB59422553FB200E746B5 /* Main.storyboard in Resources */,
@@ -655,9 +686,11 @@
 				48D5C81E225D216400AFDE8F /* JsonParkData.swift in Sources */,
 				2E171BA3225CF93100D40DDF /* CreateGameViewController.swift in Sources */,
 				2E381EA72260F3BC0075C1CD /* FriendListView.swift in Sources */,
+				D5B57D422262698400DB73E2 /* OneVsOneProgressViewController.swift in Sources */,
 				2E9FE65F22557BC6004CA00B /* EditProfileViewController.swift in Sources */,
 				2EF4809222565216008212DC /* GameModel.swift in Sources */,
 				2EC6D559225E79B300336362 /* TwoVsTwoViewController.swift in Sources */,
+				D56FE69E2262B28800A5553E /* MainTimer.swift in Sources */,
 				2E381E9F2260F31D0075C1CD /* GamePostView.swift in Sources */,
 				2E9FE66822557DF4004CA00B /* UIViewController+Navigation.swift in Sources */,
 				2E9FE66F22557EE8004CA00B /* Date+Extensions.swift in Sources */,
@@ -665,7 +698,9 @@
 				2E171B9F225CF90700D40DDF /* LeaderboardViewController.swift in Sources */,
 				2E9FE66422557D02004CA00B /* IBADesignableViews.swift in Sources */,
 				2E381EA32260F3980075C1CD /* AchievementsView.swift in Sources */,
+				D5EFCBFB2263DD6A00D3C2E7 /* BoroughCollectionViewCell.swift in Sources */,
 				2E9FE66A22557E23004CA00B /* UIViewController+Alert.swift in Sources */,
+				D5EFCBFF2264000700D3C2E7 /* LeaderboardCell.swift in Sources */,
 				2EC6D56E225E9B5D00336362 /* FeedTableViewController.swift in Sources */,
 				2E9FE67622558164004CA00B /* StorageService.swift in Sources */,
 				2E381EB022613A1E0075C1CD /* ProfileViewController.swift in Sources */,
@@ -684,6 +719,7 @@
 				2E9FE67A225581E4004CA00B /* DBService+Gamer.swift in Sources */,
 				2E9FE67C2255820A004CA00B /* DBService+Game.swift in Sources */,
 				2EC6D55D225E79CB00336362 /* FiveVsFiveViewController.swift in Sources */,
+				D5DE77F1225FF61200439407 /* SearchPlayerViewController.swift in Sources */,
 				48D5C81C225D213B00AFDE8F /* GeolocationData.swift in Sources */,
 				D521087A225E95A70044C440 /* TwoVsTwoFeedCell.swift in Sources */,
 				D521087E225E95E20044C440 /* FeedHeaderView.swift in Sources */,
