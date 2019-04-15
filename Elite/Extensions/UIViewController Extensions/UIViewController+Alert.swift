@@ -32,12 +32,12 @@ extension UIViewController {
         self.present(alertController, animated: true)
     }
     
-    public func confirmActionSheet(title: String, message: String, handler: ((UIAlertAction) -> Void)?) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: handler)
-        alertController.addAction(deleteAction)
-        alertController.addAction(cancelAction)
+    public func confirmAlert(title: String, message: String, handler: ((UIAlertAction) -> Void)?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default, handler: handler)
+        let noAction = UIAlertAction(title: "No", style: .cancel)
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
         self.present(alertController, animated: true)
     }
     

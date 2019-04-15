@@ -94,10 +94,10 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z6P-Rg-Isn">
-                    <rect key="frame" x="0.0" y="44" width="414" height="134.5"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="134.5"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ycv-Oy-LqF">
-                            <rect key="frame" x="10" y="10" width="53" height="32"/>
+                            <rect key="frame" x="10" y="39" width="53" height="32"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                             <state key="normal" title="Cancel">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -126,7 +126,7 @@
                         <constraint firstItem="Ycv-Oy-LqF" firstAttribute="leading" secondItem="Z6P-Rg-Isn" secondAttribute="leading" constant="10" id="G2I-5L-IJj"/>
                         <constraint firstItem="n5x-ke-yor" firstAttribute="leading" secondItem="Z6P-Rg-Isn" secondAttribute="leading" constant="16" id="NwB-mU-el0"/>
                         <constraint firstAttribute="trailing" secondItem="n5x-ke-yor" secondAttribute="trailing" constant="22" id="Qdb-Ss-zkW"/>
-                        <constraint firstItem="Ycv-Oy-LqF" firstAttribute="top" secondItem="Z6P-Rg-Isn" secondAttribute="top" constant="10" id="VxW-h9-iFK"/>
+                        <constraint firstItem="Ycv-Oy-LqF" firstAttribute="top" secondItem="Z6P-Rg-Isn" secondAttribute="top" constant="39" id="VxW-h9-iFK"/>
                         <constraint firstAttribute="trailing" secondItem="0ni-aF-y2i" secondAttribute="trailing" constant="11" id="Y9y-ri-32l"/>
                         <constraint firstItem="0ni-aF-y2i" firstAttribute="top" secondItem="n5x-ke-yor" secondAttribute="bottom" id="gK6-Sz-ZQq"/>
                     </constraints>
@@ -151,11 +151,11 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="du9-If-FpX" secondAttribute="trailing" constant="40" id="IFx-vO-y6B"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XPj-14-2ms" secondAttribute="trailing" constant="158" id="M1J-Sc-fCc"/>
                 <constraint firstItem="Swl-b6-MxJ" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="NXO-yy-oIL"/>
+                <constraint firstItem="Z6P-Rg-Isn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="OPi-bg-QCZ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="L62-gZ-OFz" secondAttribute="trailing" constant="43" id="Uwx-Tx-b6t"/>
                 <constraint firstItem="PSo-JH-dYs" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="ZvS-jF-gbS"/>
                 <constraint firstItem="nff-gy-Y99" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="43" id="cby-Jw-kb4"/>
                 <constraint firstItem="L62-gZ-OFz" firstAttribute="centerY" secondItem="XPj-14-2ms" secondAttribute="centerY" id="fS3-pt-iuy"/>
-                <constraint firstItem="Z6P-Rg-Isn" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="lg5-9f-PGq"/>
                 <constraint firstItem="PSo-JH-dYs" firstAttribute="top" secondItem="du9-If-FpX" secondAttribute="bottom" constant="70" id="ph4-bO-tJB"/>
                 <constraint firstItem="XPj-14-2ms" firstAttribute="top" secondItem="PSo-JH-dYs" secondAttribute="bottom" constant="70" id="sIg-ab-MhV"/>
                 <constraint firstItem="XPj-14-2ms" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="43" id="uGu-Fi-BJC"/>

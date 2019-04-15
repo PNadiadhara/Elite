@@ -42,7 +42,7 @@ extension SearchPlayerViewController: UITableViewDelegate, UITableViewDataSource
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserFeedCell", for: indexPath) as? UserFeedCell else {return UITableViewCell()}
         cell.userText.text = "@Ibrahim"
         tableView.separatorStyle = .none
-        cell.userText.font = UIFont(name: "HelveticaNeue", size: 25)
+        cell.userText.font = Constants.getHelveticaNeue(size: 25, type: "Regular")
         cell.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
         cell.userImage.image = UIImage(named: "ibraheem")
         cell.trophyImage.image = UIImage(named: "GoldMedal")

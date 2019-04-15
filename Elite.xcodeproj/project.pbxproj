@@ -88,6 +88,10 @@
 		D5B57D432262698400DB73E2 /* OneVsOneProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B57D412262698400DB73E2 /* OneVsOneProgressViewController.xib */; };
 		D5DE77F1225FF61200439407 /* SearchPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DE77EF225FF61200439407 /* SearchPlayerViewController.swift */; };
 		D5DE77F2225FF61200439407 /* SearchPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5DE77F0225FF61200439407 /* SearchPlayerViewController.xib */; };
+		D5EFCBFB2263DD6A00D3C2E7 /* BoroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EFCBF92263DD6A00D3C2E7 /* BoroughCollectionViewCell.swift */; };
+		D5EFCBFC2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EFCBFA2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib */; };
+		D5EFCBFF2264000700D3C2E7 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EFCBFD2264000700D3C2E7 /* LeaderboardCell.swift */; };
+		D5EFCC002264000700D3C2E7 /* LeaderboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EFCBFE2264000700D3C2E7 /* LeaderboardCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -176,6 +180,10 @@
 		D5B57D412262698400DB73E2 /* OneVsOneProgressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OneVsOneProgressViewController.xib; sourceTree = "<group>"; };
 		D5DE77EF225FF61200439407 /* SearchPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerViewController.swift; sourceTree = "<group>"; };
 		D5DE77F0225FF61200439407 /* SearchPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchPlayerViewController.xib; sourceTree = "<group>"; };
+		D5EFCBF92263DD6A00D3C2E7 /* BoroughCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoroughCollectionViewCell.swift; sourceTree = "<group>"; };
+		D5EFCBFA2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BoroughCollectionViewCell.xib; sourceTree = "<group>"; };
+		D5EFCBFD2264000700D3C2E7 /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
+		D5EFCBFE2264000700D3C2E7 /* LeaderboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardCell.xib; sourceTree = "<group>"; };
 		F84EED13AF1CC6349F726937 /* Pods-Elite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elite.debug.xcconfig"; path = "Target Support Files/Pods-Elite/Pods-Elite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -331,6 +339,10 @@
 				D5210872225E956B0044C440 /* FiveVsFiveFeedCell.xib */,
 				D521087C225E95E20044C440 /* FeedHeaderView.swift */,
 				D521087B225E95E20044C440 /* FeedView.xib */,
+				D5EFCBF92263DD6A00D3C2E7 /* BoroughCollectionViewCell.swift */,
+				D5EFCBFA2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib */,
+				D5EFCBFD2264000700D3C2E7 /* LeaderboardCell.swift */,
+				D5EFCBFE2264000700D3C2E7 /* LeaderboardCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -523,6 +535,7 @@
 				2E171BA0225CF90700D40DDF /* LeaderboardViewController.xib in Resources */,
 				BFADB59922553FB300E746B5 /* LaunchScreen.storyboard in Resources */,
 				2EC6D56F225E9B5D00336362 /* FeedTableViewController.xib in Resources */,
+				D5EFCC002264000700D3C2E7 /* LeaderboardCell.xib in Resources */,
 				D5210879225E95A70044C440 /* TwoVsTwoFeedCell.xib in Resources */,
 				D5B57D432262698400DB73E2 /* OneVsOneProgressViewController.xib in Resources */,
 				2EC6D55A225E79B300336362 /* TwoVsTwoViewController.xib in Resources */,
@@ -532,6 +545,7 @@
 				D5210882225E960B0044C440 /* FeedCell.xib in Resources */,
 				D5210874225E956B0044C440 /* FiveVsFiveFeedCell.xib in Resources */,
 				48980A4D225E346B0034D04F /* JsonModel.json in Resources */,
+				D5EFCBFC2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib in Resources */,
 				2E381EB122613A1E0075C1CD /* ProfileViewController.xib in Resources */,
 				BFADB5A5225544EA00E746B5 /* GoogleService-Info.plist in Resources */,
 				D5DE77F2225FF61200439407 /* SearchPlayerViewController.xib in Resources */,
@@ -684,7 +698,9 @@
 				2E171B9F225CF90700D40DDF /* LeaderboardViewController.swift in Sources */,
 				2E9FE66422557D02004CA00B /* IBADesignableViews.swift in Sources */,
 				2E381EA32260F3980075C1CD /* AchievementsView.swift in Sources */,
+				D5EFCBFB2263DD6A00D3C2E7 /* BoroughCollectionViewCell.swift in Sources */,
 				2E9FE66A22557E23004CA00B /* UIViewController+Alert.swift in Sources */,
+				D5EFCBFF2264000700D3C2E7 /* LeaderboardCell.swift in Sources */,
 				2EC6D56E225E9B5D00336362 /* FeedTableViewController.swift in Sources */,
 				2E9FE67622558164004CA00B /* StorageService.swift in Sources */,
 				2E381EB022613A1E0075C1CD /* ProfileViewController.swift in Sources */,

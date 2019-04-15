@@ -67,7 +67,7 @@ class OneVsOneProgressViewController: UIViewController {
         }
     }
     @IBAction func cancelPressed(_ sender: UIButton) {
-        confirmActionSheet(title: "Game Cancel", message: "Are you sure?") { (action) in
+        confirmAlert(title: "Game Cancel", message: "Are you sure?") { (action) in
             let tab = TabBarViewController.setTabBarVC()
             self.present(tab, animated: true)
         }
