@@ -151,7 +151,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             let profileFeedCell = gameCreator[indexPath.row]
-            cell.userText.text = profileFeedCell.username
+            cell.userText.text = "@" + (profileFeedCell.username)
             return cell
         }
         if tableView == achievementsViewContent.achievementsTableView {
@@ -160,7 +160,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             let achievementsFeedCell = gameCreator[indexPath.row]
-            cell.userText.text = achievementsFeedCell.username
+            cell.userText.text = "@" + (achievementsFeedCell.username)
             return cell
 
         }
@@ -170,7 +170,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             let friendListFeedCell = gameCreator[indexPath.row]
-            cell.userText.text = friendListFeedCell.username
+            cell.userText.text = "@" + (friendListFeedCell.username)
             return cell
 
         }
