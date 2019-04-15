@@ -64,3 +64,20 @@ class GamerModel {
         self.gamerID = dict[GamerCollectionKeys.GamerIDKey] as? String ?? ""
     }
 }
+
+class EloPlayer  {
+    var currentEloScore : Double
+    var highestScore : Double
+    var gameWinStatus : String
+    var totalHandballGamesPlayed : Double
+    var totalBasketBallGamesPlayed : Double
+    
+    init(currentEloScore : Double, highestScore: Double, gameWinStatus : String, totalHandballGamesPlayed : Double, totalBasketBallGamesPlayed : Double ) {
+        self.currentEloScore = currentEloScore
+        self.highestScore = highestScore
+        self.gameWinStatus = gameWinStatus
+        self.totalHandballGamesPlayed = totalHandballGamesPlayed
+        self.totalBasketBallGamesPlayed = totalBasketBallGamesPlayed
+        
+    }
+}
