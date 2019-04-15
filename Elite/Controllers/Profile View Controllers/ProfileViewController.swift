@@ -55,25 +55,25 @@ class ProfileViewController: UIViewController {
         fetchCurrentUser()
     }
     func setupViews(views: [UIView]){
-        for vieww in views {
-        view.addSubview(vieww)
-    vieww.translatesAutoresizingMaskIntoConstraints = false
-        vieww.topAnchor.constraint(equalTo: achievementsView.bottomAnchor, constant: 20).isActive = true
-        vieww.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        vieww.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        vieww.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        vieww.isHidden = true
+        for userProfileView in views {
+        view.addSubview(userProfileView)
+        userProfileView.translatesAutoresizingMaskIntoConstraints = false
+        userProfileView.topAnchor.constraint(equalTo: achievementsView.bottomAnchor, constant: 20).isActive = true
+        userProfileView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        userProfileView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        userProfileView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        userProfileView.isHidden = true
         }
         views.first?.isHidden = false
     }
     
     private func configureTableViews() {
-        //     gamePost.gamePostTableView.dataSource
-        //     gamePost.gamePostTableView.delegate
-        //     achievements.achievementsTableView.dataSource
-        //     achievements.achievementsTableView.delegate
-        //     friendList.friendListTableView.dataSource
-        //     friendList.friendListTableView.delegate
+        gamePostViewContent.gamePostTableView.delegate = self
+        gamePostViewContent.gamePostTableView.dataSource = self
+        achievementsViewContent.achievementsTableView.delegate = self
+        achievementsViewContent.achievementsTableView.dataSource = self
+        friendListViewContent.friendListTableView.delegate = self
+        friendListViewContent.friendListTableView.dataSource = self
         
         
     }
@@ -99,22 +99,20 @@ class ProfileViewController: UIViewController {
         print(typeOfViews)
     }
     
-        @objc func achievementsHandleTap(_ sender: UITapGestureRecognizer) {
+    @objc func achievementsHandleTap(_ sender: UITapGestureRecognizer) {
             typeOfViews = .achievements
             print(typeOfViews)
             views[0].isHidden = true
             views[1].isHidden = false
             views[2].isHidden = true
-        }
+    }
     
-        @objc func friendListHandleTap(_ sender: UITapGestureRecognizer) {
+    @objc func friendListHandleTap(_ sender: UITapGestureRecognizer) {
             typeOfViews = .friendList
             views[0].isHidden = true
             views[1].isHidden = true
             views[2].isHidden = false
-        }
-    
-    
+    }
     
     @IBAction func requestMatchPressed(_ sender: UIButton) {
     }
@@ -124,8 +122,6 @@ class ProfileViewController: UIViewController {
     
     @IBAction func settingsPressed(_ sender: UIButton) {
     }
-    
-
     
     private func fetchCurrentUser() {
         guard let currentUser = authservice.getCurrentUser() else {
@@ -153,12 +149,30 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
                 fatalError("UserFeedCell not found")
             }
+            
+            let profileFeedCell = gameCreator[indexPath.row]
+            cell.userText.text = profileFeedCell.username
             return cell
         }
         if tableView == achievementsViewContent.achievementsTableView {
+            guard let cell = achievementsViewContent.achievementsTableView.dequeueReusableCell(withIdentifier: "UserFeedCell", for: indexPath) as? UserFeedCell else {
+                return UITableViewCell()
+            }
+            
+            let achievementsFeedCell = gameCreator[indexPath.row]
+            cell.userText.text = achievementsFeedCell.username
+            return cell
 
         }
         if tableView == friendListViewContent.friendListTableView {
+            guard let cell = friendListViewContent.friendListTableView.dequeueReusableCell(withIdentifier: "UserFeedCell", for: indexPath) as? UserFeedCell else {
+                return UITableViewCell()
+            }
+            
+            let friendListFeedCell = gameCreator[indexPath.row]
+            cell.userText.text = friendListFeedCell.username
+            return cell
+
         }
        return UITableViewCell()
     }
@@ -171,8 +185,4 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         performSegue(withIdentifier: "Segue to GamePostDetail", sender: indexPath)
     }
 }
-//
 
-
-//    let testGamePostView = GamePostView.init(frame: UIScreen.main.bounds)
-//
