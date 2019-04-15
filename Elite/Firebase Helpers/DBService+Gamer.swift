@@ -65,4 +65,20 @@ extension DBService {
                 }
         }
     }
+    static public func fetchAllGamers(completion: @escaping(Error?, [GamerModel]?) -> Void) {
+        let query = firestoreDB.collection(GamerCollectionKeys.CollectionKey)
+        query.getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(error, nil)
+            }
+            if let snapshot = snapshot {
+                var gamers = [GamerModel]()
+                for document in snapshot.documents {
+                    let allGamers = GamerModel.init(dict: document.data())
+                    gamers.append(allGamers)
+                }
+                completion(nil, gamers)
+            }
+        }
+    }
 }

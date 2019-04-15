@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="friendSearchBar" destination="G0S-RT-6Rt" id="cLa-GQ-vdC"/>
                 <outlet property="friendsTableView" destination="pgT-fX-0g9" id="v2d-3y-5RR"/>
+                <outlet property="searchBar" destination="G0S-RT-6Rt" id="qOK-lX-Tyo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
