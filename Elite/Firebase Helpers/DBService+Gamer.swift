@@ -23,6 +23,9 @@ struct GamerCollectionKeys {
     static let QRcodeKey = "qrCode"
     static let JoinedDateKey = "joinedDate"
     static let GamerIDKey = "gamerID"
+    static let MyParks = "myParks"
+    static let NumberOfHandballGamesPlayed = "numberOfHandballGamesPlayed"
+    static let NumberOfBasketballGamesPlayer = "numberOfBasketballGamesPlayed"
 }
 extension DBService {
     static public func createUser(gamer: GamerModel, completion: @escaping (Error?) -> Void) {
