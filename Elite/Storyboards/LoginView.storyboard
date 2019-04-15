@@ -73,6 +73,9 @@
                                         <state key="normal" title="Login with Facebook">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="facebookButtonPressed:" destination="o8m-Fg-Q1U" eventType="touchUpInside" id="IqY-Uv-AS0"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DiJ-M0-1aR">
                                         <rect key="frame" x="-4" y="379" width="382" height="32"/>
