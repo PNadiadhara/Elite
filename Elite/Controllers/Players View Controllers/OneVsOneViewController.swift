@@ -17,6 +17,9 @@ class OneVsOneViewController: UIViewController {
     @IBOutlet weak var bluePlayerLabel: UILabel!
     @IBOutlet weak var sportLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var addPlayerView: UIView!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,10 +40,7 @@ class OneVsOneViewController: UIViewController {
     
     func setupTap() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(searchPlayerPressed))
-        bluePlayerLabel.addGestureRecognizer(tap)
-        bluePlayerImage.addGestureRecognizer(tap)
-        bluePlayerImage.isUserInteractionEnabled = true
-        bluePlayerLabel.isUserInteractionEnabled = true
+        addPlayerView.addGestureRecognizer(tap)
     }
 
     @objc func searchPlayerPressed() {

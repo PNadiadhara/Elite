@@ -12,10 +12,20 @@ class SearchPlayerViewController: UIViewController {
     
     @IBOutlet weak var friendSearchBar: UISearchBar!
     @IBOutlet weak var friendsTableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    var gamers = [GamerModel](){
+        didSet {
+            DispatchQueue.main.async {
+                self.friendsTableView.reloadData()
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         friendsTableView.delegate = self
         friendsTableView.dataSource = self
+        friendsTableView.separatorStyle = .none
+        searchBar.delegate = self
         friendsTableView.register(UINib(nibName: "UserFeedCell", bundle: nil), forCellReuseIdentifier: "UserFeedCell")
         // Do any additional setup after loading the view.
     }
@@ -27,7 +37,17 @@ class SearchPlayerViewController: UIViewController {
     @IBAction func cancelPressed(_ sender: UIButton) {
         dismiss(animated: true)
     }
-    
+    func searchForPlayers(gamer: String){
+        DBService.fetchAllGamers { (error, gamers) in
+            if let error = error {
+                self.showAlert(title: "Error fetching bloggers", message: error.localizedDescription)
+            }
+            if let gamers = gamers{
+                self.gamers = gamers.filter{$0.username.lowercased().contains(gamer.lowercased())
+                }
+            }
+        }
+    }
 
 
 
@@ -35,22 +55,26 @@ class SearchPlayerViewController: UIViewController {
 
 extension SearchPlayerViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return gamers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserFeedCell", for: indexPath) as? UserFeedCell else {return UITableViewCell()}
-        cell.userText.text = "@Ibrahim"
-        tableView.separatorStyle = .none
+        let gamerToSet = gamers[indexPath.row]
+        cell.userText.text = gamerToSet.username
         cell.userText.font = Constants.getHelveticaNeue(size: 25, type: "Regular")
         cell.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
-        cell.userImage.image = UIImage(named: "ibraheem")
-        cell.trophyImage.image = UIImage(named: "GoldMedal")
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 125
+    }
+}
+
+extension SearchPlayerViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchForPlayers(gamer: searchText)
     }
 }

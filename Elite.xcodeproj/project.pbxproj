@@ -86,6 +86,7 @@
 		D5210885225EB3D20044C440 /* ParkInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5210883225EB3D20044C440 /* ParkInfoCell.swift */; };
 		D5210886225EB3D20044C440 /* ParkInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5210884225EB3D20044C440 /* ParkInfoCell.xib */; };
 		D56FE69E2262B28800A5553E /* MainTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56FE69D2262B28800A5553E /* MainTimer.swift */; };
+		D5B304542264EDF800404241 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B304532264EDF800404241 /* Message.swift */; };
 		D5B57D422262698400DB73E2 /* OneVsOneProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B57D402262698400DB73E2 /* OneVsOneProgressViewController.swift */; };
 		D5B57D432262698400DB73E2 /* OneVsOneProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B57D412262698400DB73E2 /* OneVsOneProgressViewController.xib */; };
 		D5DE77F1225FF61200439407 /* SearchPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DE77EF225FF61200439407 /* SearchPlayerViewController.swift */; };
@@ -180,6 +181,7 @@
 		D5210883225EB3D20044C440 /* ParkInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkInfoCell.swift; sourceTree = "<group>"; };
 		D5210884225EB3D20044C440 /* ParkInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkInfoCell.xib; sourceTree = "<group>"; };
 		D56FE69D2262B28800A5553E /* MainTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTimer.swift; sourceTree = "<group>"; };
+		D5B304532264EDF800404241 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		D5B57D402262698400DB73E2 /* OneVsOneProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneVsOneProgressViewController.swift; sourceTree = "<group>"; };
 		D5B57D412262698400DB73E2 /* OneVsOneProgressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OneVsOneProgressViewController.xib; sourceTree = "<group>"; };
 		D5DE77EF225FF61200439407 /* SearchPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerViewController.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 				48D5C81B225D213B00AFDE8F /* GeolocationData.swift */,
 				48D5C81D225D216400AFDE8F /* JsonParkData.swift */,
 				2ECFC94C2264DDB900BD6A53 /* ParkEloInfoModel.swift */,
+				D5B304532264EDF800404241 /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -674,6 +677,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EC6D561225E7A0B00336362 /* ParkListViewController.swift in Sources */,
+				D5B304542264EDF800404241 /* Message.swift in Sources */,
 				2E171B92225BA61000D40DDF /* DBService+Playground.swift in Sources */,
 				2EF4809422565227008212DC /* GamerModel.swift in Sources */,
 				2ECFC94F2264E20A00BD6A53 /* DBService+ParkEloInfo.swift in Sources */,

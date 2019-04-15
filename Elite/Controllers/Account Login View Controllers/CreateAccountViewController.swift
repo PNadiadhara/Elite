@@ -18,9 +18,11 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     private var authservice = AppDelegate.authservice
     
     
+    var keyboardHeight = CGFloat()
     override func viewDidLoad() {
         super.viewDidLoad()
         firstNameTextField.delegate = self
@@ -76,7 +78,9 @@ class CreateAccountViewController: UIViewController {
                 print("UserInfo is nil")
                 return
         }
-        conteinerView.transform = CGAffineTransform(translationX: 0, y: -keyboardFrame.height)
+        keyboardHeight = keyboardFrame.height
+        print(keyboardHeight)
+//        conteinerView.transform = CGAffineTransform(translationX: 0, y: -keyboardFrame.height)
     }
     @objc private func willHideKeyboard(){
         conteinerView.transform = CGAffineTransform.identity
@@ -99,26 +103,7 @@ extension CreateAccountViewController : AuthServiceCreateNewAccountDelegate {
     }
     
     func didCreateNewAccount(_ authservice: AuthService, user gamer: GamerModel) {
-        let map = MapViewController()
-        let feed = FeedTableViewController()
-        let create = CreateGameViewController()
-        let board = LeaderboardViewController()
-        let profile = ProfileViewController()
-        let tab = TabBarViewController()
-        map.title = "Map"
-        map.tabBarItem = UITabBarItem.init(title: "Map", image: UIImage(named: "map_marker"), tag: 0)
-        feed.title = "Feed"
-        feed.tabBarItem = UITabBarItem.init(title: "Feed", image: UIImage(named: "list"), tag: 1)
-        create.title = "Create Game"
-        create.tabBarItem = UITabBarItem.init(title: "Create Game", image: UIImage(named: "create_new"), tag: 2)
-        board.title = "Leaderboard"
-        board.tabBarItem = UITabBarItem.init(title: "Leaderboard", image: UIImage(named: "line_chart"), tag: 3)
-        profile.title = "Profile"
-        profile.tabBarItem = UITabBarItem.init(title: "Profile", image: UIImage(named: "user_male"), tag: 4)
-        let controller = [map, board, create, feed, profile]
-        tab.viewControllers = controller.map{UINavigationController.init(rootViewController: $0)}
-        tab.modalTransitionStyle = .crossDissolve
-        tab.modalPresentationStyle = .overFullScreen
+        let tab = TabBarViewController.setTabBarVC()
         present(tab, animated: true)
     }
     
@@ -127,5 +112,14 @@ extension CreateAccountViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        switch textField.tag {
+        case 0,1,2,3:
+        conteinerView.transform = CGAffineTransform(translationX: 0, y: -keyboardHeight)
+        default:
+            return
+        }
+
     }
 }
