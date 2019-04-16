@@ -7,7 +7,10 @@
 //
 
 import UIKit
-
+import Firebase
+protocol SearchForPlayerDelegate: AnyObject {
+    func gamerSelected(gamer: GamerModel)
+}
 class OneVsOneViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var searchPlayerView: versusLeft!
@@ -20,17 +23,28 @@ class OneVsOneViewController: UIViewController {
     @IBOutlet weak var addPlayerView: UIView!
     
     
-    
+    var gamerSelected: GamerModel?
+    var invitations = [Invitation]()
+    private var listener: ListenerRegistration!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTap()
+        fetchInvitationRequest()
     
         // Do any additional setup after loading the view.
     }
+    override func viewDidAppear(_ animated: Bool) {
+        if let gamer = gamerSelected {
+            bluePlayerLabel.text = gamer.username
+        }
+    }
+    
     @IBAction func playButtonPressed(_ sender: UIButton) {
+        
         //To do: CREATE INSTANSE OF GAME
         let oneVsoneProgressVc = OneVsOneProgressViewController.init(nibName: "OneVsOneProgressViewController", bundle: nil)
         oneVsoneProgressVc.modalPresentationStyle = .fullScreen
+
         present(oneVsoneProgressVc, animated: true)
     }
     
@@ -43,10 +57,48 @@ class OneVsOneViewController: UIViewController {
         addPlayerView.addGestureRecognizer(tap)
     }
 
+    @objc func fetchInvitationRequest() {
+        guard let user = AppDelegate.authservice.getCurrentUser() else {return}
+        listener = DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).whereField("reciever", isEqualTo: user.uid)
+            .addSnapshotListener { [weak self] (snapshot, error) in
+                if let error = error {
+                    self?.showAlert(title: "Error fetching blogs", message: error.localizedDescription)
+                } else if let snapshot = snapshot {
+                    print("Invitation recieved")
+                    self?.invitations = snapshot.documents.map {Invitation.init(dict: $0.data())}
+                    if (self?.invitations.count)! > 0 {
+                        self?.confirmAlert(title: "\(self?.invitations.first?.sender ?? "NA") sent you and invitation", message: "Accept?", handler: { (action) in
+                            let oneVsoneProgressVc = OneVsOneProgressViewController.init(nibName: "OneVsOneProgressViewController", bundle: nil)
+                            oneVsoneProgressVc.modalPresentationStyle = .fullScreen
+                            
+                            oneVsoneProgressVc.invitation = self?.invitations.first
+                            DBService.updateInvitationApprovalToTrue(completion: { (error) in
+                                if let error = error {
+                                    self?.showAlert(title: "Error", message: error.localizedDescription)
+                                } else {
+                                    print("Invitation accepted")
+                                }
+                            })
+                            self?.present(oneVsoneProgressVc, animated: true)
+                        })
+                        
+                    }
+                }
+        }
+    }
     @objc func searchPlayerPressed() {
         let searchPlayerVc = SearchPlayerViewController.init(nibName: "SearchPlayerViewController", bundle: nil)
         searchPlayerVc.modalPresentationStyle = .fullScreen
+        searchPlayerVc.searchDelegate = self
         present(searchPlayerVc, animated: true)
         
     }
+}
+
+extension OneVsOneViewController: SearchForPlayerDelegate{
+    func gamerSelected(gamer: GamerModel) {
+        self.gamerSelected = gamer
+    }
+    
+    
 }
