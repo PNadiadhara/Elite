@@ -27,12 +27,17 @@ class OneVsOneViewController: UIViewController {
     var gamerSelected: GamerModel?
     var invitation: Invitation?
     var invitations = [Invitation]()
+    var user: User!
+    
     private var listener: ListenerRegistration!
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let user = AppDelegate.authservice.getCurrentUser() else {return}
+        self.user = user
         setupTap()
         fetchInvitationRequest()
-    
+
+        redPlayerLabel.text = user.displayName
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -60,7 +65,6 @@ class OneVsOneViewController: UIViewController {
     }
 
     @objc func fetchInvitationRequest() {
-        guard let user = AppDelegate.authservice.getCurrentUser() else {return}
         listener = DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).whereField("reciever", isEqualTo: user.uid)
             .addSnapshotListener { [weak self] (snapshot, error) in
                 if let error = error {

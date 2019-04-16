@@ -45,7 +45,7 @@ class MapViewController: UIViewController {
             let locations = CLLocationCoordinate2D(latitude: Double(park.lat ?? "0.0")!, longitude:  Double(park.lng ?? "0.0")!)
             let marker = GMSMarker()
             marker.position = locations
-            
+            marker.icon = GMSMarker.markerImage(with: .orange)
             markers.append(marker)
             if markers.count == 30 {
                 break
