@@ -65,6 +65,9 @@
 		48D5C824225D328A00AFDE8F /* JsonParkDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D5C823225D328A00AFDE8F /* JsonParkDataClient.swift */; };
 		48D5C826225D33A100AFDE8F /* PrivateInfoFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D5C825225D33A000AFDE8F /* PrivateInfoFile.swift */; };
 		48D5C828225D430700AFDE8F /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D5C827225D430700AFDE8F /* AppError.swift */; };
+		48DB1A642260F28300C7CEAC /* AllInfoForBasketBallCourts.json in Sources */ = {isa = PBXBuildFile; fileRef = 48DB1A632260F28300C7CEAC /* AllInfoForBasketBallCourts.json */; };
+		48DB1A662260F72500C7CEAC /* AllInfoForHandballCourts.json in Sources */ = {isa = PBXBuildFile; fileRef = 48DB1A652260F72500C7CEAC /* AllInfoForHandballCourts.json */; };
+		48DB1A682260FB6200C7CEAC /* AllNYCParkInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DB1A672260FB6200C7CEAC /* AllNYCParkInfo.swift */; };
 		BFADB58F22553FB200E746B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFADB58E22553FB200E746B5 /* AppDelegate.swift */; };
 		BFADB59422553FB200E746B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59222553FB200E746B5 /* Main.storyboard */; };
 		BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59522553FB300E746B5 /* Assets.xcassets */; };
@@ -142,6 +145,9 @@
 		48D5C823225D328A00AFDE8F /* JsonParkDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParkDataClient.swift; sourceTree = "<group>"; };
 		48D5C825225D33A000AFDE8F /* PrivateInfoFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateInfoFile.swift; sourceTree = "<group>"; };
 		48D5C827225D430700AFDE8F /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		48DB1A632260F28300C7CEAC /* AllInfoForBasketBallCourts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AllInfoForBasketBallCourts.json; sourceTree = "<group>"; };
+		48DB1A652260F72500C7CEAC /* AllInfoForHandballCourts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AllInfoForHandballCourts.json; sourceTree = "<group>"; };
+		48DB1A672260FB6200C7CEAC /* AllNYCParkInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNYCParkInfo.swift; sourceTree = "<group>"; };
 		647649F00844096F9E907D7A /* Pods_Elite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Elite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2B205210B3DCCE14EFD090 /* Pods-Elite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elite.release.xcconfig"; path = "Target Support Files/Pods-Elite/Pods-Elite.release.xcconfig"; sourceTree = "<group>"; };
 		BFADB58B22553FB200E746B5 /* Elite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elite.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -367,6 +373,7 @@
 				48D5C819225D20F700AFDE8F /* GeocodingData.swift */,
 				48D5C81B225D213B00AFDE8F /* GeolocationData.swift */,
 				48D5C81D225D216400AFDE8F /* JsonParkData.swift */,
+				48DB1A672260FB6200C7CEAC /* AllNYCParkInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -434,6 +441,8 @@
 				2E9FE66522557D83004CA00B /* Extensions */,
 				2E9FE66022557C6E004CA00B /* Utilities */,
 				2E9FE67D22558251004CA00B /* Storyboards */,
+				48DB1A632260F28300C7CEAC /* AllInfoForBasketBallCourts.json */,
+				48DB1A652260F72500C7CEAC /* AllInfoForHandballCourts.json */,
 			);
 			path = Elite;
 			sourceTree = "<group>";
@@ -634,6 +643,7 @@
 				2E171B92225BA61000D40DDF /* DBService+Playground.swift in Sources */,
 				2EF4809422565227008212DC /* GamerModel.swift in Sources */,
 				2E9FE65822557AC4004CA00B /* LoginViewController.swift in Sources */,
+				48DB1A682260FB6200C7CEAC /* AllNYCParkInfo.swift in Sources */,
 				D5210870225E95540044C440 /* UserFeedCell.swift in Sources */,
 				2EC6D555225E799F00336362 /* OneVsOneViewController.swift in Sources */,
 				2EF480A22256BE69008212DC /* WinsModel.swift in Sources */,
@@ -642,6 +652,7 @@
 				2E9FE67822558191004CA00B /* DBService.swift in Sources */,
 				2E9FE656225579E5004CA00B /* CreateAccountViewController.swift in Sources */,
 				48D5C824225D328A00AFDE8F /* JsonParkDataClient.swift in Sources */,
+				48DB1A642260F28300C7CEAC /* AllInfoForBasketBallCourts.json in Sources */,
 				2EC6D572225E9BCB00336362 /* UserFeedTableViewController.swift in Sources */,
 				2E9FE67122557F02004CA00B /* String+Date.swift in Sources */,
 				2E9FE66C22557E8C004CA00B /* TabBarViewController.swift in Sources */,
@@ -668,6 +679,7 @@
 				2E171B97225CF86C00D40DDF /* MapViewController.swift in Sources */,
 				BFADB58F22553FB200E746B5 /* AppDelegate.swift in Sources */,
 				D5210881225E960B0044C440 /* FeedCellTableViewCell.swift in Sources */,
+				48DB1A662260F72500C7CEAC /* AllInfoForHandballCourts.json in Sources */,
 				2E9FE6742255806E004CA00B /* AuthService.swift in Sources */,
 				2EF4809C22565A73008212DC /* SnapchatLoginViewController.swift in Sources */,
 				48D5C826225D33A100AFDE8F /* PrivateInfoFile.swift in Sources */,
