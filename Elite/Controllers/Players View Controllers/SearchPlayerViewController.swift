@@ -13,6 +13,8 @@ class SearchPlayerViewController: UIViewController {
     @IBOutlet weak var friendSearchBar: UISearchBar!
     @IBOutlet weak var friendsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    weak var searchDelegate: SearchForPlayerDelegate!
     var gamers = [GamerModel](){
         didSet {
             DispatchQueue.main.async {
@@ -20,7 +22,9 @@ class SearchPlayerViewController: UIViewController {
             }
         }
     }
+    
     override func viewDidLoad() {
+
         super.viewDidLoad()
         friendsTableView.delegate = self
         friendsTableView.dataSource = self
@@ -70,6 +74,16 @@ extension SearchPlayerViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 125
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let user = AppDelegate.authservice.getCurrentUser() else {return}
+        let gamer = gamers[indexPath.row]
+        let invitation = Invitation(invitationId: "", sender: user.uid, reciever: gamer.gamerID, message: "Invitation", approval: false)
+        DBService.postInvitation(invitation: invitation) { (error) in
+            print("Error posting message")
+        }
+        searchDelegate.gamerSelected(gamer: gamer)
+        dismiss(animated: true)
     }
 }
 

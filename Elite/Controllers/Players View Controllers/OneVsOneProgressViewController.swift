@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import Firebase
 
 class OneVsOneProgressViewController: UIViewController {
 
     var timer = MainTimer(timeInterval: 0.0001)
     var buttons = [UIButton]()
+    var invitation: Invitation?
+    var invitations = [Invitation]()
+    private var listener: ListenerRegistration!
     
     @IBOutlet weak var sportParkLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
@@ -23,6 +27,8 @@ class OneVsOneProgressViewController: UIViewController {
     @IBOutlet weak var cancelButton: RoundedButton!
     @IBOutlet weak var pauseButton: RoundedButton!
     @IBOutlet weak var endButton: RoundedButton!
+    @IBOutlet weak var waitingScreen: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +71,18 @@ class OneVsOneProgressViewController: UIViewController {
         default:
             return
         }
+    }
+    @objc func fetchInvitationApproval() {
+        listener = DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).whereField(InvitationCollectionKeys.approvalKey, isEqualTo: true).whereField(InvitationCollectionKeys.invitationIdKey, isEqualTo: invitation!.invitationId).addSnapshotListener({[weak self] (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let snapshot = snapshot {
+                self?.invitations = snapshot.documents.map {Invitation.init(dict: $0.data())}
+                if (self?.invitations.count)! > 0 {
+                    self?.waitingScreen.isHidden = true
+                }
+            }
+        })
     }
     @IBAction func cancelPressed(_ sender: UIButton) {
         confirmAlert(title: "Game Cancel", message: "Are you sure?") { (action) in
