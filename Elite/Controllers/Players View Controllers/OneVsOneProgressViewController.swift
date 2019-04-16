@@ -38,6 +38,7 @@ class OneVsOneProgressViewController: UIViewController {
         buttons = [cancelButton, pauseButton, endButton]
         buttons.forEach{$0.isEnabled = false}
         buttons.forEach{$0.alpha = 0.5}
+        fetchInvitationApproval()
     }
 
     func runTimer (){
@@ -73,13 +74,19 @@ class OneVsOneProgressViewController: UIViewController {
         }
     }
     @objc func fetchInvitationApproval() {
-        listener = DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).whereField(InvitationCollectionKeys.approvalKey, isEqualTo: true).whereField(InvitationCollectionKeys.invitationIdKey, isEqualTo: invitation!.invitationId).addSnapshotListener({[weak self] (snapshot, error) in
+        guard let invitation = invitation else {return}
+        listener = DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).whereField(InvitationCollectionKeys.approvalKey, isEqualTo: true).whereField(InvitationCollectionKeys.invitationIdKey, isEqualTo: invitation.invitationId).addSnapshotListener({[weak self] (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else if let snapshot = snapshot {
                 self?.invitations = snapshot.documents.map {Invitation.init(dict: $0.data())}
                 if (self?.invitations.count)! > 0 {
                     self?.waitingScreen.isHidden = true
+                    DBService.deleteInvitation(invitation: (self?.invitation!)!, completion: { (error) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        }
+                    })
                 }
             }
         })

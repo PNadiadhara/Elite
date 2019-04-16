@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 protocol SearchForPlayerDelegate: AnyObject {
     func gamerSelected(gamer: GamerModel)
+    func invitationCreated(invitation: Invitation)
 }
 class OneVsOneViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
@@ -24,6 +25,7 @@ class OneVsOneViewController: UIViewController {
     
     
     var gamerSelected: GamerModel?
+    var invitation: Invitation?
     var invitations = [Invitation]()
     private var listener: ListenerRegistration!
     override func viewDidLoad() {
@@ -68,18 +70,30 @@ class OneVsOneViewController: UIViewController {
                     self?.invitations = snapshot.documents.map {Invitation.init(dict: $0.data())}
                     if (self?.invitations.count)! > 0 {
                         self?.confirmAlert(title: "\(self?.invitations.first?.sender ?? "NA") sent you and invitation", message: "Accept?", handler: { (action) in
-                            let oneVsoneProgressVc = OneVsOneProgressViewController.init(nibName: "OneVsOneProgressViewController", bundle: nil)
-                            oneVsoneProgressVc.modalPresentationStyle = .fullScreen
-                            
-                            oneVsoneProgressVc.invitation = self?.invitations.first
-                            DBService.updateInvitationApprovalToTrue(completion: { (error) in
-                                if let error = error {
-                                    self?.showAlert(title: "Error", message: error.localizedDescription)
-                                } else {
-                                    print("Invitation accepted")
-                                }
-                            })
-                            self?.present(oneVsoneProgressVc, animated: true)
+                            switch action.title {
+                            case "Yes":
+                                let oneVsoneProgressVc = OneVsOneProgressViewController.init(nibName: "OneVsOneProgressViewController", bundle: nil)
+                                oneVsoneProgressVc.modalPresentationStyle = .fullScreen
+                                
+                                oneVsoneProgressVc.invitation = self?.invitations.first
+                                DBService.updateInvitationApprovalToTrue(completion: { (error) in
+                                    if let error = error {
+                                        self?.showAlert(title: "Error", message: error.localizedDescription)
+                                    } else {
+                                        print("Invitation accepted")
+                                    }
+                                })
+                                self?.present(oneVsoneProgressVc, animated: true)
+                            case "No":
+                                DBService.deleteInvitation(invitation: (self?.invitations.first)!, completion: { (error) in
+                                    if let error = error{
+                                        print(error.localizedDescription)
+                                    }
+                                })
+                            default:
+                                return
+                            }
+
                         })
                         
                     }
@@ -96,6 +110,10 @@ class OneVsOneViewController: UIViewController {
 }
 
 extension OneVsOneViewController: SearchForPlayerDelegate{
+    func invitationCreated(invitation: Invitation) {
+        self.invitation = invitation
+    }
+    
     func gamerSelected(gamer: GamerModel) {
         self.gamerSelected = gamer
     }

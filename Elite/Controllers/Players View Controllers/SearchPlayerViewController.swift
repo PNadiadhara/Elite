@@ -83,6 +83,7 @@ extension SearchPlayerViewController: UITableViewDelegate, UITableViewDataSource
             print("Error posting message")
         }
         searchDelegate.gamerSelected(gamer: gamer)
+        searchDelegate.invitationCreated(invitation: invitation)
         dismiss(animated: true)
     }
 }
