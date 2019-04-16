@@ -10,21 +10,46 @@ import UIKit
 
 class FiveVsFiveViewController: UIViewController {
 
+    @IBOutlet weak var selectedSportLabel: UILabel!
+    @IBOutlet weak var youButton: CircularRedButton!
+    @IBOutlet weak var redPlayer1Button: CircularRedButton!
+    @IBOutlet weak var redPlayer1Label: UILabel!
+    @IBOutlet weak var redPlayer2Button: CircularRedButton!
+    @IBOutlet weak var redPlayer2Label: UILabel!
+    @IBOutlet weak var redPlayer4Button: CircularRedButton!
+    @IBOutlet weak var redPlayer4Label: UILabel!
+    @IBOutlet weak var redPlayer5Button: CircularRedButton!
+    @IBOutlet weak var redPlayer5Label: UILabel!
+    
+    @IBOutlet weak var bluePlayer1Button: CircularBlueButton!
+    @IBOutlet weak var bluePlayer1Label: UILabel!
+    @IBOutlet weak var bluePlayer2Button: CircularBlueButton!
+    @IBOutlet weak var bluePlayer2Label: UILabel!
+    @IBOutlet weak var bluePlayer3Button: CircularBlueButton!
+    @IBOutlet weak var bluePlayer3Label: UILabel!
+    @IBOutlet weak var bluePlayer4Button: CircularBlueButton!
+    @IBOutlet weak var bluePlayer4Label: UILabel!
+    @IBOutlet weak var bluePlayer5Button: CircularBlueButton!
+    @IBOutlet weak var bluePlayer5Label: UILabel!
+    
+    
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func cancelPressed(_ sender: Any) {
+        dismiss(animated: true)
     }
-    */
+    @IBAction func donePressed(_ sender: UIButton) {
+    }
+    
+
 
 }

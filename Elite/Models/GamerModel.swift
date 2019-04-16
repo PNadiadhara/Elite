@@ -18,11 +18,14 @@ class GamerModel {
     let achievements: [String]?
     let bio: String?
     let qrCode: String
-    let joinedDate: Int
+    let joinedDate: String
     let gamerID: String
+    let myParks : [String]? //this array holds the ids for parks that user has played att
+    let numberOfHandballGamesPlayed : Double
+    let numberOfBasketballGamesPlayed : Double
     
     public var fullname: String {
-        return ((firstname ?? "") + " " + (lastname ?? "")).trimmingCharacters(in: .whitespacesAndNewlines)
+        return ((firstname ) + " " + (lastname )).trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
     init(profileImage: String?,
@@ -35,8 +38,11 @@ class GamerModel {
     achievements: [String]?,
     bio: String?,
     qrCode: String,
-    joinedDate: Int,
-    gamerID: String) {
+    joinedDate: String,
+    gamerID: String,
+    myParks : [String]?,
+    numberOfHandballGamesPlayed : Double,
+    numberOfBasketballGamesPlayed : Double) {
         self.profileImage = profileImage
         self.firstname = firstname
         self.lastname = lastname
@@ -48,6 +54,9 @@ class GamerModel {
         self.qrCode = qrCode
         self.joinedDate = joinedDate
         self.gamerID = gamerID
+        self.myParks = myParks
+        self.numberOfHandballGamesPlayed = numberOfHandballGamesPlayed
+        self.numberOfBasketballGamesPlayed = numberOfBasketballGamesPlayed
     }
     
     init(dict: [String: Any]) {
@@ -60,8 +69,27 @@ class GamerModel {
         self.achievements = dict[GamerCollectionKeys.AchievementsKey] as? [String] ?? ["",""]
         self.bio = dict[GamerCollectionKeys.BioKey] as? String ?? "FirstName"
         self.qrCode = dict[GamerCollectionKeys.QRcodeKey] as? String ?? "LastName"
-        self.joinedDate = dict[GamerCollectionKeys.JoinedDateKey] as? Int ?? 0
+        self.joinedDate = dict[GamerCollectionKeys.JoinedDateKey] as? String ?? ""
         self.gamerID = dict[GamerCollectionKeys.GamerIDKey] as? String ?? ""
+        self.myParks = dict[GamerCollectionKeys.MyParks] as? [String] ?? [""]
+        self.numberOfHandballGamesPlayed = dict[GamerCollectionKeys.NumberOfHandballGamesPlayed] as? Double ?? 0.0
+        self.numberOfBasketballGamesPlayed = dict[GamerCollectionKeys.NumberOfBasketballGamesPlayer] as? Double ?? 0.0
+    }
+}
+
+class EloPlayer  {
+    var currentEloScore : Double
+    var highestScore : Double
+    var gameWinStatus : String
+    var totalHandballGamesPlayed : Double
+    var totalBasketBallGamesPlayed : Double
+    
+    init(currentEloScore : Double, highestScore: Double, gameWinStatus : String, totalHandballGamesPlayed : Double, totalBasketBallGamesPlayed : Double ) {
+        self.currentEloScore = currentEloScore
+        self.highestScore = highestScore
+        self.gameWinStatus = gameWinStatus
+        self.totalHandballGamesPlayed = totalHandballGamesPlayed
+        self.totalBasketBallGamesPlayed = totalBasketBallGamesPlayed
         
     }
 }

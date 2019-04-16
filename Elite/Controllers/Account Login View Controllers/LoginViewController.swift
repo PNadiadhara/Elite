@@ -38,7 +38,12 @@ class LoginViewController: UIViewController {
         }
         authservice.signInExistingAccount(email: email, password: password)
     }
+    
+    @IBAction func facebookButtonPressed(_ sender: RoundedButton) {
+    }
 }
+
+
 
 
 extension LoginViewController : AuthServiceExistingAccountDelegate {

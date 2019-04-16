@@ -23,4 +23,9 @@ final class DBService {
     static public var generateDocumentId: String {
         return firestoreDB.collection(GamerCollectionKeys.CollectionKey).document().documentID
     }
+    static public var generateInvitationDocumentId: String {
+        return firestoreDB.collection(InvitationCollectionKeys.collectionKey).document().documentID
+    }
+    
+    
 }

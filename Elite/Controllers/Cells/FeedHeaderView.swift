@@ -12,15 +12,21 @@ class FeedHeaderView: UIView {
 
     lazy var titleLabel: UILabel = {
        var label = UILabel()
-        label.font = UIFont(name: "HelveticaNeue-Bold", size: 41)
+        label.font = Constants.getHelveticaNeue(size: 40, type: "bold")
         label.text = "Label"
         label.textColor = .white
         return label
     }()
+    
+    lazy var cornerButton: UIButton = {
+       var button = UIButton()
+        return button
+    }()
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
+        backgroundColor = #colorLiteral(red: 0.1607843137, green: 0.1725490196, blue: 0.1843137255, alpha: 1)
         setupTitleLabel()
+        setupCornerButton()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,4 +39,13 @@ class FeedHeaderView: UIView {
         titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo:centerXAnchor).isActive = true
     }
+    
+    func setupCornerButton() {
+        addSubview(cornerButton)
+        cornerButton.translatesAutoresizingMaskIntoConstraints = false
+        cornerButton.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
+        cornerButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 15).isActive = true
+    }
+    
+    
 }

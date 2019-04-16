@@ -19,7 +19,20 @@ import Foundation
 // K=10 for players with > 30 games and have had an ELO > 2400
 // n value is the same as FIDE(chess elo ranking) this is always a positive value
 
+
+// Final equation is Rn = Ro + K * (S - E)
+
+
+
 final class EloRanking {
+    
+    enum WinningStatus: Double {
+        case win = 1
+        case lose = 0
+        case tie = 0.5
+    }
+    
+    
     
     public func calculateElo ( playerRatingPreMatch: Double, expectedGameScore: Double, acutalGameScore: Double, kFactor : Double ) -> Double {
         var newRating = 0.0
@@ -40,10 +53,13 @@ final class EloRanking {
         return expectedGameScore
     }
     
-    public func calculateActualScore () {
-        // win = 1.0, tie = 0.5, loss = 0
+    
+    
+    public func calculateActualScore(players: [String], winningStatus : WinningStatus) -> Double {
         
+        // TODO:
         
+        return winningStatus.rawValue
     }
     
     

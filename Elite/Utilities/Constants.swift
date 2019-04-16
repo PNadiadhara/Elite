@@ -14,6 +14,22 @@ struct Constants {
     static let GameBioPlaceholder = "Game Description..."
     static let ProfileImagePath = "profileImages/"
     static let GamePostCellHeight: CGFloat = 150.0
+    static func getHelveticaNeue(size: CGFloat, type: String) -> UIFont {
+        let fontType = type.capitalized
+        switch fontType {
+        case "Regular":
+            return UIFont(name: "HelveticaNeue", size: size)!
+        case "Bold":
+            return UIFont(name: "HelveticaNeue-Bold", size: size)!
+        case "Light":
+            return UIFont(name: "HelveticaNeue-Light", size: size)!
+        
+        case "Medium":
+            return UIFont(name: "HelveticaNeue-Medium", size: size)!
+        default:
+            return UIFont(name: "HelveticaNeue", size: size)!
+        }
+    }
 }
 
 // https://www.iosapptemplates.com/blog/swift-programming/convert-hex-colors-to-uicolor-swift-4
