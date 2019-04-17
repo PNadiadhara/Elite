@@ -7,7 +7,10 @@
 //
 
 import UIKit
-
+enum Game: String {
+    case basketball
+    case handball
+}
 class CreateGameViewController: UIViewController {
 
     @IBOutlet weak var fiveVsFiveView: UIView!
@@ -29,9 +32,14 @@ class CreateGameViewController: UIViewController {
     @IBOutlet weak var handballLabel: UILabel!
     @IBOutlet weak var handballImage: UIImageView!
     
+    @IBOutlet weak var qrCodeView: UIView!
+    @IBOutlet weak var animatedBottomRight: UIView!
     
+    var game: Game = .basketball
+    var animatedViews = [UIView]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        animatedViews = [animatedTopRight,animatedTopLeft,animatedBottomLeft]
         setupViewTapGestures()
         currentLocationLabel.text = "Astoria Park"
 
@@ -43,13 +51,7 @@ class CreateGameViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-    override func viewDidAppear(_ animated: Bool) {
-        navigationController?.navigationBar.barStyle = .black
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
+
     override func viewDidLayoutSubviews() {
         selectedSportView.layer.borderColor = #colorLiteral(red: 0.1607843137, green: 0.1725490196, blue: 0.1843137255, alpha: 1)
         selectedSportView.layer.borderWidth = 5
@@ -61,6 +63,7 @@ class CreateGameViewController: UIViewController {
     //        changeSportView.layer.borderWidth = 0
     }
     func setupViewTapGestures(){
+
         let oneVsOneTap = UITapGestureRecognizer(target: self, action: #selector(oneVsOnePressed))
         oneVsOneView.addGestureRecognizer(oneVsOneTap)
         
@@ -70,8 +73,8 @@ class CreateGameViewController: UIViewController {
         let fiveVsFiveTap = UITapGestureRecognizer(target: self, action: #selector(fiveVsFivePressed))
         fiveVsFiveView.addGestureRecognizer(fiveVsFiveTap)
         
-//        let changeSportTap = UITapGestureRecognizer(target: self, action: #selector(changeSportPressed))
-//        changeSportView.addGestureRecognizer(changeSportTap)
+        let changeSportTap = UITapGestureRecognizer(target: self, action: #selector(qrCodePressed))
+        qrCodeView.addGestureRecognizer(changeSportTap)
         
         let changeParkTap = UITapGestureRecognizer(target: self, action: #selector(changeParkPressed))
         locationHeader.addGestureRecognizer(changeParkTap)
@@ -86,6 +89,34 @@ class CreateGameViewController: UIViewController {
         
     }
     func animateViews(){
+        let views = [oneVsOneView,twoVsTwoView,fiveVsFiveView]
+        if game == .basketball {
+            basketBallView.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.6078431373, blue: 0.1450980392, alpha: 1)
+            handBallView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
+            basketBallImage.image = UIImage(named: "basketballEmptyWhite")
+            basketBallLabel.textColor = .white
+            handballImage.image = UIImage(named: "handballBlueEmpty")
+            handballLabel.textColor = #colorLiteral(red: 0.01176470588, green: 0.6078431373, blue: 0.8980392157, alpha: 1)
+            middleAnimatedView.backgroundColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
+            for playerView in views{
+                playerView?.layer.borderColor = #colorLiteral(red: 0.9725490196, green: 0.6078431373, blue: 0.1450980392, alpha: 1)
+                playerView?.layer.borderWidth = 3
+                
+            }
+        } else {
+            handBallView.backgroundColor = #colorLiteral(red: 0.01176470588, green: 0.6078431373, blue: 0.8980392157, alpha: 1)
+            basketBallView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
+            handballImage.image = UIImage(named: "handballWhite")
+            handballLabel.textColor = .white
+            basketBallImage.image = UIImage(named: "basketballEmpty")
+            basketBallLabel.textColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
+            middleAnimatedView.backgroundColor = #colorLiteral(red: 0.01176470588, green: 0.6078431373, blue: 0.8980392157, alpha: 1)
+            for playerView in views{
+                playerView?.layer.borderColor = #colorLiteral(red: 0, green: 0.6754498482, blue: 0.9192627668, alpha: 1)
+                playerView?.layer.borderWidth = 3
+                
+            }
+        }
         UIView.animate(withDuration: 2.0, delay: 0, options: [], animations: {
             self.animatedTopLeft.transform = CGAffineTransform(translationX: -600, y: 0)
             
@@ -111,6 +142,7 @@ class CreateGameViewController: UIViewController {
         let oneVsOneVc = OneVsOneViewController.init(nibName: "OneVsOneViewController", bundle: nil)
         oneVsOneVc.modalPresentationStyle = .fullScreen
         oneVsOneVc.modalTransitionStyle = .flipHorizontal
+        oneVsOneVc.gameSelected = game
         present(oneVsOneVc, animated: true)
     }
     @objc func twoVstwoPressed() {
@@ -123,7 +155,9 @@ class CreateGameViewController: UIViewController {
         fiveVsFiveVc.modalPresentationStyle = .fullScreen
         present(fiveVsFiveVc, animated: true)
     }
-    @objc func changeSportPressed() {
+    @objc func qrCodePressed() {
+        let qrCodeVC = QrCodeViewController.init(nibName: "QrCodeViewController", bundle: nil)
+        present(qrCodeVC, animated: true)
        
     }
     
@@ -134,29 +168,22 @@ class CreateGameViewController: UIViewController {
     }
     
     @objc func basketBallPressed() {
+        game = .basketball
         print("basketBall PRessed")
         middleAnimatedView.transform = CGAffineTransform.identity
+        animatedViews.forEach{$0.transform = CGAffineTransform.identity}
          animateViews()
-            basketBallView.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.6078431373, blue: 0.1450980392, alpha: 1)
-            handBallView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
-        basketBallImage.image = UIImage(named: "basketballEmptyWhite")
-        basketBallLabel.textColor = .white
-        handballImage.image = UIImage(named: "handballBlueEmpty")
-        handballLabel.textColor = #colorLiteral(red: 0.01176470588, green: 0.6078431373, blue: 0.8980392157, alpha: 1)
-        middleAnimatedView.backgroundColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
+
+
         
     }
     @objc func handBallPressed() {
+        game = .handball
         print("handBall PRessed")
         middleAnimatedView.transform = CGAffineTransform.identity
+        animatedViews.forEach{$0.transform = CGAffineTransform.identity}
         animateViews()
-        handBallView.backgroundColor = #colorLiteral(red: 0.01176470588, green: 0.6078431373, blue: 0.8980392157, alpha: 1)
-        basketBallView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
-        handballImage.image = UIImage(named: "handballWhite")
-        handballLabel.textColor = .white
-        basketBallImage.image = UIImage(named: "basketballEmpty")
-        basketBallLabel.textColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
-        middleAnimatedView.backgroundColor = #colorLiteral(red: 0.01176470588, green: 0.6078431373, blue: 0.8980392157, alpha: 1)
+
     }
 
 }

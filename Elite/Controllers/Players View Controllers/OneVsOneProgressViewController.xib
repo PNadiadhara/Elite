@@ -17,6 +17,7 @@
                 <outlet property="blueTeamLabel" destination="EfX-hT-bR1" id="4Gl-XU-XRv"/>
                 <outlet property="cancelButton" destination="odj-rn-jgU" id="uAF-NM-6Ce"/>
                 <outlet property="endButton" destination="HzD-39-Fll" id="ZKv-or-9Nq"/>
+                <outlet property="headerView" destination="I3r-qf-4NR" id="9g0-V7-Lga"/>
                 <outlet property="pauseButton" destination="Cds-vu-quy" id="DZ1-r6-gDP"/>
                 <outlet property="redTeamImage" destination="N26-3S-SGx" id="MWC-8r-Tmj"/>
                 <outlet property="redTeamLabel" destination="0d9-pw-Pfe" id="pqQ-4j-Tbx"/>
