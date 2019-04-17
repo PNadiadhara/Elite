@@ -231,10 +231,10 @@
 		2E9FE65B22557B50004CA00B /* Profile View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2E9FE65E22557BC6004CA00B /* EditProfileViewController.swift */,
-				2EF4809B22565A73008212DC /* SnapchatLoginViewController.swift */,
 				2E381EAE22613A1E0075C1CD /* ProfileViewController.swift */,
 				2E381EAF22613A1E0075C1CD /* ProfileViewController.xib */,
+				2E9FE65E22557BC6004CA00B /* EditProfileViewController.swift */,
+				2EF4809B22565A73008212DC /* SnapchatLoginViewController.swift */,
 			);
 			path = "Profile View Controllers";
 			sourceTree = "<group>";
@@ -884,7 +884,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DQ5CF8LT37;
+				DEVELOPMENT_TEAM = TZT7J4D9W8;
 				INFOPLIST_FILE = Elite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -903,7 +903,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DQ5CF8LT37;
+				DEVELOPMENT_TEAM = TZT7J4D9W8;
 				INFOPLIST_FILE = Elite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
