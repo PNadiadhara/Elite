@@ -9,7 +9,7 @@
 import Foundation
 
 extension DBService {
-    static public func postInvitation(invitation: Invitation, completion: @escaping (Error?) -> Void)  {
+    static public func postInvitation(invitation: Invitation, completion: @escaping (Error?, String?) -> Void)  {
         let ref = firestoreDB.collection(InvitationCollectionKeys.collectionKey).document()
         
         DBService.firestoreDB
@@ -19,14 +19,16 @@ extension DBService {
                       InvitationCollectionKeys.senderIdKey : invitation.sender,
                       InvitationCollectionKeys.recieverKey : invitation.reciever, InvitationCollectionKeys.messageKey : invitation.message, InvitationCollectionKeys.approvalKey : invitation.approval]) { (error) in
                         if let error = error {
-                            print(error.localizedDescription)
+                            completion(error,nil)
+                        } else {
+                            completion(nil, ref.documentID)
                         }
         }
         
         
 }
-    static public func updateInvitationApprovalToTrue(completion: @escaping (Error?) -> Void) {
-        DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).document(generateInvitationDocumentId).updateData([InvitationCollectionKeys.approvalKey : true ]) { (error) in
+    static public func updateInvitationApprovalToTrue(invitation: Invitation,completion: @escaping (Error?) -> Void) {
+        DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).document(String(invitation.invitationId)).updateData([InvitationCollectionKeys.approvalKey : true ]) { (error) in
             if let error = error {
                 completion(error)
             }

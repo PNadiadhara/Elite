@@ -10,7 +10,10 @@ import UIKit
 import Firebase
 protocol SearchForPlayerDelegate: AnyObject {
     func gamerSelected(gamer: GamerModel)
-    func invitationCreated(invitation: Invitation)
+}
+enum SelectedInvitationOption {
+    case accepted
+    case declined
 }
 class OneVsOneViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
@@ -22,12 +25,17 @@ class OneVsOneViewController: UIViewController {
     @IBOutlet weak var sportLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var addPlayerView: UIView!
-    
+    @IBOutlet weak var redPlayerRanking: UILabel!
+    @IBOutlet weak var redPlayerMedalImage: UIImageView!
+    @IBOutlet weak var bluePlayerRanking: UILabel!
+    @IBOutlet weak var bluePlayerMedal: UIImageView!
     
     var gamerSelected: GamerModel?
     var invitation: Invitation?
     var invitations = [Invitation]()
     var user: User!
+    var gameSelected: Game!
+    var selectedInvitationOption: SelectedInvitationOption = .accepted
     
     private var listener: ListenerRegistration!
     override func viewDidLoad() {
@@ -36,7 +44,7 @@ class OneVsOneViewController: UIViewController {
         self.user = user
         setupTap()
         fetchInvitationRequest()
-
+        sportLabel.text = gameSelected.rawValue.capitalized
         redPlayerLabel.text = user.displayName
         // Do any additional setup after loading the view.
     }
@@ -46,13 +54,31 @@ class OneVsOneViewController: UIViewController {
         }
     }
     
-    @IBAction func playButtonPressed(_ sender: UIButton) {
-        
-        //To do: CREATE INSTANSE OF GAME
-        let oneVsoneProgressVc = OneVsOneProgressViewController.init(nibName: "OneVsOneProgressViewController", bundle: nil)
-        oneVsoneProgressVc.modalPresentationStyle = .fullScreen
 
-        present(oneVsoneProgressVc, animated: true)
+    @IBAction func playButtonPressed(_ sender: UIButton) {
+        guard let gamerSelected = gamerSelected else {
+            showAlert(title: "Please select player", message: nil)
+            return
+        }
+        //To do: CREATE INSTANSE OF GAME
+        let invitation = Invitation(invitationId: "", sender: user.uid, reciever: gamerSelected.gamerID, message: "Invitation", approval: false)
+//        DBService.postInvitation(invitation: invitation) { (error ) in
+//            print("Error posting message")
+//        }
+        DBService.postInvitation(invitation: invitation) { (error, invitationId) in
+            if let error = error {
+                self.showAlert(title: "Error posting invitation", message: error.localizedDescription)
+            }
+            if let invitationId = invitationId{
+                let invitation = Invitation(invitationId: invitationId, sender: self.user.uid, reciever: gamerSelected.gamerID, message: "Invitation", approval: false)
+                let oneVsoneProgressVc = OneVsOneProgressViewController.init(nibName: "OneVsOneProgressViewController", bundle: nil)
+                oneVsoneProgressVc.modalPresentationStyle = .fullScreen
+                oneVsoneProgressVc.invitation = invitation
+                oneVsoneProgressVc.isHost = true
+                self.present(oneVsoneProgressVc, animated: true)
+            }
+        }
+
     }
     
     @IBAction func cancelPressed(_ sender: UIButton) {
@@ -73,33 +99,7 @@ class OneVsOneViewController: UIViewController {
                     print("Invitation recieved")
                     self?.invitations = snapshot.documents.map {Invitation.init(dict: $0.data())}
                     if (self?.invitations.count)! > 0 {
-                        self?.confirmAlert(title: "\(self?.invitations.first?.sender ?? "NA") sent you and invitation", message: "Accept?", handler: { (action) in
-                            switch action.title {
-                            case "Yes":
-                                let oneVsoneProgressVc = OneVsOneProgressViewController.init(nibName: "OneVsOneProgressViewController", bundle: nil)
-                                oneVsoneProgressVc.modalPresentationStyle = .fullScreen
-                                
-                                oneVsoneProgressVc.invitation = self?.invitations.first
-                                DBService.updateInvitationApprovalToTrue(completion: { (error) in
-                                    if let error = error {
-                                        self?.showAlert(title: "Error", message: error.localizedDescription)
-                                    } else {
-                                        print("Invitation accepted")
-                                    }
-                                })
-                                self?.present(oneVsoneProgressVc, animated: true)
-                            case "No":
-                                DBService.deleteInvitation(invitation: (self?.invitations.first)!, completion: { (error) in
-                                    if let error = error{
-                                        print(error.localizedDescription)
-                                    }
-                                })
-                            default:
-                                return
-                            }
-
-                        })
-                        
+                        self?.presentAlertVC()
                     }
                 }
         }
@@ -111,16 +111,21 @@ class OneVsOneViewController: UIViewController {
         present(searchPlayerVc, animated: true)
         
     }
+    func presentAlertVC() {
+        let invitationAlertVC = InvitationAlertViewController.init(nibName: "InvitationAlertViewController", bundle: nil)
+        invitationAlertVC.invitation = invitations.first
+        invitationAlertVC.modalPresentationStyle = .overCurrentContext
+        
+        present(invitationAlertVC, animated: true)
+    }
 }
 
 extension OneVsOneViewController: SearchForPlayerDelegate{
-    func invitationCreated(invitation: Invitation) {
-        self.invitation = invitation
-    }
-    
     func gamerSelected(gamer: GamerModel) {
         self.gamerSelected = gamer
     }
     
     
 }
+
+

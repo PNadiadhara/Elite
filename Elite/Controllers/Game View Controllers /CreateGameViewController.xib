@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateGameViewController" customModule="Elite" customModuleProvider="target">
             <connections>
                 <outlet property="animatedBottomLeft" destination="S6r-ui-x41" id="Y2a-Qd-w2J"/>
+                <outlet property="animatedBottomRight" destination="q9W-fe-0M9" id="hwV-JX-KQC"/>
                 <outlet property="animatedTopLeft" destination="m0w-z6-cK6" id="zEk-3O-wWU"/>
                 <outlet property="animatedTopRight" destination="HwE-XB-n6S" id="XP9-Ch-t6u"/>
                 <outlet property="basketBallImage" destination="3CP-em-9TD" id="rOW-V8-x9D"/>
@@ -48,6 +49,10 @@
                                 <constraint firstAttribute="height" constant="75" id="p7H-d2-gl7"/>
                             </constraints>
                         </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q9W-fe-0M9">
+                            <rect key="frame" x="0.0" y="0.0" width="194.5" height="279"/>
+                            <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan to join game" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWN-Kd-Fkj">
                             <rect key="frame" x="11" y="161.5" width="172.5" height="20"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
@@ -59,8 +64,12 @@
                     <constraints>
                         <constraint firstItem="TWN-Kd-Fkj" firstAttribute="leading" secondItem="pMa-yr-EOh" secondAttribute="leading" constant="11" id="6Dk-tN-AGN"/>
                         <constraint firstAttribute="trailing" secondItem="TWN-Kd-Fkj" secondAttribute="trailing" constant="11" id="BXV-GV-wS7"/>
+                        <constraint firstItem="q9W-fe-0M9" firstAttribute="width" secondItem="pMa-yr-EOh" secondAttribute="width" id="Gn2-EW-zIa"/>
+                        <constraint firstItem="q9W-fe-0M9" firstAttribute="height" secondItem="pMa-yr-EOh" secondAttribute="height" id="VQF-84-pOR"/>
                         <constraint firstItem="sHQ-Yb-3xr" firstAttribute="top" secondItem="TWN-Kd-Fkj" secondAttribute="bottom" constant="8" id="YWg-rd-4BF"/>
                         <constraint firstItem="sHQ-Yb-3xr" firstAttribute="centerX" secondItem="pMa-yr-EOh" secondAttribute="centerX" id="m2V-kc-zGq"/>
+                        <constraint firstItem="q9W-fe-0M9" firstAttribute="centerX" secondItem="pMa-yr-EOh" secondAttribute="centerX" id="ovV-Qh-spc"/>
+                        <constraint firstItem="q9W-fe-0M9" firstAttribute="centerY" secondItem="pMa-yr-EOh" secondAttribute="centerY" id="qWR-X0-Elk"/>
                         <constraint firstItem="TWN-Kd-Fkj" firstAttribute="centerX" secondItem="sHQ-Yb-3xr" secondAttribute="centerX" id="zZ4-L9-y5D"/>
                     </constraints>
                 </view>

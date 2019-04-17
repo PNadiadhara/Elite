@@ -33,6 +33,8 @@ class CreateGameViewController: UIViewController {
     @IBOutlet weak var handballImage: UIImageView!
     
     @IBOutlet weak var qrCodeView: UIView!
+    @IBOutlet weak var animatedBottomRight: UIView!
+    
     var game: Game = .basketball
     var animatedViews = [UIView]()
     override func viewDidLoad() {
@@ -71,8 +73,8 @@ class CreateGameViewController: UIViewController {
         let fiveVsFiveTap = UITapGestureRecognizer(target: self, action: #selector(fiveVsFivePressed))
         fiveVsFiveView.addGestureRecognizer(fiveVsFiveTap)
         
-//        let changeSportTap = UITapGestureRecognizer(target: self, action: #selector(changeSportPressed))
-//        changeSportView.addGestureRecognizer(changeSportTap)
+        let changeSportTap = UITapGestureRecognizer(target: self, action: #selector(qrCodePressed))
+        qrCodeView.addGestureRecognizer(changeSportTap)
         
         let changeParkTap = UITapGestureRecognizer(target: self, action: #selector(changeParkPressed))
         locationHeader.addGestureRecognizer(changeParkTap)
@@ -140,6 +142,7 @@ class CreateGameViewController: UIViewController {
         let oneVsOneVc = OneVsOneViewController.init(nibName: "OneVsOneViewController", bundle: nil)
         oneVsOneVc.modalPresentationStyle = .fullScreen
         oneVsOneVc.modalTransitionStyle = .flipHorizontal
+        oneVsOneVc.gameSelected = game
         present(oneVsOneVc, animated: true)
     }
     @objc func twoVstwoPressed() {
@@ -152,7 +155,9 @@ class CreateGameViewController: UIViewController {
         fiveVsFiveVc.modalPresentationStyle = .fullScreen
         present(fiveVsFiveVc, animated: true)
     }
-    @objc func changeSportPressed() {
+    @objc func qrCodePressed() {
+        let qrCodeVC = QrCodeViewController.init(nibName: "QrCodeViewController", bundle: nil)
+        present(qrCodeVC, animated: true)
        
     }
     
