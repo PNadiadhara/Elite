@@ -12,7 +12,7 @@ class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        InvitationListener.fetchForInvitationRequest(vc: self)
         // Do any additional setup after loading the view.
     }
     

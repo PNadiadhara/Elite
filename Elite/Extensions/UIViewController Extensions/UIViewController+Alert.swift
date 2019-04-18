@@ -40,6 +40,14 @@ extension UIViewController {
         alertController.addAction(noAction)
         self.present(alertController, animated: true)
     }
+    public func invitationAlert(title: String, message: String, handler: ((UIAlertAction) -> Void)?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default, handler: handler)
+        let noAction = UIAlertAction(title: "No", style: .default, handler: handler)
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+        self.present(alertController, animated: true)
+    }
     
     public func showActionSheet(title: String?, message: String?, actionTitles: [String], handlers: [((UIAlertAction) -> Void)]) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)

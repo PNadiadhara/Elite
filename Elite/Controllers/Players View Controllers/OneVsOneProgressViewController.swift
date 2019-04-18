@@ -15,6 +15,7 @@ class OneVsOneProgressViewController: UIViewController {
     var buttons = [UIButton]()
     var invitation: Invitation?
     var invitations = [Invitation]()
+    var isHost = Bool()
     private var listener: ListenerRegistration!
     
     @IBOutlet weak var sportParkLabel: UILabel!
@@ -29,6 +30,7 @@ class OneVsOneProgressViewController: UIViewController {
     @IBOutlet weak var endButton: RoundedButton!
     @IBOutlet weak var waitingScreen: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var headerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +38,16 @@ class OneVsOneProgressViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(startApp) , name: UIApplication.didBecomeActiveNotification, object: nil)
         timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 50, weight: .regular)
         buttons = [cancelButton, pauseButton, endButton]
-        buttons.forEach{$0.isEnabled = false}
-        buttons.forEach{$0.alpha = 0.5}
+        if isHost {
+            buttons.forEach{$0.isEnabled = false}
+            buttons.forEach{$0.alpha = 0.5}
+            fetchInvitationApproval()
+        } else {
+            buttons.forEach{$0.isHidden = true}
+            waitingScreen.isHidden = true
+            headerView.isHidden = true
+        }
+        
     }
 
     func runTimer (){
@@ -73,13 +83,20 @@ class OneVsOneProgressViewController: UIViewController {
         }
     }
     @objc func fetchInvitationApproval() {
-        listener = DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).whereField(InvitationCollectionKeys.approvalKey, isEqualTo: true).whereField(InvitationCollectionKeys.invitationIdKey, isEqualTo: invitation!.invitationId).addSnapshotListener({[weak self] (snapshot, error) in
+        guard let invitation = invitation else {return}
+        listener = DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).whereField(InvitationCollectionKeys.approvalKey, isEqualTo: true).whereField(InvitationCollectionKeys.invitationIdKey, isEqualTo: invitation.invitationId).addSnapshotListener({[weak self] (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else if let snapshot = snapshot {
                 self?.invitations = snapshot.documents.map {Invitation.init(dict: $0.data())}
                 if (self?.invitations.count)! > 0 {
                     self?.waitingScreen.isHidden = true
+                    self?.waitingScreen.isHidden = true
+                    DBService.deleteInvitation(invitation: (self?.invitation!)!, completion: { (error) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        }
+                    })
                 }
             }
         })

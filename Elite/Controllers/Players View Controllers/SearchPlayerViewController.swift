@@ -76,12 +76,7 @@ extension SearchPlayerViewController: UITableViewDelegate, UITableViewDataSource
         return 125
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let user = AppDelegate.authservice.getCurrentUser() else {return}
         let gamer = gamers[indexPath.row]
-        let invitation = Invitation(invitationId: "", sender: user.uid, reciever: gamer.gamerID, message: "Invitation", approval: false)
-        DBService.postInvitation(invitation: invitation) { (error) in
-            print("Error posting message")
-        }
         searchDelegate.gamerSelected(gamer: gamer)
         dismiss(animated: true)
     }

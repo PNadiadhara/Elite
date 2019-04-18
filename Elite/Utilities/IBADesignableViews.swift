@@ -198,6 +198,17 @@ class RoundedView: UIView {
     }
 }
 
+@IBDesignable
+class RankingView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let corners = UIRectCorner(arrayLiteral: .bottomRight, .bottomLeft)
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: 20, height: 20))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        layer.mask = mask
+    }
+}
 
 
 
