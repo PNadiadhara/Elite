@@ -45,23 +45,23 @@
                         <constraint firstAttribute="height" constant="100" id="QHF-2X-chS"/>
                         <constraint firstAttribute="width" constant="100" id="x3E-4F-BYN"/>
                     </constraints>
-                    <state key="normal" title="Button" image="placeholder-image"/>
+                    <state key="normal" image="bitmoji"/>
                 </button>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-image" translatesAutoresizingMaskIntoConstraints="NO" id="eDx-yT-aSD" customClass="CircularImageView" customModule="Elite" customModuleProvider="target">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="diamondMedal" translatesAutoresizingMaskIntoConstraints="NO" id="eDx-yT-aSD" customClass="CircularImageView" customModule="Elite" customModuleProvider="target">
                     <rect key="frame" x="75" y="99" width="45" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="bBJ-Hl-EJ0"/>
                         <constraint firstAttribute="width" constant="45" id="ixt-cT-Bgl"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fullname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1iM-cL-voX">
-                    <rect key="frame" x="25" y="159" width="90" height="24"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manny" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1iM-cL-voX">
+                    <rect key="frame" x="25" y="159" width="65.5" height="24"/>
                     <fontDescription key="fontDescription" name="GurmukhiMN-Bold" family="Gurmukhi MN" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1i-Sc-SjU">
-                    <rect key="frame" x="25" y="188" width="88" height="22"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LiL GiT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1i-Sc-SjU">
+                    <rect key="frame" x="25" y="188" width="59" height="22"/>
                     <fontDescription key="fontDescription" name="GurmukhiMN" family="Gurmukhi MN" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -114,13 +114,15 @@
                         <constraint firstAttribute="width" constant="116" id="p4S-Pi-pR6"/>
                     </constraints>
                 </view>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Bio" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VjK-pm-Pph">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VjK-pm-Pph">
                     <rect key="frame" x="20" y="215" width="372" height="50"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="6Uz-Ip-eyB"/>
                         <constraint firstAttribute="width" constant="372" id="Xza-32-Uc4"/>
                     </constraints>
+                    <string key="text">My shades Dior, my pants velour
+Create, explore, expand, conquer</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
@@ -157,7 +159,8 @@
     </objects>
     <resources>
         <image name="add_user_male" width="30" height="30"/>
-        <image name="placeholder-image" width="512" height="512"/>
+        <image name="bitmoji" width="398" height="398"/>
+        <image name="diamondMedal" width="500" height="500"/>
         <image name="settings" width="30" height="30"/>
     </resources>
 </document>
