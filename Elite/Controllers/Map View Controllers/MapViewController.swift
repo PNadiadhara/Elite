@@ -30,6 +30,7 @@ class MapViewController: UIViewController {
         mapView?.delegate = self
         
     }
+    // One change for git hub
    private func createGoogleMarkers(){
     // Create a GMSCameraPosition that tells the map to display the
     // coordinate 40.712776,-74.005974 at zoom level 6.
