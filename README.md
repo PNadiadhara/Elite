@@ -50,9 +50,7 @@ Elite is an app targeted towards preteens, teens, and young adults. Elite is use
    - The map view annotations can be changes by selecting the bar button item for called Game
    - Contains a list of the games you can choose, image and the name of game
    * Detail Popup
-   - when the collection of annotations changes the user can select the actual anotation and it will have:
-* Parkboard 
-   -  
+   - when the collection of annotations changes the user can select the actual anotation and it will have
 * Feed
    - Displays a list of the acheivements you and your friends have and the games you played
   * Detail
