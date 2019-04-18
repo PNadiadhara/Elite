@@ -8,6 +8,13 @@
 
 import UIKit
 import GoogleMaps
+
+enum GoogleMapsMVState {
+    case showHandBallMarkers
+    case showBasketBallMarkers
+    case noMarkersShown
+}
+
 class MapViewController: UIViewController {
     private var parks = [ResultsContainer]()
     private var mapView: GMSMapView? {
