@@ -352,9 +352,9 @@
 				D5DE77EF225FF61200439407 /* SearchPlayerViewController.swift */,
 				D5DE77F0225FF61200439407 /* SearchPlayerViewController.xib */,
 				D5B57D402262698400DB73E2 /* OneVsOneProgressViewController.swift */,
+				D5B57D412262698400DB73E2 /* OneVsOneProgressViewController.xib */,
 				D5F5454E2268DE6C00DB05F0 /* EndGameViewController.swift */,
 				D5F5454F2268DE6C00DB05F0 /* EndGameViewController.xib */,
-				D5B57D412262698400DB73E2 /* OneVsOneProgressViewController.xib */,
 				D5B3045B22677A7F00404241 /* InvitationAlertViewController.swift */,
 				D5B3045C22677A7F00404241 /* InvitationAlertViewController.xib */,
 			);

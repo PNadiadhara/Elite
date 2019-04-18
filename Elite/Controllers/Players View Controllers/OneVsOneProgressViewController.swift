@@ -33,8 +33,6 @@ class OneVsOneProgressViewController: UIViewController {
         super.viewDidLoad()
         buttons = [cancelButton, endButton]
         if isHost {
-            buttons.forEach{$0.isEnabled = false}
-            buttons.forEach{$0.alpha = 0.5}
             fetchInvitationApproval()
         } else {
             buttons.forEach{$0.isHidden = true}
@@ -84,7 +82,9 @@ class OneVsOneProgressViewController: UIViewController {
         }
     }
     @IBAction func endPressed(_ sender: UIButton) {
-        
+        let endGameVc = EndGameViewController.init(nibName: "EndGameViewController", bundle: nil)
+        endGameVc.modalPresentationStyle = .overCurrentContext
+        present(endGameVc, animated: true)
     }
     
 
