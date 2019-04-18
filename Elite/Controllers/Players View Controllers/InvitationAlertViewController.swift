@@ -19,10 +19,16 @@ class InvitationAlertViewController: UIViewController {
     var invitation: Invitation!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupLabel()
+        setupImage()
         // Do any additional setup after loading the view.
     }
-
+    func setupLabel() {
+        invitationLabel.text = "\(invitation.senderUsername) invited you to play \(invitation.game)"
+    }
+    func setupImage() {
+        
+    }
     @IBAction func acceptPressed(_ sender: UIButton) {
         let oneVsoneProgressVc = OneVsOneProgressViewController.init(nibName: "OneVsOneProgressViewController", bundle: nil)
         oneVsoneProgressVc.modalPresentationStyle = .fullScreen

@@ -104,6 +104,8 @@
 		D5EFCBFC2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EFCBFA2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib */; };
 		D5EFCBFF2264000700D3C2E7 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EFCBFD2264000700D3C2E7 /* LeaderboardCell.swift */; };
 		D5EFCC002264000700D3C2E7 /* LeaderboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EFCBFE2264000700D3C2E7 /* LeaderboardCell.xib */; };
+		D5F545502268DE6C00DB05F0 /* EndGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F5454E2268DE6C00DB05F0 /* EndGameViewController.swift */; };
+		D5F545512268DE6C00DB05F0 /* EndGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F5454F2268DE6C00DB05F0 /* EndGameViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -208,6 +210,8 @@
 		D5EFCBFA2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BoroughCollectionViewCell.xib; sourceTree = "<group>"; };
 		D5EFCBFD2264000700D3C2E7 /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
 		D5EFCBFE2264000700D3C2E7 /* LeaderboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardCell.xib; sourceTree = "<group>"; };
+		D5F5454E2268DE6C00DB05F0 /* EndGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameViewController.swift; sourceTree = "<group>"; };
+		D5F5454F2268DE6C00DB05F0 /* EndGameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EndGameViewController.xib; sourceTree = "<group>"; };
 		F84EED13AF1CC6349F726937 /* Pods-Elite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elite.debug.xcconfig"; path = "Target Support Files/Pods-Elite/Pods-Elite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -348,6 +352,8 @@
 				D5DE77EF225FF61200439407 /* SearchPlayerViewController.swift */,
 				D5DE77F0225FF61200439407 /* SearchPlayerViewController.xib */,
 				D5B57D402262698400DB73E2 /* OneVsOneProgressViewController.swift */,
+				D5F5454E2268DE6C00DB05F0 /* EndGameViewController.swift */,
+				D5F5454F2268DE6C00DB05F0 /* EndGameViewController.xib */,
 				D5B57D412262698400DB73E2 /* OneVsOneProgressViewController.xib */,
 				D5B3045B22677A7F00404241 /* InvitationAlertViewController.swift */,
 				D5B3045C22677A7F00404241 /* InvitationAlertViewController.xib */,
@@ -568,6 +574,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5F545512268DE6C00DB05F0 /* EndGameViewController.xib in Resources */,
 				2E171BA0225CF90700D40DDF /* LeaderboardViewController.xib in Resources */,
 				BFADB59922553FB300E746B5 /* LaunchScreen.storyboard in Resources */,
 				2EC6D56F225E9B5D00336362 /* FeedTableViewController.xib in Resources */,
@@ -713,6 +720,7 @@
 				2E9FE65822557AC4004CA00B /* LoginViewController.swift in Sources */,
 				48DB1A682260FB6200C7CEAC /* AllNYCParkInfo.swift in Sources */,
 				D5210870225E95540044C440 /* UserFeedCell.swift in Sources */,
+				D5F545502268DE6C00DB05F0 /* EndGameViewController.swift in Sources */,
 				2EC6D555225E799F00336362 /* OneVsOneViewController.swift in Sources */,
 				2EF480A22256BE69008212DC /* WinsModel.swift in Sources */,
 				2E171B94225BA62900D40DDF /* DBService+Wins.swift in Sources */,
@@ -920,7 +928,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TZT7J4D9W8;
+				DEVELOPMENT_TEAM = DQ5CF8LT37;
 				INFOPLIST_FILE = Elite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -939,7 +947,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TZT7J4D9W8;
+				DEVELOPMENT_TEAM = DQ5CF8LT37;
 				INFOPLIST_FILE = Elite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
