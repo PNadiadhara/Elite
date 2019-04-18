@@ -23,20 +23,20 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YjX-bk-DVo">
-                    <rect key="frame" x="87" y="380.5" width="240" height="145"/>
+                    <rect key="frame" x="62" y="363.5" width="290" height="179"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKH-p4-8FA">
-                            <rect key="frame" x="0.0" y="0.0" width="240" height="94.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="290" height="116.5"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uQS-JH-xj9" customClass="CircularBlueImageView" customModule="Elite" customModuleProvider="target">
-                                    <rect key="frame" x="15" y="19.5" width="55" height="55"/>
+                                    <rect key="frame" x="15" y="30.5" width="55" height="55"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="55" id="AnF-2a-2ND"/>
                                         <constraint firstAttribute="height" constant="55" id="TT7-uz-605"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X6B-vw-l9d">
-                                    <rect key="frame" x="78" y="27.5" width="154" height="20"/>
+                                    <rect key="frame" x="78" y="36.5" width="204" height="20"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -52,7 +52,7 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BGg-aq-tVc">
-                            <rect key="frame" x="0.0" y="94.5" width="120" height="50.5"/>
+                            <rect key="frame" x="0.0" y="116.5" width="145" height="62.5"/>
                             <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                             <state key="normal" title="Decline">
@@ -63,7 +63,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ico-2R-gyz">
-                            <rect key="frame" x="120" y="94.5" width="120" height="50.5"/>
+                            <rect key="frame" x="145" y="116.5" width="145" height="62.5"/>
                             <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                             <state key="normal" title="Accept">
@@ -84,11 +84,9 @@
                         <constraint firstItem="BGg-aq-tVc" firstAttribute="top" secondItem="tKH-p4-8FA" secondAttribute="bottom" id="XJw-SV-2nb"/>
                         <constraint firstItem="BGg-aq-tVc" firstAttribute="leading" secondItem="YjX-bk-DVo" secondAttribute="leading" id="Xsx-dV-46n"/>
                         <constraint firstItem="tKH-p4-8FA" firstAttribute="height" secondItem="YjX-bk-DVo" secondAttribute="height" multiplier="0.65" id="dNR-JV-00e"/>
-                        <constraint firstAttribute="height" constant="145" id="dq8-Nb-aJP"/>
                         <constraint firstItem="tKH-p4-8FA" firstAttribute="top" secondItem="YjX-bk-DVo" secondAttribute="top" id="ktp-cS-pjI"/>
                         <constraint firstItem="tKH-p4-8FA" firstAttribute="leading" secondItem="YjX-bk-DVo" secondAttribute="leading" id="lmh-xL-jV5"/>
                         <constraint firstItem="Ico-2R-gyz" firstAttribute="top" secondItem="tKH-p4-8FA" secondAttribute="bottom" id="tdK-Zd-uQj"/>
-                        <constraint firstAttribute="width" constant="240" id="uZh-8w-kZ2"/>
                         <constraint firstAttribute="trailing" secondItem="Ico-2R-gyz" secondAttribute="trailing" id="yKO-0C-wMb"/>
                     </constraints>
                 </view>
@@ -97,6 +95,8 @@
             <constraints>
                 <constraint firstItem="YjX-bk-DVo" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="EBN-K2-Rx7"/>
                 <constraint firstItem="YjX-bk-DVo" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="aeP-ru-amP"/>
+                <constraint firstItem="YjX-bk-DVo" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.7" id="b7D-d8-6DK"/>
+                <constraint firstItem="YjX-bk-DVo" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.2" id="obZ-LC-L9s"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="99.776785714285708"/>

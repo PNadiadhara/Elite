@@ -43,7 +43,6 @@ class OneVsOneViewController: UIViewController {
         guard let user = AppDelegate.authservice.getCurrentUser() else {return}
         self.user = user
         setupTap()
-        fetchInvitationRequest()
         sportLabel.text = gameSelected.rawValue.capitalized
         redPlayerLabel.text = user.displayName
         // Do any additional setup after loading the view.
@@ -61,7 +60,8 @@ class OneVsOneViewController: UIViewController {
             return
         }
         //To do: CREATE INSTANSE OF GAME
-        let invitation = Invitation(invitationId: "", sender: user.uid, reciever: gamerSelected.gamerID, message: "Invitation", approval: false)
+//        let invitation = Invitation(invitationId: "", sender: user.uid, reciever: gamerSelected.gamerID, message: "Invitation", approval: false)
+        let invitation = Invitation(invitationId: "", sender: user.uid, reciever: gamerSelected.gamerID, message: "Invitation", approval: false, lat: 0.0, lon: 0.0, game: gameSelected.rawValue, senderUsername: user.displayName ?? "")
 //        DBService.postInvitation(invitation: invitation) { (error ) in
 //            print("Error posting message")
 //        }
@@ -70,12 +70,19 @@ class OneVsOneViewController: UIViewController {
                 self.showAlert(title: "Error posting invitation", message: error.localizedDescription)
             }
             if let invitationId = invitationId{
-                let invitation = Invitation(invitationId: invitationId, sender: self.user.uid, reciever: gamerSelected.gamerID, message: "Invitation", approval: false)
-                let oneVsoneProgressVc = OneVsOneProgressViewController.init(nibName: "OneVsOneProgressViewController", bundle: nil)
-                oneVsoneProgressVc.modalPresentationStyle = .fullScreen
-                oneVsoneProgressVc.invitation = invitation
-                oneVsoneProgressVc.isHost = true
-                self.present(oneVsoneProgressVc, animated: true)
+                DBService.fetchInvitation(inivtationId: invitationId, completion: { (error, invitation) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                    if let invitation = invitation {
+                        let oneVsoneProgressVc = OneVsOneProgressViewController.init(nibName: "OneVsOneProgressViewController", bundle: nil)
+                        oneVsoneProgressVc.modalPresentationStyle = .fullScreen
+                        oneVsoneProgressVc.invitation = invitation
+                        oneVsoneProgressVc.isHost = true
+                        self.present(oneVsoneProgressVc, animated: true)
+                    }
+                })
+
             }
         }
 
@@ -90,20 +97,20 @@ class OneVsOneViewController: UIViewController {
         addPlayerView.addGestureRecognizer(tap)
     }
 
-    @objc func fetchInvitationRequest() {
-        listener = DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).whereField("reciever", isEqualTo: user.uid)
-            .addSnapshotListener { [weak self] (snapshot, error) in
-                if let error = error {
-                    self?.showAlert(title: "Error fetching blogs", message: error.localizedDescription)
-                } else if let snapshot = snapshot {
-                    print("Invitation recieved")
-                    self?.invitations = snapshot.documents.map {Invitation.init(dict: $0.data())}
-                    if (self?.invitations.count)! > 0 {
-                        self?.presentAlertVC()
-                    }
-                }
-        }
-    }
+//    @objc func fetchInvitationRequest() {
+//        listener = DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).whereField("reciever", isEqualTo: user.uid)
+//            .addSnapshotListener { [weak self] (snapshot, error) in
+//                if let error = error {
+//                    self?.showAlert(title: "Error fetching blogs", message: error.localizedDescription)
+//                } else if let snapshot = snapshot {
+//                    print("Invitation recieved")
+//                    self?.invitations = snapshot.documents.map {Invitation.init(dict: $0.data())}
+//                    if (self?.invitations.count)! > 0 {
+//                        self?.presentAlertVC()
+//                    }
+//                }
+//        }
+//    }
     @objc func searchPlayerPressed() {
         let searchPlayerVc = SearchPlayerViewController.init(nibName: "SearchPlayerViewController", bundle: nil)
         searchPlayerVc.modalPresentationStyle = .fullScreen
@@ -111,13 +118,13 @@ class OneVsOneViewController: UIViewController {
         present(searchPlayerVc, animated: true)
         
     }
-    func presentAlertVC() {
-        let invitationAlertVC = InvitationAlertViewController.init(nibName: "InvitationAlertViewController", bundle: nil)
-        invitationAlertVC.invitation = invitations.first
-        invitationAlertVC.modalPresentationStyle = .overCurrentContext
-        
-        present(invitationAlertVC, animated: true)
-    }
+//    func presentAlertVC() {
+//        let invitationAlertVC = InvitationAlertViewController.init(nibName: "InvitationAlertViewController", bundle: nil)
+//        invitationAlertVC.invitation = invitations.first
+//        invitationAlertVC.modalPresentationStyle = .overCurrentContext
+//
+//        present(invitationAlertVC, animated: true)
+//    }
 }
 
 extension OneVsOneViewController: SearchForPlayerDelegate{
