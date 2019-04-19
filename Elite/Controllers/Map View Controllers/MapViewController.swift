@@ -187,7 +187,10 @@ class MapViewController: UIViewController {
 //MARK: - Extensions
 extension MapViewController: GMSMapViewDelegate
  {
-   
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+    Bundle.main.loadNibNamed("MapViewPopupController", owner: self, options: nil)
+    return true
+    }
 }
 extension MapViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

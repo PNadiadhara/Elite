@@ -72,6 +72,8 @@
 		48DB1A682260FB6200C7CEAC /* AllNYCParkInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DB1A672260FB6200C7CEAC /* AllNYCParkInfo.swift */; };
 		48F1B5C2226980F700B53E11 /* basketballCourtInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F1B5C1226980F700B53E11 /* basketballCourtInfo.json */; };
 		48F1B5C42269812500B53E11 /* handballCourtInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F1B5C32269812500B53E11 /* handballCourtInfo.json */; };
+		48F1B5C7226989DB00B53E11 /* MapViewPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F1B5C5226989DB00B53E11 /* MapViewPopupController.swift */; };
+		48F1B5C8226989DB00B53E11 /* MapViewPopupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48F1B5C6226989DB00B53E11 /* MapViewPopupController.xib */; };
 		BFADB58F22553FB200E746B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFADB58E22553FB200E746B5 /* AppDelegate.swift */; };
 		BFADB59422553FB200E746B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59222553FB200E746B5 /* Main.storyboard */; };
 		BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59522553FB300E746B5 /* Assets.xcassets */; };
@@ -176,6 +178,8 @@
 		48DB1A672260FB6200C7CEAC /* AllNYCParkInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNYCParkInfo.swift; sourceTree = "<group>"; };
 		48F1B5C1226980F700B53E11 /* basketballCourtInfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = basketballCourtInfo.json; sourceTree = "<group>"; };
 		48F1B5C32269812500B53E11 /* handballCourtInfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = handballCourtInfo.json; sourceTree = "<group>"; };
+		48F1B5C5226989DB00B53E11 /* MapViewPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewPopupController.swift; sourceTree = "<group>"; };
+		48F1B5C6226989DB00B53E11 /* MapViewPopupController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewPopupController.xib; sourceTree = "<group>"; };
 		647649F00844096F9E907D7A /* Pods_Elite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Elite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2B205210B3DCCE14EFD090 /* Pods-Elite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elite.release.xcconfig"; path = "Target Support Files/Pods-Elite/Pods-Elite.release.xcconfig"; sourceTree = "<group>"; };
 		BFADB58B22553FB200E746B5 /* Elite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elite.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -391,6 +395,8 @@
 			children = (
 				2E171B95225CF86C00D40DDF /* MapViewController.swift */,
 				2E171B96225CF86C00D40DDF /* MapViewController.xib */,
+				48F1B5C5226989DB00B53E11 /* MapViewPopupController.swift */,
+				48F1B5C6226989DB00B53E11 /* MapViewPopupController.xib */,
 			);
 			path = "Map View Controllers";
 			sourceTree = "<group>";
@@ -608,6 +614,7 @@
 				2EC6D562225E7A0B00336362 /* ParkListViewController.xib in Resources */,
 				D5B3045A2266792200404241 /* QrCodeViewController.xib in Resources */,
 				D5210886225EB3D20044C440 /* ParkInfoCell.xib in Resources */,
+				48F1B5C8226989DB00B53E11 /* MapViewPopupController.xib in Resources */,
 				2EC6D573225E9BCB00336362 /* UserFeedTableViewController.xib in Resources */,
 				D5B3045E22677A8000404241 /* InvitationAlertViewController.xib in Resources */,
 				2E9FE67F22558282004CA00B /* LoginView.storyboard in Resources */,
@@ -722,6 +729,7 @@
 			files = (
 				2EC6D561225E7A0B00336362 /* ParkListViewController.swift in Sources */,
 				D5B304542264EDF800404241 /* Invitation.swift in Sources */,
+				48F1B5C7226989DB00B53E11 /* MapViewPopupController.swift in Sources */,
 				2E171B92225BA61000D40DDF /* DBService+Playground.swift in Sources */,
 				2EF4809422565227008212DC /* GamerModel.swift in Sources */,
 				2ECFC94F2264E20A00BD6A53 /* DBService+ParkEloInfo.swift in Sources */,
