@@ -7,10 +7,6 @@
 //
 
 import UIKit
-enum Game: String {
-    case basketball
-    case handball
-}
 class CreateGameViewController: UIViewController {
 
     @IBOutlet weak var fiveVsFiveView: UIView!
@@ -35,11 +31,12 @@ class CreateGameViewController: UIViewController {
     @IBOutlet weak var qrCodeView: UIView!
     @IBOutlet weak var animatedBottomRight: UIView!
     
-    var game: Game = .basketball
+    var gameName: GameName!
     var animatedViews = [UIView]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        animatedViews = [animatedTopRight,animatedTopLeft,animatedBottomLeft]
+        
+        animatedViews = [animatedTopRight,animatedTopLeft,animatedBottomLeft,animatedBottomRight]
         setupViewTapGestures()
         currentLocationLabel.text = "Astoria Park"
 
@@ -89,8 +86,8 @@ class CreateGameViewController: UIViewController {
         
     }
     func animateViews(){
-        let views = [oneVsOneView,twoVsTwoView,fiveVsFiveView]
-        if game == .basketball {
+        let views = [oneVsOneView,twoVsTwoView,fiveVsFiveView,qrCodeView]
+        if gameName == .basketball {
             basketBallView.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.6078431373, blue: 0.1450980392, alpha: 1)
             handBallView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
             basketBallImage.image = UIImage(named: "basketballEmptyWhite")
@@ -129,6 +126,10 @@ class CreateGameViewController: UIViewController {
             self.animatedBottomLeft.transform = CGAffineTransform(translationX: 0, y: 600)
             
         })
+        UIView.animate(withDuration: 2.0, delay: 0 , options: [], animations: {
+            self.animatedBottomRight.transform = CGAffineTransform(translationX: 0, y: 600)
+            
+        })
         UIView.animate(withDuration: 0.5) {
             self.chooseSportLabel.alpha = 0
         }
@@ -142,7 +143,8 @@ class CreateGameViewController: UIViewController {
         let oneVsOneVc = OneVsOneViewController.init(nibName: "OneVsOneViewController", bundle: nil)
         oneVsOneVc.modalPresentationStyle = .fullScreen
         oneVsOneVc.modalTransitionStyle = .flipHorizontal
-        oneVsOneVc.gameSelected = game
+        oneVsOneVc.gameName = gameName
+        oneVsOneVc.gameTypeSelected = .oneVsOne
         present(oneVsOneVc, animated: true)
     }
     @objc func twoVstwoPressed() {
@@ -168,7 +170,7 @@ class CreateGameViewController: UIViewController {
     }
     
     @objc func basketBallPressed() {
-        game = .basketball
+        gameName = .basketball
         print("basketBall PRessed")
         middleAnimatedView.transform = CGAffineTransform.identity
         animatedViews.forEach{$0.transform = CGAffineTransform.identity}
@@ -178,7 +180,7 @@ class CreateGameViewController: UIViewController {
         
     }
     @objc func handBallPressed() {
-        game = .handball
+        gameName = .handball
         print("handBall PRessed")
         middleAnimatedView.transform = CGAffineTransform.identity
         animatedViews.forEach{$0.transform = CGAffineTransform.identity}

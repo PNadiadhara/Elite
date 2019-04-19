@@ -15,6 +15,7 @@ class OneVsOneProgressViewController: UIViewController {
     var invitation: Invitation?
     var invitations = [Invitation]()
     var isHost = Bool()
+    var game: GameModel?
     private var listener: ListenerRegistration!
     
     @IBOutlet weak var sportParkLabel: UILabel!
@@ -54,7 +55,6 @@ class OneVsOneProgressViewController: UIViewController {
                 self?.invitations = snapshot.documents.map {Invitation.init(dict: $0.data())}
                 if (self?.invitations.count)! > 0 {
                     self?.waitingScreen.isHidden = true
-                    self?.waitingScreen.isHidden = true
                     DBService.deleteInvitation(invitation: (self?.invitation!)!, completion: { (error) in
                         if let error = error {
                             print(error.localizedDescription)
@@ -84,6 +84,7 @@ class OneVsOneProgressViewController: UIViewController {
     @IBAction func endPressed(_ sender: UIButton) {
         let endGameVc = EndGameViewController.init(nibName: "EndGameViewController", bundle: nil)
         endGameVc.modalPresentationStyle = .overCurrentContext
+        endGameVc.invitation = invitation
         present(endGameVc, animated: true)
     }
     

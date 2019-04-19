@@ -19,21 +19,20 @@ class GameModel {
     let teamA: [String] // ids
     let teamB: [String]
     let parkId: String
-    let gameDescription: String
-    let gameEndTime: String
-    let winners: [String]
-    let losers: [String]
-    let isTie: Bool
+    let gameDescription: String?
+    let gameEndTime: String?
+    let winners: [String]?
+    let losers: [String]?
+    let isTie: Bool?
     let formattedAdresss: String
     let parkName: String
     let lat: Double
     let lon: Double
     let gameID: String
-    let userID: String
     let witness: String?
-    let teamAScore: Int
-    let teamBScore: Int
-    let duration: Double
+    let teamAScore: Int?
+    let teamBScore: Int?
+    let duration: Double?
     
     
     
@@ -43,21 +42,20 @@ class GameModel {
     teamA: [String],
     teamB: [String],
     parkId: String,
-    gameDescription: String,
-    gameEndTime: String,
-    winners: [String],
-    losers: [String],
-    isTie: Bool,
+    gameDescription: String?,
+    gameEndTime: String?,
+    winners: [String]?,
+    losers: [String]?,
+    isTie: Bool?,
     formattedAdresss: String,
     parkName: String,
     lat: Double,
     lon: Double,
     gameID: String,
-    userID: String,
-    witness: String,
-    teamAScore: Int,
-    teamBScore: Int,
-    duration: Double) {
+    witness: String?,
+    teamAScore: Int?,
+    teamBScore: Int?,
+    duration: Double?) {
         self.gameName = gameName
         self.gameType = gameType
         self.numberOfGamers = numberOfPlayers
@@ -74,7 +72,6 @@ class GameModel {
         self.lat = lat
         self.lon = lon
         self.gameID = gameID
-        self.userID = userID
         self.witness = witness
         self.teamAScore = teamAScore
         self.teamBScore = teamBScore
@@ -98,7 +95,6 @@ class GameModel {
         self.lat = dict[GameCollectionKeys.LatKey] as? Double ?? 0
         self.lon = dict[GameCollectionKeys.LonKey] as? Double ?? 0
         self.gameID = dict[GameCollectionKeys.GameIDKey] as? String ?? ""
-        self.userID = dict[GameCollectionKeys.UserID] as? String ?? ""
         self.witness = dict[GameCollectionKeys.WitnessKey] as? String ?? ""
         self.teamAScore = dict[GameCollectionKeys.TeamAScore] as? Int ?? 0
         self.teamBScore = dict[GameCollectionKeys.TeamBScore] as? Int ?? 0

@@ -7,16 +7,21 @@
 //
 
 import UIKit
-
+import Firebase
 class TabBarViewController: UITabBarController {
 
+    static var currentUser: User!
     override func viewDidLoad() {
         super.viewDidLoad()
         InvitationListener.fetchForInvitationRequest(vc: self)
+        
         // Do any additional setup after loading the view.
     }
     
     static func setTabBarVC() -> UITabBarController{
+        if let user = AppDelegate.authservice.getCurrentUser() {
+            currentUser = user
+        }
         let map = MapViewController()
         let feed = FeedTableViewController()
         let create = CreateGameViewController()

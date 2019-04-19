@@ -11,6 +11,7 @@ import Foundation
 struct InvitationCollectionKeys {
     static let collectionKey = "invitation"
     static let invitationIdKey = "invitationId"
+    static let gameIdKey = "gameId"
     static let senderIdKey = "sender"
     static let recieverKey = "reciever"
     static let messageKey = "message"
@@ -22,6 +23,7 @@ struct InvitationCollectionKeys {
 }
 class Invitation {
     let invitationId: String
+    let gameId: String
     let sender: String
     let reciever: String
     let message: String
@@ -31,8 +33,9 @@ class Invitation {
     let game: String
     let senderUsername: String
     
-    init(invitationId: String, sender: String, reciever: String, message: String, approval: Bool,lat: Double, lon: Double, game: String, senderUsername: String) {
+    init(invitationId: String, gameId: String, sender: String, reciever: String, message: String, approval: Bool,lat: Double, lon: Double, game: String, senderUsername: String) {
         self.invitationId = invitationId
+        self.gameId = gameId
         self.sender = sender
         self.reciever = reciever
         self.message = message
@@ -45,6 +48,7 @@ class Invitation {
     }
     init(dict: [String: Any]) {
         self.invitationId = dict[InvitationCollectionKeys.invitationIdKey] as? String ?? "N/A"
+        self.gameId = dict[InvitationCollectionKeys.gameIdKey] as? String ?? "N/A"
         self.sender = dict[InvitationCollectionKeys.senderIdKey] as? String ?? "N/A"
         self.reciever = dict[InvitationCollectionKeys.recieverKey] as? String ?? "N/A"
         self.message = dict[InvitationCollectionKeys.messageKey] as? String ?? "N/A"

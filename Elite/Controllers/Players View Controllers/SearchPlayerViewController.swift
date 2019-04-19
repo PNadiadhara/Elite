@@ -15,6 +15,7 @@ class SearchPlayerViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     weak var searchDelegate: SearchForPlayerDelegate!
+    var teamRole: TeamRoles!
     var gamers = [GamerModel](){
         didSet {
             DispatchQueue.main.async {
@@ -77,6 +78,12 @@ extension SearchPlayerViewController: UITableViewDelegate, UITableViewDataSource
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let gamer = gamers[indexPath.row]
+        let currentPlayer = CurrentPlayer(gamerId: gamer.gamerID, userName: gamer.username, teamRole: teamRole.rawValue)
+        DBService.postCurrentPlayer(currentPlayer: currentPlayer) { (error) in
+            if let error = error {
+                self.showAlert(title: "Error", message: error.localizedDescription)
+            } 
+        }
         searchDelegate.gamerSelected(gamer: gamer)
         dismiss(animated: true)
     }

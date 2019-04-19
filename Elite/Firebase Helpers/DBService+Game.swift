@@ -36,7 +36,8 @@ struct GameCollectionKeys {
 }
 
 extension DBService {
-    static public func postGame(gamePost: GameModel, completion: @escaping (Error?) -> Void)  {
+    static public func postGame(gamePost: GameModel, completion: @escaping (Error?, String?) -> Void)  {
+        let ref = firestoreDB.collection(GameCollectionKeys.CollectionKey).document()
         firestoreDB.collection(GameCollectionKeys.CollectionKey)
             .document(gamePost.gameID).setData([
                 GameCollectionKeys.GameNameKey : gamePost.gameName,
@@ -44,28 +45,36 @@ extension DBService {
                 GameCollectionKeys.NumberOfGamersKey : gamePost.numberOfGamers,
                 GameCollectionKeys.TeamA : gamePost.teamA,
                 GameCollectionKeys.TeamB : gamePost.teamB,
-                GameCollectionKeys.GameDescriptionKey : gamePost.gameDescription,
-                GameCollectionKeys.GameEndTimeKey : gamePost.gameEndTime,
-                GameCollectionKeys.WinnersKey : gamePost.winners,
-                GameCollectionKeys.LosersKey : gamePost.losers,
-                GameCollectionKeys.IsTieKey : gamePost.isTie,
-                GameCollectionKeys.FormattedAdresssKey : gamePost.formattedAdresss,
-                GameCollectionKeys.ParkNameKey : gamePost.parkName,
-                GameCollectionKeys.LatKey : gamePost.lat,
-                GameCollectionKeys.LonKey : gamePost.lon,
-                GameCollectionKeys.GameIDKey : gamePost.gameID,
-                GameCollectionKeys.UserID : gamePost.userID,
+                GameCollectionKeys.GameDescriptionKey : gamePost.gameDescription ?? "",
+                GameCollectionKeys.GameEndTimeKey : gamePost.gameEndTime ?? "",
+                GameCollectionKeys.WinnersKey : gamePost.winners ?? "",
+                GameCollectionKeys.GameIDKey :  ref.documentID,
                 GameCollectionKeys.WitnessKey : gamePost.witness ?? "",
-                GameCollectionKeys.TeamAScore : gamePost.teamAScore,
-                GameCollectionKeys.TeamBScore : gamePost.teamBScore,
-                GameCollectionKeys.DurationKey : gamePost.duration])
+                GameCollectionKeys.TeamAScore : gamePost.teamAScore ?? "",
+                GameCollectionKeys.TeamBScore : gamePost.teamBScore ?? "",
+                GameCollectionKeys.DurationKey : gamePost.duration ?? ""])
             { (error) in
                 if let error = error {
                     print("game post error: \(error)")
-                    completion(error)
+                    completion(error,nil)
                 } else {
+                    
+                    // TODO: update other fields here
+                    firestoreDB.collection(GameCollectionKeys.CollectionKey)
+                        .document(gamePost.gameID).setData([                GameCollectionKeys.LosersKey : gamePost.losers ?? "",
+                                                                            GameCollectionKeys.IsTieKey : gamePost.isTie ?? "",
+                                                                            GameCollectionKeys.FormattedAdresssKey : gamePost.formattedAdresss,
+                                                                            GameCollectionKeys.ParkNameKey : gamePost.parkName,
+                                                                            GameCollectionKeys.LatKey : gamePost.lat,
+                                                                            GameCollectionKeys.LonKey : gamePost.lon,
+], completion: { (error) in
+                            if let error = error {
+                                completion(error,nil)
+                            }
+                        })
+                    
                     print("game posted successfully to ref: \(gamePost.gameID)")
-                    completion(nil)
+                    completion(nil, ref.documentID)
                 }
         }
     }
@@ -82,6 +91,18 @@ extension DBService {
                     completion(nil)
                 }
         }
+    }
+    static public func fetchGame(game: GameModel, completion: @escaping(Error?, GameModel?) -> Void) {
+        DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).whereField(GameCollectionKeys.GameIDKey, isEqualTo: game.gameID).addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            if let snapshot = snapshot {
+                let game = snapshot.documents.map {GameModel.init(dict: $0.data())}
+                completion(nil, game.first)
+            }
+        }
+        
     }
 }
 
