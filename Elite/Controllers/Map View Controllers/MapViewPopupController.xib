@@ -79,7 +79,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="l3b-hm-9ee" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="AL6-un-TW8"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="y1O-rc-Ksb" secondAttribute="trailing" id="HFe-JS-ppc"/>

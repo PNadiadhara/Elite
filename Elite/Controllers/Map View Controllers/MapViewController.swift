@@ -51,6 +51,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getUsersLocations()
+        googleMapsMapView.delegate = self
         
     }
     
@@ -188,8 +189,11 @@ class MapViewController: UIViewController {
 extension MapViewController: GMSMapViewDelegate
  {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-    Bundle.main.loadNibNamed("MapViewPopupController", owner: self, options: nil)
-    return true
+        
+   let popVC = MapViewPopupController()
+        popVC.modalPresentationStyle = .overCurrentContext
+        self.present(popVC, animated: true, completion: nil)
+        return true
     }
 }
 extension MapViewController: CLLocationManagerDelegate{

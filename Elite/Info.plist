@@ -39,6 +39,8 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>In order for you to use elite we need your location</string>
 	<key>SCSDKClientId</key>
 	<string></string>
 	<key>SCSDKRedirectUrl</key>
