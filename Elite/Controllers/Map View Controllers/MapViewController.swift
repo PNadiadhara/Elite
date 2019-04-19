@@ -19,15 +19,33 @@ class MapViewController: UIViewController {
     // MARK: - Outlets and Properties
     @IBOutlet weak var googleMapsMapView: GMSMapView!
     
-    private var googleMapsMVEditingState = GoogleMapsMVState.noMarkersShown
+    private var googleMapsMVEditingState = GoogleMapsMVState.noMarkersShown {
+        didSet{
+            clearMarkers()
+            changeMapViewState(to: googleMapsMVEditingState)
+        }
+    } // default state
     
     private var locationManager = CLLocationManager()
     
-    private var userLocation = CLLocation()
+    private var userLocation = CLLocation(){
+        didSet{
+            getBasketBallParksNearMe(userLocation, basketballResults)
+            getHandBallParksNearMe(userLocation, handballResults)
+        }
+    }
     
-    private var handballResults = [HandBall]()
+    private var handballResults = [HandBall]() {
+        didSet{
+            googleMapsMapView.reloadInputViews()
+        }
+    }
     
-    private var basketballResults = [BasketBall]()
+    private var basketballResults = [BasketBall](){
+        didSet{
+            googleMapsMapView.reloadInputViews()
+        }
+    }
     // MARK: - Methods
     
     override func viewDidLoad() {
@@ -65,6 +83,24 @@ class MapViewController: UIViewController {
             }
         } else {
             print("issue with the json file paths")
+        }
+    }
+    
+    private func clearMarkers(){
+        googleMapsMapView.clear()
+    }
+    
+    private func changeMapViewState(to state: GoogleMapsMVState) {
+        switch state {
+        case .showBasketBallMarkers:
+            print("Show basketball")
+            addMarkers(courts: basketballResults, type: .basketball)
+        case .showHandBallMarkers:
+            print("Show handball")
+            addMarkers(courts: handballResults, type: .handball)
+        case .noMarkersShown:
+            clearMarkers()
+            
         }
     }
     
