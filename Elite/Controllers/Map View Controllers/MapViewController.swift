@@ -16,6 +16,8 @@ enum GoogleMapsMVState {
 }
 
 class MapViewController: UIViewController {
+    
+    @IBOutlet weak var googleMapsMapView: GMSMapView!
     private var parks = [ResultsContainer]()
     private var mapView: GMSMapView? {
         didSet{
@@ -84,6 +86,14 @@ class MapViewController: UIViewController {
                     print("issue with the json file path")
                 }
         }
+    
+    @IBAction func showBasketBallMarkers(_ sender: UIButton) {
+    }
+    
+    @IBAction func showHandBallMarkers(_ sender: UIButton) {
+    }
+    
+    
 }
 extension MapViewController: GMSMapViewDelegate
  {
