@@ -70,6 +70,8 @@
 		48DB1A642260F28300C7CEAC /* AllInfoForBasketBallCourts.json in Sources */ = {isa = PBXBuildFile; fileRef = 48DB1A632260F28300C7CEAC /* AllInfoForBasketBallCourts.json */; };
 		48DB1A662260F72500C7CEAC /* AllInfoForHandballCourts.json in Sources */ = {isa = PBXBuildFile; fileRef = 48DB1A652260F72500C7CEAC /* AllInfoForHandballCourts.json */; };
 		48DB1A682260FB6200C7CEAC /* AllNYCParkInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DB1A672260FB6200C7CEAC /* AllNYCParkInfo.swift */; };
+		48F1B5C2226980F700B53E11 /* basketballCourtInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F1B5C1226980F700B53E11 /* basketballCourtInfo.json */; };
+		48F1B5C42269812500B53E11 /* handballCourtInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F1B5C32269812500B53E11 /* handballCourtInfo.json */; };
 		BFADB58F22553FB200E746B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFADB58E22553FB200E746B5 /* AppDelegate.swift */; };
 		BFADB59422553FB200E746B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59222553FB200E746B5 /* Main.storyboard */; };
 		BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59522553FB300E746B5 /* Assets.xcassets */; };
@@ -172,6 +174,8 @@
 		48DB1A632260F28300C7CEAC /* AllInfoForBasketBallCourts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AllInfoForBasketBallCourts.json; sourceTree = "<group>"; };
 		48DB1A652260F72500C7CEAC /* AllInfoForHandballCourts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AllInfoForHandballCourts.json; sourceTree = "<group>"; };
 		48DB1A672260FB6200C7CEAC /* AllNYCParkInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNYCParkInfo.swift; sourceTree = "<group>"; };
+		48F1B5C1226980F700B53E11 /* basketballCourtInfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = basketballCourtInfo.json; sourceTree = "<group>"; };
+		48F1B5C32269812500B53E11 /* handballCourtInfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = handballCourtInfo.json; sourceTree = "<group>"; };
 		647649F00844096F9E907D7A /* Pods_Elite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Elite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2B205210B3DCCE14EFD090 /* Pods-Elite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elite.release.xcconfig"; path = "Target Support Files/Pods-Elite/Pods-Elite.release.xcconfig"; sourceTree = "<group>"; };
 		BFADB58B22553FB200E746B5 /* Elite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elite.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -509,6 +513,8 @@
 				2E9FE67D22558251004CA00B /* Storyboards */,
 				48DB1A632260F28300C7CEAC /* AllInfoForBasketBallCourts.json */,
 				48DB1A652260F72500C7CEAC /* AllInfoForHandballCourts.json */,
+				48F1B5C1226980F700B53E11 /* basketballCourtInfo.json */,
+				48F1B5C32269812500B53E11 /* handballCourtInfo.json */,
 			);
 			path = Elite;
 			sourceTree = "<group>";
@@ -579,6 +585,7 @@
 				BFADB59922553FB300E746B5 /* LaunchScreen.storyboard in Resources */,
 				2EC6D56F225E9B5D00336362 /* FeedTableViewController.xib in Resources */,
 				D5EFCC002264000700D3C2E7 /* LeaderboardCell.xib in Resources */,
+				48F1B5C42269812500B53E11 /* handballCourtInfo.json in Resources */,
 				D5210879225E95A70044C440 /* TwoVsTwoFeedCell.xib in Resources */,
 				D5B57D432262698400DB73E2 /* OneVsOneProgressViewController.xib in Resources */,
 				2EC6D55A225E79B300336362 /* TwoVsTwoViewController.xib in Resources */,
@@ -590,6 +597,7 @@
 				48980A4D225E346B0034D04F /* JsonModel.json in Resources */,
 				D5EFCBFC2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib in Resources */,
 				2E381EB122613A1E0075C1CD /* ProfileViewController.xib in Resources */,
+				48F1B5C2226980F700B53E11 /* basketballCourtInfo.json in Resources */,
 				BFADB5A5225544EA00E746B5 /* GoogleService-Info.plist in Resources */,
 				D5DE77F2225FF61200439407 /* SearchPlayerViewController.xib in Resources */,
 				BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */,

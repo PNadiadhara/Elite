@@ -33,13 +33,10 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getUsersLocations()
+        loadAllParkData()
     }
     
     private func getUsersLocations(){
-        
-    }
-    
-    @IBAction func showBasketBallMarkers(_ sender: UIButton) {
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled(){
             locationManager.delegate = self
@@ -51,11 +48,36 @@ class MapViewController: UIViewController {
         }
     }
     
+    private func loadAllParkData(){
+        if let handballCourtDataFilePath = Bundle.main.path(forResource: "handballCourtInfo", ofType: "json"), let basketballCourtDataFilePath = Bundle.main.path(forResource: "basketballCourtInfo", ofType: "json"){
+            let handballCourtDataUrl = URL.init(fileURLWithPath: handballCourtDataFilePath)
+            let basketballCourtDataUrl = URL.init(fileURLWithPath: basketballCourtDataFilePath)
+            if let jsonHandBallParkData = try? Data.init(contentsOf: handballCourtDataUrl), let jsonBasketBallParkData = try? Data.init(contentsOf: basketballCourtDataUrl){
+                do {
+                    handballResults = try JSONDecoder().decode([HandBall].self, from: jsonHandBallParkData)
+                    basketballResults = try JSONDecoder().decode([BasketBall].self, from: jsonBasketBallParkData)
+                    print("handball Courts: \(handballResults.count), basketball Courts: \(basketballResults.count)")
+                } catch {
+                    print(error)
+                }
+            } else {
+                print("issue with converting the urls into data")
+            }
+        } else {
+            print("issue with the json file paths")
+        }
+    }
+    
+    @IBAction func showBasketBallMarkers(_ sender: UIButton) {
+        
+    }
+    
     @IBAction func showHandBallMarkers(_ sender: UIButton) {
     }
     
     
 }
+//MARK: - Extensions
 extension MapViewController: GMSMapViewDelegate
  {
    
