@@ -33,7 +33,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getUsersLocations()
-        loadAllParkData()
+        
     }
     
     private func getUsersLocations(){
@@ -68,11 +68,82 @@ class MapViewController: UIViewController {
         }
     }
     
-    @IBAction func showBasketBallMarkers(_ sender: UIButton) {
+    private func addMarkers(courts: [Court], type: SportType) {
+        var googleMarkers = [GMSMarker]()
+        
+        let filteredCourts = courts.filter { $0.type == type}
+        print("Number of courts: ",filteredCourts.count)
+        for court in filteredCourts {
+            let locations = CLLocationCoordinate2D(latitude: Double(court.lat ?? "0.0")!, longitude:  Double(court.lng ?? "0.0")!)
+            let marker = GMSMarker()
+            marker.title = court.nameOfPlayground ?? "No name"
+            marker.position = locations
+            switch court.type {
+            case .basketball:
+                marker.icon = GMSMarker.markerImage(with: .orange)
+            case .handball:
+                marker.icon = GMSMarker.markerImage(with: .blue)
+            }
+            googleMarkers.append(marker)
+        }
+        
+        googleMarkers.forEach { (marker) in
+            marker.map = googleMapsMapView
+        }
         
     }
     
+    private func getBasketBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [BasketBall]){
+        loadAllParkData()
+        var courtArr = [BasketBall]()
+        for court in courtLocations {
+            let lat = court.lat ?? "0.0"
+            let lng = court.lng ?? "0.0"
+            let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
+            let distanceInMeters = courtLocation.distance(from: currentLocation)
+            if distanceInMeters <= 3609 {
+                courtArr.append(court)
+            }
+        }
+        basketballResults = courtArr
+        print(basketballResults.count)
+    }
+    
+    private func getHandBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [HandBall]){
+        
+        var courtArr = [HandBall]()
+        for court in courtLocations {
+            let lat = court.lat ?? "0.0"
+            let lng = court.lng ?? "0.0"
+            let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
+            let distanceInMeters = courtLocation.distance(from: currentLocation)
+            if distanceInMeters <= 1609 {
+                courtArr.append(court)
+            }
+        }
+        handballResults = courtArr
+    }
+    
+    //MARK: - Actions
+    @IBAction func showBasketBallMarkers(_ sender: UIButton) {
+        if case .showHandBallMarkers = googleMapsMVEditingState {
+            googleMapsMVEditingState = .showBasketBallMarkers
+            
+        }
+        
+        if case .noMarkersShown = googleMapsMVEditingState {
+            googleMapsMVEditingState = .showBasketBallMarkers
+        }
+    }
+    
     @IBAction func showHandBallMarkers(_ sender: UIButton) {
+        if case .showBasketBallMarkers = googleMapsMVEditingState {
+            googleMapsMVEditingState = .showHandBallMarkers
+        }
+        
+        if case .noMarkersShown = googleMapsMVEditingState {
+            googleMapsMVEditingState = .showHandBallMarkers
+        }
     }
     
     
