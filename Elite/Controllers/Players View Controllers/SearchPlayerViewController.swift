@@ -78,7 +78,7 @@ extension SearchPlayerViewController: UITableViewDelegate, UITableViewDataSource
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let gamer = gamers[indexPath.row]
-        let currentPlayer = CurrentPlayer(gamerId: gamer.gamerID, userName: gamer.username, teamRole: teamRole.rawValue)
+        let currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: gamer.gamerID, userName: gamer.username, teamRole: teamRole.rawValue)
         DBService.postCurrentPlayer(currentPlayer: currentPlayer) { (error) in
             if let error = error {
                 self.showAlert(title: "Error", message: error.localizedDescription)

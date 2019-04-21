@@ -30,9 +30,10 @@ class GameModel {
     let lon: Double
     let gameID: String
     let witness: String?
-    let teamAScore: Int?
-    let teamBScore: Int?
+//    let teamAScore: Int?
+//    let teamBScore: Int?
     let duration: Double?
+    let isOver: Bool
     
     
     
@@ -53,9 +54,8 @@ class GameModel {
     lon: Double,
     gameID: String,
     witness: String?,
-    teamAScore: Int?,
-    teamBScore: Int?,
-    duration: Double?) {
+    duration: Double?,
+    isOver: Bool) {
         self.gameName = gameName
         self.gameType = gameType
         self.numberOfGamers = numberOfPlayers
@@ -73,9 +73,8 @@ class GameModel {
         self.lon = lon
         self.gameID = gameID
         self.witness = witness
-        self.teamAScore = teamAScore
-        self.teamBScore = teamBScore
         self.duration = duration
+        self.isOver = isOver
     }
     
     init(dict: [String: Any]) {
@@ -96,9 +95,8 @@ class GameModel {
         self.lon = dict[GameCollectionKeys.LonKey] as? Double ?? 0
         self.gameID = dict[GameCollectionKeys.GameIDKey] as? String ?? ""
         self.witness = dict[GameCollectionKeys.WitnessKey] as? String ?? ""
-        self.teamAScore = dict[GameCollectionKeys.TeamAScore] as? Int ?? 0
-        self.teamBScore = dict[GameCollectionKeys.TeamBScore] as? Int ?? 0
         self.duration = dict[GameCollectionKeys.DurationKey] as? Double ?? 0
+        self.isOver = dict[GameCollectionKeys.isOverKey] as? Bool ?? false
     }
 //    let gameName: String
 //    let gameType: String

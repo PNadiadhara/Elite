@@ -18,7 +18,7 @@ extension DBService {
             .setData([InvitationCollectionKeys.invitationIdKey : ref.documentID,
                       InvitationCollectionKeys.senderIdKey : invitation.sender,
                       InvitationCollectionKeys.recieverKey : invitation.reciever, InvitationCollectionKeys.messageKey : invitation.message, InvitationCollectionKeys.approvalKey : invitation.approval,InvitationCollectionKeys.latKey: invitation.lat,
-                      InvitationCollectionKeys.lonKey : invitation.lon, InvitationCollectionKeys.gameKey : invitation.game, InvitationCollectionKeys.senderUsernameKey : invitation.senderUsername]) { (error) in
+                      InvitationCollectionKeys.lonKey : invitation.lon, InvitationCollectionKeys.gameKey : invitation.game, InvitationCollectionKeys.senderUsernameKey : invitation.senderUsername, InvitationCollectionKeys.gameIdKey : invitation.gameId]) { (error) in
                         if let error = error {
                             completion(error,nil)
                         } else {
@@ -29,7 +29,7 @@ extension DBService {
         
 }
     static public func updateInvitationApprovalToTrue(invitation: Invitation,completion: @escaping (Error?) -> Void) {
-        DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).document(String(invitation.invitationId)).updateData([InvitationCollectionKeys.approvalKey : true ]) { (error) in
+        DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).document(invitation.invitationId).updateData([InvitationCollectionKeys.approvalKey : true ]) { (error) in
             if let error = error {
                 completion(error)
                 }
@@ -38,7 +38,7 @@ extension DBService {
     static public func deleteInvitation(invitation: Invitation, completion: @escaping (Error?) -> Void) {
         DBService.firestoreDB
             .collection(InvitationCollectionKeys.collectionKey)
-            .document(String(invitation.invitationId))
+            .document(invitation.invitationId)
             .delete { (error) in
                 if let error = error {
                     completion(error)

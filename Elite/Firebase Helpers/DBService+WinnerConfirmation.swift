@@ -7,19 +7,20 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 extension DBService {
     
     static func postWinnerConfirmation(winningConfirmation: WinnerConfirmation, completion: @escaping (Error?, String?) -> Void) {
+        let na = "N/A"
         let ref = firestoreDB.collection(WinnerConfirmationKeys.collectionKey).document()
-        DBService.firestoreDB.collection(WinnerConfirmationKeys.collectionKey).document(ref.documentID).setData([WinnerConfirmationKeys.gameIdKey : ref.documentID, WinnerConfirmationKeys.bluePlayerOneKey : winningConfirmation.bluePlayerOne ?? "N/A", WinnerConfirmationKeys.bluePlayerTwoKey : winningConfirmation.bluePlayerTwo ?? "N/A", WinnerConfirmationKeys.bluePlayerThreeKey : winningConfirmation.bluePlayerThree ?? "N/A", WinnerConfirmationKeys.bluePlayerFourKey : winningConfirmation.bluePlayerFour ?? "N/A", WinnerConfirmationKeys.bluePlayerFiveKey : winningConfirmation.bluePlayerFive ?? "N/A", ]) { (error) in
+        DBService.firestoreDB.collection(WinnerConfirmationKeys.collectionKey).document(ref.documentID).setData([WinnerConfirmationKeys.winnerConfirmationIdKey : ref.documentID,
+            WinnerConfirmationKeys.gameIdKey : winningConfirmation.gameId, WinnerConfirmationKeys.bluePlayerOneKey : winningConfirmation.bluePlayerOne ?? na, WinnerConfirmationKeys.bluePlayerTwoKey : winningConfirmation.bluePlayerTwo ?? na, WinnerConfirmationKeys.bluePlayerThreeKey : winningConfirmation.bluePlayerThree ?? na, WinnerConfirmationKeys.bluePlayerFourKey : winningConfirmation.bluePlayerFour ?? na, WinnerConfirmationKeys.bluePlayerFiveKey : winningConfirmation.bluePlayerFive ?? na,
+        WinnerConfirmationKeys.redPlayerOneKey : winningConfirmation.redPlayerOne ?? na,  WinnerConfirmationKeys.redPlayerTwoKey : winningConfirmation.redPlayerTwo ?? na, WinnerConfirmationKeys.redPlayerThreeKey : winningConfirmation.redPlayerThree ?? na, WinnerConfirmationKeys.redPlayerFourKey : winningConfirmation.redPlayerFour ?? na, WinnerConfirmationKeys.redPlayerFiveKey : winningConfirmation.redPlayerFive ?? na]) { (error) in
             if let error = error {
                 completion(error,nil)
-            } else {
-                firestoreDB.collection(WinnerConfirmationKeys.collectionKey).document(ref.documentID).setData([WinnerConfirmationKeys.redPlayerOneKey : winningConfirmation.redPlayerOne ?? "N/A",  WinnerConfirmationKeys.redPlayerTwoKey : winningConfirmation.redPlayerTwo ?? "N/A", WinnerConfirmationKeys.redPlayerThreeKey : winningConfirmation.redPlayerThree ?? "N/A", WinnerConfirmationKeys.redPlayerFourKey : winningConfirmation.redPlayerFour ?? "N/A", WinnerConfirmationKeys.redPlayerFiveKey : winningConfirmation.redPlayerFive ?? "N/A"], completion: { (error) in
-                    completion(error, ref.documentID)
-                })
             }
+            completion(nil, ref.documentID)
         }
         
     }
@@ -62,7 +63,9 @@ extension DBService {
         
     }
     static func fetchWinningConfirmations(gameId: String, completion: @escaping(Error?, WinnerConfirmation?) -> Void) {
-        DBService.firestoreDB.collection(WinnerConfirmationKeys.collectionKey).whereField(WinnerConfirmationKeys.gameIdKey, isEqualTo: gameId).addSnapshotListener { (snapshot, error) in
+       
+        var listener: ListenerRegistration!
+       listener = DBService.firestoreDB.collection(WinnerConfirmationKeys.collectionKey).whereField(WinnerConfirmationKeys.gameIdKey, isEqualTo: gameId).addSnapshotListener { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
             }
@@ -72,6 +75,19 @@ extension DBService {
             }
         }
         
+    }
+    
+    static func deleteWinningConfirmation(winningConfirmationId: String, completion: @escaping (Error?) -> Void) {
+        DBService.firestoreDB
+            .collection(WinnerConfirmationKeys.collectionKey)
+            .document(winningConfirmationId)
+            .delete { (error) in
+                if let error = error {
+                    completion(error)
+                } else {
+                    completion(nil)
+                }
+        }
     }
 //    static public func updateCoverImage(blogger: Blogger, imageUrl: String){
 //        firestoreDB.collection(BloggersCollectionKeys.CollectionKey).document(blogger.bloggerId).updateData([BloggersCollectionKeys.CoverImageURLKey : imageUrl]) { (error) in

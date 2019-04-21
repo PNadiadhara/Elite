@@ -17,7 +17,9 @@ class TabBarViewController: UITabBarController {
         
         // Do any additional setup after loading the view.
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+         InvitationListener.fetchForInvitationRequest(vc: self)
+    }
     static func setTabBarVC() -> UITabBarController{
         if let user = AppDelegate.authservice.getCurrentUser() {
             currentUser = user

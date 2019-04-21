@@ -27,7 +27,7 @@ struct WinnerConfirmationKeys {
 
 class WinnerConfirmation {
     let gameId: String
-    let winnerConfirmationId: String
+    let winnerConfirmationId: String?
     let bluePlayerOne: String?
     let bluePlayerTwo: String?
     let bluePlayerThree: String?
@@ -39,7 +39,7 @@ class WinnerConfirmation {
     let redPlayerFour: String?
     let redPlayerFive: String?
     
-    init(gameId: String, winnerConfirmationId: String, bluePlayerOne: String?, bluePlayerTwo: String?, bluePlayerThree: String?, bluePlayerFour: String?,bluePlayerFive: String?, redPlayerOne: String?,  redPlayerTwo: String?, redPlayerThree: String?, redPlayerFour: String?, redPlayerFive: String?) {
+    init(gameId: String, winnerConfirmationId: String?, bluePlayerOne: String?, bluePlayerTwo: String?, bluePlayerThree: String?, bluePlayerFour: String?,bluePlayerFive: String?, redPlayerOne: String?,  redPlayerTwo: String?, redPlayerThree: String?, redPlayerFour: String?, redPlayerFive: String?) {
         self.gameId = gameId
         self.winnerConfirmationId = winnerConfirmationId
         self.bluePlayerOne = bluePlayerOne
@@ -72,7 +72,122 @@ class WinnerConfirmation {
     }
     
     
-    
+    static func calculateWinner(winnerConfirmation: WinnerConfirmation, completion: @escaping(Teams?, Bool?, Int?) -> Void){
+        var blueCount = 0
+        var redCount = 0
+        var totalCount = 0
+        if let bluePlayerOne = winnerConfirmation.bluePlayerOne {
+            if bluePlayerOne ==  Teams.blue.rawValue {
+                blueCount += 1
+            } else {
+                redCount += 1
+            }
+            totalCount += 1
+        }
+        
+        if let bluePlayerTwo = winnerConfirmation.bluePlayerTwo {
+            if bluePlayerTwo ==  Teams.blue.rawValue {
+                blueCount += 1
+            } else {
+                redCount += 1
+            }
+            totalCount += 1
+        }
+        
+        if let bluePlayerThree = winnerConfirmation.bluePlayerThree {
+            if bluePlayerThree ==  Teams.blue.rawValue {
+                blueCount += 1
+            } else {
+                redCount += 1
+            }
+            totalCount += 1
+        }
+        
+        if let bluePlayerFour = winnerConfirmation.bluePlayerFour {
+            if bluePlayerFour ==  Teams.blue.rawValue {
+                blueCount += 1
+            } else {
+                redCount += 1
+            }
+            totalCount += 1
+        }
+        
+        if let bluePlayerFive = winnerConfirmation.bluePlayerFive {
+            if bluePlayerFive ==  Teams.blue.rawValue {
+                blueCount += 1
+            } else {
+                redCount += 1
+            }
+            totalCount += 1
+        }
+        
+        if let redPlayerOne = winnerConfirmation.redPlayerOne {
+            if redPlayerOne == Teams.red.rawValue {
+                redCount += 1
+            } else {
+                blueCount += 1
+            }
+            totalCount += 1
+        }
+        
+        if let redPlayerTwo = winnerConfirmation.redPlayerTwo {
+            if redPlayerTwo == Teams.red.rawValue {
+                redCount += 1
+            } else {
+                blueCount += 1
+            }
+            totalCount += 1
+        }
+        
+        if let redPlayerThree = winnerConfirmation.redPlayerThree {
+            if redPlayerThree == Teams.red.rawValue {
+                redCount += 1
+            } else {
+                blueCount += 1
+            }
+            totalCount += 1
+        }
+        
+        if let redPlayerFour = winnerConfirmation.redPlayerFour {
+            if redPlayerFour == Teams.red.rawValue {
+                redCount += 1
+            } else {
+                blueCount += 1
+            }
+            totalCount += 1
+        }
+        
+        if let redPlayerFive = winnerConfirmation.redPlayerFive {
+            if redPlayerFive == Teams.red.rawValue {
+                redCount += 1
+            } else {
+                blueCount += 1
+            }
+            totalCount += 1
+        }
+        if redCount > blueCount {
+            completion(Teams.red, nil, totalCount)
+        } else {
+            completion(Teams.blue, nil, totalCount)
+        }
+        if redCount == blueCount {
+            completion(nil, true, totalCount)
+        }
+        
+    }
+//    static func checkEveryPlayerHasVoted(gameType: GameType, winningConfimation: WinnerConfirmation, completion: @escaping(Bool) -> Void) {
+//
+//        switch gameType {
+//        case .oneVsOne:
+//            var counter = 0
+//            if let winningConfimation
+//            if counter == 2{
+//            completion(true)
+//            }
+//        default:
+//            <#code#>
+//        }
+//    }
     
     
     

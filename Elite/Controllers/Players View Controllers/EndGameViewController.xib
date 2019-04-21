@@ -12,7 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EndGameViewController" customModule="Elite" customModuleProvider="target">
             <connections>
+                <outlet property="bluePlayerImage" destination="kHq-Pi-X8F" id="q7c-sx-HBh"/>
+                <outlet property="bluePlayerName" destination="xse-rF-wzE" id="5A0-gf-fw4"/>
                 <outlet property="bluePlayerView" destination="3Sb-If-aTu" id="Fhr-Je-3My"/>
+                <outlet property="redPlayerImage" destination="VVb-0i-wGM" id="V2H-pA-kLU"/>
+                <outlet property="redPlayerName" destination="fqs-79-dR9" id="GZ3-C7-ni8"/>
                 <outlet property="redPlayerView" destination="yXj-jZ-vXW" id="J6c-dZ-AkW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -85,7 +89,7 @@
                             <rect key="frame" x="11" y="255" width="351" height="93.5"/>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hp-U4-xeZ">
-                            <rect key="frame" x="140.5" y="388.5" width="92" height="42"/>
+                            <rect key="frame" x="140.5" y="421" width="92" height="42"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="25"/>
                             <state key="normal" title="Confirm">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -112,10 +116,10 @@
                         <constraint firstItem="kHq-Pi-X8F" firstAttribute="height" secondItem="VVb-0i-wGM" secondAttribute="height" id="KKC-FR-X6J"/>
                         <constraint firstItem="mCo-Ea-BGE" firstAttribute="centerY" secondItem="92O-0m-5qL" secondAttribute="centerY" multiplier="0.3" id="L1H-RE-3BX"/>
                         <constraint firstItem="mCo-Ea-BGE" firstAttribute="centerX" secondItem="92O-0m-5qL" secondAttribute="centerX" id="O6V-dJ-rDe"/>
+                        <constraint firstAttribute="bottom" secondItem="0hp-U4-xeZ" secondAttribute="bottom" constant="30" id="SsG-ib-cBF"/>
                         <constraint firstItem="3Sb-If-aTu" firstAttribute="leading" secondItem="92O-0m-5qL" secondAttribute="leading" constant="11" id="WKm-FG-BSf"/>
                         <constraint firstItem="VVb-0i-wGM" firstAttribute="leading" secondItem="92O-0m-5qL" secondAttribute="leading" multiplier="0.1" constant="40" id="WPS-Zo-FXu"/>
                         <constraint firstAttribute="trailing" secondItem="wsX-9f-KO1" secondAttribute="trailing" constant="40" id="WR4-yj-2Gz"/>
-                        <constraint firstItem="0hp-U4-xeZ" firstAttribute="top" secondItem="3Sb-If-aTu" secondAttribute="bottom" constant="40" id="Wlp-uK-9LN"/>
                         <constraint firstAttribute="trailing" secondItem="Weq-F5-0Mk" secondAttribute="trailing" constant="128" id="c6N-R2-VJP"/>
                         <constraint firstItem="0hp-U4-xeZ" firstAttribute="centerX" secondItem="92O-0m-5qL" secondAttribute="centerX" id="lc5-0J-pH7"/>
                         <constraint firstItem="yXj-jZ-vXW" firstAttribute="centerY" secondItem="VVb-0i-wGM" secondAttribute="centerY" id="nJf-NT-hAf"/>
