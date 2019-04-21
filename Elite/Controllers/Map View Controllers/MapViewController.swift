@@ -114,6 +114,7 @@ class MapViewController: UIViewController {
             let locations = CLLocationCoordinate2D(latitude: Double(court.lat ?? "0.0")!, longitude:  Double(court.lng ?? "0.0")!)
             let marker = GMSMarker()
             marker.title = court.nameOfPlayground ?? "No name"
+            marker.snippet = court.location ?? "No location"
             marker.position = locations
             switch court.type {
             case .basketball:
@@ -191,6 +192,8 @@ extension MapViewController: GMSMapViewDelegate
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         
    let popVC = MapViewPopupController()
+//        marker.title = popVC.nameOfPark.text
+//        marker.snippet = popVC.parkAddress.text
         popVC.modalPresentationStyle = .overCurrentContext
         self.present(popVC, animated: true, completion: nil)
         return true
