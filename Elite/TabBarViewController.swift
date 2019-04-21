@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 class TabBarViewController: UITabBarController {
 
     static var currentUser: User!

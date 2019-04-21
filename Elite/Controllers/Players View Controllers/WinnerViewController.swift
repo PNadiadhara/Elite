@@ -13,6 +13,7 @@ class WinnerViewController: UIViewController {
     var invitation: Invitation!
     var game: GameModel!
     var winnerConfirmationId = String()
+    var currentPlayer: CurrentPlayer?
     @IBOutlet weak var winnerTitle: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,13 @@ class WinnerViewController: UIViewController {
         DBService.deleteWinningConfirmation(winningConfirmationId: winnerConfirmationId) { (error) in
             if let error = error{
                 print(error)
+            }
+        }
+        if let currentPlayer = currentPlayer{
+            DBService.deleteCurrentPlayer(currentPlayer: currentPlayer) { (error) in
+                if let error = error {
+                    print(error)
+                }
             }
         }
     }
@@ -40,7 +48,17 @@ class WinnerViewController: UIViewController {
                         switch self.game.gameType{
                         case GameType.oneVsOne.rawValue:
                             if totalcount == 2 {
-                                print("Have all the votes")
+                                if let winningTeam = winningTeam {
+                                    switch winningTeam {
+                                    case .blue:
+                                        self.winnerTitle.text = "Blue team won!"
+                                    case .red:
+                                        self.winnerTitle.text = "Red team won!"
+                                    }
+                                }
+                                if noWinner != nil {
+                                    self.winnerTitle.text = "No winner"
+                                }
                             }
                         case GameType.twoVsTwo.rawValue:
                             if totalcount == 4 {
@@ -55,17 +73,7 @@ class WinnerViewController: UIViewController {
                         }
                         
                     }
-                    if let winningTeam = winningTeam {
-                        switch winningTeam {
-                        case .blue:
-                            self.winnerTitle.text = "Blue team won!"
-                        case .red:
-                            self.winnerTitle.text = "Red team won!"
-                        }
-                    }
-                    if noWinner != nil {
-                        self.winnerTitle.text = "No winner"
-                    }
+
                 })
             }
         }

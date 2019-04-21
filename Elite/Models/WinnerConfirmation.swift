@@ -79,91 +79,112 @@ class WinnerConfirmation {
         if let bluePlayerOne = winnerConfirmation.bluePlayerOne {
             if bluePlayerOne ==  Teams.blue.rawValue {
                 blueCount += 1
-            } else {
-                redCount += 1
+                totalCount += 1
             }
-            totalCount += 1
+            if bluePlayerOne == Teams.red.rawValue {
+                redCount += 1
+                totalCount += 1
+            }
         }
         
         if let bluePlayerTwo = winnerConfirmation.bluePlayerTwo {
             if bluePlayerTwo ==  Teams.blue.rawValue {
                 blueCount += 1
-            } else {
-                redCount += 1
+                totalCount += 1
             }
-            totalCount += 1
+            
+            if bluePlayerTwo == Teams.red.rawValue {
+                redCount += 1
+                totalCount += 1
+            }
         }
         
         if let bluePlayerThree = winnerConfirmation.bluePlayerThree {
             if bluePlayerThree ==  Teams.blue.rawValue {
                 blueCount += 1
-            } else {
-                redCount += 1
+                totalCount += 1
             }
-            totalCount += 1
+            if bluePlayerThree == Teams.red.rawValue {
+                redCount += 1
+                totalCount += 1
+            }
         }
         
         if let bluePlayerFour = winnerConfirmation.bluePlayerFour {
             if bluePlayerFour ==  Teams.blue.rawValue {
                 blueCount += 1
-            } else {
-                redCount += 1
+                totalCount += 1
             }
-            totalCount += 1
+            if bluePlayerFour == Teams.red.rawValue {
+                redCount += 1
+                totalCount += 1
+            }
         }
         
         if let bluePlayerFive = winnerConfirmation.bluePlayerFive {
             if bluePlayerFive ==  Teams.blue.rawValue {
                 blueCount += 1
-            } else {
-                redCount += 1
+                totalCount += 1
             }
-            totalCount += 1
+            if bluePlayerFive == Teams.red.rawValue {
+                redCount += 1
+                totalCount += 1
+            }
         }
         
         if let redPlayerOne = winnerConfirmation.redPlayerOne {
             if redPlayerOne == Teams.red.rawValue {
                 redCount += 1
-            } else {
-                blueCount += 1
+                totalCount += 1
             }
-            totalCount += 1
+            if redPlayerOne == Teams.blue.rawValue {
+                blueCount += 1
+                totalCount += 1
+            }
         }
         
         if let redPlayerTwo = winnerConfirmation.redPlayerTwo {
             if redPlayerTwo == Teams.red.rawValue {
                 redCount += 1
-            } else {
-                blueCount += 1
+                totalCount += 1
             }
-            totalCount += 1
+            if redPlayerTwo == Teams.blue.rawValue {
+                blueCount += 1
+                totalCount += 1
+            }
         }
         
         if let redPlayerThree = winnerConfirmation.redPlayerThree {
             if redPlayerThree == Teams.red.rawValue {
                 redCount += 1
-            } else {
-                blueCount += 1
+                totalCount += 1
             }
-            totalCount += 1
+            if redPlayerThree == Teams.blue.rawValue {
+                blueCount += 1
+                totalCount += 1
+            }
         }
         
         if let redPlayerFour = winnerConfirmation.redPlayerFour {
             if redPlayerFour == Teams.red.rawValue {
                 redCount += 1
-            } else {
-                blueCount += 1
+                totalCount += 1
             }
-            totalCount += 1
+            if redPlayerFour == Teams.blue.rawValue {
+                blueCount += 1
+                totalCount += 1
+            }
         }
         
         if let redPlayerFive = winnerConfirmation.redPlayerFive {
             if redPlayerFive == Teams.red.rawValue {
                 redCount += 1
-            } else {
-                blueCount += 1
+                totalCount += 1
             }
-            totalCount += 1
+            if redPlayerFive == Teams.blue.rawValue {
+                blueCount += 1
+                totalCount += 1
+            }
         }
         if redCount > blueCount {
             completion(Teams.red, nil, totalCount)

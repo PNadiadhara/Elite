@@ -21,6 +21,7 @@ class EndGameViewController: UIViewController {
     var invitation: Invitation!
     var selectedTeam: Teams?
     var game: GameModel?
+    var currentPlayer: CurrentPlayer?
     var currentPlayerTeamRole = String()
     var winnerConfirmationId = String()
     var isHost = Bool()
@@ -77,6 +78,7 @@ class EndGameViewController: UIViewController {
         winnerVc.invitation = self.invitation
         winnerVc.game = game
         winnerVc.winnerConfirmationId = self.winnerConfirmationId
+        winnerVc.currentPlayer = self.currentPlayer
         self.present(winnerVc, animated: true)
         
 //        let tab = TabBarViewController.setTabBarVC()
@@ -84,11 +86,13 @@ class EndGameViewController: UIViewController {
     }
     func fetchCurrentRole() {
         DBService.fetchCurrentPlayer(gamerId: TabBarViewController.currentUser.uid) { (error, currentPlayer) in
-            if let error = error{
+            if let error = error {
                 print(error)
             }
-            if let currentPlayer = currentPlayer {
+            if let currentPlayer = currentPlayer{
                 self.currentPlayerTeamRole = currentPlayer.teamRole
+                self.currentPlayer = currentPlayer
+                
             }
         }
     }

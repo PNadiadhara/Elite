@@ -31,10 +31,10 @@ extension DBService {
             }
         }
     }
-    static func deleteCurrentPlayer(gameId: String, completion: @escaping (Error?) -> Void) {
+    static func deleteCurrentPlayer(currentPlayer: CurrentPlayer, completion: @escaping (Error?) -> Void) {
         DBService.firestoreDB
-            .collection(WinnerConfirmationKeys.collectionKey)
-            .document(gameId)
+            .collection(CurrentPlayersCollectionKeys.collectionKey)
+            .document(currentPlayer.currentPlayerId)
             .delete { (error) in
                 if let error = error {
                     completion(error)
