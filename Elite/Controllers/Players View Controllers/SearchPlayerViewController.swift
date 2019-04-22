@@ -36,6 +36,8 @@ class SearchPlayerViewController: UIViewController {
     @IBAction func friendsPressed(_ sender: UIButton) {
     }
     @IBAction func scanCodePressed(_ sender: UIButton) {
+        let scannerController = ScannerViewController()
+        self.present(scannerController, animated: true, completion: nil)
     }
 
     @IBAction func cancelPressed(_ sender: UIButton) {
