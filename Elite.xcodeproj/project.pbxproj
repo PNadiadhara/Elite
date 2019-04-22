@@ -492,12 +492,9 @@
 				48DB1A672260FB6200C7CEAC /* AllNYCParkInfo.swift */,
 				2ECFC94C2264DDB900BD6A53 /* ParkEloInfoModel.swift */,
 				D5B304532264EDF800404241 /* Invitation.swift */,
-<<<<<<< HEAD
 				D5DF86B322692FFC00E2972A /* CurrentPlayer.swift */,
 				D5DF86B122692CBB00E2972A /* WinnerConfirmation.swift */,
-=======
 				48EFEB86226D122D0006092D /* CaptureSession.swift */,
->>>>>>> 2a93ac56e2d718c62d65dc1d65a16bcc6c953a73
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1007,7 +1004,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 465ZSD32S3;
+				DEVELOPMENT_TEAM = DQ5CF8LT37;
 				INFOPLIST_FILE = Elite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1026,7 +1023,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 465ZSD32S3;
+				DEVELOPMENT_TEAM = DQ5CF8LT37;
 				INFOPLIST_FILE = Elite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
