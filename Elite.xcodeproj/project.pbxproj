@@ -80,7 +80,6 @@
 		48F1B5C7226989DB00B53E11 /* MapViewPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F1B5C5226989DB00B53E11 /* MapViewPopupController.swift */; };
 		48F1B5C8226989DB00B53E11 /* MapViewPopupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48F1B5C6226989DB00B53E11 /* MapViewPopupController.xib */; };
 		BFADB58F22553FB200E746B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFADB58E22553FB200E746B5 /* AppDelegate.swift */; };
-		BFADB59422553FB200E746B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59222553FB200E746B5 /* Main.storyboard */; };
 		BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59522553FB300E746B5 /* Assets.xcassets */; };
 		BFADB59922553FB300E746B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59722553FB300E746B5 /* LaunchScreen.storyboard */; };
 		BFADB5A5225544EA00E746B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFADB5A4225544EA00E746B5 /* GoogleService-Info.plist */; };
@@ -204,7 +203,6 @@
 		AA2B205210B3DCCE14EFD090 /* Pods-Elite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elite.release.xcconfig"; path = "Target Support Files/Pods-Elite/Pods-Elite.release.xcconfig"; sourceTree = "<group>"; };
 		BFADB58B22553FB200E746B5 /* Elite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFADB58E22553FB200E746B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BFADB59322553FB200E746B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BFADB59522553FB300E746B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFADB59822553FB300E746B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFADB59A22553FB300E746B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -365,7 +363,6 @@
 		2E9FE67D22558251004CA00B /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				BFADB59222553FB200E746B5 /* Main.storyboard */,
 				2E9FE67E22558282004CA00B /* LoginView.storyboard */,
 			);
 			path = Storyboards;
@@ -654,7 +651,6 @@
 				D5DE77F2225FF61200439407 /* SearchPlayerViewController.xib in Resources */,
 				BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */,
 				2E171B98225CF86C00D40DDF /* MapViewController.xib in Resources */,
-				BFADB59422553FB200E746B5 /* Main.storyboard in Resources */,
 				2E171BA4225CF93100D40DDF /* CreateGameViewController.xib in Resources */,
 				D521087D225E95E20044C440 /* FeedView.xib in Resources */,
 				2EC6D562225E7A0B00336362 /* ParkListViewController.xib in Resources */,
@@ -863,14 +859,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		BFADB59222553FB200E746B5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BFADB59322553FB200E746B5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BFADB59722553FB300E746B5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1010,7 +998,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Ibraheem.Elite;
+				PRODUCT_BUNDLE_IDENTIFIER = Pritesh.Elite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1029,7 +1017,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Ibraheem.Elite;
+				PRODUCT_BUNDLE_IDENTIFIER = Pritesh.Elite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -21,18 +21,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         GMSServices.provideAPIKey(PrivateInfoFile.GoogleMapsApiKey)
         FirebaseApp.configure()
+        try? Auth.auth().signOut()
         window = UIWindow(frame: UIScreen.main.bounds)
         if let _ = AppDelegate.authservice.getCurrentUser() {
             let tab = TabBarViewController.setTabBarVC()
             window = UIWindow(frame: UIScreen.main.bounds)
             window?.rootViewController = tab
-            window?.makeKeyAndVisible()
             
         } else {
             let storyboard = UIStoryboard(name: "LoginView", bundle: nil)
             let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
             window?.rootViewController = UINavigationController(rootViewController: loginViewController)
         }
+        window?.makeKeyAndVisible()
+
 
         return true
     }
