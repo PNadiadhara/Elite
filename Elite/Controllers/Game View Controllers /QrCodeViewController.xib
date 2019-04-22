@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QrCodeViewController" customModule="Elite" customModuleProvider="target">
             <connections>
                 <outlet property="qrCodeImage" destination="x2g-gK-m7b" id="rl1-K6-mlA"/>
+                <outlet property="username" destination="fcn-gY-LEI" id="IGH-Pj-WPL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
