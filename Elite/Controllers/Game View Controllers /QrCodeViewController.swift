@@ -12,12 +12,20 @@ class QrCodeViewController: UIViewController{
     
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var qrCodeImage: UIImageView!
+    private let authservice = AppDelegate.authservice
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadUser()
         
-        generateQRCodeOfUser(qrString: username.text, qrImage: qrCodeImage)
     }
-
+    private func loadUser(){
+        guard let user = authservice.getCurrentUser() else {
+            print("no logged user")
+            return
+        }
+        username.text = String(user.displayName ?? "No Display Name")
+        generateQRCodeOfUser(qrString: String(user.uid), qrImage: qrCodeImage)
+    }
     @IBAction func cancelPressed(_ sender: Any) {
         dismiss(animated: true)
     }
