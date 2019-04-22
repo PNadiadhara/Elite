@@ -14,11 +14,14 @@ enum GoogleMapsMVState {
     case showBasketBallMarkers
     case noMarkersShown
 }
+protocol MapViewControllerDelegate: AnyObject {
+    func makerDidTapOnMap()
+}
 
 class MapViewController: UIViewController {
     // MARK: - Outlets and Properties
     @IBOutlet weak var googleMapsMapView: GMSMapView!
-    
+//    private let delegate: MapViewControllerDelegate?
     private var googleMapsMVEditingState = GoogleMapsMVState.noMarkersShown {
         didSet{
             clearMarkers()
