@@ -131,7 +131,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="149"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCS-pO-7L7">
-                            <rect key="frame" x="10" y="10" width="48" height="30"/>
+                            <rect key="frame" x="10" y="30" width="48" height="30"/>
                             <state key="normal" title="Cancel">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -139,7 +139,7 @@
                                 <action selector="cancelPressed:" destination="-1" eventType="touchUpInside" id="PAp-Wm-Tdx"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Two Vs. Two" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQf-AQ-27M">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Vs. 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQf-AQ-27M">
                             <rect key="frame" x="11" y="99" width="392" height="30"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -155,7 +155,7 @@
                     <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="JQf-AQ-27M" firstAttribute="top" secondItem="tZp-8F-Ggt" secondAttribute="bottom" id="IKe-5n-zgr"/>
-                        <constraint firstItem="qCS-pO-7L7" firstAttribute="top" secondItem="IG1-5l-epf" secondAttribute="top" constant="10" id="KnG-Vf-qas"/>
+                        <constraint firstItem="qCS-pO-7L7" firstAttribute="top" secondItem="IG1-5l-epf" secondAttribute="top" constant="30" id="KnG-Vf-qas"/>
                         <constraint firstItem="tZp-8F-Ggt" firstAttribute="leading" secondItem="IG1-5l-epf" secondAttribute="leading" constant="11" id="NAT-2v-sHF"/>
                         <constraint firstItem="JQf-AQ-27M" firstAttribute="leading" secondItem="IG1-5l-epf" secondAttribute="leading" constant="11" id="XFe-yJ-RH5"/>
                         <constraint firstAttribute="trailing" secondItem="JQf-AQ-27M" secondAttribute="trailing" constant="11" id="fxs-Dn-Wd4"/>

@@ -2,8 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+<<<<<<< HEAD
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+=======
 	<key>NSCameraUsageDescription</key>
 	<string>This app requires use of your camera</string>
+>>>>>>> 2a93ac56e2d718c62d65dc1d65a16bcc6c953a73
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

@@ -176,16 +176,7 @@ class CircularView: UIView {
         clipsToBounds = true
     }
 }
-@IBDesignable
-class CircularImage: UIView {
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        contentMode = .scaleAspectFill
-        layer.cornerRadius = bounds.width / 2.0
-        backgroundColor = .clear
-        clipsToBounds = true
-    }
-}
+
 
 @IBDesignable
 class RoundedView: UIView {

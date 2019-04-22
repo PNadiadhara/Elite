@@ -17,7 +17,7 @@ class LeaderboardViewController: UIViewController {
 
 
     let boroughs = ["Queens", "Brooklyn", "Manhattan", "Bronx", "Staten Island"]
-    let myParks = ["Astoria Park" , "American Park", "Woodside Park"]
+    let myParks = ["Astoria Park", "American Park", "Woodside Park"]
     var filterBy: FilterCollectionBy = .myParks  {
         didSet {
             DispatchQueue.main.async {
@@ -35,6 +35,8 @@ class LeaderboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        basketBallButton.setImage(UIImage(named: "basketballEmpty"), for: .normal)
+        filterByButton.setTitle("Boroughs", for: .normal)
         leaderboardCollectionView.delegate = self
         leaderboardCollectionView.dataSource = self
         leaderboardTableView.delegate = self
@@ -57,8 +59,10 @@ class LeaderboardViewController: UIViewController {
     @IBAction func filterByPressed(_ sender: UIButton) {
         if filterBy == .myParks {
             filterBy = .boroughs
+            filterByButton.setTitle("My parks", for: .normal)
         } else {
             filterBy = .myParks
+            filterByButton.setTitle("Boroughs", for: .normal)
         }
     }
     
@@ -77,10 +81,32 @@ extension LeaderboardViewController: UICollectionViewDataSource,UICollectionView
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BoroughCollectionViewCell", for: indexPath) as? BoroughCollectionViewCell else {return UICollectionViewCell()}
         if filterBy == .myParks{
             let myPark = myParks[indexPath.row]
-            cell.boroughName.text = myPark
+            cell.cellLabel.text = myPark
+            cell.cellImage.image = UIImage(named: "nycParksLogo")
+            cell.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         } else {
             let borough = boroughs[indexPath.row]
-            cell.boroughName.text = borough
+            cell.cellLabel.text = borough
+            switch borough {
+            case "Queens":
+                cell.backgroundColor = #colorLiteral(red: 0.7254901961, green: 0.2, blue: 0.6784313725, alpha: 1)
+                cell.cellImage.image = UIImage(named: "queensIcon")
+            case "Brooklyn":
+                cell.backgroundColor = #colorLiteral(red: 0.4235294118, green: 0.7450980392, blue: 0.2705882353, alpha: 1)
+                cell.cellImage.image = UIImage(named: "queensIcon")
+            case "Manhattan":
+                cell.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.2078431373, blue: 0.1803921569, alpha: 1)
+                cell.cellImage.image = UIImage(named: "Manhattan")
+            case "Bronx":
+                cell.backgroundColor = #colorLiteral(red: 0, green: 0.5764705882, blue: 0.2352941176, alpha: 1)
+                cell.cellImage.image = UIImage(named: "queensIcon")
+            case "Staten Island":
+                cell.backgroundColor = #colorLiteral(red: 0, green: 0.2235294118, blue: 0.6509803922, alpha: 1)
+                cell.cellImage.image = UIImage(named: "StatenIsland")
+                
+            default:
+                print("No borough")
+            }
         }
         
         return cell
