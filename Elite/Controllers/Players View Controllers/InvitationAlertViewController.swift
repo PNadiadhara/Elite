@@ -15,12 +15,14 @@ protocol InvitationAlertDelegate: AnyObject {
 class InvitationAlertViewController: UIViewController {
     @IBOutlet weak var invitationLabel: UILabel!
     @IBOutlet weak var userImage: CircularBlueImageView!
+    @IBOutlet weak var alertView: UIView!
     
     var invitation: Invitation!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLabel()
         setupImage()
+        setupAlertView()
         // Do any additional setup after loading the view.
     }
     func setupLabel() {
@@ -28,6 +30,13 @@ class InvitationAlertViewController: UIViewController {
     }
     func setupImage() {
         
+    }
+    func setupAlertView() {
+        alertView.layer.shadowColor = UIColor.black.cgColor
+        alertView.layer.shadowOpacity = 1
+        alertView.layer.shadowOffset = CGSize.zero
+        alertView.layer.shadowRadius = 10
+        alertView.layer.shadowPath = UIBezierPath(rect: alertView.bounds).cgPath
     }
     @IBAction func acceptPressed(_ sender: UIButton) {
         let oneVsoneProgressVc = OneVsOneProgressViewController.init(nibName: "OneVsOneProgressViewController", bundle: nil)

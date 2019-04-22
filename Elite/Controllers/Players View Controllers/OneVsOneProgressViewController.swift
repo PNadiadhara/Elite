@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 class OneVsOneProgressViewController: UIViewController {
 
@@ -15,6 +16,7 @@ class OneVsOneProgressViewController: UIViewController {
     var invitation: Invitation?
     var invitations = [Invitation]()
     var isHost = Bool()
+    var game: GameModel?
     private var listener: ListenerRegistration!
     
     @IBOutlet weak var sportParkLabel: UILabel!
@@ -27,8 +29,8 @@ class OneVsOneProgressViewController: UIViewController {
     @IBOutlet weak var waitingScreen: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var headerView: UIView!
-    
     @IBOutlet weak var cancelGameButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         buttons = [cancelButton, endButton]
@@ -38,12 +40,16 @@ class OneVsOneProgressViewController: UIViewController {
             buttons.forEach{$0.isHidden = true}
             waitingScreen.isHidden = true
             headerView.isHidden = true
+            fetchForGameCreated()
+            
         }
         
     }
 
 
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        listener.remove()
+    }
  
     @objc func fetchInvitationApproval() {
         guard let invitation = invitation else {return}
@@ -54,7 +60,8 @@ class OneVsOneProgressViewController: UIViewController {
                 self?.invitations = snapshot.documents.map {Invitation.init(dict: $0.data())}
                 if (self?.invitations.count)! > 0 {
                     self?.waitingScreen.isHidden = true
-                    self?.waitingScreen.isHidden = true
+                    self?.endButton.isEnabled = true
+                    self?.cancelButton.isEnabled = true
                     DBService.deleteInvitation(invitation: (self?.invitation!)!, completion: { (error) in
                         if let error = error {
                             print(error.localizedDescription)
@@ -64,6 +71,27 @@ class OneVsOneProgressViewController: UIViewController {
             }
         })
     }
+    func fetchForGameCreated() {
+        guard let invitation = invitation else {
+            print("No Invitation")
+            return
+        }
+        listener = DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).whereField(GameCollectionKeys.isOverKey, isEqualTo: true).whereField(GameCollectionKeys.GameIDKey, isEqualTo: invitation.gameId).addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            if let snapshot = snapshot {
+                let games = snapshot.documents.map {GameModel.init(dict: $0.data())}
+                if games.count > 0 {
+                    let endGameVc = EndGameViewController.init(nibName: "EndGameViewController", bundle: nil)
+                    endGameVc.modalPresentationStyle = .overCurrentContext
+                    endGameVc.invitation = invitation
+                    endGameVc.isHost = false
+                    self.present(endGameVc, animated: true)
+                }
+            }
+        }
+    }
     @IBAction func cancelGamePressed(_ sender: UIButton) {
         guard let invitation = invitation else {return}
         waitingScreen.isHidden = true
@@ -72,18 +100,34 @@ class OneVsOneProgressViewController: UIViewController {
                 print(error)
             }
         }
+        dismiss(animated: true)
     }
     
     
     @IBAction func cancelPressed(_ sender: UIButton) {
         confirmAlert(title: "Game Cancel", message: "Are you sure?") { (action) in
+            guard let invitation = self.invitation else {return}
+            DBService.deleteInvitation(invitation: invitation) { (error) in
+                if let error = error {
+                    print(error)
+                }
+            }
             let tab = TabBarViewController.setTabBarVC()
             self.present(tab, animated: true)
         }
     }
     @IBAction func endPressed(_ sender: UIButton) {
         let endGameVc = EndGameViewController.init(nibName: "EndGameViewController", bundle: nil)
+        guard let invitation = invitation else {
+            print("No Invite")
+            return
+        }
+        DBService.updateGameToFinish(gameId: invitation.gameId)
         endGameVc.modalPresentationStyle = .overCurrentContext
+        
+//        endGameVc.game = game
+        endGameVc.invitation = invitation
+        endGameVc.isHost = true
         present(endGameVc, animated: true)
     }
     

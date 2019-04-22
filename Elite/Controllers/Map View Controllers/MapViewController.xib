@@ -25,8 +25,8 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="187"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playgrouds" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJC-ZH-xrT">
-                            <rect key="frame" x="8" y="110" width="398" height="48"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                            <rect key="frame" x="8" y="124" width="398" height="48"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="40"/>
                             <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -61,7 +61,7 @@
                         <constraint firstAttribute="height" constant="187" id="Doi-oG-KEM"/>
                         <constraint firstItem="eJC-ZH-xrT" firstAttribute="leading" secondItem="WY3-FD-wWf" secondAttribute="leading" constant="8" id="Koy-W9-pvw"/>
                         <constraint firstItem="oEb-Sq-5bd" firstAttribute="leading" secondItem="jbg-5u-GjA" secondAttribute="trailing" constant="8" id="MpR-6a-XwC"/>
-                        <constraint firstAttribute="bottom" secondItem="eJC-ZH-xrT" secondAttribute="bottom" constant="29" id="ZoP-KN-9J5"/>
+                        <constraint firstAttribute="bottom" secondItem="eJC-ZH-xrT" secondAttribute="bottom" constant="15" id="ZoP-KN-9J5"/>
                         <constraint firstItem="jbg-5u-GjA" firstAttribute="top" secondItem="WY3-FD-wWf" secondAttribute="top" constant="28" id="w25-C5-WWh"/>
                     </constraints>
                 </view>
