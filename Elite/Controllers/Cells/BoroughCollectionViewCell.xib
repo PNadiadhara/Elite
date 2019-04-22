@@ -45,13 +45,13 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="273" height="133"/>
             <connections>
-                <outlet property="boroughImage" destination="zyf-CR-iCz" id="CYZ-qG-ZAe"/>
-                <outlet property="boroughName" destination="3LB-hZ-QTu" id="x8C-xJ-dHR"/>
+                <outlet property="cellImage" destination="zyf-CR-iCz" id="CYZ-qG-ZAe"/>
+                <outlet property="cellLabel" destination="3LB-hZ-QTu" id="x8C-xJ-dHR"/>
             </connections>
             <point key="canvasLocation" x="155.79710144927537" y="96.09375"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="queensIcon" width="473" height="465"/>
+        <image name="queensIcon" width="813" height="712"/>
     </resources>
 </document>

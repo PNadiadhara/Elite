@@ -79,6 +79,7 @@ class EndGameViewController: UIViewController {
         winnerVc.game = game
         winnerVc.winnerConfirmationId = self.winnerConfirmationId
         winnerVc.currentPlayer = self.currentPlayer
+        winnerVc.modalPresentationStyle = .overCurrentContext
         self.present(winnerVc, animated: true)
         
 //        let tab = TabBarViewController.setTabBarVC()

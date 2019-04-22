@@ -10,8 +10,8 @@ import UIKit
 
 class BoroughCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var boroughName: UILabel!
-    @IBOutlet weak var boroughImage: UIImageView!
+    @IBOutlet weak var cellLabel: UILabel!
+    @IBOutlet weak var cellImage: UIImageView!
     
     override func layoutSubviews() {
         layer.cornerRadius = 20

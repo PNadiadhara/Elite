@@ -12,8 +12,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WinnerViewController" customModule="Elite" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="ZXs-3Y-MmV" id="fWM-Ef-0Uu"/>
+                <outlet property="continueButton" destination="7vh-Ob-5uM" id="5H8-m4-Dhw"/>
+                <outlet property="loadingLabel" destination="UNh-Hq-Jt9" id="yHT-Gn-eLD"/>
+                <outlet property="playersImage" destination="I0Z-T1-IAk" id="rJG-Vw-AYl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="winnerTitle" destination="RbY-Ue-HwS" id="Wia-0L-zj1"/>
+                <outlet property="winnerView" destination="wlJ-o3-pvx" id="9wQ-I8-brf"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -22,22 +27,22 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wlJ-o3-pvx">
-                    <rect key="frame" x="62" y="274" width="290" height="358"/>
+                    <rect key="frame" x="20.5" y="266.5" width="373" height="373"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congrats Ibraheem!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RbY-Ue-HwS">
-                            <rect key="frame" x="11" y="25" width="268" height="30.5"/>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congrats Ibraheem!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RbY-Ue-HwS">
+                            <rect key="frame" x="11" y="43" width="351" height="30.5"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I0Z-T1-IAk" customClass="CircularImageView" customModule="Elite" customModuleProvider="target">
-                            <rect key="frame" x="72.5" y="106.5" width="145" height="145"/>
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I0Z-T1-IAk" customClass="CircularImageView" customModule="Elite" customModuleProvider="target">
+                            <rect key="frame" x="93.5" y="93.5" width="186" height="186"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="I0Z-T1-IAk" secondAttribute="height" multiplier="1:1" id="gZJ-mJ-Eoz"/>
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7vh-Ob-5uM">
-                            <rect key="frame" x="104.5" y="301.5" width="81" height="36"/>
+                            <rect key="frame" x="146" y="299.5" width="81" height="36"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                             <state key="normal" title="Continue">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -46,26 +51,41 @@
                                 <action selector="continuePressed:" destination="-1" eventType="touchUpInside" id="Ide-Z0-cf5"/>
                             </connections>
                         </button>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ZXs-3Y-MmV">
+                            <rect key="frame" x="168" y="168" width="37" height="37"/>
+                            <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </activityIndicatorView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calculating Winner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UNh-Hq-Jt9">
+                            <rect key="frame" x="11" y="225" width="351" height="20"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.14154749010000001" green="0.14956755790000001" blue="0.16078951080000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstItem="I0Z-T1-IAk" firstAttribute="width" secondItem="wlJ-o3-pvx" secondAttribute="width" multiplier="0.5" id="5nu-FC-kz7"/>
+                        <constraint firstItem="I0Z-T1-IAk" firstAttribute="top" secondItem="RbY-Ue-HwS" secondAttribute="bottom" constant="20" id="797-5S-VvP"/>
+                        <constraint firstItem="ZXs-3Y-MmV" firstAttribute="centerX" secondItem="wlJ-o3-pvx" secondAttribute="centerX" id="8Vc-Nm-ce8"/>
                         <constraint firstItem="I0Z-T1-IAk" firstAttribute="centerY" secondItem="wlJ-o3-pvx" secondAttribute="centerY" id="Cox-C5-OJW"/>
-                        <constraint firstItem="RbY-Ue-HwS" firstAttribute="top" secondItem="wlJ-o3-pvx" secondAttribute="top" constant="25" id="MrR-Kk-Bs4"/>
-                        <constraint firstItem="7vh-Ob-5uM" firstAttribute="top" secondItem="I0Z-T1-IAk" secondAttribute="bottom" constant="50" id="QwU-uM-zgy"/>
+                        <constraint firstAttribute="width" secondItem="wlJ-o3-pvx" secondAttribute="height" multiplier="1:1" id="Gzl-CW-giG"/>
+                        <constraint firstAttribute="trailing" secondItem="UNh-Hq-Jt9" secondAttribute="trailing" constant="11" id="Tgs-cI-j9g"/>
+                        <constraint firstItem="UNh-Hq-Jt9" firstAttribute="top" secondItem="ZXs-3Y-MmV" secondAttribute="bottom" constant="20" id="Wbj-N2-shI"/>
                         <constraint firstAttribute="trailing" secondItem="RbY-Ue-HwS" secondAttribute="trailing" constant="11" id="Z6R-pd-HYL"/>
                         <constraint firstItem="I0Z-T1-IAk" firstAttribute="centerX" secondItem="wlJ-o3-pvx" secondAttribute="centerX" id="a2v-yl-1L8"/>
                         <constraint firstItem="7vh-Ob-5uM" firstAttribute="centerX" secondItem="I0Z-T1-IAk" secondAttribute="centerX" id="j08-z2-xGq"/>
+                        <constraint firstItem="7vh-Ob-5uM" firstAttribute="top" secondItem="I0Z-T1-IAk" secondAttribute="bottom" constant="20" id="lNx-5H-qxf"/>
+                        <constraint firstItem="ZXs-3Y-MmV" firstAttribute="centerY" secondItem="wlJ-o3-pvx" secondAttribute="centerY" id="pbI-Bg-YXt"/>
+                        <constraint firstItem="UNh-Hq-Jt9" firstAttribute="leading" secondItem="wlJ-o3-pvx" secondAttribute="leading" constant="11" id="xO4-0c-w3O"/>
                         <constraint firstItem="RbY-Ue-HwS" firstAttribute="leading" secondItem="wlJ-o3-pvx" secondAttribute="leading" constant="11" id="zkn-vD-clo"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.22308433219178081" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="0.14154749010000001" green="0.14956755790000001" blue="0.16078951080000001" alpha="0.73022795376712324" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstItem="wlJ-o3-pvx" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.4" id="a9N-VJ-3A7"/>
                 <constraint firstItem="wlJ-o3-pvx" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="iet-6J-ZQ7"/>
                 <constraint firstItem="wlJ-o3-pvx" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="qp0-IX-sVO"/>
-                <constraint firstItem="wlJ-o3-pvx" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.7" id="zfV-P3-9bb"/>
+                <constraint firstItem="wlJ-o3-pvx" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.9" id="zfV-P3-9bb"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="114.50892857142857"/>

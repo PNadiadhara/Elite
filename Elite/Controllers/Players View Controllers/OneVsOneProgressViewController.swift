@@ -60,6 +60,8 @@ class OneVsOneProgressViewController: UIViewController {
                 self?.invitations = snapshot.documents.map {Invitation.init(dict: $0.data())}
                 if (self?.invitations.count)! > 0 {
                     self?.waitingScreen.isHidden = true
+                    self?.endButton.isEnabled = true
+                    self?.cancelButton.isEnabled = true
                     DBService.deleteInvitation(invitation: (self?.invitation!)!, completion: { (error) in
                         if let error = error {
                             print(error.localizedDescription)
@@ -98,6 +100,7 @@ class OneVsOneProgressViewController: UIViewController {
                 print(error)
             }
         }
+        dismiss(animated: true)
     }
     
     
