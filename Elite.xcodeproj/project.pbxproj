@@ -106,6 +106,8 @@
 		D5B304602267BDCB00404241 /* InvitationListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B3045F2267BDCB00404241 /* InvitationListener.swift */; };
 		D5B57D422262698400DB73E2 /* OneVsOneProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B57D402262698400DB73E2 /* OneVsOneProgressViewController.swift */; };
 		D5B57D432262698400DB73E2 /* OneVsOneProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B57D412262698400DB73E2 /* OneVsOneProgressViewController.xib */; };
+		D5BCBBFA226F7FBD006B0015 /* TwoVsTwoProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BCBBF8226F7FBD006B0015 /* TwoVsTwoProgressViewController.swift */; };
+		D5BCBBFB226F7FBD006B0015 /* TwoVsTwoProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5BCBBF9226F7FBD006B0015 /* TwoVsTwoProgressViewController.xib */; };
 		D5D375B8226A4A9000F25FCF /* DBService+WinnerConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D375B7226A4A9000F25FCF /* DBService+WinnerConfirmation.swift */; };
 		D5D375BD226A6D3900F25FCF /* WinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D375BB226A6D3900F25FCF /* WinnerViewController.swift */; };
 		D5D375BE226A6D3900F25FCF /* WinnerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D375BC226A6D3900F25FCF /* WinnerViewController.xib */; };
@@ -230,6 +232,8 @@
 		D5B3045F2267BDCB00404241 /* InvitationListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationListener.swift; sourceTree = "<group>"; };
 		D5B57D402262698400DB73E2 /* OneVsOneProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneVsOneProgressViewController.swift; sourceTree = "<group>"; };
 		D5B57D412262698400DB73E2 /* OneVsOneProgressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OneVsOneProgressViewController.xib; sourceTree = "<group>"; };
+		D5BCBBF8226F7FBD006B0015 /* TwoVsTwoProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoVsTwoProgressViewController.swift; sourceTree = "<group>"; };
+		D5BCBBF9226F7FBD006B0015 /* TwoVsTwoProgressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoVsTwoProgressViewController.xib; sourceTree = "<group>"; };
 		D5D375B7226A4A9000F25FCF /* DBService+WinnerConfirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBService+WinnerConfirmation.swift"; sourceTree = "<group>"; };
 		D5D375BB226A6D3900F25FCF /* WinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerViewController.swift; sourceTree = "<group>"; };
 		D5D375BC226A6D3900F25FCF /* WinnerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WinnerViewController.xib; sourceTree = "<group>"; };
@@ -401,6 +405,8 @@
 				D5B3045C22677A7F00404241 /* InvitationAlertViewController.xib */,
 				D5D375BB226A6D3900F25FCF /* WinnerViewController.swift */,
 				D5D375BC226A6D3900F25FCF /* WinnerViewController.xib */,
+				D5BCBBF8226F7FBD006B0015 /* TwoVsTwoProgressViewController.swift */,
+				D5BCBBF9226F7FBD006B0015 /* TwoVsTwoProgressViewController.xib */,
 			);
 			path = "Players View Controllers";
 			sourceTree = "<group>";
@@ -647,6 +653,7 @@
 				D5EFCBFC2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib in Resources */,
 				2E381EB122613A1E0075C1CD /* ProfileViewController.xib in Resources */,
 				48F1B5C2226980F700B53E11 /* basketballCourtInfo.json in Resources */,
+				D5BCBBFB226F7FBD006B0015 /* TwoVsTwoProgressViewController.xib in Resources */,
 				BFADB5A5225544EA00E746B5 /* GoogleService-Info.plist in Resources */,
 				D5DE77F2225FF61200439407 /* SearchPlayerViewController.xib in Resources */,
 				BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */,
@@ -835,6 +842,7 @@
 				D5DF86B222692CBB00E2972A /* WinnerConfirmation.swift in Sources */,
 				48DB1A662260F72500C7CEAC /* AllInfoForHandballCourts.json in Sources */,
 				2E9FE6742255806E004CA00B /* AuthService.swift in Sources */,
+				D5BCBBFA226F7FBD006B0015 /* TwoVsTwoProgressViewController.swift in Sources */,
 				2EF4809C22565A73008212DC /* SnapchatLoginViewController.swift in Sources */,
 				48D5C826225D33A100AFDE8F /* PrivateInfoFile.swift in Sources */,
 				2EF480A02256BE38008212DC /* PlaygroundModel.swift in Sources */,
