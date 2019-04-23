@@ -20,6 +20,7 @@ struct InvitationCollectionKeys {
     static let lonKey = "lon"
     static let gameKey = "game"
     static let senderUsernameKey = "senderUsername"
+    static let gameTypeKey = "gameType"
 }
 class Invitation {
     let invitationId: String
@@ -32,8 +33,9 @@ class Invitation {
     let lon: Double
     let game: String
     let senderUsername: String
+    let gameType: String
     
-    init(invitationId: String, gameId: String, sender: String, reciever: String, message: String, approval: Bool,lat: Double, lon: Double, game: String, senderUsername: String) {
+    init(invitationId: String, gameId: String, sender: String, reciever: String, message: String, approval: Bool,lat: Double, lon: Double, game: String, senderUsername: String, gameType: String) {
         self.invitationId = invitationId
         self.gameId = gameId
         self.sender = sender
@@ -44,6 +46,7 @@ class Invitation {
         self.lon = lon
         self.game = game
         self.senderUsername = senderUsername
+        self.gameType = gameType
         
     }
     init(dict: [String: Any]) {
@@ -57,5 +60,6 @@ class Invitation {
         self.lon = dict[InvitationCollectionKeys.lonKey] as? Double ?? 0.0
         self.game = dict[InvitationCollectionKeys.gameKey] as? String ?? "N/A"
         self.senderUsername = dict[InvitationCollectionKeys.senderUsernameKey] as? String ?? "N/A"
+        self.gameType = dict[InvitationCollectionKeys.gameTypeKey] as? String ?? "N/A"
     }
 }
