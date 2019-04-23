@@ -73,7 +73,7 @@ class OneVsOneViewController: UIViewController {
                 self.showAlert(title: "Error posting game", message: error.localizedDescription)
             }
             if let gameId = gameId {
-                let invitation = Invitation(invitationId: "", gameId: gameId ,sender: TabBarViewController.currentUser.uid, reciever: gamerSelected.gamerID, message: "Invitation", approval: false, lat: 0.0, lon: 0.0, game: self.gameName.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "")
+                let invitation = Invitation(invitationId: "", gameId: gameId ,sender: TabBarViewController.currentUser.uid, reciever: gamerSelected.gamerID, message: "Invitation", approval: false, lat: 0.0, lon: 0.0, game: self.gameName.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "", gameType: self.gameTypeSelected.rawValue)
                 DBService.postInvitation(invitation: invitation) { (error, invitationId) in
                     if let error = error {
                         self.showAlert(title: "Error posting invitation", message: error.localizedDescription)

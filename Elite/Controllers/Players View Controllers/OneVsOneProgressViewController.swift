@@ -50,7 +50,7 @@ class OneVsOneProgressViewController: UIViewController {
         listener.remove()
     }
  
-    @objc func fetchInvitationApproval() {
+    func fetchInvitationApproval() {
         guard let invitation = invitation else {return}
         listener = DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).whereField(InvitationCollectionKeys.approvalKey, isEqualTo: true).whereField(InvitationCollectionKeys.invitationIdKey, isEqualTo: invitation.invitationId).addSnapshotListener({[weak self] (snapshot, error) in
             if let error = error {

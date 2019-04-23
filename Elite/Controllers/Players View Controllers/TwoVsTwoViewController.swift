@@ -99,9 +99,9 @@ class TwoVsTwoViewController: UIViewController {
                 self.showAlert(title: "Error posting game", message: error.localizedDescription)
             }
             if let gameId = gameId {
-                let redPlayerTwoInvitation = Invitation(invitationId: "", gameId: gameId, sender: TabBarViewController.currentUser.uid, reciever: redPlayerTwo.gamerID, message: "Invitation", approval: false, lat: 0, lon: 0, game: self.gameTypeSelected.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "")
-                let bluePlayerOneInvitation = Invitation(invitationId: "", gameId: gameId, sender: TabBarViewController.currentUser.uid, reciever: bluePlayerOne.gamerID, message: "Invitation", approval: false, lat: 0, lon: 0, game: self.gameTypeSelected.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "")
-                let bluePlayerTwoInviation = Invitation(invitationId: "", gameId: gameId, sender: TabBarViewController.currentUser.uid, reciever: bluePlayerTwo.gamerID, message: "Invitation", approval: false, lat: 0, lon: 0, game: self.gameTypeSelected.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "")
+                let redPlayerTwoInvitation = Invitation(invitationId: "", gameId: gameId, sender: TabBarViewController.currentUser.uid, reciever: redPlayerTwo.gamerID, message: "Invitation", approval: false, lat: 0, lon: 0, game: self.gameTypeSelected.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "", gameType: self.gameTypeSelected.rawValue)
+                let bluePlayerOneInvitation = Invitation(invitationId: "", gameId: gameId, sender: TabBarViewController.currentUser.uid, reciever: bluePlayerOne.gamerID, message: "Invitation", approval: false, lat: 0, lon: 0, game: self.gameTypeSelected.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "", gameType: self.gameTypeSelected.rawValue)
+                let bluePlayerTwoInviation = Invitation(invitationId: "", gameId: gameId, sender: TabBarViewController.currentUser.uid, reciever: bluePlayerTwo.gamerID, message: "Invitation", approval: false, lat: 0, lon: 0, game: self.gameTypeSelected.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "", gameType: self.gameTypeSelected.rawValue)
                 let invitations = [redPlayerTwoInvitation, bluePlayerOneInvitation, bluePlayerTwoInviation]
                 DBService.postMultipleInvitations(invitations: invitations, completion: { (error, invitationId) in
                     if let error = error {
@@ -123,6 +123,7 @@ class TwoVsTwoViewController: UIViewController {
                             }
                         })
                     }
+                    
                 })
             }
         }

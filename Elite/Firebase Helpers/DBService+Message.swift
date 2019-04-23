@@ -18,7 +18,7 @@ extension DBService {
             .setData([InvitationCollectionKeys.invitationIdKey : ref.documentID,
                       InvitationCollectionKeys.senderIdKey : invitation.sender,
                       InvitationCollectionKeys.recieverKey : invitation.reciever, InvitationCollectionKeys.messageKey : invitation.message, InvitationCollectionKeys.approvalKey : invitation.approval,InvitationCollectionKeys.latKey: invitation.lat,
-                      InvitationCollectionKeys.lonKey : invitation.lon, InvitationCollectionKeys.gameKey : invitation.game, InvitationCollectionKeys.senderUsernameKey : invitation.senderUsername, InvitationCollectionKeys.gameIdKey : invitation.gameId]) { (error) in
+                      InvitationCollectionKeys.lonKey : invitation.lon, InvitationCollectionKeys.gameKey : invitation.game, InvitationCollectionKeys.senderUsernameKey : invitation.senderUsername, InvitationCollectionKeys.gameIdKey : invitation.gameId, InvitationCollectionKeys.gameTypeKey : invitation.gameType]) { (error) in
                         if let error = error {
                             completion(error,nil)
                         } else {
