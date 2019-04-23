@@ -1,8 +1,8 @@
 //
-//  OneVsOneProggressViewController.swift
+//  TwoVsTwoProgressViewController.swift
 //  Elite
 //
-//  Created by Leandro Wauters on 4/13/19.
+//  Created by Leandro Wauters on 4/23/19.
 //  Copyright © 2019 Pritesh Nadiadhara. All rights reserved.
 //
 
@@ -10,26 +10,33 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
-class OneVsOneProgressViewController: UIViewController {
-
+class TwoVsTwoProgressViewController: UIViewController {
+    @IBOutlet weak var redPlayerOneImage: CircularRedImageView!
+    @IBOutlet weak var bluePlayerOneImage: CircularBlueImageView!
+    @IBOutlet weak var bluePlayerTwoImage: CircularBlueImageView!
+    @IBOutlet weak var redPlayerTwoImage: CircularRedImageView!
+    @IBOutlet weak var redPlayerOneLabel: UILabel!
+    
+    @IBOutlet weak var redPlayerTwoLabel: UILabel!
+    
+    @IBOutlet weak var bluePlayerOneLabel: UILabel!
+    @IBOutlet weak var bluePlayerTwoLabel: UILabel!
+    @IBOutlet weak var sportSelectedLabel: UILabel!
+    
+    @IBOutlet weak var parkSelectedLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var waitingScreen: UIView!
+    @IBOutlet weak var cancelButton: RoundedButton!
+    @IBOutlet weak var endButton: RoundedButton!
+    
+    
+    
     var buttons = [UIButton]()
     var invitation: Invitation?
     var invitations = [Invitation]()
     var isHost = Bool()
     var game: GameModel?
     private var listener: ListenerRegistration!
-    
-    @IBOutlet weak var sportParkLabel: UILabel!
-    @IBOutlet weak var redTeamImage: CircularRedImageView!
-    @IBOutlet weak var redTeamLabel: UILabel!
-    @IBOutlet weak var blueTeamImage: CircularBlueImageView!
-    @IBOutlet weak var blueTeamLabel: UILabel!
-    @IBOutlet weak var cancelButton: RoundedButton!
-    @IBOutlet weak var endButton: RoundedButton!
-    @IBOutlet weak var waitingScreen: UIView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var cancelGameButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,24 +47,21 @@ class OneVsOneProgressViewController: UIViewController {
             buttons.forEach{$0.isHidden = true}
             waitingScreen.isHidden = true
             fetchForGameCreated()
-            
         }
-        
+        // Do any additional setup after loading the view.
     }
-
 
     override func viewWillDisappear(_ animated: Bool) {
         listener.remove()
     }
- 
     @objc func fetchInvitationApproval() {
         guard let invitation = invitation else {return}
-        listener = DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).whereField(InvitationCollectionKeys.approvalKey, isEqualTo: true).whereField(InvitationCollectionKeys.invitationIdKey, isEqualTo: invitation.invitationId).addSnapshotListener({[weak self] (snapshot, error) in
+        listener = DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).whereField(InvitationCollectionKeys.approvalKey, isEqualTo: true).whereField(InvitationCollectionKeys.gameIdKey, isEqualTo: invitation.gameId).addSnapshotListener({[weak self] (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else if let snapshot = snapshot {
                 self?.invitations = snapshot.documents.map {Invitation.init(dict: $0.data())}
-                if (self?.invitations.count)! > 0 {
+                if (self?.invitations.count)! > 2{
                     self?.waitingScreen.isHidden = true
                     self?.endButton.isEnabled = true
                     self?.cancelButton.isEnabled = true
@@ -70,6 +74,7 @@ class OneVsOneProgressViewController: UIViewController {
             }
         })
     }
+    
     func fetchForGameCreated() {
         guard let invitation = invitation else {
             print("No Invitation")
@@ -91,44 +96,14 @@ class OneVsOneProgressViewController: UIViewController {
             }
         }
     }
-    @IBAction func cancelGamePressed(_ sender: UIButton) {
-        guard let invitation = invitation else {return}
-        waitingScreen.isHidden = true
-        DBService.deleteInvitation(invitation: invitation) { (error) in
-            if let error = error {
-                print(error)
-            }
-        }
-        dismiss(animated: true)
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
     }
-    
-    
-    @IBAction func cancelPressed(_ sender: UIButton) {
-        confirmAlert(title: "Game Cancel", message: "Are you sure?") { (action) in
-            guard let invitation = self.invitation else {return}
-            DBService.deleteInvitation(invitation: invitation) { (error) in
-                if let error = error {
-                    print(error)
-                }
-            }
-            let tab = TabBarViewController.setTabBarVC()
-            self.present(tab, animated: true)
-        }
-    }
-    @IBAction func endPressed(_ sender: UIButton) {
-        let endGameVc = EndGameViewController.init(nibName: "EndGameViewController", bundle: nil)
-        guard let invitation = invitation else {
-            print("No Invite")
-            return
-        }
-        DBService.updateGameToFinish(gameId: invitation.gameId)
-        endGameVc.modalPresentationStyle = .overCurrentContext
-        
-//        endGameVc.game = game
-        endGameVc.invitation = invitation
-        endGameVc.isHost = true
-        present(endGameVc, animated: true)
-    }
-    
+    */
 
 }

@@ -93,7 +93,7 @@ extension LeaderboardViewController: UICollectionViewDataSource,UICollectionView
                 cell.cellImage.image = UIImage(named: "queensIcon")
             case "Brooklyn":
                 cell.backgroundColor = #colorLiteral(red: 0.4235294118, green: 0.7450980392, blue: 0.2705882353, alpha: 1)
-                cell.cellImage.image = UIImage(named: "queensIcon")
+                cell.cellImage.image = UIImage(named: "Brooklyn")
             case "Manhattan":
                 cell.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.2078431373, blue: 0.1803921569, alpha: 1)
                 cell.cellImage.image = UIImage(named: "Manhattan")

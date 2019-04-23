@@ -7,6 +7,9 @@
 //
 
 import UIKit
+protocol CreateGameViewControllerDelegate: AnyObject {
+    func generateQRCodeOfUser(qrString: String?, qrImage: UIImageView?)
+}
 class CreateGameViewController: UIViewController {
 
     @IBOutlet weak var fiveVsFiveView: UIView!
@@ -30,7 +33,9 @@ class CreateGameViewController: UIViewController {
     
     @IBOutlet weak var qrCodeView: UIView!
     @IBOutlet weak var animatedBottomRight: UIView!
-    
+    var userStr: String?
+    var userQrImage: UIImageView?
+    weak var delegate: CreateGameViewControllerDelegate?
     var gameName: GameName!
     var animatedViews = [UIView]()
     override func viewDidLoad() {
@@ -150,6 +155,8 @@ class CreateGameViewController: UIViewController {
     @objc func twoVstwoPressed() {
         let twoVsTwoVc = TwoVsTwoViewController.init(nibName: "TwoVsTwoViewController", bundle: nil)
         twoVsTwoVc.modalPresentationStyle = .fullScreen
+        twoVsTwoVc.gameName = gameName
+        twoVsTwoVc.gameTypeSelected = .twoVsTwo
         present(twoVsTwoVc, animated: true)
     }
     @objc func fiveVsFivePressed() {
@@ -159,6 +166,8 @@ class CreateGameViewController: UIViewController {
     }
     @objc func qrCodePressed() {
         let qrCodeVC = QrCodeViewController.init(nibName: "QrCodeViewController", bundle: nil)
+        // code for generate QRCode
+        delegate?.generateQRCodeOfUser(qrString: userStr!, qrImage: userQrImage!)
         present(qrCodeVC, animated: true)
        
     }
