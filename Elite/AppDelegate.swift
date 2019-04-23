@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         GMSServices.provideAPIKey(PrivateInfoFile.GoogleMapsApiKey)
         FirebaseApp.configure()
-
         window = UIWindow(frame: UIScreen.main.bounds)
         if let _ = AppDelegate.authservice.getCurrentUser() {
             let tab = TabBarViewController.setTabBarVC()

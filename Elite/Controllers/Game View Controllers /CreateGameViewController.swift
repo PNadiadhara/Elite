@@ -155,6 +155,8 @@ class CreateGameViewController: UIViewController {
     @objc func twoVstwoPressed() {
         let twoVsTwoVc = TwoVsTwoViewController.init(nibName: "TwoVsTwoViewController", bundle: nil)
         twoVsTwoVc.modalPresentationStyle = .fullScreen
+        twoVsTwoVc.gameName = gameName
+        twoVsTwoVc.gameTypeSelected = .twoVsTwo
         present(twoVsTwoVc, animated: true)
     }
     @objc func fiveVsFivePressed() {
