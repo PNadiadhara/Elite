@@ -113,7 +113,12 @@ class TwoVsTwoViewController: UIViewController {
                                 print(error.localizedDescription)
                             }
                             if let invitation = invitation{
-                                
+                                let twoVsTwoProgressViewController = TwoVsTwoProgressViewController.init(nibName: "TwoVsTwoProgressViewController", bundle: nil)
+                                twoVsTwoProgressViewController .modalPresentationStyle = .fullScreen
+                                twoVsTwoProgressViewController.invitation = invitation
+                                twoVsTwoProgressViewController.isHost = true
+                                twoVsTwoProgressViewController.game = game
+                                self.present(twoVsTwoProgressViewController , animated: true)
                                 
                             }
                         })

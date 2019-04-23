@@ -17,6 +17,8 @@
                 <outlet property="bluePlayerOneLabel" destination="Soy-6j-esa" id="m4E-3n-5nk"/>
                 <outlet property="bluePlayerTwoImage" destination="Eec-S2-oeS" id="4zS-B6-dw2"/>
                 <outlet property="bluePlayerTwoLabel" destination="rEL-vv-PZJ" id="QBi-u7-nIP"/>
+                <outlet property="cancelButton" destination="yen-lv-ZRI" id="KmC-BZ-mnk"/>
+                <outlet property="endButton" destination="eaj-rm-NIS" id="80i-VZ-WUV"/>
                 <outlet property="parkSelectedLabel" destination="jlR-no-cBo" id="h8o-gt-A9T"/>
                 <outlet property="redPlayerOneImage" destination="XDo-uQ-Ur5" id="Dsl-Bg-DhB"/>
                 <outlet property="redPlayerOneLabel" destination="qbp-Gj-7zG" id="0m8-r0-PNM"/>
@@ -24,6 +26,7 @@
                 <outlet property="redPlayerTwoLabel" destination="P8F-Ni-P7p" id="CHR-dL-CgZ"/>
                 <outlet property="sportSelectedLabel" destination="6Kx-XJ-8YP" id="Eve-Me-1Rd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="waitingScreen" destination="GGx-5o-LvF" id="2bS-Rb-eMX"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

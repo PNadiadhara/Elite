@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
 
 class TwoVsTwoProgressViewController: UIViewController {
     @IBOutlet weak var redPlayerOneImage: CircularRedImageView!
@@ -23,13 +25,77 @@ class TwoVsTwoProgressViewController: UIViewController {
     
     @IBOutlet weak var parkSelectedLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var waitingScreen: UIView!
+    @IBOutlet weak var cancelButton: RoundedButton!
+    @IBOutlet weak var endButton: RoundedButton!
+    
+    
+    
+    var buttons = [UIButton]()
+    var invitation: Invitation?
+    var invitations = [Invitation]()
+    var isHost = Bool()
+    var game: GameModel?
+    private var listener: ListenerRegistration!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        buttons = [cancelButton, endButton]
+        if isHost {
+            fetchInvitationApproval()
+        } else {
+            buttons.forEach{$0.isHidden = true}
+            waitingScreen.isHidden = true
+            fetchForGameCreated()
+        }
         // Do any additional setup after loading the view.
     }
 
-
+    override func viewWillDisappear(_ animated: Bool) {
+        listener.remove()
+    }
+    @objc func fetchInvitationApproval() {
+        guard let invitation = invitation else {return}
+        listener = DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).whereField(InvitationCollectionKeys.approvalKey, isEqualTo: true).whereField(InvitationCollectionKeys.gameIdKey, isEqualTo: invitation.gameId).addSnapshotListener({[weak self] (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let snapshot = snapshot {
+                self?.invitations = snapshot.documents.map {Invitation.init(dict: $0.data())}
+                if (self?.invitations.count)! > 2{
+                    self?.waitingScreen.isHidden = true
+                    self?.endButton.isEnabled = true
+                    self?.cancelButton.isEnabled = true
+                    DBService.deleteInvitation(invitation: (self?.invitation!)!, completion: { (error) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        }
+                    })
+                }
+            }
+        })
+    }
+    
+    func fetchForGameCreated() {
+        guard let invitation = invitation else {
+            print("No Invitation")
+            return
+        }
+        listener = DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).whereField(GameCollectionKeys.isOverKey, isEqualTo: true).whereField(GameCollectionKeys.GameIDKey, isEqualTo: invitation.gameId).addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            if let snapshot = snapshot {
+                let games = snapshot.documents.map {GameModel.init(dict: $0.data())}
+                if games.count > 0 {
+                    let endGameVc = EndGameViewController.init(nibName: "EndGameViewController", bundle: nil)
+                    endGameVc.modalPresentationStyle = .overCurrentContext
+                    endGameVc.invitation = invitation
+                    endGameVc.isHost = false
+                    self.present(endGameVc, animated: true)
+                }
+            }
+        }
+    }
     /*
     // MARK: - Navigation
 

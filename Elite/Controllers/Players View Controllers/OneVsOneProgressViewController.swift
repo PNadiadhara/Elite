@@ -39,7 +39,6 @@ class OneVsOneProgressViewController: UIViewController {
         } else {
             buttons.forEach{$0.isHidden = true}
             waitingScreen.isHidden = true
-            headerView.isHidden = true
             fetchForGameCreated()
             
         }
