@@ -20,8 +20,10 @@ protocol MapViewControllerDelegate: AnyObject {
 
 class MapViewController: UIViewController {
     // MARK: - Outlets and Properties
+    @IBOutlet weak var searchThisAreaView: UIView!
     @IBOutlet weak var googleMapsMapView: GMSMapView!
-//    private let delegate: MapViewControllerDelegate?
+    @IBOutlet weak var searchThisAreaBttn: UIButton!
+    //    private let delegate: MapViewControllerDelegate?
     private var googleMapsMVEditingState = GoogleMapsMVState.noMarkersShown {
         didSet{
             clearMarkers()
@@ -55,9 +57,14 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         getUsersLocations()
         googleMapsMapView.delegate = self
+       
         
     }
-    
+    private func stepupSearchView(){
+        searchThisAreaView.layer.cornerRadius = 5
+        googleMapsMapView.addSubview(searchThisAreaView)
+        
+        }
     private func getUsersLocations(){
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled(){
@@ -177,6 +184,8 @@ class MapViewController: UIViewController {
         }
     }
     
+    @IBAction func searchThisArea(_ sender: UIButton) {
+    }
     @IBAction func showHandBallMarkers(_ sender: UIButton) {
         if case .showBasketBallMarkers = googleMapsMVEditingState {
             googleMapsMVEditingState = .showHandBallMarkers
