@@ -56,16 +56,16 @@ class TwoVsTwoProgressViewController: UIViewController {
     }
     @objc func fetchInvitationApproval() {
         guard let invitation = invitation else {return}
-        listener = DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).whereField(InvitationCollectionKeys.approvalKey, isEqualTo: true).whereField(InvitationCollectionKeys.gameIdKey, isEqualTo: invitation.gameId).addSnapshotListener({[weak self] (snapshot, error) in
+        listener = DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).whereField(InvitationCollectionKeys.approvalKey, isEqualTo: true).whereField(InvitationCollectionKeys.gameIdKey, isEqualTo: invitation.gameId).addSnapshotListener({ (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else if let snapshot = snapshot {
-                self?.invitations = snapshot.documents.map {Invitation.init(dict: $0.data())}
-                if (self?.invitations.count)! > 2{
-                    self?.waitingScreen.isHidden = true
-                    self?.endButton.isEnabled = true
-                    self?.cancelButton.isEnabled = true
-                    DBService.deleteInvitation(invitation: (self?.invitation!)!, completion: { (error) in
+                self.invitations = snapshot.documents.map {Invitation.init(dict: $0.data())}
+                if self.invitations.count > 2{
+                    self.waitingScreen.isHidden = true
+                    self.endButton.isEnabled = true
+                    self.cancelButton.isEnabled = true
+                    DBService.deleteInvitation(invitation: self.invitation!, completion: { (error) in
                         if let error = error {
                             print(error.localizedDescription)
                         }
