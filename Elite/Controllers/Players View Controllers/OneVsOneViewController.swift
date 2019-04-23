@@ -34,7 +34,6 @@ class OneVsOneViewController: UIViewController {
     var gamerSelected: GamerModel?
     var invitation: Invitation?
     var invitations = [Invitation]()
-    var user: User!
     var gameName: GameName!
     var gameTypeSelected: GameType!
     //TO DO: Create a park
@@ -134,6 +133,7 @@ class OneVsOneViewController: UIViewController {
         searchPlayerVc.modalPresentationStyle = .fullScreen
         searchPlayerVc.searchDelegate = self
         searchPlayerVc.teamRole = .redOne
+        searchPlayerVc.gameType = .oneVsOne
         present(searchPlayerVc, animated: true)
         
     }

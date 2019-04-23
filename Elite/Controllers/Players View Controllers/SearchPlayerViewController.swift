@@ -14,8 +14,10 @@ class SearchPlayerViewController: UIViewController {
     @IBOutlet weak var friendsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    weak var searchDelegate: SearchForPlayerDelegate!
+    weak var searchDelegate: SearchForPlayerDelegate?
+    weak var twoVsTwoSearchDelegate: twoVsTwoSearchDelegate?
     var teamRole: TeamRoles!
+    var gameType: GameType!
     var gamers = [GamerModel](){
         didSet {
             DispatchQueue.main.async {
@@ -86,7 +88,8 @@ extension SearchPlayerViewController: UITableViewDelegate, UITableViewDataSource
                 self.showAlert(title: "Error", message: error.localizedDescription)
             } 
         }
-        searchDelegate.gamerSelected(gamer: gamer)
+        
+        searchDelegate?.gamerSelected(gamer: gamer)
         dismiss(animated: true)
     }
 }
