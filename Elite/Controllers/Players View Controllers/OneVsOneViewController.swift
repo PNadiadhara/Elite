@@ -62,7 +62,7 @@ class OneVsOneViewController: UIViewController {
             return
         }
         //To do: CREATE INSTANSE OF GAME
-        let currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: TabBarViewController.currentUser.uid, userName: TabBarViewController.currentUser.displayName ?? "N/A", teamRole: TeamRoles.blueOne.rawValue)
+        let currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: TabBarViewController.currentUser.uid, userName: TabBarViewController.currentUser.displayName ?? "N/A", teamRole: TeamRoles.redOne.rawValue)
         DBService.postCurrentPlayer(currentPlayer: currentPlayer) { (error) in
             if let error = error {
                 self.showAlert(title: "Error", message: error.localizedDescription)
@@ -133,7 +133,7 @@ class OneVsOneViewController: UIViewController {
         let searchPlayerVc = SearchPlayerViewController.init(nibName: "SearchPlayerViewController", bundle: nil)
         searchPlayerVc.modalPresentationStyle = .fullScreen
         searchPlayerVc.searchDelegate = self
-        searchPlayerVc.teamRole = .redOne
+        searchPlayerVc.teamRole = .blueOne
         present(searchPlayerVc, animated: true)
         
     }
