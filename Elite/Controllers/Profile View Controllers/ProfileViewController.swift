@@ -10,14 +10,7 @@ import UIKit
 import Firebase
 import CoreLocation
 
-enum Views {
-    case gamePost
-    case achievements
-    case friendList
-}
-
 class ProfileViewController: UIViewController {
-
     
     @IBOutlet weak var profileImage: CircularButton!
     @IBOutlet weak var medalImage: CircularImageView!
@@ -27,9 +20,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var requestMatch: UIButton!
     @IBOutlet weak var addFriend: UIButton!
     @IBOutlet weak var settings: UIButton!
-    @IBOutlet weak var gamePostView: RoundedView!
-    @IBOutlet weak var achievementsView: RoundedView!
-    @IBOutlet weak var friendListView: RoundedView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var pageControl: UIPageControl!
     
     private var authservice = AppDelegate.authservice
     
@@ -38,80 +30,40 @@ class ProfileViewController: UIViewController {
     let gamePostViewContent = GamePostView()
     let achievementsViewContent = AchievementsView()
     let friendListViewContent = FriendListView()
-    var typeOfViews: Views = .gamePost
     private var gameCreator = [GamerModel]()
     var views = [UIView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        commonInit()
-        configureTableViews()
         views = [gamePostViewContent,achievementsViewContent, friendListViewContent]
-        setupViews(views: views)
+        scrollView.delegate = self
+        pageControl.numberOfPages = views.count
+        pageControl.currentPage = 0
+        pageControl.bringSubviewToFront(pageControl)
+        setupSlideScrollView(views: views)
+        gamePostViewContent.gamePostTableView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
+        achievementsViewContent.achievementsTableView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
+        friendListViewContent.friendListTableView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         fetchCurrentUser()
     }
-    func setupViews(views: [UIView]){
-        for userProfileView in views {
-        view.addSubview(userProfileView)
-        userProfileView.translatesAutoresizingMaskIntoConstraints = false
-        userProfileView.topAnchor.constraint(equalTo: achievementsView.bottomAnchor, constant: 20).isActive = true
-        userProfileView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        userProfileView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        userProfileView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        userProfileView.isHidden = true
+    
+    private func setupSlideScrollView(views:[UIView]) {
+        scrollView.frame = CGRect (x: 0, y: 0, width: view.frame.width, height: view.frame.height / 2)
+        scrollView.contentSize = CGSize (width: view.frame.width * CGFloat(views.count), height: view.frame.height / 2)
+        scrollView.isPagingEnabled = true
+        for i in 0...views.count - 1 {
+            views[i].frame = CGRect (x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: view.frame.height / 2)
+            scrollView.addSubview(views[i])
         }
-        views.first?.isHidden = false
     }
     
-    private func configureTableViews() {
-        gamePostViewContent.gamePostTableView.delegate = self
-        gamePostViewContent.gamePostTableView.dataSource = self
-        achievementsViewContent.achievementsTableView.delegate = self
-        achievementsViewContent.achievementsTableView.dataSource = self
-        friendListViewContent.friendListTableView.delegate = self
-        friendListViewContent.friendListTableView.dataSource = self
-        
-        
-    }
-    
-    private func commonInit() {
-                let gamePostTap = UITapGestureRecognizer(target: self, action: #selector(gamePostHandleTap))
-                gamePostView.addGestureRecognizer(gamePostTap)
-        
-                let achievementTap = UITapGestureRecognizer(target: self, action: #selector(achievementsHandleTap))
-                achievementsView.addGestureRecognizer(achievementTap)
-        
-                let friendListTap = UITapGestureRecognizer(target: self, action: #selector(friendListHandleTap))
-                friendListView.addGestureRecognizer(friendListTap)
-        
-    }
-    
-    @objc func gamePostHandleTap(_ sender: UITapGestureRecognizer) {
-        typeOfViews = .gamePost
-        views[0].isHidden = false
-        views[1].isHidden = true
-        views[2].isHidden = true
-        
-        print(typeOfViews)
-    }
-    
-    @objc func achievementsHandleTap(_ sender: UITapGestureRecognizer) {
-            typeOfViews = .achievements
-            print(typeOfViews)
-            views[0].isHidden = true
-            views[1].isHidden = false
-            views[2].isHidden = true
-    }
-    
-    @objc func friendListHandleTap(_ sender: UITapGestureRecognizer) {
-            typeOfViews = .friendList
-            views[0].isHidden = true
-            views[1].isHidden = true
-            views[2].isHidden = false
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let pageIndex = round(scrollView.contentOffset.x / view.frame.width)
+        pageControl.currentPage =  Int(pageIndex)
     }
     
     @IBAction func requestMatchPressed(_ sender: UIButton) {
@@ -147,7 +99,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         if tableView == gamePostViewContent.gamePostTableView{
             guard let cell = gamePostViewContent.gamePostTableView.dequeueReusableCell(withIdentifier: "UserFeedCell", for: indexPath) as? UserFeedCell else {
                 return UITableViewCell()
-                fatalError("UserFeedCell not found")
             }
             
             let profileFeedCell = gameCreator[indexPath.row]

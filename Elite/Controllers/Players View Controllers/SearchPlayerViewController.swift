@@ -40,6 +40,8 @@ class SearchPlayerViewController: UIViewController {
     }
     @IBAction func scanCodePressed(_ sender: UIButton) {
         let scannerController = ScannerViewController()
+        scannerController.delegate = searchDelegate
+        scannerController.teamRole = teamRole
         self.present(scannerController, animated: true, completion: nil)
     }
 

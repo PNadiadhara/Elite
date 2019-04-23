@@ -12,13 +12,17 @@ class ScannerViewController: UIViewController {
 
     private let previewViewLayer = AVPreviewLayer()
     private let captureSession = CaptureSession()
-    
+    var user: String?
+    var delegate: SearchForPlayerDelegate?
+    var scannedOtherGamer: GamerModel?
+    var teamRole: TeamRoles!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         setupViews()
         captureSession.configurePreview(view: previewViewLayer.previewLayer)
         configureMetadata()
+        setupBttnView()
     }
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         let orientation = UIDevice.current.orientation
@@ -32,6 +36,20 @@ class ScannerViewController: UIViewController {
     private func setupViews(){
         setupImageView()
         setupQRFrame()
+    }
+    private func setupBttnView(){
+        
+        let button = UIButton(frame: CGRect(x: 0, y: 20, width: 100, height: 25))
+        button.backgroundColor = .clear
+        button.layer.borderWidth = 3
+        button.layer.borderColor = UIColor.blue.cgColor
+        button.setTitle("Cancel Scan", for: .normal)
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        
+        self.view.addSubview(button)
+    }
+    @objc private func buttonAction(){
+        self.dismiss(animated: true, completion: nil)
     }
     private func setupImageView(){
         view.addSubview(previewViewLayer)
@@ -98,8 +116,33 @@ extension ScannerViewController: AVCaptureMetadataOutputObjectsDelegate{
                 if metadataObj.stringValue != nil {
                     // handle what happens to the qr code string
                     AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate)) // code snippet later
-                    print("\(String(describing: metadataObj.stringValue))")
+                    guard let qrStr = metadataObj.stringValue else {
+                        showAlert(title: "Error scanning QR code", message: "try again")
+                        return
+                    }
                     
+
+                    DBService.fetchGamer(gamerID: qrStr) { (error, gamer) in
+                        if let error = error {
+                            self.showAlert(title: "Error fetching player", message: error.localizedDescription)
+                        }
+                        if let gamer = gamer {
+                            let currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: qrStr, userName: gamer.username, teamRole: self.teamRole.rawValue)
+                            DBService.postCurrentPlayer(currentPlayer: currentPlayer) { (error) in
+                                if let error = error {
+                                    self.showAlert(title: "Error", message: error.localizedDescription)
+                                }
+                            }
+                           self.delegate?.gamerSelected(gamer: gamer)
+                            if let presentingViewController = self.presentingViewController.self?.presentingViewController{
+                                presentingViewController.dismiss(animated: true)
+                                
+                            }
+                            
+                        }
+                    }
+                    
+                   // dismiss(animated: true)
                 }
             }
             
@@ -107,5 +150,13 @@ extension ScannerViewController: AVCaptureMetadataOutputObjectsDelegate{
             //            }
         }
     }
+    
+}
+extension ScannerViewController: SearchForPlayerDelegate{
+    
+    func gamerSelected(gamer: GamerModel) {
+        self.scannedOtherGamer = gamer
+    }
+    
     
 }
