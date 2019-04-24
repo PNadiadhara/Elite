@@ -17,12 +17,10 @@ class TabBarViewController: UITabBarController {
     let create = CreateGameViewController()
     let board = LeaderboardViewController()
     let profile = ProfileViewController.init(nibName: "ProfileViewController", bundle: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
         InvitationListener.fetchForInvitationRequest(vc: self)
-        
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -42,7 +40,6 @@ class TabBarViewController: UITabBarController {
         
         map.title = "Map"
         map.tabBarItem = UITabBarItem.init(title: "Map", image: UIImage(named: "map_marker"), tag: 0)
-        feed.title = "Feed"
         feed.tabBarItem = UITabBarItem.init(title: "Feed", image: UIImage(named: "list"), tag: 3)
         create.title = "Create Game"
         create.tabBarItem = UITabBarItem.init(title: "Create Game", image: UIImage(named: "create_new"), tag: 2)

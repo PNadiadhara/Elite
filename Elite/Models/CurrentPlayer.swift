@@ -14,6 +14,7 @@ struct CurrentPlayersCollectionKeys {
     static let gamerIdKey = "gamerId"
     static let userNameKey = "userName"
     static let teamRoleKey = "teamRole"
+
 }
 
 struct CurrentPlayer {

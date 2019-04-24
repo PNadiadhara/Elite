@@ -41,7 +41,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XDo-uQ-Ur5" customClass="CircularRedImageView" customModule="Elite" customModuleProvider="target">
-                    <rect key="frame" x="74" y="263" width="100" height="100"/>
+                    <rect key="frame" x="74" y="278" width="100" height="100"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="AKQ-sF-bcd"/>
                         <constraint firstAttribute="height" constant="100" id="mHq-gE-wTc"/>
@@ -66,7 +66,7 @@
                     </constraints>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g8f-vr-x5p" customClass="CircularRedImageView" customModule="Elite" customModuleProvider="target">
-                    <rect key="frame" x="240" y="263" width="100" height="100"/>
+                    <rect key="frame" x="240" y="278" width="100" height="100"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="CoK-qF-PpG"/>
                         <constraint firstAttribute="height" constant="100" id="WLv-Ia-LM5"/>
@@ -99,13 +99,13 @@
                     </state>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbp-Gj-7zG">
-                    <rect key="frame" x="99.5" y="219.5" width="49" height="23.5"/>
+                    <rect key="frame" x="99.5" y="234.5" width="49" height="23.5"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8F-Ni-P7p">
-                    <rect key="frame" x="265.5" y="219.5" width="49" height="23.5"/>
+                    <rect key="frame" x="265.5" y="234.5" width="49" height="23.5"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -165,6 +165,9 @@
                             <state key="normal" title="Cancel">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <connections>
+                                <action selector="cancelWaiting:" destination="-1" eventType="touchUpInside" id="YUN-si-7CL"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.14154749010000001" green="0.14956755790000001" blue="0.16078951080000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -190,13 +193,13 @@
                 <constraint firstItem="XDo-uQ-Ur5" firstAttribute="top" secondItem="qbp-Gj-7zG" secondAttribute="bottom" constant="20" id="8bK-uW-6AR"/>
                 <constraint firstItem="Mwf-ct-DIN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="90s-ox-kfD"/>
                 <constraint firstItem="yen-lv-ZRI" firstAttribute="top" secondItem="Soy-6j-esa" secondAttribute="bottom" constant="50" id="AXf-TX-Vcz"/>
-                <constraint firstItem="k8L-mg-8jP" firstAttribute="top" secondItem="g8f-vr-x5p" secondAttribute="bottom" constant="60" id="Chh-Mm-0VD"/>
+                <constraint firstItem="k8L-mg-8jP" firstAttribute="top" secondItem="g8f-vr-x5p" secondAttribute="bottom" constant="45" id="Chh-Mm-0VD"/>
                 <constraint firstItem="yDR-sU-dQG" firstAttribute="centerX" secondItem="k8L-mg-8jP" secondAttribute="centerX" multiplier="0.6" id="Ga4-OR-h0G"/>
                 <constraint firstItem="GGx-5o-LvF" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Gyh-cS-49b"/>
                 <constraint firstItem="P8F-Ni-P7p" firstAttribute="centerX" secondItem="g8f-vr-x5p" secondAttribute="centerX" id="KAT-Og-oB9"/>
                 <constraint firstItem="yDR-sU-dQG" firstAttribute="top" secondItem="k8L-mg-8jP" secondAttribute="bottom" constant="60" id="KXb-ek-BoN"/>
                 <constraint firstItem="eaj-rm-NIS" firstAttribute="top" secondItem="rEL-vv-PZJ" secondAttribute="bottom" constant="50" id="MSe-k6-d89"/>
-                <constraint firstItem="k8L-mg-8jP" firstAttribute="top" secondItem="XDo-uQ-Ur5" secondAttribute="bottom" constant="60" id="MsA-fV-Ll4"/>
+                <constraint firstItem="k8L-mg-8jP" firstAttribute="top" secondItem="XDo-uQ-Ur5" secondAttribute="bottom" constant="45" id="MsA-fV-Ll4"/>
                 <constraint firstItem="k8L-mg-8jP" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="OAm-I4-Ced"/>
                 <constraint firstItem="Mwf-ct-DIN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UJq-cU-Hig"/>
                 <constraint firstItem="eaj-rm-NIS" firstAttribute="centerX" secondItem="rEL-vv-PZJ" secondAttribute="centerX" id="bIC-Yf-MO3"/>

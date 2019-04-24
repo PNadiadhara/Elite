@@ -39,16 +39,29 @@ class InvitationAlertViewController: UIViewController {
         alertView.layer.shadowPath = UIBezierPath(rect: alertView.bounds).cgPath
     }
     @IBAction func acceptPressed(_ sender: UIButton) {
-        let oneVsoneProgressVc = OneVsOneProgressViewController.init(nibName: "OneVsOneProgressViewController", bundle: nil)
-        oneVsoneProgressVc.modalPresentationStyle = .fullScreen
-        oneVsoneProgressVc.invitation = invitation
-        oneVsoneProgressVc.isHost = false
         DBService.updateInvitationApprovalToTrue(invitation: invitation!, completion: { (error) in
             if let error = error {
                 self.showAlert(title: "Error", message: error.localizedDescription)
             }
         })
-        present(oneVsoneProgressVc, animated: true)
+        if invitation.gameType == GameType.oneVsOne.rawValue {
+            let oneVsoneProgressVc = OneVsOneProgressViewController.init(nibName: "OneVsOneProgressViewController", bundle: nil)
+            oneVsoneProgressVc.modalPresentationStyle = .fullScreen
+            oneVsoneProgressVc.invitation = invitation
+            oneVsoneProgressVc.isHost = false
+            present(oneVsoneProgressVc, animated: true)
+        }
+        
+        if invitation.gameType == GameType.twoVsTwo.rawValue {
+            let twoVsTwoProgressVc = TwoVsTwoProgressViewController.init(nibName: "TwoVsTwoProgressViewController", bundle: nil)
+            twoVsTwoProgressVc.modalPresentationStyle = .fullScreen
+            twoVsTwoProgressVc.invitation = invitation
+            twoVsTwoProgressVc.isHost = false
+            present(twoVsTwoProgressVc, animated: true)
+        }
+
+
+        
     }
     
     @IBAction func declinePressed(_ sender: UIButton) {
