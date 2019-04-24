@@ -19,10 +19,10 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var bioTextView: UITextView!
     @IBOutlet weak var addFriend: UIButton!
     @IBOutlet weak var settings: UIButton!
-    @IBOutlet weak var editProfileButton: UIButton!
-    @IBOutlet weak var signOutButton: UIButton!
-    @IBOutlet weak var deleteAccount: UIButton!
-    @IBOutlet weak var settingsView: UIView!
+    @IBOutlet weak var settingsView: RoundedView!
+    @IBOutlet weak var editProfileButton: RoundedButton!
+    @IBOutlet weak var signOutButton: RoundedButton!
+    @IBOutlet weak var deleteAccountButton: RoundedButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
@@ -77,17 +77,18 @@ class ProfileViewController: UIViewController {
         settingsView.isHidden = true
     }
     
-    @IBAction func editProfileButtonPressed(_ sender: UIButton) {
+    @IBAction func editProfileButtonPressed(_ sender: RoundedButton) {
     }
     
-    @IBAction func signOutButtonPressed(_ sender: UIButton) {
+    
+    @IBAction func signOutButtonPressed(_ sender: RoundedButton) {
         func willSignOut(profileViewController: ProfileViewController) {
             authservice.signOutAccount()
             showLoginView()
         }
     }
     
-    @IBAction func deleteAccountButtonPressed(_ sender: UIButton) {
+    @IBAction func deleteAccountButtonPressed(_ sender: RoundedButton) {
         if let user = AppDelegate.authservice.getCurrentUser(){
             user.delete { (error) in
                 if error != nil {
