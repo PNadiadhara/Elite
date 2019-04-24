@@ -130,7 +130,7 @@ class MapViewController: UIViewController {
             case .basketball:
                 marker.icon = GMSMarker.markerImage(with: .orange)
             case .handball:
-                marker.icon = GMSMarker.markerImage(with: .blue)
+                marker.icon = GMSMarker.markerImage(with: .blueberry)
             }
             googleMarkers.append(marker)
         }
