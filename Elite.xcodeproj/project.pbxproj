@@ -50,6 +50,7 @@
 		2EC6D56F225E9B5D00336362 /* FeedTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EC6D56D225E9B5D00336362 /* FeedTableViewController.xib */; };
 		2EC6D572225E9BCB00336362 /* UserFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6D570225E9BCB00336362 /* UserFeedTableViewController.swift */; };
 		2EC6D573225E9BCB00336362 /* UserFeedTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EC6D571225E9BCB00336362 /* UserFeedTableViewController.xib */; };
+		2ECA1BCF2270C336006348B3 /* FacebookLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECA1BCE2270C336006348B3 /* FacebookLoginViewController.swift */; };
 		2ECFC94D2264DDB900BD6A53 /* ParkEloInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECFC94C2264DDB900BD6A53 /* ParkEloInfoModel.swift */; };
 		2ECFC94F2264E20A00BD6A53 /* DBService+ParkEloInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECFC94E2264E20A00BD6A53 /* DBService+ParkEloInfo.swift */; };
 		2EF4809222565216008212DC /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF4809122565216008212DC /* GameModel.swift */; };
@@ -175,6 +176,7 @@
 		2EC6D56D225E9B5D00336362 /* FeedTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedTableViewController.xib; sourceTree = "<group>"; };
 		2EC6D570225E9BCB00336362 /* UserFeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFeedTableViewController.swift; sourceTree = "<group>"; };
 		2EC6D571225E9BCB00336362 /* UserFeedTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserFeedTableViewController.xib; sourceTree = "<group>"; };
+		2ECA1BCE2270C336006348B3 /* FacebookLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLoginViewController.swift; sourceTree = "<group>"; };
 		2ECFC94C2264DDB900BD6A53 /* ParkEloInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkEloInfoModel.swift; sourceTree = "<group>"; };
 		2ECFC94E2264E20A00BD6A53 /* DBService+ParkEloInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBService+ParkEloInfo.swift"; sourceTree = "<group>"; };
 		2EF4809122565216008212DC /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				2E381EAF22613A1E0075C1CD /* ProfileViewController.xib */,
 				2E9FE65E22557BC6004CA00B /* EditProfileViewController.swift */,
 				2EF4809B22565A73008212DC /* SnapchatLoginViewController.swift */,
+				2ECA1BCE2270C336006348B3 /* FacebookLoginViewController.swift */,
 			);
 			path = "Profile View Controllers";
 			sourceTree = "<group>";
@@ -734,7 +737,10 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Elite/Pods-Elite-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -754,7 +760,10 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -803,6 +812,7 @@
 				48D5C822225D325F00AFDE8F /* GeolocationClient.swift in Sources */,
 				2E9FE67822558191004CA00B /* DBService.swift in Sources */,
 				2E9FE656225579E5004CA00B /* CreateAccountViewController.swift in Sources */,
+				2ECA1BCF2270C336006348B3 /* FacebookLoginViewController.swift in Sources */,
 				48D5C824225D328A00AFDE8F /* JsonParkDataClient.swift in Sources */,
 				48DB1A642260F28300C7CEAC /* AllInfoForBasketBallCourts.json in Sources */,
 				2EC6D572225E9BCB00336362 /* UserFeedTableViewController.swift in Sources */,
@@ -1008,7 +1018,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DQ5CF8LT37;
+				DEVELOPMENT_TEAM = TZT7J4D9W8;
 				INFOPLIST_FILE = Elite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1027,7 +1037,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DQ5CF8LT37;
+				DEVELOPMENT_TEAM = TZT7J4D9W8;
 				INFOPLIST_FILE = Elite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
