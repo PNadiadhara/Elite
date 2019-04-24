@@ -81,4 +81,17 @@ extension DBService {
             }
         }
     }
+    
+    static public func deleteAccount(user: GamerModel, completion: @escaping (Error?) -> Void) {
+        DBService.firestoreDB
+            .collection(GamerCollectionKeys.CollectionKey)
+            .document(user.gamerID)
+            .delete { (error) in
+                if let error = error {
+                    completion(error)
+                } else {
+                    completion(nil)
+                }
+        }
+    }
 }
