@@ -57,7 +57,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         getUsersLocations()
         googleMapsMapView.delegate = self
-       
+       loadAllParkData()
         
     }
     private func stepupSearchView(){
@@ -114,12 +114,12 @@ class MapViewController: UIViewController {
             
         }
     }
-    
+    // testing push
     private func addMarkers(courts: [Court], type: SportType) {
         var googleMarkers = [GMSMarker]()
         
         let filteredCourts = courts.filter { $0.type == type}
-        print("Number of courts: ",filteredCourts.count)
+        print("Number of filtered courts: ",filteredCourts.count)
         for court in filteredCourts {
             let locations = CLLocationCoordinate2D(latitude: Double(court.lat ?? "0.0")!, longitude:  Double(court.lng ?? "0.0")!)
             let marker = GMSMarker()
@@ -142,19 +142,20 @@ class MapViewController: UIViewController {
     }
     
     private func getBasketBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [BasketBall]){
-        loadAllParkData()
+        //loadAllParkData() // - if you uncomment this code out this will show all the markers that are in NY. This is not what we want to do
         var courtArr = [BasketBall]()
         for court in courtLocations {
             let lat = court.lat ?? "0.0"
             let lng = court.lng ?? "0.0"
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
-            if distanceInMeters <= 3609 {
+            if distanceInMeters <= 2609 {
                 courtArr.append(court)
+                print("Number of basketball courts near me are:", courtArr.count )
             }
         }
         basketballResults = courtArr
-        print(basketballResults.count)
+        print("Number of basketball courts near me are: ", basketballResults.count) // checks to see
     }
     
     private func getHandBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [HandBall]){
