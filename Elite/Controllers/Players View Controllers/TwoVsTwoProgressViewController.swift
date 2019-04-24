@@ -87,11 +87,28 @@ class TwoVsTwoProgressViewController: UIViewController {
         }
     }
     func setupLabels(){
-        redPlayerOneLabel.text = redPlayerOne
-        redPlayerTwoLabel.text = redPlayerTwo.username
-        bluePlayerOneLabel.text = bluePlayerOne.username
-        bluePlayerTwoLabel.text = bluePlayerTwo.username
-        
+        guard let invitation = invitation else {
+            print("No Invitation")
+            return
+        }
+        DBService.fetchCurrentGame(gameId: invitation.gameId) { (error, currentGame) in
+            if let error = error {
+                self.showAlert(title: "Error Fetching game", message: error.localizedDescription)
+            }
+            if let currentGame = currentGame {
+                guard let redOne = currentGame.redOne,
+                    let redTwo = currentGame.redTwo,
+                    let blueOne = currentGame.blueOne,
+                    let blueTwo = currentGame.blueTwo else {
+                        print("Error fetching current game")
+                        return
+                }
+                self.redPlayerOneLabel.text = redOne
+                self.redPlayerTwoLabel.text = redTwo
+                self.bluePlayerTwoLabel.text = blueTwo
+                self.bluePlayerOneLabel.text = blueOne
+            }
+        }
     }
     
     @objc func fetchInvitationApproval() {

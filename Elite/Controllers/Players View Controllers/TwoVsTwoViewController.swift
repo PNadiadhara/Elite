@@ -114,6 +114,10 @@ class TwoVsTwoViewController: UIViewController {
                                 print(error.localizedDescription)
                             }
                             if let invitation = invitation{
+                                let currentGame = CurrentGame(currentGameId: "", gameId: gameId, redOne: TabBarViewController.currentUser.displayName!, redTwo: redPlayerTwo.username, redThree: nil, redFour: nil, redFive: nil, blueOne: bluePlayerOne.username, blueTwo: bluePlayerTwo.username, blueThree: nil, blueFour: nil, blueFive: nil)
+                                DBService.postCurrentGame(currentGame: currentGame, completion: { (error) in
+                                    self.showAlert(title: "Error posting current game", message: error?.localizedDescription)
+                                })
                                 let twoVsTwoProgressViewController = TwoVsTwoProgressViewController.init(nibName: "TwoVsTwoProgressViewController", bundle: nil)
                                 twoVsTwoProgressViewController .modalPresentationStyle = .fullScreen
                                 twoVsTwoProgressViewController.invitation = invitation
