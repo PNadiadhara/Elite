@@ -74,6 +74,20 @@ class ProfileViewController: UIViewController {
     
     @IBAction func settingsPressed(_ sender: UIButton) {
     }
+    @IBAction func changeProfileImg(_ sender: CircularButton) {
+        let actionSheetController = UIAlertController.init(title: "Change Profile Picture", message: "How would yout like to change your profile picture?", preferredStyle: .actionSheet)
+        let changeWithBitmoji = UIAlertAction.init(title: "Bitmoji", style: .default) { (success) in
+            
+        }
+        let changeWithDefaultChoice = UIAlertAction.init(title: "Default Pictures", style: .default) { (success) in
+            
+        }
+        let cancel = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
+        actionSheetController.addAction(changeWithBitmoji)
+        actionSheetController.addAction(changeWithDefaultChoice)
+        actionSheetController.addAction(cancel)
+        present(actionSheetController, animated: true, completion: nil)
+    }
     
     private func fetchCurrentUser() {
         guard let currentUser = authservice.getCurrentUser() else {
