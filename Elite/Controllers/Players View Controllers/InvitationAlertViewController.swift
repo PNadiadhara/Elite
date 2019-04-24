@@ -39,6 +39,11 @@ class InvitationAlertViewController: UIViewController {
         alertView.layer.shadowPath = UIBezierPath(rect: alertView.bounds).cgPath
     }
     @IBAction func acceptPressed(_ sender: UIButton) {
+        DBService.updateInvitationApprovalToTrue(invitation: invitation!, completion: { (error) in
+            if let error = error {
+                self.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        })
         if invitation.gameType == GameType.oneVsOne.rawValue {
             let oneVsoneProgressVc = OneVsOneProgressViewController.init(nibName: "OneVsOneProgressViewController", bundle: nil)
             oneVsoneProgressVc.modalPresentationStyle = .fullScreen
@@ -55,11 +60,7 @@ class InvitationAlertViewController: UIViewController {
             present(twoVsTwoProgressVc, animated: true)
         }
 
-        DBService.updateInvitationApprovalToTrue(invitation: invitation!, completion: { (error) in
-            if let error = error {
-                self.showAlert(title: "Error", message: error.localizedDescription)
-            }
-        })
+
         
     }
     

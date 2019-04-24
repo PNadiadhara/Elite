@@ -70,6 +70,7 @@ class OneVsOneProgressViewController: UIViewController {
             }
         })
     }
+
     func fetchForGameCreated() {
         guard let invitation = invitation else {
             print("No Invitation")
