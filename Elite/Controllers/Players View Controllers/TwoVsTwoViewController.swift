@@ -87,21 +87,22 @@ class TwoVsTwoViewController: UIViewController {
             showAlert(title: "Please selecte every player", message: nil)
             return
         }
-        let currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: TabBarViewController.currentUser.uid, userName: TabBarViewController.currentUser.displayName ?? "N/A", teamRole: TeamRoles.blueOne.rawValue)
-        DBService.postCurrentPlayer(currentPlayer: currentPlayer) { (error) in
-            if let error = error {
-                self.showAlert(title: "Error", message: error.localizedDescription)
-            }
-        }
+
         let game = GameModel(gameName: gameName.rawValue, gameType: gameTypeSelected.rawValue, numberOfPlayers: 2, teamA: [TabBarViewController.currentUser.uid, redPlayerTwo.gamerID], teamB: [bluePlayerOne.gamerID, bluePlayerTwo.gamerID], parkId: "1", gameDescription: nil, gameEndTime: nil, winners: nil, losers: nil, isTie: nil, formattedAdresss: "2", parkName: "3", lat: 0.0, lon: 0.0, gameID: "", witness: nil, duration: nil, isOver: false)
         DBService.postGame(gamePost: game) { (error , gameId) in
             if let error = error {
                 self.showAlert(title: "Error posting game", message: error.localizedDescription)
             }
             if let gameId = gameId {
-                let redPlayerTwoInvitation = Invitation(invitationId: "", gameId: gameId, sender: TabBarViewController.currentUser.uid, reciever: redPlayerTwo.gamerID, message: "Invitation", approval: false, lat: 0, lon: 0, game: self.gameTypeSelected.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "", gameType: self.gameTypeSelected.rawValue)
-                let bluePlayerOneInvitation = Invitation(invitationId: "", gameId: gameId, sender: TabBarViewController.currentUser.uid, reciever: bluePlayerOne.gamerID, message: "Invitation", approval: false, lat: 0, lon: 0, game: self.gameTypeSelected.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "", gameType: self.gameTypeSelected.rawValue)
-                let bluePlayerTwoInviation = Invitation(invitationId: "", gameId: gameId, sender: TabBarViewController.currentUser.uid, reciever: bluePlayerTwo.gamerID, message: "Invitation", approval: false, lat: 0, lon: 0, game: self.gameTypeSelected.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "", gameType: self.gameTypeSelected.rawValue)
+                let currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: TabBarViewController.currentUser.uid, userName: TabBarViewController.currentUser.displayName ?? "N/A", teamRole: TeamRoles.blueOne.rawValue)
+                DBService.postCurrentPlayer(currentPlayer: currentPlayer) { (error) in
+                    if let error = error {
+                        self.showAlert(title: "Error", message: error.localizedDescription)
+                    }
+                }
+                let redPlayerTwoInvitation = Invitation(invitationId: "", gameId: gameId, sender: TabBarViewController.currentUser.uid, reciever: redPlayerTwo.gamerID, message: "Invitation", approval: false, lat: 0, lon: 0, game: self.gameName.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "", gameType: self.gameTypeSelected.rawValue)
+                let bluePlayerOneInvitation = Invitation(invitationId: "", gameId: gameId, sender: TabBarViewController.currentUser.uid, reciever: bluePlayerOne.gamerID, message: "Invitation", approval: false, lat: 0, lon: 0, game: self.gameName.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "", gameType: self.gameTypeSelected.rawValue)
+                let bluePlayerTwoInviation = Invitation(invitationId: "", gameId: gameId, sender: TabBarViewController.currentUser.uid, reciever: bluePlayerTwo.gamerID, message: "Invitation", approval: false, lat: 0, lon: 0, game: self.gameName.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "", gameType: self.gameTypeSelected.rawValue)
                 let invitations = [redPlayerTwoInvitation, bluePlayerOneInvitation, bluePlayerTwoInviation]
                 DBService.postMultipleInvitations(invitations: invitations, completion: { (error, invitationId) in
                     if let error = error {
@@ -118,6 +119,10 @@ class TwoVsTwoViewController: UIViewController {
                                 twoVsTwoProgressViewController.invitation = invitation
                                 twoVsTwoProgressViewController.isHost = true
                                 twoVsTwoProgressViewController.game = game
+                                twoVsTwoProgressViewController.redPlayerOne = TabBarViewController.currentUser.displayName!
+                                twoVsTwoProgressViewController.redPlayerTwo = self.redTwoPlayer
+                                twoVsTwoProgressViewController.bluePlayerOne = self.blueOnePlayer
+                                twoVsTwoProgressViewController.bluePlayerTwo = self.blueTwoPlayer
                                 self.present(twoVsTwoProgressViewController , animated: true)
                                 
                             }
