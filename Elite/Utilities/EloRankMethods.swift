@@ -41,6 +41,28 @@ final class EloRanking {
         return newRating
     }
     
+    public func avarageTeamAEloRatingofEnd (teamA : [Double]) -> Double {
+        var teamAAerageElo = 0.0
+        for member in teamA {
+            teamAAerageElo += member
+        }
+        teamAAerageElo = teamAAerageElo / Double(teamA.count)
+        
+        return teamAAerageElo
+    
+    }
+    
+    public func avarageTeamBEloRatingofEnd (teamA : [Double]) -> Double {
+        var teamBAerageElo = 0.0
+        for member in teamA {
+            teamBAerageElo += member
+        }
+        teamBAerageElo = teamBAerageElo / Double(teamA.count)
+        
+        return teamBAerageElo
+        
+    }
+    
     public func calculateExpectedGameScore( playerARatingPreMatch: Double, playerBRatingPreMatch: Double ) -> Double {
         // e is euler's constant
         // https://en.wikipedia.org/wiki/E_(mathematical_constant)
