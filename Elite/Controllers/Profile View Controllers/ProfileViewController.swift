@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import CoreLocation
+import SCSDKBitmojiKit
 
 class ProfileViewController: UIViewController {
     
@@ -77,6 +78,7 @@ class ProfileViewController: UIViewController {
     @IBAction func changeProfileImg(_ sender: CircularButton) {
         let actionSheetController = UIAlertController.init(title: "Change Profile Picture", message: "How would yout like to change your profile picture?", preferredStyle: .actionSheet)
         let changeWithBitmoji = UIAlertAction.init(title: "Bitmoji", style: .default) { (success) in
+            
             
         }
         let changeWithDefaultChoice = UIAlertAction.init(title: "Default Pictures", style: .default) { (success) in
