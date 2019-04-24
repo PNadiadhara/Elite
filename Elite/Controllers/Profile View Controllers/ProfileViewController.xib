@@ -104,9 +104,9 @@ Create, explore, expand, conquer</string>
                     <rect key="frame" x="201" y="118" width="174" height="106"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y71-5E-5iY" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
-                            <rect key="frame" x="8" y="0.0" width="104" height="30"/>
+                            <rect key="frame" x="8" y="8" width="158" height="30"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
-                            <state key="normal" title="         Edit Profile" image="edit-pencil-icon">
+                            <state key="normal" title="        Edit Profile" image="edit-pencil-icon">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
@@ -114,7 +114,7 @@ Create, explore, expand, conquer</string>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txs-XU-CL5" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
-                            <rect key="frame" x="8" y="35" width="95" height="30"/>
+                            <rect key="frame" x="0.0" y="38" width="158" height="30"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                             <state key="normal" title="         Sign Out" image="shutdown">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -124,9 +124,9 @@ Create, explore, expand, conquer</string>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vau-q9-CW2" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
-                            <rect key="frame" x="8" y="70" width="129" height="30"/>
+                            <rect key="frame" x="15" y="68" width="144" height="30"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="10"/>
-                            <state key="normal" title="         Delete Account" image="exit">
+                            <state key="normal" title="  Delete Account" image="exit">
                                 <color key="titleColor" red="1" green="0.29296431610000001" blue="0.0092988573929999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </state>
                             <connections>
@@ -136,14 +136,17 @@ Create, explore, expand, conquer</string>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="y71-5E-5iY" firstAttribute="top" secondItem="ZH2-Kr-QUR" secondAttribute="top" id="0nF-c5-f5G"/>
+                        <constraint firstAttribute="trailing" secondItem="txs-XU-CL5" secondAttribute="trailing" constant="16" id="8Ex-Zd-5eF"/>
+                        <constraint firstItem="txs-XU-CL5" firstAttribute="top" secondItem="y71-5E-5iY" secondAttribute="bottom" id="92g-Ro-DRg"/>
                         <constraint firstAttribute="height" constant="106" id="Odu-HU-m4l"/>
-                        <constraint firstItem="txs-XU-CL5" firstAttribute="leading" secondItem="ZH2-Kr-QUR" secondAttribute="leading" constant="8" id="Va1-c9-S70"/>
-                        <constraint firstItem="Vau-q9-CW2" firstAttribute="leading" secondItem="ZH2-Kr-QUR" secondAttribute="leading" constant="8" id="Y9w-F2-R7K"/>
+                        <constraint firstAttribute="trailing" secondItem="Vau-q9-CW2" secondAttribute="trailing" constant="15" id="Z2G-uw-d2A"/>
+                        <constraint firstAttribute="trailing" secondItem="y71-5E-5iY" secondAttribute="trailing" constant="8" id="Zjh-Ug-5Mt"/>
                         <constraint firstAttribute="width" constant="174" id="fPH-hv-RLA"/>
-                        <constraint firstItem="y71-5E-5iY" firstAttribute="leading" secondItem="ZH2-Kr-QUR" secondAttribute="leading" constant="8" id="hbn-xC-B79"/>
-                        <constraint firstItem="txs-XU-CL5" firstAttribute="top" secondItem="y71-5E-5iY" secondAttribute="bottom" constant="5" id="ql2-8M-FIQ"/>
-                        <constraint firstItem="Vau-q9-CW2" firstAttribute="top" secondItem="txs-XU-CL5" secondAttribute="bottom" constant="5" id="rHJ-qF-4bI"/>
+                        <constraint firstItem="txs-XU-CL5" firstAttribute="leading" secondItem="ZH2-Kr-QUR" secondAttribute="leading" id="iA6-NS-k8p"/>
+                        <constraint firstItem="y71-5E-5iY" firstAttribute="top" secondItem="ZH2-Kr-QUR" secondAttribute="top" constant="8" id="iZe-1R-idU"/>
+                        <constraint firstItem="Vau-q9-CW2" firstAttribute="leading" secondItem="ZH2-Kr-QUR" secondAttribute="leading" constant="15" id="nC5-fN-8sU"/>
+                        <constraint firstItem="Vau-q9-CW2" firstAttribute="top" secondItem="txs-XU-CL5" secondAttribute="bottom" id="vwJ-71-5KV"/>
+                        <constraint firstItem="y71-5E-5iY" firstAttribute="leading" secondItem="ZH2-Kr-QUR" secondAttribute="leading" constant="8" id="wIw-Jb-qvs"/>
                     </constraints>
                 </view>
             </subviews>

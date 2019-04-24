@@ -47,7 +47,9 @@ class ProfileViewController: UIViewController {
         gamePostViewContent.gamePostTableView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
         achievementsViewContent.achievementsTableView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
         friendListViewContent.friendListTableView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
-        signOutButton.addTarget(self, action: #selector(self.settingsPressed(_:)), for: .touchUpInside)
+        settings.addTarget(self, action: #selector(settingsPressed), for: .touchUpInside)
+        settings.tag = 1
+        self.settings.addSubview(settingsView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +77,10 @@ class ProfileViewController: UIViewController {
     
     @IBAction func settingsPressed(_ sender: UIButton) {
         settingsView.isHidden = true
+        let btnsendtag: UIButton = sender
+        if btnsendtag.tag == 1 {
+            dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction func editProfileButtonPressed(_ sender: RoundedButton) {
