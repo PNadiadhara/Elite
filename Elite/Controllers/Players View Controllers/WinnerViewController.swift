@@ -89,7 +89,17 @@ class WinnerViewController: UIViewController {
                             }
                         case GameType.twoVsTwo.rawValue:
                             if totalcount == 4 {
-                                print("Have all the votes")
+                                if let winningTeam = winningTeam {
+                                    switch winningTeam {
+                                    case .blue:
+                                        self.animateView(winnerTeam: Teams.blue.rawValue)
+                                    case .red:
+                                        self.animateView(winnerTeam: Teams.red.rawValue)
+                                    }
+                                    if noWinner != nil {
+                                        self.winnerTitle.text = "No winner"
+                                    }
+                                }
                             }
                         case GameType.fiveVsFive.rawValue:
                             if totalcount == 10 {

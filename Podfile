@@ -16,5 +16,6 @@ pod 'Kingfisher'
 source 'https://github.com/CocoaPods/Specs.git'
 pod 'GoogleMaps'
 pod 'GooglePlaces'
+pod 'FBSDKLoginKit'
 
 end

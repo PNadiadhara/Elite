@@ -19,8 +19,8 @@ enum SelectedInvitationOption {
 class OneVsOneViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var searchPlayerView: versusLeft!
-    @IBOutlet weak var bluePlayerImage: CircularBlueImageView!
-    @IBOutlet weak var redPlayerImage: CircularRedImageView!
+    @IBOutlet weak var bluePlayerImage: UIImageView!
+    @IBOutlet weak var redPlayerImage: UIImageView!
     @IBOutlet weak var redPlayerLabel: UILabel!
     @IBOutlet weak var bluePlayerLabel: UILabel!
     @IBOutlet weak var sportLabel: UILabel!
@@ -46,11 +46,13 @@ class OneVsOneViewController: UIViewController {
         setupTap()
         sportLabel.text = gameName.rawValue.capitalized
         redPlayerLabel.text = TabBarViewController.currentUser.displayName
+        redPlayerImage.image = UIImage(named: TabBarViewController.currentUser.displayName! + "FightingLeft")
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(_ animated: Bool) {
         if let gamer = gamerSelected {
             bluePlayerLabel.text = gamer.username
+            bluePlayerImage.image = UIImage(named: gamer.username + "FightingRight")
         }
     }
     
@@ -89,6 +91,7 @@ class OneVsOneViewController: UIViewController {
                                 oneVsoneProgressVc.modalPresentationStyle = .fullScreen
                                 oneVsoneProgressVc.invitation = invitation
                                 oneVsoneProgressVc.isHost = true
+                                oneVsoneProgressVc.gameType = .oneVsOne
                                 oneVsoneProgressVc.game = game
                                 self.present(oneVsoneProgressVc, animated: true)
                             }
