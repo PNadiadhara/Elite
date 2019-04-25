@@ -114,12 +114,26 @@ class MapViewController: UIViewController {
             
         }
     }
-    
+    private func noCourtsNearMeAlert(type: SportType){
+        let alertController = UIAlertController.init(title: "No \(type) courts near you", message: "Would you like to increase your range?", preferredStyle: .alert)
+        let yesAction = UIAlertAction.init(title: "Yes", style: .default) { (success) in
+            
+        }
+        let noAction = UIAlertAction.init(title: "No", style: .cancel, handler: nil)
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+        present(alertController, animated: true, completion: nil)
+    }
     private func addMarkers(courts: [Court], type: SportType) {
         var googleMarkers = [GMSMarker]()
         
         let filteredCourts = courts.filter { $0.type == type}
         print("Number of courts: ",filteredCourts.count)
+        if filteredCourts.count == 0 {
+//            showAlert(title: "No \(type) courts near you", message: "Would you like to increase your range?")
+            noCourtsNearMeAlert(type: type)
+            
+        }
         for court in filteredCourts {
             let locations = CLLocationCoordinate2D(latitude: Double(court.lat ?? "0.0")!, longitude:  Double(court.lng ?? "0.0")!)
             let marker = GMSMarker()
@@ -149,7 +163,7 @@ class MapViewController: UIViewController {
             let lng = court.lng ?? "0.0"
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
-            if distanceInMeters <= 3609 {
+            if distanceInMeters <= MilesInMetersInfo.oneMile {
                 courtArr.append(court)
             }
         }
@@ -165,7 +179,7 @@ class MapViewController: UIViewController {
             let lng = court.lng ?? "0.0"
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
-            if distanceInMeters <= 1609 {
+            if distanceInMeters <= MilesInMetersInfo.oneMile {
                 courtArr.append(court)
             }
         }
