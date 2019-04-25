@@ -17,13 +17,19 @@ enum GoogleMapsMVState {
 protocol MapViewControllerDelegate: AnyObject {
     func makerDidTapOnMap()
 }
-
+enum ViewVisibiltyState {
+    case visibile
+    case invisible
+}
 class MapViewController: UIViewController {
     // MARK: - Outlets and Properties
-    @IBOutlet weak var searchThisAreaView: UIView!
+    
+    
+    @IBOutlet weak var eliteView: UIView!
+    
     @IBOutlet weak var googleMapsMapView: GMSMapView!
-    @IBOutlet weak var searchThisAreaBttn: UIButton!
     //    private let delegate: MapViewControllerDelegate?
+    private var stateOfPopUpView = ViewVisibiltyState.invisible
     private var googleMapsMVEditingState = GoogleMapsMVState.noMarkersShown {
         didSet{
             clearMarkers()
@@ -57,12 +63,15 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         getUsersLocations()
         googleMapsMapView.delegate = self
-       
+        googleMapsMapView.bringSubviewToFront(eliteView)
+       // eliteView.isHidden = true
+        loadAllParkData()
+        
         
     }
     private func stepupSearchView(){
-        searchThisAreaView.layer.cornerRadius = 5
-        googleMapsMapView.addSubview(searchThisAreaView)
+//        searchThisAreaView.layer.cornerRadius = 5
+//        googleMapsMapView.addSubview(searchThisAreaView)
         
         }
     private func getUsersLocations(){
@@ -187,6 +196,23 @@ class MapViewController: UIViewController {
     }
     
     //MARK: - Actions
+    @IBAction func test(_ sender: UIButton) {
+        if stateOfPopUpView == .invisible {
+            stateOfPopUpView = .visibile
+            eliteView.animShow()
+////            eliteView.isHidden = false
+//            UIView.animate(withDuration: 0.3, delay: 1, options: [], animations: {
+//                self.eliteView.transform = CGAffineTransform.init(scaleX: 0, y: -500)
+//            }, completion: nil)
+        } else {
+            stateOfPopUpView = .invisible
+            eliteView.animHide()
+////            eliteView.isHidden = true
+//            UIView.animate(withDuration: 0.3, delay: 0, options: [], animations: {
+//                self.eliteView.frame = CGRect(x: self.eliteView.safeAreaLayoutGuide.layoutFrame.origin.x, y: self.eliteView.safeAreaLayoutGuide.layoutFrame.origin.y + self.eliteView.safeAreaLayoutGuide.layoutFrame.height, width: self.eliteView.frame.width, height: 0)
+//            }, completion: nil)
+        }
+    }
     @IBAction func showBasketBallMarkers(_ sender: UIButton) {
         if case .showHandBallMarkers = googleMapsMVEditingState {
             googleMapsMVEditingState = .showBasketBallMarkers
@@ -198,8 +224,6 @@ class MapViewController: UIViewController {
         }
     }
     
-    @IBAction func searchThisArea(_ sender: UIButton) {
-    }
     @IBAction func showHandBallMarkers(_ sender: UIButton) {
         if case .showBasketBallMarkers = googleMapsMVEditingState {
             googleMapsMVEditingState = .showHandBallMarkers
@@ -236,3 +260,5 @@ extension MapViewController: CLLocationManagerDelegate{
         self.locationManager.stopUpdatingLocation()
     }
 }
+
+
