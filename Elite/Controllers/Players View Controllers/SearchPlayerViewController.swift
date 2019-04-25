@@ -18,6 +18,7 @@ class SearchPlayerViewController: UIViewController {
     weak var twoVsTwoSearchDelegate: twoVsTwoSearchDelegate?
     var teamRole: TeamRoles!
     var gameType: GameType!
+//    static var players
     var gamers = [GamerModel](){
         didSet {
             DispatchQueue.main.async {
@@ -60,8 +61,7 @@ class SearchPlayerViewController: UIViewController {
                 self.showAlert(title: "Error fetching bloggers", message: error.localizedDescription)
             }
             if let gamers = gamers{
-                self.gamers = gamers.filter{$0.username.lowercased().contains(gamer.lowercased())
-                }
+                self.gamers = gamers.filter{$0.username.lowercased().contains(gamer.lowercased() ) && !$0.username.lowercased().contains(TabBarViewController.currentGamer.username.lowercased())}
             }
         }
     }
