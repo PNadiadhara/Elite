@@ -24,6 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         if let _ = AppDelegate.authservice.getCurrentUser() {
             let tab = TabBarViewController.setTabBarVC()
+//            DBService.firestoreDB.collection(GamerCollectionKeys.CollectionKey)
+//                .document(user.uid).updateData([GamerCollectionKeys.FriendsKey : ["eyTpLxtdEVfUDv1mllN3zdt5aOk2", "wzEh3XkxcXhBtEAHoy8CYceaYGd2", "tHq8ovJaG3YpUprzW3hlymJRp0K2"]]) { (error) in
+//                    if let error = error {
+//                        print(error)
+//                    } else {
+//                        print("Friends updated")
+//                    }
+//            }
             window = UIWindow(frame: UIScreen.main.bounds)
             window?.rootViewController = tab
             
