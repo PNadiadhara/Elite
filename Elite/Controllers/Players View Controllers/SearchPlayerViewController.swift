@@ -25,10 +25,15 @@ class SearchPlayerViewController: UIViewController {
             }
         }
     }
+
     
     override func viewDidLoad() {
 
         super.viewDidLoad()
+        if let friends = TabBarViewController.currentGamer.friends {
+          showFriends(friends: friends)
+        }
+        
         friendsTableView.delegate = self
         friendsTableView.dataSource = self
         friendsTableView.separatorStyle = .none
@@ -56,6 +61,19 @@ class SearchPlayerViewController: UIViewController {
             }
             if let gamers = gamers{
                 self.gamers = gamers.filter{$0.username.lowercased().contains(gamer.lowercased())
+                }
+            }
+        }
+    }
+    
+    func showFriends(friends: [String]) {
+        DBService.fetchAllGamers { (error, allGamers) in
+            if let error = error {
+                self.showAlert(title: "Error fetching friends", message: error.localizedDescription)
+            }
+            if let allGamers = allGamers {
+                for friend in friends {
+                    self.gamers += allGamers.filter {$0.gamerID == friend}
                 }
             }
         }

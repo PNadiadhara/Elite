@@ -23,6 +23,7 @@ class GamerModel {
     let myParks : [String]? //this array holds the ids for parks that user has played att
     let numberOfHandballGamesPlayed : Double
     let numberOfBasketballGamesPlayed : Double
+    let friends: [String]?
     
     public var fullname: String {
         return ((firstname ) + " " + (lastname )).trimmingCharacters(in: .whitespacesAndNewlines)
@@ -42,7 +43,8 @@ class GamerModel {
     gamerID: String,
     myParks : [String]?,
     numberOfHandballGamesPlayed : Double,
-    numberOfBasketballGamesPlayed : Double) {
+    numberOfBasketballGamesPlayed : Double,
+    friends: [String]?) {
         self.profileImage = profileImage
         self.firstname = firstname
         self.lastname = lastname
@@ -57,6 +59,7 @@ class GamerModel {
         self.myParks = myParks
         self.numberOfHandballGamesPlayed = numberOfHandballGamesPlayed
         self.numberOfBasketballGamesPlayed = numberOfBasketballGamesPlayed
+        self.friends = friends
     }
     
     init(dict: [String: Any]) {
@@ -74,6 +77,7 @@ class GamerModel {
         self.myParks = dict[GamerCollectionKeys.MyParks] as? [String] ?? [""]
         self.numberOfHandballGamesPlayed = dict[GamerCollectionKeys.NumberOfHandballGamesPlayed] as? Double ?? 0.0
         self.numberOfBasketballGamesPlayed = dict[GamerCollectionKeys.NumberOfBasketballGamesPlayer] as? Double ?? 0.0
+        self.friends = dict[GamerCollectionKeys.FriendsKey] as? [String] ?? [""]
     }
 }
 
