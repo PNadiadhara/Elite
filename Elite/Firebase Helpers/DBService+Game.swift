@@ -95,13 +95,14 @@ extension DBService {
     DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).document(gameId).updateData([GameCollectionKeys.isOverKey : true])
     }
     static public func updateGameModel(gameId: String,game: GameModel, completion: @escaping (Error?) -> Void) {
-        DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).document(game.gameID).updateData([GameCollectionKeys.GameDescriptionKey : game.gameDescription ?? "", GameCollectionKeys.GameEndTimeKey : game.gameEndTime ?? "N/A", GameCollectionKeys.WinnersKey : game.winners ?? "N/A", GameCollectionKeys.LosersKey : game.losers ?? "N/A", GameCollectionKeys.IsTieKey : game.isTie ?? "N/A",GameCollectionKeys.WitnessKey : game.witness ?? "N/A", GameCollectionKeys.DurationKey : game.duration ?? "N/A", GameCollectionKeys.isOverKey : false]) { (error
+        let na = "N/A"; DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).document(game.gameID).updateData([GameCollectionKeys.GameDescriptionKey : game.gameDescription ?? "", GameCollectionKeys.GameEndTimeKey : game.gameEndTime ?? na, GameCollectionKeys.WinnersKey : game.winners ?? na, GameCollectionKeys.LosersKey : game.losers ?? na, GameCollectionKeys.IsTieKey : game.isTie ?? na,GameCollectionKeys.WitnessKey : game.witness ?? na, GameCollectionKeys.DurationKey : game.duration ?? na, GameCollectionKeys.isOverKey : false]) { (error
             ) in
             if let error = error {
                completion(error)
             }
         }
     }
+    
 //    static public func updateInvitationApprovalToTrue(invitation: Invitation,completion: @escaping (Error?) -> Void) {
 //        DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).document(invitation.invitationId).updateData([InvitationCollectionKeys.approvalKey : true ]) { (error) in
 //            if let error = error {

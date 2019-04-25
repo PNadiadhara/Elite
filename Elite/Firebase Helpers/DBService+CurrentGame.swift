@@ -15,6 +15,7 @@ extension DBService {
         let ref = firestoreDB.collection(CurrentGameCollectionKeys.CurrentGameColllectionKey).document()
         ref.setData(
             [CurrentGameCollectionKeys.CurrentGameIdKey : ref.documentID,
+                CurrentGameCollectionKeys.GameIdKey : currentGame.gameId ?? na,
                 CurrentGameCollectionKeys.redOneKey : currentGame.redOne ?? na,
                 CurrentGameCollectionKeys.redTwoKey : currentGame.redTwo ?? na,
                 CurrentGameCollectionKeys.redThreeKey: currentGame.redThree ?? na,
@@ -41,5 +42,15 @@ extension DBService {
                 completion(nil, currentGame.first)
             }
         })
+    }
+    
+    static func deleteCurrentGame(currentGameId: String, completion: @escaping(Error?) -> Void) {
+        DBService.firestoreDB.collection(CurrentGameCollectionKeys.CurrentGameColllectionKey).document(currentGameId).delete { (error) in
+            if let error = error {
+                print(error)
+            } else {
+                print("Current game deleted")
+            }
+        }
     }
 }
