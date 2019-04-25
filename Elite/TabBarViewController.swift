@@ -12,6 +12,7 @@ import FirebaseAuth
 class TabBarViewController: UITabBarController {
 
     static var currentUser: User!
+    static var currentGamer: GamerModel!
     let map = MapViewController()
     let feed = FeedTableViewController()
     let create = CreateGameViewController()
@@ -27,9 +28,20 @@ class TabBarViewController: UITabBarController {
 
          InvitationListener.fetchForInvitationRequest(vc: self)
     }
+    static func fetchCurrentGamer(gamerID: String) {
+        DBService.fetchGamer(gamerID: gamerID) { (error, gamer) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            if let gamer = gamer {
+                TabBarViewController.currentGamer = gamer
+            }
+        }
+    }
     static func setTabBarVC() -> UITabBarController{
         if let user = AppDelegate.authservice.getCurrentUser() {
             currentUser = user
+            TabBarViewController.fetchCurrentGamer(gamerID: user.uid)
         }
         let map = MapViewController()
         let feed = FeedTableViewController()
