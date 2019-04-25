@@ -22,6 +22,7 @@ class EndGameViewController: UIViewController {
     var selectedTeam: Teams?
     var game: GameModel?
     var currentPlayer: CurrentPlayer?
+    var gameType: GameType!
     var currentPlayerTeamRole = String()
     var winnerConfirmationId = String()
     var isHost = Bool()

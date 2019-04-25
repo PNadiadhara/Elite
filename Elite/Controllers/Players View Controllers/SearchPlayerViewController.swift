@@ -36,12 +36,13 @@ class SearchPlayerViewController: UIViewController {
         friendsTableView.register(UINib(nibName: "UserFeedCell", bundle: nil), forCellReuseIdentifier: "UserFeedCell")
         // Do any additional setup after loading the view.
     }
-    @IBAction func friendsPressed(_ sender: UIButton) {
-    }
+
     @IBAction func scanCodePressed(_ sender: UIButton) {
         let scannerController = ScannerViewController()
         scannerController.delegate = searchDelegate
         scannerController.teamRole = teamRole
+        scannerController.gameType = gameType
+        scannerController.twoVsTwoSearchDelegate = twoVsTwoSearchDelegate
         self.present(scannerController, animated: true, completion: nil)
     }
 

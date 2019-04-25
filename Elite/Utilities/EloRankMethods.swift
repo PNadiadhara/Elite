@@ -13,11 +13,13 @@ import Foundation
 
 // k factor will adjust based on users # of games played
 // higher k factors create more volitile shifts in elo ranking, with lower k factor resulting in less volitile shifts
-// these results for n factor of 400. (n is const set arbitrarily, used by the world chess federation)
+
 // K=40 for new players until they play 30 games
 // K=20 for players with > 30 games and never had an ELO > 2400
 // K=10 for players with > 30 games and have had an ELO > 2400
 // n value is the same as FIDE(chess elo ranking) this is always a positive value
+// these results for n factor of 400. (n is const set arbitrarily, used by the world chess federation)
+//
 
 
 // Final equation is Rn = Ro + K * (S - E)
@@ -41,27 +43,18 @@ final class EloRanking {
         return newRating
     }
     
-    public func avarageTeamAEloRatingofEnd (teamA : [Double]) -> Double {
-        var teamAAerageElo = 0.0
-        for member in teamA {
-            teamAAerageElo += member
+    public func avarageTeamEloRatingofEnd (team : [Double]) -> Double {
+        var teamAerageElo = 0.0
+        for member in team {
+            teamAerageElo += member
         }
-        teamAAerageElo = teamAAerageElo / Double(teamA.count)
+        teamAerageElo = teamAerageElo / Double(team.count)
         
-        return teamAAerageElo
+        return teamAerageElo
     
     }
     
-    public func avarageTeamBEloRatingofEnd (teamA : [Double]) -> Double {
-        var teamBAerageElo = 0.0
-        for member in teamA {
-            teamBAerageElo += member
-        }
-        teamBAerageElo = teamBAerageElo / Double(teamA.count)
-        
-        return teamBAerageElo
-        
-    }
+    
     
     public func calculateExpectedGameScore( playerARatingPreMatch: Double, playerBRatingPreMatch: Double ) -> Double {
         // e is euler's constant

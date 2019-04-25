@@ -13,13 +13,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OneVsOneViewController" customModule="Elite" customModuleProvider="target">
             <connections>
                 <outlet property="addPlayerView" destination="4CG-qW-Opt" id="5A6-1c-fQ0"/>
-                <outlet property="bluePlayerImage" destination="L62-gZ-OFz" id="PL4-P7-bDB"/>
+                <outlet property="bluePlayerImage" destination="D7x-MX-AhB" id="pbe-m8-lbx"/>
                 <outlet property="bluePlayerLabel" destination="Yad-VG-Wku" id="6R7-dx-N02"/>
                 <outlet property="bluePlayerMedal" destination="3WQ-VF-4II" id="DYZ-Ys-d2e"/>
                 <outlet property="bluePlayerRanking" destination="Dya-Tm-y8V" id="Vkk-O3-pd9"/>
                 <outlet property="cancelButton" destination="Ycv-Oy-LqF" id="awj-4W-m5f"/>
                 <outlet property="playButton" destination="Swl-b6-MxJ" id="gft-Xk-TEP"/>
-                <outlet property="redPlayerImage" destination="nff-gy-Y99" id="VHo-Yb-0Tn"/>
+                <outlet property="redPlayerImage" destination="19l-m6-e7T" id="YAF-3h-z9R"/>
                 <outlet property="redPlayerLabel" destination="ygR-Ex-BaJ" id="3Gm-gH-inW"/>
                 <outlet property="redPlayerMedalImage" destination="wWW-rQ-143" id="pSF-gJ-JbY"/>
                 <outlet property="redPlayerRanking" destination="JdD-DZ-q9O" id="iYb-KO-KXd"/>
@@ -203,6 +203,12 @@
                         <constraint firstItem="Dya-Tm-y8V" firstAttribute="centerY" secondItem="3WQ-VF-4II" secondAttribute="centerY" id="dCX-y0-oB5"/>
                     </constraints>
                 </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="19l-m6-e7T">
+                    <rect key="frame" x="18" y="219.5" width="180" height="180"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D7x-MX-AhB">
+                    <rect key="frame" x="215" y="469" width="180" height="180"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -219,15 +225,23 @@
                 <constraint firstItem="Z6P-Rg-Isn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="OPi-bg-QCZ"/>
                 <constraint firstItem="4CG-qW-Opt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Phh-2X-OAX"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="L62-gZ-OFz" secondAttribute="trailing" constant="43" id="Uwx-Tx-b6t"/>
+                <constraint firstItem="D7x-MX-AhB" firstAttribute="width" secondItem="19l-m6-e7T" secondAttribute="width" id="W1m-TC-zK1"/>
                 <constraint firstItem="PSo-JH-dYs" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="ZvS-jF-gbS"/>
                 <constraint firstItem="nff-gy-Y99" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="43" id="cby-Jw-kb4"/>
+                <constraint firstItem="D7x-MX-AhB" firstAttribute="centerX" secondItem="L62-gZ-OFz" secondAttribute="centerX" multiplier="0.98" id="dfs-AH-Q6P"/>
+                <constraint firstItem="19l-m6-e7T" firstAttribute="height" secondItem="nff-gy-Y99" secondAttribute="height" multiplier="1.5" id="e18-aY-b0d"/>
                 <constraint firstItem="L62-gZ-OFz" firstAttribute="centerY" secondItem="XPj-14-2ms" secondAttribute="centerY" id="fS3-pt-iuy"/>
+                <constraint firstItem="D7x-MX-AhB" firstAttribute="centerY" secondItem="L62-gZ-OFz" secondAttribute="centerY" multiplier="0.97" id="gH6-19-car"/>
+                <constraint firstItem="D7x-MX-AhB" firstAttribute="height" secondItem="19l-m6-e7T" secondAttribute="height" id="iAf-GY-WkZ"/>
                 <constraint firstItem="4CG-qW-Opt" firstAttribute="height" secondItem="L62-gZ-OFz" secondAttribute="height" id="iSI-Z1-hxR"/>
                 <constraint firstItem="DH7-S9-TSJ" firstAttribute="centerX" secondItem="XPj-14-2ms" secondAttribute="centerX" multiplier="0.75" id="p8O-VV-E5V"/>
                 <constraint firstItem="PSo-JH-dYs" firstAttribute="top" secondItem="du9-If-FpX" secondAttribute="bottom" constant="70" id="ph4-bO-tJB"/>
                 <constraint firstItem="DH7-S9-TSJ" firstAttribute="top" secondItem="XPj-14-2ms" secondAttribute="bottom" id="pti-Zj-0uL"/>
                 <constraint firstItem="XPj-14-2ms" firstAttribute="top" secondItem="PSo-JH-dYs" secondAttribute="bottom" constant="70" id="sIg-ab-MhV"/>
                 <constraint firstItem="XPj-14-2ms" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="43" id="uGu-Fi-BJC"/>
+                <constraint firstItem="19l-m6-e7T" firstAttribute="centerX" secondItem="nff-gy-Y99" secondAttribute="centerX" multiplier="1.05" id="uej-d5-ZFX"/>
+                <constraint firstItem="19l-m6-e7T" firstAttribute="width" secondItem="nff-gy-Y99" secondAttribute="width" multiplier="1.5" id="vtm-xa-rZ9"/>
+                <constraint firstItem="19l-m6-e7T" firstAttribute="centerY" secondItem="nff-gy-Y99" secondAttribute="centerY" multiplier="0.94" id="wRi-D7-Lp2"/>
                 <constraint firstItem="du9-If-FpX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="158" id="wn9-hv-bkh"/>
                 <constraint firstItem="4CG-qW-Opt" firstAttribute="top" secondItem="PSo-JH-dYs" secondAttribute="bottom" constant="28" id="yIX-xY-OK8"/>
                 <constraint firstItem="Z6P-Rg-Isn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="z2B-hY-amG"/>
