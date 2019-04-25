@@ -17,9 +17,12 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var fullnameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var bioTextView: UITextView!
-    @IBOutlet weak var requestMatch: UIButton!
     @IBOutlet weak var addFriend: UIButton!
     @IBOutlet weak var settings: UIButton!
+    @IBOutlet weak var settingsView: RoundedView!
+    @IBOutlet weak var editProfileButton: RoundedButton!
+    @IBOutlet weak var signOutButton: RoundedButton!
+    @IBOutlet weak var deleteAccountButton: RoundedButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
@@ -44,6 +47,9 @@ class ProfileViewController: UIViewController {
         gamePostViewContent.gamePostTableView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
         achievementsViewContent.achievementsTableView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
         friendListViewContent.friendListTableView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
+        settings.addTarget(self, action: #selector(settingsPressed), for: .touchUpInside)
+        settings.tag = 1
+        self.settings.addSubview(settingsView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,13 +72,36 @@ class ProfileViewController: UIViewController {
         pageControl.currentPage =  Int(pageIndex)
     }
     
-    @IBAction func requestMatchPressed(_ sender: UIButton) {
-    }
-    
     @IBAction func addFriendPressed(_ sender: UIButton) {
     }
     
     @IBAction func settingsPressed(_ sender: UIButton) {
+        settingsView.isHidden = true
+        let btnsendtag: UIButton = sender
+        if btnsendtag.tag == 1 {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func editProfileButtonPressed(_ sender: RoundedButton) {
+    }
+    
+    
+    @IBAction func signOutButtonPressed(_ sender: RoundedButton) {
+        func willSignOut(profileViewController: ProfileViewController) {
+            authservice.signOutAccount()
+            showLoginView()
+        }
+    }
+    
+    @IBAction func deleteAccountButtonPressed(_ sender: RoundedButton) {
+        if let user = AppDelegate.authservice.getCurrentUser(){
+            user.delete { (error) in
+                if error != nil {
+                    self.showAlert(title: "DELETE ACCOUNT", message: "Are you sure you want to delete your account?")
+                }
+            }
+        }
     }
     
     private func fetchCurrentUser() {
