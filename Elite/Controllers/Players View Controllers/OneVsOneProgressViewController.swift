@@ -17,6 +17,7 @@ class OneVsOneProgressViewController: UIViewController {
     var invitations = [Invitation]()
     var isHost = Bool()
     var game: GameModel?
+    var gameType: GameType!
     private var listener: ListenerRegistration!
     
     @IBOutlet weak var sportParkLabel: UILabel!
@@ -87,6 +88,7 @@ class OneVsOneProgressViewController: UIViewController {
                     endGameVc.modalPresentationStyle = .overCurrentContext
                     endGameVc.invitation = invitation
                     endGameVc.isHost = false
+                    endGameVc.gameType = self.gameType
                     self.present(endGameVc, animated: true)
                 }
             }
@@ -128,6 +130,7 @@ class OneVsOneProgressViewController: UIViewController {
 //        endGameVc.game = game
         endGameVc.invitation = invitation
         endGameVc.isHost = true
+        endGameVc.gameType = gameType
         present(endGameVc, animated: true)
     }
     

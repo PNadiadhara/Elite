@@ -18,8 +18,10 @@ class InvitationAlertViewController: UIViewController {
     @IBOutlet weak var alertView: UIView!
     
     var invitation: Invitation!
+    var gamer: GamerModel?
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchUser()
         setupLabel()
         setupImage()
         setupAlertView()
@@ -29,7 +31,21 @@ class InvitationAlertViewController: UIViewController {
         invitationLabel.text = "\(invitation.senderUsername) invited you to play \(invitation.game)"
     }
     func setupImage() {
-        
+        guard let gamer = gamer else {
+            print("No gamer")
+            return
+        }
+        userImage.image = UIImage(named: gamer.username + "Hi")
+    }
+    func fetchUser() {
+        DBService.fetchGamer(gamerID: invitation.reciever) { (error, gamer) in
+            if let error = error {
+                self.showAlert(title: "Error fetching gamer", message: error.localizedDescription)
+            }
+            if let gamer = gamer {
+                self.gamer = gamer
+            }
+        }
     }
     func setupAlertView() {
         alertView.layer.shadowColor = UIColor.black.cgColor

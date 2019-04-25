@@ -13,9 +13,11 @@ class ScannerViewController: UIViewController {
     private let previewViewLayer = AVPreviewLayer()
     private let captureSession = CaptureSession()
     var user: String?
-    var delegate: SearchForPlayerDelegate?
+    weak var delegate: SearchForPlayerDelegate?
+    weak var twoVsTwoSearchDelegate: twoVsTwoSearchDelegate?
     var scannedOtherGamer: GamerModel?
     var teamRole: TeamRoles!
+    var gameType: GameType!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -127,13 +129,37 @@ extension ScannerViewController: AVCaptureMetadataOutputObjectsDelegate{
                             self.showAlert(title: "Error fetching player", message: error.localizedDescription)
                         }
                         if let gamer = gamer {
-                            let currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: qrStr, userName: gamer.username, teamRole: self.teamRole.rawValue)
-                            DBService.postCurrentPlayer(currentPlayer: currentPlayer) { (error) in
-                                if let error = error {
-                                    self.showAlert(title: "Error", message: error.localizedDescription)
+                            var currentPlayer: CurrentPlayer!
+                            if self.gameType == .oneVsOne {
+                                currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: qrStr, userName: gamer.username, teamRole: self.teamRole.rawValue)
+                                self.delegate?.gamerSelected(gamer: gamer)
+                                DBService.postCurrentPlayer(currentPlayer: currentPlayer) { (error) in
+                                    if let error = error {
+                                        self.showAlert(title: "Error", message: error.localizedDescription)
+                                    }
+                                }
+
+                            }
+                            if self.gameType == .twoVsTwo{
+                                if self.teamRole == .redTwo{
+                                    currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: gamer.gamerID, userName: gamer.username, teamRole: self.teamRole.rawValue)
+                                    self.twoVsTwoSearchDelegate?.redTwoPlayer(redTwoPlayer: gamer)
+                                }
+                                if self.teamRole == .blueOne{
+                                    currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: gamer.gamerID, userName: gamer.username, teamRole: self.teamRole.rawValue)
+                                    self.twoVsTwoSearchDelegate?.blueOnePlayer(blueOnePlayer: gamer)
+                                }
+                                if self.teamRole == .blueTwo{
+                                    currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: gamer.gamerID, userName: gamer.username, teamRole: self.teamRole.rawValue)
+                                    self.twoVsTwoSearchDelegate?.blueTwoPlayer(blueTwoPlayer: gamer)
+                                }
+                                DBService.postCurrentPlayer(currentPlayer: currentPlayer) { (error) in
+                                    if let error = error {
+                                        self.showAlert(title: "Error", message: error.localizedDescription)
+                                    }
                                 }
                             }
-                           self.delegate?.gamerSelected(gamer: gamer)
+                           
                             if let presentingViewController = self.presentingViewController.self?.presentingViewController{
                                 presentingViewController.dismiss(animated: true)
                                 

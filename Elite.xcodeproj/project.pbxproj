@@ -106,6 +106,7 @@
 		D5B304602267BDCB00404241 /* InvitationListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B3045F2267BDCB00404241 /* InvitationListener.swift */; };
 		D5B4F56B2270B4C50081FCF0 /* CurrentGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B4F56A2270B4C50081FCF0 /* CurrentGame.swift */; };
 		D5B4F56D2270BD0D0081FCF0 /* DBService+CurrentGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B4F56C2270BD0D0081FCF0 /* DBService+CurrentGame.swift */; };
+		D5B4F56F2271EB8B0081FCF0 /* Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B4F56E2271EB8B0081FCF0 /* Flag.swift */; };
 		D5B57D422262698400DB73E2 /* OneVsOneProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B57D402262698400DB73E2 /* OneVsOneProgressViewController.swift */; };
 		D5B57D432262698400DB73E2 /* OneVsOneProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B57D412262698400DB73E2 /* OneVsOneProgressViewController.xib */; };
 		D5BCBBFA226F7FBD006B0015 /* TwoVsTwoProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BCBBF8226F7FBD006B0015 /* TwoVsTwoProgressViewController.swift */; };
@@ -234,6 +235,7 @@
 		D5B3045F2267BDCB00404241 /* InvitationListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationListener.swift; sourceTree = "<group>"; };
 		D5B4F56A2270B4C50081FCF0 /* CurrentGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentGame.swift; sourceTree = "<group>"; };
 		D5B4F56C2270BD0D0081FCF0 /* DBService+CurrentGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBService+CurrentGame.swift"; sourceTree = "<group>"; };
+		D5B4F56E2271EB8B0081FCF0 /* Flag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
 		D5B57D402262698400DB73E2 /* OneVsOneProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneVsOneProgressViewController.swift; sourceTree = "<group>"; };
 		D5B57D412262698400DB73E2 /* OneVsOneProgressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OneVsOneProgressViewController.xib; sourceTree = "<group>"; };
 		D5BCBBF8226F7FBD006B0015 /* TwoVsTwoProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoVsTwoProgressViewController.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				D5DF86B922694C9E00E2972A /* Teams.swift */,
 				D5DF86BB226A217300E2972A /* GameType.swift */,
 				D5DF86BD226A21B100E2972A /* GameName.swift */,
+				D5B4F56E2271EB8B0081FCF0 /* Flag.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -841,6 +844,7 @@
 				2E381EB022613A1E0075C1CD /* ProfileViewController.swift in Sources */,
 				2EC6D551225D310700336362 /* DummyFile.swift in Sources */,
 				2E9FE66222557CE6004CA00B /* Constants.swift in Sources */,
+				D5B4F56F2271EB8B0081FCF0 /* Flag.swift in Sources */,
 				D5DF86BA22694C9E00E2972A /* Teams.swift in Sources */,
 				48D5C820225D320900AFDE8F /* GeocodingClient.swift in Sources */,
 				2E171B97225CF86C00D40DDF /* MapViewController.swift in Sources */,

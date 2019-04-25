@@ -40,6 +40,7 @@ class TwoVsTwoProgressViewController: UIViewController {
     var currentPlayer: CurrentPlayer?
     var currentPlayerTeamRole = String()
     var game: GameModel?
+    var gameType: GameType!
     var redPlayerOne = String()
     var redPlayerTwo: GamerModel!
     var bluePlayerOne: GamerModel!
@@ -148,19 +149,32 @@ class TwoVsTwoProgressViewController: UIViewController {
                     endGameVc.modalPresentationStyle = .overCurrentContext
                     endGameVc.invitation = invitation
                     endGameVc.isHost = false
+                    endGameVc.gameType = self.gameType
                     self.present(endGameVc, animated: true)
                 }
             }
         }
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func cancelPressed(_ sender: UIButton) {
     }
-    */
-
+    @IBAction func endPressed(_ sender: Any) {
+        let endGameVc = EndGameViewController.init(nibName: "EndGameViewController", bundle: nil)
+        guard let invitation = invitation else {
+            print("No Invite")
+            return
+        }
+        DBService.updateGameToFinish(gameId: invitation.gameId)
+        endGameVc.modalPresentationStyle = .overCurrentContext
+        
+        //        endGameVc.game = game
+        endGameVc.invitation = invitation
+        endGameVc.isHost = true
+        endGameVc.gameType = gameType
+        present(endGameVc, animated: true)
+    }
+    
+    
+    
+    
 }

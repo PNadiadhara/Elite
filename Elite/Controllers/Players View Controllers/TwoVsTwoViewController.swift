@@ -16,13 +16,13 @@ protocol twoVsTwoSearchDelegate: AnyObject {
 class TwoVsTwoViewController: UIViewController {
 
     @IBOutlet weak var sportLabel: UILabel!
-    @IBOutlet weak var redPlayerOneImage: CircularRedImageView!
+    @IBOutlet weak var redPlayerOneImage: UIImageView!
     @IBOutlet weak var redPlayerOneLabel: UILabel!
-    @IBOutlet weak var redPlayerTwoImage: CircularRedImageView!
+    @IBOutlet weak var redPlayerTwoImage: UIImageView!
     @IBOutlet weak var redPlayerTwoLabel: UILabel!
-    @IBOutlet weak var bluePlayerOneImage: CircularBlueImageView!
+    @IBOutlet weak var bluePlayerOneImage: UIImageView!
     @IBOutlet weak var bluePlayerOneLabel: UILabel!
-    @IBOutlet weak var bluePlayerTwoImage: CircularBlueImageView!
+    @IBOutlet weak var bluePlayerTwoImage: UIImageView!
     @IBOutlet weak var bluePlayerTwoLabel: UILabel!
     @IBOutlet weak var redPlayerTwoButton: UIButton!
     @IBOutlet weak var bluePlayerOneButton: UIButton!
@@ -47,6 +47,8 @@ class TwoVsTwoViewController: UIViewController {
     }
     
     func setupUI() {
+        sportLabel.text = gameName.rawValue.capitalized
+        redPlayerOneImage.image = UIImage(named: TabBarViewController.currentUser.displayName! + "FightingLeft")
         redPlayerOneLabel.text = TabBarViewController.currentUser.displayName
         if let redTwoPlayer = redTwoPlayer{
             redPlayerTwoLabel.text = redTwoPlayer.username
@@ -127,6 +129,7 @@ class TwoVsTwoViewController: UIViewController {
                                 twoVsTwoProgressViewController.redPlayerTwo = self.redTwoPlayer
                                 twoVsTwoProgressViewController.bluePlayerOne = self.blueOnePlayer
                                 twoVsTwoProgressViewController.bluePlayerTwo = self.blueTwoPlayer
+                                twoVsTwoProgressViewController.gameType = .twoVsTwo
                                 self.present(twoVsTwoProgressViewController , animated: true)
                                 
                             }
