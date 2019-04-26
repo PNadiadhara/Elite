@@ -26,6 +26,7 @@ class MapViewController: UIViewController {
     
     
     @IBOutlet weak var eliteView: UIView!
+    @IBOutlet weak var closeViewBttn: CircularButton!
     
     @IBOutlet weak var googleMapsMapView: GMSMapView!
     //    private let delegate: MapViewControllerDelegate?
@@ -57,23 +58,24 @@ class MapViewController: UIViewController {
             googleMapsMapView.reloadInputViews()
         }
     }
+    var range: Double?
     // MARK: - Methods
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         getUsersLocations()
+       setupClosePopViewBttn()
         googleMapsMapView.delegate = self
         googleMapsMapView.bringSubviewToFront(eliteView)
-       // eliteView.isHidden = true
+        eliteView.isHidden = true
         loadAllParkData()
         
         
     }
-    private func stepupSearchView(){
-//        searchThisAreaView.layer.cornerRadius = 5
-//        googleMapsMapView.addSubview(searchThisAreaView)
-        
-        }
+    private func setupClosePopViewBttn(){
+        closeViewBttn.layer.borderColor = UIColor.red.cgColor
+        closeViewBttn.backgroundColor = .red
+    }
+   
     private func getUsersLocations(){
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled(){
@@ -126,6 +128,9 @@ class MapViewController: UIViewController {
     private func noCourtsNearMeAlert(type: SportType){
         let alertController = UIAlertController.init(title: "No \(type) courts near you", message: "Would you like to increase your range?", preferredStyle: .alert)
         let yesAction = UIAlertAction.init(title: "Yes", style: .default) { (success) in
+            let popViewVC = MapViewPopupController()
+            popViewVC.modalPresentationStyle = .overCurrentContext
+            self.present(popViewVC, animated: true, completion:  nil)
             
         }
         let noAction = UIAlertAction.init(title: "No", style: .cancel, handler: nil)
@@ -138,11 +143,6 @@ class MapViewController: UIViewController {
         
         let filteredCourts = courts.filter { $0.type == type}
         print("Number of courts: ",filteredCourts.count)
-        if filteredCourts.count == 0 {
-//            showAlert(title: "No \(type) courts near you", message: "Would you like to increase your range?")
-            noCourtsNearMeAlert(type: type)
-            
-        }
         for court in filteredCourts {
             let locations = CLLocationCoordinate2D(latitude: Double(court.lat ?? "0.0")!, longitude:  Double(court.lng ?? "0.0")!)
             let marker = GMSMarker()
@@ -153,11 +153,15 @@ class MapViewController: UIViewController {
             case .basketball:
                 marker.icon = GMSMarker.markerImage(with: .orange)
             case .handball:
-                marker.icon = GMSMarker.markerImage(with: .blueberry)
+                marker.icon = UIImage.init(named: "eliteMarker")
+                //marker.iconView = UIImage.init(named: "eliteMarker")
             }
             googleMarkers.append(marker)
         }
-        
+        if filteredCourts.count == 0 {
+            noCourtsNearMeAlert(type: type)
+            
+        }
         googleMarkers.forEach { (marker) in
             marker.map = googleMapsMapView
         }
@@ -172,6 +176,7 @@ class MapViewController: UIViewController {
             let lng = court.lng ?? "0.0"
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
+        
             if distanceInMeters <= MilesInMetersInfo.oneMile {
                 courtArr.append(court)
             }
@@ -200,17 +205,9 @@ class MapViewController: UIViewController {
         if stateOfPopUpView == .invisible {
             stateOfPopUpView = .visibile
             eliteView.animShow()
-////            eliteView.isHidden = false
-//            UIView.animate(withDuration: 0.3, delay: 1, options: [], animations: {
-//                self.eliteView.transform = CGAffineTransform.init(scaleX: 0, y: -500)
-//            }, completion: nil)
         } else {
             stateOfPopUpView = .invisible
             eliteView.animHide()
-////            eliteView.isHidden = true
-//            UIView.animate(withDuration: 0.3, delay: 0, options: [], animations: {
-//                self.eliteView.frame = CGRect(x: self.eliteView.safeAreaLayoutGuide.layoutFrame.origin.x, y: self.eliteView.safeAreaLayoutGuide.layoutFrame.origin.y + self.eliteView.safeAreaLayoutGuide.layoutFrame.height, width: self.eliteView.frame.width, height: 0)
-//            }, completion: nil)
         }
     }
     @IBAction func showBasketBallMarkers(_ sender: UIButton) {
@@ -234,20 +231,21 @@ class MapViewController: UIViewController {
         }
     }
     
+    @IBAction func closePopView(_ sender: CircularButton) {
+        eliteView.animHide()
+        
+    }
     
 }
 //MARK: - Extensions
 extension MapViewController: GMSMapViewDelegate
  {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        
-   let popVC = MapViewPopupController()
-//        marker.title = popVC.nameOfPark.text
-//        marker.snippet = popVC.parkAddress.text
-        popVC.modalPresentationStyle = .overCurrentContext
-        self.present(popVC, animated: true, completion: nil)
+        eliteView.isHidden = false
+        eliteView.animShow()
         return true
     }
+
 }
 extension MapViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

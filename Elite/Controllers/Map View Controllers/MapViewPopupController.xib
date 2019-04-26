@@ -12,8 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewPopupController" customModule="Elite" customModuleProvider="target">
             <connections>
-                <outlet property="nameOfPark" destination="5ct-UQ-qLd" id="dCv-Rc-3wL"/>
-                <outlet property="parkAddress" destination="j6D-mD-CBm" id="1p8-Ti-Vfb"/>
+                <outlet property="milesPickerView" destination="Syg-rV-10r" id="cpV-F9-EJw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,61 +23,38 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y1O-rc-Ksb">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.30958369006849318" colorSpace="custom" customColorSpace="displayP3"/>
                     <state key="normal" title="Dismiss"/>
                     <connections>
                         <action selector="bringDownView:" destination="-1" eventType="touchUpInside" id="1uE-aU-z7Y"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l3b-hm-9ee">
-                    <rect key="frame" x="0.0" y="608" width="414" height="254"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l3b-hm-9ee">
+                    <rect key="frame" x="0.0" y="229" width="414" height="448"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name Of Park" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ct-UQ-qLd">
-                            <rect key="frame" x="11" y="8" width="392" height="23"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
-                            <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6D-mD-CBm">
-                            <rect key="frame" x="11" y="39" width="392" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                            <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yW3-dP-hUI">
-                            <rect key="frame" x="9" y="119" width="160" height="40"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                            <state key="normal" title="Create A Game">
-                                <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="gotToParkFeed:" destination="-1" eventType="touchUpInside" id="vYA-RK-xN8"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sx3-BB-6xZ">
-                            <rect key="frame" x="246" y="121" width="160" height="35"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                            <state key="normal" title="Leaderboard ">
-                                <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="goToLeaderBaord:" destination="-1" eventType="touchUpInside" id="KBO-3p-VDt"/>
-                            </connections>
-                        </button>
+                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Syg-rV-10r">
+                            <rect key="frame" x="0.0" y="116" width="414" height="216"/>
+                        </pickerView>
                     </subviews>
                     <color key="backgroundColor" red="0.1701610885" green="0.17885058910000001" blue="0.1945924544" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Syg-rV-10r" secondAttribute="trailing" id="1zm-i6-u41"/>
+                        <constraint firstItem="Syg-rV-10r" firstAttribute="top" secondItem="l3b-hm-9ee" secondAttribute="top" constant="116" id="DjP-JF-s3p"/>
+                        <constraint firstAttribute="bottom" secondItem="Syg-rV-10r" secondAttribute="bottom" constant="116" id="atJ-gZ-47h"/>
+                        <constraint firstItem="Syg-rV-10r" firstAttribute="leading" secondItem="l3b-hm-9ee" secondAttribute="leading" id="b0Z-kW-5CC"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="l3b-hm-9ee" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.5" id="2Oq-HQ-5gO"/>
+                <constraint firstItem="l3b-hm-9ee" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="3aS-6c-WG5"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="y1O-rc-Ksb" secondAttribute="trailing" id="HFe-JS-ppc"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="y1O-rc-Ksb" secondAttribute="bottom" id="Lz0-ur-mhj"/>
+                <constraint firstItem="l3b-hm-9ee" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="eC1-pi-5qc"/>
                 <constraint firstItem="y1O-rc-Ksb" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="fej-N2-pL7"/>
                 <constraint firstItem="y1O-rc-Ksb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="uCj-D1-T5S"/>
+                <constraint firstItem="l3b-hm-9ee" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="yye-nO-a6A"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="47.826086956521742" y="35.491071428571423"/>
