@@ -10,37 +10,47 @@ import UIKit
 
 class MapViewPopupController: UIViewController {
     //MARK: - Outlets and Properties
-    @IBOutlet weak var nameOfPark: UILabel!
-    
-    @IBOutlet weak var parkAddress: UILabel!
     var basketballReults: BasketBall!
     var handballResults: HandBall!
+    
+    @IBOutlet weak var milesPickerView: UIPickerView!
+    private let miles = ["1 mile", "2 miles","5 miles","10 miles"]
     override func viewDidLoad() {
         super.viewDidLoad()
-//        displayHandBallInfo()
-//        displayBasketBallInfo()
+        setupPickerView()
+
     }
     
-    private func displayHandBallInfo(){
-        nameOfPark.text = handballResults.nameOfPlayground ?? "No Name"
-        parkAddress.text = handballResults.location ?? "No Address"
+    private func setupPickerView(){
+        milesPickerView.delegate = self
+        milesPickerView.dataSource = self
     }
     
-    private func displayBasketBallInfo(){
-        nameOfPark.text = basketballReults.nameOfPlayground ?? "No Name"
-       parkAddress.text = basketballReults.location ?? "No Address"
-    }
-    // if the marker on google maps is of type basketball load the markers information based on the marker information realted to basketball and vice versa for handball
     
     //MARK: - Actions
     @IBAction func bringDownView(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    @IBAction func gotToParkFeed(_ sender: UIButton) {
+   
+}
+extension MapViewPopupController: UIPickerViewDelegate, UIPickerViewDataSource{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
     
-    @IBAction func goToLeaderBaord(_ sender: UIButton) {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return miles.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return miles[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        
+        let titleForMiles = miles[row]
+        return NSAttributedString(string: titleForMiles, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
     }
     
 }

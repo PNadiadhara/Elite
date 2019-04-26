@@ -59,6 +59,7 @@
 		2EF480A02256BE38008212DC /* PlaygroundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF4809F2256BE38008212DC /* PlaygroundModel.swift */; };
 		2EF480A22256BE69008212DC /* WinsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF480A12256BE69008212DC /* WinsModel.swift */; };
 		4651EF13D0643CF9E55F05B3 /* Pods_Elite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 647649F00844096F9E907D7A /* Pods_Elite.framework */; };
+		48517BC52272445800994D2E /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48517BC42272445800994D2E /* UIView+Extensions.swift */; };
 		48980A4D225E346B0034D04F /* JsonModel.json in Resources */ = {isa = PBXBuildFile; fileRef = 48980A4C225E346B0034D04F /* JsonModel.json */; };
 		48D5C81A225D20F700AFDE8F /* GeocodingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D5C819225D20F700AFDE8F /* GeocodingData.swift */; };
 		48D5C81C225D213B00AFDE8F /* GeolocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D5C81B225D213B00AFDE8F /* GeolocationData.swift */; };
@@ -186,6 +187,7 @@
 		2EF4809B22565A73008212DC /* SnapchatLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapchatLoginViewController.swift; sourceTree = "<group>"; };
 		2EF4809F2256BE38008212DC /* PlaygroundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundModel.swift; sourceTree = "<group>"; };
 		2EF480A12256BE69008212DC /* WinsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinsModel.swift; sourceTree = "<group>"; };
+		48517BC42272445800994D2E /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		48980A4C225E346B0034D04F /* JsonModel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JsonModel.json; sourceTree = "<group>"; };
 		48D5C819225D20F700AFDE8F /* GeocodingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingData.swift; sourceTree = "<group>"; };
 		48D5C81B225D213B00AFDE8F /* GeolocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolocationData.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				2E9FE66622557DB6004CA00B /* UIViewController Extensions */,
 				2E9FE66D22557EB9004CA00B /* Date Extensions */,
 				48EFEB84226D0F660006092D /* AVCaptureVideoOrientation+Orientations.swift */,
+				48517BC42272445800994D2E /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -867,6 +870,7 @@
 				D5DF86B222692CBB00E2972A /* WinnerConfirmation.swift in Sources */,
 				48DB1A662260F72500C7CEAC /* AllInfoForHandballCourts.json in Sources */,
 				2E9FE6742255806E004CA00B /* AuthService.swift in Sources */,
+				48517BC52272445800994D2E /* UIView+Extensions.swift in Sources */,
 				D5BCBBFA226F7FBD006B0015 /* TwoVsTwoProgressViewController.swift in Sources */,
 				2EF4809C22565A73008212DC /* SnapchatLoginViewController.swift in Sources */,
 				48D5C826225D33A100AFDE8F /* PrivateInfoFile.swift in Sources */,
@@ -1026,7 +1030,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DQ5CF8LT37;
+				DEVELOPMENT_TEAM = 465ZSD32S3;
 				INFOPLIST_FILE = Elite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1045,7 +1049,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DQ5CF8LT37;
+				DEVELOPMENT_TEAM = 465ZSD32S3;
 				INFOPLIST_FILE = Elite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
