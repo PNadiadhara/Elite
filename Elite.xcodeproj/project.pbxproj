@@ -76,6 +76,7 @@
 		48EFEB87226D122D0006092D /* CaptureSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EFEB86226D122D0006092D /* CaptureSession.swift */; };
 		48EFEB89226D12FD0006092D /* AVPreviewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EFEB88226D12FD0006092D /* AVPreviewLayer.swift */; };
 		48EFEB8B226D14AE0006092D /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EFEB8A226D14AE0006092D /* ScannerViewController.swift */; };
+		48EFEBAF2271016C0006092D /* MilesInMetersInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EFEBAE2271016B0006092D /* MilesInMetersInfo.swift */; };
 		48F1B5C2226980F700B53E11 /* basketballCourtInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F1B5C1226980F700B53E11 /* basketballCourtInfo.json */; };
 		48F1B5C42269812500B53E11 /* handballCourtInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F1B5C32269812500B53E11 /* handballCourtInfo.json */; };
 		48F1B5C7226989DB00B53E11 /* MapViewPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F1B5C5226989DB00B53E11 /* MapViewPopupController.swift */; };
@@ -202,6 +203,7 @@
 		48EFEB86226D122D0006092D /* CaptureSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureSession.swift; sourceTree = "<group>"; };
 		48EFEB88226D12FD0006092D /* AVPreviewLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPreviewLayer.swift; sourceTree = "<group>"; };
 		48EFEB8A226D14AE0006092D /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		48EFEBAE2271016B0006092D /* MilesInMetersInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilesInMetersInfo.swift; sourceTree = "<group>"; };
 		48F1B5C1226980F700B53E11 /* basketballCourtInfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = basketballCourtInfo.json; sourceTree = "<group>"; };
 		48F1B5C32269812500B53E11 /* handballCourtInfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = handballCourtInfo.json; sourceTree = "<group>"; };
 		48F1B5C5226989DB00B53E11 /* MapViewPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewPopupController.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				D5DF86B922694C9E00E2972A /* Teams.swift */,
 				D5DF86BB226A217300E2972A /* GameType.swift */,
 				D5DF86BD226A21B100E2972A /* GameName.swift */,
+				48EFEBAE2271016B0006092D /* MilesInMetersInfo.swift */,
 				D5B4F56E2271EB8B0081FCF0 /* Flag.swift */,
 			);
 			path = Utilities;
@@ -801,6 +804,7 @@
 				D5B4F56D2270BD0D0081FCF0 /* DBService+CurrentGame.swift in Sources */,
 				2E171B92225BA61000D40DDF /* DBService+Playground.swift in Sources */,
 				2EF4809422565227008212DC /* GamerModel.swift in Sources */,
+				48EFEBAF2271016C0006092D /* MilesInMetersInfo.swift in Sources */,
 				2ECFC94F2264E20A00BD6A53 /* DBService+ParkEloInfo.swift in Sources */,
 				2E9FE65822557AC4004CA00B /* LoginViewController.swift in Sources */,
 				48EFEB87226D122D0006092D /* CaptureSession.swift in Sources */,
@@ -1023,7 +1027,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 
+
 				DEVELOPMENT_TEAM = 2X456QR9DN;
+
 
 				INFOPLIST_FILE = Elite/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -1045,7 +1051,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 
+
 				DEVELOPMENT_TEAM = 2X456QR9DN;
+
 
 				INFOPLIST_FILE = Elite/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;

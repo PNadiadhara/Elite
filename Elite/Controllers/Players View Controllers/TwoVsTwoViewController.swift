@@ -96,7 +96,7 @@ class TwoVsTwoViewController: UIViewController {
                 self.showAlert(title: "Error posting game", message: error.localizedDescription)
             }
             if let gameId = gameId {
-                let currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: TabBarViewController.currentUser.uid, userName: TabBarViewController.currentUser.displayName ?? "N/A", teamRole: TeamRoles.blueOne.rawValue)
+                let currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: TabBarViewController.currentUser.uid, userName: TabBarViewController.currentUser.displayName ?? "N/A", teamRole: TeamRoles.redOne.rawValue)
                 DBService.postCurrentPlayer(currentPlayer: currentPlayer) { (error) in
                     if let error = error {
                         self.showAlert(title: "Error", message: error.localizedDescription)
