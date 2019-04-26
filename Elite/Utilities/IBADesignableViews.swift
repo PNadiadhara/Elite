@@ -14,7 +14,7 @@ class CircularButton: UIButton {
         super.layoutSubviews()
         imageView?.contentMode = .scaleAspectFill
         layer.cornerRadius = bounds.width / 2.0
-        layer.borderColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+        //layer.borderColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
         layer.borderWidth = 5
         clipsToBounds = true
     }

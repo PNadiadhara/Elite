@@ -17,13 +17,20 @@ enum GoogleMapsMVState {
 protocol MapViewControllerDelegate: AnyObject {
     func makerDidTapOnMap()
 }
-
+enum ViewVisibiltyState {
+    case visibile
+    case invisible
+}
 class MapViewController: UIViewController {
     // MARK: - Outlets and Properties
-    @IBOutlet weak var searchThisAreaView: UIView!
+    
+    
+    @IBOutlet weak var eliteView: UIView!
+    @IBOutlet weak var closeViewBttn: CircularButton!
+    
     @IBOutlet weak var googleMapsMapView: GMSMapView!
-    @IBOutlet weak var searchThisAreaBttn: UIButton!
     //    private let delegate: MapViewControllerDelegate?
+    private var stateOfPopUpView = ViewVisibiltyState.invisible
     private var googleMapsMVEditingState = GoogleMapsMVState.noMarkersShown {
         didSet{
             clearMarkers()
@@ -51,20 +58,24 @@ class MapViewController: UIViewController {
             googleMapsMapView.reloadInputViews()
         }
     }
+    var range: Double?
     // MARK: - Methods
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         getUsersLocations()
+       setupClosePopViewBttn()
         googleMapsMapView.delegate = self
-       
+        googleMapsMapView.bringSubviewToFront(eliteView)
+        eliteView.isHidden = true
+        loadAllParkData()
+        
         
     }
-    private func stepupSearchView(){
-        searchThisAreaView.layer.cornerRadius = 5
-        googleMapsMapView.addSubview(searchThisAreaView)
-        
-        }
+    private func setupClosePopViewBttn(){
+        closeViewBttn.layer.borderColor = UIColor.red.cgColor
+        closeViewBttn.backgroundColor = .red
+    }
+   
     private func getUsersLocations(){
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled(){
@@ -117,6 +128,9 @@ class MapViewController: UIViewController {
     private func noCourtsNearMeAlert(type: SportType){
         let alertController = UIAlertController.init(title: "No \(type) courts near you", message: "Would you like to increase your range?", preferredStyle: .alert)
         let yesAction = UIAlertAction.init(title: "Yes", style: .default) { (success) in
+            let popViewVC = MapViewPopupController()
+            popViewVC.modalPresentationStyle = .overCurrentContext
+            self.present(popViewVC, animated: true, completion:  nil)
             
         }
         let noAction = UIAlertAction.init(title: "No", style: .cancel, handler: nil)
@@ -129,11 +143,6 @@ class MapViewController: UIViewController {
         
         let filteredCourts = courts.filter { $0.type == type}
         print("Number of courts: ",filteredCourts.count)
-        if filteredCourts.count == 0 {
-//            showAlert(title: "No \(type) courts near you", message: "Would you like to increase your range?")
-            noCourtsNearMeAlert(type: type)
-            
-        }
         for court in filteredCourts {
             let locations = CLLocationCoordinate2D(latitude: Double(court.lat ?? "0.0")!, longitude:  Double(court.lng ?? "0.0")!)
             let marker = GMSMarker()
@@ -144,11 +153,15 @@ class MapViewController: UIViewController {
             case .basketball:
                 marker.icon = GMSMarker.markerImage(with: .orange)
             case .handball:
-                marker.icon = GMSMarker.markerImage(with: .blueberry)
+                marker.icon = UIImage.init(named: "eliteMarker")
+                //marker.iconView = UIImage.init(named: "eliteMarker")
             }
             googleMarkers.append(marker)
         }
-        
+        if filteredCourts.count == 0 {
+            noCourtsNearMeAlert(type: type)
+            
+        }
         googleMarkers.forEach { (marker) in
             marker.map = googleMapsMapView
         }
@@ -163,6 +176,7 @@ class MapViewController: UIViewController {
             let lng = court.lng ?? "0.0"
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
+        
             if distanceInMeters <= MilesInMetersInfo.oneMile {
                 courtArr.append(court)
             }
@@ -187,6 +201,15 @@ class MapViewController: UIViewController {
     }
     
     //MARK: - Actions
+    @IBAction func test(_ sender: UIButton) {
+        if stateOfPopUpView == .invisible {
+            stateOfPopUpView = .visibile
+            eliteView.animShow()
+        } else {
+            stateOfPopUpView = .invisible
+            eliteView.animHide()
+        }
+    }
     @IBAction func showBasketBallMarkers(_ sender: UIButton) {
         if case .showHandBallMarkers = googleMapsMVEditingState {
             googleMapsMVEditingState = .showBasketBallMarkers
@@ -198,8 +221,6 @@ class MapViewController: UIViewController {
         }
     }
     
-    @IBAction func searchThisArea(_ sender: UIButton) {
-    }
     @IBAction func showHandBallMarkers(_ sender: UIButton) {
         if case .showBasketBallMarkers = googleMapsMVEditingState {
             googleMapsMVEditingState = .showHandBallMarkers
@@ -210,20 +231,21 @@ class MapViewController: UIViewController {
         }
     }
     
+    @IBAction func closePopView(_ sender: CircularButton) {
+        eliteView.animHide()
+        
+    }
     
 }
 //MARK: - Extensions
 extension MapViewController: GMSMapViewDelegate
  {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        
-   let popVC = MapViewPopupController()
-//        marker.title = popVC.nameOfPark.text
-//        marker.snippet = popVC.parkAddress.text
-        popVC.modalPresentationStyle = .overCurrentContext
-        self.present(popVC, animated: true, completion: nil)
+        eliteView.isHidden = false
+        eliteView.animShow()
         return true
     }
+
 }
 extension MapViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -236,3 +258,5 @@ extension MapViewController: CLLocationManagerDelegate{
         self.locationManager.stopUpdatingLocation()
     }
 }
+
+
