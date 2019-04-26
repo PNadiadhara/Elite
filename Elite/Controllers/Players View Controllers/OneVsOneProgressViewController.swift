@@ -17,6 +17,8 @@ class OneVsOneProgressViewController: UIViewController {
     var invitations = [Invitation]()
     var isHost = Bool()
     var game: GameModel?
+    var blueOnePlayer: GamerModel!
+    var redOnePlayer: GamerModel!
     var gameType: GameType!
     private var listener: ListenerRegistration!
     
@@ -34,6 +36,7 @@ class OneVsOneProgressViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpUI()
         buttons = [cancelButton, endButton]
         if isHost {
             fetchInvitationApproval()
@@ -46,6 +49,12 @@ class OneVsOneProgressViewController: UIViewController {
         
     }
 
+    func setUpUI() {
+        redTeamLabel.text = redOnePlayer.username
+        redTeamImage.image = UIImage(named: redOnePlayer.username)
+        blueTeamLabel.text = blueOnePlayer.username
+        blueTeamImage.image = UIImage(named: blueOnePlayer.username)
+    }
 
     override func viewWillDisappear(_ animated: Bool) {
         listener.remove()
@@ -89,6 +98,7 @@ class OneVsOneProgressViewController: UIViewController {
                     endGameVc.invitation = invitation
                     endGameVc.isHost = false
                     endGameVc.gameType = self.gameType
+                    endGameVc.blueOnePlayer = self.blueOnePlayer
                     self.present(endGameVc, animated: true)
                 }
             }

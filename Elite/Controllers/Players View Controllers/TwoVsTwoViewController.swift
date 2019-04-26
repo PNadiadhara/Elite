@@ -52,6 +52,7 @@ class TwoVsTwoViewController: UIViewController {
         redPlayerOneLabel.text = TabBarViewController.currentUser.displayName
         if let redTwoPlayer = redTwoPlayer{
             redPlayerTwoLabel.text = redTwoPlayer.username
+            redPlayerTwoImage.image = UIImage(named: redTwoPlayer.username + "FightingRight")
         }
         if let blueOnePlayer = blueOnePlayer {
            bluePlayerOneLabel.text = blueOnePlayer.username

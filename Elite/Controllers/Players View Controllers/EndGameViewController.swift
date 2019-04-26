@@ -13,16 +13,26 @@ class EndGameViewController: UIViewController {
 
     @IBOutlet weak var redPlayerView: UIView!
     @IBOutlet weak var bluePlayerView: UIView!
-    @IBOutlet weak var redPlayerImage: CircularRedImageView!
-    @IBOutlet weak var bluePlayerImage: CircularBlueImageView!
-    @IBOutlet weak var redPlayerName: UILabel!
-    @IBOutlet weak var bluePlayerName: UILabel!
+    @IBOutlet weak var redOnePlayerLabel: UILabel!
+    
+    @IBOutlet weak var redTwoPlayerLabel: UILabel!
+    @IBOutlet weak var redThreePlayerLabel: UILabel!
+    @IBOutlet weak var redFourPlayerLabel: UILabel!
+    
+    @IBOutlet weak var redFivePlayerLabel: UILabel!
+    @IBOutlet weak var blueOnePlayerLabel: UILabel!
+    @IBOutlet weak var blueTwoPlayerLabel: UILabel!
+    @IBOutlet weak var blueThreePlayerLabel: UILabel!
+    @IBOutlet weak var blueFourPlayerLabel: UILabel!
+    @IBOutlet weak var blueFivePlayerLabel: UILabel!
+    
     
     var invitation: Invitation!
     var selectedTeam: Teams?
     var game: GameModel?
     var currentPlayer: CurrentPlayer?
     var gameType: GameType!
+    var blueOnePlayer: GamerModel?
     
     var currentPlayerTeamRole = String()
     var winnerConfirmationId = String()
@@ -38,8 +48,37 @@ class EndGameViewController: UIViewController {
         }
         fetchCurrentRole()
         fetchGame()
+        setupUI()
     }
-    
+    func setupUI(){
+        switch gameType.rawValue {
+        case GameType.oneVsOne.rawValue:
+            guard let blueOnePlayer = blueOnePlayer else {return}
+            redOnePlayerLabel.text = TabBarViewController.currentGamer.username
+            blueOnePlayerLabel.text = blueOnePlayer.username
+            redPlayerView.frame = CGRect(x: redPlayerView.frame.origin.x, y: redPlayerView.frame.origin.y, width: redPlayerView.frame.width, height: view.frame.height * 0.1)
+            redTwoPlayerLabel.isHidden = true
+            redThreePlayerLabel.isHidden = true
+            redFourPlayerLabel.isHidden = true
+            redFivePlayerLabel.isHidden = true
+            blueTwoPlayerLabel.isHidden = true
+            blueThreePlayerLabel.isHidden = true
+            blueFourPlayerLabel.isHidden = true
+            blueFivePlayerLabel.isHidden = true
+//            bluePlayerView.translatesAutoresizingMaskIntoConstraints = false
+//            bluePlayerView.frame = CGRect(x: bluePlayerView.frame.origin.x, y: bluePlayerView.frame.origin.y, width: bluePlayerView.frame.width, height: 88)
+          case GameType.twoVsTwo.rawValue:
+            redPlayerView.frame = CGRect(x: redPlayerView.frame.origin.x, y: redPlayerView.frame.origin.y, width: redPlayerView.frame.width, height: 115)
+            redThreePlayerLabel.isHidden = true
+            redFourPlayerLabel.isHidden = true
+            redFivePlayerLabel.isHidden = true
+            blueThreePlayerLabel.isHidden = true
+            blueFourPlayerLabel.isHidden = true
+            blueFivePlayerLabel.isHidden = true
+        default:
+            return
+        }
+    }
     func fetchWinningConfirmations(){
         DBService.fetchWinningConfirmations(gameId: invitation.gameId) { (error, winningConfirmation) in
             if let error = error {
@@ -107,12 +146,15 @@ class EndGameViewController: UIViewController {
     }
     @objc func redPlayerTap() {
         selectedTeam = .red
-        redPlayerImage.image = UIImage(named: "checkMark")
+        redPlayerView.alpha = 1
+        bluePlayerView.alpha = 0.5
         
     }
     @objc func bluePlayerTap() {
         selectedTeam = .blue
-        bluePlayerImage.image = UIImage(named: "checkMark")
+        redPlayerView.alpha = 0.5
+        bluePlayerView.alpha = 1.0
+
     }
     /*TO DO: func to checkmark the selected image
      func to segue to winnerVC and pass inviation
