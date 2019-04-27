@@ -56,9 +56,11 @@ class TwoVsTwoViewController: UIViewController {
         }
         if let blueOnePlayer = blueOnePlayer {
            bluePlayerOneLabel.text = blueOnePlayer.username
+            bluePlayerOneImage.image = UIImage(named: blueOnePlayer.username + "FightingLeft")
         }
         if let blueTwoPlayer = blueTwoPlayer {
            bluePlayerTwoLabel.text = blueTwoPlayer.username
+            bluePlayerTwoImage.image = UIImage(named: blueTwoPlayer.username + "FightingRight")
         }
         
     }

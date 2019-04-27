@@ -67,10 +67,10 @@ extension DBService {
     }
     
     
-    static public func deleteGamePost(gamePost: GameModel, completion: @escaping (Error?) -> Void) {
+    static public func deleteGamePost(gameId: String, completion: @escaping (Error?) -> Void) {
         DBService.firestoreDB
             .collection(GameCollectionKeys.CollectionKey)
-            .document(String(gamePost.gameID))
+            .document(gameId)
             .delete { (error) in
                 if let error = error {
                     completion(error)

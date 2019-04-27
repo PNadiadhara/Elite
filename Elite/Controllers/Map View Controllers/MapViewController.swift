@@ -14,6 +14,10 @@ enum GoogleMapsMVState {
     case showBasketBallMarkers
     case noMarkersShown
 }
+enum ViewStatus {
+    case pressed
+    case notPressed
+}
 protocol MapViewControllerDelegate: AnyObject {
     func makerDidTapOnMap()
 }
@@ -59,6 +63,7 @@ class MapViewController: UIViewController {
         }
     }
     var range: Double?
+    var viewStatus: ViewStatus = .notPressed
     // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -177,7 +182,7 @@ class MapViewController: UIViewController {
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
         
-            if distanceInMeters <= MilesInMetersInfo.oneMile {
+            if distanceInMeters <= MilesInMetersInfo.fiveMiles {
                 courtArr.append(court)
             }
         }
@@ -193,7 +198,7 @@ class MapViewController: UIViewController {
             let lng = court.lng ?? "0.0"
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
-            if distanceInMeters <= MilesInMetersInfo.oneMile {
+            if distanceInMeters <= MilesInMetersInfo.fiveMiles {
                 courtArr.append(court)
             }
         }
@@ -242,7 +247,14 @@ extension MapViewController: GMSMapViewDelegate
  {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         eliteView.isHidden = false
-        eliteView.animShow()
+        if viewStatus == .notPressed{
+          viewStatus = .pressed
+            eliteView.animShow()
+        } else {
+            viewStatus = .notPressed
+            eliteView.animHide()
+        }
+        
         return true
     }
 

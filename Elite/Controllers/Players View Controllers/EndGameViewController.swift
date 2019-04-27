@@ -32,7 +32,8 @@ class EndGameViewController: UIViewController {
     var game: GameModel?
     var currentPlayer: CurrentPlayer?
     var gameType: GameType!
-    var blueOnePlayer: GamerModel?
+    var blueOnePlayer: GamerModel!
+    var redOnePlayer: GamerModel!
     
     var currentPlayerTeamRole = String()
     var winnerConfirmationId = String()
@@ -53,10 +54,9 @@ class EndGameViewController: UIViewController {
     func setupUI(){
         switch gameType.rawValue {
         case GameType.oneVsOne.rawValue:
-            guard let blueOnePlayer = blueOnePlayer else {return}
-            redOnePlayerLabel.text = TabBarViewController.currentGamer.username
+            redOnePlayerLabel.text = redOnePlayer.username
             blueOnePlayerLabel.text = blueOnePlayer.username
-            redPlayerView.frame = CGRect(x: redPlayerView.frame.origin.x, y: redPlayerView.frame.origin.y, width: redPlayerView.frame.width, height: view.frame.height * 0.1)
+            redPlayerView.frame = CGRect(x: 1, y: 1, width: 1, height: 1)
             redTwoPlayerLabel.isHidden = true
             redThreePlayerLabel.isHidden = true
             redFourPlayerLabel.isHidden = true

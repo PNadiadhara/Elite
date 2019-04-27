@@ -27,7 +27,7 @@ class SearchPlayerViewController: UIViewController {
         }
     }
 
-    
+    static var selectedPlayers = [String]()
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -61,7 +61,9 @@ class SearchPlayerViewController: UIViewController {
                 self.showAlert(title: "Error fetching bloggers", message: error.localizedDescription)
             }
             if let gamers = gamers{
-                self.gamers = gamers.filter{$0.username.lowercased().contains(gamer.lowercased() ) && !$0.username.lowercased().contains(TabBarViewController.currentGamer.username.lowercased())}
+                for selectedPlayer in SearchPlayerViewController.selectedPlayers {
+                self.gamers = gamers.filter{$0.username.lowercased().contains(gamer.lowercased() ) && !$0.username.lowercased().contains(TabBarViewController.currentGamer.username.lowercased()) && !$0.gamerID.contains(selectedPlayer)}
+            }
             }
         }
     }
@@ -75,6 +77,9 @@ class SearchPlayerViewController: UIViewController {
                 for friend in friends {
                     self.gamers += allGamers.filter {$0.gamerID == friend}
                 }
+            }
+            for selectedPlayer in SearchPlayerViewController.selectedPlayers {
+                self.gamers = self.gamers.filter{!$0.gamerID.contains(selectedPlayer)}
             }
         }
     }
@@ -131,6 +136,7 @@ extension SearchPlayerViewController: UITableViewDelegate, UITableViewDataSource
                     self.showAlert(title: "Error", message: error.localizedDescription)
                 }
             }
+            SearchPlayerViewController.selectedPlayers.append(gamer.gamerID)
         }
         dismiss(animated: true)
     }

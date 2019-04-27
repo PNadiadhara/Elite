@@ -94,6 +94,7 @@ class OneVsOneViewController: UIViewController {
                                 oneVsoneProgressVc.gameType = .oneVsOne
                                 oneVsoneProgressVc.game = game
                                 oneVsoneProgressVc.redOnePlayer = TabBarViewController.currentGamer
+                                oneVsoneProgressVc.blueOnePlayer = gamerSelected
                                 self.present(oneVsoneProgressVc, animated: true)
                             }
                         })
