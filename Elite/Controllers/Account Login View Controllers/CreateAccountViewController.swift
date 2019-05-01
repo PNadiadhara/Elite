@@ -68,6 +68,10 @@ class CreateAccountViewController: UIViewController {
         }
 
     }
+    @IBAction func existingUserBttnPressed(_ sender: UIButton){
+        navigationController?.popViewController(animated: true)
+    }
+    
     private func registerKeyboardNotification(){
         NotificationCenter.default.addObserver(self, selector: #selector(willShowKeyboard(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(willHideKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -80,7 +84,7 @@ class CreateAccountViewController: UIViewController {
         }
         keyboardHeight = keyboardFrame.height
         print(keyboardHeight)
-//        conteinerView.transform = CGAffineTransform(translationX: 0, y: -keyboardFrame.height)
+            conteinerView.transform = CGAffineTransform(translationX: 0, y: -keyboardFrame.height + 250)
     }
     @objc private func willHideKeyboard(){
         conteinerView.transform = CGAffineTransform.identity
@@ -110,16 +114,21 @@ extension CreateAccountViewController : AuthServiceCreateNewAccountDelegate {
 }
 extension CreateAccountViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        if textField.text == "\n" {
+//            textField.resignFirstResponder()
+//            return true
+//        }
         textField.resignFirstResponder()
         return true
     }
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        switch textField.tag {
-        case 0,1,2,3:
-        conteinerView.transform = CGAffineTransform(translationX: 0, y: -keyboardHeight)
-        default:
-            return
-        }
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        switch textField.tag {
+//        case 0,1,2,3:
+//        conteinerView.transform = CGAffineTransform(translationX: 0, y: -keyboardHeight)
+//        default:
+//            return
+//        }
+//
+//    }
 
-    }
 }
