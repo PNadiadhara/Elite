@@ -84,7 +84,7 @@ class CreateAccountViewController: UIViewController {
         }
         keyboardHeight = keyboardFrame.height
         print(keyboardHeight)
-            conteinerView.transform = CGAffineTransform(translationX: 0, y: -keyboardFrame.height + 250)
+            conteinerView.transform = CGAffineTransform(translationX: 0, y: -keyboardFrame.height - 10)
     }
     @objc private func willHideKeyboard(){
         conteinerView.transform = CGAffineTransform.identity
@@ -114,10 +114,6 @@ extension CreateAccountViewController : AuthServiceCreateNewAccountDelegate {
 }
 extension CreateAccountViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        if textField.text == "\n" {
-//            textField.resignFirstResponder()
-//            return true
-//        }
         textField.resignFirstResponder()
         return true
     }

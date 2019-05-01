@@ -19,12 +19,10 @@ enum ViewVisibiltyState {
     case invisible
 }
 
-class MapViewController: UIViewController, MapViewPopupControllerDelegate {
+class MapViewController: UIViewController {
     
     
     // MARK: - Outlets and Properties
-    
-    
     @IBOutlet weak var eliteView: UIView!
     @IBOutlet weak var closeViewBttn: CircularButton!
     
@@ -60,6 +58,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         }
     }
     var range: Double?
+    var typeValue = String()
     private var customArr = [[
         "Prop_ID": "",
         "Name": "Museum of the Moving Image",
@@ -110,21 +109,58 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         getUsersLocations()
-       setupClosePopViewBttn()
+        setupClosePopViewBttn()
         googleMapsMapView.delegate = self
         googleMapsMapView.bringSubviewToFront(eliteView)
         eliteView.isHidden = true
         loadAllParkData()
         addCustomMakers()
-        popUpVC.delegate = self
-        
         
     }
     private func setupClosePopViewBttn(){
         closeViewBttn.layer.borderColor = UIColor.red.cgColor
         closeViewBttn.backgroundColor = .red
     }
-   
+    private func getMilesFromUser(miles: String){
+        switch miles {
+        case "1":
+            range = MilesInMetersInfo.oneMile
+        case "2":
+            range = MilesInMetersInfo.twoMiles
+        case "5":
+            range = MilesInMetersInfo.fiveMiles
+        case "10":
+            range = MilesInMetersInfo.tenMiles
+        default:
+            showAlert(title: "Out of range", message: "you have tried to exceed the range limit")
+        }
+    }
+    
+    private func showPickerViewAlert(){
+        let alertContoller = UIAlertController.init(title: "Pick A Show", message: "\n\n\n\n\n\n", preferredStyle: .alert)
+        alertContoller.isModalInPopover = true //A Boolean value indicating whether the view controller should be presented modally by a popover.
+        //For color of title of alert controller
+        let attributedString = NSAttributedString(string: "Title", attributes: [
+            NSAttributedString.Key.font : UIFont.systemFont(ofSize: 24), //your font here
+            NSAttributedString.Key.foregroundColor : UIColor.orange
+            ])
+        alertContoller.setValue(attributedString, forKey: "attributedTitle")
+        let pickerViewFrame = UIPickerView(frame: CGRect(x: 5, y: 20, width: 250, height: 140))
+        alertContoller.view.addSubview(pickerViewFrame)
+        pickerViewFrame.dataSource = self
+        pickerViewFrame.delegate = self
+        let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
+        let okAction = UIAlertAction.init(title: "OK", style: .default) { (success) in
+            self.getMilesFromUser(miles: self.typeValue)
+        }
+        alertContoller.addAction(cancelAction)
+        alertContoller.addAction(okAction)
+        self.present(alertContoller, animated: true, completion: nil)
+        // changing the color
+        let subview = (alertContoller.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+        subview.layer.cornerRadius = 10
+        subview.backgroundColor = UIColor(red: (0/255.0), green: (0/255.0), blue: (0/255.0), alpha: 1.0)
+    }
     private func getUsersLocations(){
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled(){
@@ -174,30 +210,30 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             
         }
     }
+    
     private func noCourtsNearMeAlert(type: SportType){
         let alertController = UIAlertController.init(title: "No \(type) courts near you", message: "Would you like to increase your range?", preferredStyle: .alert)
         let yesAction = UIAlertAction.init(title: "Yes", style: .default) { (success) in
-            let popViewVC = MapViewPopupController()
-            popViewVC.modalPresentationStyle = .overCurrentContext
-            self.present(popViewVC, animated: true, completion:  nil)
-            
+            self.showPickerViewAlert()
         }
         let noAction = UIAlertAction.init(title: "No", style: .cancel, handler: nil)
         alertController.addAction(yesAction)
         alertController.addAction(noAction)
         present(alertController, animated: true, completion: nil)
     }
+    
     private func addCustomMakers(){
         for arr in customArr {
-           let marker = GMSMarker()
-           marker.title = arr["Name"] as? String
-           marker.snippet = arr["Location"] as? String
+            let marker = GMSMarker()
+            marker.title = arr["Name"] as? String
+            marker.snippet = arr["Location"] as? String
             let locations = CLLocationCoordinate2D(latitude: arr["lat"] as! Double, longitude:  arr["lon"] as! Double)
-        marker.position = locations
+            marker.position = locations
             marker.map = googleMapsMapView
             
         }
     }
+    
     private func addMarkers(courts: [Court], type: SportType) {
         var googleMarkers = [GMSMarker]()
         
@@ -227,20 +263,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         }
         
     }
-    func getMilesFromUser(miles: String) {
-        switch miles {
-        case "1":
-            range = MilesInMetersInfo.oneMile
-        case "2":
-            range = MilesInMetersInfo.twoMiles
-        case "5":
-            range = MilesInMetersInfo.fiveMiles
-        case "10":
-            range = MilesInMetersInfo.tenMiles
-        default:
-            print("No range Selected")
-        }
-    }
+    
     private func getBasketBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [BasketBall]){
         loadAllParkData()
         var courtArr = [BasketBall]()
@@ -249,13 +272,14 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             let lng = court.lng ?? "0.0"
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
-        
             if distanceInMeters <= range ?? 0.0 {
                 courtArr.append(court)
             }
+            
         }
+        print("Basketball Range is now: \(range ?? 0.000)")
         basketballResults = courtArr
-        print(basketballResults.count)
+        print("# of BasketBall Courts: ",basketballResults.count)
     }
     
     private func getHandBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [HandBall]){
@@ -266,10 +290,12 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             let lng = court.lng ?? "0.0"
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
-            if distanceInMeters <= MilesInMetersInfo.oneMile {
+            if distanceInMeters <= range ?? 0.0 {
                 courtArr.append(court)
             }
+            
         }
+        print("handball Range is now: \(range ?? 0.000)")
         handballResults = courtArr
     }
     
@@ -312,13 +338,13 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
 }
 //MARK: - Extensions
 extension MapViewController: GMSMapViewDelegate
- {
+{
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         eliteView.isHidden = false
         eliteView.animShow()
         return true
     }
-
+    
 }
 extension MapViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -332,4 +358,32 @@ extension MapViewController: CLLocationManagerDelegate{
     }
 }
 
-
+extension MapViewController: UIPickerViewDataSource, UIPickerViewDelegate{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return MilesInMetersInfo.miles.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return MilesInMetersInfo.miles[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if row == 0 {
+            typeValue = "1"
+        } else if row == 1 {
+            typeValue = "2"
+        } else if row == 2 {
+            typeValue = "2"
+        } else if row == 3 {
+            typeValue = "5"
+        } else if row == 4 {
+            typeValue = "10"
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let titleForMiles = MilesInMetersInfo.miles[row]
+        return NSAttributedString(string: titleForMiles, attributes: [NSAttributedString.Key.foregroundColor: UIColor.orange])
+    }
+}
