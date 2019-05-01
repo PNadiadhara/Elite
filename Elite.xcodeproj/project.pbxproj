@@ -85,7 +85,8 @@
 		BFADB58F22553FB200E746B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFADB58E22553FB200E746B5 /* AppDelegate.swift */; };
 		BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59522553FB300E746B5 /* Assets.xcassets */; };
 		BFADB59922553FB300E746B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59722553FB300E746B5 /* LaunchScreen.storyboard */; };
-		BFADB5A5225544EA00E746B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFADB5A4225544EA00E746B5 /* GoogleService-Info.plist */; };
+		BFD61E1C2277520300EA408B /* EliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD61E1B2277520300EA408B /* EliteTests.swift */; };
+		BFD61E242279FE8E00EA408B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFD61E232279FE8E00EA408B /* GoogleService-Info.plist */; };
 		BFED970F225E6E2900CC360B /* EloRankMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFED970E225E6E2900CC360B /* EloRankMethods.swift */; };
 		D521086F225E95540044C440 /* UserFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D521086D225E95540044C440 /* UserFeedCell.xib */; };
 		D5210870225E95540044C440 /* UserFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D521086E225E95540044C440 /* UserFeedCell.swift */; };
@@ -133,6 +134,16 @@
 		D5F545502268DE6C00DB05F0 /* EndGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F5454E2268DE6C00DB05F0 /* EndGameViewController.swift */; };
 		D5F545512268DE6C00DB05F0 /* EndGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5F5454F2268DE6C00DB05F0 /* EndGameViewController.xib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BFD61E1E2277520300EA408B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFADB58322553FB200E746B5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BFADB58A22553FB200E746B5;
+			remoteInfo = Elite;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2E171B91225BA61000D40DDF /* DBService+Playground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBService+Playground.swift"; sourceTree = "<group>"; };
@@ -217,7 +228,10 @@
 		BFADB59522553FB300E746B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFADB59822553FB300E746B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFADB59A22553FB300E746B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BFADB5A4225544EA00E746B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BFD61E192277520300EA408B /* EliteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EliteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFD61E1B2277520300EA408B /* EliteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EliteTests.swift; sourceTree = "<group>"; };
+		BFD61E1D2277520300EA408B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFD61E232279FE8E00EA408B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BFED970E225E6E2900CC360B /* EloRankMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EloRankMethods.swift; sourceTree = "<group>"; };
 		D521086D225E95540044C440 /* UserFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserFeedCell.xib; sourceTree = "<group>"; };
 		D521086E225E95540044C440 /* UserFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFeedCell.swift; sourceTree = "<group>"; };
@@ -273,6 +287,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4651EF13D0643CF9E55F05B3 /* Pods_Elite.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFD61E162277520300EA408B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,6 +571,7 @@
 			isa = PBXGroup;
 			children = (
 				BFADB58D22553FB200E746B5 /* Elite */,
+				BFD61E1A2277520300EA408B /* EliteTests */,
 				BFADB58C22553FB200E746B5 /* Products */,
 				9E744B84D7F8198F6AF506F3 /* Pods */,
 				7F7357D47953A43F01A032E3 /* Frameworks */,
@@ -561,6 +583,7 @@
 			isa = PBXGroup;
 			children = (
 				BFADB58B22553FB200E746B5 /* Elite.app */,
+				BFD61E192277520300EA408B /* EliteTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -573,7 +596,7 @@
 				48980A4C225E346B0034D04F /* JsonModel.json */,
 				BFADB59522553FB300E746B5 /* Assets.xcassets */,
 				BFADB59722553FB300E746B5 /* LaunchScreen.storyboard */,
-				BFADB5A4225544EA00E746B5 /* GoogleService-Info.plist */,
+				BFD61E232279FE8E00EA408B /* GoogleService-Info.plist */,
 				BFADB59A22553FB300E746B5 /* Info.plist */,
 				2EC6D54F225D30C400336362 /* APIClients */,
 				2E9FE65922557AD7004CA00B /* Controllers */,
@@ -589,6 +612,15 @@
 				48F1B5C32269812500B53E11 /* handballCourtInfo.json */,
 			);
 			path = Elite;
+			sourceTree = "<group>";
+		};
+		BFD61E1A2277520300EA408B /* EliteTests */ = {
+			isa = PBXGroup;
+			children = (
+				BFD61E1B2277520300EA408B /* EliteTests.swift */,
+				BFD61E1D2277520300EA408B /* Info.plist */,
+			);
+			path = EliteTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -614,6 +646,24 @@
 			productReference = BFADB58B22553FB200E746B5 /* Elite.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BFD61E182277520300EA408B /* EliteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BFD61E222277520400EA408B /* Build configuration list for PBXNativeTarget "EliteTests" */;
+			buildPhases = (
+				BFD61E152277520300EA408B /* Sources */,
+				BFD61E162277520300EA408B /* Frameworks */,
+				BFD61E172277520300EA408B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BFD61E1F2277520300EA408B /* PBXTargetDependency */,
+			);
+			name = EliteTests;
+			productName = EliteTests;
+			productReference = BFD61E192277520300EA408B /* EliteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -626,6 +676,10 @@
 				TargetAttributes = {
 					BFADB58A22553FB200E746B5 = {
 						CreatedOnToolsVersion = 10.2;
+					};
+					BFD61E182277520300EA408B = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = BFADB58A22553FB200E746B5;
 					};
 				};
 			};
@@ -643,6 +697,7 @@
 			projectRoot = "";
 			targets = (
 				BFADB58A22553FB200E746B5 /* Elite */,
+				BFD61E182277520300EA408B /* EliteTests */,
 			);
 		};
 /* End PBXProject section */
@@ -660,6 +715,7 @@
 				48F1B5C42269812500B53E11 /* handballCourtInfo.json in Resources */,
 				D5210879225E95A70044C440 /* TwoVsTwoFeedCell.xib in Resources */,
 				D5B57D432262698400DB73E2 /* OneVsOneProgressViewController.xib in Resources */,
+				BFD61E242279FE8E00EA408B /* GoogleService-Info.plist in Resources */,
 				D5D375BE226A6D3900F25FCF /* WinnerViewController.xib in Resources */,
 				2EC6D55A225E79B300336362 /* TwoVsTwoViewController.xib in Resources */,
 				D521086F225E95540044C440 /* UserFeedCell.xib in Resources */,
@@ -672,7 +728,6 @@
 				2E381EB122613A1E0075C1CD /* ProfileViewController.xib in Resources */,
 				48F1B5C2226980F700B53E11 /* basketballCourtInfo.json in Resources */,
 				D5BCBBFB226F7FBD006B0015 /* TwoVsTwoProgressViewController.xib in Resources */,
-				BFADB5A5225544EA00E746B5 /* GoogleService-Info.plist in Resources */,
 				D5DE77F2225FF61200439407 /* SearchPlayerViewController.xib in Resources */,
 				BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */,
 				2E171B98225CF86C00D40DDF /* MapViewController.xib in Resources */,
@@ -685,6 +740,13 @@
 				2EC6D573225E9BCB00336362 /* UserFeedTableViewController.xib in Resources */,
 				D5B3045E22677A8000404241 /* InvitationAlertViewController.xib in Resources */,
 				2E9FE67F22558282004CA00B /* LoginView.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFD61E172277520300EA408B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -894,7 +956,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BFD61E152277520300EA408B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFD61E1C2277520300EA408B /* EliteTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BFD61E1F2277520300EA408B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BFADB58A22553FB200E746B5 /* Elite */;
+			targetProxy = BFD61E1E2277520300EA408B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		BFADB59722553FB300E746B5 /* LaunchScreen.storyboard */ = {
@@ -1030,8 +1108,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< HEAD
 				DEVELOPMENT_TEAM = DQ5CF8LT37;
+=======
+				DEVELOPMENT_TEAM = 2X456QR9DN;
+>>>>>>> 7948371cc675f7ffd0992b9c96c923a90854233e
 				INFOPLIST_FILE = Elite/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1049,8 +1132,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< HEAD
 				DEVELOPMENT_TEAM = DQ5CF8LT37;
+=======
+				DEVELOPMENT_TEAM = 2X456QR9DN;
+>>>>>>> 7948371cc675f7ffd0992b9c96c923a90854233e
 				INFOPLIST_FILE = Elite/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1059,6 +1147,46 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BFD61E202277520400EA408B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2X456QR9DN;
+				INFOPLIST_FILE = EliteTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Pritesh.EliteTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elite.app/Elite";
+			};
+			name = Debug;
+		};
+		BFD61E212277520400EA408B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2X456QR9DN;
+				INFOPLIST_FILE = EliteTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Pritesh.EliteTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elite.app/Elite";
 			};
 			name = Release;
 		};
@@ -1079,6 +1207,15 @@
 			buildConfigurations = (
 				BFADB59E22553FB300E746B5 /* Debug */,
 				BFADB59F22553FB300E746B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BFD61E222277520400EA408B /* Build configuration list for PBXNativeTarget "EliteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFD61E202277520400EA408B /* Debug */,
+				BFD61E212277520400EA408B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
