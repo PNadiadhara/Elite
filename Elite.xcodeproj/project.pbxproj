@@ -85,8 +85,8 @@
 		BFADB58F22553FB200E746B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFADB58E22553FB200E746B5 /* AppDelegate.swift */; };
 		BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59522553FB300E746B5 /* Assets.xcassets */; };
 		BFADB59922553FB300E746B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59722553FB300E746B5 /* LaunchScreen.storyboard */; };
-		BFADB5A5225544EA00E746B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFADB5A4225544EA00E746B5 /* GoogleService-Info.plist */; };
 		BFD61E1C2277520300EA408B /* EliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD61E1B2277520300EA408B /* EliteTests.swift */; };
+		BFD61E242279FE8E00EA408B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFD61E232279FE8E00EA408B /* GoogleService-Info.plist */; };
 		BFED970F225E6E2900CC360B /* EloRankMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFED970E225E6E2900CC360B /* EloRankMethods.swift */; };
 		D521086F225E95540044C440 /* UserFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D521086D225E95540044C440 /* UserFeedCell.xib */; };
 		D5210870225E95540044C440 /* UserFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D521086E225E95540044C440 /* UserFeedCell.swift */; };
@@ -228,10 +228,10 @@
 		BFADB59522553FB300E746B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFADB59822553FB300E746B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFADB59A22553FB300E746B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BFADB5A4225544EA00E746B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BFD61E192277520300EA408B /* EliteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EliteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD61E1B2277520300EA408B /* EliteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EliteTests.swift; sourceTree = "<group>"; };
 		BFD61E1D2277520300EA408B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFD61E232279FE8E00EA408B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BFED970E225E6E2900CC360B /* EloRankMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EloRankMethods.swift; sourceTree = "<group>"; };
 		D521086D225E95540044C440 /* UserFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserFeedCell.xib; sourceTree = "<group>"; };
 		D521086E225E95540044C440 /* UserFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFeedCell.swift; sourceTree = "<group>"; };
@@ -596,7 +596,7 @@
 				48980A4C225E346B0034D04F /* JsonModel.json */,
 				BFADB59522553FB300E746B5 /* Assets.xcassets */,
 				BFADB59722553FB300E746B5 /* LaunchScreen.storyboard */,
-				BFADB5A4225544EA00E746B5 /* GoogleService-Info.plist */,
+				BFD61E232279FE8E00EA408B /* GoogleService-Info.plist */,
 				BFADB59A22553FB300E746B5 /* Info.plist */,
 				2EC6D54F225D30C400336362 /* APIClients */,
 				2E9FE65922557AD7004CA00B /* Controllers */,
@@ -715,6 +715,7 @@
 				48F1B5C42269812500B53E11 /* handballCourtInfo.json in Resources */,
 				D5210879225E95A70044C440 /* TwoVsTwoFeedCell.xib in Resources */,
 				D5B57D432262698400DB73E2 /* OneVsOneProgressViewController.xib in Resources */,
+				BFD61E242279FE8E00EA408B /* GoogleService-Info.plist in Resources */,
 				D5D375BE226A6D3900F25FCF /* WinnerViewController.xib in Resources */,
 				2EC6D55A225E79B300336362 /* TwoVsTwoViewController.xib in Resources */,
 				D521086F225E95540044C440 /* UserFeedCell.xib in Resources */,
@@ -727,7 +728,6 @@
 				2E381EB122613A1E0075C1CD /* ProfileViewController.xib in Resources */,
 				48F1B5C2226980F700B53E11 /* basketballCourtInfo.json in Resources */,
 				D5BCBBFB226F7FBD006B0015 /* TwoVsTwoProgressViewController.xib in Resources */,
-				BFADB5A5225544EA00E746B5 /* GoogleService-Info.plist in Resources */,
 				D5DE77F2225FF61200439407 /* SearchPlayerViewController.xib in Resources */,
 				BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */,
 				2E171B98225CF86C00D40DDF /* MapViewController.xib in Resources */,
