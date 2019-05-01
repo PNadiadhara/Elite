@@ -18,6 +18,7 @@
                 <outlet property="cancelButton" destination="odj-rn-jgU" id="uAF-NM-6Ce"/>
                 <outlet property="cancelGameButton" destination="goL-Dl-5b3" id="20M-eG-qE6"/>
                 <outlet property="endButton" destination="HzD-39-Fll" id="ZKv-or-9Nq"/>
+                <outlet property="gameInProgressLabel" destination="OTp-hj-edk" id="VfW-jV-g9w"/>
                 <outlet property="headerView" destination="I3r-qf-4NR" id="9g0-V7-Lga"/>
                 <outlet property="redTeamImage" destination="Xmd-JM-dkv" id="5yP-iB-zT6"/>
                 <outlet property="redTeamLabel" destination="0d9-pw-Pfe" id="pqQ-4j-Tbx"/>

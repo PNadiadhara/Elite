@@ -34,6 +34,7 @@ struct GameCollectionKeys {
     static let TeamBScore = "teamBScore"
     static let DurationKey = "duration"
     static let isOverKey = "isOver"
+    static let wasCancelledKey = "wasCancelled"
 }
 
 extension DBService {
@@ -94,8 +95,11 @@ extension DBService {
     static public func updateGameToFinish(gameId: String) {
     DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).document(gameId).updateData([GameCollectionKeys.isOverKey : true])
     }
+    static public func updateGameToCancelled(gameId: String) {
+        DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).document(gameId).updateData([GameCollectionKeys.wasCancelledKey : true])
+    }
     static public func updateGameModel(gameId: String,game: GameModel, completion: @escaping (Error?) -> Void) {
-        let na = "N/A"; DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).document(game.gameID).updateData([GameCollectionKeys.GameDescriptionKey : game.gameDescription ?? "", GameCollectionKeys.GameEndTimeKey : game.gameEndTime ?? na, GameCollectionKeys.WinnersKey : game.winners ?? na, GameCollectionKeys.LosersKey : game.losers ?? na, GameCollectionKeys.IsTieKey : game.isTie ?? na,GameCollectionKeys.WitnessKey : game.witness ?? na, GameCollectionKeys.DurationKey : game.duration ?? na, GameCollectionKeys.isOverKey : false]) { (error
+        let na = "N/A"; DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).document(game.gameID).updateData([GameCollectionKeys.GameDescriptionKey : game.gameDescription ?? "", GameCollectionKeys.GameEndTimeKey : game.gameEndTime ?? na, GameCollectionKeys.WinnersKey : game.winners ?? na, GameCollectionKeys.LosersKey : game.losers ?? na, GameCollectionKeys.IsTieKey : game.isTie ?? na,GameCollectionKeys.WitnessKey : game.witness ?? na, GameCollectionKeys.DurationKey : game.duration ?? na, GameCollectionKeys.isOverKey : false, GameCollectionKeys.wasCancelledKey : false]) { (error
             ) in
             if let error = error {
                completion(error)

@@ -34,6 +34,7 @@ class GameModel {
 //    let teamBScore: Int?
     let duration: Double?
     let isOver: Bool
+    let wasCancelled: Bool
     
     
     
@@ -55,7 +56,7 @@ class GameModel {
     gameID: String,
     witness: String?,
     duration: Double?,
-    isOver: Bool) {
+    isOver: Bool, wasCancelled: Bool) {
         self.gameName = gameName
         self.gameType = gameType
         self.numberOfGamers = numberOfPlayers
@@ -75,6 +76,7 @@ class GameModel {
         self.witness = witness
         self.duration = duration
         self.isOver = isOver
+        self.wasCancelled = wasCancelled
     }
     
     init(dict: [String: Any]) {
@@ -97,6 +99,7 @@ class GameModel {
         self.witness = dict[GameCollectionKeys.WitnessKey] as? String ?? ""
         self.duration = dict[GameCollectionKeys.DurationKey] as? Double ?? 0
         self.isOver = dict[GameCollectionKeys.isOverKey] as? Bool ?? false
+        self.wasCancelled = dict[GameCollectionKeys.wasCancelledKey] as? Bool ?? false
     }
 //    let gameName: String
 //    let gameType: String

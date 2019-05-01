@@ -12,7 +12,7 @@ import FirebaseFirestore
 
 class OneVsOneProgressViewController: UIViewController {
 
-//    var buttons = [UIButton]()
+    var buttons = [UIButton]()
     var invitation: Invitation?
     var invitations = [Invitation]()
     var isHost = Bool()
@@ -33,15 +33,16 @@ class OneVsOneProgressViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var cancelGameButton: UIButton!
+    @IBOutlet weak var gameInProgressLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
-//        buttons = [cancelButton, endButton]
+        buttons = [cancelButton, endButton]
         if isHost {
             fetchInvitationApproval()
         } else {
-//            buttons.forEach{$0.isHidden = true}
+            buttons.forEach{$0.isHidden = true}
             waitingScreen.isHidden = true
             fetchForGameCreated()
             
@@ -82,7 +83,24 @@ class OneVsOneProgressViewController: UIViewController {
         })
     }
     func fetchForGameCanceled() {
-        
+        guard let invitation = invitation else {
+            print("No Invitation")
+            return
+        }
+        listener = DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).whereField(GameCollectionKeys.wasCancelledKey, isEqualTo: true).whereField(GameCollectionKeys.GameIDKey, isEqualTo: invitation.gameId).addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            if let snapshot = snapshot {
+                let games = snapshot.documents.map {GameModel.init(dict: $0.data())}
+                if games.count > 0 {
+                    self.showAlert(title: "Host ended game", message: "Press okay to continue", handler: { (alert) in
+                        let tab = TabBarViewController.setTabBarVC()
+                        self.present(tab, animated: true)
+                    })
+                }
+            }
+        }
     }
     func fetchForGameCreated() {
         guard let invitation = invitation else {
@@ -115,6 +133,24 @@ class OneVsOneProgressViewController: UIViewController {
                 print(error)
             }
         }
+        DBService.deleteGamePost(gameId: invitation.gameId, completion: { (error) in
+            if let error = error {
+                print(error)
+            }
+        })
+        
+        DBService.fetchCurrentPlayer(gamerId: TabBarViewController.currentGamer.gamerID , completion: { (error, currentPlayer) in
+            if let error = error {
+                print(error)
+            }
+            if let currentPlayer = currentPlayer {
+                DBService.deleteCurrentPlayer(currentPlayer: currentPlayer, completion: { (error) in
+                    if let error = error {
+                        print(error)
+                    }
+                })
+            }
+        })
         dismiss(animated: true)
     }
     
@@ -122,6 +158,7 @@ class OneVsOneProgressViewController: UIViewController {
     @IBAction func cancelPressed(_ sender: UIButton) {
         confirmAlert(title: "Cancel Game", message: "Are you sure?") { (action) in
             guard let invitation = self.invitation else {return}
+            DBService.updateGameToCancelled(gameId: invitation.gameId)
             DBService.deleteInvitation(invitation: invitation) { (error) in
                 if let error = error {
                     print(error)
@@ -158,7 +195,6 @@ class OneVsOneProgressViewController: UIViewController {
         }
         DBService.updateGameToFinish(gameId: invitation.gameId)
         endGameVc.modalPresentationStyle = .overCurrentContext
-        
 //        endGameVc.game = game
         endGameVc.invitation = invitation
         endGameVc.isHost = true
@@ -170,3 +206,9 @@ class OneVsOneProgressViewController: UIViewController {
     
 
 }
+
+
+
+
+    
+
