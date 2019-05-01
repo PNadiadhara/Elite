@@ -7,14 +7,18 @@
 //
 
 import UIKit
-
+protocol MapViewPopupControllerDelegate: AnyObject {
+    func getMilesFromUser(miles: String)
+}
 class MapViewPopupController: UIViewController {
     //MARK: - Outlets and Properties
     var basketballReults: BasketBall!
     var handballResults: HandBall!
+    weak var delegate: MapViewPopupControllerDelegate?
+    @IBOutlet weak var milesView: UIView!
     
     @IBOutlet weak var milesPickerView: UIPickerView!
-    private let miles = ["1 mile", "2 miles","5 miles","10 miles"]
+    private let miles = ["1", "2","5","10"]
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPickerView()
@@ -24,6 +28,8 @@ class MapViewPopupController: UIViewController {
     private func setupPickerView(){
         milesPickerView.delegate = self
         milesPickerView.dataSource = self
+        milesPickerView.layer.cornerRadius = 10
+        milesView.layer.cornerRadius = 10
     }
     
     
@@ -50,7 +56,7 @@ extension MapViewPopupController: UIPickerViewDelegate, UIPickerViewDataSource{
         return NSAttributedString(string: titleForMiles, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+        delegate?.getMilesFromUser(miles: miles[row])
     }
     
 }
