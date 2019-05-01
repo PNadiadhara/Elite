@@ -23,7 +23,6 @@
 		2E381EB122613A1E0075C1CD /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E381EAF22613A1E0075C1CD /* ProfileViewController.xib */; };
 		2E9FE656225579E5004CA00B /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9FE655225579E5004CA00B /* CreateAccountViewController.swift */; };
 		2E9FE65822557AC4004CA00B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9FE65722557AC4004CA00B /* LoginViewController.swift */; };
-		2E9FE65F22557BC6004CA00B /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9FE65E22557BC6004CA00B /* EditProfileViewController.swift */; };
 		2E9FE66222557CE6004CA00B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9FE66122557CE6004CA00B /* Constants.swift */; };
 		2E9FE66422557D02004CA00B /* IBADesignableViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9FE66322557D02004CA00B /* IBADesignableViews.swift */; };
 		2E9FE66822557DF4004CA00B /* UIViewController+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9FE66722557DF4004CA00B /* UIViewController+Navigation.swift */; };
@@ -152,7 +151,6 @@
 		2E381EAF22613A1E0075C1CD /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		2E9FE655225579E5004CA00B /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		2E9FE65722557AC4004CA00B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		2E9FE65E22557BC6004CA00B /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		2E9FE66122557CE6004CA00B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2E9FE66322557D02004CA00B /* IBADesignableViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBADesignableViews.swift; sourceTree = "<group>"; };
 		2E9FE66722557DF4004CA00B /* UIViewController+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Navigation.swift"; sourceTree = "<group>"; };
@@ -307,7 +305,6 @@
 			children = (
 				2E381EAE22613A1E0075C1CD /* ProfileViewController.swift */,
 				2E381EAF22613A1E0075C1CD /* ProfileViewController.xib */,
-				2E9FE65E22557BC6004CA00B /* EditProfileViewController.swift */,
 				2EF4809B22565A73008212DC /* SnapchatLoginViewController.swift */,
 				2ECA1BCE2270C336006348B3 /* FacebookLoginViewController.swift */,
 			);
@@ -838,7 +835,6 @@
 				2E381EA72260F3BC0075C1CD /* FriendListView.swift in Sources */,
 				D5D375BD226A6D3900F25FCF /* WinnerViewController.swift in Sources */,
 				D5B57D422262698400DB73E2 /* OneVsOneProgressViewController.swift in Sources */,
-				2E9FE65F22557BC6004CA00B /* EditProfileViewController.swift in Sources */,
 				2EF4809222565216008212DC /* GameModel.swift in Sources */,
 				2EC6D559225E79B300336362 /* TwoVsTwoViewController.swift in Sources */,
 				D5DF86BE226A21B100E2972A /* GameName.swift in Sources */,
@@ -1030,9 +1026,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-
 				DEVELOPMENT_TEAM = TZT7J4D9W8;
-
 				INFOPLIST_FILE = Elite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1052,13 +1046,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TZT7J4D9W8;
-
 				INFOPLIST_FILE = Elite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-
 				PRODUCT_BUNDLE_IDENTIFIER = Pritesh.Elite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
