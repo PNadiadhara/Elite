@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string></string>
+		</dict>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -44,11 +51,15 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>In order for you to use elite we need your location</string>
 	<key>SCSDKClientId</key>
-	<string></string>
+	<string>cd7cf581-82b0-4ced-a4bb-2e9b194bc3d4</string>
 	<key>SCSDKRedirectUrl</key>
 	<string></string>
 	<key>SCSDKScopes</key>
-	<array/>
+	<array>
+		<string>https://auth.snapchat.com/oauth2/api/user.external_id</string>
+		<string>https://auth.snapchat.com/oauth2/api/user.display_name</string>
+		<string>https://auth.snapchat.com/oauth2/api/user.bitmoji.avatar</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
