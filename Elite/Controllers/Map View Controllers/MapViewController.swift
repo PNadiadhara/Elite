@@ -14,14 +14,14 @@ enum GoogleMapsMVState {
     case showBasketBallMarkers
     case noMarkersShown
 }
-protocol MapViewControllerDelegate: AnyObject {
-    func makerDidTapOnMap()
-}
 enum ViewVisibiltyState {
     case visibile
     case invisible
 }
-class MapViewController: UIViewController {
+
+class MapViewController: UIViewController, MapViewPopupControllerDelegate {
+    
+    
     // MARK: - Outlets and Properties
     
     
@@ -30,6 +30,7 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var googleMapsMapView: GMSMapView!
     //    private let delegate: MapViewControllerDelegate?
+    let popUpVC = MapViewPopupController()
     private var stateOfPopUpView = ViewVisibiltyState.invisible
     private var googleMapsMVEditingState = GoogleMapsMVState.noMarkersShown {
         didSet{
@@ -59,6 +60,52 @@ class MapViewController: UIViewController {
         }
     }
     var range: Double?
+    private var customArr = [[
+        "Prop_ID": "",
+        "Name": "Museum of the Moving Image",
+        "Location": "36-01 35th Ave, Astoria, NY 11106",
+        "Num_of_Courts": "2",
+        "BasketballCourt": true,
+        "HandballCourt": true,
+        "lat": 40.7563454,
+        "lon": -73.9239496],
+                             [
+                                "Prop_ID": "",
+                                "Name": "Sean's Place",
+                                "Location": "36-01 35th Ave, Astoria, NY 11106",
+                                "Num_of_Courts": "2",
+                                "BasketballCourt": true,
+                                "HandballCourt": true,
+                                "lat": 40.7609461,
+                                "lon": -73.91873679999999],
+                             [
+                                "Prop_ID": "",
+                                "Name": "Dutch Kills Playground",
+                                "Location": "36th Avenue &, Crescent St, Long Island City, NY 11106",
+                                "Num_of_Courts": "2",
+                                "BasketballCourt": true,
+                                "HandballCourt": true,
+                                "lat": 40.7575695,
+                                "lon": -73.93307639999999],
+                             [
+                                "Prop_ID": "",
+                                "Name": "Playground Thirty-Five",
+                                "Location": "Playground Thirty-Five, 4016 35th Ave, Long Island City, NY 11101, USA",
+                                "Num_of_Courts": "2",
+                                "BasketballCourt": true,
+                                "HandballCourt": true,
+                                "lat": 40.7548488,
+                                "lon": -73.9221125],
+                             [
+                                "Prop_ID": "",
+                                "Name": "Synergy Fitness Clubs",
+                                "Location": "23-35 Broadway, Astoria, NY 11106",
+                                "Num_of_Courts": "2",
+                                "BasketballCourt": true,
+                                "HandballCourt": true,
+                                "lat": 40.7638374,
+                                "lon": -73.92885819999999]
+    ]
     // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +115,8 @@ class MapViewController: UIViewController {
         googleMapsMapView.bringSubviewToFront(eliteView)
         eliteView.isHidden = true
         loadAllParkData()
+        addCustomMakers()
+        popUpVC.delegate = self
         
         
     }
@@ -138,6 +187,17 @@ class MapViewController: UIViewController {
         alertController.addAction(noAction)
         present(alertController, animated: true, completion: nil)
     }
+    private func addCustomMakers(){
+        for arr in customArr {
+           let marker = GMSMarker()
+           marker.title = arr["Name"] as? String
+           marker.snippet = arr["Location"] as? String
+            let locations = CLLocationCoordinate2D(latitude: arr["lat"] as! Double, longitude:  arr["lon"] as! Double)
+        marker.position = locations
+            marker.map = googleMapsMapView
+            
+        }
+    }
     private func addMarkers(courts: [Court], type: SportType) {
         var googleMarkers = [GMSMarker]()
         
@@ -167,7 +227,20 @@ class MapViewController: UIViewController {
         }
         
     }
-    
+    func getMilesFromUser(miles: String) {
+        switch miles {
+        case "1":
+            range = MilesInMetersInfo.oneMile
+        case "2":
+            range = MilesInMetersInfo.twoMiles
+        case "5":
+            range = MilesInMetersInfo.fiveMiles
+        case "10":
+            range = MilesInMetersInfo.tenMiles
+        default:
+            print("No range Selected")
+        }
+    }
     private func getBasketBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [BasketBall]){
         loadAllParkData()
         var courtArr = [BasketBall]()
@@ -177,7 +250,7 @@ class MapViewController: UIViewController {
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
         
-            if distanceInMeters <= MilesInMetersInfo.oneMile {
+            if distanceInMeters <= range ?? 0.0 {
                 courtArr.append(court)
             }
         }
