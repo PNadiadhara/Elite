@@ -16,8 +16,8 @@ class GameModel {
     let gameName: String // TODO: enum
     let gameType: String // TODO: enum
     let numberOfGamers: Int
-    let teamA: [String] // ids
-    let teamB: [String]
+    let redTeam: [String] // ids
+    let blueTeam: [String]
     let parkId: String
     let gameDescription: String?
     let gameEndTime: String?
@@ -32,16 +32,17 @@ class GameModel {
     let witness: String?
 //    let teamAScore: Int?
 //    let teamBScore: Int?
-    let duration: Double?
-    let isOver: Bool
+    let duration: String?
+    let isOver: Bool?
+    let wasCancelled: Bool?
     
     
     
     init(gameName: String,
     gameType: String,
     numberOfPlayers: Int,
-    teamA: [String],
-    teamB: [String],
+    redTeam: [String],
+    blueTeam: [String],
     parkId: String,
     gameDescription: String?,
     gameEndTime: String?,
@@ -54,13 +55,13 @@ class GameModel {
     lon: Double,
     gameID: String,
     witness: String?,
-    duration: Double?,
-    isOver: Bool) {
+    duration: String?,
+    isOver: Bool?, wasCancelled: Bool?) {
         self.gameName = gameName
         self.gameType = gameType
         self.numberOfGamers = numberOfPlayers
-        self.teamA = teamA
-        self.teamB = teamB
+        self.redTeam = redTeam
+        self.blueTeam = blueTeam
         self.parkId = parkId
         self.gameDescription = gameDescription
         self.gameEndTime = gameEndTime
@@ -75,14 +76,15 @@ class GameModel {
         self.witness = witness
         self.duration = duration
         self.isOver = isOver
+        self.wasCancelled = wasCancelled
     }
     
     init(dict: [String: Any]) {
         self.gameName = dict[GameCollectionKeys.GameNameKey] as? String ?? ""
         self.gameType = dict[GameCollectionKeys.GameTypeKey] as? String ?? ""
         self.numberOfGamers = dict[GameCollectionKeys.NumberOfGamersKey] as? Int ?? 0
-        self.teamA = dict[GameCollectionKeys.TeamA] as? [String] ?? ["",""]
-        self.teamB = dict[GameCollectionKeys.TeamB] as? [String] ?? ["",""]
+        self.redTeam = dict[GameCollectionKeys.TeamA] as? [String] ?? ["",""]
+        self.blueTeam = dict[GameCollectionKeys.TeamB] as? [String] ?? ["",""]
         self.parkId = dict[GameCollectionKeys.ParkId] as? String ?? ""
         self.gameDescription = dict[GameCollectionKeys.GameDescriptionKey] as? String ?? ""
         self.gameEndTime =  dict[GameCollectionKeys.GameEndTimeKey] as? String ?? ""
@@ -95,8 +97,9 @@ class GameModel {
         self.lon = dict[GameCollectionKeys.LonKey] as? Double ?? 0
         self.gameID = dict[GameCollectionKeys.GameIDKey] as? String ?? ""
         self.witness = dict[GameCollectionKeys.WitnessKey] as? String ?? ""
-        self.duration = dict[GameCollectionKeys.DurationKey] as? Double ?? 0
+        self.duration = dict[GameCollectionKeys.DurationKey] as? String ?? ""
         self.isOver = dict[GameCollectionKeys.isOverKey] as? Bool ?? false
+        self.wasCancelled = dict[GameCollectionKeys.wasCancelledKey] as? Bool ?? false
     }
 //    let gameName: String
 //    let gameType: String

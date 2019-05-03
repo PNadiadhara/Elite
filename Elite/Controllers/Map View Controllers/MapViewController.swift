@@ -14,6 +14,14 @@ enum GoogleMapsMVState {
     case showBasketBallMarkers
     case noMarkersShown
 }
+
+enum ViewStatus {
+    case pressed
+    case notPressed
+}
+protocol MapViewControllerDelegate: AnyObject {
+    func makerDidTapOnMap()
+}
 enum ViewVisibiltyState {
     case visibile
     case invisible
@@ -60,6 +68,8 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         }
     }
     var range: Double?
+    var viewStatus: ViewStatus = .notPressed
+
     private var customArr = [[
         "Prop_ID": "",
         "Name": "Museum of the Moving Image",
@@ -106,6 +116,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
                                 "lat": 40.7638374,
                                 "lon": -73.92885819999999]
     ]
+
     // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -250,9 +261,13 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
         
+
+            if distanceInMeters <= MilesInMetersInfo.oneMile {
+
             if distanceInMeters <= range ?? 0.0 {
                 courtArr.append(court)
             }
+        }
         }
         basketballResults = courtArr
         print(basketballResults.count)
@@ -266,7 +281,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             let lng = court.lng ?? "0.0"
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
-            if distanceInMeters <= MilesInMetersInfo.oneMile {
+            if distanceInMeters <= MilesInMetersInfo.fiveMiles {
                 courtArr.append(court)
             }
         }
@@ -315,7 +330,14 @@ extension MapViewController: GMSMapViewDelegate
  {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         eliteView.isHidden = false
-        eliteView.animShow()
+        if viewStatus == .notPressed{
+          viewStatus = .pressed
+            eliteView.animShow()
+        } else {
+            viewStatus = .notPressed
+            eliteView.animHide()
+        }
+        
         return true
     }
 
