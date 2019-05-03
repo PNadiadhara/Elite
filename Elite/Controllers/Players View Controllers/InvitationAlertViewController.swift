@@ -19,31 +19,42 @@ class InvitationAlertViewController: UIViewController {
     
     var invitation: Invitation!
     var gamer: GamerModel?
+    var bluePlayerOne: GamerModel!
+    var redPlayerOne: GamerModel!
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchUser()
         setupLabel()
-        setupImage()
+//        setupImage()
         setupAlertView()
         // Do any additional setup after loading the view.
     }
     func setupLabel() {
         invitationLabel.text = "\(invitation.senderUsername) invited you to play \(invitation.game)"
     }
-    func setupImage() {
-        guard let gamer = gamer else {
-            print("No gamer")
-            return
-        }
-        userImage.image = UIImage(named: gamer.username + "Hi")
-    }
+//    func setupImage() {
+//        guard let gamer = gamer else {
+//            print("No gamer")
+//            return
+//        }
+//
+//    }
     func fetchUser() {
+        DBService.fetchGamer(gamerID: invitation.sender) { (error, gamer) in
+            if let error = error {
+                self.showAlert(title: "Error fetching gamer", message: error.localizedDescription)
+            }
+            if let gamer = gamer {
+                self.userImage.image = UIImage(named: gamer.username + "Hi")
+                self.redPlayerOne = gamer
+            }
+        }
         DBService.fetchGamer(gamerID: invitation.reciever) { (error, gamer) in
             if let error = error {
                 self.showAlert(title: "Error fetching gamer", message: error.localizedDescription)
             }
             if let gamer = gamer {
-                self.gamer = gamer
+                self.bluePlayerOne = gamer
             }
         }
     }
@@ -65,6 +76,9 @@ class InvitationAlertViewController: UIViewController {
             oneVsoneProgressVc.modalPresentationStyle = .fullScreen
             oneVsoneProgressVc.invitation = invitation
             oneVsoneProgressVc.isHost = false
+            oneVsoneProgressVc.gameType = .oneVsOne
+            oneVsoneProgressVc.blueOnePlayer = bluePlayerOne
+            oneVsoneProgressVc.redOnePlayer = redPlayerOne
             present(oneVsoneProgressVc, animated: true)
         }
         
@@ -73,6 +87,7 @@ class InvitationAlertViewController: UIViewController {
             twoVsTwoProgressVc.modalPresentationStyle = .fullScreen
             twoVsTwoProgressVc.invitation = invitation
             twoVsTwoProgressVc.isHost = false
+            twoVsTwoProgressVc.gameType = .twoVsTwo
             present(twoVsTwoProgressVc, animated: true)
         }
 

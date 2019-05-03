@@ -17,13 +17,16 @@ class OneVsOneProgressViewController: UIViewController {
     var invitations = [Invitation]()
     var isHost = Bool()
     var game: GameModel?
+    var blueOnePlayer: GamerModel!
+    var redOnePlayer: GamerModel!
     var gameType: GameType!
+    var gameBeginingTimeStamp = Date()
     private var listener: ListenerRegistration!
     
     @IBOutlet weak var sportParkLabel: UILabel!
-    @IBOutlet weak var redTeamImage: CircularRedImageView!
+    @IBOutlet weak var redTeamImage: UIImageView!
     @IBOutlet weak var redTeamLabel: UILabel!
-    @IBOutlet weak var blueTeamImage: CircularBlueImageView!
+    @IBOutlet weak var blueTeamImage: UIImageView!
     @IBOutlet weak var blueTeamLabel: UILabel!
     @IBOutlet weak var cancelButton: RoundedButton!
     @IBOutlet weak var endButton: RoundedButton!
@@ -31,9 +34,11 @@ class OneVsOneProgressViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var cancelGameButton: UIButton!
+    @IBOutlet weak var gameInProgressLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpUI()
         buttons = [cancelButton, endButton]
         if isHost {
             fetchInvitationApproval()
@@ -43,9 +48,16 @@ class OneVsOneProgressViewController: UIViewController {
             fetchForGameCreated()
             
         }
+        fetchForGameCanceled()
         
     }
 
+    func setUpUI() {
+        redTeamLabel.text = redOnePlayer.username
+        redTeamImage.image = UIImage(named: redOnePlayer.username + "FightingLeft")
+        blueTeamLabel.text = blueOnePlayer.username
+        blueTeamImage.image = UIImage(named: blueOnePlayer.username + "FightingRight")
+    }
 
     override func viewWillDisappear(_ animated: Bool) {
         listener.remove()
@@ -59,6 +71,9 @@ class OneVsOneProgressViewController: UIViewController {
             } else if let snapshot = snapshot {
                 self?.invitations = snapshot.documents.map {Invitation.init(dict: $0.data())}
                 if (self?.invitations.count)! > 0 {
+                    if self?.isHost ?? true {
+                      self?.gameBeginingTimeStamp = Date()
+                    }
                     self?.waitingScreen.isHidden = true
                     self?.endButton.isEnabled = true
                     self?.cancelButton.isEnabled = true
@@ -71,7 +86,26 @@ class OneVsOneProgressViewController: UIViewController {
             }
         })
     }
-
+    func fetchForGameCanceled() {
+        guard let invitation = invitation else {
+            print("No Invitation")
+            return
+        }
+        listener = DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).whereField(GameCollectionKeys.wasCancelledKey, isEqualTo: true).whereField(GameCollectionKeys.GameIDKey, isEqualTo: invitation.gameId).addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            if let snapshot = snapshot {
+                let games = snapshot.documents.map {GameModel.init(dict: $0.data())}
+                if games.count > 0 {
+                    self.showAlert(title: "Host ended game", message: "Press okay to continue", handler: { (alert) in
+                        let tab = TabBarViewController.setTabBarVC()
+                        self.present(tab, animated: true)
+                    })
+                }
+            }
+        }
+    }
     func fetchForGameCreated() {
         guard let invitation = invitation else {
             print("No Invitation")
@@ -89,6 +123,8 @@ class OneVsOneProgressViewController: UIViewController {
                     endGameVc.invitation = invitation
                     endGameVc.isHost = false
                     endGameVc.gameType = self.gameType
+                    endGameVc.blueOnePlayer = self.blueOnePlayer
+                    endGameVc.redOnePlayer = self.redOnePlayer
                     self.present(endGameVc, animated: true)
                 }
             }
@@ -102,18 +138,56 @@ class OneVsOneProgressViewController: UIViewController {
                 print(error)
             }
         }
+        DBService.deleteGamePost(gameId: invitation.gameId, completion: { (error) in
+            if let error = error {
+                print(error)
+            }
+        })
+        
+        DBService.fetchCurrentPlayer(gamerId: TabBarViewController.currentGamer.gamerID , completion: { (error, currentPlayer) in
+            if let error = error {
+                print(error)
+            }
+            if let currentPlayer = currentPlayer {
+                DBService.deleteCurrentPlayer(currentPlayer: currentPlayer, completion: { (error) in
+                    if let error = error {
+                        print(error)
+                    }
+                })
+            }
+        })
         dismiss(animated: true)
     }
     
     
     @IBAction func cancelPressed(_ sender: UIButton) {
-        confirmAlert(title: "Game Cancel", message: "Are you sure?") { (action) in
+        confirmAlert(title: "Cancel Game", message: "Are you sure?") { (action) in
             guard let invitation = self.invitation else {return}
+            DBService.updateGameToCancelled(gameId: invitation.gameId)
             DBService.deleteInvitation(invitation: invitation) { (error) in
                 if let error = error {
                     print(error)
                 }
             }
+            DBService.deleteGamePost(gameId: invitation.gameId, completion: { (error) in
+                if let error = error {
+                    print(error)
+                }
+            })
+            
+            DBService.fetchCurrentPlayer(gamerId: TabBarViewController.currentGamer.gamerID , completion: { (error, currentPlayer) in
+                if let error = error {
+                    print(error)
+                }
+                if let currentPlayer = currentPlayer {
+                    DBService.deleteCurrentPlayer(currentPlayer: currentPlayer, completion: { (error) in
+                        if let error = error {
+                            print(error)
+                        }
+                    })
+                }
+            })
+            
             let tab = TabBarViewController.setTabBarVC()
             self.present(tab, animated: true)
         }
@@ -126,13 +200,24 @@ class OneVsOneProgressViewController: UIViewController {
         }
         DBService.updateGameToFinish(gameId: invitation.gameId)
         endGameVc.modalPresentationStyle = .overCurrentContext
-        
 //        endGameVc.game = game
         endGameVc.invitation = invitation
         endGameVc.isHost = true
+        if isHost {
+            endGameVc.gameBegginingTimeStamp = gameBeginingTimeStamp
+            endGameVc.gameEndTimeStamp = Date()
+        }
         endGameVc.gameType = gameType
+        endGameVc.blueOnePlayer = blueOnePlayer
+        endGameVc.redOnePlayer = redOnePlayer
         present(endGameVc, animated: true)
     }
     
 
 }
+
+
+
+
+    
+

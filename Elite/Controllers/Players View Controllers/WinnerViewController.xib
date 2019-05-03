@@ -55,7 +55,7 @@
                             <rect key="frame" x="168" y="168" width="37" height="37"/>
                             <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </activityIndicatorView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calculating Winner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UNh-Hq-Jt9">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirming winner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UNh-Hq-Jt9">
                             <rect key="frame" x="11" y="225" width="351" height="20"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -81,7 +81,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.14154749010000001" green="0.14956755790000001" blue="0.16078951080000001" alpha="0.73022795376712324" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="wlJ-o3-pvx" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="iet-6J-ZQ7"/>
                 <constraint firstItem="wlJ-o3-pvx" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="qp0-IX-sVO"/>
