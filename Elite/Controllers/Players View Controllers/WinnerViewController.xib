@@ -16,6 +16,7 @@
                 <outlet property="continueButton" destination="7vh-Ob-5uM" id="5H8-m4-Dhw"/>
                 <outlet property="loadingLabel" destination="UNh-Hq-Jt9" id="yHT-Gn-eLD"/>
                 <outlet property="playersImage" destination="I0Z-T1-IAk" id="rJG-Vw-AYl"/>
+                <outlet property="userResultLabel" destination="TuD-K9-G2U" id="7sA-2J-N9Q"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="winnerTitle" destination="RbY-Ue-HwS" id="Wia-0L-zj1"/>
                 <outlet property="winnerView" destination="wlJ-o3-pvx" id="9wQ-I8-brf"/>
@@ -30,7 +31,7 @@
                     <rect key="frame" x="20.5" y="266.5" width="373" height="373"/>
                     <subviews>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congrats Ibraheem!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RbY-Ue-HwS">
-                            <rect key="frame" x="11" y="43" width="351" height="30.5"/>
+                            <rect key="frame" x="11" y="11" width="351" height="30.5"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -61,23 +62,32 @@
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congrats Ibraheem!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="TuD-K9-G2U">
+                            <rect key="frame" x="11" y="52.5" width="351" height="30.5"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.14154749010000001" green="0.14956755790000001" blue="0.16078951080000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
+                        <constraint firstItem="TuD-K9-G2U" firstAttribute="top" secondItem="RbY-Ue-HwS" secondAttribute="bottom" constant="11" id="1AN-vy-PlT"/>
                         <constraint firstItem="I0Z-T1-IAk" firstAttribute="width" secondItem="wlJ-o3-pvx" secondAttribute="width" multiplier="0.5" id="5nu-FC-kz7"/>
-                        <constraint firstItem="I0Z-T1-IAk" firstAttribute="top" secondItem="RbY-Ue-HwS" secondAttribute="bottom" constant="20" id="797-5S-VvP"/>
                         <constraint firstItem="ZXs-3Y-MmV" firstAttribute="centerX" secondItem="wlJ-o3-pvx" secondAttribute="centerX" id="8Vc-Nm-ce8"/>
+                        <constraint firstAttribute="trailing" secondItem="TuD-K9-G2U" secondAttribute="trailing" constant="11" id="9nX-jh-D4g"/>
                         <constraint firstItem="I0Z-T1-IAk" firstAttribute="centerY" secondItem="wlJ-o3-pvx" secondAttribute="centerY" id="Cox-C5-OJW"/>
                         <constraint firstAttribute="width" secondItem="wlJ-o3-pvx" secondAttribute="height" multiplier="1:1" id="Gzl-CW-giG"/>
+                        <constraint firstItem="RbY-Ue-HwS" firstAttribute="top" secondItem="wlJ-o3-pvx" secondAttribute="top" constant="11" id="QqW-cR-ycv"/>
                         <constraint firstAttribute="trailing" secondItem="UNh-Hq-Jt9" secondAttribute="trailing" constant="11" id="Tgs-cI-j9g"/>
                         <constraint firstItem="UNh-Hq-Jt9" firstAttribute="top" secondItem="ZXs-3Y-MmV" secondAttribute="bottom" constant="20" id="Wbj-N2-shI"/>
-                        <constraint firstAttribute="trailing" secondItem="RbY-Ue-HwS" secondAttribute="trailing" constant="11" id="Z6R-pd-HYL"/>
                         <constraint firstItem="I0Z-T1-IAk" firstAttribute="centerX" secondItem="wlJ-o3-pvx" secondAttribute="centerX" id="a2v-yl-1L8"/>
+                        <constraint firstItem="TuD-K9-G2U" firstAttribute="leading" secondItem="wlJ-o3-pvx" secondAttribute="leading" constant="11" id="eBv-6K-WJE"/>
+                        <constraint firstAttribute="trailing" secondItem="RbY-Ue-HwS" secondAttribute="trailing" constant="11" id="gSC-da-BdB"/>
                         <constraint firstItem="7vh-Ob-5uM" firstAttribute="centerX" secondItem="I0Z-T1-IAk" secondAttribute="centerX" id="j08-z2-xGq"/>
                         <constraint firstItem="7vh-Ob-5uM" firstAttribute="top" secondItem="I0Z-T1-IAk" secondAttribute="bottom" constant="20" id="lNx-5H-qxf"/>
                         <constraint firstItem="ZXs-3Y-MmV" firstAttribute="centerY" secondItem="wlJ-o3-pvx" secondAttribute="centerY" id="pbI-Bg-YXt"/>
+                        <constraint firstItem="RbY-Ue-HwS" firstAttribute="leading" secondItem="wlJ-o3-pvx" secondAttribute="leading" constant="11" id="tng-GI-7lA"/>
                         <constraint firstItem="UNh-Hq-Jt9" firstAttribute="leading" secondItem="wlJ-o3-pvx" secondAttribute="leading" constant="11" id="xO4-0c-w3O"/>
-                        <constraint firstItem="RbY-Ue-HwS" firstAttribute="leading" secondItem="wlJ-o3-pvx" secondAttribute="leading" constant="11" id="zkn-vD-clo"/>
                     </constraints>
                 </view>
             </subviews>
