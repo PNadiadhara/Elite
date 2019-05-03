@@ -16,10 +16,11 @@
                 <outlet property="highestRankScore" destination="uDG-71-KPB" id="mdw-it-PPD"/>
                 <outlet property="playerImageView" destination="9e3-W1-G9Y" id="DKg-81-uuA"/>
                 <outlet property="playerUserName" destination="xkx-20-Bod" id="Qod-Ib-D5W"/>
+                <outlet property="view" destination="dnv-yO-nJc" id="zi1-WT-BPA"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <viewController id="eJ8-d7-KUs" customClass="ViewController" customModule="EndofGamescreen" customModuleProvider="target">
+        <viewController id="eJ8-d7-KUs" customClass="ViewController" customModule="Elite" customModuleProvider="target">
             <view key="view" contentMode="scaleToFill" id="dnv-yO-nJc">
                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -161,9 +162,6 @@
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="cU6-pD-6Hc"/>
             </view>
-            <connections>
-                <outlet property="rankLabel" destination="avv-qU-Zhg" id="coE-5M-kOn"/>
-            </connections>
             <point key="canvasLocation" x="137.68115942028987" y="82.366071428571431"/>
         </viewController>
     </objects>
