@@ -86,6 +86,8 @@
 		BFADB59922553FB300E746B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59722553FB300E746B5 /* LaunchScreen.storyboard */; };
 		BFD61E1C2277520300EA408B /* EliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD61E1B2277520300EA408B /* EliteTests.swift */; };
 		BFD61E242279FE8E00EA408B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFD61E232279FE8E00EA408B /* GoogleService-Info.plist */; };
+		BFD61E27227C985600EA408B /* RankChangeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD61E25227C985600EA408B /* RankChangeController.swift */; };
+		BFD61E28227C985600EA408B /* RankChangeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFD61E26227C985600EA408B /* RankChangeController.xib */; };
 		BFED970F225E6E2900CC360B /* EloRankMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFED970E225E6E2900CC360B /* EloRankMethods.swift */; };
 		D521086F225E95540044C440 /* UserFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D521086D225E95540044C440 /* UserFeedCell.xib */; };
 		D5210870225E95540044C440 /* UserFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D521086E225E95540044C440 /* UserFeedCell.swift */; };
@@ -230,6 +232,8 @@
 		BFD61E1B2277520300EA408B /* EliteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EliteTests.swift; sourceTree = "<group>"; };
 		BFD61E1D2277520300EA408B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFD61E232279FE8E00EA408B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BFD61E25227C985600EA408B /* RankChangeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankChangeController.swift; sourceTree = "<group>"; };
+		BFD61E26227C985600EA408B /* RankChangeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RankChangeController.xib; sourceTree = "<group>"; };
 		BFED970E225E6E2900CC360B /* EloRankMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EloRankMethods.swift; sourceTree = "<group>"; };
 		D521086D225E95540044C440 /* UserFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserFeedCell.xib; sourceTree = "<group>"; };
 		D521086E225E95540044C440 /* UserFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFeedCell.swift; sourceTree = "<group>"; };
@@ -442,6 +446,8 @@
 				D5D375BC226A6D3900F25FCF /* WinnerViewController.xib */,
 				D5BCBBF8226F7FBD006B0015 /* TwoVsTwoProgressViewController.swift */,
 				D5BCBBF9226F7FBD006B0015 /* TwoVsTwoProgressViewController.xib */,
+				BFD61E25227C985600EA408B /* RankChangeController.swift */,
+				BFD61E26227C985600EA408B /* RankChangeController.xib */,
 			);
 			path = "Players View Controllers";
 			sourceTree = "<group>";
@@ -721,6 +727,7 @@
 				D5210882225E960B0044C440 /* FeedCell.xib in Resources */,
 				D5210874225E956B0044C440 /* FiveVsFiveFeedCell.xib in Resources */,
 				48980A4D225E346B0034D04F /* JsonModel.json in Resources */,
+				BFD61E28227C985600EA408B /* RankChangeController.xib in Resources */,
 				D5EFCBFC2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib in Resources */,
 				2E381EB122613A1E0075C1CD /* ProfileViewController.xib in Resources */,
 				48F1B5C2226980F700B53E11 /* basketballCourtInfo.json in Resources */,
@@ -882,6 +889,7 @@
 				2E9FE67822558191004CA00B /* DBService.swift in Sources */,
 				2E9FE656225579E5004CA00B /* CreateAccountViewController.swift in Sources */,
 				2ECA1BCF2270C336006348B3 /* FacebookLoginViewController.swift in Sources */,
+				BFD61E27227C985600EA408B /* RankChangeController.swift in Sources */,
 				48D5C824225D328A00AFDE8F /* JsonParkDataClient.swift in Sources */,
 				48DB1A642260F28300C7CEAC /* AllInfoForBasketBallCourts.json in Sources */,
 				2EC6D572225E9BCB00336362 /* UserFeedTableViewController.swift in Sources */,
@@ -1104,7 +1112,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TZT7J4D9W8;
+
+				DEVELOPMENT_TEAM = DQ5CF8LT37;
 				INFOPLIST_FILE = Elite/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1124,7 +1133,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TZT7J4D9W8;
+
+				DEVELOPMENT_TEAM = DQ5CF8LT37;
 				INFOPLIST_FILE = Elite/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
