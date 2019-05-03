@@ -55,9 +55,17 @@ class MapViewController: UIViewController {
     private var basketballResults = [BasketBall](){
         didSet{
             googleMapsMapView.reloadInputViews()
+            
         }
     }
-    var range: Double?
+    var range: Double = MilesInMetersInfo.oneMile {
+        didSet {
+            getBasketBallParksNearMe(userLocation, basketballResults)
+            getHandBallParksNearMe(userLocation, handballResults)
+            googleMapsMapView.reloadInputViews()
+           
+        }
+    }
     var typeValue = String()
     private var customArr = [[
         "Prop_ID": "",
@@ -125,6 +133,7 @@ class MapViewController: UIViewController {
         switch miles {
         case "1":
             range = MilesInMetersInfo.oneMile
+            
         case "2":
             range = MilesInMetersInfo.twoMiles
         case "5":
@@ -247,7 +256,8 @@ class MapViewController: UIViewController {
             marker.position = locations
             switch court.type {
             case .basketball:
-                marker.icon = GMSMarker.markerImage(with: .orange)
+//                marker.icon = GMSMarker.markerImage(with: .orange)
+                marker.icon = UIImage.init(named: "eliteForBBall")
             case .handball:
                 marker.icon = UIImage.init(named: "eliteMarker")
                 //marker.iconView = UIImage.init(named: "eliteMarker")
@@ -272,12 +282,12 @@ class MapViewController: UIViewController {
             let lng = court.lng ?? "0.0"
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
-            if distanceInMeters <= range ?? 0.0 {
+            if distanceInMeters <= range {
                 courtArr.append(court)
             }
             
         }
-        print("Basketball Range is now: \(range ?? 0.000)")
+        print("Basketball Range is now: \(range)")
         basketballResults = courtArr
         print("# of BasketBall Courts: ",basketballResults.count)
     }
@@ -290,12 +300,13 @@ class MapViewController: UIViewController {
             let lng = court.lng ?? "0.0"
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
-            if distanceInMeters <= range ?? 0.0 {
+            if distanceInMeters <= range {
                 courtArr.append(court)
             }
             
         }
-        print("handball Range is now: \(range ?? 0.000)")
+        print("handball Range is now: \(range)")
+        
         handballResults = courtArr
     }
     
