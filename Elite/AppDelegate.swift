@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let _ = AppDelegate.authservice.getCurrentUser() {
             let tab = TabBarViewController.setTabBarVC()
 //            DBService.firestoreDB.collection(GamerCollectionKeys.CollectionKey)
-//                .document(user.uid).updateData([GamerCollectionKeys.FriendsKey : ["eyTpLxtdEVfUDv1mllN3zdt5aOk2", "wzEh3XkxcXhBtEAHoy8CYceaYGd2", "tHq8ovJaG3YpUprzW3hlymJRp0K2"]]) { (error) in
+//                .document(user.uid).updateData([GamerCollectionKeys.FriendsKey : ["RpRqKJ0if8b8NHnSLjMYP1Rp7N52", "RxLqfLmOCBc8Zwwrg3OKnJErfFU2", "hOuXVpMXPwgmROhb5GBdxTXSCF33"]]) { (error) in
 //                    if let error = error {
 //                        print(error)
 //                    } else {

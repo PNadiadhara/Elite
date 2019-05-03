@@ -9,6 +9,6 @@
 import Foundation
 
 enum Teams: String {
-    case blue
-    case red
+    case blueTeam
+    case redTeam
 }

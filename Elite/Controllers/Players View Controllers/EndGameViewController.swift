@@ -13,17 +13,29 @@ class EndGameViewController: UIViewController {
 
     @IBOutlet weak var redPlayerView: UIView!
     @IBOutlet weak var bluePlayerView: UIView!
-    @IBOutlet weak var redPlayerImage: CircularRedImageView!
-    @IBOutlet weak var bluePlayerImage: CircularBlueImageView!
-    @IBOutlet weak var redPlayerName: UILabel!
-    @IBOutlet weak var bluePlayerName: UILabel!
+    @IBOutlet weak var redOnePlayerLabel: UILabel!
+    
+    @IBOutlet weak var redTwoPlayerLabel: UILabel!
+    @IBOutlet weak var redThreePlayerLabel: UILabel!
+    @IBOutlet weak var redFourPlayerLabel: UILabel!
+    
+    @IBOutlet weak var redFivePlayerLabel: UILabel!
+    @IBOutlet weak var blueOnePlayerLabel: UILabel!
+    @IBOutlet weak var blueTwoPlayerLabel: UILabel!
+    @IBOutlet weak var blueThreePlayerLabel: UILabel!
+    @IBOutlet weak var blueFourPlayerLabel: UILabel!
+    @IBOutlet weak var blueFivePlayerLabel: UILabel!
+    
     
     var invitation: Invitation!
     var selectedTeam: Teams?
     var game: GameModel?
     var currentPlayer: CurrentPlayer?
     var gameType: GameType!
-    
+    var blueOnePlayer: GamerModel!
+    var redOnePlayer: GamerModel!
+    var gameBegginingTimeStamp: Date?
+    var gameEndTimeStamp: Date?
     var currentPlayerTeamRole = String()
     var winnerConfirmationId = String()
     var isHost = Bool()
@@ -38,8 +50,43 @@ class EndGameViewController: UIViewController {
         }
         fetchCurrentRole()
         fetchGame()
+        setupUI()
     }
-    
+    func setupUI(){
+        switch gameType.rawValue {
+        case GameType.oneVsOne.rawValue:
+            redOnePlayerLabel.text = redOnePlayer.username
+            blueOnePlayerLabel.text = blueOnePlayer.username
+            redPlayerView.frame = CGRect(x: 1, y: 1, width: 1, height: 1)
+            redTwoPlayerLabel.isHidden = true
+            redThreePlayerLabel.isHidden = true
+            redFourPlayerLabel.isHidden = true
+            redFivePlayerLabel.isHidden = true
+            blueTwoPlayerLabel.isHidden = true
+            blueThreePlayerLabel.isHidden = true
+            blueFourPlayerLabel.isHidden = true
+            blueFivePlayerLabel.isHidden = true
+//            bluePlayerView.translatesAutoresizingMaskIntoConstraints = false
+//            bluePlayerView.frame = CGRect(x: bluePlayerView.frame.origin.x, y: bluePlayerView.frame.origin.y, width: bluePlayerView.frame.width, height: 88)
+          case GameType.twoVsTwo.rawValue:
+            redPlayerView.frame = CGRect(x: redPlayerView.frame.origin.x, y: redPlayerView.frame.origin.y, width: redPlayerView.frame.width, height: 115)
+            redThreePlayerLabel.isHidden = true
+            redFourPlayerLabel.isHidden = true
+            redFivePlayerLabel.isHidden = true
+            blueThreePlayerLabel.isHidden = true
+            blueFourPlayerLabel.isHidden = true
+            blueFivePlayerLabel.isHidden = true
+        default:
+            return
+        }
+    }
+    func calculateGameDuration(beginningTimeStamp: Date?, endTimeStamp: Date?) -> String {
+        guard let beginningTimeStamp = beginningTimeStamp,
+            let endTimeStamp = endTimeStamp else {return String()}
+        let difference = Calendar.current.dateComponents([.hour, .minute], from: beginningTimeStamp, to: endTimeStamp)
+        return String(format: "%02ld%02ld", difference.hour!, difference.minute!)
+    }
+
     func fetchWinningConfirmations(){
         DBService.fetchWinningConfirmations(gameId: invitation.gameId) { (error, winningConfirmation) in
             if let error = error {
@@ -56,7 +103,9 @@ class EndGameViewController: UIViewController {
                 print("Error Fetching Games: \(error)")
             }
             if let game = game {
+                
                 self.game = game
+
             }
         }
     }
@@ -69,18 +118,16 @@ class EndGameViewController: UIViewController {
             print("No Game")
             return
         }
-        DBService.updateGameModel(gameId: invitation.gameId, game: game) { (error) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
 
-        }
+        
         DBService.updateWinningConfirmation(teamSelected: selectedTeam.rawValue, winningConfimationId: self.winnerConfirmationId, currentPlayerTeamRole: self.currentPlayerTeamRole)
         let winnerVc = WinnerViewController(nibName: "WinnerViewController", bundle: nil)
         winnerVc.invitation = self.invitation
         winnerVc.game = game
         winnerVc.winnerConfirmationId = self.winnerConfirmationId
         winnerVc.currentPlayer = self.currentPlayer
+        winnerVc.isHost = self.isHost
+        winnerVc.gameDuration = calculateGameDuration(beginningTimeStamp: gameBegginingTimeStamp, endTimeStamp: gameEndTimeStamp)
         winnerVc.modalPresentationStyle = .overCurrentContext
         self.present(winnerVc, animated: true)
         
@@ -106,13 +153,16 @@ class EndGameViewController: UIViewController {
         bluePlayerView.addGestureRecognizer(bluePlayerViewTap)
     }
     @objc func redPlayerTap() {
-        selectedTeam = .red
-        redPlayerImage.image = UIImage(named: "checkMark")
+        selectedTeam = .redTeam
+        redPlayerView.alpha = 1
+        bluePlayerView.alpha = 0.5
         
     }
     @objc func bluePlayerTap() {
-        selectedTeam = .blue
-        bluePlayerImage.image = UIImage(named: "checkMark")
+        selectedTeam = .blueTeam
+        redPlayerView.alpha = 0.5
+        bluePlayerView.alpha = 1.0
+
     }
     /*TO DO: func to checkmark the selected image
      func to segue to winnerVC and pass inviation

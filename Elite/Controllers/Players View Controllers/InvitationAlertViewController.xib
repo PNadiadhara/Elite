@@ -29,15 +29,15 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKH-p4-8FA">
                             <rect key="frame" x="0.0" y="0.0" width="290" height="116.5"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uQS-JH-xj9" customClass="CircularBlueImageView" customModule="Elite" customModuleProvider="target">
-                                    <rect key="frame" x="15" y="30.5" width="55" height="55"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uQS-JH-xj9">
+                                    <rect key="frame" x="15" y="8" width="100" height="100"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="55" id="AnF-2a-2ND"/>
-                                        <constraint firstAttribute="height" constant="55" id="TT7-uz-605"/>
+                                        <constraint firstAttribute="width" constant="100" id="AnF-2a-2ND"/>
+                                        <constraint firstAttribute="height" constant="100" id="TT7-uz-605"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X6B-vw-l9d">
-                                    <rect key="frame" x="78" y="36.5" width="204" height="20"/>
+                                    <rect key="frame" x="123" y="36.5" width="159" height="20"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -92,7 +92,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.22352941179999999" alpha="0.38963505993150682" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.22352941179999999" alpha="0.83462649828767121" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="YjX-bk-DVo" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="EBN-K2-Rx7"/>
                 <constraint firstItem="YjX-bk-DVo" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="aeP-ru-amP"/>

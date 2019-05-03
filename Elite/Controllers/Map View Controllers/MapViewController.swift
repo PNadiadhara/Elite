@@ -14,6 +14,14 @@ enum GoogleMapsMVState {
     case showBasketBallMarkers
     case noMarkersShown
 }
+
+enum ViewStatus {
+    case pressed
+    case notPressed
+}
+protocol MapViewControllerDelegate: AnyObject {
+    func makerDidTapOnMap()
+}
 enum ViewVisibiltyState {
     case visibile
     case invisible
@@ -68,6 +76,7 @@ class MapViewController: UIViewController {
         }
     }
     var typeValue = String()
+    var viewStatus: ViewStatus = .notPressed
     private var customArr = [[
         "Prop_ID": "",
         "Name": "Museum of the Moving Image",
@@ -347,6 +356,10 @@ class MapViewController: UIViewController {
         eliteView.animHide()
         
     }
+    @IBAction func createAGame(_ sender: UIButton){
+    
+//        tabBarController?.present(CreateGameViewController(), animated: true, completion: nil)
+    }
     
 }
 //MARK: - Extensions
@@ -354,7 +367,14 @@ extension MapViewController: GMSMapViewDelegate
 {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         eliteView.isHidden = false
-        eliteView.animShow()
+        if viewStatus == .notPressed{
+          viewStatus = .pressed
+            eliteView.animShow()
+        } else {
+            viewStatus = .notPressed
+            eliteView.animHide()
+        }
+        
         return true
     }
     
