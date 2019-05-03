@@ -20,6 +20,7 @@ class OneVsOneProgressViewController: UIViewController {
     var blueOnePlayer: GamerModel!
     var redOnePlayer: GamerModel!
     var gameType: GameType!
+    var gameBeginingTimeStamp = Date()
     private var listener: ListenerRegistration!
     
     @IBOutlet weak var sportParkLabel: UILabel!
@@ -70,6 +71,9 @@ class OneVsOneProgressViewController: UIViewController {
             } else if let snapshot = snapshot {
                 self?.invitations = snapshot.documents.map {Invitation.init(dict: $0.data())}
                 if (self?.invitations.count)! > 0 {
+                    if self?.isHost ?? true {
+                      self?.gameBeginingTimeStamp = Date()
+                    }
                     self?.waitingScreen.isHidden = true
                     self?.endButton.isEnabled = true
                     self?.cancelButton.isEnabled = true
@@ -120,6 +124,7 @@ class OneVsOneProgressViewController: UIViewController {
                     endGameVc.isHost = false
                     endGameVc.gameType = self.gameType
                     endGameVc.blueOnePlayer = self.blueOnePlayer
+                    endGameVc.redOnePlayer = self.redOnePlayer
                     self.present(endGameVc, animated: true)
                 }
             }
@@ -198,6 +203,10 @@ class OneVsOneProgressViewController: UIViewController {
 //        endGameVc.game = game
         endGameVc.invitation = invitation
         endGameVc.isHost = true
+        if isHost {
+            endGameVc.gameBegginingTimeStamp = gameBeginingTimeStamp
+            endGameVc.gameEndTimeStamp = Date()
+        }
         endGameVc.gameType = gameType
         endGameVc.blueOnePlayer = blueOnePlayer
         endGameVc.redOnePlayer = redOnePlayer

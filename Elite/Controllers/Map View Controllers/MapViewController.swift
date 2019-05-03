@@ -14,7 +14,7 @@ enum GoogleMapsMVState {
     case showBasketBallMarkers
     case noMarkersShown
 }
-<<<<<<< HEAD
+
 enum ViewStatus {
     case pressed
     case notPressed
@@ -22,8 +22,6 @@ enum ViewStatus {
 protocol MapViewControllerDelegate: AnyObject {
     func makerDidTapOnMap()
 }
-=======
->>>>>>> 7948371cc675f7ffd0992b9c96c923a90854233e
 enum ViewVisibiltyState {
     case visibile
     case invisible
@@ -70,9 +68,8 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         }
     }
     var range: Double?
-<<<<<<< HEAD
     var viewStatus: ViewStatus = .notPressed
-=======
+
     private var customArr = [[
         "Prop_ID": "",
         "Name": "Museum of the Moving Image",
@@ -119,7 +116,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
                                 "lat": 40.7638374,
                                 "lon": -73.92885819999999]
     ]
->>>>>>> 7948371cc675f7ffd0992b9c96c923a90854233e
+
     // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -264,13 +261,13 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
         
-<<<<<<< HEAD
-            if distanceInMeters <= MilesInMetersInfo.fiveMiles {
-=======
+
+            if distanceInMeters <= MilesInMetersInfo.oneMile {
+
             if distanceInMeters <= range ?? 0.0 {
->>>>>>> 7948371cc675f7ffd0992b9c96c923a90854233e
                 courtArr.append(court)
             }
+        }
         }
         basketballResults = courtArr
         print(basketballResults.count)

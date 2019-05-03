@@ -26,6 +26,7 @@ class SearchPlayerViewController: UIViewController {
             }
         }
     }
+    
 
     static var selectedPlayers = [String]()
     override func viewDidLoad() {
@@ -34,7 +35,7 @@ class SearchPlayerViewController: UIViewController {
         if let friends = TabBarViewController.currentGamer.friends {
           showFriends(friends: friends)
         }
-        
+//        setupTapFunction()
         friendsTableView.delegate = self
         friendsTableView.dataSource = self
         friendsTableView.separatorStyle = .none
@@ -51,7 +52,14 @@ class SearchPlayerViewController: UIViewController {
         scannerController.twoVsTwoSearchDelegate = twoVsTwoSearchDelegate
         self.present(scannerController, animated: true, completion: nil)
     }
-
+    func setupTapFunction() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
     @IBAction func cancelPressed(_ sender: UIButton) {
         dismiss(animated: true)
     }

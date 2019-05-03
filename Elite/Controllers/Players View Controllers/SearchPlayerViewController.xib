@@ -68,7 +68,7 @@
                     <rect key="frame" x="0.0" y="234.5" width="414" height="627.5"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </tableView>
-                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="G0S-RT-6Rt">
+                <searchBar contentMode="redraw" placeholder="search username" translatesAutoresizingMaskIntoConstraints="NO" id="G0S-RT-6Rt">
                     <rect key="frame" x="0.0" y="178.5" width="414" height="56"/>
                     <color key="barTintColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <textInputTraits key="textInputTraits"/>

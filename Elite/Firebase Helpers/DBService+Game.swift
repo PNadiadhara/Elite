@@ -39,21 +39,22 @@ struct GameCollectionKeys {
 
 extension DBService {
     static public func postGame(gamePost: GameModel, completion: @escaping (Error?, String?) -> Void)  {
+        let na = "N/A"
         let ref = firestoreDB.collection(GameCollectionKeys.CollectionKey).document()
         firestoreDB.collection(GameCollectionKeys.CollectionKey)
             .document(ref.documentID).setData([
                 GameCollectionKeys.GameNameKey : gamePost.gameName,
                 GameCollectionKeys.GameTypeKey : gamePost.gameType,
                 GameCollectionKeys.NumberOfGamersKey : gamePost.numberOfGamers,
-                GameCollectionKeys.TeamA : gamePost.teamA,
-                GameCollectionKeys.TeamB : gamePost.teamB,
-                GameCollectionKeys.GameDescriptionKey : gamePost.gameDescription ?? "",
-                GameCollectionKeys.GameEndTimeKey : gamePost.gameEndTime ?? "",
-                GameCollectionKeys.WinnersKey : gamePost.winners ?? "",
+                GameCollectionKeys.TeamA : gamePost.redTeam,
+                GameCollectionKeys.TeamB : gamePost.blueTeam,
+                GameCollectionKeys.GameDescriptionKey : gamePost.gameDescription ?? na,
+                GameCollectionKeys.GameEndTimeKey : gamePost.gameEndTime ?? na,
+                GameCollectionKeys.WinnersKey : gamePost.winners ?? [na],
                 GameCollectionKeys.GameIDKey :  ref.documentID,
-                GameCollectionKeys.WitnessKey : gamePost.witness ?? "",
-                GameCollectionKeys.DurationKey : gamePost.duration ?? "", GameCollectionKeys.isOverKey : gamePost.isOver,GameCollectionKeys.LosersKey : gamePost.losers ?? "",
-                GameCollectionKeys.IsTieKey : gamePost.isTie ?? "",
+                GameCollectionKeys.WitnessKey : gamePost.witness ?? na,
+                GameCollectionKeys.DurationKey : gamePost.duration ?? na, GameCollectionKeys.isOverKey : gamePost.isOver ?? false, GameCollectionKeys.wasCancelledKey : gamePost.wasCancelled ?? false, GameCollectionKeys.LosersKey : gamePost.losers ?? na,
+                GameCollectionKeys.IsTieKey : gamePost.isTie ?? na,
                 GameCollectionKeys.FormattedAdresssKey : gamePost.formattedAdresss,
                 GameCollectionKeys.ParkNameKey : gamePost.parkName,
                 GameCollectionKeys.LatKey : gamePost.lat,
@@ -98,7 +99,7 @@ extension DBService {
     static public func updateGameToCancelled(gameId: String) {
         DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).document(gameId).updateData([GameCollectionKeys.wasCancelledKey : true])
     }
-    static public func updateGameModel(gameId: String,game: GameModel, completion: @escaping (Error?) -> Void) {
+    static public func updateGameModel(game: GameModel, completion: @escaping (Error?) -> Void) {
         let na = "N/A"; DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).document(game.gameID).updateData([GameCollectionKeys.GameDescriptionKey : game.gameDescription ?? "", GameCollectionKeys.GameEndTimeKey : game.gameEndTime ?? na, GameCollectionKeys.WinnersKey : game.winners ?? na, GameCollectionKeys.LosersKey : game.losers ?? na, GameCollectionKeys.IsTieKey : game.isTie ?? na,GameCollectionKeys.WitnessKey : game.witness ?? na, GameCollectionKeys.DurationKey : game.duration ?? na, GameCollectionKeys.isOverKey : false, GameCollectionKeys.wasCancelledKey : false]) { (error
             ) in
             if let error = error {

@@ -64,7 +64,7 @@ class OneVsOneViewController: UIViewController {
         }
         //To do: CREATE INSTANSE OF GAME
 
-        let game = GameModel(gameName: gameName.rawValue, gameType: gameTypeSelected.rawValue, numberOfPlayers: 2, teamA: [TabBarViewController.currentUser.uid], teamB: [gamerSelected.gamerID], parkId: "1", gameDescription: nil, gameEndTime: nil, winners: nil, losers: nil, isTie: nil, formattedAdresss: "2", parkName: "3", lat: 0.0, lon: 0.0, gameID: "", witness: nil, duration: nil, isOver: false, wasCancelled: false)
+        let game = GameModel(gameName: gameName.rawValue, gameType: gameTypeSelected.rawValue, numberOfPlayers: 2, redTeam: [TabBarViewController.currentUser.uid], blueTeam: [gamerSelected.gamerID], parkId: "1", gameDescription: nil, gameEndTime: nil, winners: nil, losers: nil, isTie: nil, formattedAdresss: "2", parkName: "3", lat: 0.0, lon: 0.0, gameID: "", witness: nil, duration: nil, isOver: false, wasCancelled: false)
         DBService.postGame(gamePost: game) { (error, gameId) in
             if let error = error {
                 self.showAlert(title: "Error posting game", message: error.localizedDescription)

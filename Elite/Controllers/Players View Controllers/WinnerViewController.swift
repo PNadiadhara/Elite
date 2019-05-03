@@ -14,6 +14,13 @@ class WinnerViewController: UIViewController {
     var game: GameModel!
     var winnerConfirmationId = String()
     var currentPlayer: CurrentPlayer?
+    var winnerTeam: Teams!
+    var loserTeam: Teams!
+    var winnerPlayers = [String]()
+    var loserPlayers = [String]()
+    var gameDuration = String()
+    var isHost = Bool()
+    var isTie = false
     
     @IBOutlet weak var winnerView: UIView!
     @IBOutlet weak var winnerTitle: UILabel!
@@ -26,6 +33,7 @@ class WinnerViewController: UIViewController {
         super.viewDidLoad()
         fetchWinner()
         continueButton.isHidden = true
+
 //        blurView()
         // Do any additional setup after loading the view.
     }
@@ -36,12 +44,41 @@ class WinnerViewController: UIViewController {
         blurredEffectView.frame = view.bounds
         view.addSubview(blurredEffectView)
     }
+    func fetchWinnerPlayers(game:GameModel) -> [String]{
+        if winnerTeam == .blueTeam {
+            return game.blueTeam
+        }
+        if winnerTeam == .redTeam {
+            return game.redTeam
+        }
+        return [String]()
+    }
+    func fetchLoserPlayers(game:GameModel) -> [String] {
+        if loserTeam == .blueTeam {
+            return game.blueTeam
+        }
+        if loserTeam == .redTeam {
+            return game.redTeam
+        }
+        return [String]()
+    }
     @IBAction func continuePressed(_ sender: UIButton) {
+        let game = GameModel(gameName: self.game.gameName, gameType: self.game.gameType, numberOfPlayers: self.game.numberOfGamers, redTeam: self.game.redTeam, blueTeam: self.game.blueTeam, parkId: self.game.parkId, gameDescription: "Good Game", gameEndTime: Date.getISOTimestamp(), winners: winnerPlayers, losers: loserPlayers, isTie: isTie, formattedAdresss: self.game.formattedAdresss, parkName: self.game.parkName, lat: self.game.lat, lon: self.game.lon, gameID: self.game.gameID, witness: nil, duration: gameDuration , isOver: nil, wasCancelled: nil)
+        if isHost{
+        DBService.updateGameModel(game: game) { (error) in
+            if let error = error {
+                print(error)
+            } else {
+                print("Game updated")
+            }
+        }
+        }
         DBService.deleteWinningConfirmation(winningConfirmationId: winnerConfirmationId) { (error) in
             if let error = error{
                 print(error)
             }
         }
+        
         if let currentPlayer = currentPlayer{
             DBService.deleteCurrentPlayer(currentPlayer: currentPlayer) { (error) in
                 if let error = error {
@@ -77,24 +114,34 @@ class WinnerViewController: UIViewController {
                             if totalcount == 2 {
                                 if let winningTeam = winningTeam {
                                     switch winningTeam {
-                                    case .blue:
-                                        self.animateView(winnerTeam: Teams.blue.rawValue)
-                                    case .red:
-                                        self.animateView(winnerTeam: Teams.red.rawValue)
+                                    case .blueTeam:
+                                        self.animateView(winnerTeam: Teams.blueTeam.rawValue)
+                                        self.winnerTeam = .blueTeam
+                                        self.loserTeam = .redTeam
+                                    case .redTeam:
+                                        self.animateView(winnerTeam: Teams.redTeam.rawValue)
+                                        self.winnerTeam = .redTeam
+                                        self.loserTeam = .blueTeam
+                                        
                                     }
                                 }
                                 if noWinner != nil {
                                     self.winnerTitle.text = "No winner"
+                                    self.isTie = true
                                 }
+                                self.winnerPlayers = self.fetchWinnerPlayers(game: self.game)
+                                self.loserPlayers = self.fetchLoserPlayers(game: self.game)
                             }
                         case GameType.twoVsTwo.rawValue:
                             if totalcount == 4 {
                                 if let winningTeam = winningTeam {
                                     switch winningTeam {
-                                    case .blue:
-                                        self.animateView(winnerTeam: Teams.blue.rawValue)
-                                    case .red:
-                                        self.animateView(winnerTeam: Teams.red.rawValue)
+                                    case .blueTeam:
+                                        self.animateView(winnerTeam: Teams.blueTeam.rawValue)
+                                        self.winnerTeam = .blueTeam
+                                    case .redTeam:
+                                        self.animateView(winnerTeam: Teams.redTeam.rawValue)
+                                        self.winnerTeam = .redTeam
                                     }
                                     if noWinner != nil {
                                         self.winnerTitle.text = "No winner"

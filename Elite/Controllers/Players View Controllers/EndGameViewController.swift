@@ -34,7 +34,8 @@ class EndGameViewController: UIViewController {
     var gameType: GameType!
     var blueOnePlayer: GamerModel!
     var redOnePlayer: GamerModel!
-    
+    var gameBegginingTimeStamp: Date?
+    var gameEndTimeStamp: Date?
     var currentPlayerTeamRole = String()
     var winnerConfirmationId = String()
     var isHost = Bool()
@@ -79,6 +80,13 @@ class EndGameViewController: UIViewController {
             return
         }
     }
+    func calculateGameDuration(beginningTimeStamp: Date?, endTimeStamp: Date?) -> String {
+        guard let beginningTimeStamp = beginningTimeStamp,
+            let endTimeStamp = endTimeStamp else {return String()}
+        let difference = Calendar.current.dateComponents([.hour, .minute], from: beginningTimeStamp, to: endTimeStamp)
+        return String(format: "%02ld%02ld", difference.hour!, difference.minute!)
+    }
+
     func fetchWinningConfirmations(){
         DBService.fetchWinningConfirmations(gameId: invitation.gameId) { (error, winningConfirmation) in
             if let error = error {
@@ -95,7 +103,9 @@ class EndGameViewController: UIViewController {
                 print("Error Fetching Games: \(error)")
             }
             if let game = game {
+                
                 self.game = game
+
             }
         }
     }
@@ -108,18 +118,16 @@ class EndGameViewController: UIViewController {
             print("No Game")
             return
         }
-        DBService.updateGameModel(gameId: invitation.gameId, game: game) { (error) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
 
-        }
+        
         DBService.updateWinningConfirmation(teamSelected: selectedTeam.rawValue, winningConfimationId: self.winnerConfirmationId, currentPlayerTeamRole: self.currentPlayerTeamRole)
         let winnerVc = WinnerViewController(nibName: "WinnerViewController", bundle: nil)
         winnerVc.invitation = self.invitation
         winnerVc.game = game
         winnerVc.winnerConfirmationId = self.winnerConfirmationId
         winnerVc.currentPlayer = self.currentPlayer
+        winnerVc.isHost = self.isHost
+        winnerVc.gameDuration = calculateGameDuration(beginningTimeStamp: gameBegginingTimeStamp, endTimeStamp: gameEndTimeStamp)
         winnerVc.modalPresentationStyle = .overCurrentContext
         self.present(winnerVc, animated: true)
         
@@ -145,13 +153,13 @@ class EndGameViewController: UIViewController {
         bluePlayerView.addGestureRecognizer(bluePlayerViewTap)
     }
     @objc func redPlayerTap() {
-        selectedTeam = .red
+        selectedTeam = .redTeam
         redPlayerView.alpha = 1
         bluePlayerView.alpha = 0.5
         
     }
     @objc func bluePlayerTap() {
-        selectedTeam = .blue
+        selectedTeam = .blueTeam
         redPlayerView.alpha = 0.5
         bluePlayerView.alpha = 1.0
 
