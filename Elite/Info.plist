@@ -2,11 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>URL schemes</key>
+	<array>
+		<string>elite</string>
+	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string></string>
+			<string>Ibraheem.Elite</string>
 		</dict>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
@@ -53,7 +57,7 @@
 	<key>SCSDKClientId</key>
 	<string>cd7cf581-82b0-4ced-a4bb-2e9b194bc3d4</string>
 	<key>SCSDKRedirectUrl</key>
-	<string></string>
+	<string>elite://snapchat</string>
 	<key>SCSDKScopes</key>
 	<array>
 		<string>https://auth.snapchat.com/oauth2/api/user.external_id</string>
