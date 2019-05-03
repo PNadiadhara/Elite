@@ -62,6 +62,7 @@ class MapViewController: UIViewController {
         didSet {
             getBasketBallParksNearMe(userLocation, basketballResults)
             getHandBallParksNearMe(userLocation, handballResults)
+            addCustomMakers()
             googleMapsMapView.reloadInputViews()
            
         }
@@ -133,9 +134,9 @@ class MapViewController: UIViewController {
         switch miles {
         case "1":
             range = MilesInMetersInfo.oneMile
-            
         case "2":
             range = MilesInMetersInfo.twoMiles
+            
         case "5":
             range = MilesInMetersInfo.fiveMiles
         case "10":
@@ -238,6 +239,7 @@ class MapViewController: UIViewController {
             marker.snippet = arr["Location"] as? String
             let locations = CLLocationCoordinate2D(latitude: arr["lat"] as! Double, longitude:  arr["lon"] as! Double)
             marker.position = locations
+            marker.icon = UIImage.init(named: "eliteForBBall")
             marker.map = googleMapsMapView
             
         }
