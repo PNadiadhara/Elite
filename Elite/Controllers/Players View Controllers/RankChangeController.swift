@@ -18,6 +18,7 @@ var rank = 2700
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         var highestRank = 3000
         playerImageView.image = UIImage(named: TabBarViewController.currentUser.displayName! + "FightingLeft")
         currentRankScore.text = String(rank)

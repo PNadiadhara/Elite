@@ -21,6 +21,7 @@ class WinnerViewController: UIViewController {
     var gameDuration = String()
     var isHost = Bool()
     var isTie = false
+
     
     @IBOutlet weak var winnerView: UIView!
     @IBOutlet weak var winnerTitle: UILabel!
@@ -88,6 +89,9 @@ class WinnerViewController: UIViewController {
                 }
             }
         }
+//        let rankChangeController = RankChangeController.init(nibName: "RankChangeController", bundle: nil)
+//        present(rankChangeController, animated: true)
+        
     }
     func animateView(winnerTeam: Teams) {
         UIView.transition(with: winnerView, duration: 1, options: [.transitionFlipFromRight], animations: {
