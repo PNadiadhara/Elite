@@ -1,4 +1,4 @@
-//
+ //
 //  AVCaptureVideoOrientation+Orientations.swift
 //  Elite
 //
