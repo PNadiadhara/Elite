@@ -19,7 +19,7 @@ platform :ios, '12.0'
     elite_pods
   end
 
-  target 'EliteTests' do
+  target 'FirebaseTests' do
     elite_pods
   end
 	
