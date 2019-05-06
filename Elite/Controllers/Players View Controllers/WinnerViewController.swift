@@ -21,11 +21,7 @@ class WinnerViewController: UIViewController {
     var gameDuration = String()
     var isHost = Bool()
     var isTie = false
-<<<<<<< HEAD
-=======
 
->>>>>>> 84494ce5dc96bce6723c2d18687190469533b4ff
-    
     @IBOutlet weak var winnerView: UIView!
     @IBOutlet weak var winnerTitle: UILabel!
     @IBOutlet weak var playersImage: CircularImageView!
@@ -140,7 +136,6 @@ class WinnerViewController: UIViewController {
                                 if let winningTeam = winningTeam {
                                     switch winningTeam {
                                     case .blueTeam:
-<<<<<<< HEAD
                                         self.animateView(winnerTeam: Teams.blueTeam.rawValue)
                                         self.winnerTeam = .blueTeam
                                         self.loserTeam = .redTeam
@@ -148,7 +143,6 @@ class WinnerViewController: UIViewController {
                                         self.animateView(winnerTeam: Teams.redTeam.rawValue)
                                         self.winnerTeam = .redTeam
                                         self.loserTeam = .blueTeam
-=======
                                         self.winnerTeam = .blueTeam
                                         self.loserTeam = .redTeam
                                         self.animateView(winnerTeam: Teams.blueTeam)
@@ -156,7 +150,6 @@ class WinnerViewController: UIViewController {
                                         self.winnerTeam = .redTeam
                                         self.loserTeam = .blueTeam
                                         self.animateView(winnerTeam: Teams.redTeam)
->>>>>>> 84494ce5dc96bce6723c2d18687190469533b4ff
                                         
                                     }
 
@@ -165,29 +158,23 @@ class WinnerViewController: UIViewController {
                                     self.winnerTitle.text = "No winner"
                                     self.isTie = true
                                 }
-<<<<<<< HEAD
                                 self.winnerPlayers = self.fetchWinnerPlayers(game: self.game)
                                 self.loserPlayers = self.fetchLoserPlayers(game: self.game)
-=======
-
->>>>>>> 84494ce5dc96bce6723c2d18687190469533b4ff
                             }
                         case GameType.twoVsTwo.rawValue:
                             if totalcount == 4 {
                                 if let winningTeam = winningTeam {
                                     switch winningTeam {
                                     case .blueTeam:
-<<<<<<< HEAD
                                         self.animateView(winnerTeam: Teams.blueTeam.rawValue)
                                         self.winnerTeam = .blueTeam
                                     case .redTeam:
                                         self.animateView(winnerTeam: Teams.redTeam.rawValue)
-=======
+
                                         self.animateView(winnerTeam: Teams.blueTeam)
                                         self.winnerTeam = .blueTeam
                                     case .redTeam:
                                         self.animateView(winnerTeam: Teams.redTeam)
->>>>>>> 84494ce5dc96bce6723c2d18687190469533b4ff
                                         self.winnerTeam = .redTeam
                                     }
                                     if noWinner != nil {
