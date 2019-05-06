@@ -19,7 +19,6 @@
 #import "GoogleMapsDemos/DemoAppDelegate.h"
 #import "GoogleMapsDemos/Samples/Samples.h"
 
-
 @implementation MasterViewController {
   NSArray *_demos;
   NSArray *_demoSections;
