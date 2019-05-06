@@ -58,6 +58,9 @@
 		2EF480A02256BE38008212DC /* PlaygroundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF4809F2256BE38008212DC /* PlaygroundModel.swift */; };
 		2EF480A22256BE69008212DC /* WinsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF480A12256BE69008212DC /* WinsModel.swift */; };
 		4651EF13D0643CF9E55F05B3 /* Pods_Elite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 647649F00844096F9E907D7A /* Pods_Elite.framework */; };
+		485265DA227FBC3B00F15BA5 /* SnapchatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 485265D9227FBC3A00F15BA5 /* SnapchatView.xib */; };
+		485265DC227FBC6A00F15BA5 /* SnapchatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485265DB227FBC6900F15BA5 /* SnapchatView.swift */; };
+		485265DE2280823800F15BA5 /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485265DD2280823700F15BA5 /* UserEntity.swift */; };
 		48980A4D225E346B0034D04F /* JsonModel.json in Resources */ = {isa = PBXBuildFile; fileRef = 48980A4C225E346B0034D04F /* JsonModel.json */; };
 		48D5C81A225D20F700AFDE8F /* GeocodingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D5C819225D20F700AFDE8F /* GeocodingData.swift */; };
 		48D5C81C225D213B00AFDE8F /* GeolocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D5C81B225D213B00AFDE8F /* GeolocationData.swift */; };
@@ -180,6 +183,9 @@
 		2EF4809B22565A73008212DC /* SnapchatLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapchatLoginViewController.swift; sourceTree = "<group>"; };
 		2EF4809F2256BE38008212DC /* PlaygroundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundModel.swift; sourceTree = "<group>"; };
 		2EF480A12256BE69008212DC /* WinsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinsModel.swift; sourceTree = "<group>"; };
+		485265D9227FBC3A00F15BA5 /* SnapchatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SnapchatView.xib; sourceTree = "<group>"; };
+		485265DB227FBC6900F15BA5 /* SnapchatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapchatView.swift; sourceTree = "<group>"; };
+		485265DD2280823700F15BA5 /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
 		48980A4C225E346B0034D04F /* JsonModel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JsonModel.json; sourceTree = "<group>"; };
 		48D5C819225D20F700AFDE8F /* GeocodingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingData.swift; sourceTree = "<group>"; };
 		48D5C81B225D213B00AFDE8F /* GeolocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolocationData.swift; sourceTree = "<group>"; };
@@ -297,6 +303,8 @@
 				2E381EAF22613A1E0075C1CD /* ProfileViewController.xib */,
 				2E9FE65E22557BC6004CA00B /* EditProfileViewController.swift */,
 				2EF4809B22565A73008212DC /* SnapchatLoginViewController.swift */,
+				485265D9227FBC3A00F15BA5 /* SnapchatView.xib */,
+				485265DB227FBC6900F15BA5 /* SnapchatView.swift */,
 			);
 			path = "Profile View Controllers";
 			sourceTree = "<group>";
@@ -498,6 +506,7 @@
 				D5DF86B322692FFC00E2972A /* CurrentPlayer.swift */,
 				D5DF86B122692CBB00E2972A /* WinnerConfirmation.swift */,
 				48EFEB86226D122D0006092D /* CaptureSession.swift */,
+				485265DD2280823700F15BA5 /* UserEntity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -644,6 +653,7 @@
 				D5B57D432262698400DB73E2 /* OneVsOneProgressViewController.xib in Resources */,
 				D5D375BE226A6D3900F25FCF /* WinnerViewController.xib in Resources */,
 				2EC6D55A225E79B300336362 /* TwoVsTwoViewController.xib in Resources */,
+				485265DA227FBC3B00F15BA5 /* SnapchatView.xib in Resources */,
 				D521086F225E95540044C440 /* UserFeedCell.xib in Resources */,
 				2EC6D556225E799F00336362 /* OneVsOneViewController.xib in Resources */,
 				2EC6D55E225E79CB00336362 /* FiveVsFiveViewController.xib in Resources */,
@@ -816,6 +826,7 @@
 				2EC6D559225E79B300336362 /* TwoVsTwoViewController.swift in Sources */,
 				D5DF86BE226A21B100E2972A /* GameName.swift in Sources */,
 				D5B3045D22677A8000404241 /* InvitationAlertViewController.swift in Sources */,
+				485265DE2280823800F15BA5 /* UserEntity.swift in Sources */,
 				D56FE69E2262B28800A5553E /* MainTimer.swift in Sources */,
 				2E381E9F2260F31D0075C1CD /* GamePostView.swift in Sources */,
 				2E9FE66822557DF4004CA00B /* UIViewController+Navigation.swift in Sources */,
@@ -824,6 +835,7 @@
 				2E171BAA225D011800D40DDF /* JsonModel.json in Sources */,
 				2E171B9F225CF90700D40DDF /* LeaderboardViewController.swift in Sources */,
 				2E9FE66422557D02004CA00B /* IBADesignableViews.swift in Sources */,
+				485265DC227FBC6A00F15BA5 /* SnapchatView.swift in Sources */,
 				2E381EA32260F3980075C1CD /* AchievementsView.swift in Sources */,
 				D5EFCBFB2263DD6A00D3C2E7 /* BoroughCollectionViewCell.swift in Sources */,
 				2E9FE66A22557E23004CA00B /* UIViewController+Alert.swift in Sources */,

@@ -62,12 +62,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // Handles the login requests for snapchat
-    
-    func application(_ app: UIApplication,
-                     open url: URL,
-                     options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        let handled = SCSDKLoginClient.application(app, open: url, options: options)
-        return true 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if SCSDKLoginClient.application(app, open: url, options: options) {
+            return true
+        }
+        return true
     }
 
 }

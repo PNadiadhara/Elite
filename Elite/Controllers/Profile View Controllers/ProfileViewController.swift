@@ -71,6 +71,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func addFriendPressed(_ sender: UIButton) {
+        present(SnapchatLoginViewController(), animated: true, completion: nil)
     }
     
     @IBAction func settingsPressed(_ sender: UIButton) {
@@ -78,7 +79,14 @@ class ProfileViewController: UIViewController {
     @IBAction func changeProfileImg(_ sender: CircularButton) {
         let actionSheetController = UIAlertController.init(title: "Change Profile Picture", message: "How would yout like to change your profile picture?", preferredStyle: .actionSheet)
         let changeWithBitmoji = UIAlertAction.init(title: "Bitmoji", style: .default) { (success) in
-            
+            SCSDKBitmojiClient.fetchAvatarURL { (avatarURL: String?, error: Error?) in
+                if let avatarURL = avatarURL {
+                        self.profileImage.setBackgroundImage(UIImage.init(named: avatarURL), for: .normal)
+                }
+                if let error = error {
+                    self.showAlert(title: "error setting bitmoji", message: "\(error)")
+                }
+            }
             
         }
         let changeWithDefaultChoice = UIAlertAction.init(title: "Default Pictures", style: .default) { (success) in

@@ -7,24 +7,59 @@
 //
 
 import UIKit
-
+import SCSDKLoginKit
+import SCSDKBitmojiKit
 class SnapchatLoginViewController: UIViewController {
-
+    let snapchatView = SnapchatView()
+    let iconView = SCSDKBitmojiIconView()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view = snapchatView.contentView
+       callButtons()
+        
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func addTargets(){
+        snapchatView.loginBttn.addTarget(self, action: #selector(login), for: .touchUpInside)
+        snapchatView.cancelBttn.addTarget(self, action: #selector(cancelView), for: .touchUpInside)
     }
-    */
-
+    private func callButtons(){
+        login()
+        cancelView()
+    }
+    @objc private func login(){
+        SCSDKLoginClient.login(from: self) { success, error in
+            if let error = error {
+                
+            }
+            if success {
+                self.fetchSnapUserInfo()
+            }
+        }
+    }
+    private func fetchSnapUserInfo() {
+        let graphQLQuery = "{me{displayName, bitmoji{avatar}}}"
+        
+        SCSDKLoginClient
+            .fetchUserData(
+                withQuery: graphQLQuery,
+                variables: nil,
+                success: { userInfo in
+                    
+                    if let userInfo = userInfo,
+                        let data = try? JSONSerialization.data(withJSONObject: userInfo, options: .prettyPrinted),
+                        let userEntity = try? JSONDecoder().decode(UserEntity.self, from: data) {
+                        
+                        DispatchQueue.main.async {
+                            self.goToLoginConfirm(userEntity)
+                        }
+                    }
+            }) { (error, isUserLoggedOut) in
+                print(error?.localizedDescription ?? "")
+        }
+    }
+    @objc private func cancelView(){
+        self.dismiss(animated: true, completion: nil)
+    }
 }
