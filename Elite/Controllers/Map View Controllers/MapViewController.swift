@@ -75,8 +75,14 @@ class MapViewController: UIViewController {
            
         }
     }
+<<<<<<< HEAD
     var typeValue = String()
     var viewStatus: ViewStatus = .notPressed
+=======
+    var range: Double?
+    var viewStatus: ViewStatus = .notPressed
+
+>>>>>>> 84494ce5dc96bce6723c2d18687190469533b4ff
     private var customArr = [[
         "Prop_ID": "",
         "Name": "Museum of the Moving Image",
@@ -123,6 +129,7 @@ class MapViewController: UIViewController {
                                 "lat": 40.7638374,
                                 "lon": -73.92885819999999]
     ]
+
     // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -293,12 +300,24 @@ class MapViewController: UIViewController {
             let lng = court.lng ?? "0.0"
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
+<<<<<<< HEAD
             if distanceInMeters <= range {
+=======
+        
+
+            if distanceInMeters <= MilesInMetersInfo.oneMile {
+
+            if distanceInMeters <= range ?? 0.0 {
+>>>>>>> 84494ce5dc96bce6723c2d18687190469533b4ff
                 courtArr.append(court)
             }
             
         }
+<<<<<<< HEAD
         print("Basketball Range is now: \(range)")
+=======
+        }
+>>>>>>> 84494ce5dc96bce6723c2d18687190469533b4ff
         basketballResults = courtArr
         print("# of BasketBall Courts: ",basketballResults.count)
     }
@@ -311,7 +330,11 @@ class MapViewController: UIViewController {
             let lng = court.lng ?? "0.0"
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
+<<<<<<< HEAD
             if distanceInMeters <= range {
+=======
+            if distanceInMeters <= MilesInMetersInfo.fiveMiles {
+>>>>>>> 84494ce5dc96bce6723c2d18687190469533b4ff
                 courtArr.append(court)
             }
             

@@ -21,6 +21,10 @@ class WinnerViewController: UIViewController {
     var gameDuration = String()
     var isHost = Bool()
     var isTie = false
+<<<<<<< HEAD
+=======
+
+>>>>>>> 84494ce5dc96bce6723c2d18687190469533b4ff
     
     @IBOutlet weak var winnerView: UIView!
     @IBOutlet weak var winnerTitle: UILabel!
@@ -29,6 +33,8 @@ class WinnerViewController: UIViewController {
     @IBOutlet weak var loadingLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var userResultLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchWinner()
@@ -86,11 +92,29 @@ class WinnerViewController: UIViewController {
                 }
             }
         }
+//        let rankChangeController = RankChangeController.init(nibName: "RankChangeController", bundle: nil)
+//        present(rankChangeController, animated: true)
+        
     }
-    func animateView(winnerTeam: String) {
+    func animateView(winnerTeam: Teams) {
         UIView.transition(with: winnerView, duration: 1, options: [.transitionFlipFromRight], animations: {
+            self.winnerPlayers = self.fetchWinnerPlayers(game: self.game)
+            self.loserPlayers = self.fetchLoserPlayers(game: self.game)
             self.winnerTitle.isHidden = false
-            self.winnerTitle.text = "\(winnerTeam) team won!"
+            self.userResultLabel.isHidden = false
+            if winnerTeam == .redTeam{
+              self.winnerTitle.text = "Red team won!"
+            }
+            if winnerTeam == .blueTeam {
+                self.winnerTitle.text = "Blue team won!"
+            }
+            if self.winnerPlayers.contains(TabBarViewController.currentGamer.gamerID) {
+                self.userResultLabel.text = "You won!"
+                self.playersImage.image = UIImage(named: TabBarViewController.currentGamer.username + "Winner")
+            } else {
+                self.userResultLabel.text = "You lost"
+                self.playersImage.image = UIImage(named: TabBarViewController.currentGamer.username + "Loser")
+            }
             self.playersImage.isHidden = false
             self.continueButton.isHidden = false
             self.activityIndicator.isHidden = true
@@ -112,9 +136,11 @@ class WinnerViewController: UIViewController {
                         switch self.game.gameType{
                         case GameType.oneVsOne.rawValue:
                             if totalcount == 2 {
+
                                 if let winningTeam = winningTeam {
                                     switch winningTeam {
                                     case .blueTeam:
+<<<<<<< HEAD
                                         self.animateView(winnerTeam: Teams.blueTeam.rawValue)
                                         self.winnerTeam = .blueTeam
                                         self.loserTeam = .redTeam
@@ -122,25 +148,46 @@ class WinnerViewController: UIViewController {
                                         self.animateView(winnerTeam: Teams.redTeam.rawValue)
                                         self.winnerTeam = .redTeam
                                         self.loserTeam = .blueTeam
+=======
+                                        self.winnerTeam = .blueTeam
+                                        self.loserTeam = .redTeam
+                                        self.animateView(winnerTeam: Teams.blueTeam)
+                                    case .redTeam:
+                                        self.winnerTeam = .redTeam
+                                        self.loserTeam = .blueTeam
+                                        self.animateView(winnerTeam: Teams.redTeam)
+>>>>>>> 84494ce5dc96bce6723c2d18687190469533b4ff
                                         
                                     }
+
                                 }
                                 if noWinner != nil {
                                     self.winnerTitle.text = "No winner"
                                     self.isTie = true
                                 }
+<<<<<<< HEAD
                                 self.winnerPlayers = self.fetchWinnerPlayers(game: self.game)
                                 self.loserPlayers = self.fetchLoserPlayers(game: self.game)
+=======
+
+>>>>>>> 84494ce5dc96bce6723c2d18687190469533b4ff
                             }
                         case GameType.twoVsTwo.rawValue:
                             if totalcount == 4 {
                                 if let winningTeam = winningTeam {
                                     switch winningTeam {
                                     case .blueTeam:
+<<<<<<< HEAD
                                         self.animateView(winnerTeam: Teams.blueTeam.rawValue)
                                         self.winnerTeam = .blueTeam
                                     case .redTeam:
                                         self.animateView(winnerTeam: Teams.redTeam.rawValue)
+=======
+                                        self.animateView(winnerTeam: Teams.blueTeam)
+                                        self.winnerTeam = .blueTeam
+                                    case .redTeam:
+                                        self.animateView(winnerTeam: Teams.redTeam)
+>>>>>>> 84494ce5dc96bce6723c2d18687190469533b4ff
                                         self.winnerTeam = .redTeam
                                     }
                                     if noWinner != nil {

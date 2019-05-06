@@ -1,6 +1,6 @@
 //
 //  GMSPlacesErrors.h
-//  Google Places SDK for iOS
+//  Google Places API for iOS
 //
 //  Copyright 2016 Google Inc.
 //
@@ -15,10 +15,10 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
+NS_ASSUME_NONNULL_BEGIN;
 
 /**
- * Error domain used for Places SDK errors.
+ * Error domain used for Places API errors.
  */
 extern NSString *const kGMSPlacesErrorDomain;
 
@@ -38,7 +38,7 @@ typedef NS_ENUM(NSInteger, GMSPlacesErrorCode) {
    */
   kGMSPlacesServerError = -2,
   /**
-   * An internal error occurred in the Places SDK library.
+   * An internal error occurred in the Places API library.
    * <p>
    * If you believe this error represents a bug, please file a report using the instructions on our
    * <a href="https://developers.google.com/places/ios-sdk/support">community and support page</a>.
@@ -84,12 +84,10 @@ typedef NS_ENUM(NSInteger, GMSPlacesErrorCode) {
    */
   kGMSPlacesDeviceRateLimitExceeded = -8,
   /**
-   * The Places API service for iOS is not enabled.
+   * The Places API for iOS is not enabled.
    * <p>
-   * See the <a href="https://developers.google.com/places/ios-sdk/start">developer's guide</a>
-   * to learn how to set up the Places SDK for iOS or the
-   * <a href="https://developers.google.com/places/ios-sdk/client-migration">migration guide</a>
-   * if you are migrating from an earlier version.
+   * See the <a href="https://developers.google.com/places/ios-sdk/start">developer's guide</a> for
+   * how to enable the Google Places API for iOS.
    */
   kGMSPlacesAccessNotConfigured = -9,
   /**
@@ -101,19 +99,12 @@ typedef NS_ENUM(NSInteger, GMSPlacesErrorCode) {
    */
   kGMSPlacesIncorrectBundleIdentifier = -10,
   /**
-   * The Places SDK could not find the user's location. This may be because the user has not allowed
+   * The Places API could not find the user's location. This may be because the user has not allowed
    * the application to access location information.
    */
-  kGMSPlacesLocationError = -11,
-  /**
-   * The Places SDK could not process the invalid request.
-   * <p>
-   * If you believe this error represents a bug, please file a report using the instructions on our
-   * <a href="https://developers.google.com/places/ios-sdk/support">community and support page</a>.
-   */
-  kGMSPlacesInvalidRequest = -12
+  kGMSPlacesLocationError = -11
 };
 
-NS_ASSUME_NONNULL_END
+NS_ASSUME_NONNULL_END;
 
 /**@}*/
