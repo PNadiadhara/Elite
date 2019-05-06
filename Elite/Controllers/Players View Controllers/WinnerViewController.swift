@@ -89,8 +89,8 @@ class WinnerViewController: UIViewController {
                 }
             }
         }
-//        let rankChangeController = RankChangeController.init(nibName: "RankChangeController", bundle: nil)
-//        present(rankChangeController, animated: true)
+        let rankingChangeViewController = RankingChangeViewController.init(nibName: "RankingChangeViewController", bundle: nil)
+        present(rankingChangeViewController, animated: true)
         
     }
     func animateView(winnerTeam: Teams) {

@@ -77,22 +77,31 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bHd-Yl-1aq">
+                            <rect key="frame" x="110" y="80" width="80" height="80"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="bHd-Yl-1aq" secondAttribute="height" multiplier="1:1" id="mfP-1V-bEx"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.99593228099999997" green="0.27651777859999999" blue="0.36207842829999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="bZA-N5-qBu" secondAttribute="trailing" constant="11" id="1dU-KI-yEd"/>
                         <constraint firstItem="Zaq-yu-aIj" firstAttribute="top" secondItem="bZA-N5-qBu" secondAttribute="bottom" constant="5" id="3LA-IE-v4f"/>
                         <constraint firstItem="xQP-YE-A75" firstAttribute="top" secondItem="Zaq-yu-aIj" secondAttribute="bottom" constant="5" id="3qm-IG-Pqp"/>
+                        <constraint firstItem="bHd-Yl-1aq" firstAttribute="height" secondItem="1lF-Sb-xVl" secondAttribute="height" multiplier="0.4" id="7fn-cK-gqa"/>
                         <constraint firstItem="eNX-Oa-Mxv" firstAttribute="top" secondItem="VI1-Yr-A3q" secondAttribute="bottom" constant="4" id="9dO-FB-5gW"/>
                         <constraint firstItem="Zaq-yu-aIj" firstAttribute="top" secondItem="bZA-N5-qBu" secondAttribute="bottom" constant="5" id="EZr-m3-KYu"/>
                         <constraint firstItem="xQP-YE-A75" firstAttribute="leading" secondItem="1lF-Sb-xVl" secondAttribute="leading" constant="11" id="Gj4-Rf-lUF"/>
                         <constraint firstItem="Zaq-yu-aIj" firstAttribute="leading" secondItem="1lF-Sb-xVl" secondAttribute="leading" constant="11" id="Kpb-mK-a1h"/>
                         <constraint firstItem="VI1-Yr-A3q" firstAttribute="leading" secondItem="1lF-Sb-xVl" secondAttribute="leading" constant="11" id="Nt1-nc-znh"/>
                         <constraint firstItem="7Sb-LY-zz6" firstAttribute="top" secondItem="eNX-Oa-Mxv" secondAttribute="bottom" constant="5" id="SBO-WO-oLy"/>
+                        <constraint firstItem="bHd-Yl-1aq" firstAttribute="centerY" secondItem="1lF-Sb-xVl" secondAttribute="centerY" multiplier="1.2" id="U6R-l5-UUX"/>
                         <constraint firstAttribute="trailing" secondItem="Zaq-yu-aIj" secondAttribute="trailing" constant="11" id="USi-cS-a7J"/>
                         <constraint firstItem="bZA-N5-qBu" firstAttribute="leading" secondItem="1lF-Sb-xVl" secondAttribute="leading" constant="11" id="UX7-WK-qi1"/>
                         <constraint firstAttribute="trailing" secondItem="7Sb-LY-zz6" secondAttribute="trailing" constant="11" id="Wcs-ts-c2G"/>
                         <constraint firstItem="eNX-Oa-Mxv" firstAttribute="leading" secondItem="1lF-Sb-xVl" secondAttribute="leading" constant="11" id="Yin-Yx-YK4"/>
+                        <constraint firstItem="bHd-Yl-1aq" firstAttribute="centerX" secondItem="1lF-Sb-xVl" secondAttribute="centerX" id="amK-Af-HZE"/>
                         <constraint firstAttribute="trailing" secondItem="xQP-YE-A75" secondAttribute="trailing" constant="11" id="clZ-JZ-p6T"/>
                         <constraint firstItem="bZA-N5-qBu" firstAttribute="top" secondItem="7Sb-LY-zz6" secondAttribute="bottom" constant="5" id="g2N-62-je5"/>
                         <constraint firstAttribute="trailing" secondItem="eNX-Oa-Mxv" secondAttribute="trailing" constant="11" id="r6p-eN-4QK"/>
