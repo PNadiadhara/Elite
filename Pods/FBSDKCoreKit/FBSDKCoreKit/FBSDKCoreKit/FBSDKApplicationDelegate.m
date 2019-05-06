@@ -51,7 +51,6 @@ NSString *const FBSDKApplicationDidBecomeActiveNotification = @"com.facebook.sdk
 #endif
 
 static NSString *const FBSDKAppLinkInboundEvent = @"fb_al_inbound";
-static UIApplicationState _applicationState;
 
 @implementation FBSDKApplicationDelegate
 {
@@ -216,7 +215,6 @@ static UIApplicationState _applicationState;
 
 - (void)applicationDidEnterBackground:(NSNotification *)notification
 {
-  _applicationState = UIApplicationStateBackground;
   NSArray<id<FBSDKApplicationObserving>> *observers = [_applicationObservers allObjects];
   for (id<FBSDKApplicationObserving> observer in observers) {
     if ([observer respondsToSelector:@selector(applicationDidEnterBackground:)]) {
@@ -227,7 +225,6 @@ static UIApplicationState _applicationState;
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification
 {
-  _applicationState = UIApplicationStateActive;
   // Auto log basic events in case autoLogAppEventsEnabled is set
   if ([[FBSDKSettings autoLogAppEventsEnabled] boolValue]) {
     [FBSDKAppEvents activateApp];
@@ -255,11 +252,6 @@ static UIApplicationState _applicationState;
   if ([_applicationObservers containsObject:observer]) {
     [_applicationObservers removeObject:observer];
   }
-}
-
-+ (UIApplicationState)applicationState
-{
-  return _applicationState;
 }
 
 #pragma mark - Helper Methods
