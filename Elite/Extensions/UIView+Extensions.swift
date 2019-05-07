@@ -27,6 +27,8 @@ extension UIView{
             self.isHidden = true
         })
     }
+}
+extension UIView {
     func setGradientFromUpperLeftToBottmRight(colorOne: UIColor, colorTwo: UIColor) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds

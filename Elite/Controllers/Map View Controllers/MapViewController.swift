@@ -127,12 +127,9 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         getUsersLocations()
     }
     private func setupMapViewSettings(){
-        googleMapsSearchBar.sendSubviewToBack(googleMapsMapView)
-        view.bringSubviewToFront(googleMapsSearchBar)
         googleMapsMapView.bringSubviewToFront(googleMapsSearchBar)
         googleMapsMapView.delegate = self
-        eliteView.isHidden = true
-        popUpVC.delegate = self
+        googleMapsMapView.bringSubviewToFront(eliteView)
         
     }
     
