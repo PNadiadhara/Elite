@@ -99,4 +99,11 @@ extension UIColor {
     static let kinda     = UIColor(hexString: "50cc7f")!
     static let gold      = UIColor(hexString: "D4AF37")!
     static let lemon     = UIColor(hexString: "f9f047")!
+    static let lightGrey = UIColor(hexString: "#434343")!
+    static let eliteBlue = UIColor(hexString: "#3A70A7")!
+    static let eliteGold = UIColor(hexString: "#BF953F")!
+    static let eliteGold2 = UIColor(hexString: "#FCF6BA")! // #00c6ff → #0072ff
+    static let fbMessenger = UIColor(hexString: "#00c6ff")!
+    static let fbMessenger2 = UIColor(hexString: "#0072ff")!
+    static let eliteDarkMode = UIColor(hexString: "#292C2F")!
 }

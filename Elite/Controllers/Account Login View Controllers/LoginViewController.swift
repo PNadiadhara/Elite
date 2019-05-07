@@ -11,23 +11,71 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var logoView: CircularImageView!
     private var authservice = AppDelegate.authservice
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var loginBttn: UIButton!
+    @IBOutlet weak var loginWithFBBttn: UIButton!
+    @IBOutlet weak var newUserBttn: UIButton!
+    @IBOutlet weak var loginViewTitle: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-       setupTxtField()
+        setupOutlets()
+        setupVCSettings()
+        
+    }
+    
+    private func setupVCSettings(){
         navigationController?.isNavigationBarHidden = true
         authservice.authserviceExistingAccountDelegate = self
         let screenTap = UITapGestureRecognizer.init(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(screenTap)
     }
     
+    private func setupOutlets(){
+        setupBttnUI()
+        setupTxtField()
+        setupViewGradient()
+    }
+    
+    private func setupBttnUI(){
+        loginBttn.layer.cornerRadius = 10
+        newUserBttn.layer.cornerRadius = 5
+        loginBttn.setTitleColor(.white, for: .normal)
+        loginViewTitle.textColor = .gold
+    }
+    
+    private func setupViewGradient(){
+        view.setGradientFromRightToLeft(colorOne: UIColor.black, colorTwo: UIColor.lightGrey)
+        loginBttn.setGradientFromUpperLeftToBottmRight(colorOne: .eliteGold, colorTwo: .eliteGold2)
+        loginWithFBBttn.setGradientFromBottomLeftToUpperRight(colorOne: .fbMessenger, colorTwo: .fbMessenger2)
+        
+        
+    }
+    
     private func setupTxtField(){
         passwordTextField.delegate = self
         emailTextField.delegate = self
+    }
+    
+    private func switchVCView(){
+        let loginScreenSB = UIStoryboard(name: "LoginView", bundle: nil)
+        let createAnAccountVC = loginScreenSB.instantiateViewController(withIdentifier: "CreateAccountViewController") as! CreateAccountViewController
+        navigationController?.pushViewController(createAnAccountVC, animated: true)
+    }
+    
+    private func signInCurrentUser(){
+        guard let email = emailTextField.text,
+            !email.isEmpty,
+            let password = passwordTextField.text,
+            !password.isEmpty
+            else {
+                return
+        }
+        authservice.signInExistingAccount(email: email, password: password)
     }
     
     @objc func dismissKeyboard() {
@@ -72,27 +120,18 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        guard let email = emailTextField.text,
-            !email.isEmpty,
-            let password = passwordTextField.text,
-            !password.isEmpty
-            else {
-                return
-        }
-        authservice.signInExistingAccount(email: email, password: password)
+        signInCurrentUser()
     }
     
     @IBAction func facebookButtonPressed(_ sender: RoundedButton) {
     }
+    
     @IBAction func switchToCreateAccountVC(_ sender: UIButton){
-        let loginScreenSB = UIStoryboard(name: "LoginView", bundle: nil)
-        let createAnAccountVC = loginScreenSB.instantiateViewController(withIdentifier: "CreateAccountViewController") as! CreateAccountViewController
-        navigationController?.pushViewController(createAnAccountVC, animated: true)
+        switchVCView()
     }
 }
 extension LoginViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         textField.resignFirstResponder()
         return true
     }

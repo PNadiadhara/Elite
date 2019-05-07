@@ -36,8 +36,8 @@ class CircularImageView: UIImageView {
         super.layoutSubviews()
         contentMode = .scaleAspectFill
         layer.cornerRadius = bounds.width / 2.0
-        layer.borderColor = UIColor.lightGray.cgColor
-        layer.borderWidth = 5
+        // layer.borderColor = UIColor.lightGray.cgColor
+        //layer.borderWidth = 5
         backgroundColor = .clear
         clipsToBounds = true
     }
