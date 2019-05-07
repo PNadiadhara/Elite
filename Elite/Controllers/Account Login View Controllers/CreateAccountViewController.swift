@@ -20,6 +20,8 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var createAccountTitle: UILabel!
     @IBOutlet weak var createNewUserBttn: UIButton!
+    
+    @IBOutlet weak var existingUserBttn: UIButton!
     private var authservice = AppDelegate.authservice
     
     
@@ -55,6 +57,7 @@ class CreateAccountViewController: UIViewController {
         let screenTap = UITapGestureRecognizer.init(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(screenTap)
         authservice.authserviceCreateNewAccountDelegate = self
+        existingUserBttn.layer.cornerRadius = 5
     }
     private func setupGradient(){
         view.setGradientFromRightToLeft(colorOne: UIColor.black, colorTwo: UIColor.lightGrey)

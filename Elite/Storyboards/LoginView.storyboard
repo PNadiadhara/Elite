@@ -215,7 +215,7 @@
                                                     <constraint firstAttribute="height" constant="45" id="cwA-yn-ham"/>
                                                     <constraint firstAttribute="width" constant="358" id="quQ-PZ-Rdf"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="25"/>
                                                 <state key="normal" title="Create">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -250,9 +250,9 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" keyboardAppearance="alert" textContentType="given-name"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6X-Ab-DyW">
-                                                <rect key="frame" x="20" y="537" width="334" height="28"/>
+                                                <rect key="frame" x="20" y="537" width="334" height="32"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10009096746575342" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <state key="normal" title="Existing User? Login here">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -327,6 +327,7 @@
                         <outlet property="createAccountTitle" destination="3w7-Jo-4ti" id="uyj-ND-Eou"/>
                         <outlet property="createNewUserBttn" destination="CAT-T9-FFk" id="khW-7s-e6p"/>
                         <outlet property="emailTextField" destination="J8r-DD-xxB" id="w8O-a5-KH6"/>
+                        <outlet property="existingUserBttn" destination="C6X-Ab-DyW" id="6Bl-pG-edu"/>
                         <outlet property="firstNameTextField" destination="rXR-57-g3D" id="lrl-Xc-aWK"/>
                         <outlet property="lastNameTextField" destination="QLP-jy-3ae" id="Hhe-7j-5o3"/>
                         <outlet property="passwordTextField" destination="FhT-L6-y10" id="7ZW-hT-aoA"/>
