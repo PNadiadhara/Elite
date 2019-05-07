@@ -105,4 +105,5 @@ extension UIColor {
     static let eliteGold2 = UIColor(hexString: "#FCF6BA")! // #00c6ff → #0072ff
     static let fbMessenger = UIColor(hexString: "#00c6ff")!
     static let fbMessenger2 = UIColor(hexString: "#0072ff")!
+    static let eliteDarkMode = UIColor(hexString: "#292C2F")!
 }

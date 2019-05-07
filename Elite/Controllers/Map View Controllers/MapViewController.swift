@@ -22,10 +22,6 @@ enum ViewStatus {
 protocol MapViewControllerDelegate: AnyObject {
     func makerDidTapOnMap()
 }
-enum ViewVisibiltyState {
-    case visibile
-    case invisible
-}
 
 class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     
@@ -35,11 +31,12 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     
     @IBOutlet weak var eliteView: UIView!
     @IBOutlet weak var closeViewBttn: CircularButton!
+    @IBOutlet weak var headerView: UIView!
     
     @IBOutlet weak var googleMapsMapView: GMSMapView!
-    //    private let delegate: MapViewControllerDelegate?
+    
+    @IBOutlet weak var googleMapsSearchBar: UISearchBar!
     let popUpVC = MapViewPopupController()
-    private var stateOfPopUpView = ViewVisibiltyState.invisible
     private var googleMapsMVEditingState = GoogleMapsMVState.noMarkersShown {
         didSet{
             clearMarkers()
@@ -69,7 +66,6 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     }
     var range: Double?
     var viewStatus: ViewStatus = .notPressed
-
     private var customArr = [[
         "Prop_ID": "",
         "Name": "Museum of the Moving Image",
@@ -116,26 +112,35 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
                                 "lat": 40.7638374,
                                 "lon": -73.92885819999999]
     ]
-
+    
     // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        getUsersLocations()
-       setupClosePopViewBttn()
-        googleMapsMapView.delegate = self
-        googleMapsMapView.bringSubviewToFront(eliteView)
-        eliteView.isHidden = true
+        callSetups()
         loadAllParkData()
         addCustomMakers()
-        popUpVC.delegate = self
-        
         
     }
+    private func callSetups(){
+        setupClosePopViewBttn()
+        setupMapViewSettings()
+        getUsersLocations()
+    }
+    private func setupMapViewSettings(){
+        googleMapsSearchBar.sendSubviewToBack(googleMapsMapView)
+        view.bringSubviewToFront(googleMapsSearchBar)
+        googleMapsMapView.bringSubviewToFront(googleMapsSearchBar)
+        googleMapsMapView.delegate = self
+        eliteView.isHidden = true
+        popUpVC.delegate = self
+        
+    }
+    
     private func setupClosePopViewBttn(){
         closeViewBttn.layer.borderColor = UIColor.red.cgColor
         closeViewBttn.backgroundColor = .red
     }
-   
+    
     private func getUsersLocations(){
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled(){
@@ -185,6 +190,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             
         }
     }
+    
     private func noCourtsNearMeAlert(type: SportType){
         let alertController = UIAlertController.init(title: "No \(type) courts near you", message: "Would you like to increase your range?", preferredStyle: .alert)
         let yesAction = UIAlertAction.init(title: "Yes", style: .default) { (success) in
@@ -198,17 +204,19 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         alertController.addAction(noAction)
         present(alertController, animated: true, completion: nil)
     }
+    
     private func addCustomMakers(){
         for arr in customArr {
-           let marker = GMSMarker()
-           marker.title = arr["Name"] as? String
-           marker.snippet = arr["Location"] as? String
+            let marker = GMSMarker()
+            marker.title = arr["Name"] as? String
+            marker.snippet = arr["Location"] as? String
             let locations = CLLocationCoordinate2D(latitude: arr["lat"] as! Double, longitude:  arr["lon"] as! Double)
-        marker.position = locations
+            marker.position = locations
             marker.map = googleMapsMapView
             
         }
     }
+    
     private func addMarkers(courts: [Court], type: SportType) {
         var googleMarkers = [GMSMarker]()
         
@@ -238,6 +246,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         }
         
     }
+    
     func getMilesFromUser(miles: String) {
         switch miles {
         case "1":
@@ -252,6 +261,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             print("No range Selected")
         }
     }
+    
     private func getBasketBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [BasketBall]){
         loadAllParkData()
         var courtArr = [BasketBall]()
@@ -260,14 +270,14 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             let lng = court.lng ?? "0.0"
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
-        
-
+            
+            
             if distanceInMeters <= MilesInMetersInfo.oneMile {
-
-            if distanceInMeters <= range ?? 0.0 {
-                courtArr.append(court)
+                
+                if distanceInMeters <= range ?? 0.0 {
+                    courtArr.append(court)
+                }
             }
-        }
         }
         basketballResults = courtArr
         print(basketballResults.count)
@@ -289,15 +299,6 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     }
     
     //MARK: - Actions
-    @IBAction func test(_ sender: UIButton) {
-        if stateOfPopUpView == .invisible {
-            stateOfPopUpView = .visibile
-            eliteView.animShow()
-        } else {
-            stateOfPopUpView = .invisible
-            eliteView.animHide()
-        }
-    }
     @IBAction func showBasketBallMarkers(_ sender: UIButton) {
         if case .showHandBallMarkers = googleMapsMVEditingState {
             googleMapsMVEditingState = .showBasketBallMarkers
@@ -327,11 +328,11 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
 }
 //MARK: - Extensions
 extension MapViewController: GMSMapViewDelegate
- {
+{
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         eliteView.isHidden = false
         if viewStatus == .notPressed{
-          viewStatus = .pressed
+            viewStatus = .pressed
             eliteView.animShow()
         } else {
             viewStatus = .notPressed
@@ -340,7 +341,7 @@ extension MapViewController: GMSMapViewDelegate
         
         return true
     }
-
+    
 }
 extension MapViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
