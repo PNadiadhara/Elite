@@ -30,7 +30,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     
     
     @IBOutlet weak var eliteView: UIView!
-    @IBOutlet weak var closeViewBttn: CircularButton!
+    @IBOutlet weak var closeViewBttn: UIButton!
     @IBOutlet weak var headerView: UIView!
     
     @IBOutlet weak var googleMapsMapView: GMSMapView!
@@ -46,7 +46,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     
     private var locationManager = CLLocationManager()
     
-    private var userLocation = CLLocation(){
+    private var userLocation = CLLocation.init(latitude: 40.7311, longitude: -74.0009){
         didSet{
             getBasketBallParksNearMe(userLocation, basketballResults)
             getHandBallParksNearMe(userLocation, handballResults)
@@ -64,8 +64,14 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             googleMapsMapView.reloadInputViews()
         }
     }
-    var range: Double?
+    var range: Double = MilesInMetersInfo.oneMile {
+        didSet{
+            googleMapsMapView.reloadInputViews()
+        }
+    }
     var viewStatus: ViewStatus = .notPressed
+    var pickerView = UIPickerView()
+    var typeValue = String()
     private var customArr = [[
         "Prop_ID": "",
         "Name": "Museum of the Moving Image",
@@ -125,17 +131,34 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         setupClosePopViewBttn()
         setupMapViewSettings()
         getUsersLocations()
+        setupPickerView()
+        setupWest4Marker()
     }
+    
+    
+    
     private func setupMapViewSettings(){
-        googleMapsMapView.bringSubviewToFront(googleMapsSearchBar)
         googleMapsMapView.delegate = self
-        googleMapsMapView.bringSubviewToFront(eliteView)
+       googleMapsMapView.bringSubviewToFront(eliteView)
+   //    googleMapsSearchBar.delegate = self
         
+    }
+    private func setupWest4Marker(){
+        //let camera = GMSCameraPosition.camera(withLatitude: 40.7311, longitude: -74.0009, zoom: 6.0)
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: 40.7311, longitude: -74.0009)
+        marker.title = "West 4th Park"
+        marker.snippet = "272 6th Ave, New York, NY 10012"
+        marker.map = googleMapsMapView
+    }
+    
+    private func setupPickerView(){
+        pickerView.delegate = self
+        pickerView.dataSource = self
     }
     
     private func setupClosePopViewBttn(){
-        closeViewBttn.layer.borderColor = UIColor.red.cgColor
-        closeViewBttn.backgroundColor = .red
+        closeViewBttn.layer.cornerRadius = 5
     }
     
     private func getUsersLocations(){
@@ -187,13 +210,35 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             
         }
     }
-    
+    private func presentPickerView(){
+        let alertContoller = UIAlertController.init(title: "Pick A Show", message: "\n\n\n\n\n\n", preferredStyle: .alert)
+        alertContoller.isModalInPopover = true //A Boolean value indicating whether the view controller should be presented modally by a popover.
+        //For color of title of alert controller
+        let attributedString = NSAttributedString(string: "Choose A Range (Miles)", attributes: [
+            NSAttributedString.Key.font : UIFont.systemFont(ofSize: 24), //your font here
+            NSAttributedString.Key.foregroundColor : UIColor.orange
+            ])
+        alertContoller.setValue(attributedString, forKey: "attributedTitle")
+        let pickerViewFrame = UIPickerView(frame: CGRect(x: 5, y: 20, width: 250, height: 140))
+        alertContoller.view.addSubview(pickerViewFrame)
+        pickerViewFrame.dataSource = self
+        pickerViewFrame.delegate = self
+        let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
+        let okAction = UIAlertAction.init(title: "OK", style: .default) { (success) in
+            print("you have selected " + self.typeValue)
+        }
+        alertContoller.addAction(cancelAction)
+        alertContoller.addAction(okAction)
+        self.present(alertContoller, animated: true, completion: nil)
+        // changing the color
+        let subview = (alertContoller.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+        subview.layer.cornerRadius = 10
+        subview.backgroundColor = .eliteDarkMode
+    }
     private func noCourtsNearMeAlert(type: SportType){
         let alertController = UIAlertController.init(title: "No \(type) courts near you", message: "Would you like to increase your range?", preferredStyle: .alert)
         let yesAction = UIAlertAction.init(title: "Yes", style: .default) { (success) in
-            let popViewVC = MapViewPopupController()
-            popViewVC.modalPresentationStyle = .overCurrentContext
-            self.present(popViewVC, animated: true, completion:  nil)
+            self.presentPickerView()
             
         }
         let noAction = UIAlertAction.init(title: "No", style: .cancel, handler: nil)
@@ -229,7 +274,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             case .basketball:
                 marker.icon = GMSMarker.markerImage(with: .orange)
             case .handball:
-                marker.icon = UIImage.init(named: "eliteMarker")
+                marker.icon = GMSMarker.markerImage(with: .eliteBlue)
                 //marker.iconView = UIImage.init(named: "eliteMarker")
             }
             googleMarkers.append(marker)
@@ -267,14 +312,11 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             let lng = court.lng ?? "0.0"
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
-            
-            
-            if distanceInMeters <= MilesInMetersInfo.oneMile {
                 
-                if distanceInMeters <= range ?? 0.0 {
+                if distanceInMeters <= MilesInMetersInfo.oneMile {
                     courtArr.append(court)
                 }
-            }
+            
         }
         basketballResults = courtArr
         print(basketballResults.count)
@@ -288,13 +330,45 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             let lng = court.lng ?? "0.0"
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
-            if distanceInMeters <= MilesInMetersInfo.fiveMiles {
+            if distanceInMeters <= MilesInMetersInfo.oneMile {
                 courtArr.append(court)
             }
         }
         handballResults = courtArr
     }
     
+    private func callMoreActionSheet(){
+        let ac = UIAlertController.init(title: "Options", message: "You have the options to create a game or go to our leaderBoard", preferredStyle: .actionSheet)
+        let createAGame = UIAlertAction.init(title: "Create A Game", style: .default) { (susses) in
+            self.goToCreateAGameView()
+        }
+        let goToLeaderBoard = UIAlertAction.init(title: "LeaderBoard", style: .default) { (sucsses) in
+            self.goToLeaderBoard()
+        }
+        let cancel = UIAlertAction.init(title: "Cancel", style: .destructive
+            , handler: nil)
+        
+        ac.addAction(createAGame)
+        ac.addAction(goToLeaderBoard)
+        ac.addAction(cancel)
+        let backView = (ac.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+        backView.backgroundColor = .eliteDarkMode
+        
+        
+        self.present(ac, animated: true, completion: nil)
+    }
+    private func goToCreateAGameView(){
+        let createGameVC = CreateGameViewController.init(nibName: "CreateGameViewController", bundle: nil)
+//        let createGameVC = CreateGameViewController(nibName: "CreateGameViewController”, coder: nil)
+        //        createGameVC.originViewController = .mapViewController
+        //        present(createGameVC, animated: true)
+       //
+       // createGameVC.originViewControlle =
+         present(createGameVC, animated: true)
+    }
+    private func goToLeaderBoard(){
+        
+    }
     //MARK: - Actions
     @IBAction func showBasketBallMarkers(_ sender: UIButton) {
         if case .showHandBallMarkers = googleMapsMVEditingState {
@@ -317,9 +391,12 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         }
     }
     
-    @IBAction func closePopView(_ sender: CircularButton) {
+    @IBAction func closePopView(_ sender: UIButton) {
         eliteView.animHide()
         
+    }
+    @IBAction func moreBttnPressed(_ sender: UIButton){
+        callMoreActionSheet()
     }
     
 }
@@ -344,12 +421,44 @@ extension MapViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locationValue: CLLocationCoordinate2D = manager.location!.coordinate // fix the force unwrapp
         print("lat: \(locationValue.latitude) and lng: \(locationValue.longitude) ")
-        let currentUsersLocation = locations.last
-        self.userLocation = currentUsersLocation!
-        let startPosition = GMSCameraPosition.camera(withLatitude: ( self.userLocation.coordinate.latitude), longitude: ( self.userLocation.coordinate.longitude), zoom: 14.0)
-        googleMapsMapView.animate(to: startPosition)
+       // let currentUsersLocation = locations.last
+//        self.userLocation = currentUsersLocation!
+        self.userLocation = CLLocation.init(latitude: 40.7311, longitude: -74.0009)
+//        let startPosition = GMSCameraPosition.camera(withLatitude: ( self.userLocation.coordinate.latitude), longitude: ( self.userLocation.coordinate.longitude), zoom: 14.0)
+        let customStartPostion = GMSCameraPosition.camera(withLatitude: 40.7311, longitude: -74.0009, zoom: 14.0)
+        googleMapsMapView.animate(to: customStartPostion)
         self.locationManager.stopUpdatingLocation()
     }
 }
 
-
+extension MapViewController: UISearchBarDelegate {
+    
+}
+extension MapViewController: UIPickerViewDelegate, UIPickerViewDataSource{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return MilesInMetersInfo.rangesInMiles.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return MilesInMetersInfo.rangesInMiles[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if row == 0 {
+            typeValue = "1"
+        } else if row == 1 {
+            typeValue = "2"
+        } else if row == 2 {
+            typeValue = "5"
+        } else if row == 3 {
+            typeValue = "10"
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let titleForRange = MilesInMetersInfo.rangesInMiles[row]
+        return NSAttributedString(string: titleForRange, attributes: [NSAttributedString.Key.foregroundColor: UIColor.orange])
+    }
+}
