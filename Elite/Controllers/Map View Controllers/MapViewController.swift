@@ -34,7 +34,8 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     @IBOutlet weak var headerView: UIView!
     
     @IBOutlet weak var googleMapsMapView: GMSMapView!
-    
+    @IBOutlet weak var parkTitle: UILabel!
+    @IBOutlet weak var parkAddress: UILabel!
     @IBOutlet weak var googleMapsSearchBar: UISearchBar!
     let popUpVC = MapViewPopupController()
     private var googleMapsMVEditingState = GoogleMapsMVState.noMarkersShown {
@@ -139,12 +140,11 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     
     private func setupMapViewSettings(){
         googleMapsMapView.delegate = self
-       googleMapsMapView.bringSubviewToFront(eliteView)
-   //    googleMapsSearchBar.delegate = self
+        googleMapsMapView.bringSubviewToFront(eliteView)
+        googleMapsSearchBar.delegate = self
         
     }
     private func setupWest4Marker(){
-        //let camera = GMSCameraPosition.camera(withLatitude: 40.7311, longitude: -74.0009, zoom: 6.0)
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: 40.7311, longitude: -74.0009)
         marker.title = "West 4th Park"
@@ -286,7 +286,6 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         googleMarkers.forEach { (marker) in
             marker.map = googleMapsMapView
         }
-        
     }
     
     func getMilesFromUser(miles: String) {
@@ -359,11 +358,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     }
     private func goToCreateAGameView(){
         let createGameVC = CreateGameViewController.init(nibName: "CreateGameViewController", bundle: nil)
-//        let createGameVC = CreateGameViewController(nibName: "CreateGameViewController”, coder: nil)
-        //        createGameVC.originViewController = .mapViewController
-        //        present(createGameVC, animated: true)
-       //
-       // createGameVC.originViewControlle =
+              createGameVC.originViewController = .mapViewController
          present(createGameVC, animated: true)
     }
     private func goToLeaderBoard(){
@@ -404,6 +399,8 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
 extension MapViewController: GMSMapViewDelegate
 {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        parkTitle.text = marker.title
+        parkAddress.text = marker.snippet
         eliteView.isHidden = false
         if viewStatus == .notPressed{
             viewStatus = .pressed
@@ -432,8 +429,11 @@ extension MapViewController: CLLocationManagerDelegate{
 }
 
 extension MapViewController: UISearchBarDelegate {
-    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
 }
+
 extension MapViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -442,9 +442,11 @@ extension MapViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return MilesInMetersInfo.rangesInMiles.count
     }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return MilesInMetersInfo.rangesInMiles[row]
     }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if row == 0 {
             typeValue = "1"
