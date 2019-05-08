@@ -64,8 +64,14 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             googleMapsMapView.reloadInputViews()
         }
     }
-    var range: Double?
+    var range: Double = MilesInMetersInfo.oneMile {
+        didSet{
+            googleMapsMapView.reloadInputViews()
+        }
+    }
     var viewStatus: ViewStatus = .notPressed
+    var pickerView = UIPickerView()
+    var typeValue = String()
     private var customArr = [[
         "Prop_ID": "",
         "Name": "Museum of the Moving Image",
@@ -125,14 +131,22 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         setupClosePopViewBttn()
         setupMapViewSettings()
         getUsersLocations()
-    }
-    private func setupMapViewSettings(){
-        googleMapsMapView.bringSubviewToFront(googleMapsSearchBar)
-        googleMapsMapView.delegate = self
-        googleMapsMapView.bringSubviewToFront(eliteView)
-        
+        setupPickerView()
     }
     
+    
+    
+    private func setupMapViewSettings(){
+        //googleMapsMapView.bringSubviewToFront(googleMapsSearchBar)
+        googleMapsMapView.delegate = self
+        googleMapsMapView.bringSubviewToFront(eliteView)
+   //    googleMapsSearchBar.delegate = self
+        
+    }
+    private func setupPickerView(){
+        pickerView.delegate = self
+        pickerView.dataSource = self
+    }
     private func setupClosePopViewBttn(){
         closeViewBttn.layer.borderColor = UIColor.red.cgColor
         closeViewBttn.backgroundColor = .red
@@ -187,13 +201,35 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             
         }
     }
-    
+    private func presentPickerView(){
+        let alertContoller = UIAlertController.init(title: "Pick A Show", message: "\n\n\n\n\n\n", preferredStyle: .alert)
+        alertContoller.isModalInPopover = true //A Boolean value indicating whether the view controller should be presented modally by a popover.
+        //For color of title of alert controller
+        let attributedString = NSAttributedString(string: "Title", attributes: [
+            NSAttributedString.Key.font : UIFont.systemFont(ofSize: 24), //your font here
+            NSAttributedString.Key.foregroundColor : UIColor.orange
+            ])
+        alertContoller.setValue(attributedString, forKey: "attributedTitle")
+        let pickerViewFrame = UIPickerView(frame: CGRect(x: 5, y: 20, width: 250, height: 140))
+        alertContoller.view.addSubview(pickerViewFrame)
+        pickerViewFrame.dataSource = self
+        pickerViewFrame.delegate = self
+        let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
+        let okAction = UIAlertAction.init(title: "OK", style: .default) { (success) in
+            print("you have selected " + self.typeValue)
+        }
+        alertContoller.addAction(cancelAction)
+        alertContoller.addAction(okAction)
+        self.present(alertContoller, animated: true, completion: nil)
+        // changing the color
+        let subview = (alertContoller.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+        subview.layer.cornerRadius = 10
+        subview.backgroundColor = UIColor(red: (0/255.0), green: (0/255.0), blue: (0/255.0), alpha: 1.0)
+    }
     private func noCourtsNearMeAlert(type: SportType){
         let alertController = UIAlertController.init(title: "No \(type) courts near you", message: "Would you like to increase your range?", preferredStyle: .alert)
         let yesAction = UIAlertAction.init(title: "Yes", style: .default) { (success) in
-            let popViewVC = MapViewPopupController()
-            popViewVC.modalPresentationStyle = .overCurrentContext
-            self.present(popViewVC, animated: true, completion:  nil)
+            self.presentPickerView()
             
         }
         let noAction = UIAlertAction.init(title: "No", style: .cancel, handler: nil)
@@ -267,14 +303,11 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             let lng = court.lng ?? "0.0"
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
-            
-            
-            if distanceInMeters <= MilesInMetersInfo.oneMile {
                 
-                if distanceInMeters <= range ?? 0.0 {
+                if distanceInMeters <= range {
                     courtArr.append(court)
                 }
-            }
+            
         }
         basketballResults = courtArr
         print(basketballResults.count)
@@ -288,7 +321,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             let lng = court.lng ?? "0.0"
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
-            if distanceInMeters <= MilesInMetersInfo.fiveMiles {
+            if distanceInMeters <= range {
                 courtArr.append(court)
             }
         }
@@ -352,4 +385,34 @@ extension MapViewController: CLLocationManagerDelegate{
     }
 }
 
-
+extension MapViewController: UISearchBarDelegate {
+    
+}
+extension MapViewController: UIPickerViewDelegate, UIPickerViewDataSource{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return MilesInMetersInfo.rangesInMiles.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return MilesInMetersInfo.rangesInMiles[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if row == 0 {
+            typeValue = "1"
+        } else if row == 1 {
+            typeValue = "2"
+        } else if row == 2 {
+            typeValue = "5"
+        } else if row == 3 {
+            typeValue = "10"
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let titleForRange = MilesInMetersInfo.rangesInMiles[row]
+        return NSAttributedString(string: titleForRange, attributes: [NSAttributedString.Key.foregroundColor: UIColor.orange])
+    }
+}
