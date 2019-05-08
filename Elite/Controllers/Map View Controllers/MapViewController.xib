@@ -15,6 +15,8 @@
                 <outlet property="closeViewBttn" destination="oTY-bb-m7A" id="RAy-gx-0h3"/>
                 <outlet property="eliteView" destination="VeN-4s-bez" id="tjk-hW-Knv"/>
                 <outlet property="googleMapsMapView" destination="6if-CE-cwq" id="cOT-Cp-nBU"/>
+                <outlet property="googleMapsSearchBar" destination="ffR-30-MzB" id="RbF-1D-Aoj"/>
+                <outlet property="headerView" destination="WY3-FD-wWf" id="6Ng-Af-vze"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -85,7 +87,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6if-CE-cwq" customClass="GMSMapView">
                     <rect key="frame" x="0.0" y="186.66666666666669" width="375" height="591.33333333333326"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeN-4s-bez">
+                        <view multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeN-4s-bez">
                             <rect key="frame" x="0.0" y="601" width="375" height="243.66666666666663"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T15-4q-Phg">
@@ -124,7 +126,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="           Murray Park Elite(s)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLI-XK-aI0">
-                                    <rect key="frame" x="11" y="34" width="353" height="20.333333333333329"/>
+                                    <rect key="frame" x="11" y="34" width="353" height="20"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -164,6 +166,12 @@
                                 <constraint firstAttribute="trailing" secondItem="89W-Hx-1mK" secondAttribute="trailing" constant="11" id="yEv-Zh-4bO"/>
                             </constraints>
                         </view>
+                        <searchBar contentMode="redraw" fixedFrame="YES" barStyle="black" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="ffR-30-MzB">
+                            <rect key="frame" x="18" y="24" width="339" height="56"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
