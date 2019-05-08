@@ -131,32 +131,21 @@ extension ScannerViewController: AVCaptureMetadataOutputObjectsDelegate{
                         if let gamer = gamer {
                             var currentPlayer: CurrentPlayer!
                             if self.gameType == .oneVsOne {
-                                currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: qrStr, userName: gamer.username, teamRole: self.teamRole.rawValue)
                                 self.delegate?.gamerSelected(gamer: gamer)
-                                DBService.postCurrentPlayer(currentPlayer: currentPlayer) { (error) in
-                                    if let error = error {
-                                        self.showAlert(title: "Error", message: error.localizedDescription)
-                                    }
-                                }
 
                             }
                             if self.gameType == .twoVsTwo{
                                 if self.teamRole == .redTwo{
-                                    currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: gamer.gamerID, userName: gamer.username, teamRole: self.teamRole.rawValue)
+ 
                                     self.twoVsTwoSearchDelegate?.redTwoPlayer(redTwoPlayer: gamer)
                                 }
                                 if self.teamRole == .blueOne{
-                                    currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: gamer.gamerID, userName: gamer.username, teamRole: self.teamRole.rawValue)
+
                                     self.twoVsTwoSearchDelegate?.blueOnePlayer(blueOnePlayer: gamer)
                                 }
                                 if self.teamRole == .blueTwo{
-                                    currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: gamer.gamerID, userName: gamer.username, teamRole: self.teamRole.rawValue)
+
                                     self.twoVsTwoSearchDelegate?.blueTwoPlayer(blueTwoPlayer: gamer)
-                                }
-                                DBService.postCurrentPlayer(currentPlayer: currentPlayer) { (error) in
-                                    if let error = error {
-                                        self.showAlert(title: "Error", message: error.localizedDescription)
-                                    }
                                 }
                             }
                            
