@@ -11,6 +11,7 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.2):
     - BoringSSL-GRPC/Interface (= 0.0.2)
   - BoringSSL-GRPC/Interface (0.0.2)
+  - Cheers (2.3.0)
   - FBSDKCoreKit (4.44.0):
     - Bolts (~> 1.9)
   - FBSDKLoginKit (4.44.0):
@@ -139,6 +140,7 @@ PODS:
   - SnapSDK/SCSDKLoginKit (1.2.2)
 
 DEPENDENCIES:
+  - Cheers
   - FBSDKLoginKit
   - Firebase/Auth
   - Firebase/Core
@@ -153,6 +155,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Bolts
     - BoringSSL-GRPC
+    - Cheers
     - FBSDKCoreKit
     - FBSDKLoginKit
     - Firebase
@@ -181,6 +184,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BoringSSL-GRPC: 2a230d9cd93e7ce39916044f645cebb31f37dde6
+  Cheers: 7e42fc09e1ca5059870b979131136d17b50ccc9c
   FBSDKCoreKit: 8bcd4503afe43f28823c2175a6142a7f50f1bf28
   FBSDKLoginKit: 93c5a407ab1a6a17b1b38cff57e89991f714d878
   Firebase: 2f5235e62f141cb86181c3af0dfe4509706351ac
@@ -206,6 +210,6 @@ SPEC CHECKSUMS:
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
   SnapSDK: 16d505e0e5a9340c49ce767f3131f4af76fe29e8
 
-PODFILE CHECKSUM: a8f96c1d91911d6046cbcf91fa7b526093dc8611
+PODFILE CHECKSUM: d18ecab1a47b2e8aca261f3790bcfd9768df4052
 
 COCOAPODS: 1.6.0

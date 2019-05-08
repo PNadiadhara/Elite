@@ -117,33 +117,18 @@ extension SearchPlayerViewController: UITableViewDelegate, UITableViewDataSource
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let gamer = gamers[indexPath.row]
-        var currentPlayer: CurrentPlayer!
         if gameType == .oneVsOne{
-            currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: gamer.gamerID, userName: gamer.username, teamRole: teamRole.rawValue)
-            DBService.postCurrentPlayer(currentPlayer: currentPlayer) { (error) in
-                if let error = error {
-                    self.showAlert(title: "Error", message: error.localizedDescription)
-                }
-            }
             searchDelegate?.gamerSelected(gamer: gamer)
         }
         if gameType == .twoVsTwo{
             if teamRole == .redTwo{
-                currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: gamer.gamerID, userName: gamer.username, teamRole: teamRole.rawValue)
                 twoVsTwoSearchDelegate?.redTwoPlayer(redTwoPlayer: gamer)
             }
             if teamRole == .blueOne{
-                currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: gamer.gamerID, userName: gamer.username, teamRole: teamRole.rawValue)
                 twoVsTwoSearchDelegate?.blueOnePlayer(blueOnePlayer: gamer)
             }
             if teamRole == .blueTwo{
-                currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: gamer.gamerID, userName: gamer.username, teamRole: teamRole.rawValue)
                 twoVsTwoSearchDelegate?.blueTwoPlayer(blueTwoPlayer: gamer)
-            }
-            DBService.postCurrentPlayer(currentPlayer: currentPlayer) { (error) in
-                if let error = error {
-                    self.showAlert(title: "Error", message: error.localizedDescription)
-                }
             }
             SearchPlayerViewController.selectedPlayers.append(gamer.gamerID)
         }

@@ -37,6 +37,9 @@ class CreateGameViewController: UIViewController {
     
     @IBOutlet weak var qrCodeView: UIView!
     @IBOutlet weak var animatedBottomRight: UIView!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var parkSelectedLabel: UILabel!
+    
     var userStr: String?
     var userQrImage: UIImageView?
     weak var delegate: CreateGameViewControllerDelegate?
@@ -48,8 +51,9 @@ class CreateGameViewController: UIViewController {
         
         animatedViews = [animatedTopRight,animatedTopLeft,animatedBottomLeft,animatedBottomRight]
         setupViewTapGestures()
-        currentLocationLabel.text = "Astoria Park"
-
+        if originViewController == .mapViewController {
+            cancelButton.isHidden = false
+        }
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -84,7 +88,8 @@ class CreateGameViewController: UIViewController {
         qrCodeView.addGestureRecognizer(changeSportTap)
         
         let changeParkTap = UITapGestureRecognizer(target: self, action: #selector(changeParkPressed))
-        locationHeader.addGestureRecognizer(changeParkTap)
+        parkSelectedLabel.addGestureRecognizer(changeParkTap)
+        parkSelectedLabel.isUserInteractionEnabled = true
         
         let basketBallTap = UITapGestureRecognizer(target: self, action: #selector(basketBallPressed))
         basketBallView.addGestureRecognizer(basketBallTap)
@@ -202,5 +207,9 @@ class CreateGameViewController: UIViewController {
         animateViews()
 
     }
+    @IBAction func cancelPressed(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
+    
 
 }

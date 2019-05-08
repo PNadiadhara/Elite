@@ -134,7 +134,7 @@
                     <rect key="frame" x="245" y="771" width="100" height="41"/>
                     <color key="backgroundColor" red="0.99593228099999997" green="0.27651777859999999" blue="0.36207842829999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                    <state key="normal" title="Finished">
+                    <state key="normal" title="Finish">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
