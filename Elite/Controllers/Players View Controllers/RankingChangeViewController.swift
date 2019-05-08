@@ -17,7 +17,7 @@ var rank = 2700
     override func viewDidLoad() {
         super.viewDidLoad()
         var highestRank = 3000
-        playerImageView.image = UIImage(named: TabBarViewController.currentUser.displayName! + "FightingLeft")
+        playerImageView.image = UIImage(named: TabBarViewController.currentGamer.username)
         currentRankScore.text = String(rank)
         highestRankScore.text = String(highestRank)
         updateRank()
@@ -31,14 +31,32 @@ var rank = 2700
         currentRankScore.text = String(rank)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func doneButton(_ sender: UIButton) {
+        self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
     }
-    */
+    
 
+}
+
+extension UIView {
+    func pushTransition(_ duration:CFTimeInterval) {
+        let animation:CATransition = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name:
+            CAMediaTimingFunctionName.easeInEaseOut)
+        animation.type = CATransitionType.push
+        animation.subtype = CATransitionSubtype.fromTop
+        animation.duration = duration
+        layer.add(animation, forKey: CATransitionType.push.rawValue)
+    }
+    
+    func pullTransition(_ duration:CFTimeInterval) {
+        let animation:CATransition = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name:
+            CAMediaTimingFunctionName.easeInEaseOut)
+        animation.type = CATransitionType.push
+        animation.subtype = CATransitionSubtype.fromBottom
+        animation.duration = duration
+        layer.add(animation, forKey: CATransitionType.push.rawValue)
+    }
+    
 }

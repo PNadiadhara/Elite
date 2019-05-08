@@ -99,12 +99,8 @@ class TwoVsTwoViewController: UIViewController {
                 self.showAlert(title: "Error posting game", message: error.localizedDescription)
             }
             if let gameId = gameId {
-                let currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: TabBarViewController.currentUser.uid, userName: TabBarViewController.currentUser.displayName ?? "N/A", teamRole: TeamRoles.redOne.rawValue)
-                DBService.postCurrentPlayer(currentPlayer: currentPlayer) { (error) in
-                    if let error = error {
-                        self.showAlert(title: "Error", message: error.localizedDescription)
-                    }
-                }
+                
+                self.setupCurrentGame(gameId: gameId)
                 let redPlayerTwoInvitation = Invitation(invitationId: "", gameId: gameId, sender: TabBarViewController.currentUser.uid, reciever: redPlayerTwo.gamerID, message: "Invitation", approval: false, lat: 0, lon: 0, game: self.gameName.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "", gameType: self.gameTypeSelected.rawValue)
                 let bluePlayerOneInvitation = Invitation(invitationId: "", gameId: gameId, sender: TabBarViewController.currentUser.uid, reciever: bluePlayerOne.gamerID, message: "Invitation", approval: false, lat: 0, lon: 0, game: self.gameName.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "", gameType: self.gameTypeSelected.rawValue)
                 let bluePlayerTwoInviation = Invitation(invitationId: "", gameId: gameId, sender: TabBarViewController.currentUser.uid, reciever: bluePlayerTwo.gamerID, message: "Invitation", approval: false, lat: 0, lon: 0, game: self.gameName.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "", gameType: self.gameTypeSelected.rawValue)
@@ -140,6 +136,32 @@ class TwoVsTwoViewController: UIViewController {
                     }
                     
                 })
+            }
+        }
+    }
+    func setupCurrentGame(gameId: String) {
+        let redPlayerOne = CurrentPlayer(currentPlayerId: "",gamerId: TabBarViewController.currentUser.uid, userName: TabBarViewController.currentUser.displayName ?? "N/A", teamRole: TeamRoles.redOne.rawValue, gameId: gameId)
+        let redPlayerTwo = CurrentPlayer(currentPlayerId: "", gamerId: redTwoPlayer!.gamerID, userName: redTwoPlayer!.username, teamRole: TeamRoles.redTwo.rawValue, gameId: gameId)
+        let bluePlayerOne = CurrentPlayer(currentPlayerId: "", gamerId: blueOnePlayer!.gamerID, userName: blueOnePlayer!.username, teamRole: TeamRoles.blueOne.rawValue, gameId: gameId)
+        let bluePlayerTwo = CurrentPlayer(currentPlayerId: "", gamerId: blueTwoPlayer!.gamerID, userName: blueTwoPlayer!.username, teamRole: TeamRoles.blueTwo.rawValue, gameId: gameId)
+        DBService.postCurrentPlayer(currentPlayer: redPlayerTwo) { (error) in
+            if let error = error {
+                self.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        }
+        DBService.postCurrentPlayer(currentPlayer: redPlayerOne) { (error) in
+            if let error = error {
+                self.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        }
+        DBService.postCurrentPlayer(currentPlayer: bluePlayerOne) { (error) in
+            if let error = error {
+                self.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        }
+        DBService.postCurrentPlayer(currentPlayer: bluePlayerTwo) { (error) in
+            if let error = error {
+                self.showAlert(title: "Error", message: error.localizedDescription)
             }
         }
     }

@@ -37,25 +37,4 @@ var rank = 2700
 
 }
 
-extension UIView {
-    func pushTransition(_ duration:CFTimeInterval) {
-        let animation:CATransition = CATransition()
-        animation.timingFunction = CAMediaTimingFunction(name:
-            CAMediaTimingFunctionName.easeInEaseOut)
-        animation.type = CATransitionType.push
-        animation.subtype = CATransitionSubtype.fromTop
-        animation.duration = duration
-        layer.add(animation, forKey: CATransitionType.push.rawValue)
-    }
-    
-    func pullTransition(_ duration:CFTimeInterval) {
-        let animation:CATransition = CATransition()
-        animation.timingFunction = CAMediaTimingFunction(name:
-            CAMediaTimingFunctionName.easeInEaseOut)
-        animation.type = CATransitionType.push
-        animation.subtype = CATransitionSubtype.fromBottom
-        animation.duration = duration
-        layer.add(animation, forKey: CATransitionType.push.rawValue)
-    }
-    
-}
+

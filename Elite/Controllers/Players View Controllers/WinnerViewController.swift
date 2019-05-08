@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Cheers
 
 class WinnerViewController: UIViewController {
     
@@ -21,7 +22,7 @@ class WinnerViewController: UIViewController {
     var gameDuration = String()
     var isHost = Bool()
     var isTie = false
-
+    let cheerView = CheerView()
     
     @IBOutlet weak var winnerView: UIView!
     @IBOutlet weak var winnerTitle: UILabel!
@@ -36,11 +37,15 @@ class WinnerViewController: UIViewController {
         super.viewDidLoad()
         fetchWinner()
         continueButton.isHidden = true
-
+        setupConfetti()
 //        blurView()
         // Do any additional setup after loading the view.
     }
-
+    func setupConfetti() {
+        view.addSubview(cheerView)
+        view.sendSubviewToBack(cheerView)
+        cheerView.config.particle = .confetti(allowedShapes: Particle.ConfettiShape.all)
+    }
     func blurView() {
         let blurEffect = UIBlurEffect(style: .dark)
         let blurredEffectView = UIVisualEffectView(effect: blurEffect)
@@ -107,6 +112,7 @@ class WinnerViewController: UIViewController {
             }
             if self.winnerPlayers.contains(TabBarViewController.currentGamer.gamerID) {
                 self.userResultLabel.text = "You won!"
+//                self.cheerView.start()
                 self.playersImage.image = UIImage(named: TabBarViewController.currentGamer.username + "Winner")
             } else {
                 self.userResultLabel.text = "You lost"
