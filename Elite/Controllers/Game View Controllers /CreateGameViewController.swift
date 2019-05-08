@@ -10,6 +10,10 @@ import UIKit
 protocol CreateGameViewControllerDelegate: AnyObject {
     func generateQRCodeOfUser(qrString: String?, qrImage: UIImageView?)
 }
+
+enum OriginViewController {
+    case mapViewController
+}
 class CreateGameViewController: UIViewController {
 
     @IBOutlet weak var fiveVsFiveView: UIView!
@@ -37,6 +41,7 @@ class CreateGameViewController: UIViewController {
     var userQrImage: UIImageView?
     weak var delegate: CreateGameViewControllerDelegate?
     var gameName: GameName!
+    var originViewController: OriginViewController?
     var animatedViews = [UIView]()
     override func viewDidLoad() {
         super.viewDidLoad()

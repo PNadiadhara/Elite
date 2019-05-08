@@ -286,7 +286,6 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         googleMarkers.forEach { (marker) in
             marker.map = googleMapsMapView
         }
-        
     }
     
     func getMilesFromUser(miles: String) {
@@ -360,7 +359,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     private func goToCreateAGameView(){
         let createGameVC = CreateGameViewController.init(nibName: "CreateGameViewController", bundle: nil)
 //        let createGameVC = CreateGameViewController(nibName: "CreateGameViewController”, coder: nil)
-        //        createGameVC.originViewController = .mapViewController
+              createGameVC.originViewController = .mapViewController
         //        present(createGameVC, animated: true)
        //
        // createGameVC.originViewControlle =
