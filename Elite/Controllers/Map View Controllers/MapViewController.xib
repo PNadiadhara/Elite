@@ -15,7 +15,10 @@
                 <outlet property="closeViewBttn" destination="1Tk-qv-t7U" id="oli-nO-cEi"/>
                 <outlet property="eliteView" destination="VeN-4s-bez" id="mVV-Uf-5Uy"/>
                 <outlet property="googleMapsMapView" destination="6if-CE-cwq" id="cOT-Cp-nBU"/>
+                <outlet property="googleMapsSearchBar" destination="ZyG-IO-EPJ" id="RoR-vD-eHL"/>
                 <outlet property="headerView" destination="WY3-FD-wWf" id="6Ng-Af-vze"/>
+                <outlet property="parkAddress" destination="6Zf-Sh-YVV" id="5js-po-QLs"/>
+                <outlet property="parkTitle" destination="aEt-fa-PmR" id="B1I-5w-XuR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -28,28 +31,16 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="186.66666666666666"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEb-Sq-5bd">
-                            <rect key="frame" x="306.66666666666669" y="45" width="55" height="55"/>
+                            <rect key="frame" x="310" y="66" width="55" height="55"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="55" id="FNO-cw-Lmo"/>
-                                <constraint firstAttribute="width" constant="55" id="FQa-0M-epc"/>
+                                <constraint firstAttribute="width" constant="55" id="5xA-QY-VER"/>
+                                <constraint firstAttribute="height" constant="55" id="AwI-ww-Lb0"/>
                             </constraints>
-                            <state key="normal" title="Button" image="handballWhite"/>
+                            <state key="normal" title="Button" image="handballBlue"/>
                             <connections>
                                 <action selector="showHandBallMarkers:" destination="-1" eventType="touchUpInside" id="V0q-Kw-eTS"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Basketball" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ZF-AP-WQn">
-                            <rect key="frame" x="5.6666666666666643" y="101" width="60.999999999999993" height="16"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Handball" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KaG-QH-ddE">
-                            <rect key="frame" x="308" y="101" width="52" height="16"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <searchBar contentMode="redraw" verticalCompressionResistancePriority="749" barStyle="black" searchBarStyle="minimal" placeholder="Find Park Near You" translatesAutoresizingMaskIntoConstraints="NO" id="ZyG-IO-EPJ">
                             <rect key="frame" x="10" y="122" width="355" height="56"/>
                             <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="send"/>
@@ -65,12 +56,12 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jbg-5u-GjA">
-                            <rect key="frame" x="5.6666666666666643" y="45" width="55" height="55"/>
+                            <rect key="frame" x="10" y="66" width="55" height="55"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="55" id="F0H-Sb-2cg"/>
-                                <constraint firstAttribute="height" constant="55" id="Pul-SZ-K0u"/>
+                                <constraint firstAttribute="width" constant="55" id="5Bd-xD-wku"/>
+                                <constraint firstAttribute="height" constant="55" id="esc-4b-XQ3"/>
                             </constraints>
-                            <state key="normal" image="basketballEmptyWhite"/>
+                            <state key="normal" image="basketballOrange"/>
                             <connections>
                                 <action selector="showBasketBallMarkers:" destination="-1" eventType="touchUpInside" id="bde-cp-j5y"/>
                             </connections>
@@ -78,20 +69,16 @@
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="oEb-Sq-5bd" firstAttribute="top" secondItem="jbg-5u-GjA" secondAttribute="top" id="5XC-EJ-CKm"/>
-                        <constraint firstItem="4ZF-AP-WQn" firstAttribute="top" secondItem="jbg-5u-GjA" secondAttribute="bottom" constant="1" id="CaT-tw-cab"/>
+                        <constraint firstItem="oEb-Sq-5bd" firstAttribute="trailing" secondItem="ZyG-IO-EPJ" secondAttribute="trailing" id="DK3-8S-LfT"/>
+                        <constraint firstItem="jbg-5u-GjA" firstAttribute="centerY" secondItem="WY3-FD-wWf" secondAttribute="centerY" id="H34-eA-ocu"/>
+                        <constraint firstItem="jbg-5u-GjA" firstAttribute="leading" secondItem="ZyG-IO-EPJ" secondAttribute="leading" id="HJt-5i-zwy"/>
                         <constraint firstAttribute="trailing" secondItem="ZyG-IO-EPJ" secondAttribute="trailing" constant="10" id="J0w-w9-el3"/>
-                        <constraint firstItem="oEb-Sq-5bd" firstAttribute="centerX" secondItem="KaG-QH-ddE" secondAttribute="centerX" id="Wst-RR-Fhd"/>
                         <constraint firstItem="eJC-ZH-xrT" firstAttribute="top" secondItem="WY3-FD-wWf" secondAttribute="top" constant="72" id="YwU-yQ-Dhn"/>
-                        <constraint firstItem="oEb-Sq-5bd" firstAttribute="leading" secondItem="eJC-ZH-xrT" secondAttribute="trailing" constant="62" id="caQ-Nf-hb9"/>
-                        <constraint firstItem="eJC-ZH-xrT" firstAttribute="leading" secondItem="jbg-5u-GjA" secondAttribute="trailing" constant="70" id="dFE-aa-Csk"/>
                         <constraint firstItem="ZyG-IO-EPJ" firstAttribute="leading" secondItem="WY3-FD-wWf" secondAttribute="leading" constant="10" id="eBh-9x-ZCE"/>
                         <constraint firstItem="eJC-ZH-xrT" firstAttribute="centerX" secondItem="ZyG-IO-EPJ" secondAttribute="centerX" id="fhJ-3i-Sai"/>
-                        <constraint firstItem="jbg-5u-GjA" firstAttribute="top" secondItem="WY3-FD-wWf" secondAttribute="top" constant="45" id="k33-Af-6AL"/>
-                        <constraint firstItem="KaG-QH-ddE" firstAttribute="top" secondItem="oEb-Sq-5bd" secondAttribute="bottom" constant="1" id="q0o-OA-B1X"/>
-                        <constraint firstItem="jbg-5u-GjA" firstAttribute="leading" secondItem="4ZF-AP-WQn" secondAttribute="leading" id="twO-VQ-wff"/>
                         <constraint firstAttribute="bottom" secondItem="ZyG-IO-EPJ" secondAttribute="bottom" constant="8.6699999999999999" id="u2d-Vf-xlN"/>
                         <constraint firstItem="eJC-ZH-xrT" firstAttribute="bottom" secondItem="ZyG-IO-EPJ" secondAttribute="top" id="vkT-Wq-F3k"/>
+                        <constraint firstItem="oEb-Sq-5bd" firstAttribute="top" secondItem="jbg-5u-GjA" secondAttribute="top" id="yfp-Fh-TpH"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6if-CE-cwq" customClass="GMSMapView">
@@ -226,8 +213,8 @@
     </objects>
     <resources>
         <image name="LiLGit" width="398" height="398"/>
-        <image name="basketballEmptyWhite" width="500" height="500"/>
-        <image name="handballWhite" width="500" height="500"/>
+        <image name="basketballOrange" width="500" height="500"/>
+        <image name="handballBlue" width="500" height="500"/>
         <image name="ibraheem123" width="398" height="398"/>
         <image name="leandro" width="398" height="398"/>
         <image name="pritesh" width="398" height="398"/>
