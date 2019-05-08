@@ -30,7 +30,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     
     
     @IBOutlet weak var eliteView: UIView!
-    @IBOutlet weak var closeViewBttn: CircularButton!
+    @IBOutlet weak var closeViewBttn: UIButton!
     @IBOutlet weak var headerView: UIView!
     
     @IBOutlet weak var googleMapsMapView: GMSMapView!
@@ -139,7 +139,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     private func setupMapViewSettings(){
         //googleMapsMapView.bringSubviewToFront(googleMapsSearchBar)
         googleMapsMapView.delegate = self
-        googleMapsMapView.bringSubviewToFront(eliteView)
+       googleMapsMapView.bringSubviewToFront(eliteView)
    //    googleMapsSearchBar.delegate = self
         
     }
@@ -148,8 +148,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         pickerView.dataSource = self
     }
     private func setupClosePopViewBttn(){
-        closeViewBttn.layer.borderColor = UIColor.red.cgColor
-        closeViewBttn.backgroundColor = .red
+        closeViewBttn.layer.cornerRadius = 5
     }
     
     private func getUsersLocations(){
@@ -224,7 +223,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         // changing the color
         let subview = (alertContoller.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
         subview.layer.cornerRadius = 10
-        subview.backgroundColor = UIColor(red: (0/255.0), green: (0/255.0), blue: (0/255.0), alpha: 1.0)
+        subview.backgroundColor = .eliteDarkMode
     }
     private func noCourtsNearMeAlert(type: SportType){
         let alertController = UIAlertController.init(title: "No \(type) courts near you", message: "Would you like to increase your range?", preferredStyle: .alert)
@@ -328,6 +327,32 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         handballResults = courtArr
     }
     
+    private func callMoreActionSheet(){
+        let ac = UIAlertController.init(title: "Options", message: "You have the options to create a game or go to our leaderBoard", preferredStyle: .actionSheet)
+        let createAGame = UIAlertAction.init(title: "Create A Game", style: .default) { (susses) in
+            self.goToCreateAGameView()
+        }
+        let goToLeaderBoard = UIAlertAction.init(title: "LeaderBoard", style: .default) { (sucsses) in
+            self.goToLeaderBoard()
+        }
+        let cancel = UIAlertAction.init(title: "Cancel", style: .destructive
+            , handler: nil)
+        
+        ac.addAction(createAGame)
+        ac.addAction(goToLeaderBoard)
+        ac.addAction(cancel)
+        let backView = (ac.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+        backView.backgroundColor = .eliteDarkMode
+        
+        
+        self.present(ac, animated: true, completion: nil)
+    }
+    private func goToCreateAGameView(){
+        
+    }
+    private func goToLeaderBoard(){
+        
+    }
     //MARK: - Actions
     @IBAction func showBasketBallMarkers(_ sender: UIButton) {
         if case .showHandBallMarkers = googleMapsMVEditingState {
@@ -350,9 +375,12 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         }
     }
     
-    @IBAction func closePopView(_ sender: CircularButton) {
+    @IBAction func closePopView(_ sender: UIButton) {
         eliteView.animHide()
         
+    }
+    @IBAction func moreBttnPressed(_ sender: UIButton){
+        callMoreActionSheet()
     }
     
 }
