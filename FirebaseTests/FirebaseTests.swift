@@ -65,14 +65,18 @@ class FirebaseTests: XCTestCase {
             if let error = error {
                 XCTFail("failed to create game post with error: \(error.localizedDescription)")
             }
-            
             print("documentId: \(docRef.documentID)")
             exp.fulfill()
-            
         }
-        
         wait(for : [exp], timeout: 10.0)
+    }
+    
+    func testSpecificPlaygroundMockData(){
         
+        let exp = expectation(description: "Playground Data Created")
+        let docRef = DBService.firestoreDB.collection(PlaygroundCollectionKeys.CollectionKey).document()
+        
+        let playgroundData = PlaygroundModel(location: "Avenue of the Americas between West 3rd and 4th streets", name: "<#T##String#>", users: <#T##String#>, isAnElite: <#T##Bool#>, game: <#T##String#>, wins: <#T##Int#>, losses: <#T##Int#>, rank: <#T##Int#>, parkID: <#T##String#>, jsonParkId: <#T##String#>)
     }
 
 }
