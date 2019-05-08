@@ -12,10 +12,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="Elite" customModuleProvider="target">
             <connections>
+                <outlet property="basketballIcon" destination="jbg-5u-GjA" id="ZPI-Vi-Llb"/>
                 <outlet property="closeViewBttn" destination="1Tk-qv-t7U" id="oli-nO-cEi"/>
                 <outlet property="eliteView" destination="VeN-4s-bez" id="mVV-Uf-5Uy"/>
                 <outlet property="googleMapsMapView" destination="6if-CE-cwq" id="cOT-Cp-nBU"/>
                 <outlet property="googleMapsSearchBar" destination="ZyG-IO-EPJ" id="RoR-vD-eHL"/>
+                <outlet property="handballIcon" destination="oEb-Sq-5bd" id="fOd-gf-x0y"/>
                 <outlet property="headerView" destination="WY3-FD-wWf" id="6Ng-Af-vze"/>
                 <outlet property="parkAddress" destination="6Zf-Sh-YVV" id="5js-po-QLs"/>
                 <outlet property="parkTitle" destination="aEt-fa-PmR" id="B1I-5w-XuR"/>
@@ -36,7 +38,7 @@
                                 <constraint firstAttribute="width" constant="55" id="5xA-QY-VER"/>
                                 <constraint firstAttribute="height" constant="55" id="AwI-ww-Lb0"/>
                             </constraints>
-                            <state key="normal" title="Button" image="handballBlue"/>
+                            <state key="normal" image="handballWhite"/>
                             <connections>
                                 <action selector="showHandBallMarkers:" destination="-1" eventType="touchUpInside" id="V0q-Kw-eTS"/>
                             </connections>
@@ -61,7 +63,7 @@
                                 <constraint firstAttribute="width" constant="55" id="5Bd-xD-wku"/>
                                 <constraint firstAttribute="height" constant="55" id="esc-4b-XQ3"/>
                             </constraints>
-                            <state key="normal" image="basketballOrange"/>
+                            <state key="normal" image="basketballEmptyWhite"/>
                             <connections>
                                 <action selector="showBasketBallMarkers:" destination="-1" eventType="touchUpInside" id="bde-cp-j5y"/>
                             </connections>
@@ -213,8 +215,8 @@
     </objects>
     <resources>
         <image name="LiLGit" width="398" height="398"/>
-        <image name="basketballOrange" width="500" height="500"/>
-        <image name="handballBlue" width="500" height="500"/>
+        <image name="basketballEmptyWhite" width="500" height="500"/>
+        <image name="handballWhite" width="500" height="500"/>
         <image name="ibraheem123" width="398" height="398"/>
         <image name="leandro" width="398" height="398"/>
         <image name="pritesh" width="398" height="398"/>
