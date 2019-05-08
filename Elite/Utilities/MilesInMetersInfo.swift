@@ -13,4 +13,5 @@ final class MilesInMetersInfo {
     static let twoMiles = 3218.69
     static let fiveMiles = 8046.72
     static let tenMiles = 16093.4
+    static let rangesInMiles = ["1","2","5","10"]
 }
