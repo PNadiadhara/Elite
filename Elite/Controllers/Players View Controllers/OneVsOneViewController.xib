@@ -139,8 +139,12 @@
                         <constraint firstItem="0ni-aF-y2i" firstAttribute="top" secondItem="n5x-ke-yor" secondAttribute="bottom" id="gK6-Sz-ZQq"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Swl-b6-MxJ">
-                    <rect key="frame" x="174.5" y="700" width="65" height="47"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Swl-b6-MxJ" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
+                    <rect key="frame" x="147" y="700" width="120" height="47"/>
+                    <color key="backgroundColor" red="0.2196078431372549" green="0.55686274509803924" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="NLn-X5-hWe"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                     <state key="normal" title="Play!">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

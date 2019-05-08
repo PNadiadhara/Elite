@@ -70,12 +70,7 @@ class OneVsOneViewController: UIViewController {
                 self.showAlert(title: "Error posting game", message: error.localizedDescription)
             }
             if let gameId = gameId {
-                let currentPlayer = CurrentPlayer(currentPlayerId: "",gamerId: TabBarViewController.currentUser.uid, userName: TabBarViewController.currentUser.displayName ?? "N/A", teamRole: TeamRoles.redOne.rawValue)
-                DBService.postCurrentPlayer(currentPlayer: currentPlayer) { (error) in
-                    if let error = error {
-                        self.showAlert(title: "Error", message: error.localizedDescription)
-                    }
-                }
+                self.createCurrentGameRoles(gameId: gameId)
                 let invitation = Invitation(invitationId: "", gameId: gameId ,sender: TabBarViewController.currentUser.uid, reciever: gamerSelected.gamerID, message: "Invitation", approval: false, lat: 0.0, lon: 0.0, game: self.gameName.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "", gameType: self.gameTypeSelected.rawValue)
                 DBService.postInvitation(invitation: invitation) { (error, invitationId) in
                     if let error = error {
@@ -109,6 +104,21 @@ class OneVsOneViewController: UIViewController {
 //        }
 
 
+    }
+    func createCurrentGameRoles(gameId: String) {
+        let blueOnePlayer = CurrentPlayer(currentPlayerId: "", gamerId: gamerSelected!.gamerID, userName: gamerSelected!.username, teamRole: TeamRoles.blueOne.rawValue, gameId: gameId)
+        DBService.postCurrentPlayer(currentPlayer: blueOnePlayer) { (error) in
+            if let error = error {
+                self.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        }
+        let redPlayerOne = CurrentPlayer(currentPlayerId: "",gamerId: TabBarViewController.currentUser.uid, userName: TabBarViewController.currentUser.displayName ?? "N/A", teamRole: TeamRoles.redOne.rawValue, gameId: gameId)
+        DBService.postCurrentPlayer(currentPlayer: redPlayerOne) { (error) in
+            if let error = error {
+                self.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        }
+        
     }
     
     @IBAction func cancelPressed(_ sender: UIButton) {

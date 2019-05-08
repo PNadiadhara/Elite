@@ -25,6 +25,8 @@ class EndGameViewController: UIViewController {
     @IBOutlet weak var blueThreePlayerLabel: UILabel!
     @IBOutlet weak var blueFourPlayerLabel: UILabel!
     @IBOutlet weak var blueFivePlayerLabel: UILabel!
+    @IBOutlet weak var redPlayerImage: UIImageView!
+    @IBOutlet weak var bluePlayerImage: UIImageView!
     
     
     var invitation: Invitation!
@@ -51,21 +53,21 @@ class EndGameViewController: UIViewController {
         fetchCurrentRole()
         fetchGame()
         setupUI()
+        selectedTeam = .redTeam
+        redPlayerView.alpha = 1
+        
     }
     func setupUI(){
         switch gameType.rawValue {
         case GameType.oneVsOne.rawValue:
+            redOnePlayerLabel.isHidden = false
+            blueOnePlayerLabel.isHidden = false
+            redPlayerImage.isHidden = false
+            bluePlayerImage.isHidden = false
+            redPlayerImage.image = UIImage(named: redOnePlayer.username)
+            bluePlayerImage.image = UIImage(named: blueOnePlayer.username)
             redOnePlayerLabel.text = redOnePlayer.username
             blueOnePlayerLabel.text = blueOnePlayer.username
-            redPlayerView.frame = CGRect(x: 1, y: 1, width: 1, height: 1)
-            redTwoPlayerLabel.isHidden = true
-            redThreePlayerLabel.isHidden = true
-            redFourPlayerLabel.isHidden = true
-            redFivePlayerLabel.isHidden = true
-            blueTwoPlayerLabel.isHidden = true
-            blueThreePlayerLabel.isHidden = true
-            blueFourPlayerLabel.isHidden = true
-            blueFivePlayerLabel.isHidden = true
 //            bluePlayerView.translatesAutoresizingMaskIntoConstraints = false
 //            bluePlayerView.frame = CGRect(x: bluePlayerView.frame.origin.x, y: bluePlayerView.frame.origin.y, width: bluePlayerView.frame.width, height: 88)
           case GameType.twoVsTwo.rawValue:

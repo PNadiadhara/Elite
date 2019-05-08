@@ -13,7 +13,7 @@ extension DBService {
             let ref = firestoreDB.collection(CurrentPlayersCollectionKeys.collectionKey).document()
         DBService.firestoreDB.collection(CurrentPlayersCollectionKeys.collectionKey).document(ref.documentID).setData([CurrentPlayersCollectionKeys.gamerIdKey : currentPlayer.gamerId, CurrentPlayersCollectionKeys.teamRoleKey : currentPlayer.teamRole, CurrentPlayersCollectionKeys.userNameKey : currentPlayer.userName,
                         
-                                                                                                                       CurrentPlayersCollectionKeys.currentPlayerIdKey : ref.documentID]) { (error) in
+                                                                                                                       CurrentPlayersCollectionKeys.currentPlayerIdKey : ref.documentID, CurrentGameCollectionKeys.GameIdKey : currentPlayer.gamerId]) { (error) in
             if let error = error {
                 completion(error)
             }
