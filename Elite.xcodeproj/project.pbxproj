@@ -119,6 +119,8 @@
 		D5D375B8226A4A9000F25FCF /* DBService+WinnerConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D375B7226A4A9000F25FCF /* DBService+WinnerConfirmation.swift */; };
 		D5D375BD226A6D3900F25FCF /* WinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D375BB226A6D3900F25FCF /* WinnerViewController.swift */; };
 		D5D375BE226A6D3900F25FCF /* WinnerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D375BC226A6D3900F25FCF /* WinnerViewController.xib */; };
+		D5DAD8E422809C46002D2B86 /* RankingChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DAD8E222809C46002D2B86 /* RankingChangeViewController.swift */; };
+		D5DAD8E522809C46002D2B86 /* RankingChangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5DAD8E322809C46002D2B86 /* RankingChangeViewController.xib */; };
 		D5DE77F1225FF61200439407 /* SearchPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DE77EF225FF61200439407 /* SearchPlayerViewController.swift */; };
 		D5DE77F2225FF61200439407 /* SearchPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5DE77F0225FF61200439407 /* SearchPlayerViewController.xib */; };
 		D5DF86B222692CBB00E2972A /* WinnerConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DF86B122692CBB00E2972A /* WinnerConfirmation.swift */; };
@@ -270,6 +272,8 @@
 		D5D375B7226A4A9000F25FCF /* DBService+WinnerConfirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBService+WinnerConfirmation.swift"; sourceTree = "<group>"; };
 		D5D375BB226A6D3900F25FCF /* WinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerViewController.swift; sourceTree = "<group>"; };
 		D5D375BC226A6D3900F25FCF /* WinnerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WinnerViewController.xib; sourceTree = "<group>"; };
+		D5DAD8E222809C46002D2B86 /* RankingChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingChangeViewController.swift; sourceTree = "<group>"; };
+		D5DAD8E322809C46002D2B86 /* RankingChangeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RankingChangeViewController.xib; sourceTree = "<group>"; };
 		D5DE77EF225FF61200439407 /* SearchPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerViewController.swift; sourceTree = "<group>"; };
 		D5DE77F0225FF61200439407 /* SearchPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchPlayerViewController.xib; sourceTree = "<group>"; };
 		D5DF86B122692CBB00E2972A /* WinnerConfirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerConfirmation.swift; sourceTree = "<group>"; };
@@ -454,6 +458,8 @@
 				D5BCBBF9226F7FBD006B0015 /* TwoVsTwoProgressViewController.xib */,
 				BFD61E25227C985600EA408B /* RankChangeController.swift */,
 				BFD61E26227C985600EA408B /* RankChangeController.xib */,
+				D5DAD8E222809C46002D2B86 /* RankingChangeViewController.swift */,
+				D5DAD8E322809C46002D2B86 /* RankingChangeViewController.xib */,
 			);
 			path = "Players View Controllers";
 			sourceTree = "<group>";
@@ -736,6 +742,7 @@
 				2EC6D55A225E79B300336362 /* TwoVsTwoViewController.xib in Resources */,
 				D521086F225E95540044C440 /* UserFeedCell.xib in Resources */,
 				2EC6D556225E799F00336362 /* OneVsOneViewController.xib in Resources */,
+				D5DAD8E522809C46002D2B86 /* RankingChangeViewController.xib in Resources */,
 				2EC6D55E225E79CB00336362 /* FiveVsFiveViewController.xib in Resources */,
 				D5210882225E960B0044C440 /* FeedCell.xib in Resources */,
 				D5210874225E956B0044C440 /* FiveVsFiveFeedCell.xib in Resources */,
@@ -781,6 +788,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Elite/Pods-Elite-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/Cheers/Cheers.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
@@ -804,6 +812,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cheers.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
@@ -881,6 +890,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/Cheers/Cheers.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
@@ -904,6 +914,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cheers.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
@@ -986,6 +997,7 @@
 				D5B304542264EDF800404241 /* Invitation.swift in Sources */,
 				48F1B5C7226989DB00B53E11 /* MapViewPopupController.swift in Sources */,
 				D5B4F56D2270BD0D0081FCF0 /* DBService+CurrentGame.swift in Sources */,
+				D5DAD8E422809C46002D2B86 /* RankingChangeViewController.swift in Sources */,
 				2E171B92225BA61000D40DDF /* DBService+Playground.swift in Sources */,
 				2EF4809422565227008212DC /* GamerModel.swift in Sources */,
 				48EFEBAF2271016C0006092D /* MilesInMetersInfo.swift in Sources */,

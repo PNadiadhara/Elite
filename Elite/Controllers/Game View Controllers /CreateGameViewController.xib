@@ -19,8 +19,9 @@
                 <outlet property="basketBallImage" destination="3CP-em-9TD" id="rOW-V8-x9D"/>
                 <outlet property="basketBallLabel" destination="zoR-8g-v99" id="naD-qP-NES"/>
                 <outlet property="basketBallView" destination="S2p-WD-LMs" id="dEY-bN-QXi"/>
+                <outlet property="cancelButton" destination="Cvh-aC-j2I" id="Wca-Ec-GJK"/>
                 <outlet property="chooseSportLabel" destination="0a6-jy-pQH" id="UMz-k1-0Yj"/>
-                <outlet property="currentLocationLabel" destination="WeI-uA-k4E" id="0Gv-Zc-5ZX"/>
+                <outlet property="currentLocationLabel" destination="7dv-uj-GGV" id="mws-aa-7NE"/>
                 <outlet property="fiveVsFiveView" destination="reP-hI-hCc" id="E9W-bP-S1V"/>
                 <outlet property="handBallView" destination="xbg-sh-UCJ" id="RdJ-dL-YCo"/>
                 <outlet property="handballImage" destination="50W-Rg-9YQ" id="YS7-t6-nis"/>
@@ -28,6 +29,7 @@
                 <outlet property="locationHeader" destination="pBc-4W-oUK" id="FLF-BQ-GIN"/>
                 <outlet property="middleAnimatedView" destination="BAI-5h-7Ul" id="n4R-x7-N8y"/>
                 <outlet property="oneVsOneView" destination="Y6F-Ao-E9w" id="E20-N3-Ki5"/>
+                <outlet property="parkSelectedLabel" destination="WeI-uA-k4E" id="6gl-9w-Qyj"/>
                 <outlet property="qrCodeView" destination="pMa-yr-EOh" id="iun-US-E6i"/>
                 <outlet property="selectedSportView" destination="Z6q-xt-Q7J" id="4GZ-8k-nig"/>
                 <outlet property="twoVsTwoView" destination="8da-aY-NKa" id="MwJ-9I-KWf"/>
@@ -216,13 +218,13 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pBc-4W-oUK">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="179"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WeI-uA-k4E">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select park" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WeI-uA-k4E">
                             <rect key="frame" x="11" y="126" width="392" height="33"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dv-uj-GGV">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dv-uj-GGV">
                             <rect key="frame" x="11" y="98" width="392" height="20"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -235,6 +237,20 @@
                                 <constraint firstAttribute="width" constant="30" id="O8M-hj-sTg"/>
                             </constraints>
                         </imageView>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cvh-aC-j2I">
+                            <rect key="frame" x="21" y="52" width="70" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="70" id="AyO-Gs-LNE"/>
+                                <constraint firstAttribute="height" constant="50" id="TGe-5D-Ab5"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </state>
+                            <connections>
+                                <action selector="cancelPressed:" destination="-1" eventType="touchUpInside" id="eeI-Ls-Vds"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.16078431372549018" green="0.17254901960784313" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -245,7 +261,9 @@
                         <constraint firstItem="dUb-Gi-9xb" firstAttribute="centerY" secondItem="WeI-uA-k4E" secondAttribute="centerY" id="Pij-if-8qW"/>
                         <constraint firstAttribute="trailing" secondItem="WeI-uA-k4E" secondAttribute="trailing" constant="11" id="S9f-XX-b8U"/>
                         <constraint firstAttribute="bottom" secondItem="WeI-uA-k4E" secondAttribute="bottom" constant="20" id="T4r-qA-Dto"/>
+                        <constraint firstItem="Cvh-aC-j2I" firstAttribute="top" secondItem="pBc-4W-oUK" secondAttribute="top" constant="52" id="Vlr-rW-SKy"/>
                         <constraint firstItem="WeI-uA-k4E" firstAttribute="top" secondItem="7dv-uj-GGV" secondAttribute="bottom" constant="8" id="h0Q-MZ-FFx"/>
+                        <constraint firstItem="Cvh-aC-j2I" firstAttribute="leading" secondItem="pBc-4W-oUK" secondAttribute="leading" constant="21" id="oKL-dL-2DQ"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a sport" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0a6-jy-pQH">
