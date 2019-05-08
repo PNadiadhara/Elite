@@ -37,6 +37,9 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     @IBOutlet weak var parkTitle: UILabel!
     @IBOutlet weak var parkAddress: UILabel!
     @IBOutlet weak var googleMapsSearchBar: UISearchBar!
+    
+    @IBOutlet weak var handballIcon: UIButton! 
+    @IBOutlet weak var basketballIcon: UIButton!
     let popUpVC = MapViewPopupController()
     private var googleMapsMVEditingState = GoogleMapsMVState.noMarkersShown {
         didSet{
@@ -201,9 +204,11 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         switch state {
         case .showBasketBallMarkers:
             print("Show basketball")
+            handballIcon.setImage(UIImage.init(named: "handballWhite"), for: .normal)
             addMarkers(courts: basketballResults, type: .basketball)
         case .showHandBallMarkers:
             print("Show handball")
+            basketballIcon.setImage(UIImage.init(named: "basketballEmptyWhite"), for: .normal)
             addMarkers(courts: handballResults, type: .handball)
         case .noMarkersShown:
             clearMarkers()
@@ -374,6 +379,8 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         if case .noMarkersShown = googleMapsMVEditingState {
             googleMapsMVEditingState = .showBasketBallMarkers
         }
+        basketballIcon.setImage(UIImage(named: "basketballEmpty"), for: .normal)
+        handballIcon.setImage(UIImage(named: "handballWhite"), for: .normal)
     }
     
     @IBAction func showHandBallMarkers(_ sender: UIButton) {
@@ -384,6 +391,8 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         if case .noMarkersShown = googleMapsMVEditingState {
             googleMapsMVEditingState = .showHandBallMarkers
         }
+        basketballIcon.setImage(UIImage(named: "basketballEmptyWhite"), for: .normal)
+        handballIcon.setImage(UIImage(named: "handballBlueEmpty"), for: .normal)
     }
     
     @IBAction func closePopView(_ sender: UIButton) {
