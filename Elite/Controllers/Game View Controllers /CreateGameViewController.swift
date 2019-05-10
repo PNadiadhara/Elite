@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMaps
 protocol CreateGameViewControllerDelegate: AnyObject {
     func generateQRCodeOfUser(qrString: String?, qrImage: UIImageView?)
 }
@@ -43,17 +44,39 @@ class CreateGameViewController: UIViewController {
     var userStr: String?
     var userQrImage: UIImageView?
     weak var delegate: CreateGameViewControllerDelegate?
-    var gameName: GameName!
+    var gameName: GameName! {
+        didSet {
+            if gameName == .handball {
+                parkSelectedLabel.text = handballResults.first?.nameOfPlayground
+                print(handballResults)
+            }
+            if gameName == .basketball {
+                if let closestCourt = GoogleMapHelper.getBasketballCourtClosestToUsersLocation(closestToLocation: userLocation, basketballCourts: basketballResults) {
+                    parkSelectedLabel.text = closestCourt.nameOfPlayground
+                }
+            }
+        }
+    }
+    var closestBasketballcourt: BasketBall!
+    var closestHandballcourt: HandBall!
+    var basketballCourts: BasketBall!
+    var handballCourts: HandBall!
     var originViewController: OriginViewController?
     var animatedViews = [UIView]()
+    private var handballResults = [HandBall]()
+    private var basketballResults = [BasketBall]()
+    private var locationManager = CLLocationManager()
+    private var userLocation = CLLocation.init(latitude: 40.7311, longitude: -74.0009)
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loadAllParkData()
         animatedViews = [animatedTopRight,animatedTopLeft,animatedBottomLeft,animatedBottomRight]
         setupViewTapGestures()
         if originViewController == .mapViewController {
             cancelButton.isHidden = false
         }
+        locationManager.delegate = self
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -74,6 +97,19 @@ class CreateGameViewController: UIViewController {
         parkSelectedLabel.layer.masksToBounds = true
         
     //        changeSportView.layer.borderWidth = 0
+    }
+    func setupUI() {
+        
+    }
+    private func loadAllParkData(){
+        GoogleMapHelper.loadAllParkData { (handballCourt, basketballCourt) in
+            do {
+                self.handballResults = try JSONDecoder().decode([HandBall].self, from: handballCourt)
+                self.basketballResults = try JSONDecoder().decode([BasketBall].self, from: basketballCourt)
+            } catch {
+                print(error)
+            }
+        }
     }
     func setupViewTapGestures(){
         
@@ -194,6 +230,7 @@ class CreateGameViewController: UIViewController {
     
     @objc func basketBallPressed() {
         gameName = .basketball
+        showParkLabels()
         print("basketBall PRessed")
         addTapToGameTypeView()
         middleAnimatedView.transform = CGAffineTransform.identity
@@ -205,6 +242,7 @@ class CreateGameViewController: UIViewController {
     }
     @objc func handBallPressed() {
         gameName = .handball
+        showParkLabels()
         print("handBall PRessed")
         addTapToGameTypeView()
         middleAnimatedView.transform = CGAffineTransform.identity
@@ -216,5 +254,22 @@ class CreateGameViewController: UIViewController {
         dismiss(animated: true)
     }
     
+    func showParkLabels() {
+        parkSelectedLabel.isHidden = false
+        currentLocationLabel.isHidden = false
+    }
 
 }
+extension CreateGameViewController: CLLocationManagerDelegate{
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locationValue: CLLocationCoordinate2D = manager.location!.coordinate // fix the force unwrapp
+        print("lat: \(locationValue.latitude) and lng: \(locationValue.longitude) ")
+        // let currentUsersLocation = locations.last
+        //        self.userLocation = currentUsersLocation!
+        self.userLocation = CLLocation.init(latitude: 40.7311, longitude: -74.0009)
+        //        let startPosition = GMSCameraPosition.camera(withLatitude: ( self.userLocation.coordinate.latitude), longitude: ( self.userLocation.coordinate.longitude), zoom: 14.0)
+
+        self.locationManager.stopUpdatingLocation()
+    }
+}
+
