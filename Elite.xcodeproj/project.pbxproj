@@ -89,6 +89,7 @@
 		BFD61E28227C985600EA408B /* RankChangeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFD61E26227C985600EA408B /* RankChangeController.xib */; };
 		BFD61E302280CF0E00EA408B /* FirebaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD61E2F2280CF0E00EA408B /* FirebaseTests.swift */; };
 		BFED970F225E6E2900CC360B /* EloRankMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFED970E225E6E2900CC360B /* EloRankMethods.swift */; };
+		D509826C22849D85003679A5 /* GoogleMapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509826B22849D85003679A5 /* GoogleMapHelper.swift */; };
 		D521086F225E95540044C440 /* UserFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D521086D225E95540044C440 /* UserFeedCell.xib */; };
 		D5210870225E95540044C440 /* UserFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D521086E225E95540044C440 /* UserFeedCell.swift */; };
 		D5210873225E956B0044C440 /* FiveVsFiveFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5210871225E956B0044C440 /* FiveVsFiveFeedCell.swift */; };
@@ -242,6 +243,7 @@
 		BFD61E312280CF0E00EA408B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFED970E225E6E2900CC360B /* EloRankMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EloRankMethods.swift; sourceTree = "<group>"; };
 		C58214BF69A905A7D79AC4AF /* Pods_EliteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EliteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D509826B22849D85003679A5 /* GoogleMapHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GoogleMapHelper.swift; path = ../GoogleMapHelper.swift; sourceTree = "<group>"; };
 		D521086D225E95540044C440 /* UserFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserFeedCell.xib; sourceTree = "<group>"; };
 		D521086E225E95540044C440 /* UserFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFeedCell.swift; sourceTree = "<group>"; };
 		D5210871225E956B0044C440 /* FiveVsFiveFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiveVsFiveFeedCell.swift; sourceTree = "<group>"; };
@@ -625,6 +627,7 @@
 				2E9FE66522557D83004CA00B /* Extensions */,
 				2E9FE66022557C6E004CA00B /* Utilities */,
 				2E9FE67D22558251004CA00B /* Storyboards */,
+				D509826E22849DE0003679A5 /* GoogleMapHelper */,
 				48DB1A632260F28300C7CEAC /* AllInfoForBasketBallCourts.json */,
 				48DB1A652260F72500C7CEAC /* AllInfoForHandballCourts.json */,
 				48F1B5C1226980F700B53E11 /* basketballCourtInfo.json */,
@@ -640,6 +643,14 @@
 				BFD61E312280CF0E00EA408B /* Info.plist */,
 			);
 			path = FirebaseTests;
+			sourceTree = "<group>";
+		};
+		D509826E22849DE0003679A5 /* GoogleMapHelper */ = {
+			isa = PBXGroup;
+			children = (
+				D509826B22849D85003679A5 /* GoogleMapHelper.swift */,
+			);
+			path = GoogleMapHelper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1034,6 +1045,7 @@
 				D5B57D422262698400DB73E2 /* OneVsOneProgressViewController.swift in Sources */,
 				2EF4809222565216008212DC /* GameModel.swift in Sources */,
 				2EC6D559225E79B300336362 /* TwoVsTwoViewController.swift in Sources */,
+				D509826C22849D85003679A5 /* GoogleMapHelper.swift in Sources */,
 				D5DF86BE226A21B100E2972A /* GameName.swift in Sources */,
 				D5B3045D22677A8000404241 /* InvitationAlertViewController.swift in Sources */,
 				D56FE69E2262B28800A5553E /* MainTimer.swift in Sources */,

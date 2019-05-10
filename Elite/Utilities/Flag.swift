@@ -10,4 +10,5 @@ import Foundation
 
 class Flag {
     static var isFeedReady = false
+    static var isDemo = true
 }

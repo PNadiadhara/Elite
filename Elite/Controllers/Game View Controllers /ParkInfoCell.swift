@@ -16,3 +16,4 @@ class ParkInfoCell: UITableViewCell {
     @IBOutlet weak var handballImage: UIImageView!
     @IBOutlet weak var basketballImage: UIImageView!
 }
+ 

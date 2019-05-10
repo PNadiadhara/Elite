@@ -35,7 +35,12 @@ class WinnerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchWinner()
+        if Flag.isDemo {
+            demoBugPrevention()
+        } else {
+            fetchWinner()
+        }
+        
         continueButton.isHidden = true
         setupConfetti()
 //        demoBugPrevention()
@@ -48,7 +53,7 @@ class WinnerViewController: UIViewController {
         cheerView.config.particle = .confetti(allowedShapes: Particle.ConfettiShape.all)
     }
     func demoBugPrevention() {
-        let timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
+        let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
             self.winnerTeam = .redTeam
             self.animateView(winnerTeam: Teams.redTeam)
         }
@@ -145,9 +150,6 @@ class WinnerViewController: UIViewController {
                     if let totalcount = totalcount {
                         switch self.game.gameType{
                         case GameType.oneVsOne.rawValue:
-                            if totalcount > 2 {
-                                self.demoBugPrevention()
-                            }
                             if totalcount == 2 {
 
                                 if let winningTeam = winningTeam {
