@@ -21,6 +21,7 @@ var rank = 2700
         currentRankScore.text = String(rank)
         highestRankScore.text = String(highestRank)
         updateRank()
+        playerUserName.text = TabBarViewController.currentGamer.username
         // Do any additional setup after loading the view.
     }
 

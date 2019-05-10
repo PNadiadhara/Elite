@@ -70,22 +70,12 @@ class CreateGameViewController: UIViewController {
         selectedSportView.layer.masksToBounds = true
         middleAnimatedView.layer.cornerRadius = selectedSportView.bounds.width / 2
         middleAnimatedView.layer.masksToBounds = true
+        parkSelectedLabel.layer.cornerRadius = 20
+        parkSelectedLabel.layer.masksToBounds = true
         
     //        changeSportView.layer.borderWidth = 0
     }
     func setupViewTapGestures(){
-
-        let oneVsOneTap = UITapGestureRecognizer(target: self, action: #selector(oneVsOnePressed))
-        oneVsOneView.addGestureRecognizer(oneVsOneTap)
-        
-        let twoVsTwoTap = UITapGestureRecognizer(target: self, action: #selector(twoVstwoPressed))
-        twoVsTwoView.addGestureRecognizer(twoVsTwoTap)
-        
-        let fiveVsFiveTap = UITapGestureRecognizer(target: self, action: #selector(fiveVsFivePressed))
-        fiveVsFiveView.addGestureRecognizer(fiveVsFiveTap)
-        
-        let changeSportTap = UITapGestureRecognizer(target: self, action: #selector(qrCodePressed))
-        qrCodeView.addGestureRecognizer(changeSportTap)
         
         let changeParkTap = UITapGestureRecognizer(target: self, action: #selector(changeParkPressed))
         parkSelectedLabel.addGestureRecognizer(changeParkTap)
@@ -99,6 +89,19 @@ class CreateGameViewController: UIViewController {
 //        selectedSportView.addGestureRecognizer(selectedSportTap)
         
         
+    }
+    func addTapToGameTypeView() {
+        let oneVsOneTap = UITapGestureRecognizer(target: self, action: #selector(oneVsOnePressed))
+        oneVsOneView.addGestureRecognizer(oneVsOneTap)
+        
+        let twoVsTwoTap = UITapGestureRecognizer(target: self, action: #selector(twoVstwoPressed))
+        twoVsTwoView.addGestureRecognizer(twoVsTwoTap)
+        
+        let fiveVsFiveTap = UITapGestureRecognizer(target: self, action: #selector(fiveVsFivePressed))
+        fiveVsFiveView.addGestureRecognizer(fiveVsFiveTap)
+        
+        let qrViewTap = UITapGestureRecognizer(target: self, action: #selector(qrCodePressed))
+        qrCodeView.addGestureRecognizer(qrViewTap)
     }
     func animateViews(){
         let views = [oneVsOneView,twoVsTwoView,fiveVsFiveView,qrCodeView]
@@ -192,6 +195,7 @@ class CreateGameViewController: UIViewController {
     @objc func basketBallPressed() {
         gameName = .basketball
         print("basketBall PRessed")
+        addTapToGameTypeView()
         middleAnimatedView.transform = CGAffineTransform.identity
         animatedViews.forEach{$0.transform = CGAffineTransform.identity}
          animateViews()
@@ -202,6 +206,7 @@ class CreateGameViewController: UIViewController {
     @objc func handBallPressed() {
         gameName = .handball
         print("handBall PRessed")
+        addTapToGameTypeView()
         middleAnimatedView.transform = CGAffineTransform.identity
         animatedViews.forEach{$0.transform = CGAffineTransform.identity}
         animateViews()
