@@ -38,6 +38,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     @IBOutlet weak var handballIcon: UIButton! 
     @IBOutlet weak var basketballIcon: UIButton!
     let popUpVC = MapViewPopupController()
+    
     private var googleMapsMVEditingState = GoogleMapsMVState.noMarkersShown {
         didSet{
             clearMarkers()
@@ -46,10 +47,12 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     }
     
     private var locationManager = CLLocationManager()
-    private var userLocation = CLLocation.init(latitude: 40.7311, longitude: -74.0009){
+    private var userLocation = CLLocation(){
         didSet{
-            getBasketBallParksNearMe(userLocation, basketballResults)
-            getHandBallParksNearMe(userLocation, handballResults)
+            basketballResults = GoogleMapHelper.getBasketBallParksNearMe(userLocation, basketballResults, range: range)
+            handballResults = GoogleMapHelper.getHandBallParksNearMe(userLocation, handballResults, range: range)
+//            getBasketBallParksNearMe(userLocation, basketballResults)
+//            getHandBallParksNearMe(userLocation, handballResults)
         }
     }
     
@@ -66,6 +69,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     }
     var range: Double = MilesInMetersInfo.oneMile {
         didSet{
+            basketballResults = GoogleMapHelper.getBasketBallParksNearMe(userLocation, basketballResults, range: range)
             googleMapsMapView.reloadInputViews()
         }
     }
@@ -124,15 +128,24 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         super.viewDidLoad()
         callSetups()
         loadAllParkData()
+       
         addCustomMakers()
+        locationManager.delegate = self
+        if Flag.isDemo {
+            googleMapsMVEditingState = .showHandBallMarkers
+          setupWest4Marker()
+            userLocation = CLLocation.init(latitude: 40.7311, longitude: -74.0009)
+        } else {
+            googleMapsMVEditingState = .showBasketBallMarkers
+        }
         
     }
     private func callSetups(){
         setupClosePopViewBttn()
         setupMapViewSettings()
-        getUsersLocations()
+        GoogleMapHelper.getUsersLocations(locationManager: locationManager)
         setupPickerView()
-        setupWest4Marker()
+        
     }
     
     
@@ -141,6 +154,9 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         googleMapsMapView.delegate = self
         googleMapsMapView.bringSubviewToFront(eliteView)
         googleMapsSearchBar.delegate = self
+        googleMapsMapView.settings.compassButton = true
+        googleMapsMapView.settings.myLocationButton = true
+        googleMapsMapView.isMyLocationEnabled = true
         
     }
     private func setupWest4Marker(){
@@ -160,35 +176,28 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         closeViewBttn.layer.cornerRadius = 5
     }
     
-    private func getUsersLocations(){
-        locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled(){
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-            googleMapsMapView.settings.compassButton = true
-            googleMapsMapView.settings.myLocationButton = true
-            googleMapsMapView.isMyLocationEnabled = true
-        }
-    }
+//    private func getUsersLocations(){
+//        locationManager.requestWhenInUseAuthorization()
+//        if CLLocationManager.locationServicesEnabled(){
+//
+//            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+//            locationManager.startUpdatingLocation()
+//            googleMapsMapView.settings.compassButton = true
+//            googleMapsMapView.settings.myLocationButton = true
+//            googleMapsMapView.isMyLocationEnabled = true
+//        }
+//    }
     
     private func loadAllParkData(){
-        if let handballCourtDataFilePath = Bundle.main.path(forResource: "handballCourtInfo", ofType: "json"), let basketballCourtDataFilePath = Bundle.main.path(forResource: "basketballCourtInfo", ofType: "json"){
-            let handballCourtDataUrl = URL.init(fileURLWithPath: handballCourtDataFilePath)
-            let basketballCourtDataUrl = URL.init(fileURLWithPath: basketballCourtDataFilePath)
-            if let jsonHandBallParkData = try? Data.init(contentsOf: handballCourtDataUrl), let jsonBasketBallParkData = try? Data.init(contentsOf: basketballCourtDataUrl){
-                do {
-                    handballResults = try JSONDecoder().decode([HandBall].self, from: jsonHandBallParkData)
-                    basketballResults = try JSONDecoder().decode([BasketBall].self, from: jsonBasketBallParkData)
-                    print("handball Courts: \(handballResults.count), basketball Courts: \(basketballResults.count)")
-                } catch {
-                    print(error)
-                }
-            } else {
-                print("issue with converting the urls into data")
+        GoogleMapHelper.loadAllParkData { (handballCourt, basketballCourt) in
+            do {
+                self.handballResults = try JSONDecoder().decode([HandBall].self, from: handballCourt)
+                self.basketballResults = try JSONDecoder().decode([BasketBall].self, from: basketballCourt)
+                print(self.handballResults.count)
+                print(self.basketballResults.count)
+            } catch {
+                print(error)
             }
-        } else {
-            print("issue with the json file paths")
         }
     }
     
@@ -200,11 +209,13 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         switch state {
         case .showBasketBallMarkers:
             print("Show basketball")
-            handballIcon.setImage(UIImage.init(named: "handballWhite"), for: .normal)
+            basketballIcon.setImage(UIImage(named: "basketballEmpty"), for: .normal)
+            handballIcon.setImage(UIImage(named: "handballWhite"), for: .normal)
             addMarkers(courts: basketballResults, type: .basketball)
         case .showHandBallMarkers:
             print("Show handball")
-            basketballIcon.setImage(UIImage.init(named: "basketballEmptyWhite"), for: .normal)
+            basketballIcon.setImage(UIImage(named: "basketballEmptyWhite"), for: .normal)
+            handballIcon.setImage(UIImage(named: "handballBlueEmpty"), for: .normal)
             addMarkers(courts: handballResults, type: .handball)
         case .noMarkersShown:
             clearMarkers()
@@ -226,7 +237,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         pickerViewFrame.delegate = self
         let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
         let okAction = UIAlertAction.init(title: "OK", style: .default) { (success) in
-            print("you have selected " + self.typeValue)
+            self.getMilesFromUser(miles: self.typeValue)
         }
         alertContoller.addAction(cancelAction)
         alertContoller.addAction(okAction)
@@ -304,38 +315,38 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         }
     }
     
-    private func getBasketBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [BasketBall]){
-        loadAllParkData()
-        var courtArr = [BasketBall]()
-        for court in courtLocations {
-            let lat = court.lat ?? "0.0"
-            let lng = court.lng ?? "0.0"
-            let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
-            let distanceInMeters = courtLocation.distance(from: currentLocation)
-            
-            if distanceInMeters <= MilesInMetersInfo.oneMile {
-                courtArr.append(court)
-            }
-            
-        }
-        basketballResults = courtArr
-        print(basketballResults.count)
-    }
+//    private func getBasketBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [BasketBall]){
+////        loadAllParkData()
+//        var courtArr = [BasketBall]()
+//        for court in courtLocations {
+//            let lat = court.lat ?? "0.0"
+//            let lng = court.lng ?? "0.0"
+//            let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
+//            let distanceInMeters = courtLocation.distance(from: currentLocation)
+//
+//            if distanceInMeters <= MilesInMetersInfo.oneMile {
+//                courtArr.append(court)
+//            }
+//
+//        }
+//        basketballResults = courtArr
+//        print(basketballResults.count)
+//    }
     
-    private func getHandBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [HandBall]){
-        
-        var courtArr = [HandBall]()
-        for court in courtLocations {
-            let lat = court.lat ?? "0.0"
-            let lng = court.lng ?? "0.0"
-            let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
-            let distanceInMeters = courtLocation.distance(from: currentLocation)
-            if distanceInMeters <= MilesInMetersInfo.oneMile {
-                courtArr.append(court)
-            }
-        }
-        handballResults = courtArr
-    }
+//    private func getHandBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [HandBall]){
+//
+//        var courtArr = [HandBall]()
+//        for court in courtLocations {
+//            let lat = court.lat ?? "0.0"
+//            let lng = court.lng ?? "0.0"
+//            let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
+//            let distanceInMeters = courtLocation.distance(from: currentLocation)
+//            if distanceInMeters <= MilesInMetersInfo.oneMile {
+//                courtArr.append(court)
+//            }
+//        }
+//        handballResults = courtArr
+//    }
     
     private func callMoreActionSheet(){
         let ac = UIAlertController.init(title: "Options", message: "You have the options to create a game or go to our leaderBoard", preferredStyle: .actionSheet)
@@ -372,8 +383,6 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         if case .noMarkersShown = googleMapsMVEditingState {
             googleMapsMVEditingState = .showBasketBallMarkers
         }
-        basketballIcon.setImage(UIImage(named: "basketballEmpty"), for: .normal)
-        handballIcon.setImage(UIImage(named: "handballWhite"), for: .normal)
     }
     
     @IBAction func showHandBallMarkers(_ sender: UIButton) {
@@ -384,8 +393,6 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         if case .noMarkersShown = googleMapsMVEditingState {
             googleMapsMVEditingState = .showHandBallMarkers
         }
-        basketballIcon.setImage(UIImage(named: "basketballEmptyWhite"), for: .normal)
-        handballIcon.setImage(UIImage(named: "handballBlueEmpty"), for: .normal)
     }
     
     @IBAction func closePopView(_ sender: UIButton) {
@@ -418,14 +425,20 @@ extension MapViewController: GMSMapViewDelegate
 }
 extension MapViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        var customStartPosition = GMSCameraPosition()
         let locationValue: CLLocationCoordinate2D = manager.location!.coordinate // fix the force unwrapp
         print("lat: \(locationValue.latitude) and lng: \(locationValue.longitude) ")
-        // let currentUsersLocation = locations.last
-        //        self.userLocation = currentUsersLocation!
-        self.userLocation = CLLocation.init(latitude: 40.7311, longitude: -74.0009)
-        //        let startPosition = GMSCameraPosition.camera(withLatitude: ( self.userLocation.coordinate.latitude), longitude: ( self.userLocation.coordinate.longitude), zoom: 14.0)
-        let customStartPostion = GMSCameraPosition.camera(withLatitude: 40.7311, longitude: -74.0009, zoom: 14.0)
-        googleMapsMapView.animate(to: customStartPostion)
+        if Flag.isDemo{
+            self.userLocation = CLLocation.init(latitude: 40.7311, longitude: -74.0009)
+            customStartPosition = GMSCameraPosition.camera(withLatitude: 40.7311, longitude: -74.0009, zoom: 14.0)
+        } else {
+         let currentUsersLocation = locations.last
+                self.userLocation = currentUsersLocation!
+
+                customStartPosition = GMSCameraPosition.camera(withLatitude: ( self.userLocation.coordinate.latitude), longitude: ( self.userLocation.coordinate.longitude), zoom: 14.0)
+        }
+
+        googleMapsMapView.animate(to: customStartPosition)
         self.locationManager.stopUpdatingLocation()
     }
 }
