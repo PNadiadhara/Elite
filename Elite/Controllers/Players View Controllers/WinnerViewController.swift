@@ -38,6 +38,7 @@ class WinnerViewController: UIViewController {
         fetchWinner()
         continueButton.isHidden = true
         setupConfetti()
+//        demoBugPrevention()
 //        blurView()
         // Do any additional setup after loading the view.
     }
@@ -45,6 +46,12 @@ class WinnerViewController: UIViewController {
         view.addSubview(cheerView)
         view.sendSubviewToBack(cheerView)
         cheerView.config.particle = .confetti(allowedShapes: Particle.ConfettiShape.all)
+    }
+    func demoBugPrevention() {
+        let timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
+            self.winnerTeam = .redTeam
+            self.animateView(winnerTeam: Teams.redTeam)
+        }
     }
     func blurView() {
         let blurEffect = UIBlurEffect(style: .dark)
@@ -98,7 +105,7 @@ class WinnerViewController: UIViewController {
         present(rankingChangeViewController, animated: true)
         
     }
-    func animateView(winnerTeam: Teams) {
+   func animateView(winnerTeam: Teams) {
         UIView.transition(with: winnerView, duration: 1, options: [.transitionFlipFromRight], animations: {
             self.winnerPlayers = self.fetchWinnerPlayers(game: self.game)
             self.loserPlayers = self.fetchLoserPlayers(game: self.game)
@@ -138,6 +145,9 @@ class WinnerViewController: UIViewController {
                     if let totalcount = totalcount {
                         switch self.game.gameType{
                         case GameType.oneVsOne.rawValue:
+                            if totalcount > 2 {
+                                self.demoBugPrevention()
+                            }
                             if totalcount == 2 {
 
                                 if let winningTeam = winningTeam {
@@ -150,7 +160,6 @@ class WinnerViewController: UIViewController {
                                         self.winnerTeam = .redTeam
                                         self.loserTeam = .blueTeam
                                         self.animateView(winnerTeam: Teams.redTeam)
-                                        
                                     }
 
                                 }
@@ -160,6 +169,7 @@ class WinnerViewController: UIViewController {
                                 }
 
                             }
+                            
                         case GameType.twoVsTwo.rawValue:
                             if totalcount == 4 {
                                 if let winningTeam = winningTeam {
@@ -183,9 +193,10 @@ class WinnerViewController: UIViewController {
                         default:
                             print("NO GAME TYPE")
                         }
-                        
-                    }
 
+                    }
+                    
+                    
                 })
             }
         }

@@ -19,9 +19,6 @@ enum ViewStatus {
     case pressed
     case notPressed
 }
-protocol MapViewControllerDelegate: AnyObject {
-    func makerDidTapOnMap()
-}
 
 class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     
@@ -37,16 +34,18 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     @IBOutlet weak var parkTitle: UILabel!
     @IBOutlet weak var parkAddress: UILabel!
     @IBOutlet weak var googleMapsSearchBar: UISearchBar!
+    
+    @IBOutlet weak var handballIcon: UIButton! 
+    @IBOutlet weak var basketballIcon: UIButton!
     let popUpVC = MapViewPopupController()
     private var googleMapsMVEditingState = GoogleMapsMVState.noMarkersShown {
         didSet{
             clearMarkers()
             changeMapViewState(to: googleMapsMVEditingState)
         }
-    } // default state
+    }
     
     private var locationManager = CLLocationManager()
-    
     private var userLocation = CLLocation.init(latitude: 40.7311, longitude: -74.0009){
         didSet{
             getBasketBallParksNearMe(userLocation, basketballResults)
@@ -201,9 +200,11 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         switch state {
         case .showBasketBallMarkers:
             print("Show basketball")
+            handballIcon.setImage(UIImage.init(named: "handballWhite"), for: .normal)
             addMarkers(courts: basketballResults, type: .basketball)
         case .showHandBallMarkers:
             print("Show handball")
+            basketballIcon.setImage(UIImage.init(named: "basketballEmptyWhite"), for: .normal)
             addMarkers(courts: handballResults, type: .handball)
         case .noMarkersShown:
             clearMarkers()
@@ -311,10 +312,10 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             let lng = court.lng ?? "0.0"
             let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
             let distanceInMeters = courtLocation.distance(from: currentLocation)
-                
-                if distanceInMeters <= MilesInMetersInfo.oneMile {
-                    courtArr.append(court)
-                }
+            
+            if distanceInMeters <= MilesInMetersInfo.oneMile {
+                courtArr.append(court)
+            }
             
         }
         basketballResults = courtArr
@@ -346,20 +347,17 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         }
         let cancel = UIAlertAction.init(title: "Cancel", style: .destructive
             , handler: nil)
-        
         ac.addAction(createAGame)
         ac.addAction(goToLeaderBoard)
         ac.addAction(cancel)
         let backView = (ac.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
         backView.backgroundColor = .eliteDarkMode
-        
-        
         self.present(ac, animated: true, completion: nil)
     }
     private func goToCreateAGameView(){
         let createGameVC = CreateGameViewController.init(nibName: "CreateGameViewController", bundle: nil)
-              createGameVC.originViewController = .mapViewController
-         present(createGameVC, animated: true)
+        createGameVC.originViewController = .mapViewController
+        present(createGameVC, animated: true)
     }
     private func goToLeaderBoard(){
         
@@ -374,6 +372,8 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         if case .noMarkersShown = googleMapsMVEditingState {
             googleMapsMVEditingState = .showBasketBallMarkers
         }
+        basketballIcon.setImage(UIImage(named: "basketballEmpty"), for: .normal)
+        handballIcon.setImage(UIImage(named: "handballWhite"), for: .normal)
     }
     
     @IBAction func showHandBallMarkers(_ sender: UIButton) {
@@ -384,6 +384,8 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         if case .noMarkersShown = googleMapsMVEditingState {
             googleMapsMVEditingState = .showHandBallMarkers
         }
+        basketballIcon.setImage(UIImage(named: "basketballEmptyWhite"), for: .normal)
+        handballIcon.setImage(UIImage(named: "handballBlueEmpty"), for: .normal)
     }
     
     @IBAction func closePopView(_ sender: UIButton) {
@@ -418,10 +420,10 @@ extension MapViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locationValue: CLLocationCoordinate2D = manager.location!.coordinate // fix the force unwrapp
         print("lat: \(locationValue.latitude) and lng: \(locationValue.longitude) ")
-       // let currentUsersLocation = locations.last
-//        self.userLocation = currentUsersLocation!
+        // let currentUsersLocation = locations.last
+        //        self.userLocation = currentUsersLocation!
         self.userLocation = CLLocation.init(latitude: 40.7311, longitude: -74.0009)
-//        let startPosition = GMSCameraPosition.camera(withLatitude: ( self.userLocation.coordinate.latitude), longitude: ( self.userLocation.coordinate.longitude), zoom: 14.0)
+        //        let startPosition = GMSCameraPosition.camera(withLatitude: ( self.userLocation.coordinate.latitude), longitude: ( self.userLocation.coordinate.longitude), zoom: 14.0)
         let customStartPostion = GMSCameraPosition.camera(withLatitude: 40.7311, longitude: -74.0009, zoom: 14.0)
         googleMapsMapView.animate(to: customStartPostion)
         self.locationManager.stopUpdatingLocation()
