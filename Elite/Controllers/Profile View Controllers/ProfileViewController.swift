@@ -47,9 +47,8 @@ class ProfileViewController: UIViewController {
         gamePostViewContent.gamePostTableView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
         achievementsViewContent.achievementsTableView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
         friendListViewContent.friendListTableView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
-        settings.addTarget(self, action: #selector(settingsPressed), for: .touchUpInside)
-        settings.tag = 1
-        self.settings .addSubview(settingsView)
+        settingsView.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,11 +75,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func settingsPressed(_ sender: UIButton) {
-        settingsView.isHidden = true
-        let btnsendtag: UIButton = sender
-        if btnsendtag.tag == 1 {
-            dismiss(animated: true, completion: nil)
-        }
+        settingsView.isHidden = false
     }
     
     @IBAction func editProfileButtonPressed(_ sender: RoundedButton) {
@@ -88,18 +83,27 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func signOutButtonPressed(_ sender: RoundedButton) {
-        func willSignOut(profileViewController: ProfileViewController) {
             authservice.signOutAccount()
             showLoginView()
-        }
+        
     }
     
     @IBAction func deleteAccountButtonPressed(_ sender: RoundedButton) {
-        if let user = AppDelegate.authservice.getCurrentUser(){
-            user.delete { (error) in
-                if error != nil {
-                    self.showAlert(title: "DELETE ACCOUNT", message: "Are you sure you want to delete your account?")
-                }
+        self.confirmAlert(title: "DELETE ACCOUNT", message: "Are you sure you want to delete your account?") { (action) in
+            if let user = AppDelegate.authservice.getCurrentUser() {
+                DBService.deleteAccount(user: TabBarViewController.currentGamer, completion: { (error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                    user.delete { (error) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        }
+                        
+                        self.showLoginView()
+                    }
+                })
+
             }
         }
     }

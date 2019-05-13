@@ -19,7 +19,7 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var createAccountTitle: UILabel!
-    @IBOutlet weak var createNewUserBttn: UIButton!
+    @IBOutlet weak var createNewUserBttn: RoundedButton!
     
     @IBOutlet weak var existingUserBttn: UIButton!
     private var authservice = AppDelegate.authservice
