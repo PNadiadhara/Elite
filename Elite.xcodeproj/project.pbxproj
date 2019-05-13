@@ -90,6 +90,7 @@
 		BFD61E27227C985600EA408B /* RankChangeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD61E25227C985600EA408B /* RankChangeController.swift */; };
 		BFD61E28227C985600EA408B /* RankChangeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFD61E26227C985600EA408B /* RankChangeController.xib */; };
 		BFD61E302280CF0E00EA408B /* FirebaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD61E2F2280CF0E00EA408B /* FirebaseTests.swift */; };
+		BFD61E5B2289D6AB00EA408B /* GifHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD61E5A2289D6AB00EA408B /* GifHelper.swift */; };
 		BFED970F225E6E2900CC360B /* EloRankMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFED970E225E6E2900CC360B /* EloRankMethods.swift */; };
 		D509826C22849D85003679A5 /* GoogleMapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509826B22849D85003679A5 /* GoogleMapHelper.swift */; };
 		D521086F225E95540044C440 /* UserFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D521086D225E95540044C440 /* UserFeedCell.xib */; };
@@ -245,6 +246,7 @@
 		BFD61E2D2280CF0E00EA408B /* FirebaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirebaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD61E2F2280CF0E00EA408B /* FirebaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTests.swift; sourceTree = "<group>"; };
 		BFD61E312280CF0E00EA408B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFD61E5A2289D6AB00EA408B /* GifHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifHelper.swift; sourceTree = "<group>"; };
 		BFED970E225E6E2900CC360B /* EloRankMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EloRankMethods.swift; sourceTree = "<group>"; };
 		C58214BF69A905A7D79AC4AF /* Pods_EliteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EliteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D509826B22849D85003679A5 /* GoogleMapHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GoogleMapHelper.swift; path = ../GoogleMapHelper.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 				2E9FE66D22557EB9004CA00B /* Date Extensions */,
 				48EFEB84226D0F660006092D /* AVCaptureVideoOrientation+Orientations.swift */,
 				48517BC42272445800994D2E /* UIView+Extensions.swift */,
+				BFD61E5A2289D6AB00EA408B /* GifHelper.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1108,6 +1111,7 @@
 				D5210873225E956B0044C440 /* FiveVsFiveFeedCell.swift in Sources */,
 				D5DF86B422692FFC00E2972A /* CurrentPlayer.swift in Sources */,
 				2E9FE67A225581E4004CA00B /* DBService+Gamer.swift in Sources */,
+				BFD61E5B2289D6AB00EA408B /* GifHelper.swift in Sources */,
 				2E9FE67C2255820A004CA00B /* DBService+Game.swift in Sources */,
 				2EC6D55D225E79CB00336362 /* FiveVsFiveViewController.swift in Sources */,
 				D5B304592266792200404241 /* QrCodeViewController.swift in Sources */,
