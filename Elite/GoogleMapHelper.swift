@@ -82,4 +82,22 @@ class GoogleMapHelper {
         
         return closestLocation
     }
+    
+    static func getHandballCourtClosestToUsersLocation(closestToLocation: CLLocation, handballCourts: [HandBall]) -> HandBall? {
+        var closestLocation: HandBall?
+        var smallestDistance: CLLocationDistance!
+        if handballCourts.count == 0 {
+            return nil
+        }
+        for handBallCourt in handballCourts {
+            let location = CLLocation(latitude: (Double(handBallCourt.lat ?? "0.0"))!, longitude: (Double(handBallCourt.lng ?? "0.0"))!)
+            let distance = location.distance(from: closestToLocation)
+            if smallestDistance == nil || distance < smallestDistance {
+                closestLocation = handBallCourt
+                smallestDistance = distance
+            }
+        }
+        return closestLocation
+    }
+    
 }

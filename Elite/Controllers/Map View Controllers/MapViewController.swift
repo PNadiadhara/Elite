@@ -47,29 +47,26 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     }
     
     private var locationManager = CLLocationManager()
-    private var userLocation = CLLocation(){
-        didSet{
-            basketballResults = GoogleMapHelper.getBasketBallParksNearMe(userLocation, basketballResults, range: range)
-            handballResults = GoogleMapHelper.getHandBallParksNearMe(userLocation, handballResults, range: range)
-//            getBasketBallParksNearMe(userLocation, basketballResults)
-//            getHandBallParksNearMe(userLocation, handballResults)
-        }
-    }
-    
+    private var userLocation = CLLocation()
+    private var handballCourts = [HandBall]()
+    private var basketballCourts = [BasketBall]()
     private var handballResults = [HandBall]() {
         didSet{
             googleMapsMapView.reloadInputViews()
+            googleMapsMVEditingState = .showHandBallMarkers
         }
     }
     
     private var basketballResults = [BasketBall](){
         didSet{
             googleMapsMapView.reloadInputViews()
+            googleMapsMVEditingState = .showBasketBallMarkers
         }
     }
-    var range: Double = MilesInMetersInfo.oneMile {
+    var range: Double = MilesInMetersInfo.twoMiles {
         didSet{
-            basketballResults = GoogleMapHelper.getBasketBallParksNearMe(userLocation, basketballResults, range: range)
+            basketballResults = GoogleMapHelper.getBasketBallParksNearMe(userLocation, basketballCourts, range: range)
+            handballResults = GoogleMapHelper.getHandBallParksNearMe(userLocation, handballCourts, range: range)
             googleMapsMapView.reloadInputViews()
         }
     }
@@ -126,11 +123,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        callSetups()
-        loadAllParkData()
-       
-        addCustomMakers()
-        locationManager.delegate = self
+
         if Flag.isDemo {
             googleMapsMVEditingState = .showHandBallMarkers
           setupWest4Marker()
@@ -138,12 +131,19 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         } else {
             googleMapsMVEditingState = .showBasketBallMarkers
         }
+        loadAllParkData()
+        callSetups()
+        
+        addCustomMakers()
+        locationManager.delegate = self
         
     }
     private func callSetups(){
         setupClosePopViewBttn()
         setupMapViewSettings()
         GoogleMapHelper.getUsersLocations(locationManager: locationManager)
+        handballResults = GoogleMapHelper.getHandBallParksNearMe(userLocation, handballCourts, range: range)
+        basketballResults = GoogleMapHelper.getBasketBallParksNearMe(userLocation, basketballCourts, range: range)
         setupPickerView()
         
     }
@@ -191,10 +191,8 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     private func loadAllParkData(){
         GoogleMapHelper.loadAllParkData { (handballCourt, basketballCourt) in
             do {
-                self.handballResults = try JSONDecoder().decode([HandBall].self, from: handballCourt)
-                self.basketballResults = try JSONDecoder().decode([BasketBall].self, from: basketballCourt)
-                print(self.handballResults.count)
-                print(self.basketballResults.count)
+                self.handballCourts = try JSONDecoder().decode([HandBall].self, from: handballCourt)
+                self.basketballCourts = try JSONDecoder().decode([BasketBall].self, from: basketballCourt)
             } catch {
                 print(error)
             }
@@ -375,6 +373,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     }
     //MARK: - Actions
     @IBAction func showBasketBallMarkers(_ sender: UIButton) {
+        basketballResults = GoogleMapHelper.getBasketBallParksNearMe(userLocation, basketballCourts, range: range)
         if case .showHandBallMarkers = googleMapsMVEditingState {
             googleMapsMVEditingState = .showBasketBallMarkers
             
@@ -386,6 +385,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     }
     
     @IBAction func showHandBallMarkers(_ sender: UIButton) {
+        handballResults = GoogleMapHelper.getHandBallParksNearMe(userLocation, handballCourts, range: range)
         if case .showBasketBallMarkers = googleMapsMVEditingState {
             googleMapsMVEditingState = .showHandBallMarkers
         }

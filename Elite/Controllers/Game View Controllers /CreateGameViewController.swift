@@ -44,29 +44,43 @@ class CreateGameViewController: UIViewController {
     var userStr: String?
     var userQrImage: UIImageView?
     weak var delegate: CreateGameViewControllerDelegate?
+    var closestPark = String()
     var gameName: GameName! {
         didSet {
             if gameName == .handball {
-                parkSelectedLabel.text = handballResults.first?.nameOfPlayground
-                print(handballResults)
+                if let closestCourt = GoogleMapHelper.getHandballCourtClosestToUsersLocation(closestToLocation: userLocation, handballCourts: handballResults) {
+                    closestHandballcourt = closestCourt
+                }
             }
             if gameName == .basketball {
                 if let closestCourt = GoogleMapHelper.getBasketballCourtClosestToUsersLocation(closestToLocation: userLocation, basketballCourts: basketballResults) {
-                    parkSelectedLabel.text = closestCourt.nameOfPlayground
+                    closestBasketballcourt = closestCourt
                 }
             }
         }
     }
-    var closestBasketballcourt: BasketBall!
-    var closestHandballcourt: HandBall!
-    var basketballCourts: BasketBall!
-    var handballCourts: HandBall!
+    var closestBasketballcourt: BasketBall! {
+        didSet {
+            parkSelectedLabel.text = closestBasketballcourt.nameOfPlayground
+        }
+    }
+    var closestHandballcourt: HandBall! {
+        didSet {
+            parkSelectedLabel.text = closestHandballcourt.nameOfPlayground
+        }
+    }
     var originViewController: OriginViewController?
     var animatedViews = [UIView]()
-    private var handballResults = [HandBall]()
-    private var basketballResults = [BasketBall]()
+    public var handballResults = [HandBall]()
+    public var basketballResults = [BasketBall]()
     private var locationManager = CLLocationManager()
-    private var userLocation = CLLocation.init(latitude: 40.7311, longitude: -74.0009)
+    private var userLocation = CLLocation(){
+        didSet{
+            
+            closestBasketballcourt = GoogleMapHelper.getBasketballCourtClosestToUsersLocation(closestToLocation: userLocation, basketballCourts: basketballResults)
+            closestHandballcourt = GoogleMapHelper.getHandballCourtClosestToUsersLocation(closestToLocation: userLocation, handballCourts: handballResults)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         loadAllParkData()
@@ -76,6 +90,11 @@ class CreateGameViewController: UIViewController {
             cancelButton.isHidden = false
         }
         locationManager.delegate = self
+        if Flag.isDemo {
+            
+        } else {
+            GoogleMapHelper.getUsersLocations(locationManager: locationManager)
+        }
         
         
     }
@@ -224,6 +243,14 @@ class CreateGameViewController: UIViewController {
     
     @objc func changeParkPressed() {
         let parkListVC = ParkListViewController.init(nibName: "ParkListViewController", bundle: nil)
+        if gameName == .basketball {
+            parkListVC.basketBallCourts = basketballResults
+            
+        } else {
+            parkListVC.handBallCourts = handballResults
+        }
+        parkListVC.gameName = gameName
+        parkListVC.userLocation = userLocation
         parkListVC.modalPresentationStyle = .overCurrentContext
         present(parkListVC, animated: true)
     }
@@ -264,10 +291,11 @@ extension CreateGameViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locationValue: CLLocationCoordinate2D = manager.location!.coordinate // fix the force unwrapp
         print("lat: \(locationValue.latitude) and lng: \(locationValue.longitude) ")
-        // let currentUsersLocation = locations.last
-        //        self.userLocation = currentUsersLocation!
-        self.userLocation = CLLocation.init(latitude: 40.7311, longitude: -74.0009)
-        //        let startPosition = GMSCameraPosition.camera(withLatitude: ( self.userLocation.coordinate.latitude), longitude: ( self.userLocation.coordinate.longitude), zoom: 14.0)
+        if Flag.isDemo{
+            self.userLocation = CLLocation.init(latitude: 40.7311, longitude: -74.0009)
+        } else {
+            self.userLocation = locations.last!
+        }
 
         self.locationManager.stopUpdatingLocation()
     }

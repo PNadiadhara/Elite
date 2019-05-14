@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestore
 
 extension DBService {
     static func postCurrentGame(currentGame: CurrentGame, completion: @escaping (Error?) -> Void) {

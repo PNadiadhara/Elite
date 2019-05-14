@@ -13,7 +13,6 @@ class ParkInfoCell: UITableViewCell {
     @IBOutlet weak var parkNameLabel: UILabel!
     
     @IBOutlet weak var parkAddressLabel: UILabel!
-    @IBOutlet weak var handballImage: UIImageView!
-    @IBOutlet weak var basketballImage: UIImageView!
+
 }
  
