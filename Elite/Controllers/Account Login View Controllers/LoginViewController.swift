@@ -42,7 +42,6 @@ class LoginViewController: UIViewController {
     }
     
     private func setupBttnUI(){
-        loginBttn.layer.cornerRadius = 10
         newUserBttn.layer.cornerRadius = 5
         loginBttn.setTitleColor(.white, for: .normal)
         loginViewTitle.textColor = .gold
