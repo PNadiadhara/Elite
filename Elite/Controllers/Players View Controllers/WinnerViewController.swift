@@ -53,7 +53,7 @@ class WinnerViewController: UIViewController {
         cheerView.config.particle = .confetti(allowedShapes: Particle.ConfettiShape.all)
     }
     func demoBugPrevention() {
-        let timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
             self.winnerTeam = .redTeam
             self.animateView(winnerTeam: Teams.redTeam)
         }
