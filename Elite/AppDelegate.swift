@@ -21,18 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         GMSServices.provideAPIKey(PrivateInfoFile.GoogleMapsApiKey)
         FirebaseApp.configure()
-//        try? Auth.auth().signOut()
         window = UIWindow(frame: UIScreen.main.bounds)
         if let _ = AppDelegate.authservice.getCurrentUser() {
             let tab = TabBarViewController.setTabBarVC()
-//            DBService.firestoreDB.collection(GamerCollectionKeys.CollectionKey)
-//                .document(user.uid).updateData([GamerCollectionKeys.FriendsKey : ["RpRqKJ0if8b8NHnSLjMYP1Rp7N52", "RxLqfLmOCBc8Zwwrg3OKnJErfFU2", "hOuXVpMXPwgmROhb5GBdxTXSCF33"]]) { (error) in
-//                    if let error = error {
-//                        print(error)
-//                    } else {
-//                        print("Friends updated")
-//                    }
-//            }
             window = UIWindow(frame: UIScreen.main.bounds)
             window?.rootViewController = tab
             

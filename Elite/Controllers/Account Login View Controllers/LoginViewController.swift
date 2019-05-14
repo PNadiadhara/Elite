@@ -16,8 +16,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var loginBttn: UIButton!
-    @IBOutlet weak var loginWithFBBttn: UIButton!
+    @IBOutlet weak var loginBttn: RoundedButton!
+    @IBOutlet weak var loginWithFBBttn: RoundedButton!
     @IBOutlet weak var newUserBttn: UIButton!
     @IBOutlet weak var loginViewTitle: UILabel!
     
@@ -42,7 +42,6 @@ class LoginViewController: UIViewController {
     }
     
     private func setupBttnUI(){
-        loginBttn.layer.cornerRadius = 10
         newUserBttn.layer.cornerRadius = 5
         loginBttn.setTitleColor(.white, for: .normal)
         loginViewTitle.textColor = .gold
