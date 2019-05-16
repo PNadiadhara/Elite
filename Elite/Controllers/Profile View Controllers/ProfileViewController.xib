@@ -95,7 +95,7 @@ Create, explore, expand, conquer</string>
                     </connections>
                 </button>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="pFf-CJ-X0e">
-                    <rect key="frame" x="11" y="721" width="353" height="37"/>
+                    <rect key="frame" x="11" y="736" width="353" height="37"/>
                 </pageControl>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bmc-KB-h46">
                     <rect key="frame" x="0.0" y="285" width="375" height="493"/>
@@ -165,7 +165,7 @@ Create, explore, expand, conquer</string>
                 <constraint firstItem="B7v-vb-One" firstAttribute="leading" secondItem="BbN-1w-X8E" secondAttribute="trailing" constant="22" id="RDy-IV-2yS"/>
                 <constraint firstItem="eVv-e9-FDm" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="T66-wo-HWg"/>
                 <constraint firstItem="pFf-CJ-X0e" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="11" id="Vty-qO-fnS"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="pFf-CJ-X0e" secondAttribute="bottom" constant="20" id="Y74-xV-Dfh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="pFf-CJ-X0e" secondAttribute="bottom" constant="5" id="Y74-xV-Dfh"/>
                 <constraint firstItem="I1i-Sc-SjU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="YBc-Kx-0zK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pFf-CJ-X0e" secondAttribute="trailing" constant="11" id="agZ-qE-juj"/>
                 <constraint firstItem="BbN-1w-X8E" firstAttribute="leading" secondItem="eVv-e9-FDm" secondAttribute="trailing" constant="120" id="dxv-NM-Unb"/>

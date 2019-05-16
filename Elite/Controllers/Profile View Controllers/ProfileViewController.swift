@@ -76,6 +76,7 @@ class ProfileViewController: UIViewController {
     
     @IBAction func settingsPressed(_ sender: UIButton) {
         settingsView.isHidden = false
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func editProfileButtonPressed(_ sender: RoundedButton) {
