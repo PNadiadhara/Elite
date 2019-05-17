@@ -31,7 +31,7 @@ class RankingChangeViewController: UIViewController {
         rank += Int.random(in: 20...40)
         currentRankScore.pushTransition(1.5)
         currentRankScore.text = String(rank)
-        rankGifImageView.loadGif(name: "DiamondRank")
+        rankGifImageView.loadGif(name: "EliteRank")
     }
 
     @IBAction func doneButton(_ sender: UIButton) {

@@ -88,6 +88,7 @@
 		BFADB58F22553FB200E746B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFADB58E22553FB200E746B5 /* AppDelegate.swift */; };
 		BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59522553FB300E746B5 /* Assets.xcassets */; };
 		BFADB59922553FB300E746B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59722553FB300E746B5 /* LaunchScreen.storyboard */; };
+		BFB5A358228F246900EF4956 /* EliteRank.gif in Resources */ = {isa = PBXBuildFile; fileRef = BFB5A357228F246900EF4956 /* EliteRank.gif */; };
 		BFD61E242279FE8E00EA408B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFD61E232279FE8E00EA408B /* GoogleService-Info.plist */; };
 		BFD61E27227C985600EA408B /* RankChangeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD61E25227C985600EA408B /* RankChangeController.swift */; };
 		BFD61E28227C985600EA408B /* RankChangeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFD61E26227C985600EA408B /* RankChangeController.xib */; };
@@ -247,6 +248,7 @@
 		BFADB59522553FB300E746B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFADB59822553FB300E746B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFADB59A22553FB300E746B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFB5A357228F246900EF4956 /* EliteRank.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = EliteRank.gif; sourceTree = "<group>"; };
 		BFD61E232279FE8E00EA408B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BFD61E25227C985600EA408B /* RankChangeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankChangeController.swift; sourceTree = "<group>"; };
 		BFD61E26227C985600EA408B /* RankChangeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RankChangeController.xib; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 			children = (
 				2EA2E5402289D8FC005B48CA /* Gif.swift */,
 				BF74A1F22289F9DC002CC3B0 /* DiamondRank.gif */,
+				BFB5A357228F246900EF4956 /* EliteRank.gif */,
 				BF74A1F42289F9F0002CC3B0 /* PlatinumRank.gif */,
 			);
 			path = Gif;
@@ -780,6 +783,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFB5A358228F246900EF4956 /* EliteRank.gif in Resources */,
 				D5F545512268DE6C00DB05F0 /* EndGameViewController.xib in Resources */,
 				2E171BA0225CF90700D40DDF /* LeaderboardViewController.xib in Resources */,
 				BFADB59922553FB300E746B5 /* LaunchScreen.storyboard in Resources */,
