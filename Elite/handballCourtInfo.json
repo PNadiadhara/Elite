@@ -3044,8 +3044,8 @@
         "Name": "BROADWAY P/G(SEAN'S PLACE)",
         "Location": "38 ST, 31 AVE & BWAY",
         "Num_of_Courts": "1",
-        "lat": null,
-        "lon": null
+        "lat": "40.7606",
+        "lon": "-73.9184"
     },
     {
         "Prop_ID": "Q008",

@@ -20,7 +20,13 @@ class GoogleMapHelper {
         }
     }
     static func loadAllParkData(completion: @escaping(Data,Data) -> Void){
-        if let handballCourtDataFilePath = Bundle.main.path(forResource: "handballCourtInfo", ofType: "json"), let basketballCourtDataFilePath = Bundle.main.path(forResource: "basketballCourtInfo", ofType: "json"){
+        var basketballFileName = String()
+        if Flag.isDemo {
+            basketballFileName = "parks"
+        } else {
+            basketballFileName = "basketballCourtInfo"
+        }
+        if let handballCourtDataFilePath = Bundle.main.path(forResource: "handballCourtInfo", ofType: "json"), let basketballCourtDataFilePath = Bundle.main.path(forResource: basketballFileName, ofType: "json"){
             let handballCourtDataUrl = URL.init(fileURLWithPath: handballCourtDataFilePath)
             let basketballCourtDataUrl = URL.init(fileURLWithPath: basketballCourtDataFilePath)
             if let jsonHandBallParkData = try? Data.init(contentsOf: handballCourtDataUrl), let jsonBasketBallParkData = try? Data.init(contentsOf: basketballCourtDataUrl){
@@ -82,4 +88,22 @@ class GoogleMapHelper {
         
         return closestLocation
     }
+    
+    static func getHandballCourtClosestToUsersLocation(closestToLocation: CLLocation, handballCourts: [HandBall]) -> HandBall? {
+        var closestLocation: HandBall?
+        var smallestDistance: CLLocationDistance!
+        if handballCourts.count == 0 {
+            return nil
+        }
+        for handBallCourt in handballCourts {
+            let location = CLLocation(latitude: (Double(handBallCourt.lat ?? "0.0"))!, longitude: (Double(handBallCourt.lng ?? "0.0"))!)
+            let distance = location.distance(from: closestToLocation)
+            if smallestDistance == nil || distance < smallestDistance {
+                closestLocation = handBallCourt
+                smallestDistance = distance
+            }
+        }
+        return closestLocation
+    }
+    
 }

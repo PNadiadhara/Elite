@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double CheersVersionNumber;
-FOUNDATION_EXPORT const unsigned char CheersVersionString[];
+FOUNDATION_EXPORT double SAConfettiViewVersionNumber;
+FOUNDATION_EXPORT const unsigned char SAConfettiViewVersionString[];
 

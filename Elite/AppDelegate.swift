@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static var authservice = AuthService()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
         // Override point for customization after application launch.
         GMSServices.provideAPIKey(PrivateInfoFile.GoogleMapsApiKey)
         FirebaseApp.configure()
