@@ -11,6 +11,7 @@ import SAConfettiView
 
 class WinnerViewController: UIViewController {
     
+    
     var invitation: Invitation!
     var game: GameModel!
     var winnerConfirmationId = String()
@@ -22,7 +23,8 @@ class WinnerViewController: UIViewController {
     var gameDuration = String()
     var isHost = Bool()
     var isTie = false
-
+    
+    var confettiView = SAConfettiView()
     
     @IBOutlet weak var winnerView: UIView!
     @IBOutlet weak var winnerTitle: UILabel!
@@ -34,13 +36,15 @@ class WinnerViewController: UIViewController {
     @IBOutlet weak var userResultLabel: UILabel!
     
     override func viewDidLoad() {
+       
         super.viewDidLoad()
+        confettiView = SAConfettiView(frame: view.bounds)
         if Flag.isDemo {
             demoBugPrevention()
         } else {
             fetchWinner()
         }
-        
+        setupConfetti()
         continueButton.isHidden = true
 
 //        demoBugPrevention()
@@ -48,7 +52,9 @@ class WinnerViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     func setupConfetti(){
-        
+        self.view.addSubview(confettiView)
+        view.sendSubviewToBack(confettiView)
+        confettiView.type = .Confetti
     }
     func demoBugPrevention() {
         Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
@@ -110,6 +116,7 @@ class WinnerViewController: UIViewController {
     }
    func animateView(winnerTeam: Teams) {
         UIView.transition(with: winnerView, duration: 1, options: [.transitionFlipFromRight], animations: {
+            self.confettiView.startConfetti()
             self.winnerPlayers = self.fetchWinnerPlayers(game: self.game)
             self.loserPlayers = self.fetchLoserPlayers(game: self.game)
             self.winnerTitle.isHidden = false
