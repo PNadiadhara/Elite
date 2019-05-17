@@ -13,7 +13,7 @@ platform :ios, '12.0'
     pod 'GoogleMaps'
     pod 'GooglePlaces'
     pod 'FBSDKLoginKit'
-    pod 'Cheers'
+    pod 'SAConfettiView'
   end
 
   target 'Elite' do
