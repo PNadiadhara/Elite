@@ -23,7 +23,8 @@ class WinnerViewController: UIViewController {
     var gameDuration = String()
     var isHost = Bool()
     var isTie = false
-
+    
+    var confettiView = SAConfettiView()
     
     @IBOutlet weak var winnerView: UIView!
     @IBOutlet weak var winnerTitle: UILabel!
@@ -35,8 +36,9 @@ class WinnerViewController: UIViewController {
     @IBOutlet weak var userResultLabel: UILabel!
     
     override func viewDidLoad() {
-        let confettiView = SAConfettiView(frame: self.view.bounds)
+       
         super.viewDidLoad()
+        confettiView = SAConfettiView(frame: view.bounds)
         if Flag.isDemo {
             demoBugPrevention()
         } else {
@@ -51,6 +53,7 @@ class WinnerViewController: UIViewController {
     }
     func setupConfetti(){
         self.view.addSubview(confettiView)
+        view.sendSubviewToBack(confettiView)
         confettiView.type = .Confetti
     }
     func demoBugPrevention() {
@@ -113,7 +116,7 @@ class WinnerViewController: UIViewController {
     }
    func animateView(winnerTeam: Teams) {
         UIView.transition(with: winnerView, duration: 1, options: [.transitionFlipFromRight], animations: {
-            confettiView.startConfetti()
+            self.confettiView.startConfetti()
             self.winnerPlayers = self.fetchWinnerPlayers(game: self.game)
             self.loserPlayers = self.fetchLoserPlayers(game: self.game)
             self.winnerTitle.isHidden = false

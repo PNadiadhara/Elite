@@ -83,9 +83,12 @@
 		48F1B5C42269812500B53E11 /* handballCourtInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 48F1B5C32269812500B53E11 /* handballCourtInfo.json */; };
 		48F1B5C7226989DB00B53E11 /* MapViewPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F1B5C5226989DB00B53E11 /* MapViewPopupController.swift */; };
 		48F1B5C8226989DB00B53E11 /* MapViewPopupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48F1B5C6226989DB00B53E11 /* MapViewPopupController.xib */; };
+		BF74A1F32289F9DC002CC3B0 /* DiamondRank.gif in Resources */ = {isa = PBXBuildFile; fileRef = BF74A1F22289F9DC002CC3B0 /* DiamondRank.gif */; };
+		BF74A1F52289F9F0002CC3B0 /* PlatinumRank.gif in Resources */ = {isa = PBXBuildFile; fileRef = BF74A1F42289F9F0002CC3B0 /* PlatinumRank.gif */; };
 		BFADB58F22553FB200E746B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFADB58E22553FB200E746B5 /* AppDelegate.swift */; };
 		BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59522553FB300E746B5 /* Assets.xcassets */; };
 		BFADB59922553FB300E746B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFADB59722553FB300E746B5 /* LaunchScreen.storyboard */; };
+		BFB5A358228F246900EF4956 /* EliteRank.gif in Resources */ = {isa = PBXBuildFile; fileRef = BFB5A357228F246900EF4956 /* EliteRank.gif */; };
 		BFD61E242279FE8E00EA408B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFD61E232279FE8E00EA408B /* GoogleService-Info.plist */; };
 		BFD61E27227C985600EA408B /* RankChangeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD61E25227C985600EA408B /* RankChangeController.swift */; };
 		BFD61E28227C985600EA408B /* RankChangeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFD61E26227C985600EA408B /* RankChangeController.xib */; };
@@ -238,11 +241,14 @@
 		647649F00844096F9E907D7A /* Pods_Elite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Elite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2B205210B3DCCE14EFD090 /* Pods-Elite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elite.release.xcconfig"; path = "Target Support Files/Pods-Elite/Pods-Elite.release.xcconfig"; sourceTree = "<group>"; };
 		B4A9370662F310DFE9CB989B /* Pods-FirebaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTests.release.xcconfig"; path = "Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests.release.xcconfig"; sourceTree = "<group>"; };
+		BF74A1F22289F9DC002CC3B0 /* DiamondRank.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = DiamondRank.gif; sourceTree = "<group>"; };
+		BF74A1F42289F9F0002CC3B0 /* PlatinumRank.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = PlatinumRank.gif; sourceTree = "<group>"; };
 		BFADB58B22553FB200E746B5 /* Elite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFADB58E22553FB200E746B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFADB59522553FB300E746B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFADB59822553FB300E746B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFADB59A22553FB300E746B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFB5A357228F246900EF4956 /* EliteRank.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = EliteRank.gif; sourceTree = "<group>"; };
 		BFD61E232279FE8E00EA408B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BFD61E25227C985600EA408B /* RankChangeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankChangeController.swift; sourceTree = "<group>"; };
 		BFD61E26227C985600EA408B /* RankChangeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RankChangeController.xib; sourceTree = "<group>"; };
@@ -448,6 +454,9 @@
 			isa = PBXGroup;
 			children = (
 				2EA2E5402289D8FC005B48CA /* Gif.swift */,
+				BF74A1F22289F9DC002CC3B0 /* DiamondRank.gif */,
+				BFB5A357228F246900EF4956 /* EliteRank.gif */,
+				BF74A1F42289F9F0002CC3B0 /* PlatinumRank.gif */,
 			);
 			path = Gif;
 			sourceTree = "<group>";
@@ -774,6 +783,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFB5A358228F246900EF4956 /* EliteRank.gif in Resources */,
 				D5F545512268DE6C00DB05F0 /* EndGameViewController.xib in Resources */,
 				2E171BA0225CF90700D40DDF /* LeaderboardViewController.xib in Resources */,
 				BFADB59922553FB300E746B5 /* LaunchScreen.storyboard in Resources */,
@@ -790,6 +800,7 @@
 				D521086F225E95540044C440 /* UserFeedCell.xib in Resources */,
 				2EC6D556225E799F00336362 /* OneVsOneViewController.xib in Resources */,
 				D5DAD8E522809C46002D2B86 /* RankingChangeViewController.xib in Resources */,
+				BF74A1F52289F9F0002CC3B0 /* PlatinumRank.gif in Resources */,
 				2EC6D55E225E79CB00336362 /* FiveVsFiveViewController.xib in Resources */,
 				D5210882225E960B0044C440 /* FeedCell.xib in Resources */,
 				D5210874225E956B0044C440 /* FiveVsFiveFeedCell.xib in Resources */,
@@ -799,6 +810,7 @@
 				2E381EB122613A1E0075C1CD /* ProfileViewController.xib in Resources */,
 				48F1B5C2226980F700B53E11 /* basketballCourtInfo.json in Resources */,
 				D5BCBBFB226F7FBD006B0015 /* TwoVsTwoProgressViewController.xib in Resources */,
+				BF74A1F32289F9DC002CC3B0 /* DiamondRank.gif in Resources */,
 				D5DE77F2225FF61200439407 /* SearchPlayerViewController.xib in Resources */,
 				BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */,
 				2E171B98225CF86C00D40DDF /* MapViewController.xib in Resources */,
