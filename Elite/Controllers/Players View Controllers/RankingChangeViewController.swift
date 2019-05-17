@@ -13,7 +13,8 @@ class RankingChangeViewController: UIViewController {
     @IBOutlet var playerUserName: UILabel!
     @IBOutlet var currentRankScore: UILabel!
     @IBOutlet var highestRankScore: UILabel!
-var rank = 2700
+    @IBOutlet var rankGifImageView: UIImageView!
+    var rank = 2700
     override func viewDidLoad() {
         super.viewDidLoad()
         var highestRank = 3000
@@ -30,6 +31,7 @@ var rank = 2700
         rank += Int.random(in: 20...40)
         currentRankScore.pushTransition(1.5)
         currentRankScore.text = String(rank)
+        rankGifImageView.loadGif(name: "EliteRank")
     }
 
     @IBAction func doneButton(_ sender: UIButton) {
