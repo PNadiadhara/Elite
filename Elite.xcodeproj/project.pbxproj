@@ -120,6 +120,9 @@
 		D5B57D432262698400DB73E2 /* OneVsOneProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B57D412262698400DB73E2 /* OneVsOneProgressViewController.xib */; };
 		D5BCBBFA226F7FBD006B0015 /* TwoVsTwoProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BCBBF8226F7FBD006B0015 /* TwoVsTwoProgressViewController.swift */; };
 		D5BCBBFB226F7FBD006B0015 /* TwoVsTwoProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5BCBBF9226F7FBD006B0015 /* TwoVsTwoProgressViewController.xib */; };
+		D5CDAC28228F022800A3B6D6 /* StatusChangeNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CDAC26228F022800A3B6D6 /* StatusChangeNotificationViewController.swift */; };
+		D5CDAC29228F022800A3B6D6 /* StatusChangeNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5CDAC27228F022800A3B6D6 /* StatusChangeNotificationViewController.xib */; };
+		D5CDAC2B228F152900A3B6D6 /* parks.json in Resources */ = {isa = PBXBuildFile; fileRef = D5CDAC2A228F152900A3B6D6 /* parks.json */; };
 		D5D375B8226A4A9000F25FCF /* DBService+WinnerConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D375B7226A4A9000F25FCF /* DBService+WinnerConfirmation.swift */; };
 		D5D375BD226A6D3900F25FCF /* WinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D375BB226A6D3900F25FCF /* WinnerViewController.swift */; };
 		D5D375BE226A6D3900F25FCF /* WinnerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D375BC226A6D3900F25FCF /* WinnerViewController.xib */; };
@@ -277,6 +280,9 @@
 		D5B57D412262698400DB73E2 /* OneVsOneProgressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OneVsOneProgressViewController.xib; sourceTree = "<group>"; };
 		D5BCBBF8226F7FBD006B0015 /* TwoVsTwoProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoVsTwoProgressViewController.swift; sourceTree = "<group>"; };
 		D5BCBBF9226F7FBD006B0015 /* TwoVsTwoProgressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoVsTwoProgressViewController.xib; sourceTree = "<group>"; };
+		D5CDAC26228F022800A3B6D6 /* StatusChangeNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusChangeNotificationViewController.swift; sourceTree = "<group>"; };
+		D5CDAC27228F022800A3B6D6 /* StatusChangeNotificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusChangeNotificationViewController.xib; sourceTree = "<group>"; };
+		D5CDAC2A228F152900A3B6D6 /* parks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = parks.json; sourceTree = "<group>"; };
 		D5D375B7226A4A9000F25FCF /* DBService+WinnerConfirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBService+WinnerConfirmation.swift"; sourceTree = "<group>"; };
 		D5D375BB226A6D3900F25FCF /* WinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerViewController.swift; sourceTree = "<group>"; };
 		D5D375BC226A6D3900F25FCF /* WinnerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WinnerViewController.xib; sourceTree = "<group>"; };
@@ -485,6 +491,8 @@
 				BFD61E26227C985600EA408B /* RankChangeController.xib */,
 				D5DAD8E222809C46002D2B86 /* RankingChangeViewController.swift */,
 				D5DAD8E322809C46002D2B86 /* RankingChangeViewController.xib */,
+				D5CDAC26228F022800A3B6D6 /* StatusChangeNotificationViewController.swift */,
+				D5CDAC27228F022800A3B6D6 /* StatusChangeNotificationViewController.xib */,
 			);
 			path = "Players View Controllers";
 			sourceTree = "<group>";
@@ -657,6 +665,7 @@
 				48DB1A652260F72500C7CEAC /* AllInfoForHandballCourts.json */,
 				48F1B5C1226980F700B53E11 /* basketballCourtInfo.json */,
 				48F1B5C32269812500B53E11 /* handballCourtInfo.json */,
+				D5CDAC2A228F152900A3B6D6 /* parks.json */,
 			);
 			path = Elite;
 			sourceTree = "<group>";
@@ -768,10 +777,12 @@
 				D5F545512268DE6C00DB05F0 /* EndGameViewController.xib in Resources */,
 				2E171BA0225CF90700D40DDF /* LeaderboardViewController.xib in Resources */,
 				BFADB59922553FB300E746B5 /* LaunchScreen.storyboard in Resources */,
+				D5CDAC2B228F152900A3B6D6 /* parks.json in Resources */,
 				2EC6D56F225E9B5D00336362 /* FeedTableViewController.xib in Resources */,
 				D5EFCC002264000700D3C2E7 /* LeaderboardCell.xib in Resources */,
 				48F1B5C42269812500B53E11 /* handballCourtInfo.json in Resources */,
 				D5210879225E95A70044C440 /* TwoVsTwoFeedCell.xib in Resources */,
+				D5CDAC29228F022800A3B6D6 /* StatusChangeNotificationViewController.xib in Resources */,
 				D5B57D432262698400DB73E2 /* OneVsOneProgressViewController.xib in Resources */,
 				BFD61E242279FE8E00EA408B /* GoogleService-Info.plist in Resources */,
 				D5D375BE226A6D3900F25FCF /* WinnerViewController.xib in Resources */,
@@ -824,7 +835,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Elite/Pods-Elite-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/Cheers/Cheers.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
@@ -833,6 +843,7 @@
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
 				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SAConfettiView/SAConfettiView.framework",
 				"${PODS_ROOT}/SnapSDK/SCSDKBitmojiKit.framework",
 				"${PODS_ROOT}/SnapSDK/SCSDKCoreKit.framework",
 				"${PODS_ROOT}/SnapSDK/SCSDKCreativeKit.framework",
@@ -848,7 +859,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cheers.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
@@ -857,6 +867,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAConfettiView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSDKBitmojiKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSDKCreativeKit.framework",
@@ -926,7 +937,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/Cheers/Cheers.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
@@ -935,6 +945,7 @@
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
 				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SAConfettiView/SAConfettiView.framework",
 				"${PODS_ROOT}/SnapSDK/SCSDKBitmojiKit.framework",
 				"${PODS_ROOT}/SnapSDK/SCSDKCoreKit.framework",
 				"${PODS_ROOT}/SnapSDK/SCSDKCreativeKit.framework",
@@ -950,7 +961,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cheers.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
@@ -959,6 +969,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAConfettiView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSDKBitmojiKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSDKCreativeKit.framework",
@@ -1075,6 +1086,7 @@
 				D5DF86BE226A21B100E2972A /* GameName.swift in Sources */,
 				D5B3045D22677A8000404241 /* InvitationAlertViewController.swift in Sources */,
 				D56FE69E2262B28800A5553E /* MainTimer.swift in Sources */,
+				D5CDAC28228F022800A3B6D6 /* StatusChangeNotificationViewController.swift in Sources */,
 				2E381E9F2260F31D0075C1CD /* GamePostView.swift in Sources */,
 				2E9FE66822557DF4004CA00B /* UIViewController+Navigation.swift in Sources */,
 				2E9FE66F22557EE8004CA00B /* Date+Extensions.swift in Sources */,

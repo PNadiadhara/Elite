@@ -73,68 +73,67 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     var viewStatus: ViewStatus = .notPressed
     var pickerView = UIPickerView()
     var typeValue = String()
-    private var customArr = [[
-        "Prop_ID": "",
-        "Name": "Museum of the Moving Image",
-        "Location": "36-01 35th Ave, Astoria, NY 11106",
-        "Num_of_Courts": "2",
-        "BasketballCourt": true,
-        "HandballCourt": true,
-        "lat": 40.7563454,
-        "lon": -73.9239496],
-                             [
-                                "Prop_ID": "",
-                                "Name": "Sean's Place",
-                                "Location": "36-01 35th Ave, Astoria, NY 11106",
-                                "Num_of_Courts": "2",
-                                "BasketballCourt": true,
-                                "HandballCourt": true,
-                                "lat": 40.7609461,
-                                "lon": -73.91873679999999],
-                             [
-                                "Prop_ID": "",
-                                "Name": "Dutch Kills Playground",
-                                "Location": "36th Avenue &, Crescent St, Long Island City, NY 11106",
-                                "Num_of_Courts": "2",
-                                "BasketballCourt": true,
-                                "HandballCourt": true,
-                                "lat": 40.7575695,
-                                "lon": -73.93307639999999],
-                             [
-                                "Prop_ID": "",
-                                "Name": "Playground Thirty-Five",
-                                "Location": "Playground Thirty-Five, 4016 35th Ave, Long Island City, NY 11101, USA",
-                                "Num_of_Courts": "2",
-                                "BasketballCourt": true,
-                                "HandballCourt": true,
-                                "lat": 40.7548488,
-                                "lon": -73.9221125],
-                             [
-                                "Prop_ID": "",
-                                "Name": "Synergy Fitness Clubs",
-                                "Location": "23-35 Broadway, Astoria, NY 11106",
-                                "Num_of_Courts": "2",
-                                "BasketballCourt": true,
-                                "HandballCourt": true,
-                                "lat": 40.7638374,
-                                "lon": -73.92885819999999]
-    ]
+//    private var customArr = [[
+//        "Prop_ID": "",
+//        "Name": "Museum of the Moving Image",
+//        "Location": "36-01 35th Ave, Astoria, NY 11106",
+//        "Num_of_Courts": "2",
+//        "BasketballCourt": true,
+//        "HandballCourt": true,
+//        "lat": 40.7563454,
+//        "lon": -73.9239496],
+//                             [
+//                                "Prop_ID": "",
+//                                "Name": "Sean's Place",
+//                                "Location": "36-01 35th Ave, Astoria, NY 11106",
+//                                "Num_of_Courts": "2",
+//                                "BasketballCourt": true,
+//                                "HandballCourt": true,
+//                                "lat": 40.7609461,
+//                                "lon": -73.91873679999999],
+//                             [
+//                                "Prop_ID": "",
+//                                "Name": "Dutch Kills Playground",
+//                                "Location": "36th Avenue &, Crescent St, Long Island City, NY 11106",
+//                                "Num_of_Courts": "2",
+//                                "BasketballCourt": true,
+//                                "HandballCourt": true,
+//                                "lat": 40.7575695,
+//                                "lon": -73.93307639999999],
+//                             [
+//                                "Prop_ID": "",
+//                                "Name": "Playground Thirty-Five",
+//                                "Location": "Playground Thirty-Five, 4016 35th Ave, Long Island City, NY 11101, USA",
+//                                "Num_of_Courts": "2",
+//                                "BasketballCourt": true,
+//                                "HandballCourt": true,
+//                                "lat": 40.7548488,
+//                                "lon": -73.9221125],
+//                             [
+//                                "Prop_ID": "",
+//                                "Name": "Synergy Fitness Clubs",
+//                                "Location": "23-35 Broadway, Astoria, NY 11106",
+//                                "Num_of_Courts": "2",
+//                                "BasketballCourt": true,
+//                                "HandballCourt": true,
+//                                "lat": 40.7638374,
+//                                "lon": -73.92885819999999]
+//    ]
     
     // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
         if Flag.isDemo {
             googleMapsMVEditingState = .showHandBallMarkers
-          setupWest4Marker()
-            userLocation = CLLocation.init(latitude: 40.7311, longitude: -74.0009)
+//          setupWest4Marker()
+            userLocation = CLLocation.init(latitude: 40.7563454, longitude: -73.9239496)
         } else {
             googleMapsMVEditingState = .showBasketBallMarkers
         }
         loadAllParkData()
         callSetups()
         
-        addCustomMakers()
+//        addCustomMakers()
         locationManager.delegate = self
         
     }
@@ -257,17 +256,17 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         present(alertController, animated: true, completion: nil)
     }
     
-    private func addCustomMakers(){
-        for arr in customArr {
-            let marker = GMSMarker()
-            marker.title = arr["Name"] as? String
-            marker.snippet = arr["Location"] as? String
-            let locations = CLLocationCoordinate2D(latitude: arr["lat"] as! Double, longitude:  arr["lon"] as! Double)
-            marker.position = locations
-            marker.map = googleMapsMapView
-            
-        }
-    }
+//    private func addCustomMakers(){
+//        for arr in customArr {
+//            let marker = GMSMarker()
+//            marker.title = arr["Name"] as? String
+//            marker.snippet = arr["Location"] as? String
+//            let locations = CLLocationCoordinate2D(latitude: arr["lat"] as! Double, longitude:  arr["lon"] as! Double)
+//            marker.position = locations
+//            marker.map = googleMapsMapView
+//
+//        }
+//    }
     
     private func addMarkers(courts: [Court], type: SportType) {
         var googleMarkers = [GMSMarker]()
@@ -397,6 +396,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     
     @IBAction func closePopView(_ sender: UIButton) {
         eliteView.animHide()
+        viewStatus = .notPressed
         
     }
     @IBAction func moreBttnPressed(_ sender: UIButton){
@@ -429,8 +429,8 @@ extension MapViewController: CLLocationManagerDelegate{
         let locationValue: CLLocationCoordinate2D = manager.location!.coordinate // fix the force unwrapp
         print("lat: \(locationValue.latitude) and lng: \(locationValue.longitude) ")
         if Flag.isDemo{
-            self.userLocation = CLLocation.init(latitude: 40.7311, longitude: -74.0009)
-            customStartPosition = GMSCameraPosition.camera(withLatitude: 40.7311, longitude: -74.0009, zoom: 14.0)
+            
+            customStartPosition = GMSCameraPosition.camera(withLatitude: 40.7563454, longitude: -73.9239496, zoom: 14.0)
         } else {
          let currentUsersLocation = locations.last
                 self.userLocation = currentUsersLocation!

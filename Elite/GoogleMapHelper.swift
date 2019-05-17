@@ -20,7 +20,13 @@ class GoogleMapHelper {
         }
     }
     static func loadAllParkData(completion: @escaping(Data,Data) -> Void){
-        if let handballCourtDataFilePath = Bundle.main.path(forResource: "handballCourtInfo", ofType: "json"), let basketballCourtDataFilePath = Bundle.main.path(forResource: "basketballCourtInfo", ofType: "json"){
+        var basketballFileName = String()
+        if Flag.isDemo {
+            basketballFileName = "parks"
+        } else {
+            basketballFileName = "basketballCourtInfo"
+        }
+        if let handballCourtDataFilePath = Bundle.main.path(forResource: "handballCourtInfo", ofType: "json"), let basketballCourtDataFilePath = Bundle.main.path(forResource: basketballFileName, ofType: "json"){
             let handballCourtDataUrl = URL.init(fileURLWithPath: handballCourtDataFilePath)
             let basketballCourtDataUrl = URL.init(fileURLWithPath: basketballCourtDataFilePath)
             if let jsonHandBallParkData = try? Data.init(contentsOf: handballCourtDataUrl), let jsonBasketBallParkData = try? Data.init(contentsOf: basketballCourtDataUrl){

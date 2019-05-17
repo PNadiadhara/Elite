@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Cheers
+import SAConfettiView
 
 class WinnerViewController: UIViewController {
     
@@ -22,7 +22,7 @@ class WinnerViewController: UIViewController {
     var gameDuration = String()
     var isHost = Bool()
     var isTie = false
-    let cheerView = CheerView()
+
     
     @IBOutlet weak var winnerView: UIView!
     @IBOutlet weak var winnerTitle: UILabel!
@@ -42,15 +42,13 @@ class WinnerViewController: UIViewController {
         }
         
         continueButton.isHidden = true
-        setupConfetti()
+
 //        demoBugPrevention()
 //        blurView()
         // Do any additional setup after loading the view.
     }
-    func setupConfetti() {
-        view.addSubview(cheerView)
-        view.sendSubviewToBack(cheerView)
-        cheerView.config.particle = .confetti(allowedShapes: Particle.ConfettiShape.all)
+    func setupConfetti(){
+        
     }
     func demoBugPrevention() {
         Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
