@@ -61,24 +61,31 @@ class CreateGameViewController: UIViewController {
     }
     var closestBasketballcourt: BasketBall! {
         didSet {
-            parkSelectedLabel.text = closestBasketballcourt.nameOfPlayground
+            if originViewController != .mapViewController {
+                parkSelectedLabel.text = closestBasketballcourt.nameOfPlayground
+            }
+            
         }
     }
     var closestHandballcourt: HandBall! {
         didSet {
-            parkSelectedLabel.text = closestHandballcourt.nameOfPlayground
+            if originViewController != .mapViewController {
+                parkSelectedLabel.text = closestHandballcourt.nameOfPlayground
+            }
+            
         }
     }
     var originViewController: OriginViewController?
     var animatedViews = [UIView]()
+    var parkSelected = String()
     public var handballResults = [HandBall]()
     public var basketballResults = [BasketBall]()
     private var locationManager = CLLocationManager()
     private var userLocation = CLLocation(){
         didSet{
             
-            closestBasketballcourt = GoogleMapHelper.getBasketballCourtClosestToUsersLocation(closestToLocation: userLocation, basketballCourts: basketballResults)
-            closestHandballcourt = GoogleMapHelper.getHandballCourtClosestToUsersLocation(closestToLocation: userLocation, handballCourts: handballResults)
+//            closestBasketballcourt = GoogleMapHelper.getBasketballCourtClosestToUsersLocation(closestToLocation: userLocation, basketballCourts: basketballResults)
+//            closestHandballcourt = GoogleMapHelper.getHandballCourtClosestToUsersLocation(closestToLocation: userLocation, handballCourts: handballResults)
         }
     }
     override func viewDidLoad() {
@@ -88,6 +95,7 @@ class CreateGameViewController: UIViewController {
         setupViewTapGestures()
         if originViewController == .mapViewController {
             cancelButton.isHidden = false
+            parkSelectedLabel.text = parkSelected
         }
         locationManager.delegate = self
         if Flag.isDemo {
@@ -134,7 +142,10 @@ class CreateGameViewController: UIViewController {
         
         let changeParkTap = UITapGestureRecognizer(target: self, action: #selector(changeParkPressed))
         parkSelectedLabel.addGestureRecognizer(changeParkTap)
-        parkSelectedLabel.isUserInteractionEnabled = true
+        if originViewController != .mapViewController {
+          parkSelectedLabel.isUserInteractionEnabled = true
+        }
+        
         
         let basketBallTap = UITapGestureRecognizer(target: self, action: #selector(basketBallPressed))
         basketBallView.addGestureRecognizer(basketBallTap)
@@ -218,6 +229,7 @@ class CreateGameViewController: UIViewController {
         oneVsOneVc.modalTransitionStyle = .flipHorizontal
         oneVsOneVc.gameName = gameName
         oneVsOneVc.gameTypeSelected = .oneVsOne
+        oneVsOneVc.parkSelected = parkSelected
         present(oneVsOneVc, animated: true)
     }
     @objc func twoVstwoPressed() {
@@ -292,7 +304,7 @@ extension CreateGameViewController: CLLocationManagerDelegate{
         let locationValue: CLLocationCoordinate2D = manager.location!.coordinate // fix the force unwrapp
         print("lat: \(locationValue.latitude) and lng: \(locationValue.longitude) ")
         if Flag.isDemo{
-            self.userLocation = CLLocation.init(latitude: 40.7311, longitude: -74.0009)
+            self.userLocation = CLLocation.init(latitude: 40.7563454, longitude: -73.9239496)
         } else {
             self.userLocation = locations.last!
         }

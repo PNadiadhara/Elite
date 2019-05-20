@@ -73,6 +73,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     var viewStatus: ViewStatus = .notPressed
     var pickerView = UIPickerView()
     var typeValue = String()
+    static var parkSelected = String()
 //    private var customArr = [[
 //        "Prop_ID": "",
 //        "Name": "Museum of the Moving Image",
@@ -365,6 +366,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     private func goToCreateAGameView(){
         let createGameVC = CreateGameViewController.init(nibName: "CreateGameViewController", bundle: nil)
         createGameVC.originViewController = .mapViewController
+        createGameVC.parkSelected = MapViewController.parkSelected
         present(createGameVC, animated: true)
     }
     private func goToLeaderBoard(){
@@ -418,6 +420,7 @@ extension MapViewController: GMSMapViewDelegate
             viewStatus = .notPressed
             eliteView.animHide()
         }
+        MapViewController.parkSelected = marker.title!
         
         return true
     }

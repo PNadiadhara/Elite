@@ -21,6 +21,7 @@ class OneVsOneProgressViewController: UIViewController {
     var redOnePlayer: GamerModel!
     var gameType: GameType!
     var gameBeginingTimeStamp = Date()
+    var parkSelected = String()
     private var listener: ListenerRegistration!
     
     @IBOutlet weak var sportParkLabel: UILabel!
@@ -53,6 +54,7 @@ class OneVsOneProgressViewController: UIViewController {
     }
 
     func setUpUI() {
+        gameInProgressLabel.text = "Game in progress.."
         redTeamLabel.text = redOnePlayer.username
         redTeamImage.image = UIImage(named: redOnePlayer.username + "FightingLeft")
         blueTeamLabel.text = blueOnePlayer.username

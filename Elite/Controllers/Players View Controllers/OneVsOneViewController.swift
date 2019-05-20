@@ -36,6 +36,7 @@ class OneVsOneViewController: UIViewController {
     var invitations = [Invitation]()
     var gameName: GameName!
     var gameTypeSelected: GameType!
+    var parkSelected = String()
     //TO DO: Create a park
     var selectedInvitationOption: SelectedInvitationOption = .accepted
     
