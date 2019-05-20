@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="currentRankScore" destination="0bt-cw-eLi" id="Uql-2z-eM4"/>
                 <outlet property="highestRankScore" destination="tTy-t9-Hts" id="8LK-k5-IUN"/>
+                <outlet property="parkSelectedLabel" destination="NF4-sk-Qj5" id="UST-oM-mGn"/>
                 <outlet property="playerImageView" destination="LDv-OH-dSH" id="ofY-1O-8Zf"/>
                 <outlet property="playerUserName" destination="kQU-4F-eMr" id="caJ-3q-g4Q"/>
                 <outlet property="rankGifImageView" destination="IDV-Gk-Q59" id="Xny-pE-Ywg"/>
@@ -139,10 +140,10 @@
                     </constraints>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IDV-Gk-Q59">
-                    <rect key="frame" x="115" y="525" width="184" height="184"/>
+                    <rect key="frame" x="115" y="519.5" width="184" height="184"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="184" id="YQi-ZF-U7a"/>
-                        <constraint firstAttribute="height" constant="184" id="ZCs-dm-a8c"/>
+                        <constraint firstAttribute="width" constant="184" id="Ntm-S1-f9n"/>
+                        <constraint firstAttribute="height" constant="184" id="Yjo-VY-g9r"/>
                     </constraints>
                 </imageView>
             </subviews>
@@ -152,17 +153,17 @@
                 <constraint firstItem="sSV-c0-TWY" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="5qW-N8-tOI"/>
                 <constraint firstItem="OPo-3O-vfI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" multiplier="0.2" id="6GM-OL-Mvq"/>
                 <constraint firstItem="4af-PS-lvY" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="9Qt-aG-r0f"/>
+                <constraint firstItem="IDV-Gk-Q59" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Be7-fe-EmB"/>
                 <constraint firstItem="7My-Yz-Sml" firstAttribute="top" secondItem="4af-PS-lvY" secondAttribute="bottom" constant="60" id="CNP-bg-73O"/>
                 <constraint firstItem="OPo-3O-vfI" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.2" id="HeR-5H-QLX"/>
                 <constraint firstItem="4af-PS-lvY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="RWg-7N-Xf9"/>
                 <constraint firstItem="sSV-c0-TWY" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="UTb-fg-Je1"/>
+                <constraint firstItem="IDV-Gk-Q59" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" multiplier="1.35" id="Xfu-dq-5V7"/>
                 <constraint firstItem="LDv-OH-dSH" firstAttribute="centerY" secondItem="7My-Yz-Sml" secondAttribute="centerY" id="YMe-7F-pWp"/>
                 <constraint firstItem="4af-PS-lvY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aFO-Gs-m4G"/>
                 <constraint firstItem="sSV-c0-TWY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="aPI-xN-bxg"/>
-                <constraint firstItem="IDV-Gk-Q59" firstAttribute="centerX" secondItem="sSV-c0-TWY" secondAttribute="centerX" id="bHX-j4-yb0"/>
                 <constraint firstItem="4af-PS-lvY" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.2" id="e3V-Wg-CUZ"/>
                 <constraint firstAttribute="bottom" secondItem="OPo-3O-vfI" secondAttribute="bottom" id="em4-rg-j09"/>
-                <constraint firstItem="OPo-3O-vfI" firstAttribute="top" secondItem="IDV-Gk-Q59" secondAttribute="bottom" constant="8" symbolic="YES" id="gJ8-Xj-JuA"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7My-Yz-Sml" secondAttribute="trailing" constant="30" id="j7g-VS-CrT"/>
                 <constraint firstItem="OPo-3O-vfI" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="liY-xZ-5Lt"/>
             </constraints>

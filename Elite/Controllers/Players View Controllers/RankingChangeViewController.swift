@@ -14,6 +14,7 @@ class RankingChangeViewController: UIViewController {
     @IBOutlet var currentRankScore: UILabel!
     @IBOutlet var highestRankScore: UILabel!
     @IBOutlet var rankGifImageView: UIImageView!
+    @IBOutlet weak var parkSelectedLabel: UILabel!
     var rank = 2700
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,7 @@ class RankingChangeViewController: UIViewController {
         highestRankScore.text = String(highestRank)
         updateRank()
         playerUserName.text = TabBarViewController.currentGamer.username
+        parkSelectedLabel.text = MapViewController.parkSelected
         // Do any additional setup after loading the view.
     }
 
