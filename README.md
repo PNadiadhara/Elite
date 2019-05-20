@@ -1,5 +1,5 @@
 # Elite
-The app Designed to create healthy competitve competition amongst users
+A Leaderboard system for the public handball and basketball courts of New York City.
 
 ## Table of contents
 * [Getting Started](#getting-started)
