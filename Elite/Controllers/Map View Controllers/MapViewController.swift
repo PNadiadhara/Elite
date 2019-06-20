@@ -157,6 +157,9 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         googleMapsMapView.settings.compassButton = true
         googleMapsMapView.settings.myLocationButton = true
         googleMapsMapView.isMyLocationEnabled = true
+        if Flag.isSearchBarOnMapReady == false {
+            googleMapsSearchBar.isHidden = true 
+        }
         
     }
     private func setupWest4Marker(){
