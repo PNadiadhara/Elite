@@ -45,6 +45,7 @@ class CreateGameViewController: UIViewController {
     var userQrImage: UIImageView?
     weak var delegate: CreateGameViewControllerDelegate?
     var closestPark = String()
+    //let multipeerConnectivityHelper = MultiPeerConnectivityHelper()
     var gameName: GameName! {
         didSet {
             if gameName == .handball {
@@ -128,6 +129,7 @@ class CreateGameViewController: UIViewController {
     func setupUI() {
         
     }
+    
     private func loadAllParkData(){
         GoogleMapHelper.loadAllParkData { (handballCourt, basketballCourt) in
             do {
@@ -224,12 +226,14 @@ class CreateGameViewController: UIViewController {
         
     }
     @objc func oneVsOnePressed() {
-        let oneVsOneVc = OneVsOneViewController.init(nibName: "OneVsOneViewController", bundle: nil)
+        let oneVsOneVc = OneVsOneViewController()
         oneVsOneVc.modalPresentationStyle = .fullScreen
         oneVsOneVc.modalTransitionStyle = .flipHorizontal
         oneVsOneVc.gameName = gameName
         oneVsOneVc.gameTypeSelected = .oneVsOne
         oneVsOneVc.parkSelected = parkSelected
+        MultiPeerConnectivityHelper.shared.hostGame()
+       // multipeerConnectivityHelper.hostGame()
         present(oneVsOneVc, animated: true)
     }
     @objc func twoVstwoPressed() {
@@ -263,6 +267,7 @@ class CreateGameViewController: UIViewController {
         }
         parkListVC.gameName = gameName
         parkListVC.userLocation = userLocation
+        parkListVC.typeOfList = .ParkList
         parkListVC.modalPresentationStyle = .overCurrentContext
         present(parkListVC, animated: true)
     }

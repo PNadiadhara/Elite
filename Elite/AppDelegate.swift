@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import GoogleMaps
+import MultipeerConnectivity
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

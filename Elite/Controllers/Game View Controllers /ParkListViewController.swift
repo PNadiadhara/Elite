@@ -8,12 +8,25 @@
 
 import UIKit
 import GoogleMaps
+import MultipeerConnectivity
 
+enum TypeOfList {
+    case ParkList
+    case AvailableGameList
+}
 class ParkListViewController: UIViewController {
 
     @IBOutlet weak var parkListTableView: UITableView!
     
     public var basketBallCourts = [BasketBall]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.parkListTableView.reloadData()
+            }
+        }
+    }
+   // let multiPeerConnectivityHelper = MultiPeerConnectivityHelper()
+    public var availableGames = [String]() {
         didSet {
             DispatchQueue.main.async {
                 self.parkListTableView.reloadData()
@@ -30,16 +43,24 @@ class ParkListViewController: UIViewController {
         }
     }
     public var gameName: GameName!
+    public var typeOfList = TypeOfList.AvailableGameList
     public var userLocation = CLLocation()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        MultiPeerConnectivityHelper.shared.multipeerDelegate = self
         parkListTableView.dataSource = self
         parkListTableView.delegate = self
         parkListTableView.register(UINib(nibName: "ParkInfoCell", bundle: nil), forCellReuseIdentifier: "ParkInfoCell")
         parkListTableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
-        fetchClosestParks()
+        switch typeOfList {
+        case .AvailableGameList:
+            return
+        case .ParkList:
+            fetchClosestParks()
+        }
+        
         // Do any additional setup after loading the view.
     }
     
@@ -68,30 +89,80 @@ class ParkListViewController: UIViewController {
 
 extension ParkListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if gameName == .basketball {
-            return basketBallResults.count
-        } else {
-            return handBallResults.count
+        var count = Int()
+        switch typeOfList {
+            
+        case .AvailableGameList:
+            count = availableGames.count
+        case .ParkList:
+            if gameName == .basketball {
+                count = basketBallResults.count
+            } else {
+                count = handBallResults.count
+            }
         }
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ParkInfoCell", for: indexPath) as? ParkInfoCell else {return UITableViewCell()}
-        if gameName == .basketball {
-            let court = basketBallResults[indexPath.row]
-            cell.parkNameLabel.text = court.nameOfPlayground
-            cell.parkAddressLabel.text = court.location
-        } else {
-            let court = handBallResults[indexPath.row]
-            cell.parkNameLabel.text = court.nameOfPlayground
-            cell.parkAddressLabel.text = court.location
+        switch typeOfList {
+        case .AvailableGameList:
+            let gameName = availableGames[indexPath.row]
+            cell.parkNameLabel.text = gameName
+        case .ParkList:
+            if gameName == .basketball {
+                let court = basketBallResults[indexPath.row]
+                cell.parkNameLabel.text = court.nameOfPlayground
+                cell.parkAddressLabel.text = court.location
+            } else {
+                let court = handBallResults[indexPath.row]
+                cell.parkNameLabel.text = court.nameOfPlayground
+                cell.parkAddressLabel.text = court.location
+            }
         }
+
 
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 86
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        MultiPeerConnectivityHelper.shared.joinGame(joiningGame: true)
+    }
+    
+}
+extension ParkListViewController: MultipeerConnectivityDelegate {
+    func dataRecieved(data: Data) {
+        
+    }
+    
+    func connected(to User: String) {
+        
+    }
+    
+
+    
+    func acceptedInvitation() {
+        
+        let oneVsOne = OneVsOneViewController()
+        present(oneVsOne, animated: true)
+    }
+    
+
+    
+    func invitationNotification(handler: @escaping (Bool) -> Void) {
+        
+    }
+    
+
+    
+    
+    func foundAdverstiser(availableGames: [String]) {
+        
+    }
+    
     
 }

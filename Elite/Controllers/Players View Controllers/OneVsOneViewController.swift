@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseFirestore
 import Firebase
+import MultipeerConnectivity
 protocol SearchForPlayerDelegate: AnyObject {
     func gamerSelected(gamer: GamerModel)
 }
@@ -31,79 +32,120 @@ class OneVsOneViewController: UIViewController {
     @IBOutlet weak var bluePlayerRanking: UILabel!
     @IBOutlet weak var bluePlayerMedal: UIImageView!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var gamerSelected: GamerModel?
     var invitation: Invitation?
     var invitations = [Invitation]()
-    var gameName: GameName!
+    var gameName: GameName?
     var gameTypeSelected: GameType!
+    var rival: GamerModel? {
+        didSet {
+            if let rival = rival {
+                 bluePlayerLabel.text = rival.username
+                 bluePlayerImage.image = UIImage(named: rival.username + "FightingRight")
+            }
+           
+        }
+    }
     var parkSelected = String()
+    //var multiPeerHelper = MultiPeerConnectivityHelper()
+   
     //TO DO: Create a park
     var selectedInvitationOption: SelectedInvitationOption = .accepted
     
     private var listener: ListenerRegistration!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        MultiPeerConnectivityHelper.shared.multipeerDelegate = self
+        activityIndicator.startAnimating()
         setupTap()
-        sportLabel.text = gameName.rawValue.capitalized
+        sportLabel.text = gameName?.rawValue.capitalized
         redPlayerLabel.text = TabBarViewController.currentUser.displayName
         redPlayerImage.image = UIImage(named: TabBarViewController.currentUser.displayName! + "FightingLeft")
+
         // Do any additional setup after loading the view.
     }
-    override func viewDidAppear(_ animated: Bool) {
-        if let gamer = gamerSelected {
-            bluePlayerLabel.text = gamer.username
-            bluePlayerImage.image = UIImage(named: gamer.username + "FightingRight")
-        }
-    }
     
+    override func viewDidAppear(_ animated: Bool) {
+//        if let gamer = gamerSelected {
+//            bluePlayerLabel.text = gamer.username
+//            bluePlayerImage.image = UIImage(named: gamer.username + "FightingRight")
+//        }
+       
+      
 
-    @IBAction func playButtonPressed(_ sender: UIButton) {
-        guard let gamerSelected = gamerSelected else {
-            showAlert(title: "Please select player", message: nil)
-            return
-        }
-        //To do: CREATE INSTANSE OF GAME
-
-        let game = GameModel(gameName: gameName.rawValue, gameType: gameTypeSelected.rawValue, numberOfPlayers: 2, redTeam: [TabBarViewController.currentUser.uid], blueTeam: [gamerSelected.gamerID], parkId: "1", gameDescription: nil, gameEndTime: nil, winners: nil, losers: nil, isTie: nil, formattedAdresss: "2", parkName: "3", lat: 0.0, lon: 0.0, gameID: "", witness: nil, duration: nil, isOver: false, wasCancelled: false)
-        DBService.postGame(gamePost: game) { (error, gameId) in
-            if let error = error {
-                self.showAlert(title: "Error posting game", message: error.localizedDescription)
-            }
-            if let gameId = gameId {
-                self.createCurrentGameRoles(gameId: gameId)
-                let invitation = Invitation(invitationId: "", gameId: gameId ,sender: TabBarViewController.currentUser.uid, reciever: gamerSelected.gamerID, message: "Invitation", approval: false, lat: 0.0, lon: 0.0, game: self.gameName.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "", gameType: self.gameTypeSelected.rawValue)
-                DBService.postInvitation(invitation: invitation) { (error, invitationId) in
-                    if let error = error {
-                        self.showAlert(title: "Error posting invitation", message: error.localizedDescription)
-                    }
-                    if let invitationId = invitationId{
-                        DBService.fetchInvitation(inivtationId: invitationId, completion: { (error, invitation) in
-                            if let error = error {
-                                print(error.localizedDescription)
-                            }
-                            if let invitation = invitation {
-                                let oneVsoneProgressVc = OneVsOneProgressViewController.init(nibName: "OneVsOneProgressViewController", bundle: nil)
-                                oneVsoneProgressVc.modalPresentationStyle = .fullScreen
-                                oneVsoneProgressVc.invitation = invitation
-                                oneVsoneProgressVc.isHost = true
-                                oneVsoneProgressVc.gameType = .oneVsOne
-                                oneVsoneProgressVc.game = game
-                                oneVsoneProgressVc.redOnePlayer = TabBarViewController.currentGamer
-                                oneVsoneProgressVc.blueOnePlayer = gamerSelected
-                                self.present(oneVsoneProgressVc, animated: true)
-                            }
-                        })
-                        
-                    }
+    }
+    func fetchAndSendUser() {
+        let gamer = TabBarViewController.currentGamer
+            if let gamer = gamer {
+                do{
+                    let data = try PropertyListEncoder().encode(gamer)
+                    MultiPeerConnectivityHelper.shared.sendDataToConnectedUsers(data: data)
+                }catch{
+                    print("Property list encoding error \(error)")
                 }
             }
-        }
+    }
+//        DBService.fetchCurrentPlayer(gamerId: TabBarViewController.currentGamer.gamerID , completion: { (error, currentPlayer) in
+//            if let error = error {
+//                print(error)
+//            }
+//            if let currentPlayer = currentPlayer {
+//
+//            }
+//        })
+    
 
-//        DBService.postInvitation(invitation: invitation) { (error ) in
-//            print("Error posting message")
+
+    @IBAction func playButtonPressed(_ sender: UIButton) {
+       
+        
+//        guard let gamerSelected = gamerSelected else {
+//            showAlert(title: "Please select player", message: nil)
+//            return
 //        }
-
+//        //To do: CREATE INSTANSE OF GAME
+//
+//        let game = GameModel(gameName: gameName.rawValue, gameType: gameTypeSelected.rawValue, numberOfPlayers: 2, redTeam: [TabBarViewController.currentUser.uid], blueTeam: [gamerSelected.gamerID], parkId: "1", gameDescription: nil, gameEndTime: nil, winners: nil, losers: nil, isTie: nil, formattedAdresss: "2", parkName: "3", lat: 0.0, lon: 0.0, gameID: "", witness: nil, duration: nil, isOver: false, wasCancelled: false)
+//        DBService.postGame(gamePost: game) { (error, gameId) in
+//            if let error = error {
+//                self.showAlert(title: "Error posting game", message: error.localizedDescription)
+//            }
+//            if let gameId = gameId {
+//                self.createCurrentGameRoles(gameId: gameId)
+//                let invitation = Invitation(invitationId: "", gameId: gameId ,sender: TabBarViewController.currentUser.uid, reciever: gamerSelected.gamerID, message: "Invitation", approval: false, lat: 0.0, lon: 0.0, game: self.gameName.rawValue, senderUsername: TabBarViewController.currentUser.displayName ?? "", gameType: self.gameTypeSelected.rawValue)
+//                DBService.postInvitation(invitation: invitation) { (error, invitationId) in
+//                    if let error = error {
+//                        self.showAlert(title: "Error posting invitation", message: error.localizedDescription)
+//                    }
+//                    if let invitationId = invitationId{
+//                        DBService.fetchInvitation(inivtationId: invitationId, completion: { (error, invitation) in
+//                            if let error = error {
+//                                print(error.localizedDescription)
+//                            }
+//                            if let invitation = invitation {
+//                                let oneVsoneProgressVc = OneVsOneProgressViewController.init(nibName: "OneVsOneProgressViewController", bundle: nil)
+//                                oneVsoneProgressVc.modalPresentationStyle = .fullScreen
+//                                oneVsoneProgressVc.invitation = invitation
+//                                oneVsoneProgressVc.isHost = true
+//                                oneVsoneProgressVc.gameType = .oneVsOne
+//                                oneVsoneProgressVc.game = game
+//                                oneVsoneProgressVc.redOnePlayer = TabBarViewController.currentGamer
+//                                oneVsoneProgressVc.blueOnePlayer = gamerSelected
+//                                self.present(oneVsoneProgressVc, animated: true)
+//                            }
+//                        })
+//                        
+//                    }
+//                }
+//            }
+//        }
+//
+////        DBService.postInvitation(invitation: invitation) { (error ) in
+////            print("Error posting message")
+////        }
+//
 
     }
     func createCurrentGameRoles(gameId: String) {
@@ -127,8 +169,8 @@ class OneVsOneViewController: UIViewController {
     }
     
     func setupTap() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(searchPlayerPressed))
-        addPlayerView.addGestureRecognizer(tap)
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(searchPlayerPressed))
+//        addPlayerView.addGestureRecognizer(tap)
     }
 
 //    @objc func fetchInvitationRequest() {
@@ -170,5 +212,57 @@ extension OneVsOneViewController: SearchForPlayerDelegate{
     
     
 }
+extension OneVsOneViewController: MultipeerConnectivityDelegate{
+    func dataRecieved(data: Data) {
+        do {
+            rival = try PropertyListDecoder().decode(GamerModel.self, from: data)
+        
+        }catch {
+            print ("property list dedoding error:\(error)")
+        }
+        
+    }
+    
+    func connected(to User: String) {
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+            self.fetchAndSendUser()
+        }
+    }
+    
 
+    
+    func acceptedInvitation() {
+
+    }
+    
+    func invitePlayer(browser: MCNearbyServiceBrowser, peerID: MCPeerID, seesion: MCSession) {
+        
+    }
+    
+    func invitationNotification(handler: @escaping (Bool) -> Void) {
+        invitationAlert(title: "Wants to join", message: "Accept?") { (action) in
+            if action.title == "Yes" {
+                handler(true)
+            } else {
+                handler(false)
+            }
+        }
+    }
+    
+
+    
+    func foundAdverstiser(availableGames: [String]) {
+        
+    }
+    
+    func displayAvailableGames(handler: @escaping (Bool) -> Void) {
+        return
+    }
+    
+    
+
+    
+    
+}
 

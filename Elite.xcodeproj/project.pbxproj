@@ -96,6 +96,9 @@
 		BFD61E5B2289D6AB00EA408B /* GifHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD61E5A2289D6AB00EA408B /* GifHelper.swift */; };
 		BFED970F225E6E2900CC360B /* EloRankMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFED970E225E6E2900CC360B /* EloRankMethods.swift */; };
 		D509826C22849D85003679A5 /* GoogleMapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509826B22849D85003679A5 /* GoogleMapHelper.swift */; };
+		D50B051622B5C6610012C934 /* HostJoinGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50B051422B5C6610012C934 /* HostJoinGameViewController.swift */; };
+		D50B051722B5C6610012C934 /* HostJoinGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D50B051522B5C6610012C934 /* HostJoinGameViewController.xib */; };
+		D50B051922B5CB920012C934 /* MultiPeerConnectivityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50B051822B5CB920012C934 /* MultiPeerConnectivityHelper.swift */; };
 		D521086F225E95540044C440 /* UserFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D521086D225E95540044C440 /* UserFeedCell.xib */; };
 		D5210870225E95540044C440 /* UserFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D521086E225E95540044C440 /* UserFeedCell.swift */; };
 		D5210873225E956B0044C440 /* FiveVsFiveFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5210871225E956B0044C440 /* FiveVsFiveFeedCell.swift */; };
@@ -259,6 +262,9 @@
 		BFED970E225E6E2900CC360B /* EloRankMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EloRankMethods.swift; sourceTree = "<group>"; };
 		C58214BF69A905A7D79AC4AF /* Pods_EliteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EliteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D509826B22849D85003679A5 /* GoogleMapHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GoogleMapHelper.swift; path = ../GoogleMapHelper.swift; sourceTree = "<group>"; };
+		D50B051422B5C6610012C934 /* HostJoinGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostJoinGameViewController.swift; sourceTree = "<group>"; };
+		D50B051522B5C6610012C934 /* HostJoinGameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HostJoinGameViewController.xib; sourceTree = "<group>"; };
+		D50B051822B5CB920012C934 /* MultiPeerConnectivityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPeerConnectivityHelper.swift; sourceTree = "<group>"; };
 		D521086D225E95540044C440 /* UserFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserFeedCell.xib; sourceTree = "<group>"; };
 		D521086E225E95540044C440 /* UserFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFeedCell.swift; sourceTree = "<group>"; };
 		D5210871225E956B0044C440 /* FiveVsFiveFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiveVsFiveFeedCell.swift; sourceTree = "<group>"; };
@@ -381,6 +387,7 @@
 				D5DF86BD226A21B100E2972A /* GameName.swift */,
 				48EFEBAE2271016B0006092D /* MilesInMetersInfo.swift */,
 				D5B4F56E2271EB8B0081FCF0 /* Flag.swift */,
+				D50B051822B5CB920012C934 /* MultiPeerConnectivityHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -552,6 +559,8 @@
 				D5B304572266792200404241 /* QrCodeViewController.swift */,
 				D5B304582266792200404241 /* QrCodeViewController.xib */,
 				48EFEB8A226D14AE0006092D /* ScannerViewController.swift */,
+				D50B051422B5C6610012C934 /* HostJoinGameViewController.swift */,
+				D50B051522B5C6610012C934 /* HostJoinGameViewController.xib */,
 			);
 			path = "Game View Controllers ";
 			sourceTree = "<group>";
@@ -817,6 +826,7 @@
 				2E171BA4225CF93100D40DDF /* CreateGameViewController.xib in Resources */,
 				D521087D225E95E20044C440 /* FeedView.xib in Resources */,
 				2EC6D562225E7A0B00336362 /* ParkListViewController.xib in Resources */,
+				D50B051722B5C6610012C934 /* HostJoinGameViewController.xib in Resources */,
 				D5B3045A2266792200404241 /* QrCodeViewController.xib in Resources */,
 				D5210886225EB3D20044C440 /* ParkInfoCell.xib in Resources */,
 				48F1B5C8226989DB00B53E11 /* MapViewPopupController.xib in Resources */,
@@ -842,52 +852,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Elite/Pods-Elite-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
-				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/SAConfettiView/SAConfettiView.framework",
-				"${PODS_ROOT}/SnapSDK/SCSDKBitmojiKit.framework",
-				"${PODS_ROOT}/SnapSDK/SCSDKCoreKit.framework",
-				"${PODS_ROOT}/SnapSDK/SCSDKCreativeKit.framework",
-				"${PODS_ROOT}/SnapSDK/SCSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Elite/Pods-Elite-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAConfettiView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSDKBitmojiKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSDKCreativeKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Elite/Pods-Elite-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -944,52 +913,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
-				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/SAConfettiView/SAConfettiView.framework",
-				"${PODS_ROOT}/SnapSDK/SCSDKBitmojiKit.framework",
-				"${PODS_ROOT}/SnapSDK/SCSDKCoreKit.framework",
-				"${PODS_ROOT}/SnapSDK/SCSDKCreativeKit.framework",
-				"${PODS_ROOT}/SnapSDK/SCSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAConfettiView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSDKBitmojiKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSDKCreativeKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1002,18 +930,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Elite/Pods-Elite-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-Elite/Pods-Elite-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-Elite/Pods-Elite-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1026,18 +947,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1061,12 +975,14 @@
 				2EF4809422565227008212DC /* GamerModel.swift in Sources */,
 				48EFEBAF2271016C0006092D /* MilesInMetersInfo.swift in Sources */,
 				2ECFC94F2264E20A00BD6A53 /* DBService+ParkEloInfo.swift in Sources */,
+				D50B051922B5CB920012C934 /* MultiPeerConnectivityHelper.swift in Sources */,
 				2E9FE65822557AC4004CA00B /* LoginViewController.swift in Sources */,
 				48EFEB87226D122D0006092D /* CaptureSession.swift in Sources */,
 				48EFEB85226D0F660006092D /* AVCaptureVideoOrientation+Orientations.swift in Sources */,
 				48DB1A682260FB6200C7CEAC /* AllNYCParkInfo.swift in Sources */,
 				D5210870225E95540044C440 /* UserFeedCell.swift in Sources */,
 				D5F545502268DE6C00DB05F0 /* EndGameViewController.swift in Sources */,
+				D50B051622B5C6610012C934 /* HostJoinGameViewController.swift in Sources */,
 				2EC6D555225E799F00336362 /* OneVsOneViewController.swift in Sources */,
 				48EFEB8B226D14AE0006092D /* ScannerViewController.swift in Sources */,
 				2EF480A22256BE69008212DC /* WinsModel.swift in Sources */,

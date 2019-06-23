@@ -116,7 +116,7 @@ class WinnerViewController: UIViewController {
     }
    func animateView(winnerTeam: Teams) {
         UIView.transition(with: winnerView, duration: 1, options: [.transitionFlipFromRight], animations: {
-            self.confettiView.startConfetti()
+            
             self.winnerPlayers = self.fetchWinnerPlayers(game: self.game)
             self.loserPlayers = self.fetchLoserPlayers(game: self.game)
             self.winnerTitle.isHidden = false
@@ -128,6 +128,7 @@ class WinnerViewController: UIViewController {
                 self.winnerTitle.text = "Blue team won!"
             }
             if self.winnerPlayers.contains(TabBarViewController.currentGamer.gamerID) {
+                self.confettiView.startConfetti()
                 self.userResultLabel.text = "You won!"
 //                self.cheerView.start()
                 self.playersImage.image = UIImage(named: TabBarViewController.currentGamer.username + "Winner")
