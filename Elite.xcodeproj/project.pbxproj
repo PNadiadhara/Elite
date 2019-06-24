@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -111,6 +111,10 @@
 		D5210882225E960B0044C440 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5210880225E960A0044C440 /* FeedCell.xib */; };
 		D5210885225EB3D20044C440 /* ParkInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5210883225EB3D20044C440 /* ParkInfoCell.swift */; };
 		D5210886225EB3D20044C440 /* ParkInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5210884225EB3D20044C440 /* ParkInfoCell.xib */; };
+		D52CDC6722C04E80008BADE7 /* TimerPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CDC6522C04E80008BADE7 /* TimerPopUp.swift */; };
+		D52CDC6822C04E80008BADE7 /* TimerPopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = D52CDC6622C04E80008BADE7 /* TimerPopUp.xib */; };
+		D52CDC6D22C06F69008BADE7 /* LoadingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CDC6B22C06F69008BADE7 /* LoadingScreenViewController.swift */; };
+		D52CDC6E22C06F69008BADE7 /* LoadingScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D52CDC6C22C06F69008BADE7 /* LoadingScreenViewController.xib */; };
 		D56FE69E2262B28800A5553E /* MainTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56FE69D2262B28800A5553E /* MainTimer.swift */; };
 		D5B304542264EDF800404241 /* Invitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B304532264EDF800404241 /* Invitation.swift */; };
 		D5B304562265224D00404241 /* DBService+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B304552265224D00404241 /* DBService+Message.swift */; };
@@ -277,6 +281,10 @@
 		D5210880225E960A0044C440 /* FeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedCell.xib; sourceTree = "<group>"; };
 		D5210883225EB3D20044C440 /* ParkInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkInfoCell.swift; sourceTree = "<group>"; };
 		D5210884225EB3D20044C440 /* ParkInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkInfoCell.xib; sourceTree = "<group>"; };
+		D52CDC6522C04E80008BADE7 /* TimerPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPopUp.swift; sourceTree = "<group>"; };
+		D52CDC6622C04E80008BADE7 /* TimerPopUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimerPopUp.xib; sourceTree = "<group>"; };
+		D52CDC6B22C06F69008BADE7 /* LoadingScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewController.swift; sourceTree = "<group>"; };
+		D52CDC6C22C06F69008BADE7 /* LoadingScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingScreenViewController.xib; sourceTree = "<group>"; };
 		D56FE69D2262B28800A5553E /* MainTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTimer.swift; sourceTree = "<group>"; };
 		D5B304532264EDF800404241 /* Invitation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invitation.swift; sourceTree = "<group>"; };
 		D5B304552265224D00404241 /* DBService+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBService+Message.swift"; sourceTree = "<group>"; };
@@ -509,6 +517,10 @@
 				D5DAD8E322809C46002D2B86 /* RankingChangeViewController.xib */,
 				D5CDAC26228F022800A3B6D6 /* StatusChangeNotificationViewController.swift */,
 				D5CDAC27228F022800A3B6D6 /* StatusChangeNotificationViewController.xib */,
+				D52CDC6522C04E80008BADE7 /* TimerPopUp.swift */,
+				D52CDC6622C04E80008BADE7 /* TimerPopUp.xib */,
+				D52CDC6B22C06F69008BADE7 /* LoadingScreenViewController.swift */,
+				D52CDC6C22C06F69008BADE7 /* LoadingScreenViewController.xib */,
 			);
 			path = "Players View Controllers";
 			sourceTree = "<group>";
@@ -818,6 +830,7 @@
 				D5EFCBFC2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib in Resources */,
 				2E381EB122613A1E0075C1CD /* ProfileViewController.xib in Resources */,
 				48F1B5C2226980F700B53E11 /* basketballCourtInfo.json in Resources */,
+				D52CDC6822C04E80008BADE7 /* TimerPopUp.xib in Resources */,
 				D5BCBBFB226F7FBD006B0015 /* TwoVsTwoProgressViewController.xib in Resources */,
 				BF74A1F32289F9DC002CC3B0 /* DiamondRank.gif in Resources */,
 				D5DE77F2225FF61200439407 /* SearchPlayerViewController.xib in Resources */,
@@ -831,6 +844,7 @@
 				D5210886225EB3D20044C440 /* ParkInfoCell.xib in Resources */,
 				48F1B5C8226989DB00B53E11 /* MapViewPopupController.xib in Resources */,
 				2EC6D573225E9BCB00336362 /* UserFeedTableViewController.xib in Resources */,
+				D52CDC6E22C06F69008BADE7 /* LoadingScreenViewController.xib in Resources */,
 				D5B3045E22677A8000404241 /* InvitationAlertViewController.xib in Resources */,
 				2E9FE67F22558282004CA00B /* LoginView.storyboard in Resources */,
 			);
@@ -997,6 +1011,7 @@
 				2EC6D572225E9BCB00336362 /* UserFeedTableViewController.swift in Sources */,
 				2E9FE67122557F02004CA00B /* String+Date.swift in Sources */,
 				D5B304602267BDCB00404241 /* InvitationListener.swift in Sources */,
+				D52CDC6D22C06F69008BADE7 /* LoadingScreenViewController.swift in Sources */,
 				2E9FE66C22557E8C004CA00B /* TabBarViewController.swift in Sources */,
 				48D5C828225D430700AFDE8F /* AppError.swift in Sources */,
 				2EA2E5412289D8FC005B48CA /* Gif.swift in Sources */,
@@ -1033,6 +1048,7 @@
 				2E381EB022613A1E0075C1CD /* ProfileViewController.swift in Sources */,
 				2EC6D551225D310700336362 /* DummyFile.swift in Sources */,
 				2E9FE66222557CE6004CA00B /* Constants.swift in Sources */,
+				D52CDC6722C04E80008BADE7 /* TimerPopUp.swift in Sources */,
 				D5B4F56F2271EB8B0081FCF0 /* Flag.swift in Sources */,
 				D5DF86BA22694C9E00E2972A /* Teams.swift in Sources */,
 				48D5C820225D320900AFDE8F /* GeocodingClient.swift in Sources */,

@@ -11,8 +11,10 @@ import MultipeerConnectivity
 
 class HostJoinGameViewController: UIViewController{
 
+    @IBOutlet weak var loadingView: UIView!
     
-
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     //let multiPeerConnectivityHelper = MultiPeerConnectivityHelper()
 //    var session = MCSession()
 //    private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
@@ -26,14 +28,22 @@ class HostJoinGameViewController: UIViewController{
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func cancelPressed(_ sender: Any) {
+        MultiPeerConnectivityHelper.shared.cancelJoinGame()
+        loadingView.isHidden = true
+    }
     @IBAction func hostGamePressed(_ sender: Any) {
 //        multiPeerConnectivityHelper.hostGame()
         let createGameVC = CreateGameViewController()
+        MultiPeerConnectivityHelper.shared.role = .Host
         present(createGameVC, animated: true)
     }
     
     @IBAction func joinGamePressed(_ sender: Any) {
         MultiPeerConnectivityHelper.shared.joinGame(joiningGame: false)
+        loadingView.isHidden = false
+        activityIndicator.startAnimating()
+        MultiPeerConnectivityHelper.shared.role = .Guest
     }
     
 

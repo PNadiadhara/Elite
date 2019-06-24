@@ -18,6 +18,7 @@ enum SelectedInvitationOption {
     case declined
 }
 class OneVsOneViewController: UIViewController {
+
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var searchPlayerView: versusLeft!
     @IBOutlet weak var bluePlayerImage: UIImageView!
@@ -33,6 +34,11 @@ class OneVsOneViewController: UIViewController {
     @IBOutlet weak var bluePlayerMedal: UIImageView!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var waitingPlayersLabel: UILabel!
+    @IBOutlet weak var cancelHostingButton: UIButton!
+    @IBOutlet weak var waitingView: UIView!
+    
+    
     var gamerSelected: GamerModel?
     var invitation: Invitation?
     var invitations = [Invitation]()
@@ -40,11 +46,7 @@ class OneVsOneViewController: UIViewController {
     var gameTypeSelected: GameType!
     var rival: GamerModel? {
         didSet {
-            if let rival = rival {
-                 bluePlayerLabel.text = rival.username
-                 bluePlayerImage.image = UIImage(named: rival.username + "FightingRight")
-            }
-           
+            setupSentUI()
         }
     }
     var parkSelected = String()
@@ -58,11 +60,11 @@ class OneVsOneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         MultiPeerConnectivityHelper.shared.multipeerDelegate = self
+        playButton.isEnabled = false
         activityIndicator.startAnimating()
         setupTap()
         sportLabel.text = gameName?.rawValue.capitalized
-        redPlayerLabel.text = TabBarViewController.currentUser.displayName
-        redPlayerImage.image = UIImage(named: TabBarViewController.currentUser.displayName! + "FightingLeft")
+        
 
         // Do any additional setup after loading the view.
     }
@@ -78,6 +80,7 @@ class OneVsOneViewController: UIViewController {
     }
     func fetchAndSendUser() {
         let gamer = TabBarViewController.currentGamer
+        
             if let gamer = gamer {
                 do{
                     let data = try PropertyListEncoder().encode(gamer)
@@ -86,6 +89,23 @@ class OneVsOneViewController: UIViewController {
                     print("Property list encoding error \(error)")
                 }
             }
+    }
+    
+    func setupSentUI() {
+        guard let role = MultiPeerConnectivityHelper.shared.role,
+            let rival = rival else {return}
+        switch role{
+        case .Guest:
+            bluePlayerLabel.text = TabBarViewController.currentUser.displayName
+            bluePlayerImage.image = UIImage(named: TabBarViewController.currentUser.displayName! + "FightingRight")
+            redPlayerLabel.text = rival.username
+            redPlayerImage.image = UIImage(named: rival.username + "FightingLeft")
+        case .Host:
+            redPlayerLabel.text = TabBarViewController.currentUser.displayName
+            redPlayerImage.image = UIImage(named: TabBarViewController.currentUser.displayName! + "FightingLeft")
+            bluePlayerLabel.text = rival.username
+            bluePlayerImage.image = UIImage(named: rival.username + "FightingRight")
+        }
     }
 //        DBService.fetchCurrentPlayer(gamerId: TabBarViewController.currentGamer.gamerID , completion: { (error, currentPlayer) in
 //            if let error = error {
@@ -96,9 +116,14 @@ class OneVsOneViewController: UIViewController {
 //            }
 //        })
     
-
+    @IBAction func cancelHostingPressed(_ sender: Any) {
+        MultiPeerConnectivityHelper.shared.stopHosting()
+        dismiss(animated: true)
+    }
+    
 
     @IBAction func playButtonPressed(_ sender: UIButton) {
+        
        
         
 //        guard let gamerSelected = gamerSelected else {
@@ -226,6 +251,8 @@ extension OneVsOneViewController: MultipeerConnectivityDelegate{
     func connected(to User: String) {
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
+            self.waitingView.isHidden = true
+            self.playButton.isEnabled = true
             self.fetchAndSendUser()
         }
     }

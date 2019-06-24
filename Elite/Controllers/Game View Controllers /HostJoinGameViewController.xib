@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HostJoinGameViewController" customModule="Elite" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="Q0w-MC-m8Z" id="T1M-0o-LbQ"/>
+                <outlet property="loadingView" destination="rwe-Zk-rRP" id="wWF-fU-xv0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,7 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQr-uQ-v8l">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQr-uQ-v8l" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
                     <rect key="frame" x="59.5" y="372.5" width="295" height="70"/>
                     <color key="backgroundColor" red="0.97254901959999995" green="0.60784313729999995" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -35,7 +37,7 @@
                         <action selector="hostGamePressed:" destination="-1" eventType="touchUpInside" id="Z6u-qb-N4J"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1rk-Yn-EVi">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1rk-Yn-EVi" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
                     <rect key="frame" x="59.5" y="477.5" width="295" height="70"/>
                     <color key="backgroundColor" red="0.01176470588" green="0.60784313729999995" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -56,11 +58,48 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rwe-Zk-rRP">
+                    <rect key="frame" x="103.5" y="318.5" width="207" height="269"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Q0w-MC-m8Z">
+                            <rect key="frame" x="85" y="62" width="37" height="37"/>
+                        </activityIndicatorView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Searching for games" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQ4-i9-8Iu">
+                            <rect key="frame" x="24.5" y="114" width="158" height="20"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwb-rQ-rVw">
+                            <rect key="frame" x="77" y="164" width="53" height="32"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="cancelPressed:" destination="-1" eventType="touchUpInside" id="Hy0-rc-6dS"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.14154749010000001" green="0.14956755790000001" blue="0.16078951080000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="KQ4-i9-8Iu" firstAttribute="top" secondItem="Q0w-MC-m8Z" secondAttribute="bottom" constant="15" id="3JN-RO-nVd"/>
+                        <constraint firstItem="gwb-rQ-rVw" firstAttribute="top" secondItem="KQ4-i9-8Iu" secondAttribute="bottom" constant="30" id="Emy-4Q-xsg"/>
+                        <constraint firstItem="gwb-rQ-rVw" firstAttribute="centerX" secondItem="KQ4-i9-8Iu" secondAttribute="centerX" id="NOI-Rc-0v6"/>
+                        <constraint firstItem="Q0w-MC-m8Z" firstAttribute="centerX" secondItem="rwe-Zk-rRP" secondAttribute="centerX" id="TGS-2V-VAh"/>
+                        <constraint firstItem="Q0w-MC-m8Z" firstAttribute="centerY" secondItem="rwe-Zk-rRP" secondAttribute="centerY" multiplier="0.6" id="qZB-e0-Wzg"/>
+                        <constraint firstItem="KQ4-i9-8Iu" firstAttribute="centerX" secondItem="Q0w-MC-m8Z" secondAttribute="centerX" id="z30-fU-poo"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="aQr-uQ-v8l" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="0ut-HU-vQO"/>
+                <constraint firstItem="rwe-Zk-rRP" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="24R-VH-34A"/>
+                <constraint firstItem="rwe-Zk-rRP" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.3" id="3fd-Zx-xup"/>
                 <constraint firstItem="aQr-uQ-v8l" firstAttribute="top" secondItem="wsh-Tn-HI5" secondAttribute="bottom" constant="100" id="7Cu-qu-WUP"/>
+                <constraint firstItem="rwe-Zk-rRP" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.5" id="SQn-U8-YMy"/>
+                <constraint firstItem="rwe-Zk-rRP" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="U7v-MC-jU0"/>
                 <constraint firstItem="aQr-uQ-v8l" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" multiplier="0.9" id="c1u-GK-iMd"/>
                 <constraint firstItem="1rk-Yn-EVi" firstAttribute="top" secondItem="aQr-uQ-v8l" secondAttribute="bottom" constant="35" id="c8e-EG-OnD"/>
                 <constraint firstItem="wsh-Tn-HI5" firstAttribute="centerX" secondItem="aQr-uQ-v8l" secondAttribute="centerX" id="ify-Rn-fAh"/>

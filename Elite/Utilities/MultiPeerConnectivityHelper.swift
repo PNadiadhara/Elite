@@ -9,6 +9,8 @@
 import Foundation
 import MultipeerConnectivity
 
+
+
 protocol MultipeerConnectivityDelegate: AnyObject {
     func acceptedInvitation()
     func dataRecieved(data: Data)
@@ -20,7 +22,12 @@ protocol MultipeerConnectivityDelegate: AnyObject {
 class MultiPeerConnectivityHelper: NSObject {
     
     
+    enum Role: String {
+        case Guest
+        case Host
+    }
     
+    public var role: Role!
     private let serviceType = "elite-elite"
     
     weak var multipeerDelegate: MultipeerConnectivityDelegate?
@@ -82,6 +89,10 @@ class MultiPeerConnectivityHelper: NSObject {
         serviceBrowser.startBrowsingForPeers()
     }
     
+    public func cancelJoinGame(){
+        serviceBrowser.stopBrowsingForPeers()
+    }
+    
 //    public func joinGame(game: String ) {
 //        let peerID = MCPeerID(displayName: game)
 //        serviceBrowser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 10)
@@ -94,6 +105,11 @@ class MultiPeerConnectivityHelper: NSObject {
     public func acceptedInvitation() {
         
     }
+    
+    public func stopHosting(){
+        advertiserAssistant.stop()
+    }
+    
 
     public func sendDataToConnectedUsers(data: Data) {
         

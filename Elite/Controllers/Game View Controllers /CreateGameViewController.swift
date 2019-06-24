@@ -40,6 +40,8 @@ class CreateGameViewController: UIViewController {
     @IBOutlet weak var animatedBottomRight: UIView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var parkSelectedLabel: UILabel!
+    @IBOutlet weak var nextButton: RoundedButton!
+    
     
     var userStr: String?
     var userQrImage: UIImageView?
@@ -89,14 +91,21 @@ class CreateGameViewController: UIViewController {
 //            closestHandballcourt = GoogleMapHelper.getHandballCourtClosestToUsersLocation(closestToLocation: userLocation, handballCourts: handballResults)
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadAllParkData()
-        animatedViews = [animatedTopRight,animatedTopLeft,animatedBottomLeft,animatedBottomRight]
+        if !Flag.isMultiPlayerReady{
+          animatedViews = [animatedTopRight,animatedTopLeft,animatedBottomLeft,animatedBottomRight]
+                    animatedViews.forEach{$0.isHidden = true}
+            hideMultiplayerViews()
+        }
         setupViewTapGestures()
         if originViewController == .mapViewController {
             cancelButton.isHidden = false
             parkSelectedLabel.text = parkSelected
+        } else {
+            
         }
         locationManager.delegate = self
         if Flag.isDemo {
@@ -104,9 +113,8 @@ class CreateGameViewController: UIViewController {
         } else {
             GoogleMapHelper.getUsersLocations(locationManager: locationManager)
         }
-        
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.155343473, green: 0.1647959352, blue: 0.1777093709, alpha: 1)
@@ -140,6 +148,7 @@ class CreateGameViewController: UIViewController {
             }
         }
     }
+    
     func setupViewTapGestures(){
         
         let changeParkTap = UITapGestureRecognizer(target: self, action: #selector(changeParkPressed))
@@ -158,6 +167,7 @@ class CreateGameViewController: UIViewController {
         
         
     }
+    
     func addTapToGameTypeView() {
         let oneVsOneTap = UITapGestureRecognizer(target: self, action: #selector(oneVsOnePressed))
         oneVsOneView.addGestureRecognizer(oneVsOneTap)
@@ -171,7 +181,14 @@ class CreateGameViewController: UIViewController {
         let qrViewTap = UITapGestureRecognizer(target: self, action: #selector(qrCodePressed))
         qrCodeView.addGestureRecognizer(qrViewTap)
     }
+    
+    func hideMultiplayerViews() {
+        let views = [oneVsOneView,twoVsTwoView,fiveVsFiveView,qrCodeView]
+        views.forEach{$0?.isHidden = true}
+    }
+    
     func animateViews(){
+        showNextBotton()
         let views = [oneVsOneView,twoVsTwoView,fiveVsFiveView,qrCodeView]
         if gameName == .basketball {
             basketBallView.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.6078431373, blue: 0.1450980392, alpha: 1)
@@ -216,16 +233,20 @@ class CreateGameViewController: UIViewController {
             self.animatedBottomRight.transform = CGAffineTransform(translationX: 0, y: 600)
             
         })
-        UIView.animate(withDuration: 0.5) {
-            self.chooseSportLabel.alpha = 0
+        if Flag.isMultiPlayerReady {
+            UIView.animate(withDuration: 0.5) {
+                self.chooseSportLabel.alpha = 0
+            }
         }
+
         
         UIView.animate(withDuration: 1) {
             self.middleAnimatedView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         }
         
     }
-    @objc func oneVsOnePressed() {
+    
+    func segueToOneVsOne() {
         let oneVsOneVc = OneVsOneViewController()
         oneVsOneVc.modalPresentationStyle = .fullScreen
         oneVsOneVc.modalTransitionStyle = .flipHorizontal
@@ -233,9 +254,14 @@ class CreateGameViewController: UIViewController {
         oneVsOneVc.gameTypeSelected = .oneVsOne
         oneVsOneVc.parkSelected = parkSelected
         MultiPeerConnectivityHelper.shared.hostGame()
-       // multipeerConnectivityHelper.hostGame()
+        // multipeerConnectivityHelper.hostGame()
         present(oneVsOneVc, animated: true)
     }
+    
+    @objc func oneVsOnePressed() {
+        segueToOneVsOne()
+    }
+    
     @objc func twoVstwoPressed() {
         let twoVsTwoVc = TwoVsTwoViewController.init(nibName: "TwoVsTwoViewController", bundle: nil)
         twoVsTwoVc.modalPresentationStyle = .fullScreen
@@ -244,24 +270,24 @@ class CreateGameViewController: UIViewController {
         twoVsTwoVc.gameTypeSelected = .twoVsTwo
         present(twoVsTwoVc, animated: true)
     }
+    
     @objc func fiveVsFivePressed() {
         let fiveVsFiveVc = FiveVsFiveViewController.init(nibName: "FiveVsFiveViewController", bundle: nil)
         fiveVsFiveVc.modalPresentationStyle = .fullScreen
         present(fiveVsFiveVc, animated: true)
     }
+    
     @objc func qrCodePressed() {
         let qrCodeVC = QrCodeViewController.init(nibName: "QrCodeViewController", bundle: nil)
         // code for generate QRCode
         delegate?.generateQRCodeOfUser(qrString: userStr!, qrImage: userQrImage!)
         present(qrCodeVC, animated: true)
-       
     }
     
     @objc func changeParkPressed() {
         let parkListVC = ParkListViewController.init(nibName: "ParkListViewController", bundle: nil)
         if gameName == .basketball {
             parkListVC.basketBallCourts = basketballResults
-            
         } else {
             parkListVC.handBallCourts = handballResults
         }
@@ -279,11 +305,9 @@ class CreateGameViewController: UIViewController {
         addTapToGameTypeView()
         middleAnimatedView.transform = CGAffineTransform.identity
         animatedViews.forEach{$0.transform = CGAffineTransform.identity}
-         animateViews()
-
-
-        
+        animateViews()
     }
+    
     @objc func handBallPressed() {
         gameName = .handball
         showParkLabels()
@@ -292,15 +316,30 @@ class CreateGameViewController: UIViewController {
         middleAnimatedView.transform = CGAffineTransform.identity
         animatedViews.forEach{$0.transform = CGAffineTransform.identity}
         animateViews()
-
     }
+    
     @IBAction func cancelPressed(_ sender: UIButton) {
         dismiss(animated: true)
     }
     
+    @IBAction func nextButtonPressed(_ sender: RoundedButton) {
+        segueToOneVsOne()
+    }
+    
+    
     func showParkLabels() {
         parkSelectedLabel.isHidden = false
         currentLocationLabel.isHidden = false
+    }
+    
+    func showNextBotton() {
+        if gameName == .basketball {
+            nextButton.isHidden = false
+            nextButton.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.6078431373, blue: 0.1450980392, alpha: 1)
+        } else {
+            nextButton.isHidden = false
+            nextButton.backgroundColor = #colorLiteral(red: 0, green: 0.6754498482, blue: 0.9192627668, alpha: 1)
+        }
     }
 
 }
@@ -313,7 +352,6 @@ extension CreateGameViewController: CLLocationManagerDelegate{
         } else {
             self.userLocation = locations.last!
         }
-
         self.locationManager.stopUpdatingLocation()
     }
 }
