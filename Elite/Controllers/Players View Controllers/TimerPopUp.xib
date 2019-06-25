@@ -35,7 +35,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ly1-GW-TMh">
                     <rect key="frame" x="51" y="369" width="312" height="168"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Alp-Ym-vqn">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Alp-Ym-vqn">
                             <rect key="frame" x="15" y="15" width="271" height="78"/>
                             <fontDescription key="fontDescription" type="system" pointSize="65"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -86,23 +86,11 @@
                                 <action selector="cancelButtonPressed:" destination="-1" eventType="touchUpInside" id="I57-WT-Rbd"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbs-1s-fmk">
-                            <rect key="frame" x="10" y="104" width="292" height="41"/>
-                            <color key="backgroundColor" red="0.14154749010000001" green="0.14956755790000001" blue="0.16078951080000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="35"/>
-                            <state key="normal" title="Start ">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.14154749010000001" green="0.14956755790000001" blue="0.16078951080000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
-                        <constraint firstItem="cbs-1s-fmk" firstAttribute="centerX" secondItem="eNA-pK-n5Q" secondAttribute="centerX" id="9oG-qR-bx7"/>
                         <constraint firstAttribute="bottom" secondItem="wW4-RE-hlr" secondAttribute="bottom" constant="23" id="C7P-aD-uAp"/>
                         <constraint firstItem="eNA-pK-n5Q" firstAttribute="leading" secondItem="wW4-RE-hlr" secondAttribute="trailing" constant="11" id="Epj-yW-MLX"/>
-                        <constraint firstAttribute="trailing" secondItem="cbs-1s-fmk" secondAttribute="trailing" constant="10" id="Fn8-v4-XFb"/>
-                        <constraint firstItem="cbs-1s-fmk" firstAttribute="centerY" secondItem="eNA-pK-n5Q" secondAttribute="centerY" id="GCV-5W-Onj"/>
-                        <constraint firstItem="cbs-1s-fmk" firstAttribute="height" secondItem="eNA-pK-n5Q" secondAttribute="height" id="GnU-3i-HOu"/>
                         <constraint firstAttribute="trailing" secondItem="Alp-Ym-vqn" secondAttribute="trailing" constant="26" id="PnB-xG-qnU"/>
                         <constraint firstItem="Alp-Ym-vqn" firstAttribute="top" secondItem="ly1-GW-TMh" secondAttribute="top" constant="15" id="QWx-fL-zYp"/>
                         <constraint firstItem="wW4-RE-hlr" firstAttribute="leading" secondItem="ly1-GW-TMh" secondAttribute="leading" constant="10" id="UtN-Yt-Kzy"/>
@@ -111,7 +99,6 @@
                         <constraint firstAttribute="height" constant="168" id="haW-YS-OZj"/>
                         <constraint firstAttribute="width" constant="312" id="kNU-5N-Ohp"/>
                         <constraint firstAttribute="bottom" secondItem="dbv-YO-eme" secondAttribute="bottom" constant="23" id="l54-Sa-Z8m"/>
-                        <constraint firstItem="cbs-1s-fmk" firstAttribute="leading" secondItem="ly1-GW-TMh" secondAttribute="leading" constant="10" id="lPP-gV-kk4"/>
                         <constraint firstItem="Alp-Ym-vqn" firstAttribute="leading" secondItem="ly1-GW-TMh" secondAttribute="leading" constant="15" id="r1o-6H-5sU"/>
                     </constraints>
                 </view>

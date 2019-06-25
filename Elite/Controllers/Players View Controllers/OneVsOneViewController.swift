@@ -75,16 +75,28 @@ class OneVsOneViewController: UIViewController {
 //            bluePlayerImage.image = UIImage(named: gamer.username + "FightingRight")
 //        }
        
-      
 
     }
+    
+    func sendUserData(data: Data) {
+        let action = MultiPeerConnectivityHelper.Action.sendUserInfo.rawValue
+        let dataToSend = DataToSend(action: action, data: data)
+        do {
+            let data = try PropertyListEncoder().encode(dataToSend)
+            MultiPeerConnectivityHelper.shared.sendDataToConnectedUsers(data: data)
+        } catch {
+            
+        }
+        
+    }
+
     func fetchAndSendUser() {
         let gamer = TabBarViewController.currentGamer
         
             if let gamer = gamer {
                 do{
                     let data = try PropertyListEncoder().encode(gamer)
-                    MultiPeerConnectivityHelper.shared.sendDataToConnectedUsers(data: data)
+                    sendUserData(data: data)
                 }catch{
                     print("Property list encoding error \(error)")
                 }

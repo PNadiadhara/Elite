@@ -20,6 +20,15 @@ protocol MultipeerConnectivityDelegate: AnyObject {
     func connected(to User: String)
 }
 
+class DataToSend: Codable {
+    var action: String
+    var data: Data?
+    
+    init(action: String, data: Data?) {
+        self.action = action
+        self.data = data
+    }
+}
 class MultiPeerConnectivityHelper: NSObject {
     
     
@@ -32,8 +41,10 @@ class MultiPeerConnectivityHelper: NSObject {
         case sendUserInfo
         case joinedGame
         case startedTimer
+        case sharedTimerChanged
     }
     public var role: Role!
+    
     public var numberOfPlayersJoined = 0 {
         didSet{
             if checkForCount() {
@@ -44,6 +55,7 @@ class MultiPeerConnectivityHelper: NSObject {
     private let serviceType = "elite-elite"
     
     weak var multipeerDelegate: MultipeerConnectivityDelegate?
+    weak var timerDelegate: TimerDelegate?
     
     public var listOfAvailableGames = [String]()
     
@@ -109,7 +121,7 @@ class MultiPeerConnectivityHelper: NSObject {
         
         if numberOfPlayersJoined < 2 {
             return false
-        } 
+        }
         return true
         
     }
@@ -131,7 +143,14 @@ class MultiPeerConnectivityHelper: NSObject {
         advertiserAssistant.stop()
     }
     
-
+    public func convertDataToSendToDataAndSend(dataToSend: DataToSend){
+        do {
+            let data = try PropertyListEncoder().encode(dataToSend)
+            MultiPeerConnectivityHelper.shared.sendDataToConnectedUsers(data: data)
+        } catch {
+           print("Property list encoding error \(error)")
+        }
+    }
     public func sendDataToConnectedUsers(data: Data) {
         
         // 2
@@ -182,11 +201,34 @@ extension MultiPeerConnectivityHelper: MCSessionDelegate {
 
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         DispatchQueue.main.async { [weak self] in
-            let recievedData = String(data: data, encoding: .utf8)
-            if recievedData == Action.joinedGame.rawValue {
-                self?.numberOfPlayersJoined += 1
+            var dataRecieved: DataToSend?
+            do {
+                dataRecieved = try PropertyListDecoder().decode(DataToSend.self, from: data)
+                guard let sentData = dataRecieved else {return}
+            
+                switch sentData.action {
+                case Action.sendUserInfo.rawValue:
+                    self!.multipeerDelegate?.receivedUserData(data: sentData.data!)
+                case Action.joinedGame.rawValue:
+                    self?.numberOfPlayersJoined += 1
+                case Action.startedTimer.rawValue:
+                    guard let time = String(data: sentData.data!, encoding: .utf8) else {return}
+                    self?.timerDelegate?.sharedTimer(time: time)
+                default:
+                    return
+                }
+            }catch {
+                print ("property list dedoding error:\(error)")
             }
-            self!.multipeerDelegate?.receivedUserData(data: data)
+//            let recievedData = String(data: data, encoding: .utf8)
+//            if recievedData == Action.joinedGame.rawValue {
+//                self?.numberOfPlayersJoined += 1
+//            }
+//            if recievedData == Action.startedTimer.rawValue{
+//                let delegateTime = MainTimer.shared.timeString(time: TimeInterval(MainTimer.shared.time))
+//                self!.timerDelegate?.timerIsRunning(time: delegateTime)
+//            }
+//            self!.multipeerDelegate?.receivedUserData(data: data)
         }
     }
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {

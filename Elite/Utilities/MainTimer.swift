@@ -7,10 +7,30 @@
 //
 
 import Foundation
+
+protocol TimerDelegate: AnyObject {
+    func sharedTimer(time: String)
+}
 class MainTimer {
     
     let timeInterval: TimeInterval
-    static var time = 0.0
+    public var time = 0.0 {
+        didSet{
+            controllSharedTimer()
+            if MultiPeerConnectivityHelper.shared.role == .Host {
+                delegate?.sharedTimer(time: timeString(time: TimeInterval(time)))
+            }
+        }
+    }
+    public func controllSharedTimer() {
+        let delegateTime = timeString(time: TimeInterval(time))
+        let action = MultiPeerConnectivityHelper.Action.startedTimer.rawValue
+        guard let timeData = delegateTime.data(using: .utf8) else {return}
+        let dataToSend = DataToSend(action: action, data: timeData)
+        MultiPeerConnectivityHelper.shared.convertDataToSendToDataAndSend(dataToSend: dataToSend)
+//        delegate?.timerIsRunning(time: delegateTime)
+    }
+    public var sharedTimer = String()
     static var totalTime = 0.0
     
     
@@ -19,6 +39,8 @@ class MainTimer {
         self.timeInterval = timeInterval
     }
     
+    static var shared = MainTimer(timeInterval: 1)
+    weak var delegate: TimerDelegate?
     
     private lazy var timer: DispatchSourceTimer = {
         let t = DispatchSource.makeTimerSource()
@@ -67,7 +89,7 @@ class MainTimer {
         }
         let difference = self.currentBackgroundDate.timeIntervalSince(NSDate() as Date)
         let timeSince = abs(difference)
-        MainTimer.time += timeSince
+        time += timeSince
         timer.resume()
     }
     func pauseTime(){
@@ -78,16 +100,25 @@ class MainTimer {
         currentBackgroundDate = NSDate()
     }
     
+    func runTimer (){
+        eventHandler = {
+            self.time += 1
+        }
+        timer.resume()
+    }
+    
+    
 
     
 
-    static func timeString(time:TimeInterval) -> String {
+    func timeString(time:TimeInterval) -> String {
         let hours = Int(time) / 3600
         let minutes = Int(time) / 60 % 60
         let seconds = Int(time) % 60
         return String(format: "%02i:%02i:%02i", hours, minutes, seconds)
     }
-    static func getTimeInString(time: Double) -> String {
+    
+    func getTimeInString(time: Double) -> String {
         guard !(time.isNaN || time.isInfinite) else {
             return "00:00:00"
         }
@@ -96,7 +127,8 @@ class MainTimer {
         let seconds = Int(time) % 60
         return String(format: "%02i:%02i:%02i", hours, minutes, seconds)
     }
-    static func timeStringWithMilSec(time:TimeInterval) -> String {
+    
+    func timeStringWithMilSec(time:TimeInterval) -> String {
         let minutes = Int(time) / 60 % 60
         let seconds = Int(time) % 60
         let milliseconds = Int(((time.truncatingRemainder(dividingBy: 1)) * 1000) / 10)

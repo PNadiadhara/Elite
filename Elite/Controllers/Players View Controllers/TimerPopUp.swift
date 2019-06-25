@@ -31,24 +31,29 @@ class TimerPopUp: UIViewController {
     @IBOutlet weak var waitingForPlayersActivityIndicator: UIActivityIndicatorView!
     
 
-
     
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
         MultiPeerConnectivityHelper.shared.multipeerDelegate = self
+        setupUI()
+        MainTimer.shared.delegate = self
+        MultiPeerConnectivityHelper.shared.timerDelegate = self
+    }
+    
+    private func setupUI() {
         waitingForPlayersActivityIndicator.stopAnimating()
         redPlayerActivityIndicator.stopAnimating()
         bluePlayerActivityIndicator.stopAnimating()
+        timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 65, weight: .light)
     }
 
     private func sendJoinConfirmation() {
         MultiPeerConnectivityHelper.shared.numberOfPlayersJoined += 1
         let action = MultiPeerConnectivityHelper.Action.joinedGame.rawValue
-        guard let actionData = action.data(using: .utf8) else {return}
-        MultiPeerConnectivityHelper.shared.sendDataToConnectedUsers(data: actionData)
+        let dataToSend = DataToSend(action: action, data: nil)
+        MultiPeerConnectivityHelper.shared.convertDataToSendToDataAndSend(dataToSend: dataToSend)
     }
+    
 
     
     @IBAction func readyButtonPressed(_ sender: Any) {
@@ -77,6 +82,9 @@ class TimerPopUp: UIViewController {
 extension TimerPopUp: MultipeerConnectivityDelegate{
     func joinedGame() {
         readyView.isHidden = true
+        if MultiPeerConnectivityHelper.shared.role == .Host {
+            MainTimer.shared.runTimer()
+        }
     }
     
 
@@ -101,6 +109,14 @@ extension TimerPopUp: MultipeerConnectivityDelegate{
     }
     
     
+}
+
+extension TimerPopUp: TimerDelegate {
+    func sharedTimer(time: String) {
+        DispatchQueue.main.async {
+            self.timerLabel.text = time
+        }
+    }
 }
 //extension TimerPopUp: CountdownDelegate {
 //    func timerFinished() {
