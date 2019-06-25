@@ -12,10 +12,13 @@ class MainTimer {
     let timeInterval: TimeInterval
     static var time = 0.0
     static var totalTime = 0.0
+    
+    
     var currentBackgroundDate = NSDate()
     init(timeInterval: TimeInterval) {
         self.timeInterval = timeInterval
     }
+    
     
     private lazy var timer: DispatchSourceTimer = {
         let t = DispatchSource.makeTimerSource()
@@ -74,6 +77,10 @@ class MainTimer {
         timer.suspend()
         currentBackgroundDate = NSDate()
     }
+    
+
+    
+
     static func timeString(time:TimeInterval) -> String {
         let hours = Int(time) / 3600
         let minutes = Int(time) / 60 % 60
@@ -96,3 +103,40 @@ class MainTimer {
         return String(format: "%02i:%02i:%0.2i", minutes, seconds, milliseconds)
     }
 }
+
+//protocol CountdownDelegate: AnyObject {
+//    func timerIsRunning(time: String)
+//    func timerFinished()
+//}
+//
+//class CountdownTimer {
+//    
+//    var countdownTimer: Timer!
+//    weak var delegate: CountdownDelegate!
+//    
+//    var countdownTotalTime = 5 {
+//        didSet {
+//            delegate.timerIsRunning(time: countdownTotalTime.description)
+//        }
+//    }
+//    
+//    static var share = CountdownTimer()
+//    func startTimerCountdown() {
+//        countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+//    }
+//    
+//    @objc func updateTime() {
+//        if countdownTotalTime != 1 {
+//            countdownTotalTime -= 1
+//        } else {
+//            endTimer()
+//            delegate.timerFinished()
+//        }
+//    }
+//    
+//    func endTimer() {
+//        countdownTimer.invalidate()
+//    }
+//    
+//
+//}

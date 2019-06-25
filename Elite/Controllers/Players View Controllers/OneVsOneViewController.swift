@@ -123,7 +123,8 @@ class OneVsOneViewController: UIViewController {
     
 
     @IBAction func playButtonPressed(_ sender: UIButton) {
-        
+        let timerPopUp = TimerPopUp()
+        present(timerPopUp, animated: true)
        
         
 //        guard let gamerSelected = gamerSelected else {
@@ -238,7 +239,13 @@ extension OneVsOneViewController: SearchForPlayerDelegate{
     
 }
 extension OneVsOneViewController: MultipeerConnectivityDelegate{
-    func dataRecieved(data: Data) {
+    func joinedGame() {
+        
+    }
+    
+
+    
+    func receivedUserData(data: Data) {
         do {
             rival = try PropertyListDecoder().decode(GamerModel.self, from: data)
         

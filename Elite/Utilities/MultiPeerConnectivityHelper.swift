@@ -13,12 +13,13 @@ import MultipeerConnectivity
 
 protocol MultipeerConnectivityDelegate: AnyObject {
     func acceptedInvitation()
-    func dataRecieved(data: Data)
+    func joinedGame()
+    func receivedUserData(data: Data)
     func foundAdverstiser(availableGames: [String])
     func invitationNotification(handler: @escaping(Bool) -> Void )
     func connected(to User: String)
-    
 }
+
 class MultiPeerConnectivityHelper: NSObject {
     
     
@@ -27,7 +28,18 @@ class MultiPeerConnectivityHelper: NSObject {
         case Host
     }
     
+    enum Action: String {
+        case sendUserInfo
+        case joinedGame
+    }
     public var role: Role!
+    public var numberOfPlayersJoined = 0 {
+        didSet{
+            if checkForCount() {
+              multipeerDelegate?.joinedGame()
+            }
+        }
+    }
     private let serviceType = "elite-elite"
     
     weak var multipeerDelegate: MultipeerConnectivityDelegate?
@@ -91,6 +103,14 @@ class MultiPeerConnectivityHelper: NSObject {
     
     public func cancelJoinGame(){
         serviceBrowser.stopBrowsingForPeers()
+    }
+    func checkForCount() -> Bool {
+        
+        if numberOfPlayersJoined < 2 {
+            return false
+        }
+        return true
+        
     }
     
 //    public func joinGame(game: String ) {
@@ -158,10 +178,14 @@ extension MultiPeerConnectivityHelper: MCSessionDelegate {
 //    func session(_ session: MCSession, didReceiveCertificate certificate: [Any]?, fromPeer peerID: MCPeerID, certificateHandler: @escaping (Bool) -> Void) {
 //        certificateHandler(true)
 //    }
-    
+
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         DispatchQueue.main.async { [weak self] in
-            self!.multipeerDelegate?.dataRecieved(data: data)
+            let recievedData = String(data: data, encoding: .utf8)
+            if recievedData == Action.joinedGame.rawValue {
+                self?.numberOfPlayersJoined += 1
+            }
+            self!.multipeerDelegate?.receivedUserData(data: data)
         }
     }
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
