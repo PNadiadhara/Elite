@@ -44,6 +44,7 @@ class TimerPopUp: UIViewController {
     }
 
     private func sendJoinConfirmation() {
+        MultiPeerConnectivityHelper.shared.numberOfPlayersJoined += 1
         let action = MultiPeerConnectivityHelper.Action.joinedGame.rawValue
         guard let actionData = action.data(using: .utf8) else {return}
         MultiPeerConnectivityHelper.shared.sendDataToConnectedUsers(data: actionData)
@@ -54,7 +55,6 @@ class TimerPopUp: UIViewController {
         readyButton.isHidden = true
         waitingForPlayerLabel.isHidden = false
         sendJoinConfirmation()
-        MultiPeerConnectivityHelper.shared.numberOfPlayersJoined += 1
         waitingForPlayersActivityIndicator.isHidden = false
         waitingForPlayersActivityIndicator.startAnimating()
         
@@ -85,10 +85,7 @@ extension TimerPopUp: MultipeerConnectivityDelegate{
     }
     
     func receivedUserData(data: Data) {
-        let value = data.withUnsafeBytes {
-            $0.load(as: Int.self)
-        }
-        MultiPeerConnectivityHelper.shared.numberOfPlayersJoined += value
+
     }
     
     func foundAdverstiser(availableGames: [String]) {

@@ -31,6 +31,7 @@ class MultiPeerConnectivityHelper: NSObject {
     enum Action: String {
         case sendUserInfo
         case joinedGame
+        case startedTimer
     }
     public var role: Role!
     public var numberOfPlayersJoined = 0 {
@@ -108,7 +109,7 @@ class MultiPeerConnectivityHelper: NSObject {
         
         if numberOfPlayersJoined < 2 {
             return false
-        }
+        } 
         return true
         
     }
