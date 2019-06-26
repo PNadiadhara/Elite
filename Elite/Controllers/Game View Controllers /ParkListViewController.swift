@@ -135,7 +135,7 @@ extension ParkListViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 extension ParkListViewController: MultipeerConnectivityDelegate {
-    func joinedGame() {
+    func countIsTrue() {
         
     }
     

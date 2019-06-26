@@ -19,6 +19,7 @@
                 <outlet property="bluePlayerView" destination="zbN-rU-YBV" id="puC-uD-xPY"/>
                 <outlet property="blueThreePlayerLabel" destination="0VU-9N-jSp" id="pmc-7i-gRb"/>
                 <outlet property="blueTwoPlayerLabel" destination="Y4X-RR-PSo" id="k19-cU-MQR"/>
+                <outlet property="confirmButton" destination="Hgh-T6-WCc" id="PG5-Rx-sBe"/>
                 <outlet property="redFivePlayerLabel" destination="xQP-YE-A75" id="yQZ-Jl-Lw3"/>
                 <outlet property="redFourPlayerLabel" destination="Zaq-yu-aIj" id="3vC-pF-qhA"/>
                 <outlet property="redOnePlayerLabel" destination="eNX-Oa-Mxv" id="ygr-C1-sbP"/>
@@ -189,8 +190,9 @@
                         <constraint firstItem="0VU-9N-jSp" firstAttribute="top" secondItem="Y4X-RR-PSo" secondAttribute="bottom" constant="5" id="z8Y-zj-pmS"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hgh-T6-WCc">
-                    <rect key="frame" x="11" y="561" width="353" height="42"/>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hgh-T6-WCc" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
+                    <rect key="frame" x="45" y="561" width="285" height="42"/>
+                    <color key="backgroundColor" red="0.21960784310000001" green="0.5568627451" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="25"/>
                     <state key="normal" title="Confirm">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -202,7 +204,7 @@
             </subviews>
             <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Hgh-T6-WCc" secondAttribute="trailing" constant="11" id="1X3-pv-VWS"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Hgh-T6-WCc" secondAttribute="trailing" constant="45" id="1X3-pv-VWS"/>
                 <constraint firstItem="zbN-rU-YBV" firstAttribute="width" secondItem="1lF-Sb-xVl" secondAttribute="width" id="BUz-Ht-NRF"/>
                 <constraint firstItem="29c-x0-eB0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="11" id="BZA-HK-hlR"/>
                 <constraint firstItem="29c-x0-eB0" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="HMZ-R2-pTt"/>
@@ -215,7 +217,7 @@
                 <constraint firstItem="1lF-Sb-xVl" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.3" id="hj3-ep-3Ff"/>
                 <constraint firstItem="zbN-rU-YBV" firstAttribute="height" secondItem="1lF-Sb-xVl" secondAttribute="height" id="hyS-eW-BVt"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="29c-x0-eB0" secondAttribute="trailing" constant="11" id="nYI-am-mZK"/>
-                <constraint firstItem="Hgh-T6-WCc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="11" id="qP7-bx-mlp"/>
+                <constraint firstItem="Hgh-T6-WCc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="qP7-bx-mlp"/>
                 <constraint firstItem="zbN-rU-YBV" firstAttribute="top" secondItem="1lF-Sb-xVl" secondAttribute="bottom" constant="45" id="rZV-lS-6Fp"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

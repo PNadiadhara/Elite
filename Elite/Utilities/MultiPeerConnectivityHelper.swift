@@ -13,13 +13,16 @@ import MultipeerConnectivity
 
 protocol MultipeerConnectivityDelegate: AnyObject {
     func acceptedInvitation()
-    func joinedGame()
+    func countIsTrue()
     func receivedUserData(data: Data)
     func foundAdverstiser(availableGames: [String])
     func invitationNotification(handler: @escaping(Bool) -> Void )
     func connected(to User: String)
 }
-
+protocol MultipeerConnectivityWinnerVotesDelegate: AnyObject {
+    func countIsTrue()
+    func winnerVotedReceived(data: Data)
+}
 class DataToSend: Codable {
     var action: String
     var data: Data?
@@ -29,10 +32,21 @@ class DataToSend: Codable {
         self.data = data
     }
 }
+
+class WinnerVotes: Codable {
+    var player: String
+    var winnerTeam: String
+    
+    init(player: String, winnerTeam: String) {
+        self.player = player
+        self.winnerTeam = winnerTeam
+    }
+}
+
 class MultiPeerConnectivityHelper: NSObject {
     
     
-    enum Team: String {
+    enum Teams: String {
         case BluePlayer
         case RedPlayer
     }
@@ -47,6 +61,7 @@ class MultiPeerConnectivityHelper: NSObject {
         case runSharedTimer
         case canceledGame
         case finishedGame
+        case choseWinner
     }
     
     enum ButtonStatus {
@@ -54,22 +69,29 @@ class MultiPeerConnectivityHelper: NSObject {
         case Pause
     }
 
-    public var team: Team!
+    public var team: Teams!
+    public var winner: GamerModel?
     public var redPlayer: GamerModel?
     public var bluePlayer: GamerModel? {
         didSet {
-            multipeerDelegate?.joinedGame()
+            multipeerDelegate?.countIsTrue()
         }
     }
     
     
     
     public var buttonStatus = ButtonStatus.Pause
-    
+    public var winnerVotes = [WinnerVotes]() {
+        didSet{
+            if checkForCount(count: winnerVotes.count) {
+                multipeerWinnerVotesDelegate?.countIsTrue()
+            }
+        }
+    }
     public var numberOfPlayersJoined = 0 {
         didSet{
-            if checkForCount() {
-              multipeerDelegate?.joinedGame()
+            if checkForCount(count: numberOfPlayersJoined) {
+              multipeerDelegate?.countIsTrue()
             }
         }
     }
@@ -77,6 +99,7 @@ class MultiPeerConnectivityHelper: NSObject {
     
     weak var multipeerDelegate: MultipeerConnectivityDelegate?
     weak var timerDelegate: TimerDelegate?
+    weak var multipeerWinnerVotesDelegate: MultipeerConnectivityWinnerVotesDelegate?
     
     public var listOfAvailableGames = [String]()
     
@@ -138,9 +161,9 @@ class MultiPeerConnectivityHelper: NSObject {
     public func cancelJoinGame(){
         serviceBrowser.stopBrowsingForPeers()
     }
-    func checkForCount() -> Bool {
+    func checkForCount(count: Int) -> Bool {
         
-        if numberOfPlayersJoined < 2 {
+        if count < 2 {
             return false
         }
         return true
@@ -244,6 +267,9 @@ extension MultiPeerConnectivityHelper: MCSessionDelegate {
                     self?.timerDelegate?.changedButtonText(text: "Pause")
                 case Action.finishedGame.rawValue:
                     self?.timerDelegate?.finishedTimer()
+                case Action.choseWinner.rawValue:
+                    self?.multipeerWinnerVotesDelegate?.winnerVotedReceived(data: sentData.data!)
+//                    self?.numberOfVotes += 1
                 default:
                     print("No action Sent")
                     

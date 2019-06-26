@@ -251,7 +251,7 @@ extension OneVsOneViewController: SearchForPlayerDelegate{
     
 }
 extension OneVsOneViewController: MultipeerConnectivityDelegate{
-    func joinedGame() {
+    func countIsTrue() {
         setupSentUI()
     }
     

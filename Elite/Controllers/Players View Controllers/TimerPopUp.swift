@@ -124,7 +124,7 @@ class TimerPopUp: UIViewController {
 
 }
 extension TimerPopUp: MultipeerConnectivityDelegate{
-    func joinedGame() {
+    func countIsTrue() {
         readyView.isHidden = true
         if MultiPeerConnectivityHelper.shared.team == .RedPlayer {
             MainTimer.shared.runTimer()

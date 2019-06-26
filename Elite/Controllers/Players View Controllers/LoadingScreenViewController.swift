@@ -10,7 +10,7 @@ import UIKit
 
 
 class LoadingScreenViewController: UIViewController, MultipeerConnectivityDelegate {
-    func joinedGame() {
+    func countIsTrue() {
         
     }
     

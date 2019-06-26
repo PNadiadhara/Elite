@@ -28,19 +28,20 @@ class EndGameViewController: UIViewController {
     @IBOutlet weak var redPlayerImage: UIImageView!
     @IBOutlet weak var bluePlayerImage: UIImageView!
     
+    @IBOutlet weak var confirmButton: UIButton!
     
     
     var selectedTeam: Teams?
-    var game: GameModel?
+//    var game: GameModel?
 //    var currentPlayer: CurrentPlayer?
 //    var gameType: GameType!
-    var blueOnePlayer: GamerModel!
-    var redOnePlayer: GamerModel!
+//    var blueOnePlayer: GamerModel!
+//    var redOnePlayer: GamerModel!
     var gameBegginingTimeStamp: Date?
     var gameEndTimeStamp: Date?
-    var currentPlayerTeamRole = String()
-    var winnerConfirmationId = String()
-    var isHost = Bool()
+//    var currentPlayerTeamRole = String()
+//    var winnerConfirmationId = String()
+//    var isHost = Bool()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +49,7 @@ class EndGameViewController: UIViewController {
         setupUI()
         selectedTeam = .redTeam
         redPlayerView.alpha = 1
-        
+        MultiPeerConnectivityHelper.shared.multipeerWinnerVotesDelegate = self
     }
     func setupUI(){
 
@@ -59,7 +60,19 @@ class EndGameViewController: UIViewController {
         let difference = Calendar.current.dateComponents([.hour, .minute], from: beginningTimeStamp, to: endTimeStamp)
         return String(format: "%02ld%02ld", difference.hour!, difference.minute!)
     }
-
+    private func submitVote(winner: String, winnerTeam: String) {
+        let winnerVote = WinnerVotes(player: winner, winnerTeam: winnerTeam)
+        MultiPeerConnectivityHelper.shared.winnerVotes.append(winnerVote)
+        do{
+            let data = try PropertyListEncoder().encode(winnerVote)
+            let action = MultiPeerConnectivityHelper.Action.choseWinner.rawValue
+            let dataToSend = DataToSend(action: action, data: data)
+            MultiPeerConnectivityHelper.shared.convertDataToSendToDataAndSend(dataToSend: dataToSend)
+        }catch{
+            print("Property list encoding error \(error)")
+        }
+        
+    }
 //    func fetchWinningConfirmations(){
 //        DBService.fetchWinningConfirmations(gameId: invitation.gameId) { (error, winningConfirmation) in
 //            if let error = error {
@@ -83,10 +96,21 @@ class EndGameViewController: UIViewController {
 //        }
 //    }
     @IBAction func confirmPressed(_ sender: UIButton) {
-//        guard let selectedTeam = selectedTeam else {
-//            showAlert(title: "Please select winner", message: nil)
-//            return
-//        }
+        guard let selectedTeam = selectedTeam else {
+            showAlert(title: "Please select winner", message: nil)
+            return
+        }
+        guard let winner = MultiPeerConnectivityHelper.shared.winner else {
+            print("Error: No winner!!!")
+            return}
+        confirmAlert(title: "Winner: \(winner.username)", message: "Are you sure?") { (Done) in
+            self.submitVote(winner: winner.username, winnerTeam: selectedTeam.rawValue)
+            
+            
+//            MultiPeerConnectivityHelper.shared.numberOfVotes += 1
+        }
+        
+        
 //        guard let game = game  else {
 //            print("No Game")
 //            return
@@ -126,22 +150,41 @@ class EndGameViewController: UIViewController {
         bluePlayerView.addGestureRecognizer(bluePlayerViewTap)
     }
     @objc func redPlayerTap() {
+        
         selectedTeam = .redTeam
         redPlayerView.alpha = 1
         bluePlayerView.alpha = 0.5
+        MultiPeerConnectivityHelper.shared.winner = MultiPeerConnectivityHelper.shared.redPlayer
         
     }
     @objc func bluePlayerTap() {
         selectedTeam = .blueTeam
         redPlayerView.alpha = 0.5
         bluePlayerView.alpha = 1.0
+        MultiPeerConnectivityHelper.shared.winner = MultiPeerConnectivityHelper.shared.bluePlayer
 
     }
     /*TO DO: func to checkmark the selected image
      func to segue to winnerVC and pass inviation
     */
 }
-
+extension EndGameViewController: MultipeerConnectivityWinnerVotesDelegate {
+    func winnerVotedReceived(data: Data) {
+        do {
+            let winnerVote = try PropertyListDecoder().decode(WinnerVotes.self, from: data)
+            MultiPeerConnectivityHelper.shared.winnerVotes.append(winnerVote)
+            
+        }catch {
+            print ("property list dedoding error:\(error)")
+        }
+        
+    }
+    
+    func countIsTrue() {
+        //TO DO: SEGUE TO WINNER CONFIRMATION
+        print("Count is true")
+    }
+}
 //extension EndGameViewController {
 //    func createWinningConfirmation() {
 //        let winnerConfirmation = WinnerConfirmation(gameId: invitation.gameId, winnerConfirmationId: nil, bluePlayerOne: nil, bluePlayerTwo: nil, bluePlayerThree: nil, bluePlayerFour: nil, bluePlayerFive: nil, redPlayerOne: nil, redPlayerTwo: nil, redPlayerThree: nil, redPlayerFour: nil, redPlayerFive: nil)

@@ -49,7 +49,7 @@ class HostJoinGameViewController: UIViewController{
 
 }
 extension HostJoinGameViewController: MultipeerConnectivityDelegate{
-    func joinedGame() {
+    func countIsTrue() {
         
     }
     
