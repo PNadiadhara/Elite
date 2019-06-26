@@ -16,7 +16,7 @@ class MainTimer {
     let timeInterval: TimeInterval
     public var time = 0.0 {
         didSet{
-            delegate?.sharedTimer(time: timeString(time: TimeInterval(time)))
+            delegate?.sharedTimer(time: timeStringWithMilSec(time: TimeInterval(time)))
 //            controllSharedTimer()
 //            if MultiPeerConnectivityHelper.shared.role == .Host {
 //                delegate?.sharedTimer(time: timeString(time: TimeInterval(time)))
@@ -34,7 +34,7 @@ class MainTimer {
         self.timeInterval = timeInterval
     }
     
-    static var shared = MainTimer(timeInterval: 1)
+    static var shared = MainTimer(timeInterval: 0.0001)
     weak var delegate: TimerDelegate?
     
     private lazy var timer: DispatchSourceTimer = {
@@ -54,7 +54,7 @@ class MainTimer {
         case restated
     }
     
-    public var state: State = .suspended
+    private var state: State = .suspended
     
     deinit {
         timer.setEventHandler {}
@@ -80,26 +80,24 @@ class MainTimer {
     }
     
     func restartTimer(){
-        if state == .suspended{
+        if state == .resumed{
             return
         }
         let difference = self.currentBackgroundDate.timeIntervalSince(NSDate() as Date)
         let timeSince = abs(difference)
         time += timeSince
-        timer.resume()
+        resume()
     }
+
+    
     func pauseTime(){
-        if state == .suspended {
-            return
-        }
-        state = .suspended
-        timer.suspend()
+        suspend()
         currentBackgroundDate = NSDate()
     }
     
     func runTimer (){
         eventHandler = {
-            self.time += 1
+            self.time += 0.0001
         }
         resume()
     }

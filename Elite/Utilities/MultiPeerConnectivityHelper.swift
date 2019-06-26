@@ -224,7 +224,7 @@ extension MultiPeerConnectivityHelper: MCSessionDelegate {
                 case Action.startedTimer.rawValue:
                     MainTimer.shared.runTimer()
                 case Action.pauseSharedTimer.rawValue:
-                    MainTimer.shared.pauseTime()
+                    MainTimer.shared.suspend()
                     self?.buttonStatus = ButtonStatus.Play
                 case Action.resumeSharedTimer.rawValue:
                     MainTimer.shared.resume()

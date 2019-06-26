@@ -37,10 +37,10 @@ class TimerPopUp: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        MultiPeerConnectivityHelper.shared.multipeerDelegate = self
+        setupDelegates()
         setupUI()
-        MainTimer.shared.delegate = self
-        MultiPeerConnectivityHelper.shared.timerDelegate = self
+        setupBackgroundNotifications()
+
     }
     
     private func setupUI() {
@@ -49,7 +49,23 @@ class TimerPopUp: UIViewController {
         bluePlayerActivityIndicator.stopAnimating()
         timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 65, weight: .light)
     }
-
+    
+    private func setupBackgroundNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(pauseTimer), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(startApp) , name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    private func setupDelegates() {
+        MainTimer.shared.delegate = self
+        MultiPeerConnectivityHelper.shared.timerDelegate = self
+        MultiPeerConnectivityHelper.shared.multipeerDelegate = self
+    }
+    @objc func pauseTimer() {
+        MainTimer.shared.pauseTime()
+    }
+    @objc func startApp(){
+        MainTimer.shared.restartTimer()
+    }
     private func sendJoinConfirmation() {
         MultiPeerConnectivityHelper.shared.numberOfPlayersJoined += 1
         let action = MultiPeerConnectivityHelper.Action.joinedGame.rawValue
@@ -81,7 +97,7 @@ class TimerPopUp: UIViewController {
             pauseButton.setTitle("Play", for: .normal)
             let pauseSharedTimerAction = MultiPeerConnectivityHelper.Action.pauseSharedTimer.rawValue
             MainTimer.shared.timerManager(action: pauseSharedTimerAction)
-            MainTimer.shared.pauseTime()
+            MainTimer.shared.suspend()
             MultiPeerConnectivityHelper.shared.buttonStatus = MultiPeerConnectivityHelper.ButtonStatus.Play
         case .Play:
             pauseButton.setTitle("Pause", for: .normal)
@@ -106,7 +122,7 @@ extension TimerPopUp: MultipeerConnectivityDelegate{
             MainTimer.shared.runTimer()
             let startSharedTimerAction = MultiPeerConnectivityHelper.Action.startedTimer.rawValue
             MainTimer.shared.timerManager(action: startSharedTimerAction)
-        }         
+        }
     }
     
 
