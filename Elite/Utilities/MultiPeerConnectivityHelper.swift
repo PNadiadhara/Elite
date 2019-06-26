@@ -42,8 +42,18 @@ class MultiPeerConnectivityHelper: NSObject {
         case joinedGame
         case startedTimer
         case sharedTimerChanged
+        case pauseSharedTimer
+        case resumeSharedTimer
+        case runSharedTimer
     }
+    
+    enum ButtonStatus {
+        case Play
+        case Pause
+    }
+
     public var role: Role!
+    public var buttonStatus = ButtonStatus.Pause
     
     public var numberOfPlayersJoined = 0 {
         didSet{
@@ -205,17 +215,23 @@ extension MultiPeerConnectivityHelper: MCSessionDelegate {
             do {
                 dataRecieved = try PropertyListDecoder().decode(DataToSend.self, from: data)
                 guard let sentData = dataRecieved else {return}
-            
+                print(sentData.action)
                 switch sentData.action {
                 case Action.sendUserInfo.rawValue:
                     self!.multipeerDelegate?.receivedUserData(data: sentData.data!)
                 case Action.joinedGame.rawValue:
                     self?.numberOfPlayersJoined += 1
                 case Action.startedTimer.rawValue:
-                    guard let time = String(data: sentData.data!, encoding: .utf8) else {return}
-                    self?.timerDelegate?.sharedTimer(time: time)
+                    MainTimer.shared.runTimer()
+                case Action.pauseSharedTimer.rawValue:
+                    MainTimer.shared.pauseTime()
+                    self?.buttonStatus = ButtonStatus.Play
+                case Action.resumeSharedTimer.rawValue:
+                    MainTimer.shared.resume()
+                    self?.buttonStatus = ButtonStatus.Pause
                 default:
-                    return
+                    print("No action Sent")
+                    
                 }
             }catch {
                 print ("property list dedoding error:\(error)")

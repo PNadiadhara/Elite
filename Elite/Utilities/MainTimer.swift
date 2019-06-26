@@ -16,22 +16,17 @@ class MainTimer {
     let timeInterval: TimeInterval
     public var time = 0.0 {
         didSet{
-            controllSharedTimer()
-            if MultiPeerConnectivityHelper.shared.role == .Host {
-                delegate?.sharedTimer(time: timeString(time: TimeInterval(time)))
-            }
+            delegate?.sharedTimer(time: timeString(time: TimeInterval(time)))
+//            controllSharedTimer()
+//            if MultiPeerConnectivityHelper.shared.role == .Host {
+//                delegate?.sharedTimer(time: timeString(time: TimeInterval(time)))
+//            }
         }
     }
-    public func controllSharedTimer() {
-        let delegateTime = timeString(time: TimeInterval(time))
-        let action = MultiPeerConnectivityHelper.Action.startedTimer.rawValue
-        guard let timeData = delegateTime.data(using: .utf8) else {return}
-        let dataToSend = DataToSend(action: action, data: timeData)
-        MultiPeerConnectivityHelper.shared.convertDataToSendToDataAndSend(dataToSend: dataToSend)
-//        delegate?.timerIsRunning(time: delegateTime)
-    }
+
     public var sharedTimer = String()
     static var totalTime = 0.0
+    
     
     
     var currentBackgroundDate = NSDate()
@@ -59,7 +54,8 @@ class MainTimer {
         case restated
     }
     
-    var state: State = .suspended
+    public var state: State = .suspended
+    
     deinit {
         timer.setEventHandler {}
         timer.cancel()
@@ -96,6 +92,7 @@ class MainTimer {
         if state == .suspended {
             return
         }
+        state = .suspended
         timer.suspend()
         currentBackgroundDate = NSDate()
     }
@@ -104,7 +101,7 @@ class MainTimer {
         eventHandler = {
             self.time += 1
         }
-        timer.resume()
+        resume()
     }
     
     
@@ -134,6 +131,19 @@ class MainTimer {
         let milliseconds = Int(((time.truncatingRemainder(dividingBy: 1)) * 1000) / 10)
         return String(format: "%02i:%02i:%0.2i", minutes, seconds, milliseconds)
     }
+    public func controllSharedTimer() {
+        let delegateTime = timeString(time: TimeInterval(time))
+        let action = MultiPeerConnectivityHelper.Action.startedTimer.rawValue
+        guard let timeData = delegateTime.data(using: .utf8) else {return}
+        let dataToSend = DataToSend(action: action, data: timeData)
+        MultiPeerConnectivityHelper.shared.convertDataToSendToDataAndSend(dataToSend: dataToSend)
+        //        delegate?.timerIsRunning(time: delegateTime)
+    }
+    public func timerManager(action: String) {
+        let dataToSend = DataToSend(action: action, data: nil)
+        MultiPeerConnectivityHelper.shared.convertDataToSendToDataAndSend(dataToSend: dataToSend)
+    }
+    
 }
 
 //protocol CountdownDelegate: AnyObject {

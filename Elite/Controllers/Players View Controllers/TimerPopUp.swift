@@ -8,6 +8,9 @@
 
 import UIKit
 
+
+
+
 class TimerPopUp: UIViewController {
 
     
@@ -30,7 +33,7 @@ class TimerPopUp: UIViewController {
     @IBOutlet weak var waitingForPlayerLabel: UILabel!
     @IBOutlet weak var waitingForPlayersActivityIndicator: UIActivityIndicatorView!
     
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,11 +70,28 @@ class TimerPopUp: UIViewController {
     
     
     @IBAction func doneButtonPressed(_ sender: Any) {
-        
+        confirmAlert(title: "Finish Game", message: "Are you sure?") { (done) in
+            //TO DO SEGUE TO NEXT VC AND FINISH THE GAME ON THE OPPONENT
+        }
     }
     @IBAction func pauseButtonPressed(_ sender: Any) {
         
+        switch MultiPeerConnectivityHelper.shared.buttonStatus {
+        case .Pause:
+            pauseButton.setTitle("Play", for: .normal)
+            let pauseSharedTimerAction = MultiPeerConnectivityHelper.Action.pauseSharedTimer.rawValue
+            MainTimer.shared.timerManager(action: pauseSharedTimerAction)
+            MainTimer.shared.pauseTime()
+            MultiPeerConnectivityHelper.shared.buttonStatus = MultiPeerConnectivityHelper.ButtonStatus.Play
+        case .Play:
+            pauseButton.setTitle("Pause", for: .normal)
+            let resumeSharedTimerAction = MultiPeerConnectivityHelper.Action.resumeSharedTimer.rawValue
+            MainTimer.shared.timerManager(action: resumeSharedTimerAction)
+            MainTimer.shared.resume()
+            MultiPeerConnectivityHelper.shared.buttonStatus = MultiPeerConnectivityHelper.ButtonStatus.Pause
+        }
     }
+    
     @IBAction func cancelButtonPressed(_ sender: Any) {
         
     }
@@ -84,7 +104,9 @@ extension TimerPopUp: MultipeerConnectivityDelegate{
         readyView.isHidden = true
         if MultiPeerConnectivityHelper.shared.role == .Host {
             MainTimer.shared.runTimer()
-        }
+            let startSharedTimerAction = MultiPeerConnectivityHelper.Action.startedTimer.rawValue
+            MainTimer.shared.timerManager(action: startSharedTimerAction)
+        }         
     }
     
 
@@ -112,6 +134,7 @@ extension TimerPopUp: MultipeerConnectivityDelegate{
 }
 
 extension TimerPopUp: TimerDelegate {
+    
     func sharedTimer(time: String) {
         DispatchQueue.main.async {
             self.timerLabel.text = time
