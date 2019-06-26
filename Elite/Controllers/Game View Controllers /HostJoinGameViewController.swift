@@ -35,7 +35,7 @@ class HostJoinGameViewController: UIViewController{
     @IBAction func hostGamePressed(_ sender: Any) {
 //        multiPeerConnectivityHelper.hostGame()
         let createGameVC = CreateGameViewController()
-        MultiPeerConnectivityHelper.shared.role = .Host
+        MultiPeerConnectivityHelper.shared.team = .RedPlayer
         present(createGameVC, animated: true)
     }
     
@@ -43,7 +43,7 @@ class HostJoinGameViewController: UIViewController{
         MultiPeerConnectivityHelper.shared.joinGame(joiningGame: false)
         loadingView.isHidden = false
         activityIndicator.startAnimating()
-        MultiPeerConnectivityHelper.shared.role = .Guest
+        MultiPeerConnectivityHelper.shared.team = .BluePlayer 
     }
     
 

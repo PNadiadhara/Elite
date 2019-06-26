@@ -10,6 +10,8 @@ import Foundation
 
 protocol TimerDelegate: AnyObject {
     func sharedTimer(time: String)
+    func changedButtonText(text: String)
+    func finishedTimer()
 }
 class MainTimer {
     

@@ -44,11 +44,11 @@ class OneVsOneViewController: UIViewController {
     var invitations = [Invitation]()
     var gameName: GameName?
     var gameTypeSelected: GameType!
-    var rival: GamerModel? {
-        didSet {
-            setupSentUI()
-        }
-    }
+//    var bluePlayer: GamerModel? {
+//        didSet {
+//            setupSentUI()
+//        }
+//    }
     var parkSelected = String()
     //var multiPeerHelper = MultiPeerConnectivityHelper()
    
@@ -92,10 +92,10 @@ class OneVsOneViewController: UIViewController {
 
     func fetchAndSendUser() {
         let gamer = TabBarViewController.currentGamer
-        
             if let gamer = gamer {
                 do{
                     let data = try PropertyListEncoder().encode(gamer)
+                    MultiPeerConnectivityHelper.shared.redPlayer = gamer
                     sendUserData(data: data)
                 }catch{
                     print("Property list encoding error \(error)")
@@ -104,19 +104,19 @@ class OneVsOneViewController: UIViewController {
     }
     
     func setupSentUI() {
-        guard let role = MultiPeerConnectivityHelper.shared.role,
-            let rival = rival else {return}
-        switch role{
-        case .Guest:
+        guard let team = MultiPeerConnectivityHelper.shared.team,
+            let bluePlayer = MultiPeerConnectivityHelper.shared.bluePlayer else {return}
+        switch team{
+        case .BluePlayer:
             bluePlayerLabel.text = TabBarViewController.currentUser.displayName
             bluePlayerImage.image = UIImage(named: TabBarViewController.currentUser.displayName! + "FightingRight")
-            redPlayerLabel.text = rival.username
-            redPlayerImage.image = UIImage(named: rival.username + "FightingLeft")
-        case .Host:
+            redPlayerLabel.text = bluePlayer.username
+            redPlayerImage.image = UIImage(named: bluePlayer.username + "FightingLeft")
+        case .RedPlayer:
             redPlayerLabel.text = TabBarViewController.currentUser.displayName
             redPlayerImage.image = UIImage(named: TabBarViewController.currentUser.displayName! + "FightingLeft")
-            bluePlayerLabel.text = rival.username
-            bluePlayerImage.image = UIImage(named: rival.username + "FightingRight")
+            bluePlayerLabel.text = bluePlayer.username
+            bluePlayerImage.image = UIImage(named: bluePlayer.username + "FightingRight")
         }
     }
 //        DBService.fetchCurrentPlayer(gamerId: TabBarViewController.currentGamer.gamerID , completion: { (error, currentPlayer) in
@@ -186,21 +186,21 @@ class OneVsOneViewController: UIViewController {
 //
 
     }
-    func createCurrentGameRoles(gameId: String) {
-        let blueOnePlayer = CurrentPlayer(currentPlayerId: "", gamerId: gamerSelected!.gamerID, userName: gamerSelected!.username, teamRole: TeamRoles.blueOne.rawValue, gameId: gameId)
-        DBService.postCurrentPlayer(currentPlayer: blueOnePlayer) { (error) in
-            if let error = error {
-                self.showAlert(title: "Error", message: error.localizedDescription)
-            }
-        }
-        let redPlayerOne = CurrentPlayer(currentPlayerId: "",gamerId: TabBarViewController.currentUser.uid, userName: TabBarViewController.currentUser.displayName ?? "N/A", teamRole: TeamRoles.redOne.rawValue, gameId: gameId)
-        DBService.postCurrentPlayer(currentPlayer: redPlayerOne) { (error) in
-            if let error = error {
-                self.showAlert(title: "Error", message: error.localizedDescription)
-            }
-        }
-        
-    }
+//    func createCurrentGameRoles(gameId: String) {
+//        let blueOnePlayer = CurrentPlayer(currentPlayerId: "", gamerId: gamerSelected!.gamerID, userName: gamerSelected!.username, teamRole: TeamRoles.blueOne.rawValue, gameId: gameId)
+//        DBService.postCurrentPlayer(currentPlayer: blueOnePlayer) { (error) in
+//            if let error = error {
+//                self.showAlert(title: "Error", message: error.localizedDescription)
+//            }
+//        }
+//        let redPlayerOne = CurrentPlayer(currentPlayerId: "",gamerId: TabBarViewController.currentUser.uid, userName: TabBarViewController.currentUser.displayName ?? "N/A", teamRole: TeamRoles.redOne.rawValue, gameId: gameId)
+//        DBService.postCurrentPlayer(currentPlayer: redPlayerOne) { (error) in
+//            if let error = error {
+//                self.showAlert(title: "Error", message: error.localizedDescription)
+//            }
+//        }
+//
+//    }
     
     @IBAction func cancelPressed(_ sender: UIButton) {
         dismiss(animated: true)
@@ -225,15 +225,15 @@ class OneVsOneViewController: UIViewController {
 //                }
 //        }
 //    }
-    @objc func searchPlayerPressed() {
-        let searchPlayerVc = SearchPlayerViewController.init(nibName: "SearchPlayerViewController", bundle: nil)
-        searchPlayerVc.modalPresentationStyle = .fullScreen
-        searchPlayerVc.searchDelegate = self
-        searchPlayerVc.teamRole = .blueOne
-        searchPlayerVc.gameType = .oneVsOne
-        present(searchPlayerVc, animated: true)
-        
-    }
+//    @objc func searchPlayerPressed() {
+//        let searchPlayerVc = SearchPlayerViewController.init(nibName: "SearchPlayerViewController", bundle: nil)
+//        searchPlayerVc.modalPresentationStyle = .fullScreen
+//        searchPlayerVc.searchDelegate = self
+//        searchPlayerVc.teamRole = .blueOne
+//        searchPlayerVc.gameType = .oneVsOne
+//        present(searchPlayerVc, animated: true)
+//
+//    }
 //    func presentAlertVC() {
 //        let invitationAlertVC = InvitationAlertViewController.init(nibName: "InvitationAlertViewController", bundle: nil)
 //        invitationAlertVC.invitation = invitations.first
@@ -252,15 +252,15 @@ extension OneVsOneViewController: SearchForPlayerDelegate{
 }
 extension OneVsOneViewController: MultipeerConnectivityDelegate{
     func joinedGame() {
-        
+        setupSentUI()
     }
     
 
     
     func receivedUserData(data: Data) {
         do {
-            rival = try PropertyListDecoder().decode(GamerModel.self, from: data)
-        
+            MultiPeerConnectivityHelper.shared.bluePlayer = try PropertyListDecoder().decode(GamerModel.self, from: data)
+            
         }catch {
             print ("property list dedoding error:\(error)")
         }
@@ -279,7 +279,7 @@ extension OneVsOneViewController: MultipeerConnectivityDelegate{
 
     
     func acceptedInvitation() {
-
+        
     }
     
     func invitePlayer(browser: MCNearbyServiceBrowser, peerID: MCPeerID, seesion: MCSession) {

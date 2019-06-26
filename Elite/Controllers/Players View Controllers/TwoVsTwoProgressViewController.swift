@@ -146,10 +146,10 @@ class TwoVsTwoProgressViewController: UIViewController {
                 let games = snapshot.documents.map {GameModel.init(dict: $0.data())}
                 if games.count > 0 {
                     let endGameVc = EndGameViewController.init(nibName: "EndGameViewController", bundle: nil)
-                    endGameVc.modalPresentationStyle = .overCurrentContext
-                    endGameVc.invitation = invitation
-                    endGameVc.isHost = false
-                    endGameVc.gameType = self.gameType
+//                    endGameVc.modalPresentationStyle = .overCurrentContext
+//                    endGameVc.invitation = invitation
+//                    endGameVc.isHost = false
+//                    endGameVc.gameType = self.gameType
                     self.present(endGameVc, animated: true)
                 }
             }
@@ -168,9 +168,9 @@ class TwoVsTwoProgressViewController: UIViewController {
         endGameVc.modalPresentationStyle = .overCurrentContext
         
         //        endGameVc.game = game
-        endGameVc.invitation = invitation
-        endGameVc.isHost = true
-        endGameVc.gameType = gameType
+//        endGameVc.invitation = invitation
+//        endGameVc.isHost = true
+//        endGameVc.gameType = gameType
         present(endGameVc, animated: true)
     }
     

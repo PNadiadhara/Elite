@@ -32,9 +32,9 @@ class DataToSend: Codable {
 class MultiPeerConnectivityHelper: NSObject {
     
     
-    enum Role: String {
-        case Guest
-        case Host
+    enum Team: String {
+        case BluePlayer
+        case RedPlayer
     }
     
     enum Action: String {
@@ -45,6 +45,8 @@ class MultiPeerConnectivityHelper: NSObject {
         case pauseSharedTimer
         case resumeSharedTimer
         case runSharedTimer
+        case canceledGame
+        case finishedGame
     }
     
     enum ButtonStatus {
@@ -52,7 +54,16 @@ class MultiPeerConnectivityHelper: NSObject {
         case Pause
     }
 
-    public var role: Role!
+    public var team: Team!
+    public var redPlayer: GamerModel?
+    public var bluePlayer: GamerModel? {
+        didSet {
+            multipeerDelegate?.joinedGame()
+        }
+    }
+    
+    
+    
     public var buttonStatus = ButtonStatus.Pause
     
     public var numberOfPlayersJoined = 0 {
@@ -226,9 +237,13 @@ extension MultiPeerConnectivityHelper: MCSessionDelegate {
                 case Action.pauseSharedTimer.rawValue:
                     MainTimer.shared.suspend()
                     self?.buttonStatus = ButtonStatus.Play
+                    self?.timerDelegate?.changedButtonText(text: "Play")
                 case Action.resumeSharedTimer.rawValue:
                     MainTimer.shared.resume()
                     self?.buttonStatus = ButtonStatus.Pause
+                    self?.timerDelegate?.changedButtonText(text: "Pause")
+                case Action.finishedGame.rawValue:
+                    self?.timerDelegate?.finishedTimer()
                 default:
                     print("No action Sent")
                     

@@ -66,6 +66,11 @@ class TimerPopUp: UIViewController {
     @objc func startApp(){
         MainTimer.shared.restartTimer()
     }
+    
+    func segueToEndGameVc(){
+        let endGameVc = EndGameViewController()
+        self.present(endGameVc, animated: true)
+    }
     private func sendJoinConfirmation() {
         MultiPeerConnectivityHelper.shared.numberOfPlayersJoined += 1
         let action = MultiPeerConnectivityHelper.Action.joinedGame.rawValue
@@ -87,7 +92,10 @@ class TimerPopUp: UIViewController {
     
     @IBAction func doneButtonPressed(_ sender: Any) {
         confirmAlert(title: "Finish Game", message: "Are you sure?") { (done) in
-            //TO DO SEGUE TO NEXT VC AND FINISH THE GAME ON THE OPPONENT
+            self.segueToEndGameVc()
+            let action = MultiPeerConnectivityHelper.Action.finishedGame.rawValue
+            let dataToSend = DataToSend(action: action, data: nil)
+            MultiPeerConnectivityHelper.shared.convertDataToSendToDataAndSend(dataToSend: dataToSend)
         }
     }
     @IBAction func pauseButtonPressed(_ sender: Any) {
@@ -118,7 +126,7 @@ class TimerPopUp: UIViewController {
 extension TimerPopUp: MultipeerConnectivityDelegate{
     func joinedGame() {
         readyView.isHidden = true
-        if MultiPeerConnectivityHelper.shared.role == .Host {
+        if MultiPeerConnectivityHelper.shared.team == .RedPlayer {
             MainTimer.shared.runTimer()
             let startSharedTimerAction = MultiPeerConnectivityHelper.Action.startedTimer.rawValue
             MainTimer.shared.timerManager(action: startSharedTimerAction)
@@ -150,6 +158,14 @@ extension TimerPopUp: MultipeerConnectivityDelegate{
 }
 
 extension TimerPopUp: TimerDelegate {
+    func finishedTimer() {
+        segueToEndGameVc()
+    }
+    
+    func changedButtonText(text: String) {
+        pauseButton.setTitle(text, for: .normal)
+    }
+    
     
     func sharedTimer(time: String) {
         DispatchQueue.main.async {

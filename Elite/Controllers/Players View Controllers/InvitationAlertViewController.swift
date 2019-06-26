@@ -72,14 +72,14 @@ class InvitationAlertViewController: UIViewController {
             }
         })
         if invitation.gameType == GameType.oneVsOne.rawValue {
-            let oneVsoneProgressVc = OneVsOneProgressViewController.init(nibName: "OneVsOneProgressViewController", bundle: nil)
-            oneVsoneProgressVc.modalPresentationStyle = .fullScreen
-            oneVsoneProgressVc.invitation = invitation
-            oneVsoneProgressVc.isHost = false
-            oneVsoneProgressVc.gameType = .oneVsOne
-            oneVsoneProgressVc.blueOnePlayer = bluePlayerOne
-            oneVsoneProgressVc.redOnePlayer = redPlayerOne
-            present(oneVsoneProgressVc, animated: true)
+//            let oneVsoneProgressVc = OneVsOneProgressViewController.init(nibName: "OneVsOneProgressViewController", bundle: nil)
+//            oneVsoneProgressVc.modalPresentationStyle = .fullScreen
+//            oneVsoneProgressVc.invitation = invitation
+//            oneVsoneProgressVc.isHost = false
+//            oneVsoneProgressVc.gameType = .oneVsOne
+//            oneVsoneProgressVc.blueOnePlayer = bluePlayerOne
+//            oneVsoneProgressVc.redOnePlayer = redPlayerOne
+//            present(oneVsoneProgressVc, animated: true)
         }
         
         if invitation.gameType == GameType.twoVsTwo.rawValue {
