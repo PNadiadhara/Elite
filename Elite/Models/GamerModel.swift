@@ -24,7 +24,6 @@ class GamerModel: Codable {
     let numberOfHandballGamesPlayed : Double
     let numberOfBasketballGamesPlayed : Double
     let friends: [String]?
-    
     public var fullname: String {
         return ((firstname ) + " " + (lastname )).trimmingCharacters(in: .whitespacesAndNewlines)
     }

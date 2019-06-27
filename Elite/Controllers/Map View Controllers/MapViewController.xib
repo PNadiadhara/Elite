@@ -68,16 +68,30 @@
                                 <action selector="showBasketBallMarkers:" destination="-1" eventType="touchUpInside" id="bde-cp-j5y"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7NI-5g-XDd">
+                            <rect key="frame" x="8" y="135" width="357" height="30"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                            <state key="normal" title="Search Here">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="searchButtonPressed" destination="-1" eventType="touchUpInside" id="JeN-4N-L9L"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="7NI-5g-XDd" secondAttribute="trailing" constant="10" id="3HT-5r-nWe"/>
+                        <constraint firstItem="7NI-5g-XDd" firstAttribute="leading" secondItem="WY3-FD-wWf" secondAttribute="leading" constant="8" id="AdK-Og-nuK"/>
                         <constraint firstItem="oEb-Sq-5bd" firstAttribute="trailing" secondItem="ZyG-IO-EPJ" secondAttribute="trailing" id="DK3-8S-LfT"/>
                         <constraint firstItem="jbg-5u-GjA" firstAttribute="centerY" secondItem="WY3-FD-wWf" secondAttribute="centerY" id="H34-eA-ocu"/>
                         <constraint firstItem="jbg-5u-GjA" firstAttribute="leading" secondItem="ZyG-IO-EPJ" secondAttribute="leading" id="HJt-5i-zwy"/>
                         <constraint firstAttribute="trailing" secondItem="ZyG-IO-EPJ" secondAttribute="trailing" constant="10" id="J0w-w9-el3"/>
+                        <constraint firstItem="7NI-5g-XDd" firstAttribute="top" secondItem="eJC-ZH-xrT" secondAttribute="bottom" constant="13" id="OCy-fX-tRg"/>
                         <constraint firstItem="eJC-ZH-xrT" firstAttribute="top" secondItem="WY3-FD-wWf" secondAttribute="top" constant="72" id="YwU-yQ-Dhn"/>
                         <constraint firstItem="ZyG-IO-EPJ" firstAttribute="leading" secondItem="WY3-FD-wWf" secondAttribute="leading" constant="10" id="eBh-9x-ZCE"/>
                         <constraint firstItem="eJC-ZH-xrT" firstAttribute="centerX" secondItem="ZyG-IO-EPJ" secondAttribute="centerX" id="fhJ-3i-Sai"/>
+                        <constraint firstAttribute="bottom" secondItem="7NI-5g-XDd" secondAttribute="bottom" constant="21.670000000000002" id="isa-ZG-ptX"/>
                         <constraint firstAttribute="bottom" secondItem="ZyG-IO-EPJ" secondAttribute="bottom" constant="8.6699999999999999" id="u2d-Vf-xlN"/>
                         <constraint firstItem="eJC-ZH-xrT" firstAttribute="bottom" secondItem="ZyG-IO-EPJ" secondAttribute="top" id="vkT-Wq-F3k"/>
                         <constraint firstItem="oEb-Sq-5bd" firstAttribute="top" secondItem="jbg-5u-GjA" secondAttribute="top" id="yfp-Fh-TpH"/>
@@ -107,7 +121,7 @@
                                         <constraint firstAttribute="width" constant="375" id="78u-mz-yWf"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" title="Exit">
+                                    <state key="normal" title="X">
                                         <color key="titleColor" red="1" green="0.0187217119" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </state>
                                     <connections>
