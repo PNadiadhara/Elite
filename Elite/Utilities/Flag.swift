@@ -10,7 +10,7 @@ import Foundation
 
 class Flag {
     static var isFeedReady = false
-    static var isDemo = true
+    static var isDemo = false
     static var isProfileReady = false
     static var isSearchBarOnMapReady = false
 }

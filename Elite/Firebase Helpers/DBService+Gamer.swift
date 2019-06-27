@@ -27,6 +27,7 @@ struct GamerCollectionKeys {
     static let NumberOfHandballGamesPlayed = "numberOfHandballGamesPlayed"
     static let NumberOfBasketballGamesPlayer = "numberOfBasketballGamesPlayed"
     static let FriendsKey = "friends"
+    static let RankingKey = "Ranking"
 }
 extension DBService {
     static public func createUser(gamer: GamerModel, completion: @escaping (Error?) -> Void) {
@@ -43,7 +44,8 @@ extension DBService {
                        GamerCollectionKeys.QRcodeKey : gamer.qrCode,
                        GamerCollectionKeys.JoinedDateKey  : gamer.joinedDate,
                        GamerCollectionKeys.GamerIDKey : gamer.gamerID,
-                       GamerCollectionKeys.FriendsKey : gamer.friends ?? ""
+                       GamerCollectionKeys.FriendsKey : gamer.friends ?? "",
+                       GamerCollectionKeys.RankingKey : gamer.ranking
                     
             ]) { (error) in
                 if let error = error {

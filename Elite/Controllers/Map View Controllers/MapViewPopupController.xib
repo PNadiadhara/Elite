@@ -12,8 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewPopupController" customModule="Elite" customModuleProvider="target">
             <connections>
-                <outlet property="milesPickerView" destination="Syg-rV-10r" id="cpV-F9-EJw"/>
                 <outlet property="milesView" destination="l3b-hm-9ee" id="dnR-Ya-IkP"/>
+                <outlet property="searchBar" destination="ZR5-fC-HiY" id="xld-Gm-hmN"/>
+                <outlet property="tableView" destination="b0c-mq-0hW" id="HGM-gw-gWu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -31,46 +32,50 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l3b-hm-9ee">
-                    <rect key="frame" x="20.5" y="274" width="373" height="358"/>
+                    <rect key="frame" x="20.5" y="94.5" width="373" height="717"/>
                     <subviews>
-                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Syg-rV-10r">
-                            <rect key="frame" x="0.0" y="116" width="373" height="126"/>
-                        </pickerView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miles" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V56-4r-qha">
-                            <rect key="frame" x="0.0" y="46" width="373" height="34"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" placeholder="Search for Park" translatesAutoresizingMaskIntoConstraints="NO" id="ZR5-fC-HiY">
+                            <rect key="frame" x="-8" y="39" width="388" height="40"/>
+                            <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="send"/>
+                        </searchBar>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="b0c-mq-0hW">
+                            <rect key="frame" x="0.0" y="79" width="373" height="638"/>
+                            <color key="backgroundColor" red="0.22451354630000001" green="0.22451354630000001" blue="0.22451354630000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </tableView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X8t-AB-y7R">
+                            <rect key="frame" x="8" y="8" width="357" height="30"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <state key="normal" title="Go Back">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="goback:" destination="-1" eventType="touchUpInside" id="kqs-6p-UA4"/>
+                            </connections>
+                        </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.1701610885" green="0.17885058910000001" blue="0.1945924544" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="Syg-rV-10r" secondAttribute="trailing" id="1zm-i6-u41"/>
-                        <constraint firstItem="V56-4r-qha" firstAttribute="top" secondItem="l3b-hm-9ee" secondAttribute="top" constant="46" id="9JD-c0-XYI"/>
-                        <constraint firstItem="Syg-rV-10r" firstAttribute="top" secondItem="l3b-hm-9ee" secondAttribute="top" constant="116" id="DjP-JF-s3p"/>
-                        <constraint firstItem="Syg-rV-10r" firstAttribute="top" secondItem="V56-4r-qha" secondAttribute="bottom" constant="36" id="K9B-wL-e2c"/>
-                        <constraint firstAttribute="bottom" secondItem="Syg-rV-10r" secondAttribute="bottom" constant="116" id="atJ-gZ-47h"/>
-                        <constraint firstItem="Syg-rV-10r" firstAttribute="leading" secondItem="l3b-hm-9ee" secondAttribute="leading" id="b0Z-kW-5CC"/>
-                        <constraint firstAttribute="trailing" secondItem="V56-4r-qha" secondAttribute="trailing" id="kAF-ou-peJ"/>
-                        <constraint firstItem="V56-4r-qha" firstAttribute="leading" secondItem="l3b-hm-9ee" secondAttribute="leading" id="sql-jx-3ob"/>
+                        <constraint firstItem="ZR5-fC-HiY" firstAttribute="top" secondItem="l3b-hm-9ee" secondAttribute="top" constant="39" id="0IW-0Q-Kxe"/>
+                        <constraint firstAttribute="bottom" secondItem="ZR5-fC-HiY" secondAttribute="bottom" constant="638" id="6Pl-7D-dLO"/>
+                        <constraint firstAttribute="trailing" secondItem="b0c-mq-0hW" secondAttribute="trailing" id="9t6-PI-OMS"/>
+                        <constraint firstItem="X8t-AB-y7R" firstAttribute="top" secondItem="l3b-hm-9ee" secondAttribute="top" constant="8" id="AjH-bp-UW0"/>
+                        <constraint firstAttribute="trailing" secondItem="X8t-AB-y7R" secondAttribute="trailing" constant="8" id="GlX-2G-TLp"/>
+                        <constraint firstItem="X8t-AB-y7R" firstAttribute="leading" secondItem="l3b-hm-9ee" secondAttribute="leading" constant="8" id="Hf4-ky-ivl"/>
+                        <constraint firstItem="b0c-mq-0hW" firstAttribute="leading" secondItem="l3b-hm-9ee" secondAttribute="leading" id="X0H-nf-6fF"/>
+                        <constraint firstItem="ZR5-fC-HiY" firstAttribute="top" secondItem="X8t-AB-y7R" secondAttribute="bottom" constant="1" id="cNm-We-j8V"/>
+                        <constraint firstAttribute="trailing" secondItem="ZR5-fC-HiY" secondAttribute="trailing" constant="-7" id="fUr-Bn-ToU"/>
+                        <constraint firstAttribute="bottom" secondItem="b0c-mq-0hW" secondAttribute="bottom" id="g49-jj-MaV"/>
+                        <constraint firstItem="b0c-mq-0hW" firstAttribute="top" secondItem="ZR5-fC-HiY" secondAttribute="bottom" id="nJc-fT-3hk"/>
+                        <constraint firstItem="ZR5-fC-HiY" firstAttribute="leading" secondItem="l3b-hm-9ee" secondAttribute="leading" constant="-8" id="pwl-vy-YeM"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe to change the range of parks shown on the map" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nll-lH-tJP">
-                    <rect key="frame" x="21" y="534" width="373" height="48"/>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="l3b-hm-9ee" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.4" id="2Oq-HQ-5gO"/>
+                <constraint firstItem="l3b-hm-9ee" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.8" id="2Oq-HQ-5gO"/>
                 <constraint firstItem="l3b-hm-9ee" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="3aS-6c-WG5"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Nll-lH-tJP" secondAttribute="trailing" constant="20" id="60O-XS-5MJ"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Nll-lH-tJP" secondAttribute="bottom" constant="280" id="GY1-Vx-yUw"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="y1O-rc-Ksb" secondAttribute="trailing" id="HFe-JS-ppc"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="y1O-rc-Ksb" secondAttribute="bottom" id="Lz0-ur-mhj"/>
-                <constraint firstItem="Nll-lH-tJP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="21" id="MTD-1I-afA"/>
                 <constraint firstItem="l3b-hm-9ee" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="eC1-pi-5qc"/>
                 <constraint firstItem="y1O-rc-Ksb" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="fej-N2-pL7"/>
                 <constraint firstItem="y1O-rc-Ksb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="uCj-D1-T5S"/>

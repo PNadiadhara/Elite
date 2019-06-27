@@ -74,8 +74,8 @@ struct BasketBall: Codable, Court {
     let location: String?
     let numberOfCourts: String?
     let accessible: String?
-    let lat: String?
-    let lng: String?
+    var lat: String?
+    var lng: String?
     enum CodingKeys: String,CodingKey {
         case propertyID = "Prop_ID"
         case playgroundID = "Playground_ID"
