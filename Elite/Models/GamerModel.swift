@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GamerModel {
+class GamerModel: Codable {
     let profileImage: String? //(Bitmoji image)
     let firstname: String
     let lastname: String
@@ -24,7 +24,6 @@ class GamerModel {
     let numberOfHandballGamesPlayed : Double
     let numberOfBasketballGamesPlayed : Double
     let friends: [String]?
-    let ranking: Int
     public var fullname: String {
         return ((firstname ) + " " + (lastname )).trimmingCharacters(in: .whitespacesAndNewlines)
     }
@@ -44,7 +43,7 @@ class GamerModel {
     myParks : [String]?,
     numberOfHandballGamesPlayed : Double,
     numberOfBasketballGamesPlayed : Double,
-    friends: [String]?, ranking: Int) {
+    friends: [String]?) {
         self.profileImage = profileImage
         self.firstname = firstname
         self.lastname = lastname
@@ -60,7 +59,6 @@ class GamerModel {
         self.numberOfHandballGamesPlayed = numberOfHandballGamesPlayed
         self.numberOfBasketballGamesPlayed = numberOfBasketballGamesPlayed
         self.friends = friends
-        self.ranking = ranking
     }
     
     init(dict: [String: Any]) {
@@ -79,7 +77,6 @@ class GamerModel {
         self.numberOfHandballGamesPlayed = dict[GamerCollectionKeys.NumberOfHandballGamesPlayed] as? Double ?? 0.0
         self.numberOfBasketballGamesPlayed = dict[GamerCollectionKeys.NumberOfBasketballGamesPlayer] as? Double ?? 0.0
         self.friends = dict[GamerCollectionKeys.FriendsKey] as? [String] ?? [""]
-        self.ranking = dict[GamerCollectionKeys.RankingKey] as? Int ?? 0
     }
 }
 

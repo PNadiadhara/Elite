@@ -45,22 +45,22 @@ class TabBarViewController: UITabBarController {
         }
         let map = MapViewController()
         let feed = FeedTableViewController()
-        let create = CreateGameViewController()
+        let play = HostJoinGameViewController()
         let profile = ProfileViewController.init(nibName: "ProfileViewController", bundle: nil)
         let tab = TabBarViewController()
         
         map.title = "Map"
         map.tabBarItem = UITabBarItem.init(title: "Map", image: UIImage(named: "map_marker"), tag: 0)
         feed.tabBarItem = UITabBarItem.init(title: "Feed", image: UIImage(named: "list"), tag: 3)
-        create.title = "Create Game"
-        create.tabBarItem = UITabBarItem.init(title: "Create Game", image: UIImage(named: "create_new"), tag: 2)
+        play.title = "Host/Join Game"
+        play.tabBarItem = UITabBarItem.init(title: "Play!", image: UIImage(named: "create_new"), tag: 2)
         profile.title = "Profile"
         profile.tabBarItem = UITabBarItem.init(title: "Profile", image: UIImage(named: "user_male"), tag: 4)
         var controllers = [UIViewController]()
         if Flag.isFeedReady == false {
-            controllers = [map, create, profile]
+            controllers = [map, play, profile]
         } else {
-            controllers = [map, create, feed, profile]
+            controllers = [map, play, feed, profile]
         }
         
         tab.viewControllers = controllers

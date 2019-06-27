@@ -27,7 +27,7 @@ struct GamerCollectionKeys {
     static let NumberOfHandballGamesPlayed = "numberOfHandballGamesPlayed"
     static let NumberOfBasketballGamesPlayer = "numberOfBasketballGamesPlayed"
     static let FriendsKey = "friends"
-    static let RankingKey = "Ranking"
+    static let RoleKey = "role"
 }
 extension DBService {
     static public func createUser(gamer: GamerModel, completion: @escaping (Error?) -> Void) {
@@ -44,9 +44,7 @@ extension DBService {
                        GamerCollectionKeys.QRcodeKey : gamer.qrCode,
                        GamerCollectionKeys.JoinedDateKey  : gamer.joinedDate,
                        GamerCollectionKeys.GamerIDKey : gamer.gamerID,
-                       GamerCollectionKeys.FriendsKey : gamer.friends ?? "",
-                       GamerCollectionKeys.RankingKey : gamer.ranking
-                    
+                       GamerCollectionKeys.FriendsKey : gamer.friends ?? ""
             ]) { (error) in
                 if let error = error {
                     completion(error)
@@ -55,7 +53,6 @@ extension DBService {
                 }
         }
     }
-    
     static public func fetchGamer(gamerID: String, completion: @escaping (Error?, GamerModel?) -> Void) {
         DBService.firestoreDB
             .collection(GamerCollectionKeys.CollectionKey)
@@ -85,7 +82,6 @@ extension DBService {
             }
         }
     }
-    
     static public func deleteAccount(user: GamerModel, completion: @escaping (Error?) -> Void) {
         DBService.firestoreDB
             .collection(GamerCollectionKeys.CollectionKey)
