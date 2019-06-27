@@ -17,7 +17,7 @@
                 <outlet property="bluePlayerLabel" destination="Yad-VG-Wku" id="6R7-dx-N02"/>
                 <outlet property="bluePlayerMedal" destination="3WQ-VF-4II" id="DYZ-Ys-d2e"/>
                 <outlet property="bluePlayerRanking" destination="Dya-Tm-y8V" id="Vkk-O3-pd9"/>
-                <outlet property="cancelButton" destination="Ycv-Oy-LqF" id="awj-4W-m5f"/>
+                <outlet property="cancelButton" destination="Ycv-Oy-LqF" id="f9U-nM-kjQ"/>
                 <outlet property="playButton" destination="Swl-b6-MxJ" id="gft-Xk-TEP"/>
                 <outlet property="redPlayerImage" destination="19l-m6-e7T" id="YAF-3h-z9R"/>
                 <outlet property="redPlayerLabel" destination="ygR-Ex-BaJ" id="3Gm-gH-inW"/>
@@ -66,7 +66,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XPj-14-2ms" customClass="versusLeft" customModule="Elite" customModuleProvider="target">
                     <rect key="frame" x="43" y="553" width="213" height="47"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add player" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Yad-VG-Wku">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Yad-VG-Wku">
                             <rect key="frame" x="20" y="5" width="175" height="36"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="175" id="WpW-Es-XD8"/>
@@ -92,7 +92,7 @@
                         <constraint firstAttribute="height" constant="120" id="JuK-ei-cAv"/>
                     </constraints>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="L62-gZ-OFz" customClass="CircularBlueImageView" customModule="Elite" customModuleProvider="target">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L62-gZ-OFz" customClass="CircularBlueImageView" customModule="Elite" customModuleProvider="target">
                     <rect key="frame" x="251" y="516.5" width="120" height="120"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="120" id="Qom-Ua-MrB"/>
@@ -111,7 +111,7 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
-                                <action selector="cancelPressed:" destination="-1" eventType="touchUpInside" id="P1a-AD-yEH"/>
+                                <action selector="cancelPressed:" destination="-1" eventType="touchUpInside" id="u2t-RU-rsd"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Vs. 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ni-aF-y2i">
@@ -257,6 +257,5 @@
     </objects>
     <resources>
         <image name="GoldMedal" width="500" height="500"/>
-        <image name="add" width="500" height="500"/>
     </resources>
 </document>

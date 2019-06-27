@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GamerModel {
+class GamerModel: Codable {
     let profileImage: String? //(Bitmoji image)
     let firstname: String
     let lastname: String

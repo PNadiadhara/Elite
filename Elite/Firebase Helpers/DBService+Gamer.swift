@@ -27,6 +27,7 @@ struct GamerCollectionKeys {
     static let NumberOfHandballGamesPlayed = "numberOfHandballGamesPlayed"
     static let NumberOfBasketballGamesPlayer = "numberOfBasketballGamesPlayed"
     static let FriendsKey = "friends"
+    static let RoleKey = "role"
 }
 extension DBService {
     static public func createUser(gamer: GamerModel, completion: @escaping (Error?) -> Void) {

@@ -18,7 +18,7 @@ struct CurrentPlayersCollectionKeys {
 
 }
 
-struct CurrentPlayer {
+struct CurrentPlayer: Codable {
     let currentPlayerId: String
     let gamerId: String
     let userName: String

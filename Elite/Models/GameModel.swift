@@ -13,31 +13,32 @@
 import Foundation
 
 class GameModel {
-    let gameName: String // TODO: enum
-    let gameType: String // TODO: enum
-    let numberOfGamers: Int
-    let redTeam: [String] // ids
-    let blueTeam: [String]
-    let parkId: String
-    let gameDescription: String?
-    let gameEndTime: String?
-    let winners: [String]?
-    let losers: [String]?
-    let isTie: Bool?
-    let formattedAdresss: String
-    let parkName: String
-    let lat: Double
-    let lon: Double
-    let gameID: String
-    let witness: String?
+    var gameName: String // TODO: enum
+    var gameType: String // TODO: enum
+    var numberOfGamers: Int
+    var redTeam: [String] // ids
+    var blueTeam: [String]
+    var parkId: String
+    var gameDescription: String?
+    var gameEndTime: String?
+    var winners: [String]?
+    var losers: [String]?
+    var isTie: Bool?
+    var formattedAdresss: String
+    var parkName: String
+    var lat: Double
+    var lon: Double
+    var gameID: String
+    var witness: String?
 //    let teamAScore: Int?
 //    let teamBScore: Int?
-    let duration: String?
-    let isOver: Bool?
-    let wasCancelled: Bool?
+    var duration: String?
+    var isOver: Bool?
+    var wasCancelled: Bool?
     
+    static var gameCreated = GameModel(gameName: "", gameType: "", numberOfPlayers: 0, redTeam: [""], blueTeam: [""], parkId: "", gameDescription: nil, gameEndTime: nil, winners: nil, losers: nil, isTie: nil, formattedAdresss: "", parkName: "", lat: 0.0, lon: 0.0, gameID: "", witness: nil, duration: "", isOver: nil, wasCancelled: nil)
     
-    
+
     init(gameName: String,
     gameType: String,
     numberOfPlayers: Int,
@@ -78,7 +79,7 @@ class GameModel {
         self.isOver = isOver
         self.wasCancelled = wasCancelled
     }
-    
+
     init(dict: [String: Any]) {
         self.gameName = dict[GameCollectionKeys.GameNameKey] as? String ?? ""
         self.gameType = dict[GameCollectionKeys.GameTypeKey] as? String ?? ""
