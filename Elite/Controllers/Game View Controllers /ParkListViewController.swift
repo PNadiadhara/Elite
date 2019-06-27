@@ -47,7 +47,10 @@ class ParkListViewController: UIViewController {
     public var userLocation = CLLocation()
     
     
+    
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         MultiPeerConnectivityHelper.shared.multipeerDelegate = self
         parkListTableView.dataSource = self
@@ -141,7 +144,7 @@ extension ParkListViewController: MultipeerConnectivityDelegate {
     
 
     
-    func receivedUserData(data: Data) {
+    func receivedUserData(data: Data, role: String) {
         
     }
     
@@ -154,6 +157,7 @@ extension ParkListViewController: MultipeerConnectivityDelegate {
     func acceptedInvitation() {
         
         let oneVsOne = OneVsOneViewController()
+        
         present(oneVsOne, animated: true)
     }
     

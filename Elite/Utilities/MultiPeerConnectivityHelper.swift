@@ -14,7 +14,7 @@ import MultipeerConnectivity
 protocol MultipeerConnectivityDelegate: AnyObject {
     func acceptedInvitation()
     func countIsTrue()
-    func receivedUserData(data: Data)
+    func receivedUserData(data: Data, role: String)
     func foundAdverstiser(availableGames: [String])
     func invitationNotification(handler: @escaping(Bool) -> Void )
     func connected(to User: String)
@@ -23,13 +23,20 @@ protocol MultipeerConnectivityWinnerVotesDelegate: AnyObject {
     func countIsTrue()
     func winnerVotedReceived(data: Data)
 }
+
+protocol MultipeerConnectivityActionHandlerDelegate: AnyObject {
+    func userDidQuitGame()
+    func userPressedRetry()
+}
+
 class DataToSend: Codable {
     var action: String
     var data: Data?
-    
-    init(action: String, data: Data?) {
+    var team: String?
+    init(action: String, data: Data?, team: String?) {
         self.action = action
         self.data = data
+        self.team = team
     }
 }
 
@@ -51,6 +58,11 @@ class MultiPeerConnectivityHelper: NSObject {
         case RedPlayer
     }
     
+    enum Role: String {
+        case Host
+        case Guest
+    }
+    
     enum Action: String {
         case sendUserInfo
         case joinedGame
@@ -58,10 +70,12 @@ class MultiPeerConnectivityHelper: NSObject {
         case sharedTimerChanged
         case pauseSharedTimer
         case resumeSharedTimer
+        case stopTimer
         case runSharedTimer
         case canceledGame
         case finishedGame
         case choseWinner
+        case retryWinnerVote
     }
     
     enum ButtonStatus {
@@ -69,19 +83,18 @@ class MultiPeerConnectivityHelper: NSObject {
         case Pause
     }
 
-    public var team: Teams!
-    public var winner: GamerModel?
+    public var team: Teams?
+    public var role: Role?
     public var redPlayer: GamerModel?
-    public var bluePlayer: GamerModel? {
+    public var bluePlayer: GamerModel?
+    public var rival: GamerModel? {
         didSet {
             multipeerDelegate?.countIsTrue()
         }
     }
     
-    
-    
     public var buttonStatus = ButtonStatus.Pause
-    public var winnerVotes = [WinnerVotes]() {
+    public var winnerVotes = [WinnerVotes]() { //EMPTY WHEN END OF SESSION
         didSet{
             if checkForCount(count: winnerVotes.count) {
                 multipeerWinnerVotesDelegate?.countIsTrue()
@@ -100,10 +113,11 @@ class MultiPeerConnectivityHelper: NSObject {
     weak var multipeerDelegate: MultipeerConnectivityDelegate?
     weak var timerDelegate: TimerDelegate?
     weak var multipeerWinnerVotesDelegate: MultipeerConnectivityWinnerVotesDelegate?
+    weak var multipeerActionHandlerDelegate: MultipeerConnectivityActionHandlerDelegate?
     
-    public var listOfAvailableGames = [String]()
+    private var listOfAvailableGames = [String]()
     
-    public var joiningGame = Bool()
+    public var joiningGame: Bool? //
     
     private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
     private var advertiserAssistant: MCAdvertiserAssistant!
@@ -148,7 +162,11 @@ class MultiPeerConnectivityHelper: NSObject {
     }
     
     static var shared = MultiPeerConnectivityHelper()
-
+    
+    public func stopBrowsingAndAdverstising() {
+        advertiserAssistant.stop()
+        serviceBrowser.stopBrowsingForPeers()
+    }
     
     public func joinGame(joiningGame: Bool) {
         if joiningGame {
@@ -160,6 +178,20 @@ class MultiPeerConnectivityHelper: NSObject {
     
     public func cancelJoinGame(){
         serviceBrowser.stopBrowsingForPeers()
+    }
+    public func endSession() {
+        session.disconnect()
+        serviceAdvertiser.stopAdvertisingPeer()
+        serviceBrowser.stopBrowsingForPeers()
+        team = nil
+        role = nil
+        redPlayer = nil
+        bluePlayer = nil
+        rival = nil
+        winnerVotes.removeAll()
+        numberOfPlayersJoined = 0
+        joiningGame = Bool()
+        MainTimer.shared.stopTimer()
     }
     func checkForCount(count: Int) -> Bool {
         
@@ -199,7 +231,6 @@ class MultiPeerConnectivityHelper: NSObject {
         
         // 2
         if session.connectedPeers.count > 0 {
-            print("GOOD!")
             // 3
             
             // 4
@@ -252,7 +283,7 @@ extension MultiPeerConnectivityHelper: MCSessionDelegate {
                 print(sentData.action)
                 switch sentData.action {
                 case Action.sendUserInfo.rawValue:
-                    self!.multipeerDelegate?.receivedUserData(data: sentData.data!)
+                    self!.multipeerDelegate?.receivedUserData(data: sentData.data!, role: sentData.team!)
                 case Action.joinedGame.rawValue:
                     self?.numberOfPlayersJoined += 1
                 case Action.startedTimer.rawValue:
@@ -269,6 +300,10 @@ extension MultiPeerConnectivityHelper: MCSessionDelegate {
                     self?.timerDelegate?.finishedTimer()
                 case Action.choseWinner.rawValue:
                     self?.multipeerWinnerVotesDelegate?.winnerVotedReceived(data: sentData.data!)
+                case Action.canceledGame.rawValue:
+                    self?.timerDelegate?.cancelledTimer()
+                case Action.retryWinnerVote.rawValue:
+                    self?.multipeerActionHandlerDelegate?.userPressedRetry()
 //                    self?.numberOfVotes += 1
                 default:
                     print("No action Sent")
@@ -313,12 +348,12 @@ extension MultiPeerConnectivityHelper : MCNearbyServiceBrowserDelegate {
         listOfAvailableGames.append(peerID.displayName)
         
         multipeerDelegate?.foundAdverstiser(availableGames: listOfAvailableGames)
-        if joiningGame {
-            browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 10)
+        if joiningGame ?? false {
+            browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 45)
             multipeerDelegate?.acceptedInvitation()
             
-            
         }
+        listOfAvailableGames.removeAll()
         //multipeerDelegate?.invitationAccepted(session: session)
 //        multipeerDelegate?.displayAvailableGames(availableGames: listOfAvailableGames)
 //        multipeerDelegate?.displayAvailableGames(handler: { (response) in

@@ -11,6 +11,8 @@ import UIKit
 
 class EndGameViewController: UIViewController {
 
+    @IBOutlet weak var blueTeamTitle: UILabel!
+    @IBOutlet weak var redTeamTitle: UILabel!
     @IBOutlet weak var redPlayerView: UIView!
     @IBOutlet weak var bluePlayerView: UIView!
     @IBOutlet weak var redOnePlayerLabel: UILabel!
@@ -32,13 +34,17 @@ class EndGameViewController: UIViewController {
     
     
     var selectedTeam: Teams?
+    var chosenWinner: GamerModel?
+    let redTeam = Teams.redTeam.rawValue
+    let blueTeam = Teams.blueTeam.rawValue
 //    var game: GameModel?
 //    var currentPlayer: CurrentPlayer?
 //    var gameType: GameType!
-//    var blueOnePlayer: GamerModel!
-//    var redOnePlayer: GamerModel!
+    var blueOnePlayer: GamerModel?
+    var redOnePlayer: GamerModel?
     var gameBegginingTimeStamp: Date?
     var gameEndTimeStamp: Date?
+    var waitingView: UIView?
 //    var currentPlayerTeamRole = String()
 //    var winnerConfirmationId = String()
 //    var isHost = Bool()
@@ -47,32 +53,69 @@ class EndGameViewController: UIViewController {
         super.viewDidLoad()
         setupTapGestures()
         setupUI()
-        selectedTeam = .redTeam
-        redPlayerView.alpha = 1
-        MultiPeerConnectivityHelper.shared.multipeerWinnerVotesDelegate = self
+//        setViewContraints()
     }
     func setupUI(){
-
+        redOnePlayer = MultiPeerConnectivityHelper.shared.redPlayer
+        blueOnePlayer = MultiPeerConnectivityHelper.shared.bluePlayer
+        MultiPeerConnectivityHelper.shared.multipeerWinnerVotesDelegate = self
+        WaitingView.setViewContraints(titleText: "Waiting for\nplayers to join", isHidden: true, delegate: self, view: self.view) { (waitingView) in
+            self.waitingView = waitingView
+        }
+        selectedTeam = .redTeam
+        redPlayerView.alpha = 1
+        redTeamTitle.text = redOnePlayer?.username
+        blueTeamTitle.text = blueOnePlayer?.username
+        waitingView?.isHidden = true
+        WaitingView.watingViewDelegate = self
     }
+    
+//    func setViewContraints() {
+//        WaitingView.setViewContraints(delegate: self, view: view) { (waitingView) in
+//            self.waitingView = waitingView
+//            waitingView.viewTitle.text = "Searching Game"
+//            self.view.addSubview(waitingView)
+//            waitingView.isHidden = true
+//        }
+//    }
+    
     func calculateGameDuration(beginningTimeStamp: Date?, endTimeStamp: Date?) -> String {
         guard let beginningTimeStamp = beginningTimeStamp,
             let endTimeStamp = endTimeStamp else {return String()}
         let difference = Calendar.current.dateComponents([.hour, .minute], from: beginningTimeStamp, to: endTimeStamp)
         return String(format: "%02ld%02ld", difference.hour!, difference.minute!)
     }
+    
     private func submitVote(winner: String, winnerTeam: String) {
         let winnerVote = WinnerVotes(player: winner, winnerTeam: winnerTeam)
         MultiPeerConnectivityHelper.shared.winnerVotes.append(winnerVote)
         do{
             let data = try PropertyListEncoder().encode(winnerVote)
             let action = MultiPeerConnectivityHelper.Action.choseWinner.rawValue
-            let dataToSend = DataToSend(action: action, data: data)
+            let dataToSend = DataToSend(action: action, data: data, team: nil)
             MultiPeerConnectivityHelper.shared.convertDataToSendToDataAndSend(dataToSend: dataToSend)
         }catch{
             print("Property list encoding error \(error)")
         }
         
     }
+    
+    private func calculateWinner(winnerVotes: [WinnerVotes], completion: @escaping (GamerModel? , GamerModel?, Bool) -> Void) {
+        let redVotes = winnerVotes.filter {$0.winnerTeam == redTeam}
+        let blueVotes = winnerVotes.filter {$0.winnerTeam == blueTeam}
+        if redVotes.count > blueVotes.count {
+           completion(redOnePlayer, blueOnePlayer, false)
+        }
+        if redVotes.count < blueVotes.count {
+            completion(blueOnePlayer, redOnePlayer, false)
+        }
+        if redVotes.count == blueVotes.count {
+            completion(nil, nil, true)
+        }
+        
+        
+    }
+
 //    func fetchWinningConfirmations(){
 //        DBService.fetchWinningConfirmations(gameId: invitation.gameId) { (error, winningConfirmation) in
 //            if let error = error {
@@ -95,17 +138,18 @@ class EndGameViewController: UIViewController {
 //            }
 //        }
 //    }
+    
     @IBAction func confirmPressed(_ sender: UIButton) {
         guard let selectedTeam = selectedTeam else {
             showAlert(title: "Please select winner", message: nil)
             return
         }
-        guard let winner = MultiPeerConnectivityHelper.shared.winner else {
+        guard let winner = chosenWinner else {
             print("Error: No winner!!!")
             return}
         confirmAlert(title: "Winner: \(winner.username)", message: "Are you sure?") { (Done) in
+            self.waitingView?.isHidden = false
             self.submitVote(winner: winner.username, winnerTeam: selectedTeam.rawValue)
-            
             
 //            MultiPeerConnectivityHelper.shared.numberOfVotes += 1
         }
@@ -150,18 +194,19 @@ class EndGameViewController: UIViewController {
         bluePlayerView.addGestureRecognizer(bluePlayerViewTap)
     }
     @objc func redPlayerTap() {
-        
+        confirmButton.isHidden = false
         selectedTeam = .redTeam
         redPlayerView.alpha = 1
         bluePlayerView.alpha = 0.5
-        MultiPeerConnectivityHelper.shared.winner = MultiPeerConnectivityHelper.shared.redPlayer
+        chosenWinner = MultiPeerConnectivityHelper.shared.redPlayer
         
     }
     @objc func bluePlayerTap() {
+        confirmButton.isHidden = false
         selectedTeam = .blueTeam
         redPlayerView.alpha = 0.5
         bluePlayerView.alpha = 1.0
-        MultiPeerConnectivityHelper.shared.winner = MultiPeerConnectivityHelper.shared.bluePlayer
+        chosenWinner = MultiPeerConnectivityHelper.shared.bluePlayer
 
     }
     /*TO DO: func to checkmark the selected image
@@ -179,11 +224,41 @@ extension EndGameViewController: MultipeerConnectivityWinnerVotesDelegate {
         }
         
     }
-    
     func countIsTrue() {
-        //TO DO: SEGUE TO WINNER CONFIRMATION
-        print("Count is true")
+        calculateWinner(winnerVotes: MultiPeerConnectivityHelper.shared.winnerVotes) { (winner, loser, isTie) in
+            let winnerVC = WinnerViewController()
+            
+            winnerVC.winner = winner
+            winnerVC.loser = loser
+            winnerVC.isTie = isTie
+            winnerVC.modalPresentationStyle = .overCurrentContext
+            MultiPeerConnectivityHelper.shared.winnerVotes.removeAll()
+            winnerVC.actionHandlerDelegate = self
+            self.waitingView?.isHidden = true
+            self.present(winnerVC, animated: true)
+        }
+        
+        
     }
+}
+
+extension EndGameViewController: MultipeerConnectivityActionHandlerDelegate {
+    func userDidQuitGame() {
+        
+    }
+    
+    func userPressedRetry() {
+        viewDidLoad()
+    }
+    
+    
+}
+extension EndGameViewController: WaitingViewDelegate {
+    func cancelPressed() {
+        waitingView?.isHidden = true
+    }
+    
+    
 }
 //extension EndGameViewController {
 //    func createWinningConfirmation() {

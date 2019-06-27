@@ -12,6 +12,7 @@ protocol TimerDelegate: AnyObject {
     func sharedTimer(time: String)
     func changedButtonText(text: String)
     func finishedTimer()
+    func cancelledTimer()
 }
 class MainTimer {
     
@@ -54,6 +55,7 @@ class MainTimer {
         case suspended
         case resumed
         case restated
+        case stopped
     }
     
     private var state: State = .suspended
@@ -104,6 +106,13 @@ class MainTimer {
         resume()
     }
     
+    func stopTimer() {
+
+        suspend()
+        time = 0.0
+
+    }
+    
     
 
     
@@ -135,12 +144,12 @@ class MainTimer {
         let delegateTime = timeString(time: TimeInterval(time))
         let action = MultiPeerConnectivityHelper.Action.startedTimer.rawValue
         guard let timeData = delegateTime.data(using: .utf8) else {return}
-        let dataToSend = DataToSend(action: action, data: timeData)
+        let dataToSend = DataToSend(action: action, data: timeData,team: nil)
         MultiPeerConnectivityHelper.shared.convertDataToSendToDataAndSend(dataToSend: dataToSend)
         //        delegate?.timerIsRunning(time: delegateTime)
     }
     public func timerManager(action: String) {
-        let dataToSend = DataToSend(action: action, data: nil)
+        let dataToSend = DataToSend(action: action, data: nil,team: nil)
         MultiPeerConnectivityHelper.shared.convertDataToSendToDataAndSend(dataToSend: dataToSend)
     }
     

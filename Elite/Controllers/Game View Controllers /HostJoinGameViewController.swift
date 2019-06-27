@@ -11,9 +11,8 @@ import MultipeerConnectivity
 
 class HostJoinGameViewController: UIViewController{
 
-    @IBOutlet weak var loadingView: UIView!
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    var waitingView: UIView?
     
     //let multiPeerConnectivityHelper = MultiPeerConnectivityHelper()
 //    var session = MCSession()
@@ -21,29 +20,26 @@ class HostJoinGameViewController: UIViewController{
 //    var mcSession: MCSession?
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO: revisit
+        TimerPopUp.actionHandlerDelegate = self
         MultiPeerConnectivityHelper.shared.multipeerDelegate = self
-//        mcSession = MCSession(peer: myPeerId, securityIdentity: nil, encryptionPreference: .required)
-//        mcSession?.delegate = self
-        // Do any additional setup after loading the view.
+        WaitingView.watingViewDelegate = self
+        WaitingView.setViewContraints(titleText: "Searching for games", isHidden: true, delegate: self, view: self.view) { (waitingView) in
+            self.waitingView = waitingView
+        }
     }
+    
 
-    @IBAction func cancelPressed(_ sender: Any) {
-        MultiPeerConnectivityHelper.shared.cancelJoinGame()
-        loadingView.isHidden = true
-    }
     @IBAction func hostGamePressed(_ sender: Any) {
 //        multiPeerConnectivityHelper.hostGame()
         let createGameVC = CreateGameViewController()
-        MultiPeerConnectivityHelper.shared.team = .RedPlayer
+        MultiPeerConnectivityHelper.shared.role = .Host
         present(createGameVC, animated: true)
     }
     
     @IBAction func joinGamePressed(_ sender: Any) {
         MultiPeerConnectivityHelper.shared.joinGame(joiningGame: false)
-        loadingView.isHidden = false
-        activityIndicator.startAnimating()
-        MultiPeerConnectivityHelper.shared.team = .BluePlayer 
+        waitingView?.isHidden = false
+        MultiPeerConnectivityHelper.shared.role = .Guest
     }
     
 
@@ -55,7 +51,7 @@ extension HostJoinGameViewController: MultipeerConnectivityDelegate{
     
 
     
-    func receivedUserData(data: Data) {
+    func receivedUserData(data: Data, role: String) {
         
     }
     
@@ -83,6 +79,8 @@ extension HostJoinGameViewController: MultipeerConnectivityDelegate{
         let parkList = ParkListViewController()
         parkList.typeOfList = .AvailableGameList
         parkList.availableGames = availableGames
+        waitingView?.isHidden = true
+        parkList.modalPresentationStyle = .overCurrentContext
         present(parkList, animated: true)
     }
     
@@ -103,6 +101,28 @@ extension HostJoinGameViewController: MultipeerConnectivityDelegate{
 
 
 
+    
+    
+}
+
+extension HostJoinGameViewController: WaitingViewDelegate {
+    func cancelPressed() {
+        MultiPeerConnectivityHelper.shared.cancelJoinGame()
+        MultiPeerConnectivityHelper.shared.joiningGame = nil
+        waitingView?.isHidden = true
+    }
+    
+    
+}
+
+extension HostJoinGameViewController: MultipeerConnectivityActionHandlerDelegate {
+    func userPressedRetry() {
+        
+    }
+    
+    func userDidQuitGame() {
+        self.viewDidLoad()
+    }
     
     
 }

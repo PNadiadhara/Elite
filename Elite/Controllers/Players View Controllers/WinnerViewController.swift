@@ -12,203 +12,163 @@ import SAConfettiView
 class WinnerViewController: UIViewController {
     
     
-    var invitation: Invitation!
-    var game: GameModel!
-    var winnerConfirmationId = String()
-    var currentPlayer: CurrentPlayer?
-    var winnerTeam: Teams!
-    var loserTeam: Teams!
-    var winnerPlayers = [String]()
-    var loserPlayers = [String]()
-    var gameDuration = String()
-    var isHost = Bool()
-    var isTie = false
-    
-    var confettiView = SAConfettiView()
+
+
+
+    public var winner: GamerModel?
+    public var loser: GamerModel?
+    public var isTie = Bool()
+    private var confettiView = SAConfettiView()
+    weak var actionHandlerDelegate: MultipeerConnectivityActionHandlerDelegate?
     
     @IBOutlet weak var winnerView: UIView!
     @IBOutlet weak var winnerTitle: UILabel!
     @IBOutlet weak var playersImage: CircularImageView!
-    
-    @IBOutlet weak var loadingLabel: UILabel!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var userResultLabel: UILabel!
+    @IBOutlet weak var reportUser: UIButton!
+    @IBOutlet weak var retryButton: RoundedButton!
+    @IBOutlet weak var continueButton: RoundedButton!
+    
     
     override func viewDidLoad() {
-       
+       MultiPeerConnectivityHelper.shared.multipeerActionHandlerDelegate = self
         super.viewDidLoad()
         confettiView = SAConfettiView(frame: view.bounds)
-        if Flag.isDemo {
-            demoBugPrevention()
-        } else {
-            fetchWinner()
-        }
         setupConfetti()
-        continueButton.isHidden = true
 
 //        demoBugPrevention()
 //        blurView()
         // Do any additional setup after loading the view.
     }
+    
+
     func setupConfetti(){
         self.view.addSubview(confettiView)
         view.sendSubviewToBack(confettiView)
         confettiView.type = .Confetti
+        confettiView.intensity = 0.80
+        setupUI()
     }
-    func demoBugPrevention() {
-        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
-            self.winnerTeam = .redTeam
-            self.animateView(winnerTeam: Teams.redTeam)
-        }
-    }
+//    func demoBugPrevention() {
+//        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
+//            self.winnerTeam = .redTeam
+//            self.animateView(winnerTeam: Teams.redTeam)
+//        }
+//    }
     func blurView() {
         let blurEffect = UIBlurEffect(style: .dark)
         let blurredEffectView = UIVisualEffectView(effect: blurEffect)
         blurredEffectView.frame = view.bounds
         view.addSubview(blurredEffectView)
     }
-    func fetchWinnerPlayers(game:GameModel) -> [String]{
-        if winnerTeam == .blueTeam {
-            return game.blueTeam
-        }
-        if winnerTeam == .redTeam {
-            return game.redTeam
-        }
-        return [String]()
-    }
-    func fetchLoserPlayers(game:GameModel) -> [String] {
-        if loserTeam == .blueTeam {
-            return game.blueTeam
-        }
-        if loserTeam == .redTeam {
-            return game.redTeam
-        }
-        return [String]()
-    }
-    @IBAction func continuePressed(_ sender: UIButton) {
-        let game = GameModel(gameName: self.game.gameName, gameType: self.game.gameType, numberOfPlayers: self.game.numberOfGamers, redTeam: self.game.redTeam, blueTeam: self.game.blueTeam, parkId: self.game.parkId, gameDescription: "Good Game", gameEndTime: Date.getISOTimestamp(), winners: winnerPlayers, losers: loserPlayers, isTie: isTie, formattedAdresss: self.game.formattedAdresss, parkName: self.game.parkName, lat: self.game.lat, lon: self.game.lon, gameID: self.game.gameID, witness: nil, duration: gameDuration , isOver: nil, wasCancelled: nil)
-        if isHost{
-        DBService.updateGameModel(game: game) { (error) in
-            if let error = error {
-                print(error)
+    
+    func setupUI() {
+        if !isTie {
+            guard let winner = winner,
+            let loser = loser else {return}
+            if winner.username == TabBarViewController.currentGamer.username {
+                confettiView.startConfetti()
+                winnerTitle.text = "Congratulations \(winner.username)"
+                userResultLabel.text = "You won!!!"
+                continueButton.isHidden = false
             } else {
-                print("Game updated")
+                winnerTitle.text = "Sorry \(loser.username)"
+                userResultLabel.text = "You lost"
+                retryButton.isHidden = false
+                confirmButton.isHidden = false
+                
             }
+        } else {
+            winnerTitle.text = "Players chose different winners"
+            userResultLabel.text = "Try again? or Report?"
+            reportUser.isHidden = false
         }
-        }
-        DBService.deleteWinningConfirmation(winningConfirmationId: winnerConfirmationId) { (error) in
-            if let error = error{
-                print(error)
-            }
-        }
-        
-        if let currentPlayer = currentPlayer{
-            DBService.deleteCurrentPlayer(currentPlayer: currentPlayer) { (error) in
-                if let error = error {
-                    print(error)
-                }
-            }
-        }
-        let rankingChangeViewController = RankingChangeViewController.init(nibName: "RankingChangeViewController", bundle: nil)
-        present(rankingChangeViewController, animated: true)
-        
     }
-   func animateView(winnerTeam: Teams) {
-        UIView.transition(with: winnerView, duration: 1, options: [.transitionFlipFromRight], animations: {
-            
-            self.winnerPlayers = self.fetchWinnerPlayers(game: self.game)
-            self.loserPlayers = self.fetchLoserPlayers(game: self.game)
-            self.winnerTitle.isHidden = false
-            self.userResultLabel.isHidden = false
-            if winnerTeam == .redTeam{
-              self.winnerTitle.text = "Red team won!"
-            }
-            if winnerTeam == .blueTeam {
-                self.winnerTitle.text = "Blue team won!"
-            }
-            if self.winnerPlayers.contains(TabBarViewController.currentGamer.gamerID) {
-                self.confettiView.startConfetti()
-                self.userResultLabel.text = "You won!"
-//                self.cheerView.start()
-                self.playersImage.image = UIImage(named: TabBarViewController.currentGamer.username + "Winner")
-            } else {
-                self.userResultLabel.text = "You lost"
-                self.playersImage.image = UIImage(named: TabBarViewController.currentGamer.username + "Loser")
-            }
-            self.playersImage.isHidden = false
-            self.continueButton.isHidden = false
-            self.activityIndicator.isHidden = true
-            self.loadingLabel.isHidden = true
-        })
-//        UIView.transition(with: cat, duration: 1.0, options: [.transitionFlipFromRight], animations: {
-//            self.cat.setImage(UIImage(named: "dog"), for: .normal)
+    
+    func retryGame() {
+        dismiss(animated: true)
+        actionHandlerDelegate?.userPressedRetry()
+
+    }
+    
+    func sendRetryAction() {
+        let action = MultiPeerConnectivityHelper.Action.retryWinnerVote.rawValue
+        let dataToSend = DataToSend(action: action, data: nil, team: nil)
+        MultiPeerConnectivityHelper.shared.convertDataToSendToDataAndSend(dataToSend: dataToSend)
+    }
+    
+    @IBAction func continueButtonPressed(_ sender: Any) {
+        let parkRankingInfoEndGame = ParkRankingInfoEndGameViewController()
+    
+    }
+    
+    @IBAction func retryButtonPressed(_ sender: Any) {
+        sendRetryAction()
+        retryGame()
+    }
+    
+    
+    @IBAction func confirmPressed(_ sender: UIButton) {
+        // TO DO: Let the user know that confirming the game will be null
+
+        
+
+//        let rankingChangeViewController = RankingChangeViewController.init(nibName: "RankingChangeViewController", bundle: nil)
+//        present(rankingChangeViewController, animated: true)
+//
+    }
+//   func animateView(winnerTeam: Teams) {
+//        UIView.transition(with: winnerView, duration: 1, options: [.transitionFlipFromRight], animations: {
+//
+//            self.winnerPlayers = self.fetchWinnerPlayers(game: self.game)
+//            self.loserPlayers = self.fetchLoserPlayers(game: self.game)
+//            self.winnerTitle.isHidden = false
+//            self.userResultLabel.isHidden = false
+//            if winnerTeam == .redTeam{
+//              self.winnerTitle.text = "Red team won!"
+//            }
+//            if winnerTeam == .blueTeam {
+//                self.winnerTitle.text = "Blue team won!"
+//            }
+//            if self.winnerPlayers.contains(TabBarViewController.currentGamer.gamerID) {
+//                self.confettiView.startConfetti()
+//                self.userResultLabel.text = "You won!"
+////                self.cheerView.start()
+//                self.playersImage.image = UIImage(named: TabBarViewController.currentGamer.username + "Winner")
+//            } else {
+//                self.userResultLabel.text = "You lost"
+//                self.playersImage.image = UIImage(named: TabBarViewController.currentGamer.username + "Loser")
+//            }
+//            self.playersImage.isHidden = false
+//            self.continueButton.isHidden = false
+//            self.activityIndicator.isHidden = true
+//            self.loadingLabel.isHidden = true
 //        })
+////        UIView.transition(with: cat, duration: 1.0, options: [.transitionFlipFromRight], animations: {
+////            self.cat.setImage(UIImage(named: "dog"), for: .normal)
+////        })
+//    }
+
+
+}
+
+extension WinnerViewController: MultipeerConnectivityActionHandlerDelegate {
+    func userDidQuitGame() {
+        
     }
-    func fetchWinner() {
-        DBService.fetchWinningConfirmations(gameId: invitation.gameId) { (error, winnerConfirmation) in
-            if let error = error {
-                print(error)
-            }
-            if let winnerConfirmation = winnerConfirmation{
-                WinnerConfirmation.calculateWinner(winnerConfirmation: winnerConfirmation, completion: { (winningTeam, noWinner, totalcount) in
-                    
-                    if let totalcount = totalcount {
-                        switch self.game.gameType{
-                        case GameType.oneVsOne.rawValue:
-                            if totalcount == 2 {
-
-                                if let winningTeam = winningTeam {
-                                    switch winningTeam {
-                                    case .blueTeam:
-                                        self.winnerTeam = .blueTeam
-                                        self.loserTeam = .redTeam
-                                        self.animateView(winnerTeam: Teams.blueTeam)
-                                    case .redTeam:
-                                        self.winnerTeam = .redTeam
-                                        self.loserTeam = .blueTeam
-                                        self.animateView(winnerTeam: Teams.redTeam)
-                                    }
-
-                                }
-                                if noWinner != nil {
-                                    self.winnerTitle.text = "No winner"
-                                    self.isTie = true
-                                }
-
-                            }
-                            
-                        case GameType.twoVsTwo.rawValue:
-                            if totalcount == 4 {
-                                if let winningTeam = winningTeam {
-                                    switch winningTeam {
-                                    case .blueTeam:
-                                        self.animateView(winnerTeam: Teams.blueTeam)
-                                        self.winnerTeam = .blueTeam
-                                    case .redTeam:
-                                        self.animateView(winnerTeam: Teams.redTeam)
-                                        self.winnerTeam = .redTeam
-                                    }
-                                    if noWinner != nil {
-                                        self.winnerTitle.text = "No winner"
-                                    }
-                                }
-                            }
-                        case GameType.fiveVsFive.rawValue:
-                            if totalcount == 10 {
-                                print("Have all the votes")
-                            }
-                        default:
-                            print("NO GAME TYPE")
-                        }
-
-                    }
-                    
-                    
-                })
+    
+    func userPressedRetry() {
+        invitationAlert(title: "Opponent wants to retry voting", message: "Accept") { (action) in
+            if action.title == "Yes" {
+                self.retryGame()
+            } else {
+                //TO DO:
+                //show alert asking to report
+                // move to next vc
             }
         }
     }
-
-
+    
+    
 }

@@ -17,6 +17,7 @@
                 <outlet property="blueOnePlayerLabel" destination="MIK-ZQ-uLg" id="kwP-yL-epK"/>
                 <outlet property="bluePlayerImage" destination="NcN-dm-ESj" id="uhx-Wi-eSM"/>
                 <outlet property="bluePlayerView" destination="zbN-rU-YBV" id="puC-uD-xPY"/>
+                <outlet property="blueTeamTitle" destination="m9V-vd-DI0" id="hxJ-oG-A7U"/>
                 <outlet property="blueThreePlayerLabel" destination="0VU-9N-jSp" id="pmc-7i-gRb"/>
                 <outlet property="blueTwoPlayerLabel" destination="Y4X-RR-PSo" id="k19-cU-MQR"/>
                 <outlet property="confirmButton" destination="Hgh-T6-WCc" id="PG5-Rx-sBe"/>
@@ -25,6 +26,7 @@
                 <outlet property="redOnePlayerLabel" destination="eNX-Oa-Mxv" id="ygr-C1-sbP"/>
                 <outlet property="redPlayerImage" destination="bHd-Yl-1aq" id="scI-83-0hG"/>
                 <outlet property="redPlayerView" destination="1lF-Sb-xVl" id="2Jm-ab-zoF"/>
+                <outlet property="redTeamTitle" destination="VI1-Yr-A3q" id="X2f-6i-eId"/>
                 <outlet property="redThreePlayerLabel" destination="bZA-N5-qBu" id="pmf-xi-OSA"/>
                 <outlet property="redTwoPlayerLabel" destination="7Sb-LY-zz6" id="52m-g6-0Xz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
