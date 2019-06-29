@@ -59,9 +59,11 @@ class EndGameViewController: UIViewController {
         redOnePlayer = MultiPeerConnectivityHelper.shared.redPlayer
         blueOnePlayer = MultiPeerConnectivityHelper.shared.bluePlayer
         MultiPeerConnectivityHelper.shared.multipeerWinnerVotesDelegate = self
-        WaitingView.setViewContraints(titleText: "Waiting for\nplayers to join", isHidden: true, delegate: self, view: self.view) { (waitingView) in
+        WaitingView.setViewContraints(titleText: "Finishing game", isHidden: true, delegate: self, view: self.view) { (waitingView) in
             self.waitingView = waitingView
         }
+        bluePlayerImage.image = UIImage(named: MultiPeerConnectivityHelper.shared.bluePlayer!.username)
+        redPlayerImage.image = UIImage(named: MultiPeerConnectivityHelper.shared.redPlayer!.username)
         selectedTeam = .redTeam
         redPlayerView.alpha = 1
         redTeamTitle.text = redOnePlayer?.username

@@ -33,19 +33,18 @@ struct GameCollectionKeys {
     static let TeamAScore = "teamAScore"
     static let TeamBScore = "teamBScore"
     static let DurationKey = "duration"
-    static let isOverKey = "isOver"
-    static let wasCancelledKey = "wasCancelled"
+//    static let isOverKey = "isOver"
+//    static let wasCancelledKey = "wasCancelled"
 }
 
 extension DBService {
-    static public func postGame(gamePost: GameModel, completion: @escaping (Error?, String?) -> Void)  {
+    static public func postGame(gamePost: GameModel, completion: @escaping (Error?) -> Void)  {
         let na = "N/A"
         let ref = firestoreDB.collection(GameCollectionKeys.CollectionKey).document()
         firestoreDB.collection(GameCollectionKeys.CollectionKey)
             .document(ref.documentID).setData([
                 GameCollectionKeys.GameNameKey : gamePost.gameName,
                 GameCollectionKeys.GameTypeKey : gamePost.gameType,
-                GameCollectionKeys.NumberOfGamersKey : gamePost.numberOfGamers,
                 GameCollectionKeys.TeamA : gamePost.redTeam,
                 GameCollectionKeys.TeamB : gamePost.blueTeam,
                 GameCollectionKeys.GameDescriptionKey : gamePost.gameDescription ?? na,
@@ -53,7 +52,7 @@ extension DBService {
                 GameCollectionKeys.WinnersKey : gamePost.winners ?? [na],
                 GameCollectionKeys.GameIDKey :  ref.documentID,
                 GameCollectionKeys.WitnessKey : gamePost.witness ?? na,
-                GameCollectionKeys.DurationKey : gamePost.duration ?? na, GameCollectionKeys.isOverKey : gamePost.isOver ?? false, GameCollectionKeys.wasCancelledKey : gamePost.wasCancelled ?? false, GameCollectionKeys.LosersKey : gamePost.losers ?? na,
+                GameCollectionKeys.DurationKey : gamePost.duration ?? na,  GameCollectionKeys.LosersKey : gamePost.losers ?? na,
                 GameCollectionKeys.IsTieKey : gamePost.isTie ?? na,
                 GameCollectionKeys.FormattedAdresssKey : gamePost.formattedAdresss,
                 GameCollectionKeys.ParkNameKey : gamePost.parkName,
@@ -61,10 +60,11 @@ extension DBService {
                 GameCollectionKeys.LonKey : gamePost.lon])
             { (error) in
                 if let error = error {
-                    print("game post error: \(error)")
-                    completion(error,nil)
+                    completion(error)
+                } else {
+                    print("blog posted successfully to ref: \(ref.documentID)")
+                    completion(nil)
                 }
-                completion(nil, ref.documentID)
         }
     }
     
@@ -81,8 +81,10 @@ extension DBService {
                 }
         }
     }
+    
     static public func fetchGame(gameId: String, completion: @escaping(Error?, GameModel?) -> Void) {
-        DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).whereField(GameCollectionKeys.GameIDKey, isEqualTo: gameId).addSnapshotListener { (snapshot, error) in
+        
+       DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).whereField(GameCollectionKeys.GameIDKey, isEqualTo: gameId).addSnapshotListener { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
             }
@@ -93,20 +95,67 @@ extension DBService {
         }
         
     }
-    static public func updateGameToFinish(gameId: String) {
-    DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).document(gameId).updateData([GameCollectionKeys.isOverKey : true])
-    }
-    static public func updateGameToCancelled(gameId: String) {
-        DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).document(gameId).updateData([GameCollectionKeys.wasCancelledKey : true])
-    }
-    static public func updateGameModel(game: GameModel, completion: @escaping (Error?) -> Void) {
-        let na = "N/A"; DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).document(game.gameID).updateData([GameCollectionKeys.GameDescriptionKey : game.gameDescription ?? "", GameCollectionKeys.GameEndTimeKey : game.gameEndTime ?? na, GameCollectionKeys.WinnersKey : game.winners ?? na, GameCollectionKeys.LosersKey : game.losers ?? na, GameCollectionKeys.IsTieKey : game.isTie ?? na,GameCollectionKeys.WitnessKey : game.witness ?? na, GameCollectionKeys.DurationKey : game.duration ?? na, GameCollectionKeys.isOverKey : false, GameCollectionKeys.wasCancelledKey : false]) { (error
-            ) in
+
+    static public func fetchPlayersGamesPlayed(gamerId: String, completion: @escaping (Error? , [GameModel]?) -> Void) {
+        let query = firestoreDB.collection(GameCollectionKeys.CollectionKey)
+        query.getDocuments { (snapshot, error) in
             if let error = error {
-               completion(error)
+                completion(error, nil)
+            }
+            if let snapshot = snapshot {
+                var games = [GameModel]()
+                for document in snapshot.documents {
+                    let allGames = GameModel.init(dict: document.data())
+                    games.append(allGames)
+                }
+                completion(nil, games.filter({ (game) -> Bool in
+                    (game.winners?.contains(gamerId))! || game.losers!.contains(gamerId)
+                }))
+            }
+        }
+        
+
+    }
+    static public func fetchPlayersGamePlayedAtPark(parkId: String, gamerId: String, completion: @escaping(Error?, [GameModel]) -> Void) {
+        fetchPlayersGamesPlayed(gamerId: gamerId) { (error, games) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            if let games = games {
+                let gamesWithUserId = games.filter {$0.parkId == parkId}
+                completion(nil, gamesWithUserId)
             }
         }
     }
+    
+    static public func findPlayersWinsAtPark(parkId: String, gamerId: String, complete: @escaping(Int) -> Void) {
+        
+        fetchPlayersGamePlayedAtPark(parkId: parkId, gamerId: gamerId) { (error, games) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            let gamesWon = games.filter{($0.winners?.contains(gamerId))!}.count
+            complete(gamesWon)
+        }
+        
+    }
+    
+    static public func findPlayersLossesAtPark(parkId: String, gamerId: String,complete: @escaping(Int) -> Void)  {
+        fetchPlayersGamePlayedAtPark(parkId: parkId, gamerId: gamerId) { (error, games) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            let gamesLost = games.filter{($0.losers?.contains(gamerId))!}.count
+            complete(gamesLost)
+        }
+        
+    }
+    
+    static public func getPlayerWinsByPark(parkId: String?, completion: @escaping (Error?, Int?) -> Void) {
+        
+    }
+
+
     
 //    static public func updateInvitationApprovalToTrue(invitation: Invitation,completion: @escaping (Error?) -> Void) {
 //        DBService.firestoreDB.collection(InvitationCollectionKeys.collectionKey).document(invitation.invitationId).updateData([InvitationCollectionKeys.approvalKey : true ]) { (error) in

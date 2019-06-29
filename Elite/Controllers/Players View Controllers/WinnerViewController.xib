@@ -12,11 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WinnerViewController" customModule="Elite" customModuleProvider="target">
             <connections>
-                <outlet property="confirmButton" destination="7vh-Ob-5uM" id="5H8-m4-Dhw"/>
-                <outlet property="continueButton" destination="1fy-zL-K1T" id="GMO-po-SqI"/>
+                <outlet property="confirmButton" destination="7vh-Ob-5uM" id="f0T-6g-VrK"/>
+                <outlet property="continueButton" destination="1fy-zL-K1T" id="sGS-Vs-Iqj"/>
                 <outlet property="playersImage" destination="I0Z-T1-IAk" id="rJG-Vw-AYl"/>
                 <outlet property="reportUser" destination="Kao-ni-Z8C" id="g9k-uC-A2G"/>
-                <outlet property="retryButton" destination="Wmu-ew-BW4" id="gaC-cr-M9V"/>
+                <outlet property="retryButton" destination="Wmu-ew-BW4" id="VCg-1H-Lob"/>
                 <outlet property="userResultLabel" destination="TuD-K9-G2U" id="7sA-2J-N9Q"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="winnerTitle" destination="RbY-Ue-HwS" id="Wia-0L-zj1"/>
@@ -55,7 +55,7 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
-                                <action selector="continuePressed:" destination="-1" eventType="touchUpInside" id="Ide-Z0-cf5"/>
+                                <action selector="confirmPressed:" destination="-1" eventType="touchUpInside" id="33x-Nv-zQz"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You won" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="TuD-K9-G2U">
@@ -80,8 +80,7 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
-                                <action selector="continuePressed:" destination="-1" eventType="touchUpInside" id="HhB-fj-NoG"/>
-                                <action selector="retryButtonPressed:" destination="-1" eventType="touchUpInside" id="6d6-LU-DZK"/>
+                                <action selector="retryButtonPressed:" destination="-1" eventType="touchUpInside" id="Bmm-p7-6ow"/>
                             </connections>
                         </button>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1fy-zL-K1T" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
@@ -96,8 +95,7 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
-                                <action selector="continueButtonPressed:" destination="-1" eventType="touchUpInside" id="q1B-g3-Sdk"/>
-                                <action selector="continuePressed:" destination="-1" eventType="touchUpInside" id="md0-PH-gSA"/>
+                                <action selector="continueButtonPressed:" destination="-1" eventType="touchUpInside" id="PZs-dc-lwD"/>
                             </connections>
                         </button>
                     </subviews>

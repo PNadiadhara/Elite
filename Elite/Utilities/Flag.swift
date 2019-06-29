@@ -11,5 +11,6 @@ import Foundation
 class Flag {
     static var isFeedReady = false
     static var isDemo = false
+    static var isSearchBarOnMapReady = false
     static var isMultiPlayerReady = false
 }

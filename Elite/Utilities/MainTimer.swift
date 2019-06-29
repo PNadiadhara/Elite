@@ -107,7 +107,7 @@ class MainTimer {
     }
     
     func stopTimer() {
-
+        MainTimer.totalTime = time
         suspend()
         time = 0.0
 
