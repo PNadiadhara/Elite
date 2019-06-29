@@ -20,6 +20,7 @@ class WinnerViewController: UIViewController {
     public var isTie = Bool()
     private var confettiView = SAConfettiView()
     weak var actionHandlerDelegate: MultipeerConnectivityActionHandlerDelegate?
+    var parkId = String()
     
     @IBOutlet weak var winnerView: UIView!
     @IBOutlet weak var winnerTitle: UILabel!
@@ -31,12 +32,14 @@ class WinnerViewController: UIViewController {
     @IBOutlet weak var continueButton: RoundedButton!
     
     
+ 
+    
     override func viewDidLoad() {
        MultiPeerConnectivityHelper.shared.multipeerActionHandlerDelegate = self
+        MultiPeerConnectivityHelper.shared.multipeerGameModelDelegate = self
         super.viewDidLoad()
-        confettiView = SAConfettiView(frame: view.bounds)
-        setupConfetti()
-
+        setupUI()
+        hostUpdateGameModelToFireBase()
 //        demoBugPrevention()
 //        blurView()
         // Do any additional setup after loading the view.
@@ -48,7 +51,6 @@ class WinnerViewController: UIViewController {
         view.sendSubviewToBack(confettiView)
         confettiView.type = .Confetti
         confettiView.intensity = 0.80
-        setupUI()
     }
 //    func demoBugPrevention() {
 //        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
@@ -63,7 +65,38 @@ class WinnerViewController: UIViewController {
         view.addSubview(blurredEffectView)
     }
     
+    func hostUpdateGameModelToFireBase(){
+        if MultiPeerConnectivityHelper.shared.role == .Host {
+            MultiPeerConnectivityHelper.shared.sendParkID(parkId: GameModel.parkId ?? "") {
+                let timeStamp = Date.getISOTimestamp()
+                let gameDuration = MainTimer.shared.timeString(time: MainTimer.totalTime)
+                GameModel.updateGameModel(gameEndTime: timeStamp, winners: [winner!.gamerID], losers: [loser!.gamerID], duration: gameDuration) {
+                    guard let game = GameModel.game else {
+                        print("Game is nil")
+                        return
+                    }
+                    DBService.postGame(gamePost: game, completion: { (error) in
+                        if let error = error {
+                            self.showAlert(title: "Error sending game to Firebase", message: error.localizedDescription)
+                            
+                        } else {
+                            print("Game model succesfully saved")
+                        }
+                        
+                        
+                    })
+                }
+//                MultiPeerConnectivityHelper.shared.endSession()
+            }
+
+        }
+    }
+    
     func setupUI() {
+        
+
+        confettiView = SAConfettiView(frame: view.bounds)
+        setupConfetti()
         if !isTie {
             guard let winner = winner,
             let loser = loser else {return}
@@ -72,17 +105,23 @@ class WinnerViewController: UIViewController {
                 winnerTitle.text = "Congratulations \(winner.username)"
                 userResultLabel.text = "You won!!!"
                 continueButton.isHidden = false
+                retryButton.isHidden = true
+                confirmButton.isHidden = true
             } else {
                 winnerTitle.text = "Sorry \(loser.username)"
                 userResultLabel.text = "You lost"
-                retryButton.isHidden = false
-                confirmButton.isHidden = false
+                retryButton.isHidden = true
+                confirmButton.isHidden = true
+                continueButton.isHidden = false
                 
             }
         } else {
             winnerTitle.text = "Players chose different winners"
             userResultLabel.text = "Try again? or Report?"
             reportUser.isHidden = false
+            confirmButton.isHidden = false
+            continueButton.isHidden = true
+            
         }
     }
     
@@ -100,7 +139,9 @@ class WinnerViewController: UIViewController {
     
     @IBAction func continueButtonPressed(_ sender: Any) {
         let parkRankingInfoEndGame = ParkRankingInfoEndGameViewController()
-    
+        parkRankingInfoEndGame.parkId = parkId
+        present(parkRankingInfoEndGame, animated: true)
+
     }
     
     @IBAction func retryButtonPressed(_ sender: Any) {
@@ -168,6 +209,14 @@ extension WinnerViewController: MultipeerConnectivityActionHandlerDelegate {
                 // move to next vc
             }
         }
+    }
+    
+    
+}
+
+extension WinnerViewController: MultipeerConnectivityGameModelDelegate {
+    func hostSentParkId(parkId: String) {
+        self.parkId = parkId
     }
     
     

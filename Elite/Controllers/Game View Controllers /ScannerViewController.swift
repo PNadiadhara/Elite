@@ -13,7 +13,7 @@ class ScannerViewController: UIViewController {
     private let previewViewLayer = AVPreviewLayer()
     private let captureSession = CaptureSession()
     var user: String?
-    weak var delegate: SearchForPlayerDelegate?
+//    weak var delegate: ParkListDelegate?
     weak var twoVsTwoSearchDelegate: twoVsTwoSearchDelegate?
     var scannedOtherGamer: GamerModel?
     var teamRole: TeamRoles!
@@ -131,7 +131,7 @@ extension ScannerViewController: AVCaptureMetadataOutputObjectsDelegate{
                         if let gamer = gamer {
                             var currentPlayer: CurrentPlayer!
                             if self.gameType == .oneVsOne {
-                                self.delegate?.gamerSelected(gamer: gamer)
+//                                self.delegate?.gamerSelected(gamer: gamer)
 
                             }
                             if self.gameType == .twoVsTwo{
@@ -167,11 +167,11 @@ extension ScannerViewController: AVCaptureMetadataOutputObjectsDelegate{
     }
     
 }
-extension ScannerViewController: SearchForPlayerDelegate{
-    
-    func gamerSelected(gamer: GamerModel) {
-        self.scannedOtherGamer = gamer
-    }
-    
-    
-}
+//extension ScannerViewController: ParkListDelegate{
+//    
+//    func gamerSelected(gamer: GamerModel) {
+//        self.scannedOtherGamer = gamer
+//    }
+//    
+//    
+//}

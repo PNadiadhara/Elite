@@ -18,6 +18,7 @@ class WaitingView: UIView {
     @IBOutlet weak var viewTitle: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var cancelButton: UIButton!
     
     @IBAction func cancelPressed(_ sender: UIButton) {
         WaitingView.watingViewDelegate?.cancelPressed()

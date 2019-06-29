@@ -14,7 +14,7 @@ class SearchPlayerViewController: UIViewController {
     @IBOutlet weak var friendsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    weak var searchDelegate: SearchForPlayerDelegate?
+//    weak var searchDelegate: ParkListDelegate?
     weak var twoVsTwoSearchDelegate: twoVsTwoSearchDelegate?
     var teamRole: TeamRoles!
     var gameType: GameType!
@@ -46,7 +46,7 @@ class SearchPlayerViewController: UIViewController {
 
     @IBAction func scanCodePressed(_ sender: UIButton) {
         let scannerController = ScannerViewController()
-        scannerController.delegate = searchDelegate
+//        scannerController.delegate = searchDelegate
         scannerController.teamRole = teamRole
         scannerController.gameType = gameType
         scannerController.twoVsTwoSearchDelegate = twoVsTwoSearchDelegate
@@ -118,7 +118,7 @@ extension SearchPlayerViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let gamer = gamers[indexPath.row]
         if gameType == .oneVsOne{
-            searchDelegate?.gamerSelected(gamer: gamer)
+//            searchDelegate?.gamerSelected(gamer: gamer)
         }
         if gameType == .twoVsTwo{
             if teamRole == .redTwo{

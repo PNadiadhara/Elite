@@ -82,7 +82,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bHd-Yl-1aq">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bHd-Yl-1aq">
                             <rect key="frame" x="100" y="80" width="100" height="100"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="bHd-Yl-1aq" secondAttribute="height" multiplier="1:1" id="mfP-1V-bEx"/>
@@ -154,7 +154,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NcN-dm-ESj">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NcN-dm-ESj">
                             <rect key="frame" x="100" y="80" width="100" height="100"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="NcN-dm-ESj" secondAttribute="height" multiplier="1:1" id="QH8-DD-7fG"/>

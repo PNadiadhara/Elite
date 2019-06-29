@@ -11,7 +11,9 @@ import GoogleMaps
 protocol CreateGameViewControllerDelegate: AnyObject {
     func generateQRCodeOfUser(qrString: String?, qrImage: UIImageView?)
 }
-
+protocol ParkListDelegate: AnyObject {
+    func parkSelected(basketBall: BasketBall?, handBall: HandBall?)
+}
 enum OriginViewController {
     case mapViewController
 }
@@ -47,17 +49,27 @@ class CreateGameViewController: UIViewController {
     var userQrImage: UIImageView?
     weak var delegate: CreateGameViewControllerDelegate?
     var closestPark = String()
+    var parkSelected = String()
     //let multipeerConnectivityHelper = MultiPeerConnectivityHelper()
     var gameName: GameName! {
         didSet {
             if gameName == .handball {
                 if let closestCourt = GoogleMapHelper.getHandballCourtClosestToUsersLocation(closestToLocation: userLocation, handballCourts: handballResults) {
                     closestHandballcourt = closestCourt
+                    GameModel.parkId = closestCourt.playgroundID
+                    GameModel.parkSelected = closestCourt.nameOfPlayground
+                    GameModel.parkLat = closestCourt.lat
+                    GameModel.parkLon = closestCourt.lng
                 }
             }
             if gameName == .basketball {
                 if let closestCourt = GoogleMapHelper.getBasketballCourtClosestToUsersLocation(closestToLocation: userLocation, basketballCourts: basketballResults) {
                     closestBasketballcourt = closestCourt
+                    GameModel.parkId = closestCourt.playgroundID
+                    GameModel.parkSelected = closestCourt.nameOfPlayground
+                    GameModel.parkLat = closestCourt.lat
+                    GameModel.parkLon = closestCourt.lng
+        
                 }
             }
         }
@@ -66,21 +78,16 @@ class CreateGameViewController: UIViewController {
         didSet {
             if originViewController != .mapViewController {
                 parkSelectedLabel.text = closestBasketballcourt.nameOfPlayground
+                
             }
             
         }
     }
-    var closestHandballcourt: HandBall! {
-        didSet {
-            if originViewController != .mapViewController {
-                parkSelectedLabel.text = closestHandballcourt.nameOfPlayground
-            }
-            
-        }
-    }
+
     var originViewController: OriginViewController?
     var animatedViews = [UIView]()
-    var parkSelected = String()
+
+
     public var handballResults = [HandBall]()
     public var basketballResults = [BasketBall]()
     private var locationManager = CLLocationManager()
@@ -91,10 +98,25 @@ class CreateGameViewController: UIViewController {
 //            closestHandballcourt = GoogleMapHelper.getHandballCourtClosestToUsersLocation(closestToLocation: userLocation, handballCourts: handballResults)
         }
     }
-    
+    var closestHandballcourt: HandBall! {
+        didSet {
+            if originViewController != .mapViewController {
+                parkSelectedLabel.text = closestHandballcourt.nameOfPlayground
+            }
+            
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         loadAllParkData()
+        DBService.fetchPlayersGamesPlayed(gamerId: TabBarViewController.currentGamer.gamerID) { (error, games) in
+            if let error = error {
+                self.showAlert(title: "Error fetching games", message: error.localizedDescription)
+            }
+            if let games = games {
+                print(games.count)
+            }
+        }
         if !Flag.isMultiPlayerReady{
           animatedViews = [animatedTopRight,animatedTopLeft,animatedBottomLeft,animatedBottomRight]
                     animatedViews.forEach{$0.isHidden = true}
@@ -251,8 +273,6 @@ class CreateGameViewController: UIViewController {
         oneVsOneVc.modalPresentationStyle = .fullScreen
         oneVsOneVc.modalTransitionStyle = .flipHorizontal
         oneVsOneVc.gameName = gameName
-        oneVsOneVc.gameTypeSelected = .oneVsOne
-        oneVsOneVc.parkSelected = parkSelected
         MultiPeerConnectivityHelper.shared.hostGame()
         // multipeerConnectivityHelper.hostGame()
         present(oneVsOneVc, animated: true)
@@ -291,6 +311,7 @@ class CreateGameViewController: UIViewController {
         } else {
             parkListVC.handBallCourts = handballResults
         }
+        parkListVC.parkDelegate = self
         parkListVC.gameName = gameName
         parkListVC.userLocation = userLocation
         parkListVC.typeOfList = .ParkList
@@ -323,7 +344,10 @@ class CreateGameViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(_ sender: RoundedButton) {
+        GameModel.gameName = gameName.rawValue
+        GameModel.gameTypeSelected = "1 vs. 1"
         segueToOneVsOne()
+        
     }
     
     
@@ -356,3 +380,15 @@ extension CreateGameViewController: CLLocationManagerDelegate{
     }
 }
 
+extension CreateGameViewController: ParkListDelegate {
+    func parkSelected(basketBall: BasketBall?, handBall: HandBall?) {
+        if let basketBallCourt = basketBall {
+            closestBasketballcourt = basketBallCourt
+        }
+        if let handBallCourt = handBall {
+            closestHandballcourt = handBallCourt
+        }
+    }
+    
+    
+}

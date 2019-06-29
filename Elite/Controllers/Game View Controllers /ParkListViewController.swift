@@ -16,6 +16,8 @@ enum TypeOfList {
 }
 class ParkListViewController: UIViewController {
 
+    weak var parkDelegate: ParkListDelegate?
+    
     @IBOutlet weak var parkListTableView: UITableView!
     
     public var basketBallCourts = [BasketBall]() {
@@ -133,7 +135,19 @@ extension ParkListViewController: UITableViewDelegate, UITableViewDataSource {
         return 86
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if typeOfList == .AvailableGameList{
         MultiPeerConnectivityHelper.shared.joinGame(joiningGame: true)
+        }
+        if typeOfList == .ParkList {
+            if gameName == .basketball {
+                let court = basketBallResults[indexPath.row]
+                parkDelegate?.parkSelected(basketBall: court, handBall: nil)
+            } else {
+                let court = handBallResults[indexPath.row]
+                parkDelegate?.parkSelected(basketBall: nil, handBall: court)
+            }
+          dismiss(animated: true)
+        }
     }
     
 }
