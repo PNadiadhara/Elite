@@ -105,5 +105,25 @@ class GoogleMapHelper {
         }
         return closestLocation
     }
-    
+    // For the Json Data
+//    func setCordinates(_ park: [[String:String]]) {
+//        for property in park {
+//            if property["lat"] == nil || property["lon"] == nil {
+//                if let address = property["Location"] {
+//                    GeocodingApiClient.createLocations(userInput: address){(results, appError) in
+//                        if let appError = appError {
+//                            print(appError.localizedDescription)
+//                        }
+//                        if let results = results {
+//                            for item in results {
+//                                property["lat"] = item.geometry.location.lat
+//                                property["lon"] = item.geometry.location.lng
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+
 }

@@ -45,7 +45,6 @@ extension DBService {
                        GamerCollectionKeys.JoinedDateKey  : gamer.joinedDate,
                        GamerCollectionKeys.GamerIDKey : gamer.gamerID,
                        GamerCollectionKeys.FriendsKey : gamer.friends ?? ""
-                    
             ]) { (error) in
                 if let error = error {
                     completion(error)
@@ -54,7 +53,6 @@ extension DBService {
                 }
         }
     }
-    
     static public func fetchGamer(gamerID: String, completion: @escaping (Error?, GamerModel?) -> Void) {
         DBService.firestoreDB
             .collection(GamerCollectionKeys.CollectionKey)

@@ -1121,8 +1121,8 @@
         "Location": "E/S Jay St., Prospect St., Sands St. and Charles St.",
         "Num_of_Courts": null,
         "Accessible": "N",
-        "lat": null,
-        "lon": null
+        "lat": "40.7008549",
+        "lon": "-73.9895929"
     },
     {
         "Prop_ID": "B169A",
@@ -2138,8 +2138,8 @@
         "Location": "White, McKibben and Bogart Sts.",
         "Num_of_Courts": null,
         "Accessible": "N",
-        "lat": null,
-        "lon": null
+        "lat": "40.7059548",
+        "lon": "-73.9366094"
     },
     {
         "Prop_ID": "B152",
@@ -2192,8 +2192,8 @@
         "Location": "Division Ave., Rodney St. and S 9 St.",
         "Num_of_Courts": null,
         "Accessible": "N",
-        "lat": null,
-        "lon": null
+        "lat": "40.7076098",
+        "lon": "-73.9572699"
     },
     {
         "Prop_ID": "B264",
@@ -2422,12 +2422,12 @@
     },
     {
         "Prop_ID": "B112",
-        "Name": "Williamsburg Bridge Playground",
+        "Name": "William Sheridan Playground",
         "Location": "Wythe Ave. to Berry St., S 5 St. and S 6 St.",
         "Num_of_Courts": null,
         "Accessible": "N",
-        "lat": null,
-        "lon": null
+        "lat": "40.7151086",
+        "lon": "-73.964129"
     },
     {
         "Prop_ID": "B279",
@@ -3106,12 +3106,12 @@
     },
     {
         "Prop_ID": "M108J",
-        "Name": "Pedestrian Landing (Each One Teach One) Playground",
-        "Location": "E. 120 St. & FDR Drive",
+        "Name": "Each One Teach One",
+        "Location": "Lexington Ave. &, E 129th St, New York, NY 10035",
         "Num_of_Courts": null,
         "Accessible": "N",
-        "lat": null,
-        "lon": null
+        "lat": "40.8068917",
+        "lon": "-73.9354898"
     },
     {
         "Prop_ID": "M249",
@@ -3780,15 +3780,6 @@
         "lon": "-73.8173"
     },
     {
-        "Prop_ID": "Q099",
-        "Name": "Flushing Meadows Corona Park Meadow Lake East",
-        "Location": "W/S of Meadow Lake & Grand Central Pkwy.",
-        "Num_of_Courts": null,
-        "Accessible": "N",
-        "lat": null,
-        "lon": null
-    },
-    {
         "Prop_ID": "Q015",
         "Name": "Forest Park",
         "Location": "108 St., Myrtle Ave. & Park Lane South",
@@ -4149,15 +4140,6 @@
         "lon": "-73.7598"
     },
     {
-        "Prop_ID": "Q162I",
-        "Name": "O'Dohonue Park",
-        "Location": "Beach 20-17 St. & Seagirt Blvd.",
-        "Num_of_Courts": null,
-        "Accessible": "N",
-        "lat": null,
-        "lon": null
-    },
-    {
         "Prop_ID": "Q092",
         "Name": "P.O. Edward Byrne Park",
         "Location": "North Conduit Ave., 134 to 135 Sts. and 135 Ave.",
@@ -4267,12 +4249,12 @@
     },
     {
         "Prop_ID": "Q300",
-        "Name": "Rachel Carson Playground",
-        "Location": "Colden St. & Juniper Ave.",
+        "Name": "Silent Springs Playground",
+        "Location": "45-55 Colden St Flushing, NY 11355",
         "Num_of_Courts": null,
         "Accessible": "N",
-        "lat": null,
-        "lon": null
+        "lat": "40.7502486",
+        "lon": "-73.8233127"
     },
     {
         "Prop_ID": "Q103",

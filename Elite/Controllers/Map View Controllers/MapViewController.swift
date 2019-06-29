@@ -74,59 +74,14 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     var pickerView = UIPickerView()
     var typeValue = String()
     static var parkSelected = String()
-//    private var customArr = [[
-//        "Prop_ID": "",
-//        "Name": "Museum of the Moving Image",
-//        "Location": "36-01 35th Ave, Astoria, NY 11106",
-//        "Num_of_Courts": "2",
-//        "BasketballCourt": true,
-//        "HandballCourt": true,
-//        "lat": 40.7563454,
-//        "lon": -73.9239496],
-//                             [
-//                                "Prop_ID": "",
-//                                "Name": "Sean's Place",
-//                                "Location": "36-01 35th Ave, Astoria, NY 11106",
-//                                "Num_of_Courts": "2",
-//                                "BasketballCourt": true,
-//                                "HandballCourt": true,
-//                                "lat": 40.7609461,
-//                                "lon": -73.91873679999999],
-//                             [
-//                                "Prop_ID": "",
-//                                "Name": "Dutch Kills Playground",
-//                                "Location": "36th Avenue &, Crescent St, Long Island City, NY 11106",
-//                                "Num_of_Courts": "2",
-//                                "BasketballCourt": true,
-//                                "HandballCourt": true,
-//                                "lat": 40.7575695,
-//                                "lon": -73.93307639999999],
-//                             [
-//                                "Prop_ID": "",
-//                                "Name": "Playground Thirty-Five",
-//                                "Location": "Playground Thirty-Five, 4016 35th Ave, Long Island City, NY 11101, USA",
-//                                "Num_of_Courts": "2",
-//                                "BasketballCourt": true,
-//                                "HandballCourt": true,
-//                                "lat": 40.7548488,
-//                                "lon": -73.9221125],
-//                             [
-//                                "Prop_ID": "",
-//                                "Name": "Synergy Fitness Clubs",
-//                                "Location": "23-35 Broadway, Astoria, NY 11106",
-//                                "Num_of_Courts": "2",
-//                                "BasketballCourt": true,
-//                                "HandballCourt": true,
-//                                "lat": 40.7638374,
-//                                "lon": -73.92885819999999]
-//    ]
+    
     
     // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         if Flag.isDemo {
             googleMapsMVEditingState = .showHandBallMarkers
-//          setupWest4Marker()
+            //          setupWest4Marker()
             userLocation = CLLocation.init(latitude: 40.7563454, longitude: -73.9239496)
         } else {
             googleMapsMVEditingState = .showBasketBallMarkers
@@ -134,7 +89,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         loadAllParkData()
         callSetups()
         
-//        addCustomMakers()
+        //        addCustomMakers()
         locationManager.delegate = self
         
     }
@@ -157,6 +112,10 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         googleMapsMapView.settings.compassButton = true
         googleMapsMapView.settings.myLocationButton = true
         googleMapsMapView.isMyLocationEnabled = true
+        if Flag.isSearchBarOnMapReady == false {
+            googleMapsSearchBar.isHidden = true 
+        }
+        
         
     }
     private func setupWest4Marker(){
@@ -176,17 +135,17 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         closeViewBttn.layer.cornerRadius = 5
     }
     
-//    private func getUsersLocations(){
-//        locationManager.requestWhenInUseAuthorization()
-//        if CLLocationManager.locationServicesEnabled(){
-//
-//            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-//            locationManager.startUpdatingLocation()
-//            googleMapsMapView.settings.compassButton = true
-//            googleMapsMapView.settings.myLocationButton = true
-//            googleMapsMapView.isMyLocationEnabled = true
-//        }
-//    }
+    //    private func getUsersLocations(){
+    //        locationManager.requestWhenInUseAuthorization()
+    //        if CLLocationManager.locationServicesEnabled(){
+    //
+    //            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+    //            locationManager.startUpdatingLocation()
+    //            googleMapsMapView.settings.compassButton = true
+    //            googleMapsMapView.settings.myLocationButton = true
+    //            googleMapsMapView.isMyLocationEnabled = true
+    //        }
+    //    }
     
     private func loadAllParkData(){
         GoogleMapHelper.loadAllParkData { (handballCourt, basketballCourt) in
@@ -257,17 +216,6 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         present(alertController, animated: true, completion: nil)
     }
     
-//    private func addCustomMakers(){
-//        for arr in customArr {
-//            let marker = GMSMarker()
-//            marker.title = arr["Name"] as? String
-//            marker.snippet = arr["Location"] as? String
-//            let locations = CLLocationCoordinate2D(latitude: arr["lat"] as! Double, longitude:  arr["lon"] as! Double)
-//            marker.position = locations
-//            marker.map = googleMapsMapView
-//
-//        }
-//    }
     
     private func addMarkers(courts: [Court], type: SportType) {
         var googleMarkers = [GMSMarker]()
@@ -314,38 +262,6 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         }
     }
     
-//    private func getBasketBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [BasketBall]){
-////        loadAllParkData()
-//        var courtArr = [BasketBall]()
-//        for court in courtLocations {
-//            let lat = court.lat ?? "0.0"
-//            let lng = court.lng ?? "0.0"
-//            let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
-//            let distanceInMeters = courtLocation.distance(from: currentLocation)
-//
-//            if distanceInMeters <= MilesInMetersInfo.oneMile {
-//                courtArr.append(court)
-//            }
-//
-//        }
-//        basketballResults = courtArr
-//        print(basketballResults.count)
-//    }
-    
-//    private func getHandBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [HandBall]){
-//
-//        var courtArr = [HandBall]()
-//        for court in courtLocations {
-//            let lat = court.lat ?? "0.0"
-//            let lng = court.lng ?? "0.0"
-//            let courtLocation = CLLocation(latitude: CLLocationDegrees(Double(lat)!), longitude: CLLocationDegrees(Double(lng)!))
-//            let distanceInMeters = courtLocation.distance(from: currentLocation)
-//            if distanceInMeters <= MilesInMetersInfo.oneMile {
-//                courtArr.append(court)
-//            }
-//        }
-//        handballResults = courtArr
-//    }
     
     private func callMoreActionSheet(){
         let ac = UIAlertController.init(title: "Options", message: "You have the options to create a game or go to our leaderBoard", preferredStyle: .actionSheet)
@@ -405,6 +321,10 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     @IBAction func moreBttnPressed(_ sender: UIButton){
         callMoreActionSheet()
     }
+    @IBAction func searchButtonPressed(){
+        let popView = MapViewPopupController()
+        self.present(popView, animated: true)
+    }
     
 }
 //MARK: - Extensions
@@ -437,21 +357,20 @@ extension MapViewController: CLLocationManagerDelegate{
             
             customStartPosition = GMSCameraPosition.camera(withLatitude: 40.7563454, longitude: -73.9239496, zoom: 14.0)
         } else {
-         let currentUsersLocation = locations.last
-                self.userLocation = currentUsersLocation!
-
-                customStartPosition = GMSCameraPosition.camera(withLatitude: ( self.userLocation.coordinate.latitude), longitude: ( self.userLocation.coordinate.longitude), zoom: 14.0)
+            let currentUsersLocation = locations.last
+            self.userLocation = currentUsersLocation!
+            
+            customStartPosition = GMSCameraPosition.camera(withLatitude: ( self.userLocation.coordinate.latitude), longitude: ( self.userLocation.coordinate.longitude), zoom: 14.0)
         }
-
+        
         googleMapsMapView.animate(to: customStartPosition)
         self.locationManager.stopUpdatingLocation()
     }
 }
 
 extension MapViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
+    
+    
 }
 
 extension MapViewController: UIPickerViewDelegate, UIPickerViewDataSource{

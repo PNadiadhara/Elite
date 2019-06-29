@@ -12,51 +12,61 @@ protocol MapViewPopupControllerDelegate: AnyObject {
 }
 class MapViewPopupController: UIViewController {
     //MARK: - Outlets and Properties
-    var basketballReults: BasketBall!
-    var handballResults: HandBall!
+    public var basketBallCourts = [BasketBall]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    public var handBallResults = [HandBall](){
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     weak var delegate: MapViewPopupControllerDelegate?
     @IBOutlet weak var milesView: UIView!
-    
-    @IBOutlet weak var milesPickerView: UIPickerView!
-    private let miles = ["1", "2","5","10"]
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupPickerView()
+        setupViewSettings()
 
     }
     
-    private func setupPickerView(){
-        milesPickerView.delegate = self
-        milesPickerView.dataSource = self
-        milesPickerView.layer.cornerRadius = 10
+    private func setupViewSettings(){
         milesView.layer.cornerRadius = 10
+        tableView.layer.cornerRadius = 10
+        searchBar.delegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
+        setupTableViewCell()
     }
-    
+    private func setupTableViewCell(){
+        tableView.register(UINib(nibName: "ParkInfoCell", bundle: nil), forCellReuseIdentifier: "ParkInfoCell")
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
+        
+    }
     
     //MARK: - Actions
     @IBAction func bringDownView(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
+    @IBAction func goback(_ sender: UIButton){
+        self.dismiss(animated: true, completion: nil)
+    }
    
 }
-extension MapViewPopupController: UIPickerViewDelegate, UIPickerViewDataSource{
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+extension MapViewPopupController: UISearchBarDelegate{}
+extension MapViewPopupController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 50
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return miles.count
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return miles[row]
-    }
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        
-        let titleForMiles = miles[row]
-        return NSAttributedString(string: titleForMiles, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-    }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        delegate?.getMilesFromUser(miles: miles[row])
-    }
-    
 }
