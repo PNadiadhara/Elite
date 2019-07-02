@@ -79,6 +79,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+       // DBService.fetchParks()
         if Flag.isDemo {
             googleMapsMVEditingState = .showHandBallMarkers
             //          setupWest4Marker()
