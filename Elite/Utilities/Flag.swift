@@ -13,4 +13,5 @@ class Flag {
     static var isDemo = false
     static var isSearchBarOnMapReady = false
     static var isMultiPlayerReady = false
+    static var isLeaderBoardUp = false
 }
