@@ -29,6 +29,10 @@ protocol MultipeerConnectivityActionHandlerDelegate: AnyObject {
     func userPressedRetry()
 }
 
+protocol MultipeerConnectivityGameModelDelegate: AnyObject {
+    func hostSentParkId(parkId: String)
+}
+
 class DataToSend: Codable {
     var action: String
     var data: Data?
@@ -47,6 +51,29 @@ class WinnerVotes: Codable {
     init(player: String, winnerTeam: String) {
         self.player = player
         self.winnerTeam = winnerTeam
+    }
+}
+
+class GameModelToSend: Codable {
+    var gameName: String
+    var gameType: String
+    var parkId: String
+    var formattedAddress: String
+    var parkName: String
+    var lat: String
+    var lon: String
+    var gameId: String
+    
+    init(gameName: String, gameType: String, parkId: String, formattedAddress: String, parkName: String, lat: String, lon: String, gameId: String) {
+        self.gameName = gameName
+        self.gameType = gameType
+
+        self.parkId = parkId
+        self.formattedAddress = formattedAddress
+        self.parkName = parkName
+        self.lat = lat
+        self.lon = lon
+        self.gameId = gameId
     }
 }
 
@@ -76,6 +103,8 @@ class MultiPeerConnectivityHelper: NSObject {
         case finishedGame
         case choseWinner
         case retryWinnerVote
+        case sendGameModel
+        case sendParkId
     }
     
     enum ButtonStatus {
@@ -114,6 +143,7 @@ class MultiPeerConnectivityHelper: NSObject {
     weak var timerDelegate: TimerDelegate?
     weak var multipeerWinnerVotesDelegate: MultipeerConnectivityWinnerVotesDelegate?
     weak var multipeerActionHandlerDelegate: MultipeerConnectivityActionHandlerDelegate?
+    weak var multipeerGameModelDelegate: MultipeerConnectivityGameModelDelegate?
     
     private var listOfAvailableGames = [String]()
     
@@ -219,6 +249,14 @@ class MultiPeerConnectivityHelper: NSObject {
         advertiserAssistant.stop()
     }
     
+    public func sendGameModel(gameModelToSend: GameModelToSend) {
+        do {
+            let data = try PropertyListEncoder().encode(gameModelToSend)
+            MultiPeerConnectivityHelper.shared.sendDataToConnectedUsers(data: data)
+        } catch {
+            print("Property list encoding error \(error)")
+        }
+    }
     public func convertDataToSendToDataAndSend(dataToSend: DataToSend){
         do {
             let data = try PropertyListEncoder().encode(dataToSend)
@@ -243,6 +281,46 @@ class MultiPeerConnectivityHelper: NSObject {
 //                ac.addAction(UIAlertAction(title: "OK", style: .default))
 //                present(ac, animated: true)
             }
+        }
+    }
+    public func sendGameModel() {
+        let action = MultiPeerConnectivityHelper.Action.sendGameModel.rawValue
+        
+        do{
+            guard let gameToSend = GameModel.game  else {
+                print("Error: Game model is nil")
+                return
+            }
+            let data = try PropertyListEncoder().encode(gameToSend)
+            let dataToSend = DataToSend(action: action, data: data, team: nil)
+            MultiPeerConnectivityHelper.shared.convertDataToSendToDataAndSend(dataToSend: dataToSend)
+        }catch{
+            print("Property list encoding error \(error)")
+        }
+        
+        
+    }
+    public func sendParkID(parkId: String, done: () -> Void) {
+        let action = MultiPeerConnectivityHelper.Action.sendParkId.rawValue
+        let data = Data(parkId.utf8)
+        let dataToSend = DataToSend(action: action, data: data, team: nil)
+        MultiPeerConnectivityHelper.shared.convertDataToSendToDataAndSend(dataToSend: dataToSend)
+        done()
+    }
+    
+    public func decodeDataToGameSendModel(gameModelData: Data) {
+        do {
+            let gameSentData =  try PropertyListDecoder().decode(GameModelToSend.self, from: gameModelData)
+            GameModel.parkId = gameSentData.parkId
+            GameModel.gameName = gameSentData.gameName
+            GameModel.gameTypeSelected = "1 vs. 1"
+            GameModel.formattedAddress = gameSentData.formattedAddress
+            GameModel.parkLat = gameSentData.lat
+            GameModel.parkLon = gameSentData.lon
+            GameModel.gameId = gameSentData.gameId
+            
+        } catch {
+            print("Error decoding: \(error.localizedDescription)")
         }
     }
 
@@ -277,6 +355,7 @@ extension MultiPeerConnectivityHelper: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         DispatchQueue.main.async { [weak self] in
             var dataRecieved: DataToSend?
+            
             do {
                 dataRecieved = try PropertyListDecoder().decode(DataToSend.self, from: data)
                 guard let sentData = dataRecieved else {return}
@@ -304,6 +383,10 @@ extension MultiPeerConnectivityHelper: MCSessionDelegate {
                     self?.timerDelegate?.cancelledTimer()
                 case Action.retryWinnerVote.rawValue:
                     self?.multipeerActionHandlerDelegate?.userPressedRetry()
+                case Action.sendGameModel.rawValue:
+                    return
+                case Action.sendParkId.rawValue:
+                    self?.multipeerGameModelDelegate?.hostSentParkId(parkId: String(data: sentData.data!, encoding: .utf8)!)
 //                    self?.numberOfVotes += 1
                 default:
                     print("No action Sent")

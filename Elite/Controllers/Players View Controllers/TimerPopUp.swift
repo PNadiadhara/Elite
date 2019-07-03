@@ -36,6 +36,7 @@ class TimerPopUp: UIViewController {
     static var actionHandlerDelegate: MultipeerConnectivityActionHandlerDelegate?
     
     var isPause: Bool?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

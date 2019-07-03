@@ -243,6 +243,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             marker.title = court.nameOfPlayground ?? "No name"
             marker.snippet = court.location ?? "No location"
             marker.position = locations
+            GameModel.formattedAddress = marker.snippet
             switch court.type {
             case .basketball:
                 marker.icon = GMSMarker.markerImage(with: .orange)
@@ -356,6 +357,7 @@ extension MapViewController: GMSMapViewDelegate
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         parkTitle.text = marker.title
         parkAddress.text = marker.snippet
+        
         eliteView.isHidden = false
         if viewStatus == .notPressed{
             viewStatus = .pressed

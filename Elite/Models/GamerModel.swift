@@ -78,6 +78,8 @@ class GamerModel: Codable {
         self.numberOfBasketballGamesPlayed = dict[GamerCollectionKeys.NumberOfBasketballGamesPlayer] as? Double ?? 0.0
         self.friends = dict[GamerCollectionKeys.FriendsKey] as? [String] ?? [""]
     }
+    
+
 }
 
 class EloPlayer  {

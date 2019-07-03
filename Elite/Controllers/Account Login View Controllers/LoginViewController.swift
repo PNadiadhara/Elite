@@ -142,9 +142,8 @@ extension LoginViewController : AuthServiceExistingAccountDelegate {
         
     }
     
-    func didRecieveErrorSigningToExistingAccount(_ authservice: AuthService, error: Error) {
         func didRecieveErrorSigningToExistingAccount(_ authservice: AuthService, error: Error) {
             showAlert(title: "Signin Error", message: error.localizedDescription)
         }
-    }
+    
 }

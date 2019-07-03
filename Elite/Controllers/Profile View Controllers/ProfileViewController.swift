@@ -17,36 +17,23 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var fullnameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var bioTextView: UITextView!
-    @IBOutlet weak var addFriend: UIButton!
     @IBOutlet weak var settings: UIButton!
     @IBOutlet weak var settingsView: RoundedView!
     @IBOutlet weak var editProfileButton: RoundedButton!
     @IBOutlet weak var signOutButton: RoundedButton!
     @IBOutlet weak var deleteAccountButton: RoundedButton!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var gamesPlayedTableView: UITableView!
+
     
     private var authservice = AppDelegate.authservice
     
     var userLocation = CLLocationCoordinate2D()
     private var gamer: GamerModel?
     let gamePostViewContent = GamePostView()
-    let achievementsViewContent = AchievementsView()
-    let friendListViewContent = FriendListView()
     private var gameCreator = [GamerModel]()
-    var views = [UIView]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        views = [gamePostViewContent,achievementsViewContent, friendListViewContent]
-        scrollView.delegate = self
-        pageControl.numberOfPages = views.count
-        pageControl.currentPage = 0
-        pageControl.bringSubviewToFront(pageControl)
-        setupSlideScrollView(views: views)
-        gamePostViewContent.gamePostTableView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
-        achievementsViewContent.achievementsTableView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
-        friendListViewContent.friendListTableView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1)
         settingsView.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
 
     }
@@ -55,25 +42,7 @@ class ProfileViewController: UIViewController {
         super.viewWillAppear(true)
         fetchCurrentUser()
     }
-    
-    private func setupSlideScrollView(views:[UIView]) {
-        scrollView.frame = CGRect (x: 0, y: 0, width: view.frame.width, height: view.frame.height / 2)
-        scrollView.contentSize = CGSize (width: view.frame.width * CGFloat(views.count), height: view.frame.height / 2)
-        scrollView.isPagingEnabled = true
-        for i in 0...views.count - 1 {
-            views[i].frame = CGRect (x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: view.frame.height / 2)
-            scrollView.addSubview(views[i])
-        }
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let pageIndex = round(scrollView.contentOffset.x / view.frame.width)
-        pageControl.currentPage =  Int(pageIndex)
-    }
-    
-    @IBAction func addFriendPressed(_ sender: UIButton) {
-    }
-    
+
     @IBAction func settingsPressed(_ sender: UIButton) {
         settingsView.isHidden = false
         dismiss(animated: true, completion: nil)
@@ -130,36 +99,10 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == gamePostViewContent.gamePostTableView{
-            guard let cell = gamePostViewContent.gamePostTableView.dequeueReusableCell(withIdentifier: "UserFeedCell", for: indexPath) as? UserFeedCell else {
-                return UITableViewCell()
-            }
-            
-            let profileFeedCell = gameCreator[indexPath.row]
-            cell.userText.text = "@" + (profileFeedCell.username)
-            return cell
+        guard let cell = gamesPlayedTableView.dequeueReusableCell(withIdentifier: "UserFeedCell", for: indexPath) as? UserFeedCell else {
+            fatalError("cell not found")
         }
-        if tableView == achievementsViewContent.achievementsTableView {
-            guard let cell = achievementsViewContent.achievementsTableView.dequeueReusableCell(withIdentifier: "UserFeedCell", for: indexPath) as? UserFeedCell else {
-                return UITableViewCell()
-            }
-            
-            let achievementsFeedCell = gameCreator[indexPath.row]
-            cell.userText.text = "@" + (achievementsFeedCell.username)
-            return cell
-
-        }
-        if tableView == friendListViewContent.friendListTableView {
-            guard let cell = friendListViewContent.friendListTableView.dequeueReusableCell(withIdentifier: "UserFeedCell", for: indexPath) as? UserFeedCell else {
-                return UITableViewCell()
-            }
-            
-            let friendListFeedCell = gameCreator[indexPath.row]
-            cell.userText.text = "@" + (friendListFeedCell.username)
-            return cell
-
-        }
-       return UITableViewCell()
+        return cell
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

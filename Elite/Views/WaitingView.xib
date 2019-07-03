@@ -60,6 +60,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="activityIndicator" destination="rMt-0U-Yxz" id="AKc-YA-LCQ"/>
+                <outlet property="cancelButton" destination="aDc-qI-fpV" id="x5O-9y-s1r"/>
                 <outlet property="viewTitle" destination="O1r-sU-Xcu" id="S1M-R7-9BB"/>
                 <outlet property="waitingSubView" destination="GEZ-nv-Eou" id="tk6-ED-HeT"/>
             </connections>

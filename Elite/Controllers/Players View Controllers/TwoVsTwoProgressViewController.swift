@@ -54,7 +54,7 @@ class TwoVsTwoProgressViewController: UIViewController {
         setupLabels()
         if !isHost{
             buttons.forEach{$0.isHidden = true}
-            fetchForGameCreated()
+//            fetchForGameCreated()
         }
         fetchPostedInvitation()
         // Do any additional setup after loading the view.
@@ -133,28 +133,28 @@ class TwoVsTwoProgressViewController: UIViewController {
         })
     }
     
-    func fetchForGameCreated() {
-        guard let invitation = invitation else {
-            print("No Invitation")
-            return
-        }
-        listener = DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).whereField(GameCollectionKeys.isOverKey, isEqualTo: true).whereField(GameCollectionKeys.GameIDKey, isEqualTo: invitation.gameId).addSnapshotListener { (snapshot, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            if let snapshot = snapshot {
-                let games = snapshot.documents.map {GameModel.init(dict: $0.data())}
-                if games.count > 0 {
-                    let endGameVc = EndGameViewController.init(nibName: "EndGameViewController", bundle: nil)
-//                    endGameVc.modalPresentationStyle = .overCurrentContext
-//                    endGameVc.invitation = invitation
-//                    endGameVc.isHost = false
-//                    endGameVc.gameType = self.gameType
-                    self.present(endGameVc, animated: true)
-                }
-            }
-        }
-    }
+//    func fetchForGameCreated() {
+//        guard let invitation = invitation else {
+//            print("No Invitation")
+//            return
+//        }
+//        listener = DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).whereField(GameCollectionKeys.isOverKey, isEqualTo: true).whereField(GameCollectionKeys.GameIDKey, isEqualTo: invitation.gameId).addSnapshotListener { (snapshot, error) in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            }
+//            if let snapshot = snapshot {
+//                let games = snapshot.documents.map {GameModel.init(dict: $0.data())}
+//                if games.count > 0 {
+//                    let endGameVc = EndGameViewController.init(nibName: "EndGameViewController", bundle: nil)
+////                    endGameVc.modalPresentationStyle = .overCurrentContext
+////                    endGameVc.invitation = invitation
+////                    endGameVc.isHost = false
+////                    endGameVc.gameType = self.gameType
+//                    self.present(endGameVc, animated: true)
+//                }
+//            }
+//        }
+//    }
 
     @IBAction func cancelPressed(_ sender: UIButton) {
     }
@@ -164,7 +164,6 @@ class TwoVsTwoProgressViewController: UIViewController {
             print("No Invite")
             return
         }
-        DBService.updateGameToFinish(gameId: invitation.gameId)
         endGameVc.modalPresentationStyle = .overCurrentContext
         
         //        endGameVc.game = game

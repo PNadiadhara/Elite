@@ -18,11 +18,21 @@ class ParkRankingInfoEndGameViewController: UIViewController {
     @IBOutlet weak var rankingTableView: UITableView!
     @IBOutlet weak var rankingLabel: UILabel!
     
+    var parkId = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
+        setupUI()
+        }
+    
+    func setupUI() {
+        DBService.findPlayersWinsAtPark(parkId: parkId, gamerId: TabBarViewController.currentGamer.gamerID) { (wins) in
+            self.winsLabel.text = "Wins: \(wins)"
+        }
+        DBService.findPlayersLossesAtPark(parkId: parkId, gamerId: TabBarViewController.currentGamer.gamerID) { (loses) in
+            self.lossesLabel.text = "Losses: \(loses)"
+        }
+        
     }
 
 
