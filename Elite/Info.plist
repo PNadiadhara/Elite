@@ -40,9 +40,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>This app requires use of your camera</string>
+	<string>Elite app requires use of your camera scan and access your Profile QR code</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>In order for you to use elite we need your location</string>
+	<string>In order for us to find parks near you and create a game we need access to location.</string>
 	<key>SCSDKClientId</key>
 	<string></string>
 	<key>SCSDKRedirectUrl</key>

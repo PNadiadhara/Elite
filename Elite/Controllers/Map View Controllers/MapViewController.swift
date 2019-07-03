@@ -21,6 +21,10 @@ enum ViewStatus {
 }
 
 class MapViewController: UIViewController, MapViewPopupControllerDelegate {
+    func setMarkerOnMapFromTableView(_ address: String) {
+        
+    }
+    
     
     
     // MARK: - Outlets and Properties
@@ -37,6 +41,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     
     @IBOutlet weak var handballIcon: UIButton! 
     @IBOutlet weak var basketballIcon: UIButton!
+    @IBOutlet weak var popupSearchButton: UIButton!
     let popUpVC = MapViewPopupController()
     
     private var googleMapsMVEditingState = GoogleMapsMVState.noMarkersShown {
@@ -79,13 +84,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        if Flag.isDemo {
-            googleMapsMVEditingState = .showHandBallMarkers
-            //          setupWest4Marker()
-            userLocation = CLLocation.init(latitude: 40.7563454, longitude: -73.9239496)
-        } else {
-            googleMapsMVEditingState = .showBasketBallMarkers
-        }
+        callFlagFeatures()
         loadAllParkData()
         callSetups()
         
@@ -93,6 +92,22 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         locationManager.delegate = self
         
     }
+    
+    private func callFlagFeatures(){
+        if Flag.isDemo {
+            googleMapsMVEditingState = .showHandBallMarkers
+            //          setupWest4Marker()
+            userLocation = CLLocation.init(latitude: 40.7563454, longitude: -73.9239496)
+        } else {
+            googleMapsMVEditingState = .showBasketBallMarkers
+        }
+        
+        if !Flag.isSearchBarOnMapReady {
+            popupSearchButton.isHidden = true
+            googleMapsSearchBar.isHidden = true 
+        }
+    }
+    
     private func callSetups(){
         setupClosePopViewBttn()
         setupMapViewSettings()
@@ -108,7 +123,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     private func setupMapViewSettings(){
         googleMapsMapView.delegate = self
         googleMapsMapView.bringSubviewToFront(eliteView)
-        googleMapsSearchBar.delegate = self
+        //googleMapsSearchBar.delegate = self
         googleMapsMapView.settings.compassButton = true
         googleMapsMapView.settings.myLocationButton = true
         googleMapsMapView.isMyLocationEnabled = true
@@ -264,7 +279,6 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     
     
     private func callMoreActionSheet(){
-        let ac = UIAlertController.init(title: "Options", message: "You have the options to create a game or go to our leaderBoard", preferredStyle: .actionSheet)
         let createAGame = UIAlertAction.init(title: "Create A Game", style: .default) { (susses) in
             self.goToCreateAGameView()
         }
@@ -273,12 +287,22 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         }
         let cancel = UIAlertAction.init(title: "Cancel", style: .destructive
             , handler: nil)
-        ac.addAction(createAGame)
-        ac.addAction(goToLeaderBoard)
-        ac.addAction(cancel)
-        let backView = (ac.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
-        backView.backgroundColor = .eliteDarkMode
-        self.present(ac, animated: true, completion: nil)
+        if !Flag.isLeaderBoardUp {
+            let ac = UIAlertController.init(title: "Let's Play a game", message: "You have the options to create a game from here or cancel", preferredStyle: .actionSheet)
+            ac.addAction(createAGame)
+            ac.addAction(cancel)
+            let backView = (ac.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+            backView.backgroundColor = .eliteDarkMode
+            self.present(ac, animated: true, completion: nil)
+        } else {
+            let ac = UIAlertController.init(title: "Options", message: "You have the options to create a game or go to our leaderBoard", preferredStyle: .actionSheet)
+            ac.addAction(createAGame)
+            ac.addAction(goToLeaderBoard)
+            ac.addAction(cancel)
+            let backView = (ac.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+            backView.backgroundColor = .eliteDarkMode
+            self.present(ac, animated: true, completion: nil)
+        }
     }
     private func goToCreateAGameView(){
         let createGameVC = CreateGameViewController.init(nibName: "CreateGameViewController", bundle: nil)
@@ -368,10 +392,6 @@ extension MapViewController: CLLocationManagerDelegate{
     }
 }
 
-extension MapViewController: UISearchBarDelegate {
-    
-    
-}
 
 extension MapViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

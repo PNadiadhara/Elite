@@ -21,6 +21,7 @@
                 <outlet property="headerView" destination="WY3-FD-wWf" id="6Ng-Af-vze"/>
                 <outlet property="parkAddress" destination="6Zf-Sh-YVV" id="5js-po-QLs"/>
                 <outlet property="parkTitle" destination="aEt-fa-PmR" id="B1I-5w-XuR"/>
+                <outlet property="popupSearchButton" destination="7NI-5g-XDd" id="vFK-Jb-LJ5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

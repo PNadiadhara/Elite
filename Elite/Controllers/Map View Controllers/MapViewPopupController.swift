@@ -8,18 +8,18 @@
 
 import UIKit
 protocol MapViewPopupControllerDelegate: AnyObject {
-    func getMilesFromUser(miles: String)
+    func setMarkerOnMapFromTableView(_ address: String)
 }
 class MapViewPopupController: UIViewController {
     //MARK: - Outlets and Properties
-    public var basketBallCourts = [BasketBall]() {
+    public var basketBallCourts = [BasketBallData]() {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
     }
-    public var handBallResults = [HandBall](){
+    public var handBallResults = [HandBallData](){
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -34,7 +34,14 @@ class MapViewPopupController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewSettings()
-
+        DBService.fetchBasketBallParks {[weak self] (error, courts) in
+            if let error = error {
+                print("error is: ",error)
+            }
+            if let courts = courts {
+                self?.basketBallCourts = courts
+            }
+        }
     }
     
     private func setupViewSettings(){
@@ -45,6 +52,7 @@ class MapViewPopupController: UIViewController {
         tableView.dataSource = self
         setupTableViewCell()
     }
+    
     private func setupTableViewCell(){
         tableView.register(UINib(nibName: "ParkInfoCell", bundle: nil), forCellReuseIdentifier: "ParkInfoCell")
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
@@ -63,10 +71,24 @@ class MapViewPopupController: UIViewController {
 extension MapViewPopupController: UISearchBarDelegate{}
 extension MapViewPopupController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 50
+        return basketBallCourts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ParkInfoCell", for: indexPath) as? ParkInfoCell else {
+            fatalError("issue with linking the nib file")
+        }
+        let settingCells = basketBallCourts[indexPath.row]
+        cell.parkNameLabel?.text = settingCells.name
+        cell.parkAddressLabel?.text = settingCells.location
+        cell.parkNameLabel?.textColor = .white
+        cell.parkAddressLabel?.textColor = .white
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let address = basketBallCourts[indexPath.row]
+        delegate?.setMarkerOnMapFromTableView(address.location)
     }
 }
