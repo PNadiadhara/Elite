@@ -97,8 +97,8 @@ Elite is an app targeted towards preteens, teens, and young adults. Elite is use
  ## Next Steps
  
 ![Eilte Demo Deck](https://user-images.githubusercontent.com/43886009/60990798-35945680-a317-11e9-8903-21b16c4eef8a.png)
- 
-Adding more games increases our audince, not everyone likes to play handball and basketball. Based off the feedback, we will get from our users,  we will add those sports and and or games requested. The Elite of the borogugh concept is something our beta users recommend to us to implement and you know what they say, “Give the people what the want”. Also having a platform where we give you the organized tornament structure just makes it easer for the players and facilitators
+
+Adding more games increases our audience, not everyone likes to play handball and basketball. Based on the feedback, we will get from our users, we will add those sports and or games requested. The Elite of the borough concept is something our beta users recommend to us to implement and you know what they say, “Give the people what the want”. Also having a platform where we give you the organized tournament structure just makes it easier for the players and facilitators
 
 ## Follow us
 
