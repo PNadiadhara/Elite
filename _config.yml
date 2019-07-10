@@ -19,25 +19,10 @@ enable_smart_app_banner                   : true                                
 
 
 # Information About Yourself
-your_name                                 : Ibraheem K. Rawlinson (Creator)                                
-your_link                                 : https://github.com/Ibraheemraw                     
+your_name                                 : Ibraheem K. Rawlinson, Leandro Wauters, Pritesh Nadiadhara, Manny (Creators)                                
+your_link                                 : https://github.com/Ibraheemraw, https://github.com/leandrowauters, https://github.com/PNadiadhara, https://github.com/manolovayusuf                  
 your_city                                 : New York                                 
-email_address                             : ibraheemrawlinson@pursuit.org
-
-your_name                                 : Manny (Creator)                                
-your_link                                 : https://github.com/manolovayusuf                     
-your_city                                 : New York                                 
-email_address                             : manolovayusuf@pursuit.org
-
-your_name                                 : Pritesh Nadiadhara (Creator)                                
-your_link                                 : https://github.com/PNadiadhara                    
-your_city                                 : New York                                 
-email_address                             : priteshnadiadhara@pursuit.org
-
-your_name                                 : Leandro Wauters (Creator)                                
-your_link                                 : https://github.com/leandrowauters                   
-your_city                                 : New York                                 
-email_address                             : leandrowauters@pursuit.org
+email_address                             : ibraheemrawlinson@pursuit.org, leandrowauters@pursuit.org, priteshnadiadhara@pursuit.org, manolovayusuf@pursuit.org
 
 facebook_username                         :                                           
 instagram_username                        : IAmAnElite
@@ -104,4 +89,4 @@ footer_text_color                         : "#666666"
 
 
 
-remote_theme: emilbaehr/automatic-app-landing-page
+remote_theme: Ibraheemraw/All-About-Elite
