@@ -23,18 +23,6 @@ We have users all over the boroughs putting in that work to gain Elite status. I
 * Xcode 10.2+
 * Frameworks/Pods: GoogleMapkit, Elo Ranking(our own Cocoapod), Firebase, KingFisher, SnapchatKit, Bit-MojiKit, Multipeer Connectivity, Facebook SDK‬,
 
-
-## Table of contents
-* [Getting Started](#getting-started)
-* [Prerequisites](#prerequisites)
-* [Installation](#installation)
-* [App Background](#app-background)
-* [Views](#views)
-* [Features](#features)
-* [Status](#status)
-* [Inspiration](#inspiration)
-* [Contributors](#contributors)
-
 ## Getting Started
 If you are instrested in downloading this project please look at the prerequisites and installations for the app. You can alos keep scrolling to look at more about the app
 
@@ -61,10 +49,6 @@ It's hard to find new competition for the casual player. In most analog games th
 
 ## Marketing Strategy
 Elite is an app targeted towards preteens, teens, and young adults. Elite is user-friendly and interactive. It gives young people a new way to play literally any game they want with an added competition aspect. Elite can be played as a single, double, multiplayer game with an optional Witness to corroborate who won. You can add friends and play a customized private game. Invite challengers to a game of your choosing and if you defeat enough players you   Elite status! Once you achieve Elite status people can come and challenge you to overthrow your Elite status.
-
-
-
-
 
 ## Views
 * Login
