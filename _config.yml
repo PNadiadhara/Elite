@@ -103,4 +103,5 @@ footer_text_color                         : "#666666"
 
 
 
-theme: jekyll-theme-midnight
+
+remote_theme: emilbaehr/automatic-app-landing-page
