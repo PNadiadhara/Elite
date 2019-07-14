@@ -21,12 +21,11 @@ class TabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        InvitationListener.fetchForInvitationRequest(vc: self)
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(_ animated: Bool) {
 
-         InvitationListener.fetchForInvitationRequest(vc: self)
+
     }
     static func fetchCurrentGamer(gamerID: String) {
         DBService.fetchGamer(gamerID: gamerID) { (error, gamer) in

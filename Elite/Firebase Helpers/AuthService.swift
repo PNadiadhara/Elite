@@ -30,23 +30,15 @@ final class AuthService {
     weak var authserviceSignOutDelegate: AuthServiceSignOutDelegate?
     
     
-    public func createNewAccount(email: String, password: String, firstName: String, lastName: String, username: String) {
+    public func createNewAccount(email: String, password: String, firstName: String, lastName: String, deviceName: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (authDataResult, error) in
             if let error = error {
                 self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
                 return
             } else if let authDataResult = authDataResult {
                 
-                // update displayName for auth user
-                let request = authDataResult.user.createProfileChangeRequest()
-                request.displayName = username
-                request.commitChanges(completion: { (error) in
-                    if let error = error {
-                        self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
-                        return
-                    }
-                })
-                let user = GamerModel(profileImage: nil, fullname: "\(firstName) \(lastName)", firstname: firstName, lastname: lastName, username: username, email: authDataResult.user.email!, status: nil, achievements: nil, bio: nil, qrCode: "fd", joinedDate: Date.getISOTimestamp(), gamerID: authDataResult.user.uid, myParks: nil, numberOfHandballGamesPlayed: 0.0, numberOfBasketballGamesPlayed: 0.0,friends: nil)
+
+                let user = GamerModel(profileImage: nil, fullname: "\(firstName) \(lastName)", firstname: firstName, lastname: lastName, username: nil, email: authDataResult.user.email!, status: nil, achievements: nil, bio: nil, qrCode: "fd", joinedDate: Date.getISOTimestamp(), gamerID: authDataResult.user.uid, myParks: nil, numberOfHandballGamesPlayed: 0.0, numberOfBasketballGamesPlayed: 0.0,friends: nil, deviceName: deviceName)
                 DBService.createUser(gamer: user, completion: { (error) in
                     if let error = error {
                        self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
@@ -56,6 +48,27 @@ final class AuthService {
                 })
             }
         }
+    }
+    public func updateUserProfile(user: User, username: String) {
+        let request = user.createProfileChangeRequest()
+        request.displayName = username
+        request.commitChanges(completion: { (error) in
+            if let error = error {
+                self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
+                return
+            }
+        })
+        DBService.firestoreDB.collection(GamerCollectionKeys.CollectionKey).document(user.uid).updateData([GamerCollectionKeys.UserNameKey : username]) { (error) in
+            if let error = error {
+                print("Error updatind name: \(error.localizedDescription)")
+            }
+        }
+//        DBService.firestoreDB
+//            .collection(GamerCollectionKeys.CollectionKey).document(userId).updateData([GamerCollectionKeys.ProfileImageURLKey : imageUrl]) { (error) in
+//                if let error = error{
+//                    print("Error updating profile: \(error.localizedDescription)")
+//                }
+//        }
     }
     
     public func signInExistingAccount(email: String, password: String) {

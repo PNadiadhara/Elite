@@ -47,8 +47,15 @@ class TimerPopUp: UIViewController {
     
     private func setupUI() {
         waitingForPlayersActivityIndicator.stopAnimating()
-        redPlayerActivityIndicator.stopAnimating()
-        bluePlayerActivityIndicator.stopAnimating()
+        guard let redPlayer = MultiPeerConnectivityHelper.shared.redPlayer,
+            let bluePlayer = MultiPeerConnectivityHelper.shared.bluePlayer else {return}
+        guard let bluePlayerImageURL = URL(string: bluePlayer.profileImage!),
+            let redPlayerImageURL = URL(string: redPlayer.profileImage!) else {return}
+        bluePlayerImage.kf.setImage(with: bluePlayerImageURL)
+        redPlayerImage.kf.setImage(with: redPlayerImageURL)
+
+//        redPlayerActivityIndicator.stopAnimating()
+//        bluePlayerActivityIndicator.stopAnimating()
         timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 65, weight: .light)
     }
     
@@ -156,6 +163,16 @@ class TimerPopUp: UIViewController {
 
 }
 extension TimerPopUp: MultipeerConnectivityDelegate{
+    func foundAdverstiser(availableGames: [GamerModel]) {
+        
+    }
+    
+    func playerWantsToJoinGame(player: GamerModel, handler: @escaping (Bool) -> Void) {
+        
+    }
+    
+
+    
     
     func countIsTrue() {
         readyView.isHidden = true
@@ -174,15 +191,9 @@ extension TimerPopUp: MultipeerConnectivityDelegate{
     func receivedUserData(data: Data, role: String) {
 
     }
+
     
-    func foundAdverstiser(availableGames: [String]) {
-        
-    }
-    
-    func invitationNotification(handler: @escaping (Bool) -> Void) {
-        
-    }
-    
+
     func connected(to User: String) {
         
     }

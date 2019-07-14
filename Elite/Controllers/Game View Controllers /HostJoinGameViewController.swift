@@ -45,6 +45,21 @@ class HostJoinGameViewController: UIViewController{
 
 }
 extension HostJoinGameViewController: MultipeerConnectivityDelegate{
+    func foundAdverstiser(availableGames: [GamerModel]) {
+        let parkList = ParkListViewController()
+        
+        parkList.typeOfList = .AvailableGameList
+        parkList.availableGames = availableGames
+        waitingView?.isHidden = true
+        parkList.modalPresentationStyle = .overCurrentContext
+        present(parkList, animated: true)
+    }
+    
+    func playerWantsToJoinGame(player: GamerModel, handler: @escaping (Bool) -> Void) {
+        
+    }
+    
+
     func countIsTrue() {
         
     }
@@ -69,34 +84,28 @@ extension HostJoinGameViewController: MultipeerConnectivityDelegate{
         
     }
     
-    func invitationNotification(handler: @escaping (Bool) -> Void) {
-        
-    }
+
     
 
     
-    func foundAdverstiser(availableGames: [String]) {
-        let parkList = ParkListViewController()
-        parkList.typeOfList = .AvailableGameList
-        parkList.availableGames = availableGames
-        waitingView?.isHidden = true
-        parkList.modalPresentationStyle = .overCurrentContext
-        present(parkList, animated: true)
-    }
+
     
 
     
 
 
     
-    func displayAvailableGames(handler: @escaping (Bool) -> Void) {
-        invitationAlert(title: "Invited", message: "Invited") { (action) in
-            if action.title == "Yes"{
-                 handler(true)
-            }
-        }
-       
-    }
+//    func displayAvailableGames(handler: @escaping (Bool) -> Void) {
+//
+//
+//        
+////        invitationAlert(title: "Invited", message: "Invited") { (action) in
+////            if action.title == "Yes"{
+////                 handler(true)
+////            }
+////        }
+//
+//    }
     
 
 

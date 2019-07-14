@@ -12,14 +12,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TimerPopUp" customModule="Elite" customModuleProvider="target">
             <connections>
-                <outlet property="bluePlayerActivityIndicator" destination="wuT-6e-4Xe" id="2jz-Kv-omu"/>
                 <outlet property="bluePlayerImage" destination="t6S-hP-Nf8" id="EjT-by-Wus"/>
                 <outlet property="cancelButton" destination="dbv-YO-eme" id="E1L-hR-M5a"/>
                 <outlet property="doneButton" destination="wW4-RE-hlr" id="Vgz-aG-rSG"/>
                 <outlet property="pauseButton" destination="eNA-pK-n5Q" id="rKt-j9-tBi"/>
                 <outlet property="readyButton" destination="JKZ-pZ-S70" id="98U-Rl-FbI"/>
                 <outlet property="readyView" destination="kCo-F8-nSR" id="Kzw-S3-8xh"/>
-                <outlet property="redPlayerActivityIndicator" destination="tXm-x2-MGa" id="Wls-hf-g17"/>
                 <outlet property="redPlayerImage" destination="StV-wb-Vbs" id="46H-Hd-8DY"/>
                 <outlet property="timerLabel" destination="Alp-Ym-vqn" id="Uir-eM-Xlg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -102,28 +100,20 @@
                         <constraint firstItem="Alp-Ym-vqn" firstAttribute="leading" secondItem="ly1-GW-TMh" secondAttribute="leading" constant="15" id="r1o-6H-5sU"/>
                     </constraints>
                 </view>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibraheem123" translatesAutoresizingMaskIntoConstraints="NO" id="StV-wb-Vbs" customClass="CircularRedImageView" customModule="Elite" customModuleProvider="target">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="StV-wb-Vbs" customClass="CircularRedImageView" customModule="Elite" customModuleProvider="target">
                     <rect key="frame" x="147" y="144" width="120" height="120"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="120" id="TYi-9K-aJD"/>
                         <constraint firstAttribute="height" constant="120" id="zQh-H1-nUC"/>
                     </constraints>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LiLgiT" translatesAutoresizingMaskIntoConstraints="NO" id="t6S-hP-Nf8" customClass="CircularBlueImageView" customModule="Elite" customModuleProvider="target">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t6S-hP-Nf8" customClass="CircularBlueImageView" customModule="Elite" customModuleProvider="target">
                     <rect key="frame" x="147" y="642" width="120" height="120"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="120" id="Pot-yt-JeG"/>
                         <constraint firstAttribute="width" constant="120" id="hPD-az-Gde"/>
                     </constraints>
                 </imageView>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tXm-x2-MGa">
-                    <rect key="frame" x="188.5" y="185.5" width="37" height="37"/>
-                    <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </activityIndicatorView>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="wuT-6e-4Xe">
-                    <rect key="frame" x="188.5" y="683.5" width="37" height="37"/>
-                    <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </activityIndicatorView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kCo-F8-nSR">
                     <rect key="frame" x="51" y="369" width="312" height="168"/>
                     <subviews>
@@ -164,25 +154,17 @@
             <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="kCo-F8-nSR" firstAttribute="width" secondItem="ly1-GW-TMh" secondAttribute="width" id="74e-kH-p1z"/>
-                <constraint firstItem="wuT-6e-4Xe" firstAttribute="centerX" secondItem="t6S-hP-Nf8" secondAttribute="centerX" id="HXN-ZL-prq"/>
                 <constraint firstItem="StV-wb-Vbs" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Ok2-mE-65a"/>
                 <constraint firstItem="StV-wb-Vbs" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" multiplier="0.45" id="RK5-Mv-Zgw"/>
                 <constraint firstItem="ly1-GW-TMh" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="U6q-1y-HCg"/>
-                <constraint firstItem="tXm-x2-MGa" firstAttribute="centerY" secondItem="StV-wb-Vbs" secondAttribute="centerY" id="Vpe-tv-kjr"/>
                 <constraint firstItem="t6S-hP-Nf8" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" multiplier="1.55" id="WWR-lY-SaF"/>
                 <constraint firstItem="kCo-F8-nSR" firstAttribute="centerY" secondItem="ly1-GW-TMh" secondAttribute="centerY" id="bV7-lk-2fv"/>
                 <constraint firstItem="ly1-GW-TMh" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="eRN-2G-omz"/>
-                <constraint firstItem="wuT-6e-4Xe" firstAttribute="centerY" secondItem="t6S-hP-Nf8" secondAttribute="centerY" id="eqw-MF-PVD"/>
                 <constraint firstItem="kCo-F8-nSR" firstAttribute="centerX" secondItem="ly1-GW-TMh" secondAttribute="centerX" id="j3c-ZF-peT"/>
                 <constraint firstItem="t6S-hP-Nf8" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="llX-2b-Wxa"/>
                 <constraint firstItem="kCo-F8-nSR" firstAttribute="height" secondItem="ly1-GW-TMh" secondAttribute="height" id="nVQ-zO-6uf"/>
-                <constraint firstItem="tXm-x2-MGa" firstAttribute="centerX" secondItem="StV-wb-Vbs" secondAttribute="centerX" id="wgb-ix-7j4"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
     </objects>
-    <resources>
-        <image name="LiLgiT" width="398" height="398"/>
-        <image name="ibraheem123" width="398" height="398"/>
-    </resources>
 </document>
