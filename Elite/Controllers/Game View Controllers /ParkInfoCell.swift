@@ -10,6 +10,7 @@ import UIKit
 
 class ParkInfoCell: UITableViewCell {
 
+    @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var parkNameLabel: UILabel!
     
     @IBOutlet weak var parkAddressLabel: UILabel!

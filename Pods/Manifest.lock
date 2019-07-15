@@ -137,6 +137,7 @@ PODS:
     - PINOperation (~> 1.1)
   - SnapSDK/SCSDKCreativeKit (1.3.1)
   - SnapSDK/SCSDKLoginKit (1.3.1)
+  - Toucan (1.1.0)
 
 DEPENDENCIES:
   - FBSDKLoginKit
@@ -149,6 +150,7 @@ DEPENDENCIES:
   - Kingfisher
   - SAConfettiView
   - SnapSDK
+  - Toucan
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -178,6 +180,7 @@ SPEC REPOS:
     - Protobuf
     - SAConfettiView
     - SnapSDK
+    - Toucan
 
 SPEC CHECKSUMS:
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
@@ -206,7 +209,8 @@ SPEC CHECKSUMS:
   Protobuf: 3f617b9a6e73605565086864c9bc26b2bf2dd5a3
   SAConfettiView: c87031a2280659261b730fce3669fb10e73636ee
   SnapSDK: be510aaabbfa7ab0142b53770f2e79c6c6b363e6
+  Toucan: 8f228fabb21521b9658692df9325fe76e71d74b2
 
-PODFILE CHECKSUM: 3ccb479276b08adb3ea2abb17c1787898491d633
+PODFILE CHECKSUM: 95adda0e2172884a17dbf75aa1f15b9865a5290e
 
 COCOAPODS: 1.7.2

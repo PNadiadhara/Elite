@@ -62,8 +62,8 @@ class EndGameViewController: UIViewController {
         WaitingView.setViewContraints(titleText: "Finishing game", isHidden: true, delegate: self, view: self.view) { (waitingView) in
             self.waitingView = waitingView
         }
-        bluePlayerImage.image = UIImage(named: MultiPeerConnectivityHelper.shared.bluePlayer!.username)
-        redPlayerImage.image = UIImage(named: MultiPeerConnectivityHelper.shared.redPlayer!.username)
+        bluePlayerImage.image = UIImage(named: MultiPeerConnectivityHelper.shared.bluePlayer!.username!)
+        redPlayerImage.image = UIImage(named: MultiPeerConnectivityHelper.shared.redPlayer!.username!)
         selectedTeam = .redTeam
         redPlayerView.alpha = 1
         redTeamTitle.text = redOnePlayer?.username
@@ -149,9 +149,9 @@ class EndGameViewController: UIViewController {
         guard let winner = chosenWinner else {
             print("Error: No winner!!!")
             return}
-        confirmAlert(title: "Winner: \(winner.username)", message: "Are you sure?") { (Done) in
+        confirmAlert(title: "Winner: \(winner.username!)", message: "Are you sure?") { (Done) in
             self.waitingView?.isHidden = false
-            self.submitVote(winner: winner.username, winnerTeam: selectedTeam.rawValue)
+            self.submitVote(winner: winner.username!, winnerTeam: selectedTeam.rawValue)
             
 //            MultiPeerConnectivityHelper.shared.numberOfVotes += 1
         }

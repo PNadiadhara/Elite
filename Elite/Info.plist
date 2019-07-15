@@ -40,7 +40,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Elite app requires use of your camera scan and access your Profile QR code</string>
+	<string>Elite app requires use of your camera to add user&apos;s photo</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>In order for us to find parks near you and create a game we need access to location.</string>
 	<key>SCSDKClientId</key>

@@ -12,14 +12,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OneVsOneViewController" customModule="Elite" customModuleProvider="target">
             <connections>
-                <outlet property="addPlayerView" destination="4CG-qW-Opt" id="5A6-1c-fQ0"/>
-                <outlet property="bluePlayerImage" destination="D7x-MX-AhB" id="pbe-m8-lbx"/>
+                <outlet property="bluePlayerImage" destination="njU-LY-kH1" id="fIr-sY-FU4"/>
                 <outlet property="bluePlayerLabel" destination="Yad-VG-Wku" id="6R7-dx-N02"/>
                 <outlet property="bluePlayerMedal" destination="3WQ-VF-4II" id="DYZ-Ys-d2e"/>
                 <outlet property="bluePlayerRanking" destination="Dya-Tm-y8V" id="Vkk-O3-pd9"/>
                 <outlet property="cancelButton" destination="Ycv-Oy-LqF" id="f9U-nM-kjQ"/>
                 <outlet property="playButton" destination="Swl-b6-MxJ" id="gft-Xk-TEP"/>
-                <outlet property="redPlayerImage" destination="19l-m6-e7T" id="YAF-3h-z9R"/>
+                <outlet property="redPlayerImage" destination="TO3-9S-e8v" id="K8t-Rv-Xuz"/>
                 <outlet property="redPlayerLabel" destination="ygR-Ex-BaJ" id="3Gm-gH-inW"/>
                 <outlet property="redPlayerMedalImage" destination="wWW-rQ-143" id="pSF-gJ-JbY"/>
                 <outlet property="redPlayerRanking" destination="JdD-DZ-q9O" id="iYb-KO-KXd"/>
@@ -39,9 +38,6 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4CG-qW-Opt">
-                    <rect key="frame" x="0.0" y="511" width="414" height="120"/>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="du9-If-FpX" customClass="versusRight" customModule="Elite" customModuleProvider="target">
                     <rect key="frame" x="158" y="306" width="216" height="47"/>
                     <subviews>
@@ -85,22 +81,6 @@
                         <constraint firstItem="Yad-VG-Wku" firstAttribute="top" secondItem="XPj-14-2ms" secondAttribute="top" constant="5" id="qzG-IB-8nt"/>
                     </constraints>
                 </view>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nff-gy-Y99" customClass="CircularRedImageView" customModule="Elite" customModuleProvider="target">
-                    <rect key="frame" x="43" y="269" width="120" height="120"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="120" id="DlM-Q6-O4j"/>
-                        <constraint firstAttribute="height" constant="120" id="JuK-ei-cAv"/>
-                    </constraints>
-                </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L62-gZ-OFz" customClass="CircularBlueImageView" customModule="Elite" customModuleProvider="target">
-                    <rect key="frame" x="251" y="516.5" width="120" height="120"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="120" id="Qom-Ua-MrB"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="XVQ-e6-kNL"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="oP5-XO-NZ3"/>
-                        <constraint firstAttribute="width" constant="120" id="yro-tl-ute"/>
-                    </constraints>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z6P-Rg-Isn">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="134.5"/>
                     <subviews>
@@ -207,11 +187,19 @@
                         <constraint firstItem="Dya-Tm-y8V" firstAttribute="centerY" secondItem="3WQ-VF-4II" secondAttribute="centerY" id="dCX-y0-oB5"/>
                     </constraints>
                 </view>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="19l-m6-e7T">
-                    <rect key="frame" x="18" y="219.5" width="180" height="180"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TO3-9S-e8v" customClass="CircularRedImageView" customModule="Elite" customModuleProvider="target">
+                    <rect key="frame" x="43" y="269.5" width="120" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="DlE-NU-Lfd"/>
+                        <constraint firstAttribute="height" constant="120" id="yjA-BT-2Pl"/>
+                    </constraints>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D7x-MX-AhB">
-                    <rect key="frame" x="215" y="469" width="180" height="180"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="njU-LY-kH1" customClass="CircularBlueImageView" customModule="Elite" customModuleProvider="target">
+                    <rect key="frame" x="251" y="516.5" width="120" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="1NA-26-WHA"/>
+                        <constraint firstAttribute="height" constant="120" id="XOC-iX-azt"/>
+                    </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -219,37 +207,25 @@
                 <constraint firstItem="Z6P-Rg-Isn" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.15" id="2VS-HS-g4R"/>
                 <constraint firstItem="64J-he-ts8" firstAttribute="top" secondItem="du9-If-FpX" secondAttribute="bottom" id="6Xl-ur-8BZ"/>
                 <constraint firstItem="64J-he-ts8" firstAttribute="centerX" secondItem="du9-If-FpX" secondAttribute="centerX" multiplier="1.14" id="7Lf-ZA-quJ"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4CG-qW-Opt" secondAttribute="trailing" id="8Uh-cr-VaK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Z6P-Rg-Isn" secondAttribute="trailing" id="9b1-hT-waQ"/>
                 <constraint firstItem="PSo-JH-dYs" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="Aef-t6-Yaf"/>
+                <constraint firstItem="TO3-9S-e8v" firstAttribute="centerY" secondItem="du9-If-FpX" secondAttribute="centerY" id="B6e-7u-KRE"/>
                 <constraint firstItem="Swl-b6-MxJ" firstAttribute="top" secondItem="XPj-14-2ms" secondAttribute="bottom" constant="100" id="BOv-NN-jOY"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="du9-If-FpX" secondAttribute="trailing" constant="40" id="IFx-vO-y6B"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XPj-14-2ms" secondAttribute="trailing" constant="158" id="M1J-Sc-fCc"/>
                 <constraint firstItem="Swl-b6-MxJ" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="NXO-yy-oIL"/>
                 <constraint firstItem="Z6P-Rg-Isn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="OPi-bg-QCZ"/>
-                <constraint firstItem="4CG-qW-Opt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Phh-2X-OAX"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="L62-gZ-OFz" secondAttribute="trailing" constant="43" id="Uwx-Tx-b6t"/>
-                <constraint firstItem="D7x-MX-AhB" firstAttribute="width" secondItem="19l-m6-e7T" secondAttribute="width" id="W1m-TC-zK1"/>
+                <constraint firstItem="TO3-9S-e8v" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="43" id="T4D-bY-SZ5"/>
                 <constraint firstItem="PSo-JH-dYs" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="ZvS-jF-gbS"/>
-                <constraint firstItem="nff-gy-Y99" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="43" id="cby-Jw-kb4"/>
-                <constraint firstItem="D7x-MX-AhB" firstAttribute="centerX" secondItem="L62-gZ-OFz" secondAttribute="centerX" multiplier="0.98" id="dfs-AH-Q6P"/>
-                <constraint firstItem="19l-m6-e7T" firstAttribute="height" secondItem="nff-gy-Y99" secondAttribute="height" multiplier="1.5" id="e18-aY-b0d"/>
-                <constraint firstItem="L62-gZ-OFz" firstAttribute="centerY" secondItem="XPj-14-2ms" secondAttribute="centerY" id="fS3-pt-iuy"/>
-                <constraint firstItem="D7x-MX-AhB" firstAttribute="centerY" secondItem="L62-gZ-OFz" secondAttribute="centerY" multiplier="0.97" id="gH6-19-car"/>
-                <constraint firstItem="D7x-MX-AhB" firstAttribute="height" secondItem="19l-m6-e7T" secondAttribute="height" id="iAf-GY-WkZ"/>
-                <constraint firstItem="4CG-qW-Opt" firstAttribute="height" secondItem="L62-gZ-OFz" secondAttribute="height" id="iSI-Z1-hxR"/>
+                <constraint firstItem="njU-LY-kH1" firstAttribute="centerY" secondItem="XPj-14-2ms" secondAttribute="centerY" id="ob4-gW-Lcf"/>
                 <constraint firstItem="DH7-S9-TSJ" firstAttribute="centerX" secondItem="XPj-14-2ms" secondAttribute="centerX" multiplier="0.75" id="p8O-VV-E5V"/>
                 <constraint firstItem="PSo-JH-dYs" firstAttribute="top" secondItem="du9-If-FpX" secondAttribute="bottom" constant="70" id="ph4-bO-tJB"/>
                 <constraint firstItem="DH7-S9-TSJ" firstAttribute="top" secondItem="XPj-14-2ms" secondAttribute="bottom" id="pti-Zj-0uL"/>
                 <constraint firstItem="XPj-14-2ms" firstAttribute="top" secondItem="PSo-JH-dYs" secondAttribute="bottom" constant="70" id="sIg-ab-MhV"/>
                 <constraint firstItem="XPj-14-2ms" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="43" id="uGu-Fi-BJC"/>
-                <constraint firstItem="19l-m6-e7T" firstAttribute="centerX" secondItem="nff-gy-Y99" secondAttribute="centerX" multiplier="1.05" id="uej-d5-ZFX"/>
-                <constraint firstItem="19l-m6-e7T" firstAttribute="width" secondItem="nff-gy-Y99" secondAttribute="width" multiplier="1.5" id="vtm-xa-rZ9"/>
-                <constraint firstItem="19l-m6-e7T" firstAttribute="centerY" secondItem="nff-gy-Y99" secondAttribute="centerY" multiplier="0.94" id="wRi-D7-Lp2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="njU-LY-kH1" secondAttribute="trailing" constant="43" id="w1d-cK-zwp"/>
                 <constraint firstItem="du9-If-FpX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="158" id="wn9-hv-bkh"/>
-                <constraint firstItem="4CG-qW-Opt" firstAttribute="top" secondItem="PSo-JH-dYs" secondAttribute="bottom" constant="28" id="yIX-xY-OK8"/>
                 <constraint firstItem="Z6P-Rg-Isn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="z2B-hY-amG"/>
-                <constraint firstItem="nff-gy-Y99" firstAttribute="centerY" secondItem="ygR-Ex-BaJ" secondAttribute="centerY" id="z47-38-K50"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="130.58035714285714"/>

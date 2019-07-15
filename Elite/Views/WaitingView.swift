@@ -12,7 +12,7 @@ protocol WaitingViewDelegate: AnyObject {
 }
 class WaitingView: UIView {
     //TO DO : WAITING VIEW ON EVERY VC
-    static var watingViewDelegate: WaitingViewDelegate?
+    static weak var watingViewDelegate: WaitingViewDelegate?
     
     @IBOutlet weak var waitingSubView: UIView!
     @IBOutlet weak var viewTitle: UILabel!

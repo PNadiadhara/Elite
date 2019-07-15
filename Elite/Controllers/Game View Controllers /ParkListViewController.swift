@@ -18,6 +18,7 @@ class ParkListViewController: UIViewController {
 
     weak var parkDelegate: ParkListDelegate?
     
+    var disabledIndexPathRows = [Int]()
     @IBOutlet weak var parkListTableView: UITableView!
     
     public var basketBallCourts = [BasketBall]() {
@@ -28,7 +29,7 @@ class ParkListViewController: UIViewController {
         }
     }
    // let multiPeerConnectivityHelper = MultiPeerConnectivityHelper()
-    public var availableGames = [String]() {
+    public var availableGames = [GamerModel]() {
         didSet {
             DispatchQueue.main.async {
                 self.parkListTableView.reloadData()
@@ -57,12 +58,15 @@ class ParkListViewController: UIViewController {
         MultiPeerConnectivityHelper.shared.multipeerDelegate = self
         parkListTableView.dataSource = self
         parkListTableView.delegate = self
-        parkListTableView.register(UINib(nibName: "ParkInfoCell", bundle: nil), forCellReuseIdentifier: "ParkInfoCell")
-        parkListTableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
+
         switch typeOfList {
         case .AvailableGameList:
+            parkListTableView.register(UINib(nibName: "LeaderboardCell", bundle: nil), forCellReuseIdentifier: "LeaderboardCell")
+            parkListTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
             return
         case .ParkList:
+            parkListTableView.register(UINib(nibName: "ParkInfoCell", bundle: nil), forCellReuseIdentifier: "ParkInfoCell")
+            parkListTableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
             fetchClosestParks()
         }
         
@@ -111,12 +115,28 @@ extension ParkListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ParkInfoCell", for: indexPath) as? ParkInfoCell else {return UITableViewCell()}
+
         switch typeOfList {
         case .AvailableGameList:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "LeaderboardCell", for: indexPath) as? LeaderboardCell else {return UITableViewCell()}
             let gameName = availableGames[indexPath.row]
-            cell.parkNameLabel.text = gameName
+            cell.userName.text = gameName.username
+            cell.profileImage.kf.setImage(with: URL(string: gameName.profileImage!))
+            cell.rankingLabel.text = ""
+            GameRestrictionsHelper.checkFor3GamesADayLimit(gamersId: gameName.gamerID) { (error, restricted) in
+                if let error = error {
+                    self.showAlert(title: "Error", message: error.localizedDescription)
+                }
+                if let restricted = restricted {
+                    if restricted {
+                        self.disabledIndexPathRows.append(indexPath.row)
+                        cell.restrictionView.isHidden = false
+                    }
+                }
+            }
+            
         case .ParkList:
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ParkInfoCell", for: indexPath) as? ParkInfoCell else {return UITableViewCell()}
             if gameName == .basketball {
                 let court = basketBallResults[indexPath.row]
                 cell.parkNameLabel.text = court.nameOfPlayground
@@ -125,18 +145,19 @@ extension ParkListViewController: UITableViewDelegate, UITableViewDataSource {
                 let court = handBallResults[indexPath.row]
                 cell.parkNameLabel.text = court.nameOfPlayground
                 cell.parkAddressLabel.text = court.location
+                return cell
             }
         }
-
-
-        return cell
+        return UITableViewCell()
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 86
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if typeOfList == .AvailableGameList{
-        MultiPeerConnectivityHelper.shared.joinGame(joiningGame: true)
+            MultiPeerConnectivityHelper.shared.joinGame(joiningGame: true)
         }
         if typeOfList == .ParkList {
             if gameName == .basketball {
@@ -149,9 +170,25 @@ extension ParkListViewController: UITableViewDelegate, UITableViewDataSource {
           dismiss(animated: true)
         }
     }
-    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if disabledIndexPathRows.contains(indexPath.row) {
+            return nil
+        }
+        return indexPath
+    }
 }
+
 extension ParkListViewController: MultipeerConnectivityDelegate {
+    func foundAdverstiser(availableGames: [GamerModel]) {
+        
+    }
+    
+    func playerWantsToJoinGame(player: GamerModel, handler: @escaping (Bool) -> Void) {
+        
+    }
+    
+
+    
     func countIsTrue() {
         
     }
@@ -176,17 +213,6 @@ extension ParkListViewController: MultipeerConnectivityDelegate {
     }
     
 
-    
-    func invitationNotification(handler: @escaping (Bool) -> Void) {
-        
-    }
-    
-
-    
-    
-    func foundAdverstiser(availableGames: [String]) {
-        
-    }
     
     
 }

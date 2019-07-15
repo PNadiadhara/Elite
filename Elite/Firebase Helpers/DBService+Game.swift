@@ -10,6 +10,12 @@ import Foundation
 import FirebaseFirestore
 import Firebase
 
+extension Array where Element: Comparable {
+    func containsSameElements(as other: [Element]) -> Bool {
+        return self.count == other.count && self.sorted() == other.sorted()
+    }
+}
+
 struct GameCollectionKeys {
     static let CollectionKey = "gamePost"
     static let GameNameKey = "gameName"
@@ -57,7 +63,8 @@ extension DBService {
                 GameCollectionKeys.FormattedAdresssKey : gamePost.formattedAdresss,
                 GameCollectionKeys.ParkNameKey : gamePost.parkName,
                 GameCollectionKeys.LatKey : gamePost.lat,
-                GameCollectionKeys.LonKey : gamePost.lon])
+                GameCollectionKeys.LonKey : gamePost.lon,
+                GamerCollectionKeys.PlayersKey : gamePost.players])
             { (error) in
                 if let error = error {
                     completion(error)
@@ -115,6 +122,25 @@ extension DBService {
         }
         
 
+    }
+    static public func fetchGamesWherePlayersPlayedEachOther(gamersId: String, completion: @escaping (Error? , [GameModel]?) -> Void) {
+        let players = [TabBarViewController.currentUser.uid, gamersId]
+        let query = firestoreDB.collection(GameCollectionKeys.CollectionKey)
+        query.getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(error, nil)
+            }
+            if let snapshot = snapshot {
+                var games = [GameModel]()
+                for document in snapshot.documents {
+                    let allGames = GameModel.init(dict: document.data())
+                    games.append(allGames)
+                }
+                completion(nil, games.filter({ (game) -> Bool in
+                    game.players.containsSameElements(as: players)
+                }))
+            }
+        }
     }
     static public func fetchPlayersGamePlayedAtPark(parkId: String, gamerId: String, completion: @escaping(Error?, [GameModel]) -> Void) {
         fetchPlayersGamesPlayed(gamerId: gamerId) { (error, games) in
