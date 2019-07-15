@@ -13,6 +13,7 @@ ${PODS_ROOT}/SnapSDK/SCSDKBitmojiKit.framework
 ${PODS_ROOT}/SnapSDK/SCSDKCoreKit.framework
 ${PODS_ROOT}/SnapSDK/SCSDKCreativeKit.framework
 ${PODS_ROOT}/SnapSDK/SCSDKLoginKit.framework
+${BUILT_PRODUCTS_DIR}/Toucan/Toucan.framework
 ${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework
 ${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework
 ${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework

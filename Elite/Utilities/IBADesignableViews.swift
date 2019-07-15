@@ -25,7 +25,7 @@ class RoundedButton: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
         imageView?.contentMode = .scaleAspectFill
-        layer.cornerRadius = 5
+        layer.cornerRadius = bounds.height / 2.0
         clipsToBounds = true
     }
 }
@@ -201,6 +201,16 @@ class RankingView: UIView {
     }
 }
 
+@IBDesignable
+class RoundedTextField: UITextField {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        backgroundColor = #colorLiteral(red: 0.1607843137, green: 0.1725490196, blue: 0.1843137255, alpha: 1)
+        layer.cornerRadius = bounds.height / 2.0
+        layer.borderWidth = 3.0
+        layer.borderColor = #colorLiteral(red: 0.995932281, green: 0.2765177786, blue: 0.3620784283, alpha: 1)
+    }
+}
 
 
 

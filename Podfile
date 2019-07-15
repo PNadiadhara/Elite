@@ -14,6 +14,7 @@ platform :ios, '12.0'
     pod 'GooglePlaces'
     pod 'FBSDKLoginKit'
     pod 'SAConfettiView'
+    pod 'Toucan'
   end
 
   target 'Elite' do

@@ -52,15 +52,15 @@ class TwoVsTwoViewController: UIViewController {
         redPlayerOneLabel.text = TabBarViewController.currentUser.displayName
         if let redTwoPlayer = redTwoPlayer{
             redPlayerTwoLabel.text = redTwoPlayer.username
-            redPlayerTwoImage.image = UIImage(named: redTwoPlayer.username + "FightingRight")
+            redPlayerTwoImage.image = UIImage(named: redTwoPlayer.username! + "FightingRight")
         }
         if let blueOnePlayer = blueOnePlayer {
            bluePlayerOneLabel.text = blueOnePlayer.username
-            bluePlayerOneImage.image = UIImage(named: blueOnePlayer.username + "FightingLeft")
+            bluePlayerOneImage.image = UIImage(named: blueOnePlayer.username! + "FightingLeft")
         }
         if let blueTwoPlayer = blueTwoPlayer {
            bluePlayerTwoLabel.text = blueTwoPlayer.username
-            bluePlayerTwoImage.image = UIImage(named: blueTwoPlayer.username + "FightingRight")
+            bluePlayerTwoImage.image = UIImage(named: blueTwoPlayer.username! + "FightingRight")
         }
         
     }
@@ -142,9 +142,9 @@ class TwoVsTwoViewController: UIViewController {
     }
     func setupCurrentGame(gameId: String) {
         let redPlayerOne = CurrentPlayer(currentPlayerId: "",gamerId: TabBarViewController.currentUser.uid, userName: TabBarViewController.currentUser.displayName ?? "N/A", teamRole: TeamRoles.redOne.rawValue, gameId: gameId)
-        let redPlayerTwo = CurrentPlayer(currentPlayerId: "", gamerId: redTwoPlayer!.gamerID, userName: redTwoPlayer!.username, teamRole: TeamRoles.redTwo.rawValue, gameId: gameId)
-        let bluePlayerOne = CurrentPlayer(currentPlayerId: "", gamerId: blueOnePlayer!.gamerID, userName: blueOnePlayer!.username, teamRole: TeamRoles.blueOne.rawValue, gameId: gameId)
-        let bluePlayerTwo = CurrentPlayer(currentPlayerId: "", gamerId: blueTwoPlayer!.gamerID, userName: blueTwoPlayer!.username, teamRole: TeamRoles.blueTwo.rawValue, gameId: gameId)
+        let redPlayerTwo = CurrentPlayer(currentPlayerId: "", gamerId: redTwoPlayer!.gamerID, userName: redTwoPlayer!.username!, teamRole: TeamRoles.redTwo.rawValue, gameId: gameId)
+        let bluePlayerOne = CurrentPlayer(currentPlayerId: "", gamerId: blueOnePlayer!.gamerID, userName: blueOnePlayer!.username!, teamRole: TeamRoles.blueOne.rawValue, gameId: gameId)
+        let bluePlayerTwo = CurrentPlayer(currentPlayerId: "", gamerId: blueTwoPlayer!.gamerID, userName: blueTwoPlayer!.username!, teamRole: TeamRoles.blueTwo.rawValue, gameId: gameId)
         DBService.postCurrentPlayer(currentPlayer: redPlayerTwo) { (error) in
             if let error = error {
                 self.showAlert(title: "Error", message: error.localizedDescription)

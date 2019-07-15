@@ -70,7 +70,7 @@ class WinnerViewController: UIViewController {
             MultiPeerConnectivityHelper.shared.sendParkID(parkId: GameModel.parkId ?? "") {
                 let timeStamp = Date.getISOTimestamp()
                 let gameDuration = MainTimer.shared.timeString(time: MainTimer.totalTime)
-                GameModel.updateGameModel(gameEndTime: timeStamp, winners: [winner!.gamerID], losers: [loser!.gamerID], duration: gameDuration) {
+                GameModel.updateGameModel(gameEndTime: timeStamp.formatISODateString(dateFormat: "MMM d, yyyy hh:mm a"), winners: [winner!.gamerID], losers: [loser!.gamerID], duration: gameDuration) {
                     guard let game = GameModel.game else {
                         print("Game is nil")
                         return
@@ -93,8 +93,6 @@ class WinnerViewController: UIViewController {
     }
     
     func setupUI() {
-        
-
         confettiView = SAConfettiView(frame: view.bounds)
         setupConfetti()
         if !isTie {
@@ -102,18 +100,17 @@ class WinnerViewController: UIViewController {
             let loser = loser else {return}
             if winner.username == TabBarViewController.currentGamer.username {
                 confettiView.startConfetti()
-                winnerTitle.text = "Congratulations \(winner.username)"
+                winnerTitle.text = "Congratulations \(winner.username!)"
                 userResultLabel.text = "You won!!!"
                 continueButton.isHidden = false
                 retryButton.isHidden = true
                 confirmButton.isHidden = true
             } else {
-                winnerTitle.text = "Sorry \(loser.username)"
+                winnerTitle.text = "Sorry \(loser.username!)"
                 userResultLabel.text = "You lost"
                 retryButton.isHidden = true
                 confirmButton.isHidden = true
                 continueButton.isHidden = false
-                
             }
         } else {
             winnerTitle.text = "Players chose different winners"
@@ -128,7 +125,6 @@ class WinnerViewController: UIViewController {
     func retryGame() {
         dismiss(animated: true)
         actionHandlerDelegate?.userPressedRetry()
-
     }
     
     func sendRetryAction() {
@@ -140,8 +136,8 @@ class WinnerViewController: UIViewController {
     @IBAction func continueButtonPressed(_ sender: Any) {
         let parkRankingInfoEndGame = ParkRankingInfoEndGameViewController()
         parkRankingInfoEndGame.parkId = parkId
+        
         present(parkRankingInfoEndGame, animated: true)
-
     }
     
     @IBAction func retryButtonPressed(_ sender: Any) {

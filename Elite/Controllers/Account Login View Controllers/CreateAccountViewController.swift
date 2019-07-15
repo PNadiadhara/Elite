@@ -13,7 +13,6 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var conteinerView: UIView!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
-    @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
@@ -47,7 +46,6 @@ class CreateAccountViewController: UIViewController {
     private func setOutletsDelegates(){
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
-        usernameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
         confirmPasswordTextField.delegate = self
@@ -71,13 +69,11 @@ class CreateAccountViewController: UIViewController {
             let confirmPassword = confirmPasswordTextField.text,
             let firstName = firstNameTextField.text,
             let lastName = lastNameTextField.text,
-            let userName = usernameTextField.text,
             !email.isEmpty,
             !confirmPassword.isEmpty,
             !password.isEmpty,
             !firstName.isEmpty,
-            !lastName.isEmpty,
-            !userName.isEmpty
+            !lastName.isEmpty
             else {
                 showAlert(title: "Missing Required Fields", message: "Email and Password Required")
                 return
@@ -85,7 +81,7 @@ class CreateAccountViewController: UIViewController {
         if password != confirmPassword {
             showAlert(title: "Passwords do not match", message: "Try again")
         } else {
-            authservice.createNewAccount(email: email, password: password, firstName: firstName, lastName: lastName, username: userName)
+            authservice.createNewAccount(email: email, password: password, firstName: firstName, lastName: lastName, deviceName: UIDevice.current.name)
         }
         
     }
@@ -140,8 +136,11 @@ extension CreateAccountViewController : AuthServiceCreateNewAccountDelegate {
     }
     
     func didCreateNewAccount(_ authservice: AuthService, user gamer: GamerModel) {
-        let tab = TabBarViewController.setTabBarVC()
-        present(tab, animated: true)
+        let createYourEliteVC = CreateYourEliteViewController()
+        createYourEliteVC.modalPresentationStyle = .fullScreen
+        present(createYourEliteVC, animated: true)
+//        let tab = TabBarViewController.setTabBarVC()
+//        present(tab, animated: true)
     }
     
 }

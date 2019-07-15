@@ -20,19 +20,19 @@ class OneVsOneViewController: UIViewController {
 
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var searchPlayerView: versusLeft!
-    @IBOutlet weak var bluePlayerImage: UIImageView!
-    @IBOutlet weak var redPlayerImage: UIImageView!
     @IBOutlet weak var redPlayerLabel: UILabel!
     @IBOutlet weak var bluePlayerLabel: UILabel!
     @IBOutlet weak var sportLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var addPlayerView: UIView!
     @IBOutlet weak var redPlayerRanking: UILabel!
     @IBOutlet weak var redPlayerMedalImage: UIImageView!
     @IBOutlet weak var bluePlayerRanking: UILabel!
     @IBOutlet weak var bluePlayerMedal: UIImageView!
     
-//    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var redPlayerImage: CircularRedImageView!
+    
+    @IBOutlet weak var bluePlayerImage: CircularBlueImageView!
+    //    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 //    @IBOutlet weak var waitingPlayersLabel: UILabel!
 //    @IBOutlet weak var cancelHostingButton: UIButton!
 //    @IBOutlet weak var waitingView: UIView!
@@ -59,11 +59,13 @@ class OneVsOneViewController: UIViewController {
     
     private var listener: ListenerRegistration!
     
+    var inviteResponse: Bool?
     override func viewDidLoad() {
         super.viewDidLoad()
 //        let cgRect = CGRect(x: 0, y: 0, width: 207, height: 269)
 
         MultiPeerConnectivityHelper.shared.multipeerDelegate = self
+        MultiPeerConnectivityHelper.shared.multipeerConnectivityPlayerWantsToJoinDelegate = self
         playButton.isEnabled = false
 //        activityIndicator.startAnimating()
         setupTap()
@@ -117,11 +119,12 @@ class OneVsOneViewController: UIViewController {
     func setupSentUI() {
         guard let redPlayer = MultiPeerConnectivityHelper.shared.redPlayer,
         let bluePlayer = MultiPeerConnectivityHelper.shared.bluePlayer else {return}
+        guard let bluePlayerImageURL = URL(string: bluePlayer.profileImage!),
+        let redPlayerImageURL = URL(string: redPlayer.profileImage!) else {return}
+        bluePlayerImage.kf.setImage(with: bluePlayerImageURL)
+        redPlayerImage.kf.setImage(with: redPlayerImageURL)
         bluePlayerLabel.text = bluePlayer.username
-        bluePlayerImage.image = UIImage(named: bluePlayer.username + "FightingRight")
         redPlayerLabel.text = redPlayer.username
-        redPlayerImage.image = UIImage(named: redPlayer.username + "FightingLeft")
-        
 //        guard let team = MultiPeerConnectivityHelper.shared.team,
 //            let rival = MultiPeerConnectivityHelper.shared.rival else {return}
 //        switch team{
@@ -152,10 +155,9 @@ class OneVsOneViewController: UIViewController {
     @IBAction func playButtonPressed(_ sender: UIButton) {
         printValues()
         if MultiPeerConnectivityHelper.shared.role == .Host {
-            GameModel.createGame(gameName: GameModel.gameName!, gameType: "1 vs. 1", redTeam: [MultiPeerConnectivityHelper.shared.redPlayer!.gamerID], blueTeam: [MultiPeerConnectivityHelper.shared.bluePlayer!.gamerID], parkId: GameModel.parkId ?? "", formattedAdress: GameModel.formattedAddress ?? "", parkName: GameModel.parkSelected!, lat: GameModel.parkLat!, lon: GameModel.parkLon!, gameId: "")
-            
-            
+            GameModel.createGame(gameName: GameModel.gameName!, gameType: "1 vs. 1", redTeam: [MultiPeerConnectivityHelper.shared.redPlayer!.gamerID], blueTeam: [MultiPeerConnectivityHelper.shared.bluePlayer!.gamerID], parkId: GameModel.parkId ?? "", formattedAdress: GameModel.formattedAddress ?? "", parkName: GameModel.parkSelected!, lat: GameModel.parkLat!, lon: GameModel.parkLon!, gameId: "", players: [MultiPeerConnectivityHelper.shared.redPlayer!.gamerID, MultiPeerConnectivityHelper.shared.bluePlayer!.gamerID])
         }
+        
         let timerPopUp = TimerPopUp()
         present(timerPopUp, animated: true)
        
@@ -223,13 +225,13 @@ class OneVsOneViewController: UIViewController {
 //
 //    }
     func printValues() {
-        print(GameModel.parkId) //
-        print(GameModel.gameName)
-        print(GameModel.gameTypeSelected)
-        print(GameModel.formattedAddress)//
-        print(GameModel.parkLat)//
-        print(GameModel.parkLon)//
-        print(GameModel.gameId)
+//        print(GameModel.parkId) //
+//        print(GameModel.gameName)
+//        print(GameModel.gameTypeSelected)
+//        print(GameModel.formattedAddress)//
+//        print(GameModel.parkLat)//
+//        print(GameModel.parkLon)//
+//        print(GameModel.gameId)
 //        GameModel.gameName = gameSentData.gameName
 //        GameModel.gameTypeSelected = "1 vs. 1"
 //        GameModel.formattedAddress = gameSentData.formattedAddress
@@ -297,13 +299,26 @@ class OneVsOneViewController: UIViewController {
 //        static var parkLat: String?
 //        static var parkLon: String?
 
+extension OneVsOneViewController: MultipeerConnectivityPlayerWantsToJoinDelegate {
+    func playerWantsToJoinGame(player: GamerModel, handler: @escaping (Bool) -> Void) {
+        let invitationPopUp = InvitationAlertViewController()
+        invitationPopUp.gamer = player
+        invitationAlert(title: "\(player.username!) wants to join game", message: nil) { (anwser) in
+            if anwser.title == "Yes" {
+                handler(true)
+            }
+        }
+    }
+}
 
 extension OneVsOneViewController: MultipeerConnectivityDelegate{
+    func foundAdverstiser(availableGames: [GamerModel]) {
+        
+    }
+    
     func countIsTrue() {
         setupSentUI()
     }
-    
-
     
     func receivedUserData(data: Data, role: String) {
         do {
@@ -312,13 +327,13 @@ extension OneVsOneViewController: MultipeerConnectivityDelegate{
             if role == MultiPeerConnectivityHelper.Role.Guest.rawValue {
                 MultiPeerConnectivityHelper.shared.redPlayer = TabBarViewController.currentGamer
                 MultiPeerConnectivityHelper.shared.bluePlayer = playerData
-                print("Red Player: \(MultiPeerConnectivityHelper.shared.bluePlayer!.username)")
+                print("Red Player: \(String(describing: MultiPeerConnectivityHelper.shared.bluePlayer!.username))")
 
             }
             if role == MultiPeerConnectivityHelper.Role.Host.rawValue {
                 MultiPeerConnectivityHelper.shared.bluePlayer = TabBarViewController.currentGamer
                 MultiPeerConnectivityHelper.shared.redPlayer = playerData
-                print("Blue Player:  \(MultiPeerConnectivityHelper.shared.redPlayer!.username)")
+                print("Blue Player:  \(String(describing: MultiPeerConnectivityHelper.shared.redPlayer!.username))")
                
             }
             MultiPeerConnectivityHelper.shared.rival = playerData
@@ -347,21 +362,6 @@ extension OneVsOneViewController: MultipeerConnectivityDelegate{
         
     }
     
-    func invitationNotification(handler: @escaping (Bool) -> Void) {
-        invitationAlert(title: "Wants to join", message: "Accept?") { (action) in
-            if action.title == "Yes" {
-                handler(true)
-            } else {
-                handler(false)
-            }
-        }
-    }
-    
-
-    
-    func foundAdverstiser(availableGames: [String]) {
-        
-    }
     
     func displayAvailableGames(handler: @escaping (Bool) -> Void) {
         return
@@ -381,3 +381,4 @@ extension OneVsOneViewController: WaitingViewDelegate{
     
     
 }
+

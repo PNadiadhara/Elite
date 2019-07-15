@@ -29,4 +29,17 @@ extension String {
         }
         return date
     }
+    
+    public func stringToDate() -> Date {
+        var date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, yyyy hh:mm a"
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.locale = Locale.current
+        if let isoDate = dateFormatter.date(from: self) {
+            date = isoDate
+        }
+        return date
+    }
 }
+//
