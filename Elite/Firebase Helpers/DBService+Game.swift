@@ -39,6 +39,7 @@ struct GameCollectionKeys {
     static let TeamAScore = "teamAScore"
     static let TeamBScore = "teamBScore"
     static let DurationKey = "duration"
+    static let PlayersKey = "players"
 //    static let isOverKey = "isOver"
 //    static let wasCancelledKey = "wasCancelled"
 }
@@ -58,13 +59,15 @@ extension DBService {
                 GameCollectionKeys.WinnersKey : gamePost.winners ?? [na],
                 GameCollectionKeys.GameIDKey :  ref.documentID,
                 GameCollectionKeys.WitnessKey : gamePost.witness ?? na,
-                GameCollectionKeys.DurationKey : gamePost.duration ?? na,  GameCollectionKeys.LosersKey : gamePost.losers ?? na,
-                GameCollectionKeys.IsTieKey : gamePost.isTie ?? na,
+                GameCollectionKeys.DurationKey : gamePost.duration ?? na,  GameCollectionKeys.LosersKey : gamePost.losers ?? [na],
+                GameCollectionKeys.IsTieKey : gamePost.isTie ?? false,
                 GameCollectionKeys.FormattedAdresssKey : gamePost.formattedAdresss,
                 GameCollectionKeys.ParkNameKey : gamePost.parkName,
                 GameCollectionKeys.LatKey : gamePost.lat,
                 GameCollectionKeys.LonKey : gamePost.lon,
-                GamerCollectionKeys.PlayersKey : gamePost.players])
+                GameCollectionKeys.PlayersKey : gamePost.players,
+                GameCollectionKeys.ParkId : gamePost.parkId
+                ])
             { (error) in
                 if let error = error {
                     completion(error)
@@ -174,7 +177,6 @@ extension DBService {
             let gamesLost = games.filter{($0.losers?.contains(gamerId))!}.count
             complete(gamesLost)
         }
-        
     }
     
     static public func getPlayerWinsByPark(parkId: String?, completion: @escaping (Error?, Int?) -> Void) {
