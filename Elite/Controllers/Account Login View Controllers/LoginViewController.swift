@@ -33,6 +33,7 @@ class LoginViewController: UIViewController {
         authservice.authserviceExistingAccountDelegate = self
         let screenTap = UITapGestureRecognizer.init(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(screenTap)
+        loginWithFBBttn.isHidden = true 
     }
     
     private func setupOutlets(){

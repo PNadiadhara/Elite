@@ -10,6 +10,11 @@ import UIKit
 import Firebase
 import CoreLocation
 
+enum GearIconStatus {
+    case pressed
+    case notPressed
+}
+
 class ProfileViewController: UIViewController {
     
     @IBOutlet weak var profileImage: CircularButton!
@@ -31,7 +36,7 @@ class ProfileViewController: UIViewController {
     private var gamer: GamerModel?
     let gamePostViewContent = GamePostView()
     private var gameCreator = [GamerModel]()
-
+    private var gearIconStatus: GearIconStatus = .notPressed
     override func viewDidLoad() {
         super.viewDidLoad()
         settingsView.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
@@ -44,8 +49,13 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func settingsPressed(_ sender: UIButton) {
-        settingsView.isHidden = false
-        dismiss(animated: true, completion: nil)
+        if gearIconStatus == .notPressed{
+            gearIconStatus = .pressed
+            settingsView.isHidden = false
+        } else {
+            gearIconStatus = .notPressed
+            settingsView.isHidden = true
+        }
     }
     
     @IBAction func editProfileButtonPressed(_ sender: RoundedButton) {
