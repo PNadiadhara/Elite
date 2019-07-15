@@ -10,7 +10,7 @@ import UIKit
 import MultipeerConnectivity
 
 class HostJoinGameViewController: UIViewController{
-
+    //TO DO: GAMERESTRICTION for 20 minutes
     
     var waitingView: UIView?
     

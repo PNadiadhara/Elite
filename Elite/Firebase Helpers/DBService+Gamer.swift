@@ -29,6 +29,7 @@ struct GamerCollectionKeys {
     static let FriendsKey = "friends"
     static let RoleKey = "role"
     static let deviceName = "deviceName"
+    static let PlayersKey = "players"
 }
 extension DBService {
     static public func createUser(gamer: GamerModel, completion: @escaping (Error?) -> Void) {
@@ -37,7 +38,7 @@ extension DBService {
             .setData([ GamerCollectionKeys.ProfileImageURLKey : gamer.profileImage ?? "",
                        GamerCollectionKeys.FirstNameKey : gamer.firstname,
                        GamerCollectionKeys.LastNameKey : gamer.lastname,
-                       GamerCollectionKeys.UserNameKey : gamer.username,
+                       GamerCollectionKeys.UserNameKey : gamer.username ?? "",
                        GamerCollectionKeys.EmailKey : gamer.email,
                        GamerCollectionKeys.StatusKey : gamer.status ?? "",
                        GamerCollectionKeys.AchievementsKey : gamer.achievements ?? "",

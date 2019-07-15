@@ -155,10 +155,9 @@ class OneVsOneViewController: UIViewController {
     @IBAction func playButtonPressed(_ sender: UIButton) {
         printValues()
         if MultiPeerConnectivityHelper.shared.role == .Host {
-            GameModel.createGame(gameName: GameModel.gameName!, gameType: "1 vs. 1", redTeam: [MultiPeerConnectivityHelper.shared.redPlayer!.gamerID], blueTeam: [MultiPeerConnectivityHelper.shared.bluePlayer!.gamerID], parkId: GameModel.parkId ?? "", formattedAdress: GameModel.formattedAddress ?? "", parkName: GameModel.parkSelected!, lat: GameModel.parkLat!, lon: GameModel.parkLon!, gameId: "")
-            
-            
+            GameModel.createGame(gameName: GameModel.gameName!, gameType: "1 vs. 1", redTeam: [MultiPeerConnectivityHelper.shared.redPlayer!.gamerID], blueTeam: [MultiPeerConnectivityHelper.shared.bluePlayer!.gamerID], parkId: GameModel.parkId ?? "", formattedAdress: GameModel.formattedAddress ?? "", parkName: GameModel.parkSelected!, lat: GameModel.parkLat!, lon: GameModel.parkLon!, gameId: "", players: [MultiPeerConnectivityHelper.shared.redPlayer!.gamerID, MultiPeerConnectivityHelper.shared.bluePlayer!.gamerID])
         }
+        
         let timerPopUp = TimerPopUp()
         present(timerPopUp, animated: true)
        
@@ -309,7 +308,6 @@ extension OneVsOneViewController: MultipeerConnectivityPlayerWantsToJoinDelegate
                 handler(true)
             }
         }
-        
     }
 }
 
@@ -318,13 +316,9 @@ extension OneVsOneViewController: MultipeerConnectivityDelegate{
         
     }
     
-    
-    
     func countIsTrue() {
         setupSentUI()
     }
-    
-
     
     func receivedUserData(data: Data, role: String) {
         do {

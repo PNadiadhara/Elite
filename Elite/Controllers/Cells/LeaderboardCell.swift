@@ -13,5 +13,6 @@ class LeaderboardCell: UITableViewCell {
     @IBOutlet weak var rankingLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
-
+    @IBOutlet weak var restrictionView: UIView!
+    
 }

@@ -97,6 +97,7 @@
 		BFD61E302280CF0E00EA408B /* FirebaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD61E2F2280CF0E00EA408B /* FirebaseTests.swift */; };
 		BFD61E5B2289D6AB00EA408B /* GifHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD61E5A2289D6AB00EA408B /* GifHelper.swift */; };
 		BFED970F225E6E2900CC360B /* EloRankMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFED970E225E6E2900CC360B /* EloRankMethods.swift */; };
+		D5004C5022DB7A5600752B99 /* GameRestrictionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5004C4F22DB7A5600752B99 /* GameRestrictionsHelper.swift */; };
 		D509826C22849D85003679A5 /* GoogleMapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509826B22849D85003679A5 /* GoogleMapHelper.swift */; };
 		D50B051622B5C6610012C934 /* HostJoinGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50B051422B5C6610012C934 /* HostJoinGameViewController.swift */; };
 		D50B051722B5C6610012C934 /* HostJoinGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D50B051522B5C6610012C934 /* HostJoinGameViewController.xib */; };
@@ -273,6 +274,7 @@
 		BFD61E5A2289D6AB00EA408B /* GifHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifHelper.swift; sourceTree = "<group>"; };
 		BFED970E225E6E2900CC360B /* EloRankMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EloRankMethods.swift; sourceTree = "<group>"; };
 		C58214BF69A905A7D79AC4AF /* Pods_EliteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EliteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5004C4F22DB7A5600752B99 /* GameRestrictionsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRestrictionsHelper.swift; sourceTree = "<group>"; };
 		D509826B22849D85003679A5 /* GoogleMapHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GoogleMapHelper.swift; path = ../GoogleMapHelper.swift; sourceTree = "<group>"; };
 		D50B051422B5C6610012C934 /* HostJoinGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostJoinGameViewController.swift; sourceTree = "<group>"; };
 		D50B051522B5C6610012C934 /* HostJoinGameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HostJoinGameViewController.xib; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 				48EFEBAE2271016B0006092D /* MilesInMetersInfo.swift */,
 				D5B4F56E2271EB8B0081FCF0 /* Flag.swift */,
 				D50B051822B5CB920012C934 /* MultiPeerConnectivityHelper.swift */,
+				D5004C4F22DB7A5600752B99 /* GameRestrictionsHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1003,6 +1006,7 @@
 				D50E749622C50C570015D0F4 /* ParkRankingInfoEndGameViewController.swift in Sources */,
 				D5D375B8226A4A9000F25FCF /* DBService+WinnerConfirmation.swift in Sources */,
 				D5B304542264EDF800404241 /* Invitation.swift in Sources */,
+				D5004C5022DB7A5600752B99 /* GameRestrictionsHelper.swift in Sources */,
 				48F1B5C7226989DB00B53E11 /* MapViewPopupController.swift in Sources */,
 				D5B4F56D2270BD0D0081FCF0 /* DBService+CurrentGame.swift in Sources */,
 				D5DAD8E422809C46002D2B86 /* RankingChangeViewController.swift in Sources */,

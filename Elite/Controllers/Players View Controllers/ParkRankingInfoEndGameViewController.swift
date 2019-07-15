@@ -17,9 +17,9 @@ class ParkRankingInfoEndGameViewController: UIViewController {
     @IBOutlet weak var lossesLabel: UILabel!
     @IBOutlet weak var rankingTableView: UITableView!
     @IBOutlet weak var rankingLabel: UILabel!
+    @IBOutlet weak var doneButton: RoundedButton!
     
     var parkId = String()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -36,6 +36,16 @@ class ParkRankingInfoEndGameViewController: UIViewController {
     }
 
 
+    @IBAction func donePressed(_ sender: Any) {
+        if MultiPeerConnectivityHelper.shared.role == .Host {
+        guard let game = GameModel.game else {
+            print("Game is nil")
+            return
+        }
+        GameModel.clearGameModel(gameModel: game)
+        }
+        self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+    }
     /*
     // MARK: - Navigation
 

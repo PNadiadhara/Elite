@@ -33,7 +33,7 @@ class GameModel: Codable {
 //    let teamAScore: Int?
 //    let teamBScore: Int?
     var duration: String?
-
+    var players: [String]
     
     static var game: GameModel?
     
@@ -49,10 +49,9 @@ class GameModel: Codable {
     
 
     
-    static func createGame(gameName: String, gameType: String, redTeam: [String], blueTeam: [String], parkId: String, formattedAdress: String, parkName: String, lat: String, lon: String, gameId: String) {
+    static func createGame(gameName: String, gameType: String, redTeam: [String], blueTeam: [String], parkId: String, formattedAdress: String, parkName: String, lat: String, lon: String, gameId: String, players: [String]) {
         
-        GameModel.game = GameModel(gameName: gameName, gameType: gameType, redTeam: redTeam, blueTeam: blueTeam, parkId: parkId, gameDescription: nil, gameEndTime: nil, winners: nil, losers: nil, isTie: nil, formattedAdresss: formattedAdress, parkName: parkName, lat: lat, lon: lon, gameID: gameId, witness: nil, duration: nil)
-
+        GameModel.game = GameModel(gameName: gameName, gameType: gameType, redTeam: redTeam, blueTeam: blueTeam, parkId: parkId, gameDescription: nil, gameEndTime: nil, winners: nil, losers: nil, isTie: nil, formattedAdresss: formattedAdress, parkName: parkName, lat: lat, lon: lon, gameID: gameId, witness: nil, duration: nil, players: players)
     }
 
     //TO DO CREATE A GAME MODEL AT THE END AND SEND IT TO GUEST AND THEN UPLOAD TO FIREBASE
@@ -75,6 +74,10 @@ class GameModel: Codable {
         gameName = nil
         gameTypeSelected = nil
         parkSelected = nil
+        formattedAddress =  nil
+        parkLat = nil
+        parkLon = nil
+        gameId = nil
         game = nil
         
     }
@@ -96,7 +99,7 @@ class GameModel: Codable {
     lon: String,
     gameID: String,
     witness: String?,
-    duration: String?) {
+    duration: String?, players: [String]) {
         self.gameName = gameName
         self.gameType = gameType
         self.redTeam = redTeam
@@ -114,6 +117,7 @@ class GameModel: Codable {
         self.gameID = gameID
         self.witness = witness
         self.duration = duration
+        self.players = players
 
     }
 
@@ -135,7 +139,7 @@ class GameModel: Codable {
         self.gameID = dict[GameCollectionKeys.GameIDKey] as? String ?? ""
         self.witness = dict[GameCollectionKeys.WitnessKey] as? String ?? ""
         self.duration = dict[GameCollectionKeys.DurationKey] as? String ?? ""
-
+        self.players = dict[GamerCollectionKeys.PlayersKey] as? [String] ?? ["",""]
     }
 //    let gameName: String
 //    let gameType: String
