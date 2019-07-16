@@ -25,6 +25,42 @@ struct ParkCollectionKeys {
 }
 
 extension DBService {
+    
+    static public func fetchBasketBallParkId(parkName: String, completion: @escaping(Error?, String?) -> Void){
+        
+        fetchBasketBallParks { (error, basketBallCourts) in
+            if let error = error {
+                completion(error, nil)
+            }
+            if let basketBallCourts = basketBallCourts {
+                let match = basketBallCourts.filter{$0.name == parkName}.first
+                if let result = match {
+                    completion(nil,result.propertyID)
+                } else {
+                    print("No park found")
+                }
+            }
+        }
+    }
+    
+    static public func fetchHandBallParkId(parkName: String) -> String {
+        var parkId = String()
+        fetchHandBallParks { (error, handBallCourts) in
+            if let error = error {
+                print("Error fetching parks: \(error.localizedDescription)")
+            }
+            if let handBallCourt = handBallCourts {
+                let match = handBallCourt.filter{$0.name == parkName}.first
+                if let result = match {
+                    parkId = result.propertyID
+                } else {
+                    print("No park found")
+                }
+            }
+        }
+        return parkId
+    }
+    
     static public func fetchBasketBallParks(completion: @escaping (Error?,[BasketBallData]?) -> Void){
         // working on
         let docRef = firestoreDB.collection(ParkCollectionKeys.CollectionKey)

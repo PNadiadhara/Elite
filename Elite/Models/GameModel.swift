@@ -34,6 +34,7 @@ class GameModel: Codable {
 //    let teamBScore: Int?
     var duration: String?
     var players: [String]
+    var gameCreatedTime: String
     
     static var game: GameModel?
     
@@ -51,10 +52,10 @@ class GameModel: Codable {
     
     static func createGame(gameName: String, gameType: String, redTeam: [String], blueTeam: [String], parkId: String, formattedAdress: String, parkName: String, lat: String, lon: String, gameId: String, players: [String]) {
         
-        GameModel.game = GameModel(gameName: gameName, gameType: gameType, redTeam: redTeam, blueTeam: blueTeam, parkId: parkId, gameDescription: nil, gameEndTime: nil, winners: nil, losers: nil, isTie: nil, formattedAdresss: formattedAdress, parkName: parkName, lat: lat, lon: lon, gameID: gameId, witness: nil, duration: nil, players: players)
+        GameModel.game = GameModel(gameName: gameName, gameType: gameType, redTeam: redTeam, blueTeam: blueTeam, parkId: parkId, gameDescription: nil, gameEndTime: nil, winners: nil, losers: nil, isTie: nil, formattedAdresss: formattedAdress, parkName: parkName, lat: lat, lon: lon, gameID: gameId, witness: nil, duration: nil, players: players, gameCreatedTime: Date.getISOTimestamp())
     }
 
-    //TO DO CREATE A GAME MODEL AT THE END AND SEND IT TO GUEST AND THEN UPLOAD TO FIREBASE
+
 
     
     static func guestUpdateGameName(gameName: String) {
@@ -99,7 +100,7 @@ class GameModel: Codable {
     lon: String,
     gameID: String,
     witness: String?,
-    duration: String?, players: [String]) {
+    duration: String?, players: [String], gameCreatedTime: String) {
         self.gameName = gameName
         self.gameType = gameType
         self.redTeam = redTeam
@@ -118,7 +119,7 @@ class GameModel: Codable {
         self.witness = witness
         self.duration = duration
         self.players = players
-
+        self.gameCreatedTime = gameCreatedTime
     }
 
     init(dict: [String: Any]) {
@@ -140,6 +141,7 @@ class GameModel: Codable {
         self.witness = dict[GameCollectionKeys.WitnessKey] as? String ?? ""
         self.duration = dict[GameCollectionKeys.DurationKey] as? String ?? ""
         self.players = dict[GamerCollectionKeys.PlayersKey] as? [String] ?? ["",""]
+        self.gameCreatedTime = dict[GameCollectionKeys.GameCreatedTime] as? String ?? ""
     }
 //    let gameName: String
 //    let gameType: String

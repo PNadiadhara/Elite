@@ -121,6 +121,8 @@
 		D5650D3822C3261E00A012E3 /* WaitingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5650D3722C3261E00A012E3 /* WaitingView.swift */; };
 		D5650D3A22C3263F00A012E3 /* WaitingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5650D3922C3263F00A012E3 /* WaitingView.xib */; };
 		D56FE69E2262B28800A5553E /* MainTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56FE69D2262B28800A5553E /* MainTimer.swift */; };
+		D599A43822DE32A00060A24A /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D599A43622DE32A00060A24A /* AlertViewController.swift */; };
+		D599A43922DE32A00060A24A /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D599A43722DE32A00060A24A /* AlertViewController.xib */; };
 		D5B304542264EDF800404241 /* Invitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B304532264EDF800404241 /* Invitation.swift */; };
 		D5B304562265224D00404241 /* DBService+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B304552265224D00404241 /* DBService+Message.swift */; };
 		D5B304592266792200404241 /* QrCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B304572266792200404241 /* QrCodeViewController.swift */; };
@@ -298,6 +300,8 @@
 		D5650D3722C3261E00A012E3 /* WaitingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingView.swift; sourceTree = "<group>"; };
 		D5650D3922C3263F00A012E3 /* WaitingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaitingView.xib; sourceTree = "<group>"; };
 		D56FE69D2262B28800A5553E /* MainTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTimer.swift; sourceTree = "<group>"; };
+		D599A43622DE32A00060A24A /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		D599A43722DE32A00060A24A /* AlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertViewController.xib; sourceTree = "<group>"; };
 		D5B304532264EDF800404241 /* Invitation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invitation.swift; sourceTree = "<group>"; };
 		D5B304552265224D00404241 /* DBService+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBService+Message.swift"; sourceTree = "<group>"; };
 		D5B304572266792200404241 /* QrCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrCodeViewController.swift; sourceTree = "<group>"; };
@@ -614,6 +618,8 @@
 				48EFEB88226D12FD0006092D /* AVPreviewLayer.swift */,
 				D5650D3722C3261E00A012E3 /* WaitingView.swift */,
 				D5650D3922C3263F00A012E3 /* WaitingView.xib */,
+				D599A43622DE32A00060A24A /* AlertViewController.swift */,
+				D599A43722DE32A00060A24A /* AlertViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -830,6 +836,7 @@
 				2E171BA0225CF90700D40DDF /* LeaderboardViewController.xib in Resources */,
 				BFADB59922553FB300E746B5 /* LaunchScreen.storyboard in Resources */,
 				D5CDAC2B228F152900A3B6D6 /* parks.json in Resources */,
+				D599A43922DE32A00060A24A /* AlertViewController.xib in Resources */,
 				D50E749722C50C570015D0F4 /* ParkRankingInfoEndGameViewController.xib in Resources */,
 				2EC6D56F225E9B5D00336362 /* FeedTableViewController.xib in Resources */,
 				D5EC8DF522DA929400FF1236 /* CreateYourEliteViewController.xib in Resources */,
@@ -1025,6 +1032,7 @@
 				D50B051622B5C6610012C934 /* HostJoinGameViewController.swift in Sources */,
 				2EC6D555225E799F00336362 /* OneVsOneViewController.swift in Sources */,
 				48EFEB8B226D14AE0006092D /* ScannerViewController.swift in Sources */,
+				D599A43822DE32A00060A24A /* AlertViewController.swift in Sources */,
 				2EF480A22256BE69008212DC /* WinsModel.swift in Sources */,
 				2E171B94225BA62900D40DDF /* DBService+Wins.swift in Sources */,
 				48D5C822225D325F00AFDE8F /* GeolocationClient.swift in Sources */,
@@ -1262,9 +1270,9 @@
 			baseConfigurationReference = F84EED13AF1CC6349F726937 /* Pods-Elite.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 26RHXP32FH;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DQ5CF8LT37;
 				INFOPLIST_FILE = Elite/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1273,7 +1281,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.pursuit.elite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Elite Distribution Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1284,9 +1292,9 @@
 			baseConfigurationReference = AA2B205210B3DCCE14EFD090 /* Pods-Elite.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 26RHXP32FH;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DQ5CF8LT37;
 				INFOPLIST_FILE = Elite/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1295,7 +1303,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.pursuit.elite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Elite Distribution Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

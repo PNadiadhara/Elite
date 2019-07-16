@@ -23,6 +23,7 @@ class ParkRankingInfoEndGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        MultiPeerConnectivityHelper.shared.endSession()
         }
     
     func setupUI() {

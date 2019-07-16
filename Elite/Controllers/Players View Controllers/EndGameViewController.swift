@@ -58,6 +58,12 @@ class EndGameViewController: UIViewController {
     func setupUI(){
         redOnePlayer = MultiPeerConnectivityHelper.shared.redPlayer
         blueOnePlayer = MultiPeerConnectivityHelper.shared.bluePlayer
+        guard let redPlayer = MultiPeerConnectivityHelper.shared.redPlayer,
+            let bluePlayer = MultiPeerConnectivityHelper.shared.bluePlayer else {return}
+        guard let bluePlayerImageURL = URL(string: bluePlayer.profileImage!),
+            let redPlayerImageURL = URL(string: redPlayer.profileImage!) else {return}
+        bluePlayerImage.kf.setImage(with: bluePlayerImageURL)
+        redPlayerImage.kf.setImage(with: redPlayerImageURL)
         MultiPeerConnectivityHelper.shared.multipeerWinnerVotesDelegate = self
         WaitingView.setViewContraints(titleText: "Finishing game", isHidden: true, delegate: self, view: self.view) { (waitingView) in
             self.waitingView = waitingView
@@ -68,6 +74,8 @@ class EndGameViewController: UIViewController {
         redPlayerView.alpha = 1
         redTeamTitle.text = redOnePlayer?.username
         blueTeamTitle.text = blueOnePlayer?.username
+        bluePlayerImage.isHidden = false
+        redPlayerImage.isHidden = false
         waitingView?.isHidden = true
         WaitingView.watingViewDelegate = self
     }

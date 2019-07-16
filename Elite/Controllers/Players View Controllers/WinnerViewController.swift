@@ -39,12 +39,29 @@ class WinnerViewController: UIViewController {
         MultiPeerConnectivityHelper.shared.multipeerGameModelDelegate = self
         super.viewDidLoad()
         setupUI()
-        hostUpdateGameModelToFireBase()
+        fetchParkId()
+//        hostUpdateGameModelToFireBase()
 //        demoBugPrevention()
 //        blurView()
         // Do any additional setup after loading the view.
     }
     
+    func fetchParkId() {
+        if MultiPeerConnectivityHelper.shared.role == .Host {
+            if GameModel.gameName == GameName.basketball.rawValue {
+                DBService.fetchBasketBallParkId(parkName: GameModel.parkSelected!) { (error, parkId) in
+                    if let error = error {
+                        print(error)
+                    }
+                    if let parkId = parkId{
+                        GameModel.parkId = parkId
+                        GameModel.game?.parkId = parkId
+                        self.parkId = parkId
+                    }
+                }
+            }
+        }
+    }
 
     func setupConfetti(){
         self.view.addSubview(confettiView)
@@ -136,7 +153,7 @@ class WinnerViewController: UIViewController {
     @IBAction func continueButtonPressed(_ sender: Any) {
         let parkRankingInfoEndGame = ParkRankingInfoEndGameViewController()
         parkRankingInfoEndGame.parkId = parkId
-        
+        hostUpdateGameModelToFireBase()
         present(parkRankingInfoEndGame, animated: true)
     }
     
