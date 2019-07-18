@@ -25,6 +25,7 @@ class GamerModel: Codable {
     let numberOfBasketballGamesPlayed : Double
     let friends: [String]?
     var deviceName: String
+    var winsByLocation: [String: Int]? // [Name of park : Wins]
     public var fullname: String {
         return ((firstname ) + " " + (lastname )).trimmingCharacters(in: .whitespacesAndNewlines)
     }
@@ -45,7 +46,7 @@ class GamerModel: Codable {
     numberOfHandballGamesPlayed : Double,
     numberOfBasketballGamesPlayed : Double,
     friends: [String]?,
-    deviceName: String) {
+    deviceName: String, winsByLocation: [String: Int]?) {
         self.profileImage = profileImage
         self.firstname = firstname
         self.lastname = lastname
@@ -62,6 +63,7 @@ class GamerModel: Codable {
         self.numberOfBasketballGamesPlayed = numberOfBasketballGamesPlayed
         self.friends = friends
         self.deviceName = deviceName
+        self.winsByLocation = winsByLocation
     }
     
     init(dict: [String: Any]) {
@@ -81,6 +83,7 @@ class GamerModel: Codable {
         self.numberOfBasketballGamesPlayed = dict[GamerCollectionKeys.NumberOfBasketballGamesPlayer] as? Double ?? 0.0
         self.friends = dict[GamerCollectionKeys.FriendsKey] as? [String] ?? [""]
         self.deviceName = dict[GamerCollectionKeys.deviceName] as? String ?? ""
+        self.winsByLocation = dict[GamerCollectionKeys.WinsByLocation] as? [String : Int]
     }
     
 

@@ -18,13 +18,28 @@ class HostJoinGameViewController: UIViewController{
     var waitingView: UIView?
     var countdownTimer = Timer()
     var time = Int()
+    var count = 0
     //let multiPeerConnectivityHelper = MultiPeerConnectivityHelper()
 //    var session = MCSession()
 //    private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
 //    var mcSession: MCSession?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         TimerPopUp.actionHandlerDelegate = self
+//        DBService.updatePlayersWinsBasketBall(parkId: "006049d9-835c-451e-ac17-a4eaf827b397", playerId: TabBarViewController.currentUser.uid, sport: "") { (error) in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            }
+//        }
+        DBService.getBBRankingByPark(parkId: "006049d9-835c-451e-ac17-a4eaf827b397") { (error, BBPlayers) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            if let BBPlayers = BBPlayers {
+                print(BBPlayers.count)
+            }
+        }
         checkFor20minsLimit()
         MultiPeerConnectivityHelper.shared.multipeerDelegate = self
         WaitingView.watingViewDelegate = self

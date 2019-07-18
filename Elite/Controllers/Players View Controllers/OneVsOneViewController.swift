@@ -86,7 +86,17 @@ class OneVsOneViewController: UIViewController {
        
 
     }
-
+    
+    func getPlayersRanking() {
+        DBService.getBBRankingByPark(parkId: "006049d9-835c-451e-ac17-a4eaf827b397") { (error, BBPlayers) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            if let BBPlayers = BBPlayers {
+                print(BBPlayers.count)
+            }
+        }
+    }
     
     func sendUserData(data: Data) {
         let action = MultiPeerConnectivityHelper.Action.sendUserInfo.rawValue

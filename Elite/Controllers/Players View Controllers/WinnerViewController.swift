@@ -40,7 +40,7 @@ class WinnerViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         fetchParkId()
-//        hostUpdateGameModelToFireBase()
+        hostUpdateGameModelToFireBase()
 //        demoBugPrevention()
 //        blurView()
         // Do any additional setup after loading the view.
@@ -83,6 +83,7 @@ class WinnerViewController: UIViewController {
     }
     
     func hostUpdateGameModelToFireBase(){
+        DBService.updateWinsByLocation(parkId: GameModel.parkId ?? "Error")
         if MultiPeerConnectivityHelper.shared.role == .Host {
             MultiPeerConnectivityHelper.shared.sendParkID(parkId: GameModel.parkId ?? "") {
                 let timeStamp = Date.getISOTimestamp()
@@ -153,7 +154,6 @@ class WinnerViewController: UIViewController {
     @IBAction func continueButtonPressed(_ sender: Any) {
         let parkRankingInfoEndGame = ParkRankingInfoEndGameViewController()
         parkRankingInfoEndGame.parkId = parkId
-        hostUpdateGameModelToFireBase()
         present(parkRankingInfoEndGame, animated: true)
     }
     
@@ -230,6 +230,7 @@ extension WinnerViewController: MultipeerConnectivityActionHandlerDelegate {
 extension WinnerViewController: MultipeerConnectivityGameModelDelegate {
     func hostSentParkId(parkId: String) {
         self.parkId = parkId
+        DBService.updateWinsByLocation(parkId: parkId)
     }
     
     

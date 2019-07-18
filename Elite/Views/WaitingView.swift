@@ -11,7 +11,6 @@ protocol WaitingViewDelegate: AnyObject {
     func cancelPressed()
 }
 class WaitingView: UIView {
-    //TO DO : WAITING VIEW ON EVERY VC
     static weak var watingViewDelegate: WaitingViewDelegate?
     
     @IBOutlet weak var waitingSubView: UIView!

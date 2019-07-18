@@ -56,7 +56,7 @@ class CreateGameViewController: UIViewController {
             if gameName == .handball {
                 if let closestCourt = GoogleMapHelper.getHandballCourtClosestToUsersLocation(closestToLocation: userLocation, handballCourts: handballResults) {
                     closestHandballcourt = closestCourt
-//                    GameModel.parkId = closestCourt.playgroundID
+                    GameModel.parkId = closestCourt.playgroundID
                     GameModel.parkSelected = closestCourt.nameOfPlayground
 
                     GameModel.parkLat = closestCourt.lat
