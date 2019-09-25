@@ -2,31 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>snapchat</string>
-		<string>bitmoji-sdk</string>
-		<string>itms-apps</string>
-	</array>
-	<key>CFBundleURLSchemes</key>
-	<array>
-		<dict>
-			<key>URL identifier</key>
-			<string>my-app://abc/xy/z</string>
-			<key>URL Schemes</key>
-			<array>
-				<string>my-app</string>
-			</array>
-		</dict>
-	</array>
-	<key>SCSDKScopes</key>
-	<array/>
-	<key>SCSDKRedirectUrl</key>
-	<string></string>
-	<key>SCSDKClientId</key>
-	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Elite</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -38,24 +17,51 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.0.1</string>
+	<key>CFBundleURLSchemes</key>
+	<array>
+		<dict>
+			<key>URL Schemes</key>
+			<array>
+				<string>my-app</string>
+			</array>
+			<key>URL identifier</key>
+			<string>my-app://abc/xy/z</string>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>14</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
+		<string>snapchat</string>
+		<string>bitmoji-sdk</string>
+		<string>itms-apps</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Elite app requires use of your camera to add user's photo</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>In order for us to find parks near you and create a game we need access to location.</string>
+	<key>SCSDKClientId</key>
+	<string></string>
+	<key>SCSDKRedirectUrl</key>
+	<string></string>
+	<key>SCSDKScopes</key>
+	<array/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -64,5 +70,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="WaitingView" customModule="Elite" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GEZ-nv-Eou" customClass="RoundedView" customModule="Elite" customModuleProvider="target">
+                    <rect key="frame" x="103.5" y="318.5" width="207" height="269"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="rMt-0U-Yxz">
+                            <rect key="frame" x="85" y="62" width="37" height="37"/>
+                        </activityIndicatorView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for players..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1r-sU-Xcu">
+                            <rect key="frame" x="26" y="114" width="155.5" height="20"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDc-qI-fpV">
+                            <rect key="frame" x="77" y="164" width="53" height="32"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="cancelPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="O2h-Bx-zOs"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.14154749010000001" green="0.14956755790000001" blue="0.16078951080000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="aDc-qI-fpV" firstAttribute="centerX" secondItem="O1r-sU-Xcu" secondAttribute="centerX" id="Jko-Xh-JUF"/>
+                        <constraint firstItem="rMt-0U-Yxz" firstAttribute="centerX" secondItem="GEZ-nv-Eou" secondAttribute="centerX" id="JxN-UC-xt5"/>
+                        <constraint firstItem="rMt-0U-Yxz" firstAttribute="centerY" secondItem="GEZ-nv-Eou" secondAttribute="centerY" multiplier="0.6" id="P7C-Lg-wT4"/>
+                        <constraint firstItem="O1r-sU-Xcu" firstAttribute="top" secondItem="rMt-0U-Yxz" secondAttribute="bottom" constant="15" id="YFb-Ra-teo"/>
+                        <constraint firstItem="aDc-qI-fpV" firstAttribute="top" secondItem="O1r-sU-Xcu" secondAttribute="bottom" constant="30" id="ZAy-1j-d1U"/>
+                        <constraint firstItem="O1r-sU-Xcu" firstAttribute="centerX" secondItem="rMt-0U-Yxz" secondAttribute="centerX" id="wYu-fJ-hcb"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.14154749010000001" green="0.14956755790000001" blue="0.16078951080000001" alpha="0.47313784246575341" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="GEZ-nv-Eou" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" id="73l-Uh-JBd"/>
+                <constraint firstItem="GEZ-nv-Eou" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="HWL-p0-Ieu"/>
+                <constraint firstItem="GEZ-nv-Eou" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.3" id="qon-T5-JDp"/>
+                <constraint firstItem="GEZ-nv-Eou" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="wAn-Fy-qip"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="activityIndicator" destination="rMt-0U-Yxz" id="AKc-YA-LCQ"/>
+                <outlet property="cancelButton" destination="aDc-qI-fpV" id="x5O-9y-s1r"/>
+                <outlet property="viewTitle" destination="O1r-sU-Xcu" id="S1M-R7-9BB"/>
+                <outlet property="waitingSubView" destination="GEZ-nv-Eou" id="tk6-ED-HeT"/>
+            </connections>
+            <point key="canvasLocation" x="-128" y="-85"/>
+        </view>
+    </objects>
+</document>

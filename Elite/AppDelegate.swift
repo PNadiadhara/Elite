@@ -8,16 +8,35 @@
 
 import UIKit
 import Firebase
+import GoogleMaps
+import MultipeerConnectivity
+import Toucan
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    static var authservice = AuthService()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        GMSServices.provideAPIKey(PrivateInfoFile.GoogleMapsApiKey)
         FirebaseApp.configure()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        if let _ = AppDelegate.authservice.getCurrentUser() {
+            let tab = TabBarViewController.setTabBarVC()
+            window = UIWindow(frame: UIScreen.main.bounds)
+            window?.rootViewController = tab
+            
+        } else {
+            let storyboard = UIStoryboard(name: "LoginView", bundle: nil)
+            let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            window?.rootViewController = UINavigationController(rootViewController: loginViewController)
+        }
+        window?.makeKeyAndVisible()
+
+
         return true
     }
 
