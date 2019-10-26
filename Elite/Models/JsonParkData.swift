@@ -13,7 +13,7 @@ struct JsonParkData: Codable {
 }
 struct ResultsContainer: Codable {
     let propertyID: String?
-    let playgroundID: String?
+//    let playgroundID: String?
     let schoolID: String?
     let status: String?
     let name: String?
@@ -25,7 +25,7 @@ struct ResultsContainer: Codable {
     let lng: String?
     enum CodingKeys: String,CodingKey {
         case propertyID = "Prop_ID"
-        case playgroundID = "Playground_ID"
+//        case playgroundID = "Playground_ID"
         case schoolID = "School_ID"
         case status = "Status"
         case name = "Name"
@@ -42,18 +42,19 @@ struct JsonHandballCourtInfo: Codable {
     let results: [HandBall]
 }
 struct HandBall: Codable, Court {
+    static var allHandBallCourts = [HandBall]()
     var type: SportType = .handball
     let propertyID: String?
-    let playgroundID: String?
+//    let playgroundID: String?
     let nameOfPlayground: String?
     let location: String?
     let numberOfCourts: String?
     let accessible: String?
-    let lat: String?
-    let lng: String?
+    var lat: String?
+    var lng: String?
     enum CodingKeys: String,CodingKey {
         case propertyID = "Prop_ID"
-        case playgroundID = "Playground_ID"
+//        case playgroundID = "Playground_ID"
         case nameOfPlayground = "Name"
         case location = "Location"
         case numberOfCourts = "Num_of_Courts"
@@ -67,9 +68,10 @@ struct JsonBasketBallCourtInfo: Codable {
     let results: [BasketBall]
 }
 struct BasketBall: Codable, Court {
+    static var allBasketBallCourts = [BasketBall]()
     var type: SportType = .basketball
     let propertyID: String?
-    let playgroundID: String?
+//    let playgroundID: String?
     let nameOfPlayground: String?
     let location: String?
     let numberOfCourts: String?
@@ -78,7 +80,7 @@ struct BasketBall: Codable, Court {
     var lng: String?
     enum CodingKeys: String,CodingKey {
         case propertyID = "Prop_ID"
-        case playgroundID = "Playground_ID"
+//        case playgroundID = "Playground_ID"
         case nameOfPlayground = "Name"
         case location = "Location"
         case numberOfCourts = "Num_of_Courts"
@@ -95,7 +97,7 @@ enum SportType {
 protocol Court {
     var type: SportType { get }
     var propertyID: String? { get }
-    var playgroundID: String? { get }
+//    var playgroundID: String? { get }
     var nameOfPlayground: String? { get }
     var location: String? { get }
     var numberOfCourts: String? { get }

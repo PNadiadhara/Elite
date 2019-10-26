@@ -9,8 +9,14 @@
 import Foundation
 import GoogleMaps
 
+protocol FetchDataDelegate: AnyObject {
+    func didLoadData(basketballCourts: [BasketBall] , handballCourts: [HandBall])
+    func errorLoadingData(error: AppError)
+}
+
 class GoogleMapHelper {
   
+    weak var delegate: FetchDataDelegate?
     
     static func getUsersLocations(locationManager: CLLocationManager){
         locationManager.requestWhenInUseAuthorization()
@@ -19,24 +25,33 @@ class GoogleMapHelper {
             locationManager.startUpdatingLocation()
         }
     }
-    static func loadAllParkData(completion: @escaping(Data,Data) -> Void){
+    public func loadAllParkData(){
         var basketballFileName = String()
+        var basketBallCourts = [BasketBall]()
+        var handBallCourts = [HandBall]()
         if Flag.isDemo {
             basketballFileName = "parks"
         } else {
             basketballFileName = "basketballCourtInfo"
         }
-        if let handballCourtDataFilePath = Bundle.main.path(forResource: "handballCourtInfo", ofType: "json"), let basketballCourtDataFilePath = Bundle.main.path(forResource: basketballFileName, ofType: "json"){
-            let handballCourtDataUrl = URL.init(fileURLWithPath: handballCourtDataFilePath)
-            let basketballCourtDataUrl = URL.init(fileURLWithPath: basketballCourtDataFilePath)
-            if let jsonHandBallParkData = try? Data.init(contentsOf: handballCourtDataUrl), let jsonBasketBallParkData = try? Data.init(contentsOf: basketballCourtDataUrl){
-                completion(jsonHandBallParkData,jsonBasketBallParkData)
-            } else {
-                print("issue with converting the urls into data")
-            }
-        } else {
-            print("issue with the json file paths")
+        guard let basketballCourtDataFilePath = Bundle.main.path(forResource: "basketballCourtInfo", ofType: "json"),
+            let handballCourtDataFilePath = Bundle.main.path(forResource: "handballCourtInfo", ofType: "json") else {
+                delegate?.errorLoadingData(error:  AppError.noFilesFound("No files found"))
+                return
         }
+        let handballCourtDataUrl = URL.init(fileURLWithPath: handballCourtDataFilePath)
+        let basketballCourtDataUrl = URL.init(fileURLWithPath: basketballCourtDataFilePath)
+        guard let basketballParkData = try? Data.init(contentsOf: basketballCourtDataUrl), let handballParkData = try? Data.init(contentsOf: handballCourtDataUrl) else {
+            delegate?.errorLoadingData(error: AppError.noData("Error converting data"))
+            return}
+                    do {
+                        handBallCourts = try JSONDecoder().decode([HandBall].self, from: handballParkData)
+                        basketBallCourts = try JSONDecoder().decode([BasketBall].self, from: basketballParkData)
+                        delegate?.didLoadData(basketballCourts: basketBallCourts, handballCourts: handBallCourts)
+                    } catch {
+
+                        delegate?.errorLoadingData(error: AppError.jsonDecodingError(error))
+                    }
     }
     static func getBasketBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [BasketBall], range: Double) -> [BasketBall]{
         //        loadAllParkData()
@@ -125,5 +140,6 @@ class GoogleMapHelper {
 //            }
 //        }
 //    }
+
 
 }

@@ -130,34 +130,34 @@ extension DBService {
             }
         }
     }
-//    static func addBbCollection(completion: @escaping () -> Void) {
-//        DBService.fetchHandBallParks { (error, basketball) in
-//            if let error = error {
-//                
-//            }
-//            if let bbs = basketball {
-//                for bb in bbs {
-//                    let bbCourt = bb
-//                    firestoreDB.collection("HandBallCourts").document(bbCourt.propertyID).setData([ParkCollectionKeys.Prop_ID : bbCourt.propertyID ?? "",
-//                                                                                                     ParkCollectionKeys.Accessible : bbCourt.accessible ?? "",
-//                                                                                                     ParkCollectionKeys.Location : bbCourt.location ?? "",
-//                                                                                                     ParkCollectionKeys.Name : bbCourt.name,
-//                                                                                                     ParkCollectionKeys.Num_of_Courts : bbCourt.numberOfCourts ?? "",
-//                                                                                                     ParkCollectionKeys.Lat : bbCourt.latitude ?? "",
-//                                                                                                     ParkCollectionKeys.Lon: bbCourt.longitude ?? "",
-//                                                                                                     ParkCollectionKeys.PlayerWins : nil], completion: { (error) in
-//                            if let error = error {
-//                               print("Error \(error.localizedDescription)")
-//                            }
-//                    })
-//                    completion()
-//                }
-//                
-//            }
-//           
-//        }
-//        
-//    }
+    static func addBbCollection(completion: @escaping () -> Void) {
+        DBService.fetchHandBallParks { (error, basketball) in
+            if let error = error {
+                
+            }
+            if let bbs = basketball {
+                for bb in bbs {
+                    let bbCourt = bb
+                    firestoreDB.collection("HandBallCourts").document(bbCourt.propertyID).setData([ParkCollectionKeys.Prop_ID : bbCourt.propertyID ?? "",
+                                                                                                     ParkCollectionKeys.Accessible : bbCourt.accessible ?? "",
+                                                                                                     ParkCollectionKeys.Location : bbCourt.location ?? "",
+                                                                                                     ParkCollectionKeys.Name : bbCourt.name,
+                                                                                                     ParkCollectionKeys.Num_of_Courts : bbCourt.numberOfCourts ?? "",
+                                                                                                     ParkCollectionKeys.Lat : bbCourt.latitude ?? "",
+                                                                                                     ParkCollectionKeys.Lon: bbCourt.longitude ?? "",
+                                                                                                     ParkCollectionKeys.PlayerWins : nil], completion: { (error) in
+                            if let error = error {
+                               print("Error \(error.localizedDescription)")
+                            }
+                    })
+                    completion()
+                }
+                
+            }
+           
+        }
+        
+    }
     static public func fetchHandBallParkId(parkName: String) -> String {
         var parkId = String()
         fetchHandBallParks { (error, handBallCourts) in

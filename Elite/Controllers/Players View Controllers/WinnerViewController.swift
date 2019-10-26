@@ -20,7 +20,7 @@ class WinnerViewController: UIViewController {
     public var isTie = Bool()
     private var confettiView = SAConfettiView()
     weak var actionHandlerDelegate: MultipeerConnectivityActionHandlerDelegate?
-    var parkId = String()
+//    var parkId = String()
     
     @IBOutlet weak var winnerView: UIView!
     @IBOutlet weak var winnerTitle: UILabel!
@@ -36,32 +36,31 @@ class WinnerViewController: UIViewController {
     
     override func viewDidLoad() {
        MultiPeerConnectivityHelper.shared.multipeerActionHandlerDelegate = self
-        MultiPeerConnectivityHelper.shared.multipeerGameModelDelegate = self
         super.viewDidLoad()
         setupUI()
-        fetchParkId()
+//        fetchParkId()
         hostUpdateGameModelToFireBase()
 //        demoBugPrevention()
 //        blurView()
         // Do any additional setup after loading the view.
     }
     
-    func fetchParkId() {
-        if MultiPeerConnectivityHelper.shared.role == .Host {
-            if GameModel.gameName == GameName.basketball.rawValue {
-                DBService.fetchBasketBallParkId(parkName: GameModel.parkSelected!) { (error, parkId) in
-                    if let error = error {
-                        print(error)
-                    }
-                    if let parkId = parkId{
-                        GameModel.parkId = parkId
-                        GameModel.game?.parkId = parkId
-                        self.parkId = parkId
-                    }
-                }
-            }
-        }
-    }
+//    func fetchParkId() {
+//        if MultiPeerConnectivityHelper.shared.role == .Host {
+//            if GameModel.gameName == GameName.basketball.rawValue {
+//                DBService.fetchBasketBallParkId(parkName: GameModel.parkSelected!) { (error, parkId) in
+//                    if let error = error {
+//                        print(error)
+//                    }
+//                    if let parkId = parkId{
+//                        GameModel.parkId = parkId
+//                        GameModel.game?.parkId = parkId
+//                        self.parkId = parkId
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     func setupConfetti(){
         self.view.addSubview(confettiView)
@@ -85,7 +84,7 @@ class WinnerViewController: UIViewController {
     func hostUpdateGameModelToFireBase(){
         DBService.updateWinsByLocation(parkId: GameModel.parkId ?? "Error")
         if MultiPeerConnectivityHelper.shared.role == .Host {
-            MultiPeerConnectivityHelper.shared.sendParkID(parkId: GameModel.parkId ?? "") {
+//            MultiPeerConnectivityHelper.shared.sendParkID(parkId: GameModel.parkId ?? "") {
                 let timeStamp = Date.getISOTimestamp()
                 let gameDuration = MainTimer.shared.timeString(time: MainTimer.totalTime)
                 GameModel.updateGameModel(gameEndTime: timeStamp.formatISODateString(dateFormat: "MMM d, yyyy hh:mm a"), winners: [winner!.gamerID], losers: [loser!.gamerID], duration: gameDuration) {
@@ -105,8 +104,8 @@ class WinnerViewController: UIViewController {
                     })
                 }
 //                MultiPeerConnectivityHelper.shared.endSession()
-            }
-
+            
+//        }
         }
     }
     
@@ -153,7 +152,7 @@ class WinnerViewController: UIViewController {
     
     @IBAction func continueButtonPressed(_ sender: Any) {
         let parkRankingInfoEndGame = ParkRankingInfoEndGameViewController()
-        parkRankingInfoEndGame.parkId = parkId
+//        parkRankingInfoEndGame.parkId = parkId
         present(parkRankingInfoEndGame, animated: true)
     }
     
@@ -227,11 +226,4 @@ extension WinnerViewController: MultipeerConnectivityActionHandlerDelegate {
     
 }
 
-extension WinnerViewController: MultipeerConnectivityGameModelDelegate {
-    func hostSentParkId(parkId: String) {
-        self.parkId = parkId
-        DBService.updateWinsByLocation(parkId: parkId)
-    }
-    
-    
-}
+

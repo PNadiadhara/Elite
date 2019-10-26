@@ -66,6 +66,7 @@ class OneVsOneViewController: UIViewController {
 
         MultiPeerConnectivityHelper.shared.multipeerDelegate = self
         MultiPeerConnectivityHelper.shared.multipeerConnectivityPlayerWantsToJoinDelegate = self
+        MultiPeerConnectivityHelper.shared.multipeerGameModelDelegate = self
         playButton.isEnabled = false
 //        activityIndicator.startAnimating()
         setupTap()
@@ -126,6 +127,7 @@ class OneVsOneViewController: UIViewController {
             }
     }
     
+
     func setupSentUI() {
         guard let redPlayer = MultiPeerConnectivityHelper.shared.redPlayer,
         let bluePlayer = MultiPeerConnectivityHelper.shared.bluePlayer else {return}
@@ -327,7 +329,14 @@ extension OneVsOneViewController: MultipeerConnectivityDelegate{
     }
     
     func countIsTrue() {
-        setupSentUI()
+        if MultiPeerConnectivityHelper.shared.role == .Host {
+            MultiPeerConnectivityHelper.shared.sendParkID(parkId: GameModel.parkId!) {
+                setupSentUI()
+            }
+        } else {
+            setupSentUI()
+        }
+        
     }
     
     func receivedUserData(data: Data, role: String) {
@@ -359,6 +368,7 @@ extension OneVsOneViewController: MultipeerConnectivityDelegate{
                 self.playButton.isEnabled = true
                 self.fetchAndSendUser()
                 MultiPeerConnectivityHelper.shared.stopBrowsingAndAdverstising()
+            
             }
     }
     
@@ -392,3 +402,9 @@ extension OneVsOneViewController: WaitingViewDelegate{
     
 }
 
+extension OneVsOneViewController: MultipeerConnectivityGameModelDelegate {
+    func hostSentParkId(parkId: String) {
+        GameModel.parkId = parkId
+        print("host send park Id: \(parkId)")
+    }
+}

@@ -25,7 +25,7 @@ class HostJoinGameViewController: UIViewController{
 //    var mcSession: MCSession?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.isNavigationBarHidden = true
         TimerPopUp.actionHandlerDelegate = self
 //        DBService.updatePlayersWinsBasketBall(parkId: "006049d9-835c-451e-ac17-a4eaf827b397", playerId: TabBarViewController.currentUser.uid, sport: "") { (error) in
 //            if let error = error {
@@ -70,7 +70,7 @@ class HostJoinGameViewController: UIViewController{
 //        multiPeerConnectivityHelper.hostGame()
         let createGameVC = CreateGameViewController()
         MultiPeerConnectivityHelper.shared.role = .Host
-        present(createGameVC, animated: true)
+        self.navigationController?.pushViewController(createGameVC, animated: true)
     }
     
     @IBAction func joinGamePressed(_ sender: Any) {

@@ -32,14 +32,14 @@ class FirebaseTests: XCTestCase {
     func testGamePosts() {
 //        let fName = names.randomElement()
 //        let lName = names.randomElement()
-//        
+//
 //        let exp = expectation(description: "gamer created")
-//        
+//
 //        let docRef = DBService.firestoreDB.collection(GamerCollectionKeys.CollectionKey).document()
-//        
+//
 //        let gamer = GamerModel(profileImage: nil, fullname: fName! + " " + lName! , firstname: fName!, lastname: lName!, username: "@\(fName!)", email: "\(String(describing: lName))@test.com", status: rank.randomElement()!, achievements: [], bio: "", qrCode: "", joinedDate: Date.getISOTimestamp(), gamerID: docRef.documentID, myParks: [], numberOfHandballGamesPlayed: Double(Int.random(in: 0...100)), numberOfBasketballGamesPlayed: Double(Int.random(in: 0...100)), friends: [])
-//        
-//        
+//
+//
 //        DBService.createUser(gamer: gamer) { (error) in
 //            if let error = error {
 //                XCTFail("failed to create gamer with error: \(error.localizedDescription)")
@@ -47,13 +47,15 @@ class FirebaseTests: XCTestCase {
 //            print("documentId: \(docRef.documentID)")
 //            exp.fulfill()
 //        }
-//        
+//
 //        wait(for: [exp], timeout: 5.0)
     }
     
     func testGamerCreatedGamePost() {
+                let exp = expectation(description: "Got Info")
+
 //        let randomOpponent = [uuidArray.randomElement()!]
-//        let exp = expectation(description: "Game Post Created")
+
 //        
 //        let docRef =  DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).document()
 //
@@ -68,15 +70,16 @@ class FirebaseTests: XCTestCase {
 //            print("documentId: \(docRef.documentID)")
 //            exp.fulfill()
 //        }
-//        wait(for : [exp], timeout: 10.0)
+        wait(for : [exp], timeout: 10.0)
     }
     
     func testSpecificPlaygroundMockData(){
         
-        let exp = expectation(description: "Playground Data Created")
-        let docRef = DBService.firestoreDB.collection(PlaygroundCollectionKeys.CollectionKey).document()
-        
-        let playgroundData = PlaygroundModel(location: "Avenue of the Americas between West 3rd and 4th streets", name: "<#T##String#>", users: <#T##String#>, isAnElite: <#T##Bool#>, game: <#T##String#>, wins: <#T##Int#>, losses: <#T##Int#>, rank: <#T##Int#>, parkID: <#T##String#>, jsonParkId: <#T##String#>)
+//        let exp = expectation(description: "Playground Data Created")
+//        let docRef = DBService.firestoreDB.collection(PlaygroundCollectionKeys.CollectionKey).document()
+//
+//        let playgroundData = PlaygroundModel(location: "Avenue of the Americas between West 3rd and 4th streets", name: "<#T##String#>", users: <#T##String#>, isAnElite: <#T##Bool#>, game: <#T##String#>, wins: <#T##Int#>, losses: <#T##Int#>, rank: <#T##Int#>, parkID: <#T##String#>, jsonParkId: <#T##String#>)
     }
+    
 
 }

@@ -50,7 +50,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             changeMapViewState(to: googleMapsMVEditingState)
         }
     }
-    
+    private var googleMapsHelper = GoogleMapHelper()
     private var locationManager = CLLocationManager()
     private var userLocation = CLLocation()
     private var handballCourts = [HandBall]()
@@ -59,6 +59,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         didSet{
             googleMapsMapView.reloadInputViews()
             googleMapsMVEditingState = .showHandBallMarkers
+
         }
     }
     
@@ -84,13 +85,15 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        callFlagFeatures()
-        loadAllParkData()
-        callSetups()
         
+        callFlagFeatures()
+        
+        callSetups()
+
         //        addCustomMakers()
         locationManager.delegate = self
-        
+        googleMapsHelper.delegate = self
+        googleMapsHelper.loadAllParkData()
     }
     
     private func callFlagFeatures(){
@@ -162,21 +165,13 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     //        }
     //    }
     
-    private func loadAllParkData(){
-        GoogleMapHelper.loadAllParkData { (handballCourt, basketballCourt) in
-            do {
-                self.handballCourts = try JSONDecoder().decode([HandBall].self, from: handballCourt)
-                self.basketballCourts = try JSONDecoder().decode([BasketBall].self, from: basketballCourt)
-            } catch {
-                print(error)
-            }
-        }
-    }
     
     private func clearMarkers(){
         googleMapsMapView.clear()
     }
-    
+    private func test () {
+
+    }
     private func changeMapViewState(to state: GoogleMapsMVState) {
         switch state {
         case .showBasketBallMarkers:
@@ -423,3 +418,48 @@ extension MapViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         return NSAttributedString(string: titleForRange, attributes: [NSAttributedString.Key.foregroundColor: UIColor.orange])
     }
 }
+
+extension MapViewController: FetchDataDelegate {
+    func didLoadData(basketballCourts: [BasketBall], handballCourts: [HandBall]) {
+        self.basketballCourts = basketballCourts
+        self.handballCourts = handballCourts
+        BasketBall.allBasketBallCourts = basketballCourts
+        HandBall.allHandBallCourts = handballCourts
+//        var numberOfNils = 0
+//        let sorted = handballCourts.sorted { $0.nameOfPlayground!.lowercased() < $1.nameOfPlayground!.lowercased() }
+//        for basketballCourt in sorted{
+//            if basketballCourt.lat == nil {
+//                var lats = Double()
+//                var lons = Double()
+//                GooglePlacesClient.fetchLatAndLon(from: basketballCourt.nameOfPlayground!) { (lat, lon) in
+//                    if let lat = lat {
+//                        switch lat {
+//                        case .failure(let error):
+//                            print(error)
+//                        case .success(let lat):
+//                            lats = lat
+//                        }
+//                    }
+//                    if let lon = lon {
+//                        switch lon {
+//                        case .failure(let error):
+//                            print(error)
+//                        case .success(let lon):
+//                            lons = lon
+//                        }
+//                    }
+//                    numberOfNils += 1
+//                    print("\(basketballCourt.nameOfPlayground): \"lat\": \"\(lats)\",\n \"lon\": \"\(lons)\"")
+//                }
+//            }
+//        }
+//        print("NILS \(numberOfNils)")
+    }
+    
+    func errorLoadingData(error: AppError) {
+        showAlert(title: "Error", message: error.localizedDescription)
+    }
+    
+    
+}
+

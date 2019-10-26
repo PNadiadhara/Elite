@@ -73,6 +73,7 @@ class LoginViewController: UIViewController {
             let password = passwordTextField.text,
             !password.isEmpty
             else {
+                showAlert(title: "Please enter information", message: "ex: yourmail@email.com")
                 return
         }
         authservice.signInExistingAccount(email: email, password: password)

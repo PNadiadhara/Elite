@@ -19,18 +19,26 @@ class ParkRankingInfoEndGameViewController: UIViewController {
     @IBOutlet weak var rankingLabel: UILabel!
     @IBOutlet weak var doneButton: RoundedButton!
     
-    var parkId = String()
+    private var playerRanking = [GamerModel]() {
+        didSet {
+            DispatchQueue.main.async {
+                
+            }
+        }
+    }
+//    var parkId = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
         MultiPeerConnectivityHelper.shared.endSession()
         }
     
     func setupUI() {
-        DBService.findPlayersWinsAtPark(parkId: parkId, gamerId: TabBarViewController.currentGamer.gamerID) { (wins) in
+        DBService.findPlayersWinsAtPark(parkId: GameModel.parkId!, gamerId: TabBarViewController.currentGamer.gamerID) { (wins) in
             self.winsLabel.text = "Wins: \(wins)"
         }
-        DBService.findPlayersLossesAtPark(parkId: parkId, gamerId: TabBarViewController.currentGamer.gamerID) { (loses) in
+        DBService.findPlayersLossesAtPark(parkId: GameModel.parkId!, gamerId: TabBarViewController.currentGamer.gamerID) { (loses) in
             self.lossesLabel.text = "Losses: \(loses)"
         }
         
