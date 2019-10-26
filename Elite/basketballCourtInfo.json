@@ -4958,15 +4958,7 @@
         "lat": "40.7394722",
         "lon": "-73.9027167"
     },
-    {
-        "Prop_ID": "Q205A",
-        "Name": "Big Bush Park",
-        "Location": "61st Street and Brooklyn Queens Expressway",
-        "Num_of_Courts": "1",
-        "Accessible": null,
-        "lat": null,
-        "lon": null
-    },
+
     {
         "Prop_ID": "Q014",
         "Name": "Astoria Heights Playground",
@@ -4975,15 +4967,6 @@
         "Accessible": null,
         "lat": "40.7605192",
         "lon": "-73.91154879999999"
-    },
-    {
-        "Prop_ID": "Q014",
-        "Name": "Astoria Heights Playground",
-        "Location": "Back of Horace Greeley Middle School (I.S. 10), between 45th and 46th Street",
-        "Num_of_Courts": "2",
-        "Accessible": null,
-        "lat": null,
-        "lon": null
     },
     {
         "Prop_ID": "B223R",

@@ -51,14 +51,14 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         }
     }
     private var googleMapsHelper = GoogleMapHelper()
-    private var locationManager = CLLocationManager()
+
     private var userLocation = CLLocation()
     private var handballCourts = [HandBall]()
     private var basketballCourts = [BasketBall]()
     private var handballResults = [HandBall]() {
         didSet{
-            googleMapsMapView.reloadInputViews()
-            googleMapsMVEditingState = .showHandBallMarkers
+//            googleMapsMapView.reloadInputViews()
+//            googleMapsMVEditingState = .showHandBallMarkers
 
         }
     }
@@ -69,6 +69,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             googleMapsMVEditingState = .showBasketBallMarkers
         }
     }
+    
     var range: Double = MilesInMetersInfo.twoMiles {
         didSet{
             basketballResults = GoogleMapHelper.getBasketBallParksNearMe(userLocation, basketballCourts, range: range)
@@ -80,7 +81,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     var pickerView = UIPickerView()
     var typeValue = String()
     static var parkSelected = String()
-    
+    var locationManager = LocationManager()
     
     // MARK: - Methods
     override func viewDidLoad() {
@@ -92,6 +93,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
 
         //        addCustomMakers()
         locationManager.delegate = self
+        locationManager.getUserLocation()
         googleMapsHelper.delegate = self
         googleMapsHelper.loadAllParkData()
     }
@@ -101,8 +103,6 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             googleMapsMVEditingState = .showHandBallMarkers
             //          setupWest4Marker()
             userLocation = CLLocation.init(latitude: 40.7563454, longitude: -73.9239496)
-        } else {
-            googleMapsMVEditingState = .showBasketBallMarkers
         }
         
         if !Flag.isSearchBarOnMapReady {
@@ -114,9 +114,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     private func callSetups(){
         setupClosePopViewBttn()
         setupMapViewSettings()
-        GoogleMapHelper.getUsersLocations(locationManager: locationManager)
-        handballResults = GoogleMapHelper.getHandBallParksNearMe(userLocation, handballCourts, range: range)
-        basketballResults = GoogleMapHelper.getBasketBallParksNearMe(userLocation, basketballCourts, range: range)
+
         setupPickerView()
         
     }
@@ -367,25 +365,26 @@ extension MapViewController: GMSMapViewDelegate
     }
     
 }
-extension MapViewController: CLLocationManagerDelegate{
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+extension MapViewController: LocationManagerDelegate {
+    func didGetLocation(location: CLLocation) {
+        self.userLocation = location
         var customStartPosition = GMSCameraPosition()
-        let locationValue: CLLocationCoordinate2D = manager.location!.coordinate // fix the force unwrapp
-        print("lat: \(locationValue.latitude) and lng: \(locationValue.longitude) ")
         if Flag.isDemo{
             
             customStartPosition = GMSCameraPosition.camera(withLatitude: 40.7563454, longitude: -73.9239496, zoom: 14.0)
         } else {
-            let currentUsersLocation = locations.last
-            self.userLocation = currentUsersLocation!
             
             customStartPosition = GMSCameraPosition.camera(withLatitude: ( self.userLocation.coordinate.latitude), longitude: ( self.userLocation.coordinate.longitude), zoom: 14.0)
         }
         
         googleMapsMapView.animate(to: customStartPosition)
-        self.locationManager.stopUpdatingLocation()
+        basketballResults = GoogleMapHelper.getBasketBallParksNearMe(userLocation, basketballCourts, range: range)
     }
+    
+    
 }
+
+
 
 
 extension MapViewController: UIPickerViewDelegate, UIPickerViewDataSource{
@@ -425,6 +424,7 @@ extension MapViewController: FetchDataDelegate {
         self.handballCourts = handballCourts
         BasketBall.allBasketBallCourts = basketballCourts
         HandBall.allHandBallCourts = handballCourts
+
 //        var numberOfNils = 0
 //        let sorted = handballCourts.sorted { $0.nameOfPlayground!.lowercased() < $1.nameOfPlayground!.lowercased() }
 //        for basketballCourt in sorted{

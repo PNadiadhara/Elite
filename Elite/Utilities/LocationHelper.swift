@@ -44,8 +44,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.last else {return}
+        locationManager.stopUpdatingLocation()
         delegate?.didGetLocation(location: currentLocation)
 //        let camera = GMSCameraPosition.camera(withLatitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude, zoom: 11.0)
-        locationManager.stopUpdatingLocation()
+        
     }
 }
