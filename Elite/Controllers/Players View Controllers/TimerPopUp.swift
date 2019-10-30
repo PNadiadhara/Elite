@@ -35,7 +35,7 @@ class TimerPopUp: UIViewController {
     
     static var actionHandlerDelegate: MultipeerConnectivityActionHandlerDelegate?
     
-    var isPause: Bool?
+    
 
     
     override func viewDidLoad() {
@@ -58,45 +58,17 @@ class TimerPopUp: UIViewController {
 //        bluePlayerActivityIndicator.stopAnimating()
         timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 65, weight: .light)
     }
-    
-    private func setupBackgroundNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(pauseTimer), name: UIApplication.didEnterBackgroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(startApp) , name: UIApplication.didBecomeActiveNotification, object: nil)
-    }
-    
     private func setupDelegates() {
         MainTimer.shared.delegate = self
         MultiPeerConnectivityHelper.shared.timerDelegate = self
         MultiPeerConnectivityHelper.shared.multipeerDelegate = self
     }
-    @objc func pauseTimer() {
-        guard let isPause = isPause else {
-           MainTimer.shared.pauseTime()
-            return
-        }
-        if !isPause{
-            MainTimer.shared.pauseTime()
-        }
-    }
-    @objc func startApp(){
-        guard let isPause = isPause else {
-            MainTimer.shared.restartTimer()
-            return
-        }
-        if !isPause{
-            MainTimer.shared.restartTimer()
-        }
-    }
     
-    func stopTimer() {
-        MainTimer.shared.stopTimer()
-        print("Timer Spoted")
-        self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
-    }
+
     
     func segueToEndGameVc(){
         let endGameVc = EndGameViewController()
-        self.present(endGameVc, animated: true)
+        self.navigationController?.pushViewController(endGameVc, animated: true)
     }
     
     private func sendJoinConfirmation() {
@@ -131,14 +103,14 @@ class TimerPopUp: UIViewController {
         
         switch MultiPeerConnectivityHelper.shared.buttonStatus {
         case .Pause:
-            isPause = true
+            MainTimer.shared.isPause = true
             pauseButton.setTitle("Play", for: .normal)
             let pauseSharedTimerAction = MultiPeerConnectivityHelper.Action.pauseSharedTimer.rawValue
             MainTimer.shared.timerManager(action: pauseSharedTimerAction)
             MainTimer.shared.suspend()
             MultiPeerConnectivityHelper.shared.buttonStatus = MultiPeerConnectivityHelper.ButtonStatus.Play
         case .Play:
-            isPause = false
+            MainTimer.shared.isPause = false
             pauseButton.setTitle("Pause", for: .normal)
             let resumeSharedTimerAction = MultiPeerConnectivityHelper.Action.resumeSharedTimer.rawValue
             MainTimer.shared.timerManager(action: resumeSharedTimerAction)
@@ -155,7 +127,7 @@ class TimerPopUp: UIViewController {
             MainTimer.shared.stopTimer()
             MultiPeerConnectivityHelper.shared.endSession()
             TimerPopUp.actionHandlerDelegate?.userDidQuitGame()
-            self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+            self.navigationController?.popToRootViewController(animated: true)
         }
     }
     

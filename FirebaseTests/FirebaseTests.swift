@@ -54,15 +54,17 @@ class FirebaseTests: XCTestCase {
     func testGamerCreatedGamePost() {
                 let exp = expectation(description: "Got Info")
 
-//        let randomOpponent = [uuidArray.randomElement()!]
+        let randomOpponent = [uuidArray.randomElement()!]
 
-//        
-//        let docRef =  DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).document()
 //
-//        // Currently set for 1 V 1 handball games
-//        // 4xrlU8KGRXX8kMRHjK6N : Dayum Daniel
+        let docRef =  DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).document()
+//
+        // Currently set for 1 V 1 handball games
+        // 4xrlU8KGRXX8kMRHjK6N : Dayum Daniel
 //        let game = GameModel(gameName: "Test post", gameType: "Handball", numberOfPlayers: 2, redTeam: ["4xrlU8KGRXX8kMRHjK6N"], blueTeam: randomOpponent , parkId: "M125C", gameDescription: "This was a testable game! GG no Re", gameEndTime: Date.getISOTimestamp(), winners: ["4xrlU8KGRXX8kMRHjK6N"], losers: randomOpponent, isTie: false, formattedAdresss: "Avenue of the Americas between West 3rd and 4th streets", parkName: "West 4th Street Courts", lat: 40.7311, lon: -74.0009, gameID: docRef.documentID, witness: nil, duration: nil, isOver: true, wasCancelled: nil)
-//        
+        
+//        let game = GameModel(gameName: "Test post", gameType: SportType.handball.rawValue, redTeam: ["EffKgEewpnQ07Bd4tNIMplcxVTv2"], blueTeam: ["zcdDCNPgs7UQuJ5UfERqRpCLHg02"], parkId: <#T##String#>, gameDescription: <#T##String?#>, gameEndTime: <#T##String?#>, winners: <#T##[String]?#>, losers: <#T##[String]?#>, isTie: <#T##Bool?#>, formattedAdresss: <#T##String#>, parkName: <#T##String#>, lat: <#T##String#>, lon: <#T##String#>, gameID: <#T##String#>, witness: <#T##String?#>, duration: <#T##String?#>, players: <#T##[String]#>, gameCreatedTime: <#T##String#>)
+//
 //        DBService.postGame(gamePost: game) { (error, nil) in
 //            if let error = error {
 //                XCTFail("failed to create game post with error: \(error.localizedDescription)")

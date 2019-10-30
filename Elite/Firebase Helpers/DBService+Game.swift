@@ -160,24 +160,24 @@ extension DBService {
         }
     }
     
-    static public func findPlayersWinsAtPark(parkId: String, gamerId: String, complete: @escaping(Int) -> Void) {
+    static public func findPlayersWinsAtPark(parkId: String, gamerId: String, sport: String, complete: @escaping(Int) -> Void) {
         
         fetchPlayersGamePlayedAtPark(parkId: parkId, gamerId: gamerId) { (error, games) in
             if let error = error {
                 print(error.localizedDescription)
             }
-            let gamesWon = games.filter{($0.winners?.contains(gamerId))!}.count
+            let gamesWon = games.filter{(($0.winners?.contains(gamerId))! && $0.gameName == sport)}.count
             complete(gamesWon)
         }
         
     }
     
-    static public func findPlayersLossesAtPark(parkId: String, gamerId: String,complete: @escaping(Int) -> Void)  {
+    static public func findPlayersLossesAtPark(parkId: String, gamerId: String,sport: String, complete: @escaping(Int) -> Void)  {
         fetchPlayersGamePlayedAtPark(parkId: parkId, gamerId: gamerId) { (error, games) in
             if let error = error {
                 print(error.localizedDescription)
             }
-            let gamesLost = games.filter{($0.losers?.contains(gamerId))!}.count
+            let gamesLost = games.filter{(($0.losers?.contains(gamerId))! && $0.gameName == sport)}.count
             complete(gamesLost)
         }
     }

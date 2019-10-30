@@ -18,11 +18,41 @@ class GoogleMapHelper {
   
     weak var delegate: FetchDataDelegate?
     
-    static func getUsersLocations(locationManager: CLLocationManager){
-        locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled(){
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
+
+    public func setupMapViewSettings(mapView: GMSMapView ){
+        mapView.settings.compassButton = true
+        mapView.settings.myLocationButton = true
+        mapView.isMyLocationEnabled = true
+
+    }
+    
+    public func clearMarkers(mapView: GMSMapView){
+        mapView.clear()
+    }
+    
+    public func addMarkers(courts: [Court], type: SportType, mapView: GMSMapView) {
+        var googleMarkers = [GMSMarker]()
+        
+        let filteredCourts = courts.filter { $0.type == type}
+        print("Number of courts: ",filteredCourts.count)
+        for court in filteredCourts {
+            let locations = CLLocationCoordinate2D(latitude: Double(court.lat ?? "0.0")!, longitude:  Double(court.lng ?? "0.0")!)
+            let marker = GMSMarker()
+            marker.title = court.nameOfPlayground ?? "No name"
+            marker.snippet = court.location ?? "No location"
+            marker.position = locations
+            GameModel.formattedAddress = marker.snippet
+            switch court.type {
+            case .basketball:
+                marker.icon = GMSMarker.markerImage(with: .orange)
+            case .handball:
+                marker.icon = GMSMarker.markerImage(with: .eliteBlue)
+                //marker.iconView = UIImage.init(named: "eliteMarker")
+            }
+            googleMarkers.append(marker)
+        }
+        googleMarkers.forEach { (marker) in
+            marker.map = mapView
         }
     }
     public func loadAllParkData(){
@@ -53,7 +83,7 @@ class GoogleMapHelper {
                         delegate?.errorLoadingData(error: AppError.jsonDecodingError(error))
                     }
     }
-    static func getBasketBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [BasketBall], range: Double) -> [BasketBall]{
+    public func getBasketBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [BasketBall], range: Double) -> [BasketBall]{
         //        loadAllParkData()
         var courtArr = [BasketBall]()
         for court in courtLocations {
@@ -69,7 +99,7 @@ class GoogleMapHelper {
         }
         return courtArr
     }
-    static func getHandBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [HandBall], range: Double) -> [HandBall]{
+    public func getHandBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [HandBall], range: Double) -> [HandBall]{
         
         var courtArr = [HandBall]()
         for court in courtLocations {

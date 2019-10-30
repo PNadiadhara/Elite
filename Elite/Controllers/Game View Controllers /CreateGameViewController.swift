@@ -55,9 +55,11 @@ class CreateGameViewController: UIViewController {
     var gameName: GameName! {
         didSet {
             if gameName == .handball {
+                setupHandBallCourt()
                 parkSelectedLabel.text = closestHandballcourt.nameOfPlayground
             }
             if gameName == .basketball {
+                setupBasketBallCourt()
                 parkSelectedLabel.text = closestBasketballcourt.nameOfPlayground
             }
         }
@@ -289,7 +291,6 @@ class CreateGameViewController: UIViewController {
         parkListVC.gameName = gameName
         parkListVC.userLocation = userLocation
         parkListVC.typeOfList = .ParkList
-        parkListVC.modalPresentationStyle = .overCurrentContext
         present(parkListVC, animated: true)
     }
     
@@ -344,8 +345,6 @@ class CreateGameViewController: UIViewController {
 extension CreateGameViewController: LocationManagerDelegate {
     func didGetLocation(location: CLLocation) {
         self.userLocation = location
-        setupBasketBallCourt()
-        setupHandBallCourt()
     }
     
     

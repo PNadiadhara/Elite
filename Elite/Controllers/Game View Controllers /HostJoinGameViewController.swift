@@ -25,7 +25,7 @@ class HostJoinGameViewController: UIViewController{
 //    var mcSession: MCSession?
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = true
+        
         TimerPopUp.actionHandlerDelegate = self
 //        DBService.updatePlayersWinsBasketBall(parkId: "006049d9-835c-451e-ac17-a4eaf827b397", playerId: TabBarViewController.currentUser.uid, sport: "") { (error) in
 //            if let error = error {
@@ -40,7 +40,10 @@ class HostJoinGameViewController: UIViewController{
                 print(BBPlayers.count)
             }
         }
-        checkFor20minsLimit()
+        if !GameRestrictionsHelper.test {
+           checkFor20minsLimit()
+        }
+        
         MultiPeerConnectivityHelper.shared.multipeerDelegate = self
         WaitingView.watingViewDelegate = self
         WaitingView.setViewContraints(titleText: "Searching for games", isHidden: true, delegate: self, view: self.view) { (waitingView) in
@@ -109,12 +112,10 @@ class HostJoinGameViewController: UIViewController{
 extension HostJoinGameViewController: MultipeerConnectivityDelegate{
     func foundAdverstiser(availableGames: [GamerModel]) {
         let parkList = ParkListViewController()
-        
         parkList.typeOfList = .AvailableGameList
         parkList.availableGames = availableGames
         waitingView?.isHidden = true
-        parkList.modalPresentationStyle = .overCurrentContext
-        present(parkList, animated: true)
+        self.navigationController?.pushViewController(parkList, animated: true)
     }
     
     func playerWantsToJoinGame(player: GamerModel, handler: @escaping (Bool) -> Void) {

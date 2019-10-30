@@ -17,7 +17,7 @@ class CreateYourEliteViewController: UIViewController {
         return ip
     }()
     
-    var keyboardHeight = CGFloat()
+    
     
     private var authservice = AppDelegate.authservice
     
@@ -28,6 +28,7 @@ class CreateYourEliteViewController: UIViewController {
     var selectedImage: UIImage?
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTap()
         userNameTextField.delegate = self
         // Do any additional setup after loading the view.
     }
@@ -41,26 +42,8 @@ class CreateYourEliteViewController: UIViewController {
         super.viewWillDisappear(true)
         unregisterKeyboardNotifications()
     }
-    private func registerKeyboardNotification(){
-        NotificationCenter.default.addObserver(self, selector: #selector(willShowKeyboard(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(willHideKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    private func unregisterKeyboardNotifications(){
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-    }
-    @objc private func willHideKeyboard(){
-        view.transform = CGAffineTransform.identity
-    }
-    @objc private func willShowKeyboard(notification: Notification){
-        guard let info = notification.userInfo,
-            let keyboardFrame = info["UIKeyboardFrameEndUserInfoKey"] as? CGRect else {
-                print("UserInfo is nil")
-                return
-        }
-        keyboardHeight = keyboardFrame.height
-        print(keyboardHeight)
-        view.transform = CGAffineTransform(translationX: 0, y: -keyboardFrame.height + 150)
-    }
+
+
 
     @IBAction func addPhotoPressed(_ sender: Any) {
         showSheetAlert(title: "Please select option", message: nil) { (alertController) in
@@ -102,7 +85,7 @@ class CreateYourEliteViewController: UIViewController {
                     self.authservice.updateUserProfile(user: user, username: userName)
                     DBService.updateUserProfileImage(userId: user.uid, imageUrl: url.absoluteString)
                     let tab = TabBarViewController.setTabBarVC()
-                    self.present(tab, animated: true)
+                    self.navigationController?.pushViewController(tab, animated: true)
                     
 //                    DBService.updateProfileImage(blogger: self.blogger, imageUrl: url.absoluteString)
 //                    self.performSegue(withIdentifier: "Unwind From Edit Profile", sender: self)
@@ -146,6 +129,7 @@ extension CreateYourEliteViewController : UIImagePickerControllerDelegate, UINav
         let resizedImage = Toucan.init(image: originalImage).resize(CGSize(width: 500, height: 500))
         selectedImage = resizedImage.image
         userImage.setImage(resizedImage.image, for: .normal)
+        userImage.setTitle("", for: .normal)
         dismiss(animated: true)
     }
 }

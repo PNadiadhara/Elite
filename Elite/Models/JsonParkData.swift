@@ -69,6 +69,7 @@ struct JsonBasketBallCourtInfo: Codable {
 }
 struct BasketBall: Codable, Court {
     static var allBasketBallCourts = [BasketBall]()
+
     var type: SportType = .basketball
     let propertyID: String?
 //    let playgroundID: String?
@@ -90,7 +91,7 @@ struct BasketBall: Codable, Court {
     }
 }
 
-enum SportType {
+enum SportType: String {
     case basketball, handball
 }
 

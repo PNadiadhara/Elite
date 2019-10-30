@@ -241,7 +241,7 @@ extension EndGameViewController: MultipeerConnectivityWinnerVotesDelegate {
             MultiPeerConnectivityHelper.shared.winnerVotes.removeAll()
             winnerVC.actionHandlerDelegate = self
             self.waitingView?.isHidden = true
-            self.present(winnerVC, animated: true)
+            self.navigationController?.pushViewController(winnerVC, animated: true)
         }
         
         

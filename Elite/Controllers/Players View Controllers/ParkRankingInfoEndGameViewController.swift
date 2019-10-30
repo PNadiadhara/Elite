@@ -10,14 +10,15 @@ import UIKit
 
 class ParkRankingInfoEndGameViewController: UIViewController {
     
-    @IBOutlet weak var playerImage: UIImageView!
+
     
     @IBOutlet weak var nameOfPark: UILabel!
     @IBOutlet weak var winsLabel: UILabel!
-    @IBOutlet weak var lossesLabel: UILabel!
+    @IBOutlet weak var userRankingLabel: UILabel!
     @IBOutlet weak var rankingTableView: UITableView!
     @IBOutlet weak var rankingLabel: UILabel!
     @IBOutlet weak var doneButton: RoundedButton!
+    @IBOutlet weak var sportLabel: UILabel!
     
     private var playerRanking = [GamerModel]() {
         didSet {
@@ -26,7 +27,7 @@ class ParkRankingInfoEndGameViewController: UIViewController {
             }
         }
     }
-//    var parkId = String()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -35,13 +36,14 @@ class ParkRankingInfoEndGameViewController: UIViewController {
         }
     
     func setupUI() {
-        DBService.findPlayersWinsAtPark(parkId: GameModel.parkId!, gamerId: TabBarViewController.currentGamer.gamerID) { (wins) in
+        sportLabel.text = GameModel.gameName?.capitalized
+        nameOfPark.text = GameModel.parkSelected
+        DBService.findPlayersWinsAtPark(parkId: GameModel.parkId!, gamerId: TabBarViewController.currentGamer.gamerID, sport: GameModel.gameName!) { (wins) in
             self.winsLabel.text = "Wins: \(wins)"
         }
-        DBService.findPlayersLossesAtPark(parkId: GameModel.parkId!, gamerId: TabBarViewController.currentGamer.gamerID) { (loses) in
-            self.lossesLabel.text = "Losses: \(loses)"
+        DBService.findPlayersLossesAtPark(parkId: GameModel.parkId!, gamerId: TabBarViewController.currentGamer.gamerID, sport: GameModel.gameName!) { (loses) in
+            self.userRankingLabel.text = "Losses: \(loses)"
         }
-        
     }
 
 
