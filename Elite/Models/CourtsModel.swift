@@ -16,8 +16,9 @@ class BasketBallData {
     var propertyID: String
     var longitude: String
     var latitude: String
+    var playersWins: [String : Int]?
     
-    init(accessible: String, location: String, name: String, numberOfCourts: String, propertyID: String, longitude: String, latitude: String) {
+    init(accessible: String, location: String, name: String, numberOfCourts: String, propertyID: String, longitude: String, latitude: String, playersWins: [String : Int]?) {
         self.accessible = accessible
         self.location = location
         self.name = name
@@ -25,6 +26,7 @@ class BasketBallData {
         self.propertyID = propertyID
         self.longitude = longitude
         self.latitude = latitude
+        self.playersWins = playersWins
     }
     
     // Reading the firebase data
@@ -36,8 +38,8 @@ class BasketBallData {
         self.propertyID = dict[ParkCollectionKeys.Prop_ID] as? String ?? "no park id"
         self.longitude = dict[ParkCollectionKeys.Lon] as? String ?? "no lon"
         self.latitude =  dict[ParkCollectionKeys.Lat] as? String ?? "no lat"
+        self.playersWins = dict[ParkCollectionKeys.PlayerWins] as? [String : Int]
     }
-    
 }
 
 class HandBallData {
@@ -48,8 +50,9 @@ class HandBallData {
     var propertyID: String
     var longitude: String
     var latitude: String
+    var playersWins: [String : Int]?
     
-    init(accessible: String, location: String, name: String, numberOfCourts: String, propertyID: String, longitude: String, latitude: String) {
+    init(accessible: String, location: String, name: String, numberOfCourts: String, propertyID: String, longitude: String, latitude: String, playersWins: [String:Int]?) {
         self.accessible = accessible
         self.location = location
         self.name = name
@@ -57,6 +60,7 @@ class HandBallData {
         self.propertyID = propertyID
         self.longitude = longitude
         self.latitude = latitude
+        self.playersWins = playersWins
     }
     
     // Reading the firebase data
@@ -68,5 +72,6 @@ class HandBallData {
         self.propertyID = dict[ParkCollectionKeys.Prop_ID] as? String ?? "no park id"
         self.longitude = dict[ParkCollectionKeys.Lon] as? String ?? "no lon"
         self.latitude =  dict[ParkCollectionKeys.Lat] as? String ?? "no lat"
+        self.playersWins = dict[ParkCollectionKeys.PlayerWins] as? [String : Int]
     }
 }

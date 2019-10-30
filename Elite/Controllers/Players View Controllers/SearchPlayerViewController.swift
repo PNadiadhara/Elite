@@ -52,14 +52,7 @@ class SearchPlayerViewController: UIViewController {
         scannerController.twoVsTwoSearchDelegate = twoVsTwoSearchDelegate
         self.present(scannerController, animated: true, completion: nil)
     }
-    func setupTapFunction() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
+
     @IBAction func cancelPressed(_ sender: UIButton) {
         dismiss(animated: true)
     }

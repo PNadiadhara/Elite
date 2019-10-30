@@ -50,65 +50,33 @@ class CreateGameViewController: UIViewController {
     weak var delegate: CreateGameViewControllerDelegate?
     var closestPark = String()
     var parkSelected = String()
+    var locationManager = LocationManager()
     //let multipeerConnectivityHelper = MultiPeerConnectivityHelper()
     var gameName: GameName! {
         didSet {
             if gameName == .handball {
-                if let closestCourt = GoogleMapHelper.getHandballCourtClosestToUsersLocation(closestToLocation: userLocation, handballCourts: handballResults) {
-                    closestHandballcourt = closestCourt
-                    GameModel.parkId = closestCourt.playgroundID
-                    GameModel.parkSelected = closestCourt.nameOfPlayground
-                    GameModel.parkLat = closestCourt.lat
-                    GameModel.parkLon = closestCourt.lng
-                }
+                setupHandBallCourt()
+                parkSelectedLabel.text = closestHandballcourt.nameOfPlayground
             }
             if gameName == .basketball {
-                if let closestCourt = GoogleMapHelper.getBasketballCourtClosestToUsersLocation(closestToLocation: userLocation, basketballCourts: basketballResults) {
-                    closestBasketballcourt = closestCourt
-                    GameModel.parkId = closestCourt.playgroundID
-                    GameModel.parkSelected = closestCourt.nameOfPlayground
-                    GameModel.parkLat = closestCourt.lat
-                    GameModel.parkLon = closestCourt.lng
-        
-                }
-            }
-        }
-    }
-    var closestBasketballcourt: BasketBall! {
-        didSet {
-            if originViewController != .mapViewController {
+                setupBasketBallCourt()
                 parkSelectedLabel.text = closestBasketballcourt.nameOfPlayground
-                
             }
-            
         }
     }
+    var closestBasketballcourt: BasketBall!
 
     var originViewController: OriginViewController?
     var animatedViews = [UIView]()
 
 
-    public var handballResults = [HandBall]()
-    public var basketballResults = [BasketBall]()
-    private var locationManager = CLLocationManager()
-    private var userLocation = CLLocation(){
-        didSet{
-            
-//            closestBasketballcourt = GoogleMapHelper.getBasketballCourtClosestToUsersLocation(closestToLocation: userLocation, basketballCourts: basketballResults)
-//            closestHandballcourt = GoogleMapHelper.getHandballCourtClosestToUsersLocation(closestToLocation: userLocation, handballCourts: handballResults)
-        }
-    }
-    var closestHandballcourt: HandBall! {
-        didSet {
-            if originViewController != .mapViewController {
-                parkSelectedLabel.text = closestHandballcourt.nameOfPlayground
-            }
-            
-        }
-    }
+    private var userLocation = CLLocation()
+    
+    var closestHandballcourt: HandBall!
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadAllParkData()
+        locationManager.delegate = self
+
         DBService.fetchPlayersGamesPlayed(gamerId: TabBarViewController.currentGamer.gamerID) { (error, games) in
             if let error = error {
                 self.showAlert(title: "Error fetching games", message: error.localizedDescription)
@@ -133,15 +101,16 @@ class CreateGameViewController: UIViewController {
         if Flag.isDemo {
             
         } else {
-            GoogleMapHelper.getUsersLocations(locationManager: locationManager)
+            locationManager.getUserLocation()
         }
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.155343473, green: 0.1647959352, blue: 0.1777093709, alpha: 1)
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationController?.setNavigationBarHidden(true, animated: animated)
+//        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.155343473, green: 0.1647959352, blue: 0.1777093709, alpha: 1)
+//        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+//        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
     override func viewDidLayoutSubviews() {
@@ -156,18 +125,25 @@ class CreateGameViewController: UIViewController {
         
     //        changeSportView.layer.borderWidth = 0
     }
-    func setupUI() {
+    func setupBasketBallCourt() {
+                if let closestCourt = GoogleMapHelper.getBasketballCourtClosestToUsersLocation(closestToLocation: userLocation, basketballCourts: BasketBall.allBasketBallCourts) {
+                    closestBasketballcourt = closestCourt
+                    GameModel.parkId = closestCourt.propertyID
+                    GameModel.parkSelected = closestCourt.nameOfPlayground
+                    GameModel.parkLat = closestCourt.lat
+                    GameModel.parkLon = closestCourt.lng
         
+                }
     }
-    
-    private func loadAllParkData(){
-        GoogleMapHelper.loadAllParkData { (handballCourt, basketballCourt) in
-            do {
-                self.handballResults = try JSONDecoder().decode([HandBall].self, from: handballCourt)
-                self.basketballResults = try JSONDecoder().decode([BasketBall].self, from: basketballCourt)
-            } catch {
-                print(error)
-            }
+
+    func setupHandBallCourt() {
+        if let closestCourt = GoogleMapHelper.getHandballCourtClosestToUsersLocation(closestToLocation: userLocation, handballCourts: HandBall.allHandBallCourts) {
+            closestHandballcourt = closestCourt
+            GameModel.parkId = closestCourt.propertyID
+            GameModel.parkSelected = closestCourt.nameOfPlayground
+            GameModel.parkLat = closestCourt.lat
+            GameModel.parkLon = closestCourt.lng
+            parkSelectedLabel.text = closestCourt.nameOfPlayground
         }
     }
     
@@ -275,7 +251,7 @@ class CreateGameViewController: UIViewController {
         oneVsOneVc.gameName = gameName
         MultiPeerConnectivityHelper.shared.hostGame()
         // multipeerConnectivityHelper.hostGame()
-        present(oneVsOneVc, animated: true)
+        self.navigationController?.pushViewController(oneVsOneVc, animated: true)
     }
     
     @objc func oneVsOnePressed() {
@@ -307,15 +283,14 @@ class CreateGameViewController: UIViewController {
     @objc func changeParkPressed() {
         let parkListVC = ParkListViewController.init(nibName: "ParkListViewController", bundle: nil)
         if gameName == .basketball {
-            parkListVC.basketBallCourts = basketballResults
+            parkListVC.basketBallCourts = BasketBall.allBasketBallCourts
         } else {
-            parkListVC.handBallCourts = handballResults
+            parkListVC.handBallCourts = HandBall.allHandBallCourts
         }
         parkListVC.parkDelegate = self
         parkListVC.gameName = gameName
         parkListVC.userLocation = userLocation
         parkListVC.typeOfList = .ParkList
-        parkListVC.modalPresentationStyle = .overCurrentContext
         present(parkListVC, animated: true)
     }
     
@@ -340,7 +315,7 @@ class CreateGameViewController: UIViewController {
     }
     
     @IBAction func cancelPressed(_ sender: UIButton) {
-        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func nextButtonPressed(_ sender: RoundedButton) {
@@ -367,17 +342,12 @@ class CreateGameViewController: UIViewController {
     }
 
 }
-extension CreateGameViewController: CLLocationManagerDelegate{
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locationValue: CLLocationCoordinate2D = manager.location!.coordinate // fix the force unwrapp
-        print("lat: \(locationValue.latitude) and lng: \(locationValue.longitude) ")
-        if Flag.isDemo{
-            self.userLocation = CLLocation.init(latitude: 40.7563454, longitude: -73.9239496)
-        } else {
-            self.userLocation = locations.last!
-        }
-        self.locationManager.stopUpdatingLocation()
+extension CreateGameViewController: LocationManagerDelegate {
+    func didGetLocation(location: CLLocation) {
+        self.userLocation = location
     }
+    
+    
 }
 
 extension CreateGameViewController: ParkListDelegate {

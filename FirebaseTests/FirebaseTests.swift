@@ -30,53 +30,58 @@ class FirebaseTests: XCTestCase {
     }
 
     func testGamePosts() {
-        let fName = names.randomElement()
-        let lName = names.randomElement()
-        
-        let exp = expectation(description: "gamer created")
-        
-        let docRef = DBService.firestoreDB.collection(GamerCollectionKeys.CollectionKey).document()
-        
-        let gamer = GamerModel(profileImage: nil, fullname: fName! + " " + lName! , firstname: fName!, lastname: lName!, username: "@\(fName!)", email: "\(String(describing: lName))@test.com", status: rank.randomElement()!, achievements: [], bio: "", qrCode: "", joinedDate: Date.getISOTimestamp(), gamerID: docRef.documentID, myParks: [], numberOfHandballGamesPlayed: Double(Int.random(in: 0...100)), numberOfBasketballGamesPlayed: Double(Int.random(in: 0...100)), friends: [])
-        
-        
-        DBService.createUser(gamer: gamer) { (error) in
-            if let error = error {
-                XCTFail("failed to create gamer with error: \(error.localizedDescription)")
-            }
-            print("documentId: \(docRef.documentID)")
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 5.0)
+//        let fName = names.randomElement()
+//        let lName = names.randomElement()
+//
+//        let exp = expectation(description: "gamer created")
+//
+//        let docRef = DBService.firestoreDB.collection(GamerCollectionKeys.CollectionKey).document()
+//
+//        let gamer = GamerModel(profileImage: nil, fullname: fName! + " " + lName! , firstname: fName!, lastname: lName!, username: "@\(fName!)", email: "\(String(describing: lName))@test.com", status: rank.randomElement()!, achievements: [], bio: "", qrCode: "", joinedDate: Date.getISOTimestamp(), gamerID: docRef.documentID, myParks: [], numberOfHandballGamesPlayed: Double(Int.random(in: 0...100)), numberOfBasketballGamesPlayed: Double(Int.random(in: 0...100)), friends: [])
+//
+//
+//        DBService.createUser(gamer: gamer) { (error) in
+//            if let error = error {
+//                XCTFail("failed to create gamer with error: \(error.localizedDescription)")
+//            }
+//            print("documentId: \(docRef.documentID)")
+//            exp.fulfill()
+//        }
+//
+//        wait(for: [exp], timeout: 5.0)
     }
     
     func testGamerCreatedGamePost() {
-        let randomOpponent = [uuidArray.randomElement()!]
-        let exp = expectation(description: "Game Post Created")
-        
-        let docRef =  DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).document()
+                let exp = expectation(description: "Got Info")
 
+        let randomOpponent = [uuidArray.randomElement()!]
+
+//
+        let docRef =  DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).document()
+//
         // Currently set for 1 V 1 handball games
         // 4xrlU8KGRXX8kMRHjK6N : Dayum Daniel
-        let game = GameModel(gameName: "Test post", gameType: "Handball", numberOfPlayers: 2, redTeam: ["4xrlU8KGRXX8kMRHjK6N"], blueTeam: randomOpponent , parkId: "M125C", gameDescription: "This was a testable game! GG no Re", gameEndTime: Date.getISOTimestamp(), winners: ["4xrlU8KGRXX8kMRHjK6N"], losers: randomOpponent, isTie: false, formattedAdresss: "Avenue of the Americas between West 3rd and 4th streets", parkName: "West 4th Street Courts", lat: 40.7311, lon: -74.0009, gameID: docRef.documentID, witness: nil, duration: nil, isOver: true, wasCancelled: nil)
+//        let game = GameModel(gameName: "Test post", gameType: "Handball", numberOfPlayers: 2, redTeam: ["4xrlU8KGRXX8kMRHjK6N"], blueTeam: randomOpponent , parkId: "M125C", gameDescription: "This was a testable game! GG no Re", gameEndTime: Date.getISOTimestamp(), winners: ["4xrlU8KGRXX8kMRHjK6N"], losers: randomOpponent, isTie: false, formattedAdresss: "Avenue of the Americas between West 3rd and 4th streets", parkName: "West 4th Street Courts", lat: 40.7311, lon: -74.0009, gameID: docRef.documentID, witness: nil, duration: nil, isOver: true, wasCancelled: nil)
         
-        DBService.postGame(gamePost: game) { (error, nil) in
-            if let error = error {
-                XCTFail("failed to create game post with error: \(error.localizedDescription)")
-            }
-            print("documentId: \(docRef.documentID)")
-            exp.fulfill()
-        }
+//        let game = GameModel(gameName: "Test post", gameType: SportType.handball.rawValue, redTeam: ["EffKgEewpnQ07Bd4tNIMplcxVTv2"], blueTeam: ["zcdDCNPgs7UQuJ5UfERqRpCLHg02"], parkId: <#T##String#>, gameDescription: <#T##String?#>, gameEndTime: <#T##String?#>, winners: <#T##[String]?#>, losers: <#T##[String]?#>, isTie: <#T##Bool?#>, formattedAdresss: <#T##String#>, parkName: <#T##String#>, lat: <#T##String#>, lon: <#T##String#>, gameID: <#T##String#>, witness: <#T##String?#>, duration: <#T##String?#>, players: <#T##[String]#>, gameCreatedTime: <#T##String#>)
+//
+//        DBService.postGame(gamePost: game) { (error, nil) in
+//            if let error = error {
+//                XCTFail("failed to create game post with error: \(error.localizedDescription)")
+//            }
+//            print("documentId: \(docRef.documentID)")
+//            exp.fulfill()
+//        }
         wait(for : [exp], timeout: 10.0)
     }
     
     func testSpecificPlaygroundMockData(){
         
-        let exp = expectation(description: "Playground Data Created")
-        let docRef = DBService.firestoreDB.collection(PlaygroundCollectionKeys.CollectionKey).document()
-        
-        let playgroundData = PlaygroundModel(location: "Avenue of the Americas between West 3rd and 4th streets", name: "<#T##String#>", users: <#T##String#>, isAnElite: <#T##Bool#>, game: <#T##String#>, wins: <#T##Int#>, losses: <#T##Int#>, rank: <#T##Int#>, parkID: <#T##String#>, jsonParkId: <#T##String#>)
+//        let exp = expectation(description: "Playground Data Created")
+//        let docRef = DBService.firestoreDB.collection(PlaygroundCollectionKeys.CollectionKey).document()
+//
+//        let playgroundData = PlaygroundModel(location: "Avenue of the Americas between West 3rd and 4th streets", name: "<#T##String#>", users: <#T##String#>, isAnElite: <#T##Bool#>, game: <#T##String#>, wins: <#T##Int#>, losses: <#T##Int#>, rank: <#T##Int#>, parkID: <#T##String#>, jsonParkId: <#T##String#>)
     }
+    
 
 }

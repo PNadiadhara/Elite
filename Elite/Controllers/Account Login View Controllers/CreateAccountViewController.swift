@@ -31,6 +31,7 @@ class CreateAccountViewController: UIViewController {
         setOutletsDelegates()
         setViewControllerSettings()
         setupGradient()
+        setupTap()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,8 +53,7 @@ class CreateAccountViewController: UIViewController {
     }
     
     private func setViewControllerSettings(){
-        let screenTap = UITapGestureRecognizer.init(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(screenTap)
+        setupTap()
         authservice.authserviceCreateNewAccountDelegate = self
         existingUserBttn.layer.cornerRadius = 5
     }
@@ -98,33 +98,7 @@ class CreateAccountViewController: UIViewController {
         goBackToPreviousVC()
     }
     
-    private func registerKeyboardNotification(){
-        NotificationCenter.default.addObserver(self, selector: #selector(willShowKeyboard(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(willHideKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    @objc private func willShowKeyboard(notification: Notification){
-        guard let info = notification.userInfo,
-            let keyboardFrame = info["UIKeyboardFrameEndUserInfoKey"] as? CGRect else {
-                print("UserInfo is nil")
-                return
-        }
-        keyboardHeight = keyboardFrame.height
-        print(keyboardHeight)
-        conteinerView.transform = CGAffineTransform(translationX: 0, y: -keyboardFrame.height + 150)
-    }
-    
-    @objc private func willHideKeyboard(){
-        conteinerView.transform = CGAffineTransform.identity
-    }
-    
-    @objc func dismissKeyboard() {
-        self.view.endEditing(true)
-    }
-    
-    private func unregisterKeyboardNotifications(){
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-    }
+
     @IBAction func showLoginView(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
@@ -137,10 +111,7 @@ extension CreateAccountViewController : AuthServiceCreateNewAccountDelegate {
     
     func didCreateNewAccount(_ authservice: AuthService, user gamer: GamerModel) {
         let createYourEliteVC = CreateYourEliteViewController()
-        createYourEliteVC.modalPresentationStyle = .fullScreen
-        present(createYourEliteVC, animated: true)
-//        let tab = TabBarViewController.setTabBarVC()
-//        present(tab, animated: true)
+        navigationController?.pushViewController(createYourEliteVC, animated: true)
     }
     
 }

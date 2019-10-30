@@ -19,7 +19,9 @@ class ParkListViewController: UIViewController {
     weak var parkDelegate: ParkListDelegate?
     
     var disabledIndexPathRows = [Int]()
+    var googleMapsHelper = GoogleMapHelper()
     @IBOutlet weak var parkListTableView: UITableView!
+    @IBOutlet weak var listTitleLabel: UILabel!
     
     public var basketBallCourts = [BasketBall]() {
         didSet {
@@ -61,6 +63,7 @@ class ParkListViewController: UIViewController {
 
         switch typeOfList {
         case .AvailableGameList:
+            listTitleLabel.text = "Select Player"
             parkListTableView.register(UINib(nibName: "LeaderboardCell", bundle: nil), forCellReuseIdentifier: "LeaderboardCell")
             parkListTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
             return
@@ -75,9 +78,9 @@ class ParkListViewController: UIViewController {
     
     func fetchClosestParks() {
         if gameName == .basketball {
-        basketBallResults = GoogleMapHelper.getBasketBallParksNearMe(userLocation, basketBallCourts, range: MilesInMetersInfo.twoMiles).reversed()
+        basketBallResults = googleMapsHelper.getBasketBallParksNearMe(userLocation, basketBallCourts, range: MilesInMetersInfo.twoMiles).reversed()
         } else {
-        handBallResults = GoogleMapHelper.getHandBallParksNearMe(userLocation, handBallCourts, range: MilesInMetersInfo.twoMiles).reversed()
+        handBallResults = googleMapsHelper.getHandBallParksNearMe(userLocation, handBallCourts, range: MilesInMetersInfo.twoMiles).reversed()
         }
     }
     @IBAction func tapPressed(){
@@ -123,17 +126,20 @@ extension ParkListViewController: UITableViewDelegate, UITableViewDataSource {
             cell.userName.text = gameName.username
             cell.profileImage.kf.setImage(with: URL(string: gameName.profileImage!))
             cell.rankingLabel.text = ""
-            GameRestrictionsHelper.checkFor3GamesADayLimit(gamersId: gameName.gamerID) { (error, restricted) in
-                if let error = error {
-                    self.showAlert(title: "Error", message: error.localizedDescription)
-                }
-                if let restricted = restricted {
-                    if restricted {
-                        self.disabledIndexPathRows.append(indexPath.row)
-                        cell.restrictionView.isHidden = false
+            if !GameRestrictionsHelper.test {
+                GameRestrictionsHelper.checkFor3GamesADayLimit(gamersId: gameName.gamerID) { (error, restricted) in
+                    if let error = error {
+                        self.showAlert(title: "Error", message: error.localizedDescription)
+                    }
+                    if let restricted = restricted {
+                        if restricted {
+                            self.disabledIndexPathRows.append(indexPath.row)
+                            cell.restrictionView.isHidden = false
+                        }
                     }
                 }
             }
+
             
         case .ParkList:
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ParkInfoCell", for: indexPath) as? ParkInfoCell else {return UITableViewCell()}
@@ -208,8 +214,7 @@ extension ParkListViewController: MultipeerConnectivityDelegate {
     func acceptedInvitation() {
         
         let oneVsOne = OneVsOneViewController()
-        
-        present(oneVsOne, animated: true)
+        self.navigationController?.pushViewController(oneVsOne, animated: true)
     }
     
 

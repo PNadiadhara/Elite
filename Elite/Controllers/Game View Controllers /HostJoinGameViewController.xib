@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HostJoinGameViewController" customModule="Elite" customModuleProvider="target">
             <connections>
+                <outlet property="restrictionView" destination="3zs-5U-JP1" id="KTZ-W6-Kbf"/>
+                <outlet property="timerLabel" destination="ERD-OH-hu3" id="eHI-Bn-wyQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -56,17 +58,70 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3zs-5U-JP1">
+                    <rect key="frame" x="0.0" y="5" width="414" height="896"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bJ-SI-5fb">
+                            <rect key="frame" x="41.5" y="291" width="331" height="314"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please allow 20 minutes between each game" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FYT-W9-auc">
+                                    <rect key="frame" x="25" y="30" width="281" height="52.5"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time until next game:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mG6-0N-zM5">
+                                    <rect key="frame" x="15" y="102.5" width="301" height="24.5"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERD-OH-hu3">
+                                    <rect key="frame" x="15" y="228" width="301" height="71"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="59"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.14154749010000001" green="0.14956755790000001" blue="0.16078951080000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstItem="ERD-OH-hu3" firstAttribute="leading" secondItem="8bJ-SI-5fb" secondAttribute="leading" constant="15" id="0H0-Ty-cGw"/>
+                                <constraint firstItem="FYT-W9-auc" firstAttribute="leading" secondItem="8bJ-SI-5fb" secondAttribute="leading" constant="25" id="1tL-SN-HvN"/>
+                                <constraint firstItem="mG6-0N-zM5" firstAttribute="leading" secondItem="8bJ-SI-5fb" secondAttribute="leading" constant="15" id="3Qe-sX-T3T"/>
+                                <constraint firstAttribute="bottom" secondItem="ERD-OH-hu3" secondAttribute="bottom" constant="15" id="8hj-J2-FgC"/>
+                                <constraint firstItem="mG6-0N-zM5" firstAttribute="top" secondItem="FYT-W9-auc" secondAttribute="bottom" constant="20" id="B5L-pG-97g"/>
+                                <constraint firstAttribute="trailing" secondItem="ERD-OH-hu3" secondAttribute="trailing" constant="15" id="RN7-Yy-v7S"/>
+                                <constraint firstItem="FYT-W9-auc" firstAttribute="top" secondItem="8bJ-SI-5fb" secondAttribute="top" constant="30" id="fSb-Zv-oug"/>
+                                <constraint firstAttribute="trailing" secondItem="FYT-W9-auc" secondAttribute="trailing" constant="25" id="leL-5n-One"/>
+                                <constraint firstAttribute="trailing" secondItem="mG6-0N-zM5" secondAttribute="trailing" constant="15" id="zfY-au-we0"/>
+                            </constraints>
+                            <viewLayoutGuide key="safeArea" id="UCK-js-2QZ"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="0.55166416952054798" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="8bJ-SI-5fb" firstAttribute="centerX" secondItem="3zs-5U-JP1" secondAttribute="centerX" id="1YM-y4-BqG"/>
+                        <constraint firstItem="8bJ-SI-5fb" firstAttribute="height" secondItem="3zs-5U-JP1" secondAttribute="height" multiplier="0.35" id="Xlp-HC-czD"/>
+                        <constraint firstItem="8bJ-SI-5fb" firstAttribute="width" secondItem="3zs-5U-JP1" secondAttribute="width" multiplier="0.8" id="lt9-rF-Gp6"/>
+                        <constraint firstItem="8bJ-SI-5fb" firstAttribute="centerY" secondItem="3zs-5U-JP1" secondAttribute="centerY" id="yCO-6V-wab"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="aQr-uQ-v8l" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="0ut-HU-vQO"/>
+                <constraint firstItem="3zs-5U-JP1" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="6B1-qh-sD7"/>
                 <constraint firstItem="aQr-uQ-v8l" firstAttribute="top" secondItem="wsh-Tn-HI5" secondAttribute="bottom" constant="100" id="7Cu-qu-WUP"/>
+                <constraint firstItem="3zs-5U-JP1" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="Jqw-nP-Dt9"/>
+                <constraint firstItem="3zs-5U-JP1" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="RfI-Of-gmA"/>
+                <constraint firstItem="3zs-5U-JP1" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="ZhO-aO-lqK"/>
                 <constraint firstItem="aQr-uQ-v8l" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" multiplier="0.9" id="c1u-GK-iMd"/>
                 <constraint firstItem="1rk-Yn-EVi" firstAttribute="top" secondItem="aQr-uQ-v8l" secondAttribute="bottom" constant="35" id="c8e-EG-OnD"/>
                 <constraint firstItem="wsh-Tn-HI5" firstAttribute="centerX" secondItem="aQr-uQ-v8l" secondAttribute="centerX" id="ify-Rn-fAh"/>
                 <constraint firstItem="1rk-Yn-EVi" firstAttribute="centerX" secondItem="aQr-uQ-v8l" secondAttribute="centerX" id="jR0-HK-sPS"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="47.826086956521742" y="35.491071428571423"/>
         </view>
     </objects>
 </document>

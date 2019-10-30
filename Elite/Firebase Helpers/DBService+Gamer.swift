@@ -30,6 +30,8 @@ struct GamerCollectionKeys {
     static let RoleKey = "role"
     static let deviceName = "deviceName"
     static let PlayersKey = "players"
+    static let HandBallGamesPlayedByLocation = "handBallGamesPlayedByLocation"
+    static let BasketBallGamesPlayedByLocation = "basketBallGamesPlayeByLocation"
 }
 extension DBService {
     static public func createUser(gamer: GamerModel, completion: @escaping (Error?) -> Void) {
@@ -47,7 +49,8 @@ extension DBService {
                        GamerCollectionKeys.JoinedDateKey  : gamer.joinedDate,
                        GamerCollectionKeys.GamerIDKey : gamer.gamerID,
                        GamerCollectionKeys.FriendsKey : gamer.friends ?? "",
-                       GamerCollectionKeys.deviceName: gamer.deviceName
+                       GamerCollectionKeys.deviceName: gamer.deviceName,
+                       GamerCollectionKeys.HandBallGamesPlayedByLocation : gamer.handBallGamesPlayedByLocation ?? ""
             ]) { (error) in
                 if let error = error {
                     completion(error)
@@ -63,6 +66,53 @@ extension DBService {
                     print("Error updating profile: \(error.localizedDescription)")
                 }
         }
+    }
+    
+    static public func updateGamesByLocation(parkId: String, sport: String) {
+        if sport  == SportType.handball.rawValue {
+        guard var winsByLocation = TabBarViewController.currentGamer.handBallGamesPlayedByLocation else {
+            TabBarViewController.currentGamer.handBallGamesPlayedByLocation = [parkId : 1]
+            print("Dict is nil")
+            DBService.firestoreDB .collection(GamerCollectionKeys.CollectionKey).document(TabBarViewController.currentUser.uid).updateData([GamerCollectionKeys.HandBallGamesPlayedByLocation : TabBarViewController.currentGamer.handBallGamesPlayedByLocation!]) { (error) in
+                if let error = error {
+                    print(error)
+                }
+            }
+            return
+        }
+        if let parkWins = winsByLocation[parkId] {
+            winsByLocation[parkId] = parkWins + 1
+        } else {
+            winsByLocation[parkId] = 1
+        }
+        DBService.firestoreDB .collection(GamerCollectionKeys.CollectionKey).document(TabBarViewController.currentUser.uid).updateData([GamerCollectionKeys.HandBallGamesPlayedByLocation : winsByLocation]) { (error) in
+                if let error = error {
+                    print(error)
+                }
+        }
+        } else {
+            guard var winsByLocation = TabBarViewController.currentGamer.basketBallGamesPlayedByLocation else {
+                TabBarViewController.currentGamer.basketBallGamesPlayedByLocation = [parkId : 1]
+                print("Dict is nil")
+                DBService.firestoreDB .collection(GamerCollectionKeys.CollectionKey).document(TabBarViewController.currentUser.uid).updateData([GamerCollectionKeys.BasketBallGamesPlayedByLocation : TabBarViewController.currentGamer.basketBallGamesPlayedByLocation!]) { (error) in
+                    if let error = error {
+                        print(error)
+                    }
+                }
+                return
+            }
+            if let parkWins = winsByLocation[parkId] {
+                winsByLocation[parkId] = parkWins + 1
+            } else {
+                winsByLocation[parkId] = 1
+            }
+            DBService.firestoreDB .collection(GamerCollectionKeys.CollectionKey).document(TabBarViewController.currentUser.uid).updateData([GamerCollectionKeys.BasketBallGamesPlayedByLocation : winsByLocation]) { (error) in
+                    if let error = error {
+                        print(error)
+                    }
+            }
+        }
+        
     }
     static public func fetchGamer(gamerID: String, completion: @escaping (Error?, GamerModel?) -> Void) {
         DBService.firestoreDB

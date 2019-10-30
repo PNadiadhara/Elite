@@ -39,6 +39,8 @@ struct GameCollectionKeys {
     static let TeamAScore = "teamAScore"
     static let TeamBScore = "teamBScore"
     static let DurationKey = "duration"
+    static let PlayersKey = "players"
+    static let GameCreatedTime = "gameCreated"
 //    static let isOverKey = "isOver"
 //    static let wasCancelledKey = "wasCancelled"
 }
@@ -58,13 +60,17 @@ extension DBService {
                 GameCollectionKeys.WinnersKey : gamePost.winners ?? [na],
                 GameCollectionKeys.GameIDKey :  ref.documentID,
                 GameCollectionKeys.WitnessKey : gamePost.witness ?? na,
-                GameCollectionKeys.DurationKey : gamePost.duration ?? na,  GameCollectionKeys.LosersKey : gamePost.losers ?? na,
-                GameCollectionKeys.IsTieKey : gamePost.isTie ?? na,
+                GameCollectionKeys.DurationKey : gamePost.duration ?? na,
+                GameCollectionKeys.LosersKey : gamePost.losers ?? [na],
+                GameCollectionKeys.IsTieKey : gamePost.isTie ?? false,
                 GameCollectionKeys.FormattedAdresssKey : gamePost.formattedAdresss,
                 GameCollectionKeys.ParkNameKey : gamePost.parkName,
                 GameCollectionKeys.LatKey : gamePost.lat,
                 GameCollectionKeys.LonKey : gamePost.lon,
-                GamerCollectionKeys.PlayersKey : gamePost.players])
+                GameCollectionKeys.PlayersKey : gamePost.players,
+                GameCollectionKeys.ParkId : gamePost.parkId,
+                GameCollectionKeys.GameCreatedTime : gamePost.gameCreatedTime
+                ])
             { (error) in
                 if let error = error {
                     completion(error)
@@ -154,27 +160,26 @@ extension DBService {
         }
     }
     
-    static public func findPlayersWinsAtPark(parkId: String, gamerId: String, complete: @escaping(Int) -> Void) {
+    static public func findPlayersWinsAtPark(parkId: String, gamerId: String, sport: String, complete: @escaping(Int) -> Void) {
         
         fetchPlayersGamePlayedAtPark(parkId: parkId, gamerId: gamerId) { (error, games) in
             if let error = error {
                 print(error.localizedDescription)
             }
-            let gamesWon = games.filter{($0.winners?.contains(gamerId))!}.count
+            let gamesWon = games.filter{(($0.winners?.contains(gamerId))! && $0.gameName == sport)}.count
             complete(gamesWon)
         }
         
     }
     
-    static public func findPlayersLossesAtPark(parkId: String, gamerId: String,complete: @escaping(Int) -> Void)  {
+    static public func findPlayersLossesAtPark(parkId: String, gamerId: String,sport: String, complete: @escaping(Int) -> Void)  {
         fetchPlayersGamePlayedAtPark(parkId: parkId, gamerId: gamerId) { (error, games) in
             if let error = error {
                 print(error.localizedDescription)
             }
-            let gamesLost = games.filter{($0.losers?.contains(gamerId))!}.count
+            let gamesLost = games.filter{(($0.losers?.contains(gamerId))! && $0.gameName == sport)}.count
             complete(gamesLost)
         }
-        
     }
     
     static public func getPlayerWinsByPark(parkId: String?, completion: @escaping (Error?, Int?) -> Void) {
