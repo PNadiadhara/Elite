@@ -42,7 +42,7 @@ class OneVsOneViewController: UIViewController {
 //    var invitation: Invitation?
 //    var invitations = [Invitation]()
     var gameName: GameName?
-
+    var medalHelper = MedalsHelper()
 
     var waitingView: UIView?
  
@@ -142,15 +142,10 @@ class OneVsOneViewController: UIViewController {
                 if let ranking = ranking {
                     if count == 0 {
                       self.redPlayerRanking.text = ranking.description
+                        self.redPlayerMedalImage.image = self.medalHelper.getMedalImages(ranking: ranking)
                     } else {
                       self.bluePlayerRanking.text = ranking.description
-                    }
-                    
-                } else {
-                    if count == 0 {
-                        self.redPlayerRanking.text = "N/A"
-                    } else {
-                        self.bluePlayerRanking.text = "N/A"
+                        self.bluePlayerMedal.image = self.medalHelper.getMedalImages(ranking: ranking)
                     }
                     
                 }

@@ -24,11 +24,18 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="huH-K7-e11">
-                        <rect key="frame" x="166" y="44" width="208" height="35"/>
+                        <rect key="frame" x="166" y="44" width="143" height="35"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ouG-MQ-SGX">
+                        <rect key="frame" x="324" y="36.5" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="KpU-Vd-f9k"/>
+                            <constraint firstAttribute="width" constant="50" id="tOj-iz-WBR"/>
+                        </constraints>
+                    </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibraheem" translatesAutoresizingMaskIntoConstraints="NO" id="gyC-bW-GI4" customClass="CircularImageView" customModule="Elite" customModuleProvider="target">
                         <rect key="frame" x="91" y="31.5" width="60" height="60"/>
                         <constraints>
@@ -66,14 +73,16 @@
                 </subviews>
                 <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
+                    <constraint firstItem="ouG-MQ-SGX" firstAttribute="leading" secondItem="huH-K7-e11" secondAttribute="trailing" constant="15" id="4Zz-dJ-fdK"/>
                     <constraint firstItem="gyC-bW-GI4" firstAttribute="centerY" secondItem="IGn-S6-URv" secondAttribute="centerY" id="C92-Lv-Di1"/>
                     <constraint firstItem="IGn-S6-URv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerYWithinMargins" id="D8U-xz-8Y0"/>
                     <constraint firstItem="huH-K7-e11" firstAttribute="leading" secondItem="gyC-bW-GI4" secondAttribute="trailing" constant="15" id="Ffo-TW-qFW"/>
                     <constraint firstItem="YgB-gc-RTV" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="G7G-qi-GLL"/>
                     <constraint firstItem="YgB-gc-RTV" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="JKJ-ar-9Xg"/>
                     <constraint firstItem="huH-K7-e11" firstAttribute="centerY" secondItem="IGn-S6-URv" secondAttribute="centerY" id="L9A-xc-3ag"/>
+                    <constraint firstItem="ouG-MQ-SGX" firstAttribute="centerY" secondItem="huH-K7-e11" secondAttribute="centerY" id="Lb7-cp-8J6"/>
+                    <constraint firstAttribute="trailing" secondItem="ouG-MQ-SGX" secondAttribute="trailing" constant="15" id="Lcf-Ro-yLP"/>
                     <constraint firstItem="YgB-gc-RTV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="RRi-hw-Sjf"/>
-                    <constraint firstAttribute="trailing" secondItem="huH-K7-e11" secondAttribute="trailing" constant="15" id="Sqz-0E-Q3r"/>
                     <constraint firstItem="gyC-bW-GI4" firstAttribute="leading" secondItem="IGn-S6-URv" secondAttribute="trailing" constant="15" id="aZA-vo-mjT"/>
                     <constraint firstItem="IGn-S6-URv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="g6Q-4b-NLP"/>
                     <constraint firstItem="YgB-gc-RTV" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="rfC-ea-MxC"/>
@@ -81,6 +90,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="medalImage" destination="ouG-MQ-SGX" id="sQp-aW-Ic2"/>
                 <outlet property="profileImage" destination="gyC-bW-GI4" id="G94-t2-oY5"/>
                 <outlet property="rankingLabel" destination="IGn-S6-URv" id="6bU-BY-z5A"/>
                 <outlet property="restrictionView" destination="YgB-gc-RTV" id="NJT-Vj-0rN"/>

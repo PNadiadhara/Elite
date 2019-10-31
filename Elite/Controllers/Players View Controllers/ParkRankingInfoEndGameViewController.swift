@@ -20,6 +20,7 @@ class ParkRankingInfoEndGameViewController: UIViewController {
     @IBOutlet weak var sportLabel: UILabel!
     
     let rankingHelper = RankingHelper()
+    let medalHelper = MedalsHelper()
     private var playerRanking = [GamerModel]() {
         didSet {
             DispatchQueue.main.async {
@@ -89,8 +90,10 @@ extension ParkRankingInfoEndGameViewController: UITableViewDelegate, UITableView
             fatalError()
         }
         let player = playerRanking[indexPath.row]
-        cell.rankingLabel.text = (indexPath.row + 1).description
+        let ranking = indexPath.row + 1
+        cell.rankingLabel.text = ranking.description
         cell.userName.text = player.username
+        cell.medalImage.image = medalHelper.getMedalImages(ranking: ranking)
         return cell
     }
     
