@@ -45,6 +45,7 @@ class TabBarViewController: UITabBarController {
         let map = MapViewController()
         let feed = FeedTableViewController()
         let play = HostJoinGameViewController()
+        
         let profile = ProfileViewController.init(nibName: "ProfileViewController", bundle: nil)
         let tab = TabBarViewController()
         

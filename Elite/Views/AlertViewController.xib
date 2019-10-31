@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlertViewController" customModule="Elite" customModuleProvider="target">
+            <connections>
+                <outlet property="timeLabel" destination="VdR-IB-UKy" id="LTO-lU-zHW"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="46S-i1-0cM">
+                    <rect key="frame" x="41.5" y="274" width="331" height="358"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please allow 20 minutes between each game" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qb-nK-hoA">
+                            <rect key="frame" x="25" y="30" width="281" height="52.5"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time until next game:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBx-j2-W38">
+                            <rect key="frame" x="15" y="102.5" width="301" height="24.5"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VdR-IB-UKy">
+                            <rect key="frame" x="15" y="272" width="301" height="71"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="59"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.14154749010000001" green="0.14956755790000001" blue="0.16078951080000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="QBx-j2-W38" firstAttribute="leading" secondItem="46S-i1-0cM" secondAttribute="leading" constant="15" id="2pA-mO-qRg"/>
+                        <constraint firstAttribute="bottom" secondItem="VdR-IB-UKy" secondAttribute="bottom" constant="15" id="VOq-hi-LXr"/>
+                        <constraint firstItem="1Qb-nK-hoA" firstAttribute="top" secondItem="46S-i1-0cM" secondAttribute="top" constant="30" id="VcF-dF-04C"/>
+                        <constraint firstItem="QBx-j2-W38" firstAttribute="top" secondItem="1Qb-nK-hoA" secondAttribute="bottom" constant="20" id="W2H-kk-IOA"/>
+                        <constraint firstAttribute="trailing" secondItem="QBx-j2-W38" secondAttribute="trailing" constant="15" id="WF6-ZT-MaN"/>
+                        <constraint firstItem="1Qb-nK-hoA" firstAttribute="leading" secondItem="46S-i1-0cM" secondAttribute="leading" constant="25" id="ZhE-SC-RWy"/>
+                        <constraint firstAttribute="trailing" secondItem="VdR-IB-UKy" secondAttribute="trailing" constant="15" id="dcx-5B-Trg"/>
+                        <constraint firstItem="VdR-IB-UKy" firstAttribute="leading" secondItem="46S-i1-0cM" secondAttribute="leading" constant="15" id="mCg-Al-OdR"/>
+                        <constraint firstAttribute="trailing" secondItem="1Qb-nK-hoA" secondAttribute="trailing" constant="25" id="wb1-M5-Uvf"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="0.59334867294520544" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="46S-i1-0cM" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.8" id="oQO-Eg-j1c"/>
+                <constraint firstItem="46S-i1-0cM" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="qMY-VO-lOM"/>
+                <constraint firstItem="46S-i1-0cM" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="s12-Ms-bhm"/>
+                <constraint firstItem="46S-i1-0cM" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.4" id="seu-AP-fBg"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+</document>

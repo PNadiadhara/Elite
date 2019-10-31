@@ -25,7 +25,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         setupOutlets()
         setupVCSettings()
-        
+        setupTap()
     }
     
     private func setupVCSettings(){
@@ -73,51 +73,29 @@ class LoginViewController: UIViewController {
             let password = passwordTextField.text,
             !password.isEmpty
             else {
+                showAlert(title: "Please enter information", message: "ex: yourmail@email.com")
                 return
         }
         authservice.signInExistingAccount(email: email, password: password)
     }
     
-    @objc func dismissKeyboard() {
-        self.view.endEditing(true)
-    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        registerKeyboardNotifications()
+        registerKeyboardNotification()
     }
     
-    private func registerKeyboardNotifications(){
-        NotificationCenter.default.addObserver(self, selector: #selector(willShowKeyBaord), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(willHideKeyBaord), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
+
     
-    @objc private func willShowKeyBaord(notification: Notification){
-        guard let info = notification.userInfo, let keyBoardFrame = info["UIKeyboardFrameEndUserInfoKey"] as? CGRect else {
-            print("UserInfo is nil")
-            return
-        }
-        //print(" UserInfo is:  \(info)")
-        contentView.transform = CGAffineTransform.init(translationX: 0, y: -keyBoardFrame.height + 150)
-    }
-    
-    @objc private func willHideKeyBaord(notification: Notification){
-        contentView.transform = CGAffineTransform.identity
-    }
+
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         unregisterKeyboardNotifications()
     }
     
-    deinit {
-        //clean up code and memory
-    }
-    
-    private func unregisterKeyboardNotifications(){
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
+
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         signInCurrentUser()

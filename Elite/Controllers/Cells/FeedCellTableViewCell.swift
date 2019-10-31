@@ -13,7 +13,10 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var sportImage: UIImageView!
     @IBOutlet weak var user1Image: UIImageView!
-
+    @IBOutlet weak var redPlayerLabel: UILabel!
+    @IBOutlet weak var bluePlayerLabel: UILabel!
+    
+    @IBOutlet weak var gameTimeLabel: UILabel!
     
     @IBOutlet weak var user2Image: UIImageView!
     

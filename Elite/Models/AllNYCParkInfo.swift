@@ -14,7 +14,7 @@ struct AllBasketballCourtInfo: Codable {
 }
 struct BasketBallResultsContainer: Codable {
     let propertyID: String?
-    let playgroundID: String?
+//    let playgroundID: String?
     let nameOfPlayground: String?
     let basketBallCourtLocation: String?
     let numberOfBasketBallCourts: String?
@@ -23,7 +23,7 @@ struct BasketBallResultsContainer: Codable {
     let lng: String?
     enum CodingKeys: String,CodingKey {
         case propertyID = "Prop_ID"
-        case playgroundID = "Playground_ID"
+//        case playgroundID = "Playground_ID"
         case nameOfPlayground = "Name"
         case basketBallCourtLocation = "Location"
         case numberOfBasketBallCourts = "Num_of_Courts"
@@ -37,7 +37,7 @@ struct AllHandballCourtInfo: Codable {
 }
 struct HandBallResultsContainer: Codable {
     let propertyID: String?
-    let playgroundID: String?
+//    let playgroundID: String?
     let nameOfPlayground: String?
     let handBallCourtLocation: String?
     let numberOfHandBallCourts: String?
@@ -46,7 +46,7 @@ struct HandBallResultsContainer: Codable {
     let lng: String?
     enum CodingKeys: String,CodingKey {
         case propertyID = "Prop_ID"
-        case playgroundID = "Playground_ID"
+//        case playgroundID = "Playground_ID"
         case nameOfPlayground = "Name"
         case handBallCourtLocation = "Location"
         case numberOfHandBallCourts = "Num_of_Courts"

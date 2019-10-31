@@ -9,36 +9,81 @@
 import Foundation
 import GoogleMaps
 
+protocol FetchDataDelegate: AnyObject {
+    func didLoadData(basketballCourts: [BasketBall] , handballCourts: [HandBall])
+    func errorLoadingData(error: AppError)
+}
+
 class GoogleMapHelper {
   
+    weak var delegate: FetchDataDelegate?
     
-    static func getUsersLocations(locationManager: CLLocationManager){
-        locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled(){
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
+
+    public func setupMapViewSettings(mapView: GMSMapView ){
+        mapView.settings.compassButton = true
+        mapView.settings.myLocationButton = true
+        mapView.isMyLocationEnabled = true
+
+    }
+    
+    public func clearMarkers(mapView: GMSMapView){
+        mapView.clear()
+    }
+    
+    public func addMarkers(courts: [Court], type: SportType, mapView: GMSMapView) {
+        var googleMarkers = [GMSMarker]()
+        
+        let filteredCourts = courts.filter { $0.type == type}
+        print("Number of courts: ",filteredCourts.count)
+        for court in filteredCourts {
+            let locations = CLLocationCoordinate2D(latitude: Double(court.lat ?? "0.0")!, longitude:  Double(court.lng ?? "0.0")!)
+            let marker = GMSMarker()
+            marker.title = court.nameOfPlayground ?? "No name"
+            marker.snippet = court.location ?? "No location"
+            marker.position = locations
+            GameModel.formattedAddress = marker.snippet
+            switch court.type {
+            case .basketball:
+                marker.icon = GMSMarker.markerImage(with: .orange)
+            case .handball:
+                marker.icon = GMSMarker.markerImage(with: .eliteBlue)
+                //marker.iconView = UIImage.init(named: "eliteMarker")
+            }
+            googleMarkers.append(marker)
+        }
+        googleMarkers.forEach { (marker) in
+            marker.map = mapView
         }
     }
-    static func loadAllParkData(completion: @escaping(Data,Data) -> Void){
+    public func loadAllParkData(){
         var basketballFileName = String()
+        var basketBallCourts = [BasketBall]()
+        var handBallCourts = [HandBall]()
         if Flag.isDemo {
             basketballFileName = "parks"
         } else {
             basketballFileName = "basketballCourtInfo"
         }
-        if let handballCourtDataFilePath = Bundle.main.path(forResource: "handballCourtInfo", ofType: "json"), let basketballCourtDataFilePath = Bundle.main.path(forResource: basketballFileName, ofType: "json"){
-            let handballCourtDataUrl = URL.init(fileURLWithPath: handballCourtDataFilePath)
-            let basketballCourtDataUrl = URL.init(fileURLWithPath: basketballCourtDataFilePath)
-            if let jsonHandBallParkData = try? Data.init(contentsOf: handballCourtDataUrl), let jsonBasketBallParkData = try? Data.init(contentsOf: basketballCourtDataUrl){
-                completion(jsonHandBallParkData,jsonBasketBallParkData)
-            } else {
-                print("issue with converting the urls into data")
-            }
-        } else {
-            print("issue with the json file paths")
+        guard let basketballCourtDataFilePath = Bundle.main.path(forResource: "basketballCourtInfo", ofType: "json"),
+            let handballCourtDataFilePath = Bundle.main.path(forResource: "handballCourtInfo", ofType: "json") else {
+                delegate?.errorLoadingData(error:  AppError.noFilesFound("No files found"))
+                return
         }
+        let handballCourtDataUrl = URL.init(fileURLWithPath: handballCourtDataFilePath)
+        let basketballCourtDataUrl = URL.init(fileURLWithPath: basketballCourtDataFilePath)
+        guard let basketballParkData = try? Data.init(contentsOf: basketballCourtDataUrl), let handballParkData = try? Data.init(contentsOf: handballCourtDataUrl) else {
+            delegate?.errorLoadingData(error: AppError.noData("Error converting data"))
+            return}
+                    do {
+                        handBallCourts = try JSONDecoder().decode([HandBall].self, from: handballParkData)
+                        basketBallCourts = try JSONDecoder().decode([BasketBall].self, from: basketballParkData)
+                        delegate?.didLoadData(basketballCourts: basketBallCourts, handballCourts: handBallCourts)
+                    } catch {
+
+                        delegate?.errorLoadingData(error: AppError.jsonDecodingError(error))
+                    }
     }
-    static func getBasketBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [BasketBall], range: Double) -> [BasketBall]{
+    public func getBasketBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [BasketBall], range: Double) -> [BasketBall]{
         //        loadAllParkData()
         var courtArr = [BasketBall]()
         for court in courtLocations {
@@ -54,7 +99,7 @@ class GoogleMapHelper {
         }
         return courtArr
     }
-    static func getHandBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [HandBall], range: Double) -> [HandBall]{
+    public func getHandBallParksNearMe(_ currentLocation: CLLocation, _ courtLocations: [HandBall], range: Double) -> [HandBall]{
         
         var courtArr = [HandBall]()
         for court in courtLocations {
@@ -125,5 +170,6 @@ class GoogleMapHelper {
 //            }
 //        }
 //    }
+
 
 }

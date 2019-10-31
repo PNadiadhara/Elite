@@ -17,6 +17,7 @@ protocol TimerDelegate: AnyObject {
 class MainTimer {
     
     let timeInterval: TimeInterval
+    var isPause: Bool?
     public var time = 0.0 {
         didSet{
             delegate?.sharedTimer(time: timeStringWithMilSec(time: TimeInterval(time)))

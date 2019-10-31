@@ -14,7 +14,8 @@ enum AppError: Error {
     case networkError(Error)
     case badStatusCode(String)
     case propertyListEncodingError(Error)
-    
+    case noFilesFound(String)
+    case noData(String)
     public func errorMessage() -> String {
         switch self {
         case .badURL(let message):
@@ -27,6 +28,10 @@ enum AppError: Error {
             return "bad status code: \(message)"
         case .propertyListEncodingError(let error):
             return "property list encoding error: \(error)"
+        case .noFilesFound:
+            return "no files found"
+        case .noData:
+            return "error converting data"
         }
     }
 }

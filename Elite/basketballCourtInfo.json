@@ -4604,8 +4604,8 @@
         "Location": "Hylan Blvd. & Huguenot Ave.",
         "Num_of_Courts": null,
         "Accessible": "N",
-        "lat": null,
-        "lon": null
+        "lat": "40.9292368",
+        "lon": "-73.791175"
     },
     {
         "Prop_ID": "R037",
@@ -4901,8 +4901,8 @@
         "Location": null,
         "Num_of_Courts": "1",
         "Accessible": "N",
-        "lat": null,
-        "lon": null
+        "lat": "40.7422936",
+        "lon": "-73.9606831"
     },
     {
         "Prop_ID": "Q031",
@@ -4928,8 +4928,8 @@
         "Location": "Linden Street and Central Avenue",
         "Num_of_Courts": "2",
         "Accessible": null,
-        "lat": null,
-        "lon": null
+        "lat": "40.7684641",
+        "lon": "-73.9772285"
     },
     {
         "Prop_ID": "Q332",
@@ -4955,35 +4955,18 @@
         "Location": "61st Street and Brooklyn Queens Expressway",
         "Num_of_Courts": "1",
         "Accessible": null,
-        "lat": null,
-        "lon": null
+        "lat": "40.7394722",
+        "lon": "-73.9027167"
     },
-    {
-        "Prop_ID": "Q205A",
-        "Name": "Big Bush Park",
-        "Location": "61st Street and Brooklyn Queens Expressway",
-        "Num_of_Courts": "1",
-        "Accessible": null,
-        "lat": null,
-        "lon": null
-    },
+
     {
         "Prop_ID": "Q014",
         "Name": "Astoria Heights Playground",
         "Location": "Back of Horace Greeley Middle School (I.S. 10), between 45th and 46th Street",
         "Num_of_Courts": "2",
         "Accessible": null,
-        "lat": null,
-        "lon": null
-    },
-    {
-        "Prop_ID": "Q014",
-        "Name": "Astoria Heights Playground",
-        "Location": "Back of Horace Greeley Middle School (I.S. 10), between 45th and 46th Street",
-        "Num_of_Courts": "2",
-        "Accessible": null,
-        "lat": null,
-        "lon": null
+        "lat": "40.7605192",
+        "lon": "-73.91154879999999"
     },
     {
         "Prop_ID": "B223R",

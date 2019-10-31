@@ -4,16 +4,16 @@
         "Name": "174 St. Playground",
         "Location": "E. 174 and Bronx River Avenue",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.8343419",
+        "lon": "-73.8777413"
     },
     {
         "Prop_ID": "X126",
         "Name": "Abigail Playground",
         "Location": "Tinton Avenue, E. 156 St.",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.8173278",
+        "lon": "-73.90484289999999"
     },
     {
         "Prop_ID": "X169",
@@ -36,8 +36,8 @@
         "Name": "Aqueduct Walk",
         "Location": "Fordham Road and Aqueduct Walk",
         "Num_of_Courts": "6",
-        "lat": null,
-        "lon": null
+        "lat": "40.8578964",
+        "lon": "-73.9083337"
     },
     {
         "Prop_ID": "X219",
@@ -132,16 +132,16 @@
         "Name": "Claremont Park",
         "Location": "Clay Avenue and Claremont Parkway South",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.8409",
+        "lon": "-73.9083337"
     },
     {
         "Prop_ID": "X008",
         "Name": "Claremont Playground South",
         "Location": "E. 170 St. & Teller Ave",
         "Num_of_Courts": "6",
-        "lat": null,
-        "lon": null
+        "lat": "40.8150609",
+        "lon": "-73.96205700000002"
     },
     {
         "Prop_ID": "X200",
@@ -164,24 +164,24 @@
         "Name": "Crotona Playground #11",
         "Location": "Fulton Avenue, 171 St.., Crotona Park",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.8400367",
+        "lon": "-73.8953489"
     },
     {
         "Prop_ID": "X010",
         "Name": "Crotona Playground #7",
         "Location": "Charlotte St., Crotona Park E.",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.8400367",
+        "lon": "-73.8953489"
     },
     {
         "Prop_ID": "X010",
         "Name": "Crotona Tennis Courts",
         "Location": "Crotona Ave., Adjacent to Tennis Courts",
         "Num_of_Courts": "24",
-        "lat": null,
-        "lon": null
+        "lat": "40.8399058",
+        "lon": "-73.89475639999999"
     },
     {
         "Prop_ID": "X021",
@@ -252,16 +252,16 @@
         "Name": "Fox Playground",
         "Location": "S/E Corner of Fox St. and E. 156 St.",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.8148943",
+        "lon": "-73.89859609999999"
     },
     {
         "Prop_ID": "X106",
         "Name": "Garrison Playground",
         "Location": "E. 146 St., Walton Ave., Grand Concourse",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.8175302",
+        "lon":  "-73.9283913"
     },
     {
         "Prop_ID": "X114",
@@ -292,8 +292,8 @@
         "Name": "Haffen Park",
         "Location": "Hammersly, Ely, Burke, & Gunther Aves.",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.8735317",
+        "lon": "-73.8390434"
     },
     {
         "Prop_ID": "X080",
@@ -308,8 +308,9 @@
         "Name": "Hill & Dale Playground",
         "Location": "173 St., Crotona Park East",
         "Num_of_Courts": "8",
-        "lat": null,
-        "lon": null
+        "lat": "40.8371931",
+        "lon": "-73.8905439"
+        
     },
     {
         "Prop_ID": "X241",
@@ -636,8 +637,8 @@
         "Name": "Starlight Ballfields",
         "Location": "Sheridan Expwy. & E. 174 St.",
         "Num_of_Courts": "8",
-        "lat": null,
-        "lon": null
+        "lat": "40.832732",
+        "lon": "-73.883684"
     },
     {
         "Prop_ID": "X193",
@@ -1556,24 +1557,25 @@
         "Name": "MARINE PARK",
         "Location": "Burnett St & Filmore Ave",
         "Num_of_Courts": "12",
-        "lat": null,
-        "lon": null
+        "lat": "40.6113817",
+        "lon": "-73.93318649999999"
+
     },
     {
         "Prop_ID": "B057",
         "Name": "MARINE PARK (EAST 38th STREET)",
         "Location": "East 38th & Ave U",
         "Num_of_Courts": "8",
-        "lat": null,
-        "lon": null
+        "lat": "40.6139642",
+        "lon": "-73.93354169999999"
     },
     {
         "Prop_ID": "B057",
         "Name": "MARINE PK (PS 277) DR JOHNS",
         "Location": "Gerritsen Ave & Ave V",
         "Num_of_Courts": "6",
-        "lat": null,
-        "lon": null
+        "lat": "40.5969",
+        "lon": "-73.9279"
     },
     {
         "Prop_ID": "B110",
@@ -1684,8 +1686,9 @@
         "Name": "PACIFIC PLGD",
         "Location": "Howard Ave & Pacific St.",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.6756498",
+        "lon": "-73.9201248"
+
     },
     {
         "Prop_ID": "B218",
@@ -1708,8 +1711,9 @@
         "Name": "Pat Parlato",
         "Location": "Oriental Blvd",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.5770927",
+        "lon": "-73.94677589999999"
+
     },
     {
         "Prop_ID": "B208",
@@ -2548,16 +2552,18 @@
         "Name": "McCaffrey Park",
         "Location": "46th St. & 8th Ave.",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.7589739",
+        "lon": "-73.991308"
+
     },
     {
         "Prop_ID": "M199",
         "Name": "Monsignor Kett Playground",
         "Location": "204 & 10th Ave.",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.8624611",
+        "lon": "-73.92099619999999"
+
     },
     {
         "Prop_ID": "M059",
@@ -2836,8 +2842,8 @@
         "Name": "ALBERT H. MAURO P/G",
         "Location": "PARK DRIVE EAST",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.724",
+        "lon": "-73.8275"
     },
     {
         "Prop_ID": "Q356",
@@ -3076,8 +3082,8 @@
         "Name": "CAPTAIN MARIO FAJARDO PARK",
         "Location": "KISSENA BLVD & BOOTH MEM AVE",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.7435",
+        "lon": "-73.8146"
     },
     {
         "Prop_ID": "Q386",
@@ -3288,14 +3294,6 @@
         "lon": "-73.8957"
     },
     {
-        "Prop_ID": "Q290",
-        "Name": "GLENDALE P/G",
-        "Location": "Central Avenue between 70 & 71 streets",
-        "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
-    },
-    {
         "Prop_ID": "Q085",
         "Name": "GORMAN P/G",
         "Location": "30 AVE, 84 - 85 ST, 25 AVE",
@@ -3412,8 +3410,8 @@
         "Name": "HORATIO P/G",
         "Location": "HORATIO PKWY & 228 ST",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.7588",
+        "lon": "-73.7544"
     },
     {
         "Prop_ID": "Q105",
@@ -3628,8 +3626,8 @@
         "Name": "Memorial Field of Flushing/Flushing Fields",
         "Location": "BAYSIDE AVE 25 AVE, 149/150 ST",
         "Num_of_Courts": "8",
-        "lat": null,
-        "lon": null
+        "lat": "40.7745559",
+        "lon": "-73.8166725"
     },
     {
         "Prop_ID": "Q096C",
@@ -3660,8 +3658,9 @@
         "Name": "MIDDLE VILLAGE P/G",
         "Location": "68 RD, 79 ST, 69 AVE",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.7135015",
+        "lon": "-73.8740217"
+
     },
     {
         "Prop_ID": "Q396",
@@ -3820,8 +3819,8 @@
         "Name": "RACHEL CARSON P/G",
         "Location": "COLDEN ST & GERANIUM AVE",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.7489",
+        "lon": "-73.8222"
     },
     {
         "Prop_ID": "Q333",
@@ -3927,38 +3926,7 @@
         "lat": "40.7263",
         "lon": "-73.8081"
     },
-    {
-        "Prop_ID": "Q163",
-        "Name": "SHOREFRONT PKWAY-BCH 74",
-        "Location": "",
-        "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
-    },
-    {
-        "Prop_ID": "Q163",
-        "Name": "SHOREFRONT PKWAY-BCH 76",
-        "Location": "",
-        "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
-    },
-    {
-        "Prop_ID": "Q163",
-        "Name": "SHOREFRONT PKWAY-BCH 81",
-        "Location": "",
-        "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
-    },
-    {
-        "Prop_ID": "Q163",
-        "Name": "SHOREFRONT PKWAY-BCH 82",
-        "Location": "",
-        "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
-    },
+
     {
         "Prop_ID": "Q129",
         "Name": "SMOKEY OVAL",
@@ -4072,20 +4040,12 @@
         "lon": "-73.8896"
     },
     {
-        "Prop_ID": "Q066A",
-        "Name": "TRIBOROUGH BRIDGE P/G A",
-        "Location": "HOYT AVE, 19 TO 21 STS",
-        "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
-    },
-    {
         "Prop_ID": "Q066D",
         "Name": "TRIBOROUGH BRIDGE P/G D",
         "Location": "HOYT AVE, 24 ST TO CRESCENT ST",
         "Num_of_Courts": "6",
-        "lat": null,
-        "lon": null
+        "lat": "40.7732903",
+        "lon": "-73.9210388"
     },
     {
         "Prop_ID": "Q294",
@@ -4164,8 +4124,8 @@
         "Name": "WILLETS POINT P/G(PS 209)",
         "Location": "166 ST BET 16 AVE & 16 RD",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.7838",
+        "lon": "-73.7963"
     },
     {
         "Prop_ID": "Q348",
@@ -4196,8 +4156,8 @@
         "Name": "WORLD'S FAIR P/G",
         "Location": "GRAND CENTRAL PKWY, 62 DR, LIE",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.7371109",
+        "lon": "-73.8482518"
     },
     {
         "Prop_ID": "R087",
@@ -4260,16 +4220,18 @@
         "Name": "Midland Beach (Playground #1)",
         "Location": "Father Capodanno Boulevard & Jefferson Avenue",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.5751161",
+        "lon": "-74.09886329999999"
+
     },
     {
         "Prop_ID": "R046",
         "Name": "Midland Beach (Playground #2)",
         "Location": "Father Capodanno Boulevard & Jefferson Avenue",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.5751161",
+        "lon": "-74.09886329999999"
+
     },
     {
         "Prop_ID": "R038A",

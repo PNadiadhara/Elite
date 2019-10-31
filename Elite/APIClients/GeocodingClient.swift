@@ -7,8 +7,15 @@
 //
 
 import Foundation
+import GooglePlaces
 
+protocol GeocodingDelegate: AnyObject {
+    func didGetLatAndLon()
+}
 final class GeocodingApiClient {
+    
+    var placesClient: GMSPlacesClient!
+    
     static func convertLatLngToAddress(lat: Double, lng: Double,  callBack: @escaping([Results]?,AppError?) -> Void){
         let endPointStr = "https://maps.googleapis.com/maps/api/geocode/json?latlng=\(lat),\(lng)&key=\(PrivateInfoFile.GoogleMapsApiKey)"
         // create a url for the endpoint
@@ -38,6 +45,8 @@ final class GeocodingApiClient {
         task.resume()
         
     }
+    
+
     static func createLocations(userInput: String,  callBack: @escaping([Results]?,AppError?) -> Void){
         //Creating a edgecase for when there is a space
         let formatteduserInputStr = userInput.replacingOccurrences(of: " ", with: "+")
