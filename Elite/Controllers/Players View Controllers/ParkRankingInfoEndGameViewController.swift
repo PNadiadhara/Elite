@@ -16,14 +16,14 @@ class ParkRankingInfoEndGameViewController: UIViewController {
     @IBOutlet weak var winsLabel: UILabel!
     @IBOutlet weak var userRankingLabel: UILabel!
     @IBOutlet weak var rankingTableView: UITableView!
-    @IBOutlet weak var rankingLabel: UILabel!
     @IBOutlet weak var doneButton: RoundedButton!
     @IBOutlet weak var sportLabel: UILabel!
     
+    let rankingHelper = RankingHelper()
     private var playerRanking = [GamerModel]() {
         didSet {
             DispatchQueue.main.async {
-                
+                self.rankingTableView.reloadData()
             }
         }
     }
@@ -31,7 +31,9 @@ class ParkRankingInfoEndGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
+        rankingTableView.delegate = self
+        rankingTableView.dataSource = self
+        rankingTableView.register(UINib(nibName: "LeaderboardCell", bundle: nil), forCellReuseIdentifier: "LeaderboardCell")
         MultiPeerConnectivityHelper.shared.endSession()
         }
     
@@ -39,10 +41,27 @@ class ParkRankingInfoEndGameViewController: UIViewController {
         sportLabel.text = GameModel.gameName?.capitalized
         nameOfPark.text = GameModel.parkSelected
         DBService.findPlayersWinsAtPark(parkId: GameModel.parkId!, gamerId: TabBarViewController.currentGamer.gamerID, sport: GameModel.gameName!) { (wins) in
-            self.winsLabel.text = "Wins: \(wins)"
+            
+            DBService.findPlayersLossesAtPark(parkId: GameModel.parkId!, gamerId: TabBarViewController.currentGamer.gamerID, sport: GameModel.gameName!) { (loses) in
+                self.winsLabel.text = "Wins: \(wins) Losses: \(loses)"
+            }
         }
-        DBService.findPlayersLossesAtPark(parkId: GameModel.parkId!, gamerId: TabBarViewController.currentGamer.gamerID, sport: GameModel.gameName!) { (loses) in
-            self.userRankingLabel.text = "Losses: \(loses)"
+
+        rankingHelper.findPlayerRanking(gamerId: TabBarViewController.currentUser.uid, parkId: GameModel.parkId!) { [weak self] error, ranking in
+            if let error = error {
+                self?.showAlert(title: "Error finding rankin", message: error.localizedDescription)
+            }
+            if let ranking = ranking {
+                self?.userRankingLabel.text = "\(ranking)."
+            }
+        }
+        rankingHelper.findRankingByPark(parkId: GameModel.parkId!) { [weak self] rankedGamers, error in
+            if let error = error {
+                self?.showAlert(title: "Error finding ranking", message: error.localizedDescription)
+            }
+            if let rankedGamers = rankedGamers {
+                self?.playerRanking = rankedGamers
+            }
         }
     }
 
@@ -55,16 +74,28 @@ class ParkRankingInfoEndGameViewController: UIViewController {
         }
         GameModel.clearGameModel(gameModel: game)
         }
-        self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+}
+
+extension ParkRankingInfoEndGameViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return playerRanking.count
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "LeaderboardCell", for: indexPath) as? LeaderboardCell else {
+            fatalError()
+        }
+        let player = playerRanking[indexPath.row]
+        cell.rankingLabel.text = (indexPath.row + 1).description
+        cell.userName.text = player.username
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
 }

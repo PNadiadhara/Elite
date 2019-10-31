@@ -139,6 +139,7 @@
 		D5CDAC29228F022800A3B6D6 /* StatusChangeNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5CDAC27228F022800A3B6D6 /* StatusChangeNotificationViewController.xib */; };
 		D5CDEA232363DA300023D349 /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CDEA222363DA300023D349 /* LocationHelper.swift */; };
 		D5CDEA252366281D0023D349 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CDEA242366281C0023D349 /* UIViewController+Extensions.swift */; };
+		D5CDEA27236A24620023D349 /* RankingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CDEA26236A24610023D349 /* RankingHelper.swift */; };
 		D5D375B8226A4A9000F25FCF /* DBService+WinnerConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D375B7226A4A9000F25FCF /* DBService+WinnerConfirmation.swift */; };
 		D5D375BD226A6D3900F25FCF /* WinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D375BB226A6D3900F25FCF /* WinnerViewController.swift */; };
 		D5D375BE226A6D3900F25FCF /* WinnerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D375BC226A6D3900F25FCF /* WinnerViewController.xib */; };
@@ -319,6 +320,7 @@
 		D5CDAC27228F022800A3B6D6 /* StatusChangeNotificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusChangeNotificationViewController.xib; sourceTree = "<group>"; };
 		D5CDEA222363DA300023D349 /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		D5CDEA242366281C0023D349 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		D5CDEA26236A24610023D349 /* RankingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingHelper.swift; sourceTree = "<group>"; };
 		D5D375B7226A4A9000F25FCF /* DBService+WinnerConfirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBService+WinnerConfirmation.swift"; sourceTree = "<group>"; };
 		D5D375BB226A6D3900F25FCF /* WinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerViewController.swift; sourceTree = "<group>"; };
 		D5D375BC226A6D3900F25FCF /* WinnerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WinnerViewController.xib; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				D50B051822B5CB920012C934 /* MultiPeerConnectivityHelper.swift */,
 				D5004C4F22DB7A5600752B99 /* GameRestrictionsHelper.swift */,
 				D5CDEA222363DA300023D349 /* LocationHelper.swift */,
+				D5CDEA26236A24610023D349 /* RankingHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1049,6 +1052,7 @@
 				D5CDEA252366281D0023D349 /* UIViewController+Extensions.swift in Sources */,
 				2E171B94225BA62900D40DDF /* DBService+Wins.swift in Sources */,
 				48D5C822225D325F00AFDE8F /* GeolocationClient.swift in Sources */,
+				D5CDEA27236A24620023D349 /* RankingHelper.swift in Sources */,
 				2E9FE67822558191004CA00B /* DBService.swift in Sources */,
 				2E9FE656225579E5004CA00B /* CreateAccountViewController.swift in Sources */,
 				2ECA1BCF2270C336006348B3 /* FacebookLoginViewController.swift in Sources */,

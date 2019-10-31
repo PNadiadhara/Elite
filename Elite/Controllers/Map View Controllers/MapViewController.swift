@@ -72,6 +72,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+
         callFlagFeatures()
         googleMapsHelper.setupMapViewSettings(mapView: googleMapsMapView)
         callSetups()

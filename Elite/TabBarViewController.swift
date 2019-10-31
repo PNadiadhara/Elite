@@ -34,6 +34,7 @@ class TabBarViewController: UITabBarController {
             }
             if let gamer = gamer {
                 TabBarViewController.currentGamer = gamer
+
             }
         }
     }
@@ -41,6 +42,7 @@ class TabBarViewController: UITabBarController {
         if let user = AppDelegate.authservice.getCurrentUser() {
             currentUser = user
             TabBarViewController.fetchCurrentGamer(gamerID: user.uid)
+            
         }
         let map = MapViewController()
         let feed = FeedTableViewController()
