@@ -317,8 +317,8 @@
         "Name": "Hoe Avenue Garden",
         "Location": "E/S Hoe Ave., S/O Aldus Street",
         "Num_of_Courts": "1",
-        "lat": null,
-        "lon": null
+        "lat": "40.829588",
+        "lon": "-73.8908862"
     },
     {
         "Prop_ID": "X113",
@@ -333,8 +333,8 @@
         "Name": "Jerome Park South",
         "Location": "Cross Bx. Expwy., W. 174 St., Jerome Ave.",
         "Num_of_Courts": "6",
-        "lat": null,
-        "lon": null
+        "lat": "40.8449696",
+        "lon": "-73.91384529999999"
     },
     {
         "Prop_ID": "X017",
@@ -365,8 +365,8 @@
         "Name": "Macombs Dam Park",
         "Location": "Ruppert Pl. & W. 161 St.",
         "Num_of_Courts": "24",
-        "lat": null,
-        "lon": null
+        "lat": "40.8267949",
+        "lon": "-73.9274284"
     },
     {
         "Prop_ID": "X214",
@@ -829,8 +829,8 @@
         "Name": "Bedford Playground",
         "Location": "Bedford Ave & S 9th St",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.7083436",
+        "lon": "-73.9638875"
     },
     {
         "Prop_ID": "B283",
@@ -861,16 +861,16 @@
         "Name": "Betsy Head Memorial Playground",
         "Location": "Mother Gaston & Livonia",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.664667",
+        "lon": "-73.911845"
     },
     {
         "Prop_ID": "B008",
         "Name": "BETSY HEAD PARK",
         "Location": "Mother Gaston Blvd& Livonia Ave",
         "Num_of_Courts": "6",
-        "lat": null,
-        "lon": null
+        "lat": "40.664667",
+        "lon": "-73.911845"
     },
     {
         "Prop_ID": "B109",
@@ -893,8 +893,8 @@
         "Name": "Bridge Park 3",
         "Location": "3 Prospect & Sands St",
         "Num_of_Courts": "6",
-        "lat": null,
-        "lon": null
+        "lat": "40.6942207",
+        "lon": "-73.99978469999999"
     },
     {
         "Prop_ID": "B012",
@@ -973,8 +973,8 @@
         "Name": "Classon Playground",
         "Location": "Classon & Kent Avenues",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.6893342",
+        "lon": "-73.9604123"
     },
     {
         "Prop_ID": "B077",
@@ -1093,16 +1093,16 @@
         "Name": "DYKER BEACH PARK",
         "Location": "14th Ave & 86th St",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.605625",
+        "lon": "-74.01940499999999"
     },
     {
         "Prop_ID": "B028",
         "Name": "DYKER BEACH PARK, BAY",
         "Location": "8th Cropsey Ave & Bay 8th",
         "Num_of_Courts": "12",
-        "lat": null,
-        "lon": null
+        "lat": "40.605625",
+        "lon": "-74.01940499999999"
     },
     {
         "Prop_ID": "B359",
@@ -1165,8 +1165,8 @@
         "Name": "Frost Playground",
         "Location": "Frost St & Morgan Ave",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.7187472",
+        "lon": "-73.93910489999999"
     },
     {
         "Prop_ID": "B254",
@@ -1245,8 +1245,8 @@
         "Name": "Harold Ickes",
         "Location": "Hamilton Ave & Van Brunt St",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.6827259",
+        "lon": "-74.0060943"
     },
     {
         "Prop_ID": "B285",
@@ -1269,8 +1269,8 @@
         "Name": "Heckscher Playground",
         "Location": "Grove to Linden Sts.",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.7684641",
+        "lon": "-73.9772285"
     },
     {
         "Prop_ID": "B088",
@@ -1341,8 +1341,8 @@
         "Name": "J.J. BYRNE MEMORIAL PARK",
         "Location": "4th Ave & 3rd St",
         "Num_of_Courts": "6",
-        "lat": null,
-        "lon": null
+        "lat": "40.6727125",
+        "lon": "-73.9840273"
     },
     {
         "Prop_ID": "B294",
@@ -1509,8 +1509,8 @@
         "Name": "Linwood Playground",
         "Location": "Linwood Street and Hegman Avenue",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.6661114",
+        "lon": "-73.8804057"
     },
     {
         "Prop_ID": "B099",
@@ -1525,8 +1525,8 @@
         "Name": "Manhattan Beach",
         "Location": "Oriental Blvd",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.57815799999999",
+        "lon": "-73.93892129999999"
     },
     {
         "Prop_ID": "B217",
@@ -1543,7 +1543,6 @@
         "Num_of_Courts": "4",
         "lat": "40.7074091",
         "lon": "-73.9581558"
-
     },
     {
         "Prop_ID": "B016",
@@ -2201,8 +2200,8 @@
         "Name": "175th Re. Area",
         "Location": "175 Street & Amsterdam",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.8454678",
+        "lon": "-73.936636"
     },
     {
         "Prop_ID": "M124",
@@ -2265,8 +2264,8 @@
         "Name": "Buszek Playground",
         "Location": "193 & Amsterdam",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.8537599",
+        "lon": "-73.9257492"
     },
     {
         "Prop_ID": "M155",
@@ -2321,8 +2320,8 @@
         "Name": "Coleman Playground",
         "Location": "Market St. & Monroe St.",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.7112051",
+        "lon": "-73.99365449999999"
     },
     {
         "Prop_ID": "M208E",
@@ -2369,40 +2368,40 @@
         "Name": "East River Playground",
         "Location": "120 Street & Park Avenue",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.7892847",
+        "lon": "-73.93800279999999"
     },
     {
         "Prop_ID": "M243",
         "Name": "Eugene McCabe Field",
         "Location": "120 & Park Avenue",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.8023807",
+        "lon": "-73.9415781"
     },
     {
         "Prop_ID": "M028",
         "Name": "Fort Washington Park",
         "Location": "158th Street",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.85067129999999",
+        "lon": "-73.9452115"
     },
     {
         "Prop_ID": "M028",
         "Name": "Fort Washington Park",
         "Location": "160th Street",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.85067129999999",
+        "lon": "-73.9452115"
     },
     {
         "Prop_ID": "M220",
         "Name": "Frederick Douglass Playground",
         "Location": "Amsterdam & 102St",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.797087",
+        "lon": "-73.9675621"
     },
     {
         "Prop_ID": "M159",
@@ -2441,8 +2440,8 @@
         "Name": "Happy Warrior Playground",
         "Location": "Amsterdam & W 98 St",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.7954101",
+        "lon": "-73.96868979999999"
     },
     {
         "Prop_ID": "M277",
@@ -2803,16 +2802,16 @@
         "Name": "111 Street Playground (near Playground for All Children)",
         "Location": "CORONA AVENUE/111 ST",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.7413416",
+        "lon": "-73.8489647"
     },
     {
         "Prop_ID": "Q005",
         "Name": "157TH STREET P/G(BAISLEY)",
         "Location": "157 ST & 116 AVE",
         "Num_of_Courts": "6",
-        "lat": null,
-        "lon": null
+        "lat": "40.6920557",
+        "lon": "-73.79352659999999"
     },
     {
         "Prop_ID": "Q318",
@@ -2867,8 +2866,8 @@
         "Name": "ALLEY POND (WILDFLOWER MEADOW)",
         "Location": "KINGSBURY AVE, GRAND CENTRAL PKWY",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.74239470000001",
+        "lon": "-73.73843409999999"
     },
     {
         "Prop_ID": "Q443",
@@ -2907,16 +2906,16 @@
         "Name": "BAISLEY SOUTH",
         "Location": "",
         "Num_of_Courts": "8",
-        "lat": null,
-        "lon": null
+        "lat": "40.6801802",
+        "lon": "-73.77548290000001"
     },
     {
         "Prop_ID": "Q005",
         "Name": "BAISLEY TENNIS",
         "Location": "155 ST & FOCH BLVD",
         "Num_of_Courts": "8",
-        "lat": null,
-        "lon": null
+        "lat": "40.6696429",
+        "lon": "-73.78828709999999"
     },
     {
         "Prop_ID": "Q399",
@@ -2979,24 +2978,24 @@
         "Name": "BENNINGER PLAYGROUND",
         "Location": "MADISON ST, FRESH POND RD",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.7070421",
+        "lon": "-73.898291"
     },
     {
         "Prop_ID": "Q205A",
         "Name": "BIG BUSH PARK(COURT SIDE)",
         "Location": "",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.7394722",
+        "lon": "-73.9027167"
     },
     {
         "Prop_ID": "Q205A",
         "Name": "BIG BUSH PARK(P/G SIDE)",
         "Location": "61 ST NR BKLYN QNS EXPRWY",
         "Num_of_Courts": "6",
-        "lat": null,
-        "lon": null
+        "lat": "40.7394722",
+        "lon": "-73.9027167"
     },
     {
         "Prop_ID": "Q326",
@@ -3219,8 +3218,8 @@
         "Name": "Electrichester Playground/Electric Playground",
         "Location": "W/S 164 ST, S/O 65 AVE",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.7359169",
+        "lon": "-73.8053752"
     },
     {
         "Prop_ID": "Q344",
@@ -3235,8 +3234,8 @@
         "Name": "EVERGREEN PARK(PS 68)",
         "Location": "FELIX, SENECA AVES, & 75 AVE",
         "Num_of_Courts": "0",
-        "lat": null,
-        "lon": null
+        "lat": "41.7125258",
+        "lon": "-87.70099809999999"
     },
     {
         "Prop_ID": "Q221",
@@ -3251,8 +3250,8 @@
         "Name": "FOREST PARK",
         "Location": "WOODHAVEN BLVD & FOREST PARK DR",
         "Num_of_Courts": "13",
-        "lat": null,
-        "lon": null
+        "lat": "40.7040764",
+        "lon": "-73.84591019999999"
     },
     {
         "Prop_ID": "Q381",
@@ -3267,8 +3266,8 @@
         "Name": "FRANCIS LEWIS PARK",
         "Location": "3 AVE/147 ST/E RIVER/PARSONS BLVD",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.7965619",
+        "lon": "-73.824516"
     },
     {
         "Prop_ID": "Q098",
@@ -3315,8 +3314,8 @@
         "Name": "GROVER CLEVELAND PARK",
         "Location": "FAIRVIEW AV/STANHOPE ST/GRANDVW AV",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.83418169999999",
+        "lon": "-74.28414339999999"
     },
     {
         "Prop_ID": "Q358",
@@ -3499,8 +3498,8 @@
         "Name": "KISSENA PK-FOUR WINDS PLAYGROUND",
         "Location": "BOOTH MEMORIAL AVE & 160 ST",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.74611910000001",
+        "lon": "-73.8076036"
     },
     {
         "Prop_ID": "Q407",
@@ -3571,8 +3570,8 @@
         "Name": "MACNEIL PLAYGROUND",
         "Location": "POPPENHUSEN AVE OPP 119 ST",
         "Num_of_Courts": "1",
-        "lat": null,
-        "lon": null
+        "lat": "40.7926994",
+        "lon": "-73.8521593"
     },
     {
         "Prop_ID": "Q305",
