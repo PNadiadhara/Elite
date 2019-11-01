@@ -354,9 +354,11 @@ extension CreateGameViewController: ParkListDelegate {
     func parkSelected(basketBall: BasketBall?, handBall: HandBall?) {
         if let basketBallCourt = basketBall {
             closestBasketballcourt = basketBallCourt
+            parkSelectedLabel.text = basketBallCourt.nameOfPlayground
         }
         if let handBallCourt = handBall {
             closestHandballcourt = handBallCourt
+            parkSelectedLabel.text = handBallCourt.nameOfPlayground
         }
     }
     

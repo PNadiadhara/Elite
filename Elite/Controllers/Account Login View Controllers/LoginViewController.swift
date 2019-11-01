@@ -117,7 +117,7 @@ extension LoginViewController: UITextFieldDelegate{
 extension LoginViewController : AuthServiceExistingAccountDelegate {
     func didSignInToExistingAccount(_ authservice: AuthService, user: User) {
         let tab = TabBarViewController.setTabBarVC()
-        present(tab, animated: true)
+        navigationController?.pushViewController(tab, animated: true)
         
     }
     
