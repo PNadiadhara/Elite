@@ -24,7 +24,6 @@ class GameModel: Codable {
     var winners: [String]?
     var losers: [String]?
     var isTie: Bool?
-    var formattedAdresss: String
     var parkName: String
     var lat: String
     var lon: String
@@ -42,7 +41,7 @@ class GameModel: Codable {
     static var gameName: String?
     static var gameTypeSelected: String?
     static var parkSelected: String?
-    static var formattedAddress: String?
+//    static var formattedAddress: String?
     static var parkLat: String?
     static var parkLon: String?
     static var gameId: String?
@@ -50,9 +49,9 @@ class GameModel: Codable {
     
 
     
-    static func createGame(gameName: String, gameType: String, redTeam: [String], blueTeam: [String], parkId: String, formattedAdress: String, parkName: String, lat: String, lon: String, gameId: String, players: [String]) {
+    static func createGame(gameName: String, gameType: String, redTeam: [String], blueTeam: [String], parkId: String, parkName: String, lat: String, lon: String, gameId: String, players: [String]) {
         
-        GameModel.game = GameModel(gameName: gameName, gameType: gameType, redTeam: redTeam, blueTeam: blueTeam, parkId: parkId, gameDescription: nil, gameEndTime: nil, winners: nil, losers: nil, isTie: nil, formattedAdresss: formattedAdress, parkName: parkName, lat: lat, lon: lon, gameID: gameId, witness: nil, duration: nil, players: players, gameCreatedTime: Date.getISOTimestamp())
+        GameModel.game = GameModel(gameName: gameName, gameType: gameType, redTeam: redTeam, blueTeam: blueTeam, parkId: parkId, gameDescription: nil, gameEndTime: nil, winners: nil, losers: nil, isTie: nil, parkName: parkName, lat: lat, lon: lon, gameID: gameId, witness: nil, duration: nil, players: players, gameCreatedTime: Date.getISOTimestamp())
     }
 
 
@@ -75,7 +74,6 @@ class GameModel: Codable {
         gameName = nil
         gameTypeSelected = nil
         parkSelected = nil
-        formattedAddress =  nil
         parkLat = nil
         parkLon = nil
         gameId = nil
@@ -94,7 +92,6 @@ class GameModel: Codable {
     winners: [String]?,
     losers: [String]?,
     isTie: Bool?,
-    formattedAdresss: String,
     parkName: String,
     lat: String,
     lon: String,
@@ -111,7 +108,6 @@ class GameModel: Codable {
         self.winners = winners
         self.losers = losers
         self.isTie = isTie
-        self.formattedAdresss = formattedAdresss
         self.parkName = parkName
         self.lat = lat
         self.lon = lon
@@ -133,7 +129,6 @@ class GameModel: Codable {
         self.winners = dict[GameCollectionKeys.WinnersKey] as? [String] ?? ["",""]
         self.losers = dict[GameCollectionKeys.LosersKey] as?  [String] ?? ["",""]
         self.isTie = dict[GameCollectionKeys.IsTieKey] as? Bool ?? true
-        self.formattedAdresss = dict[GameCollectionKeys.FormattedAdresssKey] as? String ?? ""
         self.parkName = dict[GameCollectionKeys.ParkNameKey] as? String ?? ""
         self.lat = dict[GameCollectionKeys.LatKey] as? String ?? ""
         self.lon = dict[GameCollectionKeys.LonKey] as? String ?? ""

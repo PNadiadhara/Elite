@@ -209,8 +209,30 @@ class RoundedTextField: UITextField {
         layer.cornerRadius = bounds.height / 2.0
         layer.borderWidth = 3.0
         layer.borderColor = #colorLiteral(red: 0.995932281, green: 0.2765177786, blue: 0.3620784283, alpha: 1)
+        clipsToBounds = true
+    }
+}
+@IBDesignable
+class RoundedTopCornersView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = 30
+        layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        layer.borderWidth = 1
+        layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner ]
+        clipsToBounds = true
+
     }
 }
 
+@IBDesignable
+class BorderButton: UIButton {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        layer.borderWidth = 1
+
+    }
+}
 
 

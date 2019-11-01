@@ -63,7 +63,6 @@ extension DBService {
                 GameCollectionKeys.DurationKey : gamePost.duration ?? na,
                 GameCollectionKeys.LosersKey : gamePost.losers ?? [na],
                 GameCollectionKeys.IsTieKey : gamePost.isTie ?? false,
-                GameCollectionKeys.FormattedAdresssKey : gamePost.formattedAdresss,
                 GameCollectionKeys.ParkNameKey : gamePost.parkName,
                 GameCollectionKeys.LatKey : gamePost.lat,
                 GameCollectionKeys.LonKey : gamePost.lon,

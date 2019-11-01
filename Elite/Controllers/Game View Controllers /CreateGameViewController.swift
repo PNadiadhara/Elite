@@ -246,8 +246,6 @@ class CreateGameViewController: UIViewController {
     
     func segueToOneVsOne() {
         let oneVsOneVc = OneVsOneViewController()
-        oneVsOneVc.modalPresentationStyle = .fullScreen
-        oneVsOneVc.modalTransitionStyle = .flipHorizontal
         oneVsOneVc.gameName = gameName
         MultiPeerConnectivityHelper.shared.hostGame()
         // multipeerConnectivityHelper.hostGame()

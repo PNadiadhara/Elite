@@ -117,6 +117,8 @@
 		D52CDC6722C04E80008BADE7 /* TimerPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CDC6522C04E80008BADE7 /* TimerPopUp.swift */; };
 		D52CDC6822C04E80008BADE7 /* TimerPopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = D52CDC6622C04E80008BADE7 /* TimerPopUp.xib */; };
 		D541FE1C236B6DAB00B77D45 /* MedalsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D541FE1B236B6DAB00B77D45 /* MedalsHelper.swift */; };
+		D5555DD1236CCBCC005867A1 /* SearchCourtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5555DCF236CCBCC005867A1 /* SearchCourtViewController.swift */; };
+		D5555DD2236CCBCC005867A1 /* SearchCourtViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5555DD0236CCBCC005867A1 /* SearchCourtViewController.xib */; };
 		D5650D3822C3261E00A012E3 /* WaitingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5650D3722C3261E00A012E3 /* WaitingView.swift */; };
 		D5650D3A22C3263F00A012E3 /* WaitingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5650D3922C3263F00A012E3 /* WaitingView.xib */; };
 		D56FE69E2262B28800A5553E /* MainTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56FE69D2262B28800A5553E /* MainTimer.swift */; };
@@ -299,6 +301,8 @@
 		D52CDC6522C04E80008BADE7 /* TimerPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPopUp.swift; sourceTree = "<group>"; };
 		D52CDC6622C04E80008BADE7 /* TimerPopUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimerPopUp.xib; sourceTree = "<group>"; };
 		D541FE1B236B6DAB00B77D45 /* MedalsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedalsHelper.swift; sourceTree = "<group>"; };
+		D5555DCF236CCBCC005867A1 /* SearchCourtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCourtViewController.swift; sourceTree = "<group>"; };
+		D5555DD0236CCBCC005867A1 /* SearchCourtViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCourtViewController.xib; sourceTree = "<group>"; };
 		D5650D3722C3261E00A012E3 /* WaitingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingView.swift; sourceTree = "<group>"; };
 		D5650D3922C3263F00A012E3 /* WaitingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaitingView.xib; sourceTree = "<group>"; };
 		D56FE69D2262B28800A5553E /* MainTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTimer.swift; sourceTree = "<group>"; };
@@ -586,6 +590,8 @@
 				2E171B96225CF86C00D40DDF /* MapViewController.xib */,
 				48F1B5C5226989DB00B53E11 /* MapViewPopupController.swift */,
 				48F1B5C6226989DB00B53E11 /* MapViewPopupController.xib */,
+				D5555DCF236CCBCC005867A1 /* SearchCourtViewController.swift */,
+				D5555DD0236CCBCC005867A1 /* SearchCourtViewController.xib */,
 			);
 			path = "Map View Controllers";
 			sourceTree = "<group>";
@@ -848,6 +854,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5555DD2236CCBCC005867A1 /* SearchCourtViewController.xib in Resources */,
 				BFB5A358228F246900EF4956 /* EliteRank.gif in Resources */,
 				D5F545512268DE6C00DB05F0 /* EndGameViewController.xib in Resources */,
 				2E171BA0225CF90700D40DDF /* LeaderboardViewController.xib in Resources */,
@@ -1117,6 +1124,7 @@
 				D5BCBBFA226F7FBD006B0015 /* TwoVsTwoProgressViewController.swift in Sources */,
 				2EF4809C22565A73008212DC /* SnapchatLoginViewController.swift in Sources */,
 				48D5C826225D33A100AFDE8F /* PrivateInfoFile.swift in Sources */,
+				D5555DD1236CCBCC005867A1 /* SearchCourtViewController.swift in Sources */,
 				2EF480A02256BE38008212DC /* PlaygroundModel.swift in Sources */,
 				D5EC8DF422DA929400FF1236 /* CreateYourEliteViewController.swift in Sources */,
 				BFED970F225E6E2900CC360B /* EloRankMethods.swift in Sources */,

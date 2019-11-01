@@ -15,27 +15,25 @@ enum GoogleMapsMVState {
     case noMarkersShown
 }
 
-enum ViewStatus {
-    case pressed
-    case notPressed
-}
+
 
 class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     func setMarkerOnMapFromTableView(_ address: String) {
         
     }
-    @IBOutlet weak var eliteView: UIView!
-    @IBOutlet weak var closeViewBttn: UIButton!
+
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var googleMapsMapView: GMSMapView!
-    @IBOutlet weak var parkTitle: UILabel!
-    @IBOutlet weak var parkAddress: UILabel!
-    @IBOutlet weak var googleMapsSearchBar: UISearchBar!
     @IBOutlet weak var handballIcon: UIButton! 
     @IBOutlet weak var basketballIcon: UIButton!
-    @IBOutlet weak var popupSearchButton: UIButton!
-    let popUpVC = MapViewPopupController()
+    @IBOutlet weak var parkDetailView: RoundedTopCornersView!
+    @IBOutlet weak var parkNameLabel: UILabel!
+    @IBOutlet weak var parkAddressLabel: UILabel!
+    @IBOutlet weak var eliteUserImage: UIImageView!
+    @IBOutlet weak var eliteUserName: UILabel!
     
+    let popUpVC = MapViewPopupController()
+    let rankingHelper = RankingHelper()
     private var googleMapsMVEditingState = GoogleMapsMVState.noMarkersShown {
         didSet{
             googleMapsHelper.clearMarkers(mapView: googleMapsMapView)
@@ -63,7 +61,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             googleMapsMapView.reloadInputViews()
         }
     }
-    var viewStatus: ViewStatus = .notPressed
+
     var pickerView = UIPickerView()
     var typeValue = String()
     static var parkSelected = String()
@@ -72,7 +70,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        googleMapsMapView.bringSubviewToFront(parkDetailView)
         callFlagFeatures()
         googleMapsHelper.setupMapViewSettings(mapView: googleMapsMapView)
         callSetups()
@@ -81,7 +79,6 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         locationManager.getUserLocation()
         googleMapsHelper.delegate = self
         googleMapsHelper.loadAllParkData()
-        googleMapsMapView.bringSubviewToFront(eliteView)
     }
     
     private func callFlagFeatures(){
@@ -90,18 +87,29 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             //          setupWest4Marker()
             userLocation = CLLocation.init(latitude: 40.7563454, longitude: -73.9239496)
         }
-        
-        if !Flag.isSearchBarOnMapReady {
-            popupSearchButton.isHidden = true
-            googleMapsSearchBar.isHidden = true 
-        }
     }
     
     private func callSetups(){
-        setupClosePopViewBttn()
         setupPickerView()
     }
-    
+    private func findRankingAtPark(parkId: String) {
+        rankingHelper.findRankingByPark(parkId: parkId) { (gamers, error) in
+            if let error = error {
+                self.showAlert(title: "No elite", message: error.localizedDescription)
+            }
+            if let gamers = gamers {
+                if let elite = gamers.first {
+                    self.eliteUserName.text = elite.username
+                    guard let profileImage = elite.profileImage,
+                    let profileImageUrl = URL(string: profileImage) else {return}
+                    self.eliteUserImage.kf.setImage(with: profileImageUrl)
+                } else {
+                    self.eliteUserName.text = "No elite at this location"
+                    self.eliteUserImage.image = nil
+                }
+            }
+        }
+    }
     private func setupWest4Marker(){
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: 40.7311, longitude: -74.0009)
@@ -115,21 +123,19 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         pickerView.dataSource = self
     }
     
-    private func setupClosePopViewBttn(){
-        closeViewBttn.layer.cornerRadius = 5
-    }
+
 
     private func changeMapViewState(to state: GoogleMapsMVState) {
         switch state {
         case .showBasketBallMarkers:
             print("Show basketball")
-            basketballIcon.setImage(UIImage(named: "basketballEmpty"), for: .normal)
-            handballIcon.setImage(UIImage(named: "handballWhite"), for: .normal)
+            basketballIcon.backgroundColor = #colorLiteral(red: 0.9882352941, green: 0.5137254902, blue: 0.2039215686, alpha: 1)
+            handballIcon.backgroundColor = #colorLiteral(red: 0.1607843137, green: 0.1725490196, blue: 0.1843137255, alpha: 1)
             googleMapsHelper.addMarkers(courts: basketballResults, type: .basketball, mapView: googleMapsMapView)
         case .showHandBallMarkers:
             print("Show handball")
-            basketballIcon.setImage(UIImage(named: "basketballEmptyWhite"), for: .normal)
-            handballIcon.setImage(UIImage(named: "handballBlueEmpty"), for: .normal)
+            basketballIcon.backgroundColor = #colorLiteral(red: 0.1607843137, green: 0.1725490196, blue: 0.1843137255, alpha: 1)
+            handballIcon.backgroundColor = #colorLiteral(red: 0, green: 0.6754498482, blue: 0.9192627668, alpha: 1)
             googleMapsHelper.addMarkers(courts: handballResults, type: .handball, mapView: googleMapsMapView)
         case .noMarkersShown:
             googleMapsHelper.clearMarkers(mapView: googleMapsMapView)
@@ -192,43 +198,14 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     }
     
     
-    private func callMoreActionSheet(){
-        let createAGame = UIAlertAction.init(title: "Create A Game", style: .default) { (susses) in
-            self.goToCreateAGameView()
-        }
-        let goToLeaderBoard = UIAlertAction.init(title: "LeaderBoard", style: .default) { (sucsses) in
-            self.goToLeaderBoard()
-        }
-        let cancel = UIAlertAction.init(title: "Cancel", style: .destructive
-            , handler: nil)
-        if !Flag.isLeaderBoardUp {
-            let ac = UIAlertController.init(title: "Let's Play a game", message: "You have the options to create a game from here or cancel", preferredStyle: .actionSheet)
-            ac.addAction(createAGame)
-            ac.addAction(cancel)
-            let backView = (ac.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
-            backView.backgroundColor = .eliteDarkMode
-            self.present(ac, animated: true, completion: nil)
-        } else {
-            let ac = UIAlertController.init(title: "Options", message: "You have the options to create a game or go to our leaderBoard", preferredStyle: .actionSheet)
-            ac.addAction(createAGame)
-            ac.addAction(goToLeaderBoard)
-            ac.addAction(cancel)
-            let backView = (ac.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
-            backView.backgroundColor = .eliteDarkMode
-            self.present(ac, animated: true, completion: nil)
-        }
-    }
-    private func goToCreateAGameView(){
-        let createGameVC = CreateGameViewController.init(nibName: "CreateGameViewController", bundle: nil)
-        createGameVC.originViewController = .mapViewController
-        createGameVC.parkSelected = MapViewController.parkSelected
-        present(createGameVC, animated: true)
-    }
+
+
     private func goToLeaderBoard(){
         
     }
     //MARK: - Actions
     @IBAction func showBasketBallMarkers(_ sender: UIButton) {
+        parkDetailView.isHidden = true
         basketballResults = googleMapsHelper.getBasketBallParksNearMe(userLocation, basketballCourts, range: range)
         if case .showHandBallMarkers = googleMapsMVEditingState {
             googleMapsMVEditingState = .showBasketBallMarkers
@@ -239,6 +216,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     }
     
     @IBAction func showHandBallMarkers(_ sender: UIButton) {
+        parkDetailView.isHidden = true
         handballResults = googleMapsHelper.getHandBallParksNearMe(userLocation, handballCourts, range: range)
         if case .showBasketBallMarkers = googleMapsMVEditingState {
             googleMapsMVEditingState = .showHandBallMarkers
@@ -249,37 +227,57 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         }
     }
     
-    @IBAction func closePopView(_ sender: UIButton) {
-        eliteView.animHide()
-        viewStatus = .notPressed
+    @IBAction func mapDetailViewCancelPressed(_ sender: Any) {
+        parkDetailView.isHidden = true
+    }
+    
+    @IBAction func mapDetailLeaderboardPressed(_ sender: Any) {
         
     }
-    @IBAction func moreBttnPressed(_ sender: UIButton){
-        callMoreActionSheet()
+    
+    @IBAction func mapDetailPlayPressed(_ sender: Any) {
+        let oneVsOneVc = OneVsOneViewController()
+        if googleMapsMVEditingState == .showBasketBallMarkers {
+            oneVsOneVc.gameName = .basketball
+            GameModel.gameName = GameName.basketball.rawValue
+            GameModel.gameTypeSelected = "1 vs. 1"
+        }
+        if googleMapsMVEditingState == .showHandBallMarkers{
+            oneVsOneVc.gameName = .handball
+            GameModel.gameName = GameName.handball.rawValue
+            GameModel.gameTypeSelected = "1 vs. 1"
+        }
+        MultiPeerConnectivityHelper.shared.hostGame()
+        // multipeerConnectivityHelper.hostGame()
+        self.navigationController?.pushViewController(oneVsOneVc, animated: true)
     }
-    @IBAction func searchButtonPressed(){
-        let popView = MapViewPopupController()
-        self.present(popView, animated: true)
-    }
+    
     
 }
 //MARK: - Extensions
 extension MapViewController: GMSMapViewDelegate
 {
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        parkTitle.text = marker.title
-        parkAddress.text = marker.snippet
-        
-        eliteView.isHidden = false
-        if viewStatus == .notPressed{
-            viewStatus = .pressed
-            eliteView.animShow()
-        } else {
-            viewStatus = .notPressed
-            eliteView.animHide()
+
+        parkDetailView.isHidden = false
+        let position = marker.position
+        let camera = GMSCameraPosition.camera(withLatitude: position.latitude, longitude: position.longitude, zoom: 14.0)
+        mapView.animate(to: camera)
+        let index = Int(marker.title!)!
+        if googleMapsMVEditingState == .showBasketBallMarkers {
+            let bbCourt = basketballResults[index]
+            parkNameLabel.text = bbCourt.nameOfPlayground!
+            GameModel.parkSelected = bbCourt.nameOfPlayground!
+            parkAddressLabel.text = bbCourt.location
+            findRankingAtPark(parkId: bbCourt.propertyID!)
         }
-        MapViewController.parkSelected = marker.title!
-        
+        if googleMapsMVEditingState == .showHandBallMarkers {
+            let hbCourt = handballResults[index]
+            parkNameLabel.text = hbCourt.nameOfPlayground!
+            GameModel.parkSelected = hbCourt.nameOfPlayground!
+            parkAddressLabel.text = hbCourt.location
+            findRankingAtPark(parkId: hbCourt.propertyID!)
+        }
         return true
     }
     
@@ -344,36 +342,6 @@ extension MapViewController: FetchDataDelegate {
         self.handballCourts = handballCourts
         BasketBall.allBasketBallCourts = basketballCourts
         HandBall.allHandBallCourts = handballCourts
-
-//        var numberOfNils = 0
-//        let sorted = handballCourts.sorted { $0.nameOfPlayground!.lowercased() < $1.nameOfPlayground!.lowercased() }
-//        for basketballCourt in sorted{
-//            if basketballCourt.lat == nil {
-//                var lats = Double()
-//                var lons = Double()
-//                GooglePlacesClient.fetchLatAndLon(from: basketballCourt.nameOfPlayground!) { (lat, lon) in
-//                    if let lat = lat {
-//                        switch lat {
-//                        case .failure(let error):
-//                            print(error)
-//                        case .success(let lat):
-//                            lats = lat
-//                        }
-//                    }
-//                    if let lon = lon {
-//                        switch lon {
-//                        case .failure(let error):
-//                            print(error)
-//                        case .success(let lon):
-//                            lons = lon
-//                        }
-//                    }
-//                    numberOfNils += 1
-//                    print("\(basketballCourt.nameOfPlayground): \"lat\": \"\(lats)\",\n \"lon\": \"\(lons)\"")
-//                }
-//            }
-//        }
-//        print("NILS \(numberOfNils)")
     }
     
     func errorLoadingData(error: AppError) {
