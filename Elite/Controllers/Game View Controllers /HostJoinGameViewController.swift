@@ -32,14 +32,6 @@ class HostJoinGameViewController: UIViewController{
 //                print(error.localizedDescription)
 //            }
 //        }
-        DBService.getBBRankingByPark(parkId: "006049d9-835c-451e-ac17-a4eaf827b397") { (error, BBPlayers) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            if let BBPlayers = BBPlayers {
-                print(BBPlayers.count)
-            }
-        }
         if !GameRestrictionsHelper.test {
            checkFor20minsLimit()
         }

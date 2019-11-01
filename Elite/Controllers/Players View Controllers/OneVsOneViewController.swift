@@ -42,7 +42,7 @@ class OneVsOneViewController: UIViewController {
 //    var invitation: Invitation?
 //    var invitations = [Invitation]()
     var gameName: GameName?
-
+    var medalHelper = MedalsHelper()
 
     var waitingView: UIView?
  
@@ -56,7 +56,7 @@ class OneVsOneViewController: UIViewController {
    
     //TO DO: Create a park
     var selectedInvitationOption: SelectedInvitationOption = .accepted
-    
+    private var rankingHelper = RankingHelper()
     private var listener: ListenerRegistration!
     
     var inviteResponse: Bool?
@@ -87,16 +87,7 @@ class OneVsOneViewController: UIViewController {
 
     }
     
-    func getPlayersRanking() {
-        DBService.getBBRankingByPark(parkId: "006049d9-835c-451e-ac17-a4eaf827b397") { (error, BBPlayers) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            if let BBPlayers = BBPlayers {
-                print(BBPlayers.count)
-            }
-        }
-    }
+
     
     func sendUserData(data: Data) {
         let action = MultiPeerConnectivityHelper.Action.sendUserInfo.rawValue
@@ -136,8 +127,32 @@ class OneVsOneViewController: UIViewController {
         redPlayerImage.kf.setImage(with: redPlayerImageURL)
         bluePlayerLabel.text = bluePlayer.username
         redPlayerLabel.text = redPlayer.username
+        if MultiPeerConnectivityHelper.shared.role == .Host {
+            findPlayerRanking(players: [redPlayer, bluePlayer])
+        }
     }
 
+    func findPlayerRanking(players: [GamerModel]) {
+        var count = 0
+        for player in players {
+            rankingHelper.findPlayerRanking(gamerId: player.gamerID, parkId: GameModel.parkId!) { (error, ranking) in
+                if let error = error {
+                    self.showAlert(title: "Error", message: error.localizedDescription)
+                }
+                if let ranking = ranking {
+                    if count == 0 {
+                      self.redPlayerRanking.text = ranking.description
+                        self.redPlayerMedalImage.image = self.medalHelper.getMedalImages(ranking: ranking)
+                    } else {
+                      self.bluePlayerRanking.text = ranking.description
+                        self.bluePlayerMedal.image = self.medalHelper.getMedalImages(ranking: ranking)
+                    }
+                    
+                }
+                count += 1
+            }
+        }
+    }
     @IBAction func playButtonPressed(_ sender: UIButton) {
         printValues()
         if MultiPeerConnectivityHelper.shared.role == .Host {
@@ -272,6 +287,9 @@ extension OneVsOneViewController: WaitingViewDelegate{
 extension OneVsOneViewController: MultipeerConnectivityGameModelDelegate {
     func hostSentGame(data: Data) {
         MultiPeerConnectivityHelper.shared.decodeDataToGameSendModel(gameModelData: data)
+        guard let redPlayer = MultiPeerConnectivityHelper.shared.redPlayer,
+        let bluePlayer = MultiPeerConnectivityHelper.shared.bluePlayer else {return}
+        findPlayerRanking(players: [redPlayer,bluePlayer])
     }
     
 

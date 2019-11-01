@@ -88,48 +88,7 @@ extension DBService {
             }
         }
     }
-    static func getBBRankingByPark(parkId: String, completion: @escaping(Error?, [GamerModel]?) -> Void) {
-        getBasketBallSortedDict(parkId: parkId) { (error, sortedPlayerWinsDict) in
-            
-            if let error = error {
-                completion(error,nil)
-            }
-            if let sortedPlayerWinsDict = sortedPlayerWinsDict {
-                var BBPlayers = [GamerModel]()
-                for (player, _) in sortedPlayerWinsDict {
-                    fetchGamer(gamerID: player, completion: { (error, gamer) in
-                        if let error = error {
-                            completion(error , nil)
-                        }
-                        if let gamer = gamer {
-                            BBPlayers.append(gamer)
-                            completion(nil , BBPlayers)
-                        }
-                    })
-                }
-                
-            }
-        }
-    }
-    static public func getBasketBallSortedDict(parkId: String, completion: @escaping(Error?, [(key: String, value: Int)]?) -> Void) {
-        // Set<String>
-        
-        fetchBasketBallPark(parkId: parkId) { (error, BBCourt) in
-            if let error = error {
-                completion(error,nil)
-            }
-            if let BBCourt = BBCourt {
-                guard let playerWins = BBCourt.playersWins else {
-                    let error = NSError(domain:"No players found in park", code: 0, userInfo:nil)
-                    completion(error, nil)
-                    return
-                }
-                let sortedPlayerWinsDict = playerWins.sorted { $0.1 > $1.1 }
-                completion(nil, sortedPlayerWinsDict)
-                
-            }
-        }
-    }
+
     static func addBbCollection(completion: @escaping () -> Void) {
         DBService.fetchHandBallParks { (error, basketball) in
             if let error = error {
