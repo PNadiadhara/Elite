@@ -493,8 +493,8 @@
         "Name": "People's Park",
         "Location": "Brook Avenue, St. Ann's Avenue, East 141 St.",
         "Num_of_Courts": "3",
-        "lat": null,
-        "lon": null
+        "lat": "40.8095284",
+        "lon": "-73.9170053"
     },
     {
         "Prop_ID": "X179",
@@ -605,8 +605,8 @@
         "Name": "Soundview Playground",
         "Location": "Metcalf and Seward Aves.",
         "Num_of_Courts": "6",
-        "lat": null,
-        "lon": null
+        "lat":  "40.8160324",
+        "lon": "-73.86962"
     },
     {
         "Prop_ID": "X221",
@@ -701,24 +701,24 @@
         "Name": "Van Cortlandt Classic Playground",
         "Location": "VC Park South and Orloff Avenue",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.8852632",
+        "lon": "-73.8904657"
     },
     {
         "Prop_ID": "X092",
         "Name": "Van Cortlandt Stadium",
         "Location": "242 St. & Broadway",
         "Num_of_Courts": "9",
-        "lat": null,
-        "lon": null
+        "lat":"40.8881406",
+        "lon": "-73.8974018"
     },
     {
         "Prop_ID": "X092",
         "Name": "Van Cortlandt Woodlawn",
         "Location": "East 239th Street& VC Park East",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.9000907",
+        "lon": "-73.87222870000001"
     },
     {
         "Prop_ID": "X124",
@@ -733,8 +733,8 @@
         "Name": "Webster Playground",
         "Location": "188 St., Webster & Park Aves.",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.8594545",
+        "lon": "-73.8929218"
     },
     {
         "Prop_ID": "X217",
@@ -749,8 +749,8 @@
         "Name": "Zimmerman Playground",
         "Location": "Barker Ave., Britton St., & Olinville Ave.",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.866178",
+        "lon": "-73.8687372"
     },
     {
         "Prop_ID": "B342",
@@ -1936,8 +1936,8 @@
         "Name": "Ramirez Playground",
         "Location": "White McKibben & Bogart Streets",
         "Num_of_Courts": "3",
-        "lat": null,
-        "lon": null
+        "lat": "40.7059548",
+        "lon": "-73.93442069999999"
     },
     {
         "Prop_ID": "B126",
@@ -1992,8 +1992,8 @@
         "Name": "Sgt Dougherty Playground",
         "Location": "Vandervoort Ave & Anthony St",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.7237367",
+        "lon": "-73.937268"
     },
     {
         "Prop_ID": "B239",
@@ -2016,8 +2016,8 @@
         "Name": "SHORE ROAD PARK (95th STREET)",
         "Location": "Shore Road & 95th",
         "Num_of_Courts": "3",
-        "lat": null,
-        "lon": null
+        "lat": "40.6336264",
+        "lon": "-74.0383549"
     },
     {
         "Prop_ID": "B163",
@@ -2056,32 +2056,32 @@
         "Name": "Steuben Plgd",
         "Location": "Flushing Ave & Steuben St",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.6974851",
+        "lon": "-73.9634665"
     },
     {
         "Prop_ID": "B087",
         "Name": "SUNSET PARK",
         "Location": "6th Ave & 41st St",
         "Num_of_Courts": "3",
-        "lat": null,
-        "lon": null
+        "lat":  "40.65272",
+        "lon": "-74.00933479999999"
     },
     {
         "Prop_ID": "B105",
         "Name": "TAAFFE PLGD.",
         "Location": "Taffee Pl & Myrtle Aves",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.6955676",
+        "lon": "-73.9607797"
     },
     {
         "Prop_ID": "B311",
         "Name": "Ten Eyck Playground",
         "Location": "Bushwick Ave & Scholes St.",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.7086251",
+        "lon": "-73.93888009999999"
     },
     {
         "Prop_ID": "B381",
@@ -2120,8 +2120,8 @@
         "Name": "UNDERHILL PLGD",
         "Location": "Underhill Ave & Prospect Pl",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.6767527",
+        "lon": "-73.9657503"
     },
     {
         "Prop_ID": "B249",
@@ -2184,8 +2184,8 @@
         "Name": "Woodruff",
         "Location": "Stanley Ave & Hemlock St",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.7509531",
+        "lon": "-73.98734879999999"
     },
     {
         "Prop_ID": "M056",
@@ -2618,8 +2618,8 @@
         "Name": "Peter Minuit Playground",
         "Location": "108 & Park Avenue",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.7947246",
+        "lon": "-73.9471576"
     },
     {
         "Prop_ID": "M233",
@@ -2650,8 +2650,8 @@
         "Name": "Riverside Park",
         "Location": "111th Street",
         "Num_of_Courts": "5",
-        "lat": null,
-        "lon": null
+        "lat": "40.8012339",
+        "lon": "-73.9723096"
     },
     {
         "Prop_ID": "M158",
@@ -2666,8 +2666,8 @@
         "Name": "Sara D. Roosevelt Park",
         "Location": "Irvington & Forsyth",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.7217408",
+        "lon": "-73.9915425"
     },
     {
         "Prop_ID": "M190",
@@ -2698,8 +2698,8 @@
         "Name": "St. Nick 141st",
         "Location": "139 & St. Nicholas",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.8212612",
+        "lon": "-73.9460266"
     },
     {
         "Prop_ID": "M198",
@@ -2722,8 +2722,8 @@
         "Name": "St.Nick 133rd",
         "Location": "133rd and St. Nicholas",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.8157083",
+        "lon": "-73.9486715"
     },
     {
         "Prop_ID": "M192",
@@ -2738,16 +2738,16 @@
         "Name": "Sunken Playground",
         "Location": "167 Street & Edgecombe Avenue",
         "Num_of_Courts": "3",
-        "lat": null,
-        "lon": null
+        "lat": "40.8380064",
+        "lon": "-73.9361107"
     },
     {
         "Prop_ID": "M047",
         "Name": "Thomas Jefferson Playground",
         "Location": "111 Street & 1 Avenue",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.7933657",
+        "lon": "-73.9352473"
     },
     {
         "Prop_ID": "M069",
@@ -2762,8 +2762,8 @@
         "Name": "Tompkins Square Park",
         "Location": "Ave. B & 10th St",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.72642949999999",
+        "lon": "-73.9817841"
     },
     {
         "Prop_ID": "M265",
@@ -3808,11 +3808,11 @@
     },
     {
         "Prop_ID": "Q104",
-        "Name": "QUEENSBRIDGE \"BABY\" PARK",
+        "Name": "QUEENSBRIDGE: BABY PARK",
         "Location": "VERNON BLVD, 21 ST, BRIDGE PLAZA S",
         "Num_of_Courts": "6",
-        "lat": null,
-        "lon": null
+        "lat": "40.7535741",
+        "lon": "-73.94594740000001"
     },
     {
         "Prop_ID": "Q300",
@@ -3851,8 +3851,8 @@
         "Name": "ROCHDALE PARK(JHS 72)",
         "Location": "MERRICK BLVD, 134 AVE",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.6744603",
+        "lon": "-73.77408419999999"
     },
     {
         "Prop_ID": "Q371",
@@ -3940,8 +3940,8 @@
         "Name": "SOBELSOHN PLAYGROUND",
         "Location": "PARK LANE S, FOREST PK. DRIVE",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.7095045",
+        "lon": "-73.8360879"
     },
     {
         "Prop_ID": "Q131",
@@ -4068,8 +4068,8 @@
         "Name": "VICTORY FIELD",
         "Location": "WOODHAVEN BLVD/MYRTLE AVE/PARK DR",
         "Num_of_Courts": "13",
-        "lat": null,
-        "lon": null
+        "lat": "40.7018546",
+        "lon": "-73.8541309"
     },
     {
         "Prop_ID": "Q320",
@@ -4116,8 +4116,8 @@
         "Name": "WILD FLOWER",
         "Location": "MEADOW GRAND CENTRAL PKWY NR 76 AVE",
         "Num_of_Courts": "4",
-        "lat": null,
-        "lon": null
+        "lat": "40.7795163",
+        "lon": "-73.98074249999999"
     },
     {
         "Prop_ID": "Q375",
@@ -4132,8 +4132,8 @@
         "Name": "WILLOW LAKE P/G(PS 196)",
         "Location": "G C PKWY BET 71-72 AVES",
         "Num_of_Courts": "1",
-        "lat": null,
-        "lon": null
+        "lat": "40.7227334",
+        "lon": "-73.837049"
     },
     {
         "Prop_ID": "Q031",
@@ -4262,8 +4262,8 @@
         "Name": "Prall Playground (I.S. 27)",
         "Location": "",
         "Num_of_Courts": "2",
-        "lat": null,
-        "lon": null
+        "lat": "40.627848",
+        "lon": "-74.117886"
     },
     {
         "Prop_ID": "R045",
