@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchPlayerViewController" customModule="Elite" customModuleProvider="target">
+            <connections>
+                <outlet property="friendSearchBar" destination="G0S-RT-6Rt" id="cLa-GQ-vdC"/>
+                <outlet property="friendsTableView" destination="pgT-fX-0g9" id="v2d-3y-5RR"/>
+                <outlet property="searchBar" destination="G0S-RT-6Rt" id="qOK-lX-Tyo"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IVH-lb-50v">
+                    <rect key="frame" x="0.0" y="44" width="414" height="134.5"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qwg-s9-bFp">
+                            <rect key="frame" x="325.5" y="35" width="75" height="75"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="75" id="53j-Uh-gLE"/>
+                                <constraint firstAttribute="width" constant="75" id="f3m-gE-XXM"/>
+                            </constraints>
+                            <state key="normal" image="qrCode"/>
+                            <connections>
+                                <action selector="scanCodePressed:" destination="-1" eventType="touchUpInside" id="91o-Ap-Aro"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press to scan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTA-ld-2eO">
+                            <rect key="frame" x="317" y="17" width="92" height="18"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbO-Ac-Pzj">
+                            <rect key="frame" x="10" y="10" width="53" height="32"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="cancelPressed:" destination="-1" eventType="touchUpInside" id="hFP-ZW-2Dv"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="Qwg-s9-bFp" firstAttribute="centerX" secondItem="cTA-ld-2eO" secondAttribute="centerX" id="DCE-Eq-t0z"/>
+                        <constraint firstItem="pbO-Ac-Pzj" firstAttribute="top" secondItem="IVH-lb-50v" secondAttribute="top" constant="10" id="WCr-OA-9ej"/>
+                        <constraint firstItem="Qwg-s9-bFp" firstAttribute="top" secondItem="cTA-ld-2eO" secondAttribute="bottom" id="Yrz-SZ-PX8"/>
+                        <constraint firstItem="pbO-Ac-Pzj" firstAttribute="leading" secondItem="IVH-lb-50v" secondAttribute="leading" constant="10" id="dMG-9t-WGq"/>
+                        <constraint firstItem="cTA-ld-2eO" firstAttribute="centerY" secondItem="pbO-Ac-Pzj" secondAttribute="centerY" id="ruu-1Y-cR9"/>
+                        <constraint firstAttribute="trailing" secondItem="cTA-ld-2eO" secondAttribute="trailing" constant="5" id="wYX-uB-ntg"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pgT-fX-0g9">
+                    <rect key="frame" x="0.0" y="234.5" width="414" height="627.5"/>
+                    <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </tableView>
+                <searchBar contentMode="redraw" placeholder="search username" translatesAutoresizingMaskIntoConstraints="NO" id="G0S-RT-6Rt">
+                    <rect key="frame" x="0.0" y="178.5" width="414" height="56"/>
+                    <color key="barTintColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+            </subviews>
+            <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="G0S-RT-6Rt" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="1Ej-fo-5kk"/>
+                <constraint firstItem="IVH-lb-50v" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="1IV-Zj-Ggf"/>
+                <constraint firstItem="IVH-lb-50v" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.15" id="8CE-fb-XMb"/>
+                <constraint firstItem="G0S-RT-6Rt" firstAttribute="top" secondItem="IVH-lb-50v" secondAttribute="bottom" id="JMY-WM-uKs"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="pgT-fX-0g9" secondAttribute="bottom" id="NKb-ej-fK8"/>
+                <constraint firstItem="IVH-lb-50v" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="T08-k4-da5"/>
+                <constraint firstItem="pgT-fX-0g9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="dJM-jO-wPa"/>
+                <constraint firstItem="G0S-RT-6Rt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="l77-UW-ztJ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pgT-fX-0g9" secondAttribute="trailing" id="onk-6c-UkC"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="IVH-lb-50v" secondAttribute="trailing" id="s4Y-HJ-S0X"/>
+                <constraint firstItem="pgT-fX-0g9" firstAttribute="top" secondItem="G0S-RT-6Rt" secondAttribute="bottom" id="x5O-lx-yN1"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="qrCode" width="1200" height="1200"/>
+    </resources>
+</document>
