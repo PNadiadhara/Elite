@@ -16,7 +16,6 @@ class TabBarViewController: UITabBarController {
     let map = MapViewController()
     let feed = FeedTableViewController()
     let create = CreateGameViewController()
-    let board = LeaderboardViewController()
     let profile = ProfileViewController.init(nibName: "ProfileViewController", bundle: nil)
     
     override func viewDidLoad() {

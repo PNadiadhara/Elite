@@ -74,6 +74,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         callFlagFeatures()
         googleMapsHelper.setupMapViewSettings(mapView: googleMapsMapView)
         callSetups()
+        GameModel.gameName = GameName.basketball.rawValue
         locationManager.delegate = self
         googleMapsMapView.delegate = self
         locationManager.getUserLocation()
@@ -201,12 +202,13 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
 
 
     private func goToLeaderBoard(){
-        
+        let leaderBoardVC = LeaderboardViewController(nibName: nil, bundle: nil, parkId: <#T##String#>, sport: <#T##String#>)
     }
     //MARK: - Actions
     @IBAction func showBasketBallMarkers(_ sender: UIButton) {
         parkDetailView.isHidden = true
         basketballResults = googleMapsHelper.getBasketBallParksNearMe(userLocation, basketballCourts, range: range)
+        GameModel.gameName = GameName.basketball.rawValue
         if case .showHandBallMarkers = googleMapsMVEditingState {
             googleMapsMVEditingState = .showBasketBallMarkers
         }
@@ -218,6 +220,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     @IBAction func showHandBallMarkers(_ sender: UIButton) {
         parkDetailView.isHidden = true
         handballResults = googleMapsHelper.getHandBallParksNearMe(userLocation, handballCourts, range: range)
+        GameModel.gameName = GameName.handball.rawValue
         if case .showBasketBallMarkers = googleMapsMVEditingState {
             googleMapsMVEditingState = .showHandBallMarkers
         }
@@ -226,27 +229,33 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             googleMapsMVEditingState = .showHandBallMarkers
         }
     }
+    @IBAction func searchPressed(_ sender: Any) {
+        let searchVC = SearchCourtViewController()
+        if googleMapsMVEditingState == .showBasketBallMarkers {
+            searchVC.gameName = GameName.basketball.rawValue
+            searchVC.basketBallCourts = basketballCourts
+        }
+        if googleMapsMVEditingState == .showHandBallMarkers {
+            searchVC.gameName = GameName.handball.rawValue
+            searchVC.handBallCourts = handballCourts
+        }
+        present(searchVC, animated: true)
+    }
     
     @IBAction func mapDetailViewCancelPressed(_ sender: Any) {
         parkDetailView.isHidden = true
     }
     
     @IBAction func mapDetailLeaderboardPressed(_ sender: Any) {
-        
+       goToLeaderBoard()
     }
     
     @IBAction func mapDetailPlayPressed(_ sender: Any) {
         let oneVsOneVc = OneVsOneViewController()
-        if googleMapsMVEditingState == .showBasketBallMarkers {
-            oneVsOneVc.gameName = .basketball
-            GameModel.gameName = GameName.basketball.rawValue
+        
+            oneVsOneVc.gameName = GameModel.gameName
             GameModel.gameTypeSelected = "1 vs. 1"
-        }
-        if googleMapsMVEditingState == .showHandBallMarkers{
-            oneVsOneVc.gameName = .handball
-            GameModel.gameName = GameName.handball.rawValue
-            GameModel.gameTypeSelected = "1 vs. 1"
-        }
+        
         MultiPeerConnectivityHelper.shared.hostGame()
         // multipeerConnectivityHelper.hostGame()
         self.navigationController?.pushViewController(oneVsOneVc, animated: true)
@@ -268,6 +277,7 @@ extension MapViewController: GMSMapViewDelegate
             let bbCourt = basketballResults[index]
             parkNameLabel.text = bbCourt.nameOfPlayground!
             GameModel.parkSelected = bbCourt.nameOfPlayground!
+            GameModel.parkId = bbCourt.propertyID
             parkAddressLabel.text = bbCourt.location
             findRankingAtPark(parkId: bbCourt.propertyID!)
         }
@@ -275,6 +285,7 @@ extension MapViewController: GMSMapViewDelegate
             let hbCourt = handballResults[index]
             parkNameLabel.text = hbCourt.nameOfPlayground!
             GameModel.parkSelected = hbCourt.nameOfPlayground!
+            GameModel.parkId = hbCourt.propertyID
             parkAddressLabel.text = hbCourt.location
             findRankingAtPark(parkId: hbCourt.propertyID!)
         }

@@ -56,6 +56,28 @@ class CircularRedImageView: UIImageView {
 }
 
 @IBDesignable
+class CircularGreenImageView: UIImageView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentMode = .scaleAspectFill
+        layer.cornerRadius = bounds.width / 2.0
+        layer.borderColor = #colorLiteral(red: 0, green: 0.7077997327, blue: 0, alpha: 1)
+        layer.borderWidth = 5
+        backgroundColor = .clear
+        clipsToBounds = true
+    }
+}
+
+@IBDesignable
+class CircularLabel: UILabel {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = bounds.width / 2.0
+        clipsToBounds = true
+    }
+}
+
+@IBDesignable
 class versusRight: UIImageView {
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -190,6 +212,17 @@ class RoundedView: UIView {
 }
 
 @IBDesignable
+class RoundedView10: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = 10.0
+        layer.borderColor = UIColor.lightGray.cgColor
+        layer.borderWidth = 0.5
+        clipsToBounds = true
+    }
+}
+
+@IBDesignable
 class RankingView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -205,10 +238,9 @@ class RankingView: UIView {
 class RoundedTextField: UITextField {
     override func layoutSubviews() {
         super.layoutSubviews()
-        backgroundColor = #colorLiteral(red: 0.1607843137, green: 0.1725490196, blue: 0.1843137255, alpha: 1)
         layer.cornerRadius = bounds.height / 2.0
-        layer.borderWidth = 3.0
-        layer.borderColor = #colorLiteral(red: 0.995932281, green: 0.2765177786, blue: 0.3620784283, alpha: 1)
+        layer.borderWidth = 1
+        layer.borderColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         clipsToBounds = true
     }
 }

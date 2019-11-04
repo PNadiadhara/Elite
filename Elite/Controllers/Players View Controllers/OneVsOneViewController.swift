@@ -41,7 +41,7 @@ class OneVsOneViewController: UIViewController {
 //    var gamerSelected: GamerModel?
 //    var invitation: Invitation?
 //    var invitations = [Invitation]()
-    var gameName: GameName?
+    var gameName: String?
     var medalHelper = MedalsHelper()
 
     var waitingView: UIView?
@@ -69,7 +69,7 @@ class OneVsOneViewController: UIViewController {
         MultiPeerConnectivityHelper.shared.multipeerGameModelDelegate = self
         playButton.isEnabled = false
 //        activityIndicator.startAnimating()
-        sportLabel.text = gameName?.rawValue.capitalized
+        sportLabel.text = gameName?.capitalized
 
         WaitingView.setViewContraints(titleText: "Waiting for\nplayers to join", isHidden: false, delegate: self, view: self.view) { (waitingView) in
             self.waitingView = waitingView
@@ -195,8 +195,7 @@ class OneVsOneViewController: UIViewController {
 
 extension OneVsOneViewController: MultipeerConnectivityPlayerWantsToJoinDelegate {
     func playerWantsToJoinGame(player: GamerModel, handler: @escaping (Bool) -> Void) {
-        let invitationPopUp = InvitationAlertViewController()
-        invitationPopUp.gamer = player
+
         invitationAlert(title: "\(player.username!) wants to join game", message: nil) { (anwser) in
             if anwser.title == "Yes" {
                 handler(true)

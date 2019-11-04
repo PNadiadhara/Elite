@@ -34,7 +34,7 @@ class ParkRankingInfoEndGameViewController: UIViewController {
         setupUI()
         rankingTableView.delegate = self
         rankingTableView.dataSource = self
-        rankingTableView.register(UINib(nibName: "LeaderboardCell", bundle: nil), forCellReuseIdentifier: "LeaderboardCell")
+        rankingTableView.register(UINib(nibName: "PlayerCell", bundle: nil), forCellReuseIdentifier: "PlayerCell")
         MultiPeerConnectivityHelper.shared.endSession()
         }
     
@@ -86,7 +86,7 @@ extension ParkRankingInfoEndGameViewController: UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "LeaderboardCell", for: indexPath) as? LeaderboardCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell", for: indexPath) as? PlayerCell else {
             fatalError()
         }
         let player = playerRanking[indexPath.row]

@@ -246,7 +246,7 @@ class CreateGameViewController: UIViewController {
     
     func segueToOneVsOne() {
         let oneVsOneVc = OneVsOneViewController()
-        oneVsOneVc.gameName = gameName
+        oneVsOneVc.gameName = gameName.rawValue
         MultiPeerConnectivityHelper.shared.hostGame()
         // multipeerConnectivityHelper.hostGame()
         self.navigationController?.pushViewController(oneVsOneVc, animated: true)
