@@ -93,8 +93,8 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     private func callSetups(){
         setupPickerView()
     }
-    private func findRankingAtPark(parkId: String) {
-        rankingHelper.findRankingByPark(parkId: parkId) { (gamers, error) in
+    private func findRankingAtPark(parkId: String,sport: String) {
+        rankingHelper.findRankingByPark(parkId: parkId, sport: sport) { (gamers, error) in
             if let error = error {
                 self.showAlert(title: "No elite", message: error.localizedDescription)
             }
@@ -202,7 +202,8 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
 
 
     private func goToLeaderBoard(){
-        let leaderBoardVC = LeaderboardViewController(nibName: nil, bundle: nil, parkId: <#T##String#>, sport: <#T##String#>)
+        let leaderBoardVC = LeaderboardViewController(nibName: nil, bundle: nil, parkId: GameModel.parkId!, sport: GameModel.gameName!)
+        self.navigationController?.pushViewController(leaderBoardVC, animated: true)
     }
     //MARK: - Actions
     @IBAction func showBasketBallMarkers(_ sender: UIButton) {
@@ -257,6 +258,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             GameModel.gameTypeSelected = "1 vs. 1"
         
         MultiPeerConnectivityHelper.shared.hostGame()
+        MultiPeerConnectivityHelper.shared.role = .Host
         // multipeerConnectivityHelper.hostGame()
         self.navigationController?.pushViewController(oneVsOneVc, animated: true)
     }
@@ -279,7 +281,7 @@ extension MapViewController: GMSMapViewDelegate
             GameModel.parkSelected = bbCourt.nameOfPlayground!
             GameModel.parkId = bbCourt.propertyID
             parkAddressLabel.text = bbCourt.location
-            findRankingAtPark(parkId: bbCourt.propertyID!)
+            findRankingAtPark(parkId: bbCourt.propertyID!, sport: SportType.basketball.rawValue)
         }
         if googleMapsMVEditingState == .showHandBallMarkers {
             let hbCourt = handballResults[index]
@@ -287,7 +289,7 @@ extension MapViewController: GMSMapViewDelegate
             GameModel.parkSelected = hbCourt.nameOfPlayground!
             GameModel.parkId = hbCourt.propertyID
             parkAddressLabel.text = hbCourt.location
-            findRankingAtPark(parkId: hbCourt.propertyID!)
+            findRankingAtPark(parkId: hbCourt.propertyID!, sport: SportType.handball.rawValue)
         }
         return true
     }

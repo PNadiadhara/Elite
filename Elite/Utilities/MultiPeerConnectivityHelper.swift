@@ -141,7 +141,7 @@ class MultiPeerConnectivityHelper: NSObject {
     
     public var joiningGame: Bool? //
     
-    private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
+    private let myPeerId = MCPeerID(displayName: TabBarViewController.currentGamer.username!)
     private var advertiserAssistant: MCAdvertiserAssistant!
     private let serviceBrowser : MCNearbyServiceBrowser
     private let serviceAdvertiser : MCNearbyServiceAdvertiser
@@ -297,6 +297,7 @@ class MultiPeerConnectivityHelper: NSObject {
             GameModel.parkId = gameSentData.parkId
             GameModel.gameName = gameSentData.gameName
             GameModel.parkSelected = gameSentData.parkName
+            GameModel.gameName = gameSentData.gameName
             
         } catch {
             print("Error decoding: \(error.localizedDescription)")

@@ -32,8 +32,8 @@
                                     <constraint firstAttribute="width" secondItem="l5f-1v-JpM" secondAttribute="height" multiplier="1:1" id="Ovh-FT-bi0"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NN4-S9-cun">
-                                <rect key="frame" x="78" y="27" width="156" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NN4-S9-cun">
+                                <rect key="frame" x="78" y="27" width="116" height="20"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -44,16 +44,23 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cOp-h5-Kzx">
+                                <rect key="frame" x="202" y="18.5" width="37" height="37"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.99593228099999997" green="0.27651777859999999" blue="0.36207842829999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="cOp-h5-Kzx" firstAttribute="centerY" secondItem="l5f-1v-JpM" secondAttribute="centerY" id="365-Bk-avQ"/>
                             <constraint firstItem="l5f-1v-JpM" firstAttribute="height" secondItem="JUn-pd-bQu" secondAttribute="height" multiplier="0.5" id="Ffi-Pp-7vn"/>
                             <constraint firstItem="Z5t-Ap-cdr" firstAttribute="leading" secondItem="JUn-pd-bQu" secondAttribute="leading" constant="10" id="O3x-WX-tqm"/>
                             <constraint firstItem="NN4-S9-cun" firstAttribute="centerY" secondItem="l5f-1v-JpM" secondAttribute="centerY" id="QuG-Ql-PKs"/>
                             <constraint firstItem="l5f-1v-JpM" firstAttribute="leading" secondItem="Z5t-Ap-cdr" secondAttribute="trailing" constant="10" id="SVC-gt-wAR"/>
                             <constraint firstItem="Z5t-Ap-cdr" firstAttribute="centerY" secondItem="JUn-pd-bQu" secondAttribute="centerY" id="TnB-lC-G7x"/>
+                            <constraint firstItem="cOp-h5-Kzx" firstAttribute="width" secondItem="l5f-1v-JpM" secondAttribute="width" id="TnY-xn-Jre"/>
                             <constraint firstItem="c31-p6-0Ya" firstAttribute="centerY" secondItem="NN4-S9-cun" secondAttribute="centerY" id="XCG-fm-o6t"/>
-                            <constraint firstItem="NN4-S9-cun" firstAttribute="width" secondItem="JUn-pd-bQu" secondAttribute="width" multiplier="0.55" id="bLb-3B-iR9"/>
+                            <constraint firstItem="cOp-h5-Kzx" firstAttribute="leading" secondItem="NN4-S9-cun" secondAttribute="trailing" constant="8" id="Zpn-Kk-id0"/>
+                            <constraint firstItem="c31-p6-0Ya" firstAttribute="leading" secondItem="cOp-h5-Kzx" secondAttribute="trailing" constant="10" id="aJh-aU-8Ie"/>
+                            <constraint firstItem="cOp-h5-Kzx" firstAttribute="height" secondItem="l5f-1v-JpM" secondAttribute="height" id="e5W-MV-vkC"/>
                             <constraint firstAttribute="trailing" secondItem="c31-p6-0Ya" secondAttribute="trailing" constant="10" id="rV5-wZ-tKG"/>
                             <constraint firstItem="l5f-1v-JpM" firstAttribute="centerY" secondItem="Z5t-Ap-cdr" secondAttribute="centerY" id="tza-B9-kGZ"/>
                             <constraint firstItem="NN4-S9-cun" firstAttribute="leading" secondItem="l5f-1v-JpM" secondAttribute="trailing" constant="10" id="wVc-UK-FRY"/>
@@ -71,6 +78,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="cellView" destination="JUn-pd-bQu" id="t0B-VN-DTW"/>
+                <outlet property="medalImage" destination="cOp-h5-Kzx" id="QgD-AI-sSf"/>
                 <outlet property="rankingLabel" destination="Z5t-Ap-cdr" id="JSJ-qk-mr2"/>
                 <outlet property="userImage" destination="l5f-1v-JpM" id="k34-9n-AvQ"/>
                 <outlet property="userName" destination="NN4-S9-cun" id="G7T-0Q-9ac"/>

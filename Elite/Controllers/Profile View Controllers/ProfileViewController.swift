@@ -99,20 +99,9 @@ class ProfileViewController: UIViewController {
     }
     
     private func fetchCurrentUser() {
-        guard let currentUser = authservice.getCurrentUser() else {
-            print("No logged user")
-            return
-        }
-        DBService.fetchGamer(gamerID: currentUser.uid) { [weak self] (error, gamer) in
-            if let error = error {
-                self?.showAlert(title: "Error fetching Gamer information", message: error.localizedDescription)
-            } else if let gamer = gamer {
-                self?.gamer = gamer
-                guard let profileImageUrl = URL(string: gamer.profileImage!) else {return}
-                self?.profileImage.kf.setImage(with: profileImageUrl, for: .normal)
-                self?.fullnameLabel.text = gamer.username
-            }
-        }
+        guard let profileImageUrl = URL(string: TabBarViewController.currentGamer.profileImage!) else {return}
+        profileImage.kf.setImage(with: profileImageUrl, for: .normal)
+        fullnameLabel.text = TabBarViewController.currentGamer.username!
     }
     
     private func fetchPlayersGames() {
@@ -137,6 +126,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as? FeedCell else {return            UITableViewCell()}
         let bluePlayer = gamePlayed.blueTeam.first!
         let redPlayer = gamePlayed.redTeam.first!
+        cell.gameTimeLabel.text = gamePlayed.gameEndTime
         if gamePlayed.gameName == GameName.basketball.rawValue {
             cell.view.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.6078431373, blue: 0.1450980392, alpha: 1)
         } else {

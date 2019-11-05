@@ -181,9 +181,8 @@ extension DBService {
         }
     }
     
-    static public func getPlayerWinsByPark(parkId: String?, completion: @escaping (Error?, Int?) -> Void) {
-        
-    }
+
+
 
 
     

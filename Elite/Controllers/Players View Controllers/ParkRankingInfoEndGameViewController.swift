@@ -48,7 +48,7 @@ class ParkRankingInfoEndGameViewController: UIViewController {
             }
         }
 
-        rankingHelper.findPlayerRanking(gamerId: TabBarViewController.currentUser.uid, parkId: GameModel.parkId!) { [weak self] error, ranking in
+        rankingHelper.findPlayerRanking(gamerId: TabBarViewController.currentUser.uid, parkId: GameModel.parkId!, sport: GameModel.gameName!) { [weak self] error, ranking in
             if let error = error {
                 self?.showAlert(title: "Error finding rankin", message: error.localizedDescription)
             }
@@ -56,7 +56,7 @@ class ParkRankingInfoEndGameViewController: UIViewController {
                 self?.userRankingLabel.text = "\(ranking)."
             }
         }
-        rankingHelper.findRankingByPark(parkId: GameModel.parkId!) { [weak self] rankedGamers, error in
+        rankingHelper.findRankingByPark(parkId: GameModel.parkId!, sport: GameModel.gameName!) { [weak self] rankedGamers, error in
             if let error = error {
                 self?.showAlert(title: "Error finding ranking", message: error.localizedDescription)
             }

@@ -128,14 +128,14 @@ class OneVsOneViewController: UIViewController {
         bluePlayerLabel.text = bluePlayer.username
         redPlayerLabel.text = redPlayer.username
         if MultiPeerConnectivityHelper.shared.role == .Host {
-            findPlayerRanking(players: [redPlayer, bluePlayer])
+            findPlayerRanking(players: [redPlayer, bluePlayer], sport: gameName!)
         }
     }
 
-    func findPlayerRanking(players: [GamerModel]) {
+    func findPlayerRanking(players: [GamerModel],sport: String) {
         var count = 0
         for player in players {
-            rankingHelper.findPlayerRanking(gamerId: player.gamerID, parkId: GameModel.parkId!) { (error, ranking) in
+            rankingHelper.findPlayerRanking(gamerId: player.gamerID, parkId: GameModel.parkId!, sport: sport) { (error, ranking) in
                 if let error = error {
                     self.showAlert(title: "Error", message: error.localizedDescription)
                 }
@@ -151,7 +151,9 @@ class OneVsOneViewController: UIViewController {
                 }
                 count += 1
             }
+            
         }
+        setupSentUI()
     }
     @IBAction func playButtonPressed(_ sender: UIButton) {
         printValues()
@@ -214,8 +216,6 @@ extension OneVsOneViewController: MultipeerConnectivityDelegate{
             let gameToSend = GameModelToSend(gameName: GameModel.gameName!, parkId: GameModel.parkId!, parkName: GameModel.parkSelected!)
             MultiPeerConnectivityHelper.shared.sendGameModel(game: gameToSend)
             setupSentUI()
-        } else {
-            setupSentUI()
         }
         
     }
@@ -277,7 +277,7 @@ extension OneVsOneViewController: MultipeerConnectivityDelegate{
 extension OneVsOneViewController: WaitingViewDelegate{
     func cancelPressed() {
         MultiPeerConnectivityHelper.shared.stopHosting()
-        dismiss(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     
@@ -288,7 +288,7 @@ extension OneVsOneViewController: MultipeerConnectivityGameModelDelegate {
         MultiPeerConnectivityHelper.shared.decodeDataToGameSendModel(gameModelData: data)
         guard let redPlayer = MultiPeerConnectivityHelper.shared.redPlayer,
         let bluePlayer = MultiPeerConnectivityHelper.shared.bluePlayer else {return}
-        findPlayerRanking(players: [redPlayer,bluePlayer])
+        findPlayerRanking(players: [redPlayer,bluePlayer], sport: GameModel.gameName!)
     }
     
 

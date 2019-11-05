@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+
 protocol CreateGameViewControllerDelegate: AnyObject {
     func generateQRCodeOfUser(qrString: String?, qrImage: UIImageView?)
 }

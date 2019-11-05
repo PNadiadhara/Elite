@@ -26,6 +26,8 @@ class LeaderboardViewController: UIViewController {
         }
     }
 
+    let rankingHelper = RankingHelper()
+    let medalHelper = MedalsHelper()
     
     @IBOutlet weak var leaderboardTableView: UITableView!
     @IBOutlet weak var firstPlayerImage: CircularRedImageView!
@@ -34,6 +36,7 @@ class LeaderboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchRanking()
         leaderboardTableView.delegate = self
         leaderboardTableView.dataSource = self
         leaderboardTableView.separatorStyle = .none
@@ -47,11 +50,22 @@ class LeaderboardViewController: UIViewController {
         self.sport = sport
     }
     
+    func fetchRanking() {
+        rankingHelper.findRankingByPark(parkId: parkId, sport: sport) { (gamers, error) in
+            if let error = error {
+                self.showAlert(title: "Error getting ranking", message: error.localizedDescription)
+            }
+            if let gamers = gamers {
+                self.players = gamers
+                
+            }
+        }
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+
 }
 
 
@@ -63,9 +77,9 @@ extension LeaderboardViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "LeaderboardCell", for: indexPath) as? LeaderboardCell else {return UITableViewCell()}
 
-        for player in players {
+        let player = players[indexPath.row]
             cell.setupCell(with: player, indexPathRow: indexPath.row, parkId: parkId, sport: sport)
-        }
+        
         return cell
     }
     

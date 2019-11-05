@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import MultipeerConnectivity
 class CreateAccountViewController: UIViewController {
     
     @IBOutlet weak var conteinerView: UIView!
@@ -81,6 +81,7 @@ class CreateAccountViewController: UIViewController {
         if password != confirmPassword {
             showAlert(title: "Passwords do not match", message: "Try again")
         } else {
+            
             authservice.createNewAccount(email: email, password: password, firstName: firstName, lastName: lastName, deviceName: UIDevice.current.name)
         }
         
