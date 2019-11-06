@@ -406,7 +406,7 @@ extension MultiPeerConnectivityHelper : MCNearbyServiceBrowserDelegate {
         NSLog("%@", "foundPeer: \(peerID)")
         NSLog("%@", "invitePeer: \(peerID)")
 //        listOfAvailableGames.append(peerID.displayName)
-        DBService.fetchGamersBasedOnDeviceName(deviceName: peerID.displayName) { (error, listOfAvailableGames) in
+        DBService.fetchGamersBasedOnUserName(userName: peerID.displayName) { (error, listOfAvailableGames) in
             if let error = error {
                 print(error.localizedDescription)
             }
@@ -447,7 +447,7 @@ extension MultiPeerConnectivityHelper : MCNearbyServiceAdvertiserDelegate {
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         NSLog("%@", "didReceiveInvitationFromPeer \(peerID)")
-        DBService.fetchGamerBasedOnDeviceName(deviceName: peerID.displayName) { (error, gamer) in
+        DBService.fetchGamerBasedOnUserName(userName: peerID.displayName) { (error, gamer) in
             if let error = error{
                 print("error fetching device name: \(error.localizedDescription)")
             }

@@ -33,7 +33,6 @@ class TabBarViewController: UITabBarController {
             }
             if let gamer = gamer {
                 TabBarViewController.currentGamer = gamer
-
             }
         }
     }

@@ -110,7 +110,7 @@ class ProfileViewController: UIViewController {
                 print(error.localizedDescription)
             }
             if let games = games {
-                self.gamesPlayed = games
+                self.gamesPlayed = games.sorted{$0.gameEndTime!.stringToDate() > $1.gameEndTime!.stringToDate()}
             }
         }
     }
@@ -124,49 +124,34 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let gamePlayed = gamesPlayed[indexPath.row]
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as? FeedCell else {return            UITableViewCell()}
-        let bluePlayer = gamePlayed.blueTeam.first!
-        let redPlayer = gamePlayed.redTeam.first!
-        cell.gameTimeLabel.text = gamePlayed.gameEndTime
+        let opponent = gamePlayed.players.filter { (player) -> Bool in
+            player != TabBarViewController.currentGamer.gamerID
+        }
+        cell.parkLabel.text = "@ \(gamePlayed.parkName)"
+        DBService.fetchGamer(gamerID: opponent.first!) { (error, opponent) in
+            if let error = error {
+                self.showAlert(title: "Error fetching gamer", message: error.localizedDescription)
+            }
+            if let opponent = opponent {
+                
+                if (gamePlayed.winners?.contains(TabBarViewController.currentGamer.gamerID))! {
+                    cell.titleLabel.text = "Won! Vs. \(opponent.username!)"
+                } else {
+                    cell.titleLabel.text = "Lost Vs. \(opponent.username!)"
+                }
+            }
+        }
+
+        cell.dateLabel.text = gamePlayed.gameEndTime
         if gamePlayed.gameName == GameName.basketball.rawValue {
             cell.view.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.6078431373, blue: 0.1450980392, alpha: 1)
+            cell.sportImage.image = UIImage(named: "basketballEmptyWhite")
         } else {
             cell.view.backgroundColor = #colorLiteral(red: 0, green: 0.6754498482, blue: 0.9192627668, alpha: 1)
+            cell.sportImage.image = UIImage(named: "handballWhite")
         }
-        DBService.fetchGamer(gamerID: bluePlayer) { (error, bluePlayer) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            if let bluePlayer = bluePlayer {
-                cell.bluePlayerLabel.text = bluePlayer.username!
-                if (gamePlayed.losers?.contains(bluePlayer.gamerID))! {
-                    cell.user2Image.alpha = 0.5
-                }
-                guard let profileImageURL = URL(string: bluePlayer.profileImage!) else {
-                    print("No user image")
-                    return
-                }
-                cell.user2Image.kf.setImage(with: profileImageURL)
-            }
-            
-            
-        }
-        DBService.fetchGamer(gamerID: redPlayer) { (error, redPlayer) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            if let redPlayer = redPlayer {
-                cell.redPlayerLabel.text = redPlayer.username!
-                if (gamePlayed.losers?.contains(redPlayer.gamerID))! {
-                    cell.user1Image.alpha = 0.5
-                }
-                guard let profileImageURL = URL(string: redPlayer.profileImage!) else {
-                    print("No user image")
-                    return
-                }
-                cell.user1Image.kf.setImage(with: profileImageURL)
-            }
-            
-        }
+        
+        
         return cell
     }
     

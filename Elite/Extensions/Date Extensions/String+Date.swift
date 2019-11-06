@@ -30,16 +30,17 @@ extension String {
         return date
     }
     
-    public func stringToDate() -> Date {
-        var date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, yyyy hh:mm a"
-        dateFormatter.timeZone = TimeZone.current
-        dateFormatter.locale = Locale.current
-        if let isoDate = dateFormatter.date(from: self) {
-            date = isoDate
+
+    
+        public func stringToDate() -> Date {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM d, yyyy hh:mm a"
+            dateFormatter.locale = .current
+            guard let date = dateFormatter.date(from: self) else {
+                return Date()
+    //            fatalError()
+            }
+            return date
         }
-        return date
-    }
 }
 //

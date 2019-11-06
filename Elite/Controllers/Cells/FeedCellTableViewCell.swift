@@ -11,15 +11,14 @@ import UIKit
 class FeedCell: UITableViewCell {
 
     @IBOutlet weak var view: UIView!
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var dateLabel: UILabel!
+    
+    @IBOutlet weak var parkLabel: UILabel!
+    
     @IBOutlet weak var sportImage: UIImageView!
-    @IBOutlet weak var user1Image: UIImageView!
-    @IBOutlet weak var redPlayerLabel: UILabel!
-    @IBOutlet weak var bluePlayerLabel: UILabel!
-    
-    @IBOutlet weak var gameTimeLabel: UILabel!
-    
-    @IBOutlet weak var user2Image: UIImageView!
-    @IBOutlet weak var sportAndParkLabel: UILabel!
     
     override func layoutSubviews() {
         super.layoutSubviews()

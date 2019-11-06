@@ -127,9 +127,9 @@ class OneVsOneViewController: UIViewController {
         redPlayerImage.kf.setImage(with: redPlayerImageURL)
         bluePlayerLabel.text = bluePlayer.username
         redPlayerLabel.text = redPlayer.username
-        if MultiPeerConnectivityHelper.shared.role == .Host {
-            findPlayerRanking(players: [redPlayer, bluePlayer], sport: gameName!)
-        }
+        
+            findPlayerRanking(players: [redPlayer, bluePlayer], sport: GameModel.gameName!)
+        
     }
 
     func findPlayerRanking(players: [GamerModel],sport: String) {
@@ -153,7 +153,7 @@ class OneVsOneViewController: UIViewController {
             }
             
         }
-        setupSentUI()
+//        setupSentUI()
     }
     @IBAction func playButtonPressed(_ sender: UIButton) {
         printValues()
@@ -286,9 +286,7 @@ extension OneVsOneViewController: WaitingViewDelegate{
 extension OneVsOneViewController: MultipeerConnectivityGameModelDelegate {
     func hostSentGame(data: Data) {
         MultiPeerConnectivityHelper.shared.decodeDataToGameSendModel(gameModelData: data)
-        guard let redPlayer = MultiPeerConnectivityHelper.shared.redPlayer,
-        let bluePlayer = MultiPeerConnectivityHelper.shared.bluePlayer else {return}
-        findPlayerRanking(players: [redPlayer,bluePlayer], sport: GameModel.gameName!)
+        setupSentUI()
     }
     
 

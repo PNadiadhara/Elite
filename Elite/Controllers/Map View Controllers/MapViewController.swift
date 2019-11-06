@@ -259,6 +259,9 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         
         MultiPeerConnectivityHelper.shared.hostGame()
         MultiPeerConnectivityHelper.shared.role = .Host
+
+        
+        GameModel.gameTypeSelected = "1 vs. 1"
         // multipeerConnectivityHelper.hostGame()
         self.navigationController?.pushViewController(oneVsOneVc, animated: true)
     }
@@ -280,6 +283,8 @@ extension MapViewController: GMSMapViewDelegate
             parkNameLabel.text = bbCourt.nameOfPlayground!
             GameModel.parkSelected = bbCourt.nameOfPlayground!
             GameModel.parkId = bbCourt.propertyID
+            GameModel.parkLat = bbCourt.lat
+            GameModel.parkLon = bbCourt.lng
             parkAddressLabel.text = bbCourt.location
             findRankingAtPark(parkId: bbCourt.propertyID!, sport: SportType.basketball.rawValue)
         }
@@ -288,6 +293,8 @@ extension MapViewController: GMSMapViewDelegate
             parkNameLabel.text = hbCourt.nameOfPlayground!
             GameModel.parkSelected = hbCourt.nameOfPlayground!
             GameModel.parkId = hbCourt.propertyID
+            GameModel.parkLat = hbCourt.lat
+            GameModel.parkLon = hbCourt.lng
             parkAddressLabel.text = hbCourt.location
             findRankingAtPark(parkId: hbCourt.propertyID!, sport: SportType.handball.rawValue)
         }

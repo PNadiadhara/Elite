@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         if let _ = AppDelegate.authservice.getCurrentUser() {
             let tab = TabBarViewController.setTabBarVC()
-            MultiPeerConnectivityHelper.shared.stopHosting()
+            
             let nav = UINavigationController(rootViewController: tab)
             tab.navigationController?.isNavigationBarHidden = true
             window = UIWindow(frame: UIScreen.main.bounds)

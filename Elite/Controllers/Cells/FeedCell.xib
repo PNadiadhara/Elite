@@ -9,81 +9,55 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="178" id="7oA-xu-pDW" customClass="FeedCell" customModule="Elite" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="508" height="178"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="137" id="7oA-xu-pDW" customClass="FeedCell" customModule="Elite" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="508" height="137"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7oA-xu-pDW" id="vpR-Z4-Uv5">
-                <rect key="frame" x="0.0" y="0.0" width="508" height="178"/>
+                <rect key="frame" x="0.0" y="0.0" width="508" height="137"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AWR-PT-jRK">
-                        <rect key="frame" x="31" y="15" width="446" height="148"/>
+                        <rect key="frame" x="31" y="15" width="446" height="107"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibraheem" translatesAutoresizingMaskIntoConstraints="NO" id="YqG-3b-s66" customClass="CircularBlueImageView" customModule="Elite" customModuleProvider="target">
-                                <rect key="frame" x="398" y="54" width="40" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="6f2-gL-8zU">
+                                <rect key="frame" x="20" y="10" width="406" height="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ohc-OO-boG">
+                                <rect key="frame" x="381" y="28.5" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="eqa-h0-OUi"/>
-                                    <constraint firstAttribute="height" constant="40" id="lrb-7P-YOM"/>
+                                    <constraint firstAttribute="width" constant="50" id="WgO-nJ-s9s"/>
+                                    <constraint firstAttribute="width" secondItem="ohc-OO-boG" secondAttribute="height" multiplier="1:1" id="nqB-Q9-ms1"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pritesh" translatesAutoresizingMaskIntoConstraints="NO" id="BAV-wj-JyW" customClass="CircularRedImageView" customModule="Elite" customModuleProvider="target">
-                                <rect key="frame" x="8" y="54" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="ClV-VK-cXg"/>
-                                    <constraint firstAttribute="width" constant="40" id="SHM-m7-wnn"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:10 PM Apr 16 2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCh-U0-x90">
-                                <rect key="frame" x="142" y="118" width="162" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dju-5q-nlN">
+                                <rect key="frame" x="80" y="43.5" width="286" height="20"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vs." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJg-fJ-pi4">
-                                <rect key="frame" x="208.5" y="62" width="29" height="24"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Pritesh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xh9-1q-ilU">
-                                <rect key="frame" x="68" y="62" width="120.5" height="24"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ibraheem" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yPV-xA-I6X">
-                                <rect key="frame" x="257.5" y="62" width="120.5" height="24"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBl-i1-2qH">
-                                <rect key="frame" x="15" y="9" width="416" height="23.5"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lxg-xr-Tq3">
+                                <rect key="frame" x="15" y="73.5" width="416" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.67450980392156867" green="0.89803921568627454" blue="0.41568627450980389" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="kCh-U0-x90" secondAttribute="bottom" constant="10" id="4cP-L0-poz"/>
-                            <constraint firstItem="hJg-fJ-pi4" firstAttribute="centerX" secondItem="AWR-PT-jRK" secondAttribute="centerX" id="5RO-rh-Bsm"/>
-                            <constraint firstItem="hJg-fJ-pi4" firstAttribute="leading" secondItem="xh9-1q-ilU" secondAttribute="trailing" constant="20" id="9rC-Lr-BIF"/>
-                            <constraint firstAttribute="trailing" secondItem="YqG-3b-s66" secondAttribute="trailing" constant="8" id="AJY-e5-lzS"/>
-                            <constraint firstItem="BAV-wj-JyW" firstAttribute="centerY" secondItem="xh9-1q-ilU" secondAttribute="centerY" id="D2o-uy-PPG"/>
-                            <constraint firstItem="yPV-xA-I6X" firstAttribute="centerY" secondItem="hJg-fJ-pi4" secondAttribute="centerY" id="Iff-bJ-hxw"/>
-                            <constraint firstItem="xh9-1q-ilU" firstAttribute="leading" secondItem="BAV-wj-JyW" secondAttribute="trailing" constant="20" id="KKa-l2-eib"/>
-                            <constraint firstItem="xBl-i1-2qH" firstAttribute="top" secondItem="AWR-PT-jRK" secondAttribute="top" constant="9" id="Ns0-h1-x7m"/>
-                            <constraint firstItem="BAV-wj-JyW" firstAttribute="leading" secondItem="AWR-PT-jRK" secondAttribute="leading" constant="8" id="Qx6-V8-p6m"/>
-                            <constraint firstItem="YqG-3b-s66" firstAttribute="leading" secondItem="yPV-xA-I6X" secondAttribute="trailing" constant="20" id="W2c-sI-xP7"/>
-                            <constraint firstAttribute="trailing" secondItem="xBl-i1-2qH" secondAttribute="trailing" constant="15" id="aB5-O0-FeE"/>
-                            <constraint firstItem="kCh-U0-x90" firstAttribute="centerX" secondItem="hJg-fJ-pi4" secondAttribute="centerX" id="ba1-lw-AC3"/>
-                            <constraint firstItem="yPV-xA-I6X" firstAttribute="leading" secondItem="hJg-fJ-pi4" secondAttribute="trailing" constant="20" id="d3K-o5-zch"/>
-                            <constraint firstItem="xBl-i1-2qH" firstAttribute="leading" secondItem="AWR-PT-jRK" secondAttribute="leading" constant="15" id="k2g-M9-dgp"/>
-                            <constraint firstItem="xh9-1q-ilU" firstAttribute="centerY" secondItem="hJg-fJ-pi4" secondAttribute="centerY" id="mOl-IC-xjH"/>
-                            <constraint firstItem="BAV-wj-JyW" firstAttribute="leading" secondItem="AWR-PT-jRK" secondAttribute="leading" constant="8" id="mYa-AH-qhc"/>
-                            <constraint firstItem="YqG-3b-s66" firstAttribute="centerY" secondItem="hJg-fJ-pi4" secondAttribute="centerY" id="tcO-oa-qwR"/>
-                            <constraint firstItem="hJg-fJ-pi4" firstAttribute="centerY" secondItem="AWR-PT-jRK" secondAttribute="centerY" id="xeZ-WX-rna"/>
+                            <constraint firstAttribute="trailing" secondItem="ohc-OO-boG" secondAttribute="trailing" constant="15" id="E72-wQ-7o8"/>
+                            <constraint firstItem="ohc-OO-boG" firstAttribute="centerY" secondItem="AWR-PT-jRK" secondAttribute="centerY" id="EjL-ia-BSK"/>
+                            <constraint firstAttribute="trailing" secondItem="6f2-gL-8zU" secondAttribute="trailing" constant="20" id="Lgw-EJ-aDX"/>
+                            <constraint firstAttribute="trailing" secondItem="Lxg-xr-Tq3" secondAttribute="trailing" constant="15" id="Voi-XD-5ay"/>
+                            <constraint firstItem="6f2-gL-8zU" firstAttribute="top" secondItem="AWR-PT-jRK" secondAttribute="top" constant="10" id="atX-tX-Syo"/>
+                            <constraint firstItem="ohc-OO-boG" firstAttribute="leading" secondItem="Dju-5q-nlN" secondAttribute="trailing" constant="15" id="cLg-Mk-UXz"/>
+                            <constraint firstItem="Lxg-xr-Tq3" firstAttribute="leading" secondItem="AWR-PT-jRK" secondAttribute="leading" constant="15" id="lLb-oR-jyr"/>
+                            <constraint firstItem="Lxg-xr-Tq3" firstAttribute="top" secondItem="Dju-5q-nlN" secondAttribute="bottom" constant="10" id="trk-pj-6ag"/>
+                            <constraint firstItem="Dju-5q-nlN" firstAttribute="centerX" secondItem="AWR-PT-jRK" secondAttribute="centerX" id="vcT-ge-q9B"/>
+                            <constraint firstItem="6f2-gL-8zU" firstAttribute="leading" secondItem="AWR-PT-jRK" secondAttribute="leading" constant="20" id="xDV-ap-gsK"/>
+                            <constraint firstItem="Dju-5q-nlN" firstAttribute="centerY" secondItem="AWR-PT-jRK" secondAttribute="centerY" id="znv-wR-F7Q"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -96,19 +70,13 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="bluePlayerLabel" destination="yPV-xA-I6X" id="vvt-v8-L28"/>
-                <outlet property="gameTimeLabel" destination="kCh-U0-x90" id="HBp-vl-57O"/>
-                <outlet property="redPlayerLabel" destination="xh9-1q-ilU" id="kZt-Db-B0e"/>
-                <outlet property="sportAndParkLabel" destination="xBl-i1-2qH" id="m3j-75-RJS"/>
-                <outlet property="user1Image" destination="BAV-wj-JyW" id="Us6-4z-AVY"/>
-                <outlet property="user2Image" destination="YqG-3b-s66" id="NKY-kf-5eJ"/>
+                <outlet property="dateLabel" destination="Lxg-xr-Tq3" id="djf-h3-0aH"/>
+                <outlet property="parkLabel" destination="Dju-5q-nlN" id="HnT-tW-aSt"/>
+                <outlet property="sportImage" destination="ohc-OO-boG" id="U0D-9K-d7S"/>
+                <outlet property="titleLabel" destination="6f2-gL-8zU" id="9yX-97-iAS"/>
                 <outlet property="view" destination="AWR-PT-jRK" id="kcL-X1-iAs"/>
             </connections>
-            <point key="canvasLocation" x="108.69565217391305" y="-147.32142857142856"/>
+            <point key="canvasLocation" x="108.69565217391305" y="-161.04910714285714"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="ibraheem" width="398" height="398"/>
-        <image name="pritesh" width="398" height="398"/>
-    </resources>
 </document>

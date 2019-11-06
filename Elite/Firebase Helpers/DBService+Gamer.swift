@@ -127,10 +127,11 @@ extension DBService {
                 }
         }
     }
-    static public func fetchGamerBasedOnDeviceName(deviceName: String, completion: @escaping(Error?, GamerModel?) -> Void) {
+    
+    static public func fetchGamerBasedOnUserName(userName: String, completion: @escaping(Error?, GamerModel?) -> Void) {
         DBService.firestoreDB
             .collection(GamerCollectionKeys.CollectionKey)
-            .whereField(GamerCollectionKeys.deviceName, isEqualTo: deviceName)
+            .whereField(GamerCollectionKeys.UserNameKey, isEqualTo: userName)
             .getDocuments { (snapshot, error) in
                 if let error = error {
                     completion(error, nil)
@@ -141,10 +142,10 @@ extension DBService {
         }
     }
     
-    static public func fetchGamersBasedOnDeviceName(deviceName: String, completion: @escaping(Error?, [GamerModel]?) -> Void) {
+    static public func fetchGamersBasedOnUserName(userName: String, completion: @escaping(Error?, [GamerModel]?) -> Void) {
         DBService.firestoreDB
             .collection(GamerCollectionKeys.CollectionKey)
-            .whereField(GamerCollectionKeys.deviceName, isEqualTo: deviceName)
+            .whereField(GamerCollectionKeys.UserNameKey, isEqualTo: userName)
             .getDocuments { (snapshot, error) in
                 if let error = error {
                     completion(error, nil)
