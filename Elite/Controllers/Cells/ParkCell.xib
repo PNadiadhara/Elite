@@ -64,6 +64,9 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="cellViewBackground" destination="rRk-x8-Vyo" id="Md0-Fx-WRf"/>
+                <outlet property="medalImage" destination="Xlv-oH-KfI" id="N3x-N1-xbk"/>
+                <outlet property="parkName" destination="Lqf-dL-vbS" id="7vK-I3-7s3"/>
+                <outlet property="rankingLabel" destination="t4q-vE-HmW" id="MZq-bh-i6J"/>
             </connections>
             <point key="canvasLocation" x="165.94202898550725" y="121.54017857142857"/>
         </tableViewCell>

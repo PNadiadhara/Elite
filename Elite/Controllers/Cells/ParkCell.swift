@@ -11,6 +11,10 @@ import UIKit
 class ParkCell: UITableViewCell {
 
     @IBOutlet weak var cellViewBackground: UIView!
+    @IBOutlet weak var parkName: UILabel!
+    @IBOutlet weak var medalImage: UIImageView!
+    @IBOutlet weak var rankingLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         cellViewBackground.layer.cornerRadius = 10

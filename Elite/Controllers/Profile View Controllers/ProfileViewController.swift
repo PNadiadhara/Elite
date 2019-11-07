@@ -45,6 +45,7 @@ class ProfileViewController: UIViewController {
         }
     }
     let gamePostViewContent = GamePostView()
+    var friends = [GamerModel]()
     private var gamesPlayed = [GameModel]() {
         didSet {
             DispatchQueue.main.async {
@@ -180,8 +181,19 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return gamesPlayed.count
+        switch showView {
+        case .games:
+            return gamesPlayed.count
+        case .parks:
+            return gamesPlayed.count
+        case .friends:
+            return friends.count
+        default:
+            return 0
+        }
+        
     }
+    
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch showView {
@@ -216,7 +228,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             }
             return cell
         case .parks:
+            let gamePlayed = gamesPlayed[indexPath.row]
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ParkCell", for: indexPath) as? ParkCell else {return UITableViewCell()}
+            cell.parkName.text = gamePlayed.parkName
             return cell
         default:
           print("")
