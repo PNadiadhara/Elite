@@ -46,7 +46,7 @@ class HostJoinGameViewController: UIViewController{
     
 
     func checkFor20minsLimit() {
-        GameRestrictionsHelper.checkIfGameIsWithin20Mins(gamerId: TabBarViewController.currentUser.uid) { (error, okayToPlay, timeLeft) in
+        GameRestrictionsHelper.checkIfGameIsWithin20Mins(gamerId: GamerModel.currentGamer.gamerID) { (error, okayToPlay, timeLeft) in
             if let error = error {
                 print(error.localizedDescription)
             }

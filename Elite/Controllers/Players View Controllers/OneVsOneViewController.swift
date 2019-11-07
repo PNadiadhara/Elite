@@ -105,7 +105,7 @@ class OneVsOneViewController: UIViewController {
 
     func fetchAndSendUser() {
         
-        let gamer = TabBarViewController.currentGamer
+        let gamer = GamerModel.currentGamer
             if let gamer = gamer {
                 do{
                     let data = try PropertyListEncoder().encode(gamer)
@@ -225,13 +225,13 @@ extension OneVsOneViewController: MultipeerConnectivityDelegate{
             let playerData =  try PropertyListDecoder().decode(GamerModel.self, from: data)
             
             if role == MultiPeerConnectivityHelper.Role.Guest.rawValue {
-                MultiPeerConnectivityHelper.shared.redPlayer = TabBarViewController.currentGamer
+                MultiPeerConnectivityHelper.shared.redPlayer = GamerModel.currentGamer
                 MultiPeerConnectivityHelper.shared.bluePlayer = playerData
                 print("Red Player: \(String(describing: MultiPeerConnectivityHelper.shared.bluePlayer!.username))")
 
             }
             if role == MultiPeerConnectivityHelper.Role.Host.rawValue {
-                MultiPeerConnectivityHelper.shared.bluePlayer = TabBarViewController.currentGamer
+                MultiPeerConnectivityHelper.shared.bluePlayer = GamerModel.currentGamer
                 MultiPeerConnectivityHelper.shared.redPlayer = playerData
                 print("Blue Player:  \(String(describing: MultiPeerConnectivityHelper.shared.redPlayer!.username))")
                

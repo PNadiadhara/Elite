@@ -141,7 +141,7 @@ class MultiPeerConnectivityHelper: NSObject {
     
     public var joiningGame: Bool? //
     
-    private let myPeerId = MCPeerID(displayName: TabBarViewController.currentGamer.username!)
+    private let myPeerId = MCPeerID(displayName: GamerModel.currentGamer.username!)
     private var advertiserAssistant: MCAdvertiserAssistant!
     private let serviceBrowser : MCNearbyServiceBrowser
     private let serviceAdvertiser : MCNearbyServiceAdvertiser

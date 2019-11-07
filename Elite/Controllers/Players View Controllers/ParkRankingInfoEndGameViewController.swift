@@ -41,14 +41,14 @@ class ParkRankingInfoEndGameViewController: UIViewController {
     func setupUI() {
         sportLabel.text = GameModel.gameName?.capitalized
         nameOfPark.text = GameModel.parkSelected
-        DBService.findPlayersWinsAtPark(parkId: GameModel.parkId!, gamerId: TabBarViewController.currentGamer.gamerID, sport: GameModel.gameName!) { (wins) in
+        DBService.findPlayersWinsAtPark(parkId: GameModel.parkId!, gamerId: GamerModel.currentGamer.gamerID, sport: GameModel.gameName!) { (wins) in
             
-            DBService.findPlayersLossesAtPark(parkId: GameModel.parkId!, gamerId: TabBarViewController.currentGamer.gamerID, sport: GameModel.gameName!) { (loses) in
+            DBService.findPlayersLossesAtPark(parkId: GameModel.parkId!, gamerId: GamerModel.currentGamer.gamerID, sport: GameModel.gameName!) { (loses) in
                 self.winsLabel.text = "Wins: \(wins) Losses: \(loses)"
             }
         }
 
-        rankingHelper.findPlayerRanking(gamerId: TabBarViewController.currentUser.uid, parkId: GameModel.parkId!, sport: GameModel.gameName!) { [weak self] error, ranking in
+        rankingHelper.findPlayerRanking(gamerId: GamerModel.currentGamer.gamerID, parkId: GameModel.parkId!, sport: GameModel.gameName!) { [weak self] error, ranking in
             if let error = error {
                 self?.showAlert(title: "Error finding rankin", message: error.localizedDescription)
             }

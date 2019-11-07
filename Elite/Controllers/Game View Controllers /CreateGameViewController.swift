@@ -78,7 +78,7 @@ class CreateGameViewController: UIViewController {
         super.viewDidLoad()
         locationManager.delegate = self
 
-        DBService.fetchPlayersGamesPlayed(gamerId: TabBarViewController.currentGamer.gamerID) { (error, games) in
+        DBService.fetchPlayersGamesPlayed(gamerId: GamerModel.currentGamer.gamerID) { (error, games) in
             if let error = error {
                 self.showAlert(title: "Error fetching games", message: error.localizedDescription)
             }
@@ -261,8 +261,7 @@ class CreateGameViewController: UIViewController {
         let twoVsTwoVc = TwoVsTwoViewController.init(nibName: "TwoVsTwoViewController", bundle: nil)
         twoVsTwoVc.modalPresentationStyle = .fullScreen
         twoVsTwoVc.modalTransitionStyle = .flipHorizontal
-        twoVsTwoVc.gameName = gameName
-        twoVsTwoVc.gameTypeSelected = .twoVsTwo
+
         present(twoVsTwoVc, animated: true)
     }
     
