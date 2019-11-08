@@ -14,7 +14,10 @@ class ParkCell: UITableViewCell {
     @IBOutlet weak var parkName: UILabel!
     @IBOutlet weak var medalImage: UIImageView!
     @IBOutlet weak var rankingLabel: UILabel!
+    @IBOutlet weak var sportLabel: UILabel!
     
+    private let rankingHelper = RankingHelper()
+    private let medalHelper = MedalsHelper()
     override func awakeFromNib() {
         super.awakeFromNib()
         cellViewBackground.layer.cornerRadius = 10
@@ -30,4 +33,20 @@ class ParkCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func setupCell(with gamePlayed: GameModel) {
+        parkName.text = gamePlayed.parkName
+        sportLabel.text = gamePlayed.gameName.capitalized
+        
+        rankingHelper.findPlayerRanking(gamerId: GamerModel.currentGamer.gamerID, parkId: gamePlayed.parkId, sport: gamePlayed.gameName) { (error, ranking) in
+            if let ranking = ranking {
+                self.medalImage.image = self.medalHelper.getMedalImages(ranking: ranking)
+                DBService.findPlayersWinsAtPark(parkId: gamePlayed.parkId, gamerId: GamerModel.currentGamer.gamerID, sport: gamePlayed.gameName) { (wins) in
+                    DBService.findPlayersLossesAtPark(parkId: gamePlayed.parkId, gamerId: GamerModel.currentGamer.gamerID, sport: gamePlayed.gameName) { (losses) in
+                        self.rankingLabel.text = "#\(ranking) W:\(wins) - L:\(losses)"
+                        
+                    }
+                }
+            }
+        }
+    }
 }

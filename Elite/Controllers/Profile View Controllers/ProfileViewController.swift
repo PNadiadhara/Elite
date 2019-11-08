@@ -46,6 +46,7 @@ class ProfileViewController: UIViewController {
     }
     let gamePostViewContent = GamePostView()
     var friends = [GamerModel]()
+    var parks = [GameModel]()
     private var gamesPlayed = [GameModel]() {
         didSet {
             DispatchQueue.main.async {
@@ -124,6 +125,15 @@ class ProfileViewController: UIViewController {
             }
             if let games = games {
                 self.gamesPlayed = games.sorted{$0.gameEndTime!.stringToDate() > $1.gameEndTime!.stringToDate()}
+                
+                for park in self.gamesPlayed {
+                    if !self.parks.contains(where: { (game) -> Bool in
+                        game.parkName == park.parkName && game.gameName == park.gameName
+                    }){
+                        self.parks.append(park)
+                    }
+                }
+                
             }
         }
     }
@@ -185,7 +195,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         case .games:
             return gamesPlayed.count
         case .parks:
-            return gamesPlayed.count
+            return parks.count
         case .friends:
             return friends.count
         default:
@@ -200,37 +210,12 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         case .games:
             let gamePlayed = gamesPlayed[indexPath.row]
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as? FeedCell else {return            UITableViewCell()}
-            let opponent = gamePlayed.players.filter { (player) -> Bool in
-                player != GamerModel.currentGamer.gamerID
-            }
-            cell.parkLabel.text = "@ \(gamePlayed.parkName)"
-            DBService.fetchGamer(gamerID: opponent.first!) { (error, opponent) in
-                if let error = error {
-                    self.showAlert(title: "Error fetching gamer", message: error.localizedDescription)
-                }
-                if let opponent = opponent {
-                    
-                    if (gamePlayed.winners?.contains(GamerModel.currentGamer.gamerID))! {
-                        cell.titleLabel.text = "Won! Vs. \(opponent.username!)"
-                    } else {
-                        cell.titleLabel.text = "Lost Vs. \(opponent.username!)"
-                    }
-                }
-            }
-
-            cell.dateLabel.text = gamePlayed.gameEndTime
-            if gamePlayed.gameName == GameName.basketball.rawValue {
-                cell.view.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.6078431373, blue: 0.1450980392, alpha: 1)
-                cell.sportImage.image = UIImage(named: "basketballEmptyWhite")
-            } else {
-                cell.view.backgroundColor = #colorLiteral(red: 0, green: 0.6754498482, blue: 0.9192627668, alpha: 1)
-                cell.sportImage.image = UIImage(named: "handballWhite")
-            }
+            cell.setupCell(with: gamePlayed)
             return cell
         case .parks:
-            let gamePlayed = gamesPlayed[indexPath.row]
+            let park = parks[indexPath.row]
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ParkCell", for: indexPath) as? ParkCell else {return UITableViewCell()}
-            cell.parkName.text = gamePlayed.parkName
+            cell.setupCell(with: park)
             return cell
         default:
           print("")
