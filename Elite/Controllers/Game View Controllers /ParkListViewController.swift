@@ -64,7 +64,7 @@ class ParkListViewController: UIViewController {
         switch typeOfList {
         case .AvailableGameList:
             listTitleLabel.text = "Select Player"
-            parkListTableView.register(UINib(nibName: "LeaderboardCell", bundle: nil), forCellReuseIdentifier: "LeaderboardCell")
+            parkListTableView.register(UINib(nibName: "PlayerCell", bundle: nil), forCellReuseIdentifier: "PlayerCell")
             parkListTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
             return
         case .ParkList:
@@ -121,7 +121,7 @@ extension ParkListViewController: UITableViewDelegate, UITableViewDataSource {
 
         switch typeOfList {
         case .AvailableGameList:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "LeaderboardCell", for: indexPath) as? LeaderboardCell else {return UITableViewCell()}
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell", for: indexPath) as? PlayerCell else {return UITableViewCell()}
             let gameName = availableGames[indexPath.row]
             cell.userName.text = gameName.username
             cell.profileImage.kf.setImage(with: URL(string: gameName.profileImage!))

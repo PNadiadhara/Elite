@@ -32,14 +32,6 @@ class HostJoinGameViewController: UIViewController{
 //                print(error.localizedDescription)
 //            }
 //        }
-        DBService.getBBRankingByPark(parkId: "006049d9-835c-451e-ac17-a4eaf827b397") { (error, BBPlayers) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            if let BBPlayers = BBPlayers {
-                print(BBPlayers.count)
-            }
-        }
         if !GameRestrictionsHelper.test {
            checkFor20minsLimit()
         }
@@ -54,7 +46,7 @@ class HostJoinGameViewController: UIViewController{
     
 
     func checkFor20minsLimit() {
-        GameRestrictionsHelper.checkIfGameIsWithin20Mins(gamerId: TabBarViewController.currentUser.uid) { (error, okayToPlay, timeLeft) in
+        GameRestrictionsHelper.checkIfGameIsWithin20Mins(gamerId: GamerModel.currentGamer.gamerID) { (error, okayToPlay, timeLeft) in
             if let error = error {
                 print(error.localizedDescription)
             }

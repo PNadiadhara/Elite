@@ -84,8 +84,8 @@ class CreateYourEliteViewController: UIViewController {
                 if let url = url {
                     self.authservice.updateUserProfile(user: user, username: userName)
                     DBService.updateUserProfileImage(userId: user.uid, imageUrl: url.absoluteString)
-                    let tab = TabBarViewController.setTabBarVC()
-                    self.navigationController?.pushViewController(tab, animated: true)
+                    let loadingScreen = LoadingViewController(nibName: nil, bundle: nil, gamerID: user.uid)
+                    self.present(loadingScreen, animated: true)
                     
 //                    DBService.updateProfileImage(blogger: self.blogger, imageUrl: url.absoluteString)
 //                    self.performSegue(withIdentifier: "Unwind From Edit Profile", sender: self)

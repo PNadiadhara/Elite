@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+
 protocol CreateGameViewControllerDelegate: AnyObject {
     func generateQRCodeOfUser(qrString: String?, qrImage: UIImageView?)
 }
@@ -77,7 +78,7 @@ class CreateGameViewController: UIViewController {
         super.viewDidLoad()
         locationManager.delegate = self
 
-        DBService.fetchPlayersGamesPlayed(gamerId: TabBarViewController.currentGamer.gamerID) { (error, games) in
+        DBService.fetchPlayersGamesPlayed(gamerId: GamerModel.currentGamer.gamerID) { (error, games) in
             if let error = error {
                 self.showAlert(title: "Error fetching games", message: error.localizedDescription)
             }
@@ -246,9 +247,7 @@ class CreateGameViewController: UIViewController {
     
     func segueToOneVsOne() {
         let oneVsOneVc = OneVsOneViewController()
-        oneVsOneVc.modalPresentationStyle = .fullScreen
-        oneVsOneVc.modalTransitionStyle = .flipHorizontal
-        oneVsOneVc.gameName = gameName
+        oneVsOneVc.gameName = gameName.rawValue
         MultiPeerConnectivityHelper.shared.hostGame()
         // multipeerConnectivityHelper.hostGame()
         self.navigationController?.pushViewController(oneVsOneVc, animated: true)
@@ -262,8 +261,7 @@ class CreateGameViewController: UIViewController {
         let twoVsTwoVc = TwoVsTwoViewController.init(nibName: "TwoVsTwoViewController", bundle: nil)
         twoVsTwoVc.modalPresentationStyle = .fullScreen
         twoVsTwoVc.modalTransitionStyle = .flipHorizontal
-        twoVsTwoVc.gameName = gameName
-        twoVsTwoVc.gameTypeSelected = .twoVsTwo
+
         present(twoVsTwoVc, animated: true)
     }
     
@@ -354,9 +352,11 @@ extension CreateGameViewController: ParkListDelegate {
     func parkSelected(basketBall: BasketBall?, handBall: HandBall?) {
         if let basketBallCourt = basketBall {
             closestBasketballcourt = basketBallCourt
+            parkSelectedLabel.text = basketBallCourt.nameOfPlayground
         }
         if let handBallCourt = handBall {
             closestHandballcourt = handBallCourt
+            parkSelectedLabel.text = handBallCourt.nameOfPlayground
         }
     }
     

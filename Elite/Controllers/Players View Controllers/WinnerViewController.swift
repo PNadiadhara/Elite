@@ -52,7 +52,7 @@ class WinnerViewController: UIViewController {
 
     
     func hostUpdateGameModelToFireBase(){
-        DBService.updateGamesByLocation(parkId: GameModel.parkId ?? "Error", sport: GameModel.gameName!)
+
         if MultiPeerConnectivityHelper.shared.role == .Host {
 //            MultiPeerConnectivityHelper.shared.sendParkID(parkId: GameModel.parkId ?? "") {
                 let timeStamp = Date.getISOTimestamp()
@@ -82,7 +82,8 @@ class WinnerViewController: UIViewController {
         setupConfetti(confettiView: confettiView, intensity: 0.80)
         if !isTie {
             guard let winner = winner else {return}
-            if winner.username == TabBarViewController.currentGamer.username {
+            if winner.username == GamerModel.currentGamer.username {
+                DBService.updateWinsByLocation(parkId: GameModel.parkId ?? "Error", sport: GameModel.gameName!)
                 confettiView.startConfetti()
                 userResultLabel.text = "You won!"
                 continueButton.isHidden = false

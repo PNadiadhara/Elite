@@ -63,7 +63,6 @@ extension DBService {
                 GameCollectionKeys.DurationKey : gamePost.duration ?? na,
                 GameCollectionKeys.LosersKey : gamePost.losers ?? [na],
                 GameCollectionKeys.IsTieKey : gamePost.isTie ?? false,
-                GameCollectionKeys.FormattedAdresssKey : gamePost.formattedAdresss,
                 GameCollectionKeys.ParkNameKey : gamePost.parkName,
                 GameCollectionKeys.LatKey : gamePost.lat,
                 GameCollectionKeys.LonKey : gamePost.lon,
@@ -130,7 +129,7 @@ extension DBService {
 
     }
     static public func fetchGamesWherePlayersPlayedEachOther(gamersId: String, completion: @escaping (Error? , [GameModel]?) -> Void) {
-        let players = [TabBarViewController.currentUser.uid, gamersId]
+        let players = [GamerModel.currentGamer.gamerID, gamersId]
         let query = firestoreDB.collection(GameCollectionKeys.CollectionKey)
         query.getDocuments { (snapshot, error) in
             if let error = error {
@@ -160,6 +159,21 @@ extension DBService {
         }
     }
     
+    static public func fetchGamesPlayedAtPark(parkId: String, completion: @escaping(Error?, [GameModel]?) -> Void) {
+        DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).whereField(GameCollectionKeys.ParkId, isEqualTo: parkId).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(error,nil)
+            }
+            if let snapshot = snapshot?.documents {
+                var gamesAtPark = [GameModel]()
+                for game in snapshot {
+                    gamesAtPark.append(GameModel(dict: game.data()))
+                }
+                completion(nil, gamesAtPark)
+            }
+        }
+    }
+    
     static public func findPlayersWinsAtPark(parkId: String, gamerId: String, sport: String, complete: @escaping(Int) -> Void) {
         
         fetchPlayersGamePlayedAtPark(parkId: parkId, gamerId: gamerId) { (error, games) in
@@ -182,9 +196,8 @@ extension DBService {
         }
     }
     
-    static public func getPlayerWinsByPark(parkId: String?, completion: @escaping (Error?, Int?) -> Void) {
-        
-    }
+    
+
 
 
     

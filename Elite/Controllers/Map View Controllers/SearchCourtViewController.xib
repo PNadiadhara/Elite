@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchCourtViewController" customModule="Elite" customModuleProvider="target">
+            <connections>
+                <outlet property="searchBar" destination="Dlq-bb-B9T" id="eq1-mT-TV6"/>
+                <outlet property="tableView" destination="dLp-zI-k4Q" id="niD-5y-PjL"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dat-i2-2FQ">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="147.33333333333334"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search Court" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSP-0B-FFC">
+                            <rect key="frame" x="15" y="45" width="384" height="42"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="35"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="Dlq-bb-B9T">
+                            <rect key="frame" x="10" y="92.333333333333329" width="394" height="44.999999999999986"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="754-bg-gJv"/>
+                            </constraints>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="searchField.textColor">
+                                    <color key="value" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </searchBar>
+                    </subviews>
+                    <color key="backgroundColor" red="0.14154749010000001" green="0.14956755790000001" blue="0.16078951080000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Dlq-bb-B9T" secondAttribute="bottom" constant="10" id="Ciu-2g-PdX"/>
+                        <constraint firstItem="Dlq-bb-B9T" firstAttribute="leading" secondItem="dat-i2-2FQ" secondAttribute="leading" constant="10" id="EkK-76-zsr"/>
+                        <constraint firstAttribute="trailing" secondItem="Dlq-bb-B9T" secondAttribute="trailing" constant="10" id="QsD-P9-dCh"/>
+                        <constraint firstItem="MSP-0B-FFC" firstAttribute="top" secondItem="dat-i2-2FQ" secondAttribute="top" constant="45" id="bMf-Ue-1Ys"/>
+                        <constraint firstAttribute="trailing" secondItem="MSP-0B-FFC" secondAttribute="trailing" constant="15" id="bxw-zC-QNS"/>
+                        <constraint firstItem="MSP-0B-FFC" firstAttribute="leading" secondItem="dat-i2-2FQ" secondAttribute="leading" constant="15" id="lPZ-ua-zM1"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dLp-zI-k4Q">
+                    <rect key="frame" x="0.0" y="147.33333333333331" width="414" height="588.66666666666674"/>
+                    <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="dLp-zI-k4Q" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6ki-ta-zwv"/>
+                <constraint firstItem="dat-i2-2FQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="H3X-xj-a8A"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dLp-zI-k4Q" secondAttribute="bottom" id="JgZ-w6-c8x"/>
+                <constraint firstItem="dLp-zI-k4Q" firstAttribute="top" secondItem="dat-i2-2FQ" secondAttribute="bottom" id="SsP-rd-Ybc"/>
+                <constraint firstItem="dat-i2-2FQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="dp5-gK-T0l"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dLp-zI-k4Q" secondAttribute="trailing" id="npD-GS-SbW"/>
+                <constraint firstItem="dat-i2-2FQ" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.2" id="p32-nj-sGj"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dat-i2-2FQ" secondAttribute="trailing" id="q2u-be-cbi"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="139" y="98"/>
+        </view>
+    </objects>
+</document>
