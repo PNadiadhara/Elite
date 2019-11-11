@@ -24,13 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey(PrivateInfoFile.GoogleMapsApiKey)
         FirebaseApp.configure()
         window = UIWindow(frame: UIScreen.main.bounds)
-        if let _ = AppDelegate.authservice.getCurrentUser() {
-            let tab = TabBarViewController.setTabBarVC()
-            MultiPeerConnectivityHelper.shared.stopHosting()
-            let nav = UINavigationController(rootViewController: tab)
-            tab.navigationController?.isNavigationBarHidden = true
+        if let user = AppDelegate.authservice.getCurrentUser() {
+            let loadingScreen = LoadingViewController(nibName: nil, bundle: nil, gamerID: user.uid)
+
             window = UIWindow(frame: UIScreen.main.bounds)
-            window?.rootViewController = nav
+            window?.rootViewController = loadingScreen
             
         } else {
             let storyboard = UIStoryboard(name: "LoginView", bundle: nil)

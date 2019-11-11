@@ -32,16 +32,14 @@ class GoogleMapHelper {
     
     public func addMarkers(courts: [Court], type: SportType, mapView: GMSMapView) {
         var googleMarkers = [GMSMarker]()
-        
+        var index = 0
         let filteredCourts = courts.filter { $0.type == type}
         print("Number of courts: ",filteredCourts.count)
         for court in filteredCourts {
             let locations = CLLocationCoordinate2D(latitude: Double(court.lat ?? "0.0")!, longitude:  Double(court.lng ?? "0.0")!)
             let marker = GMSMarker()
-            marker.title = court.nameOfPlayground ?? "No name"
-            marker.snippet = court.location ?? "No location"
+            marker.title = index.description
             marker.position = locations
-            GameModel.formattedAddress = marker.snippet
             switch court.type {
             case .basketball:
                 marker.icon = GMSMarker.markerImage(with: .orange)
@@ -50,6 +48,7 @@ class GoogleMapHelper {
                 //marker.iconView = UIImage.init(named: "eliteMarker")
             }
             googleMarkers.append(marker)
+            index += 1
         }
         googleMarkers.forEach { (marker) in
             marker.map = mapView

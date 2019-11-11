@@ -84,7 +84,7 @@ class CreateYourEliteViewController: UIViewController {
                 if let url = url {
                     self.authservice.updateUserProfile(user: user, username: userName)
                     DBService.updateUserProfileImage(userId: user.uid, imageUrl: url.absoluteString)
-                    let tab = TabBarViewController.setTabBarVC()
+                    let tab = TabBarViewController()
                     self.navigationController?.pushViewController(tab, animated: true)
                     
 //                    DBService.updateProfileImage(blogger: self.blogger, imageUrl: url.absoluteString)

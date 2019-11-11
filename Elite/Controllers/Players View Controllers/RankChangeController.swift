@@ -20,7 +20,7 @@ var rank = 2700
         
         
         var highestRank = 3000
-        playerImageView.image = UIImage(named: TabBarViewController.currentUser.displayName! + "FightingLeft")
+
         currentRankScore.text = String(rank)
         highestRankScore.text = String(highestRank)
         updateRank()

@@ -34,21 +34,21 @@ class ParkRankingInfoEndGameViewController: UIViewController {
         setupUI()
         rankingTableView.delegate = self
         rankingTableView.dataSource = self
-        rankingTableView.register(UINib(nibName: "LeaderboardCell", bundle: nil), forCellReuseIdentifier: "LeaderboardCell")
+        rankingTableView.register(UINib(nibName: "PlayerCell", bundle: nil), forCellReuseIdentifier: "PlayerCell")
         MultiPeerConnectivityHelper.shared.endSession()
         }
     
     func setupUI() {
         sportLabel.text = GameModel.gameName?.capitalized
         nameOfPark.text = GameModel.parkSelected
-        DBService.findPlayersWinsAtPark(parkId: GameModel.parkId!, gamerId: TabBarViewController.currentGamer.gamerID, sport: GameModel.gameName!) { (wins) in
+        DBService.findPlayersWinsAtPark(parkId: GameModel.parkId!, gamerId: GamerModel.currentGamer.gamerID, sport: GameModel.gameName!) { (wins) in
             
-            DBService.findPlayersLossesAtPark(parkId: GameModel.parkId!, gamerId: TabBarViewController.currentGamer.gamerID, sport: GameModel.gameName!) { (loses) in
+            DBService.findPlayersLossesAtPark(parkId: GameModel.parkId!, gamerId: GamerModel.currentGamer.gamerID, sport: GameModel.gameName!) { (loses) in
                 self.winsLabel.text = "Wins: \(wins) Losses: \(loses)"
             }
         }
 
-        rankingHelper.findPlayerRanking(gamerId: TabBarViewController.currentUser.uid, parkId: GameModel.parkId!) { [weak self] error, ranking in
+        rankingHelper.findPlayerRanking(gamerId: GamerModel.currentGamer.gamerID, parkId: GameModel.parkId!, sport: GameModel.gameName!) { [weak self] error, ranking in
             if let error = error {
                 self?.showAlert(title: "Error finding rankin", message: error.localizedDescription)
             }
@@ -56,7 +56,7 @@ class ParkRankingInfoEndGameViewController: UIViewController {
                 self?.userRankingLabel.text = "\(ranking)."
             }
         }
-        rankingHelper.findRankingByPark(parkId: GameModel.parkId!) { [weak self] rankedGamers, error in
+        rankingHelper.findRankingByPark(parkId: GameModel.parkId!, sport: GameModel.gameName!) { [weak self] rankedGamers, error in
             if let error = error {
                 self?.showAlert(title: "Error finding ranking", message: error.localizedDescription)
             }
@@ -86,7 +86,7 @@ extension ParkRankingInfoEndGameViewController: UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "LeaderboardCell", for: indexPath) as? LeaderboardCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell", for: indexPath) as? PlayerCell else {
             fatalError()
         }
         let player = playerRanking[indexPath.row]

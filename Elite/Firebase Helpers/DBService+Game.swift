@@ -63,7 +63,6 @@ extension DBService {
                 GameCollectionKeys.DurationKey : gamePost.duration ?? na,
                 GameCollectionKeys.LosersKey : gamePost.losers ?? [na],
                 GameCollectionKeys.IsTieKey : gamePost.isTie ?? false,
-                GameCollectionKeys.FormattedAdresssKey : gamePost.formattedAdresss,
                 GameCollectionKeys.ParkNameKey : gamePost.parkName,
                 GameCollectionKeys.LatKey : gamePost.lat,
                 GameCollectionKeys.LonKey : gamePost.lon,
@@ -130,7 +129,7 @@ extension DBService {
 
     }
     static public func fetchGamesWherePlayersPlayedEachOther(gamersId: String, completion: @escaping (Error? , [GameModel]?) -> Void) {
-        let players = [TabBarViewController.currentUser.uid, gamersId]
+        let players = [GamerModel.currentGamer.gamerID, gamersId]
         let query = firestoreDB.collection(GameCollectionKeys.CollectionKey)
         query.getDocuments { (snapshot, error) in
             if let error = error {
@@ -182,9 +181,8 @@ extension DBService {
         }
     }
     
-    static public func getPlayerWinsByPark(parkId: String?, completion: @escaping (Error?, Int?) -> Void) {
-        
-    }
+    
+
 
 
     

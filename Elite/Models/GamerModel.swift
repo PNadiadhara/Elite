@@ -31,6 +31,8 @@ class GamerModel: Codable {
         return ((firstname ) + " " + (lastname )).trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
+    static var currentGamer: GamerModel!
+    
     init(profileImage: String?,
     fullname: String,
     firstname: String,
