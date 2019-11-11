@@ -141,7 +141,7 @@ class MultiPeerConnectivityHelper: NSObject {
     
     public var joiningGame: Bool? //
     
-    private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
+    private let myPeerId = MCPeerID(displayName: GamerModel.currentGamer.username!)
     private var advertiserAssistant: MCAdvertiserAssistant!
     private let serviceBrowser : MCNearbyServiceBrowser
     private let serviceAdvertiser : MCNearbyServiceAdvertiser
@@ -297,6 +297,7 @@ class MultiPeerConnectivityHelper: NSObject {
             GameModel.parkId = gameSentData.parkId
             GameModel.gameName = gameSentData.gameName
             GameModel.parkSelected = gameSentData.parkName
+            GameModel.gameName = gameSentData.gameName
             
         } catch {
             print("Error decoding: \(error.localizedDescription)")
@@ -405,7 +406,7 @@ extension MultiPeerConnectivityHelper : MCNearbyServiceBrowserDelegate {
         NSLog("%@", "foundPeer: \(peerID)")
         NSLog("%@", "invitePeer: \(peerID)")
 //        listOfAvailableGames.append(peerID.displayName)
-        DBService.fetchGamersBasedOnDeviceName(deviceName: peerID.displayName) { (error, listOfAvailableGames) in
+        DBService.fetchGamersBasedOnUserName(userName: peerID.displayName) { (error, listOfAvailableGames) in
             if let error = error {
                 print(error.localizedDescription)
             }
@@ -446,7 +447,7 @@ extension MultiPeerConnectivityHelper : MCNearbyServiceAdvertiserDelegate {
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         NSLog("%@", "didReceiveInvitationFromPeer \(peerID)")
-        DBService.fetchGamerBasedOnDeviceName(deviceName: peerID.displayName) { (error, gamer) in
+        DBService.fetchGamerBasedOnUserName(userName: peerID.displayName) { (error, gamer) in
             if let error = error{
                 print("error fetching device name: \(error.localizedDescription)")
             }
