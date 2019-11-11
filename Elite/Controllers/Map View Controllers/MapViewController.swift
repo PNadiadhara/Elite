@@ -101,6 +101,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
             }
             if let gamers = gamers {
                 if let elite = gamers.first {
+                    self.eliteUserImage.image = nil
                     self.eliteUserName.text = elite.username
                     guard let profileImage = elite.profileImage,
                     let profileImageUrl = URL(string: profileImage) else {return}
@@ -203,8 +204,13 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
 
 
     private func goToLeaderBoard(){
-        let leaderBoardVC = LeaderboardViewController(nibName: nil, bundle: nil, parkId: GameModel.parkId!, sport: GameModel.gameName!)
+        let leaderBoardVC = LeaderboardViewController(nibName: nil, bundle: nil, parkId: GameModel.parkId!, sport: GameModel.gameName!,parkName: GameModel.parkSelected!)
         self.navigationController?.pushViewController(leaderBoardVC, animated: true)
+    }
+    
+    private func goToParkFeed() {
+        let parkFeed = ParkFeedViewController(nibName: nil, bundle: nil, parkId: GameModel.parkId!, parkName: GameModel.parkSelected!)
+        present(parkFeed, animated: true)
     }
     //MARK: - Actions
     @IBAction func showBasketBallMarkers(_ sender: UIButton) {
@@ -267,6 +273,9 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
         self.navigationController?.pushViewController(oneVsOneVc, animated: true)
     }
     
+    @IBAction func mapDetailFeedPressed(_ sender: Any) {
+        goToParkFeed()
+    }
     
 }
 //MARK: - Extensions

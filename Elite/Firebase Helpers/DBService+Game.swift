@@ -159,6 +159,21 @@ extension DBService {
         }
     }
     
+    static public func fetchGamesPlayedAtPark(parkId: String, completion: @escaping(Error?, [GameModel]?) -> Void) {
+        DBService.firestoreDB.collection(GameCollectionKeys.CollectionKey).whereField(GameCollectionKeys.ParkId, isEqualTo: parkId).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(error,nil)
+            }
+            if let snapshot = snapshot?.documents {
+                var gamesAtPark = [GameModel]()
+                for game in snapshot {
+                    gamesAtPark.append(GameModel(dict: game.data()))
+                }
+                completion(nil, gamesAtPark)
+            }
+        }
+    }
+    
     static public func findPlayersWinsAtPark(parkId: String, gamerId: String, sport: String, complete: @escaping(Int) -> Void) {
         
         fetchPlayersGamePlayedAtPark(parkId: parkId, gamerId: gamerId) { (error, games) in

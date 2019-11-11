@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ParkFeedViewController" customModule="Elite" customModuleProvider="target">
+            <connections>
+                <outlet property="addButton" destination="mIf-sw-b7D" id="6WH-uC-cmv"/>
+                <outlet property="messageBoardButton" destination="xHY-em-VGz" id="Qfi-4L-b5T"/>
+                <outlet property="parkNameLabel" destination="9hG-C1-ZAd" id="aE9-BF-c22"/>
+                <outlet property="recentActivityButton" destination="d4b-6g-e8z" id="UXg-ni-nmp"/>
+                <outlet property="tableView" destination="cU8-VE-956" id="4vU-jF-1rZ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hG-C1-ZAd">
+                    <rect key="frame" x="15" y="45" width="384" height="42"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="35"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4b-6g-e8z" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
+                    <rect key="frame" x="10" y="122" width="186.33333333333334" height="35"/>
+                    <color key="backgroundColor" red="0.0" green="0.49803921569999998" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="Vlg-iE-JzC"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="Recent Activity">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="recentActivityPressed:" destination="-1" eventType="touchUpInside" id="eh5-if-Qeh"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xHY-em-VGz" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
+                    <rect key="frame" x="217.66666666666663" y="122" width="186.33333333333337" height="35"/>
+                    <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                    <state key="normal" title="Message Board">
+                        <color key="titleColor" red="0.99593228099999997" green="0.27651777859999999" blue="0.36207842829999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="messageBoardPressed:" destination="-1" eventType="touchUpInside" id="InZ-He-7zd"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cU8-VE-956">
+                    <rect key="frame" x="0.0" y="182" width="414" height="554"/>
+                    <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mIf-sw-b7D" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
+                    <rect key="frame" x="70" y="661" width="274" height="35"/>
+                    <color key="backgroundColor" red="0.3083096374" green="0.69699741920000002" blue="0.19760460699999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="MCO-T1-Xpr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                    <state key="normal" title="Post Message"/>
+                    <connections>
+                        <action selector="addButtonPressed:" destination="-1" eventType="touchUpInside" id="e5y-1k-ufX"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.14154749010000001" green="0.14956755790000001" blue="0.16078951080000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="cU8-VE-956" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="0aD-z2-taT"/>
+                <constraint firstItem="d4b-6g-e8z" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.45" id="5Da-eG-YGD"/>
+                <constraint firstItem="xHY-em-VGz" firstAttribute="centerY" secondItem="d4b-6g-e8z" secondAttribute="centerY" id="5e8-nT-033"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cU8-VE-956" secondAttribute="trailing" id="8MP-JJ-WJR"/>
+                <constraint firstItem="9hG-C1-ZAd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="45" id="8ey-WT-j6t"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9hG-C1-ZAd" secondAttribute="trailing" constant="15" id="B31-5a-1PH"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mIf-sw-b7D" secondAttribute="trailing" constant="70" id="HTS-wI-7XD"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="mIf-sw-b7D" secondAttribute="bottom" constant="40" id="Syl-7Z-mT5"/>
+                <constraint firstItem="9hG-C1-ZAd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="VfI-sW-BZu"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="cU8-VE-956" secondAttribute="bottom" id="VzN-Qb-a67"/>
+                <constraint firstItem="cU8-VE-956" firstAttribute="top" secondItem="d4b-6g-e8z" secondAttribute="bottom" constant="25" id="XIL-AS-LBm"/>
+                <constraint firstItem="mIf-sw-b7D" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="70" id="XrW-Fk-Q10"/>
+                <constraint firstItem="d4b-6g-e8z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="b2W-kk-TxW"/>
+                <constraint firstItem="xHY-em-VGz" firstAttribute="height" secondItem="d4b-6g-e8z" secondAttribute="height" id="bH2-lf-OUc"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xHY-em-VGz" secondAttribute="trailing" constant="10" id="eE5-SZ-FXk"/>
+                <constraint firstItem="d4b-6g-e8z" firstAttribute="top" secondItem="9hG-C1-ZAd" secondAttribute="bottom" constant="35" id="g2O-Xr-hYe"/>
+                <constraint firstItem="xHY-em-VGz" firstAttribute="width" secondItem="d4b-6g-e8z" secondAttribute="width" id="ngU-3B-QPE"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="139" y="153"/>
+        </view>
+    </objects>
+</document>

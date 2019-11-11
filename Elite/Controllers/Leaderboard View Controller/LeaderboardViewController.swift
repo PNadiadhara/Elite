@@ -18,6 +18,7 @@ class LeaderboardViewController: UIViewController {
 
     var parkId: String!
     var sport: String!
+    var parkName: String!
     private var players = [GamerModel]() {
         didSet {
             DispatchQueue.main.async {
@@ -33,10 +34,12 @@ class LeaderboardViewController: UIViewController {
     @IBOutlet weak var firstPlayerImage: CircularRedImageView!
     @IBOutlet weak var secondPlayerImage: CircularBlueImageView!
     @IBOutlet weak var thirdPlayerImage: CircularGreenImageView!
+    @IBOutlet weak var parkNameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchRanking()
+        parkNameLabel.text = parkName
         leaderboardTableView.delegate = self
         leaderboardTableView.dataSource = self
         leaderboardTableView.separatorStyle = .none
@@ -44,10 +47,11 @@ class LeaderboardViewController: UIViewController {
     }
 
     
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, parkId: String, sport: String) {
+    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, parkId: String, sport: String, parkName: String) {
         super.init(nibName: nil, bundle: nil)
         self.parkId = parkId
         self.sport = sport
+        self.parkName = parkName
     }
     
     func fetchRanking() {
@@ -57,15 +61,39 @@ class LeaderboardViewController: UIViewController {
             }
             if let gamers = gamers {
                 self.players = gamers
-                
+                var topThree = 0
+                guard !self.players.isEmpty else {return}
+                for ranking in 0...self.players.count - 1 {
+                    if topThree <= 2 {
+                        switch topThree {
+                        case 0:
+                            guard let imageUrl = URL(string: self.players[ranking].profileImage!) else {return}
+                            self.firstPlayerImage.kf.setImage(with: imageUrl)
+                        case 1:
+                            guard let imageUrl = URL(string: self.players[ranking].profileImage!) else {return}
+                            self.secondPlayerImage.kf.setImage(with: imageUrl)
+                        case 2:
+                            guard let imageUrl = URL(string: self.players[ranking].profileImage!) else {return}
+                            self.thirdPlayerImage.kf.setImage(with: imageUrl)
+                        default:
+                            fatalError()
+                        }
+                        
+                    }
+                    topThree += 1
+                }
             }
         }
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-
+    @IBAction func backButtonPressed(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 }
 
 
