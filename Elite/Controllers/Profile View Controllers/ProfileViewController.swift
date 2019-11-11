@@ -41,7 +41,9 @@ class ProfileViewController: UIViewController {
     private var gamer: GamerModel?
     private var showView: ShowView! {
         didSet {
-            self.gamesPlayedTableView.reloadData()
+            DispatchQueue.main.async {
+                self.gamesPlayedTableView.reloadData()
+            }
         }
     }
     let gamePostViewContent = GamePostView()

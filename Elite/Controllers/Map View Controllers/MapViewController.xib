@@ -101,9 +101,9 @@
                                         <constraint firstAttribute="height" constant="32" id="gfT-mV-sVs"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                    <state key="normal" title="Cancel"/>
+                                    <state key="normal" title="Feed"/>
                                     <connections>
-                                        <action selector="mapDetailViewCancelPressed:" destination="-1" eventType="touchUpInside" id="5Qu-QH-zGK"/>
+                                        <action selector="mapDetailFeedPressed:" destination="-1" eventType="touchUpInside" id="NrW-O8-lbX"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="4K5-o0-0nw" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
@@ -148,7 +148,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="I0y-Xm-c4p">
-                                    <rect key="frame" x="15" y="15" width="345" height="24"/>
+                                    <rect key="frame" x="68" y="15" width="242" height="24"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -159,26 +159,38 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iNu-rP-QIG">
+                                    <rect key="frame" x="15" y="15" width="45" height="45"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="45" id="7Vc-s9-mSP"/>
+                                        <constraint firstAttribute="height" constant="45" id="hJE-rT-ivV"/>
+                                    </constraints>
+                                    <state key="normal" image="close"/>
+                                    <connections>
+                                        <action selector="mapDetailViewCancelPressed:" destination="-1" eventType="touchUpInside" id="SPS-PI-ZZU"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.14154749010000001" green="0.14956755790000001" blue="0.16078951080000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="ssN-mu-RGL" secondAttribute="bottom" constant="20" id="0G9-yk-G8D"/>
                                 <constraint firstAttribute="trailing" secondItem="Wkw-EE-bML" secondAttribute="trailing" constant="15" id="1v0-3W-VHq"/>
+                                <constraint firstItem="iNu-rP-QIG" firstAttribute="leading" secondItem="QZV-lC-z4u" secondAttribute="leading" constant="15" id="3gr-aT-CXu"/>
                                 <constraint firstAttribute="bottom" secondItem="4K5-o0-0nw" secondAttribute="bottom" constant="20" id="7Hz-Cb-ZEa"/>
-                                <constraint firstItem="dQG-K0-L82" firstAttribute="top" secondItem="I0y-Xm-c4p" secondAttribute="bottom" constant="8" id="7uS-IC-xI7"/>
                                 <constraint firstItem="ssN-mu-RGL" firstAttribute="height" secondItem="4K5-o0-0nw" secondAttribute="height" id="BF6-xl-9NG"/>
+                                <constraint firstItem="iNu-rP-QIG" firstAttribute="top" secondItem="QZV-lC-z4u" secondAttribute="top" constant="15" id="EXa-ed-rpT"/>
                                 <constraint firstItem="v0r-pU-AOl" firstAttribute="width" secondItem="XMr-pb-37T" secondAttribute="width" id="LyQ-ps-Pg7"/>
                                 <constraint firstAttribute="trailing" secondItem="dQG-K0-L82" secondAttribute="trailing" constant="15" id="MS5-UF-nej"/>
                                 <constraint firstItem="KSD-cK-SR3" firstAttribute="leading" secondItem="QZV-lC-z4u" secondAttribute="leading" constant="15" id="Myj-yP-JgV"/>
-                                <constraint firstItem="I0y-Xm-c4p" firstAttribute="leading" secondItem="QZV-lC-z4u" secondAttribute="leading" constant="15" id="P3o-kM-PFs"/>
+                                <constraint firstAttribute="trailing" secondItem="I0y-Xm-c4p" secondAttribute="trailing" constant="65" id="Okm-Rr-gcz"/>
+                                <constraint firstItem="I0y-Xm-c4p" firstAttribute="top" secondItem="QZV-lC-z4u" secondAttribute="top" constant="15" id="Qrs-zS-r2w"/>
                                 <constraint firstItem="4K5-o0-0nw" firstAttribute="centerX" secondItem="QZV-lC-z4u" secondAttribute="centerX" id="SdX-Cx-7M2"/>
-                                <constraint firstAttribute="trailing" secondItem="I0y-Xm-c4p" secondAttribute="trailing" constant="15" id="UI8-ZT-eOC"/>
                                 <constraint firstItem="KSD-cK-SR3" firstAttribute="top" secondItem="XMr-pb-37T" secondAttribute="bottom" constant="25" id="WRG-WA-orG"/>
                                 <constraint firstItem="dQG-K0-L82" firstAttribute="leading" secondItem="QZV-lC-z4u" secondAttribute="leading" constant="15" id="c7d-3A-jeq"/>
                                 <constraint firstAttribute="bottom" secondItem="KSD-cK-SR3" secondAttribute="bottom" constant="20" id="dy2-bJ-AMz"/>
                                 <constraint firstItem="XMr-pb-37T" firstAttribute="leading" secondItem="QZV-lC-z4u" secondAttribute="leading" constant="15" id="f7g-7l-mRe"/>
                                 <constraint firstItem="v0r-pU-AOl" firstAttribute="height" secondItem="XMr-pb-37T" secondAttribute="height" id="gM5-um-4bA"/>
-                                <constraint firstItem="I0y-Xm-c4p" firstAttribute="top" secondItem="QZV-lC-z4u" secondAttribute="top" constant="15" id="kYu-b6-U83"/>
+                                <constraint firstItem="I0y-Xm-c4p" firstAttribute="leading" secondItem="iNu-rP-QIG" secondAttribute="trailing" constant="8" id="hea-gV-trE"/>
                                 <constraint firstAttribute="trailing" secondItem="ssN-mu-RGL" secondAttribute="trailing" constant="15" id="kxE-oo-9Iw"/>
                                 <constraint firstItem="v0r-pU-AOl" firstAttribute="centerY" secondItem="XMr-pb-37T" secondAttribute="centerY" id="oc1-3S-irE"/>
                                 <constraint firstItem="ssN-mu-RGL" firstAttribute="width" secondItem="4K5-o0-0nw" secondAttribute="width" id="om6-Tq-LPX"/>
@@ -189,6 +201,7 @@
                                 <constraint firstItem="XMr-pb-37T" firstAttribute="height" secondItem="QZV-lC-z4u" secondAttribute="height" multiplier="0.2" id="tlI-bM-Ee7"/>
                                 <constraint firstItem="v0r-pU-AOl" firstAttribute="width" secondItem="v0r-pU-AOl" secondAttribute="height" multiplier="1 : 1" id="uHB-Nh-nHo"/>
                                 <constraint firstItem="KSD-cK-SR3" firstAttribute="width" secondItem="QZV-lC-z4u" secondAttribute="width" multiplier="0.275" id="wcK-lM-NsV"/>
+                                <constraint firstItem="dQG-K0-L82" firstAttribute="top" secondItem="I0y-Xm-c4p" secondAttribute="bottom" constant="8" id="zNQ-7H-opD"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -218,6 +231,7 @@
     </objects>
     <resources>
         <image name="Elite" width="111" height="111"/>
+        <image name="close" width="33.333332061767578" height="33.333332061767578"/>
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>
     </resources>
 </document>

@@ -116,8 +116,8 @@ extension LoginViewController: UITextFieldDelegate{
 }
 extension LoginViewController : AuthServiceExistingAccountDelegate {
     func didSignInToExistingAccount(_ authservice: AuthService, user: User) {
-        let tab = TabBarViewController()
-        navigationController?.pushViewController(tab, animated: true)
+        let loadingScreen = LoadingViewController(nibName: nil, bundle: nil, gamerID: user.uid)
+        present(loadingScreen, animated: true)
         
     }
     
