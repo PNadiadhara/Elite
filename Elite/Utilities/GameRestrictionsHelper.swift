@@ -10,7 +10,7 @@ import Foundation
 
 class GameRestrictionsHelper {
     
-    static var test = true
+    static var test = false
     //TO DO: Limit player to only play each other 3 times a day
     static public func checkIfGameIsWithin20Mins(gamerId: String, completion: @escaping (Error?, Bool?, Int?) -> Void) {
         DBService.fetchPlayersGamesPlayed(gamerId: gamerId) { (error, gamesPlayed) in

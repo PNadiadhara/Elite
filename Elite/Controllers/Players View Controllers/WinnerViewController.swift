@@ -24,23 +24,20 @@ class WinnerViewController: UIViewController {
     
 
     @IBOutlet weak var resultView: UIView!
-    
     @IBOutlet weak var tieView: UIView!
-
     @IBOutlet weak var playersImage: CircularImageView!
-
     @IBOutlet weak var userResultLabel: UILabel!
     @IBOutlet weak var reportUser: UIButton!
-
     @IBOutlet weak var continueButton: RoundedButton!
-    
+    @IBOutlet weak var addFriendButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
     
  
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-         hostUpdateGameModelToFireBase()
+         
 //        fetchParkId()
 
 
@@ -81,6 +78,7 @@ class WinnerViewController: UIViewController {
         confettiView = SAConfettiView(frame: view.bounds)
         setupConfetti(confettiView: confettiView, intensity: 0.80)
         if !isTie {
+            hostUpdateGameModelToFireBase()
             guard let winner = winner else {return}
             if winner.username == GamerModel.currentGamer.username {
                 DBService.updateWinsByLocation(parkId: GameModel.parkId ?? "Error", sport: GameModel.gameName!)
@@ -95,6 +93,7 @@ class WinnerViewController: UIViewController {
             }
         } else {
             tieView.isHidden = false
+            
         }
     }
     
@@ -112,8 +111,29 @@ class WinnerViewController: UIViewController {
 
     }
 
+    @IBAction func addFriend(_ sender: Any) {
+    }
+    
+    @IBAction func shareResult(_ sender: Any) {
+        var shareText = String()
+        var imageToShare: UIImage?
+        guard let winner = winner else {return}
+        guard let loser = loser else {return}
+        if winner.username == GamerModel.currentGamer.username {
+            shareText = "Won vs. \(loser.username!) @ \(GameModel.parkSelected!)"
+            imageToShare = UIImage(named: "winner")
+        } else {
+            shareText = "Lost vs. \(winner.username!) @ \(GameModel.parkSelected!)"
+            imageToShare = UIImage(named: "winner")
+        }
+        
 
-
+        if let image = imageToShare {
+            let vc = UIActivityViewController(activityItems: [shareText, image], applicationActivities: [])
+            present(vc, animated: true)
+        }
+    }
+    
 }
 
 

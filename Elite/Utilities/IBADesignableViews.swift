@@ -54,6 +54,16 @@ class CircularRedImageView: UIImageView {
         clipsToBounds = true
     }
 }
+@IBDesignable
+class CircularRedView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = bounds.width / 2.0
+        layer.borderColor = #colorLiteral(red: 0.995932281, green: 0.2765177786, blue: 0.3620784283, alpha: 1)
+        layer.borderWidth = 5
+        clipsToBounds = true
+    }
+}
 
 @IBDesignable
 class CircularGreenImageView: UIImageView {
