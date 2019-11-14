@@ -19,6 +19,7 @@ class HostJoinGameViewController: UIViewController{
     var countdownTimer = Timer()
     var time = Int()
     var count = 0
+    var timerRunning = false
     //let multiPeerConnectivityHelper = MultiPeerConnectivityHelper()
 //    var session = MCSession()
 //    private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
@@ -44,6 +45,13 @@ class HostJoinGameViewController: UIViewController{
 
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if !GameRestrictionsHelper.test {
+           checkFor20minsLimit()
+        }
+        MultiPeerConnectivityHelper.shared.multipeerDelegate = self
+        WaitingView.watingViewDelegate = self
+    }
 
     func checkFor20minsLimit() {
         GameRestrictionsHelper.checkIfGameIsWithin20Mins(gamerId: GamerModel.currentGamer.gamerID) { (error, okayToPlay, timeLeft) in
@@ -75,7 +83,10 @@ class HostJoinGameViewController: UIViewController{
     }
     
     func startTimer() {
+        if !timerRunning{
+            timerRunning = true
         countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+        }
     }
     
     @objc func updateTime() {
@@ -85,6 +96,7 @@ class HostJoinGameViewController: UIViewController{
             time -= 1
         } else {
             restrictionView.isHidden = true
+            timerRunning = false
             endTimer()
         }
     }

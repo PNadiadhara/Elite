@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         GMSServices.provideAPIKey(PrivateInfoFile.GoogleMapsApiKey)
         FirebaseApp.configure()
+//        AppDelegate.authservice.signOutAccount()
         window = UIWindow(frame: UIScreen.main.bounds)
         if let user = AppDelegate.authservice.getCurrentUser() {
             let loadingScreen = LoadingViewController(nibName: nil, bundle: nil, gamerID: user.uid)
