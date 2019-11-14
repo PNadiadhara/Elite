@@ -21,13 +21,16 @@ class CreateYourEliteViewController: UIViewController {
     
     private var authservice = AppDelegate.authservice
     
-    @IBOutlet weak var userImage: CircularRedButton!
+    @IBOutlet weak var userView: CircularRedView!
+    
+    @IBOutlet weak var addPhotoLabel: UILabel!
     
     @IBOutlet weak var userNameTextField: RoundedTextField!
     
     var selectedImage: UIImage?
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViewTap()
         setupTap()
         userNameTextField.delegate = self
         // Do any additional setup after loading the view.
@@ -42,10 +45,14 @@ class CreateYourEliteViewController: UIViewController {
         super.viewWillDisappear(true)
         unregisterKeyboardNotifications()
     }
+    
+    func setupViewTap() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(addPhotoPressed))
+        userView.addGestureRecognizer(tap)
+    }
 
 
-
-    @IBAction func addPhotoPressed(_ sender: Any) {
+    @objc func addPhotoPressed(_ sender: Any) {
         showSheetAlert(title: "Please select option", message: nil) { (alertController) in
             let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: { (action) in
                 self.imagePickerController.sourceType = .camera
@@ -86,13 +93,8 @@ class CreateYourEliteViewController: UIViewController {
                     DBService.updateUserProfileImage(userId: user.uid, imageUrl: url.absoluteString)
                     let loadingScreen = LoadingViewController(nibName: nil, bundle: nil, gamerID: user.uid)
                     self.present(loadingScreen, animated: true)
-                    
-//                    DBService.updateProfileImage(blogger: self.blogger, imageUrl: url.absoluteString)
-//                    self.performSegue(withIdentifier: "Unwind From Edit Profile", sender: self)
                 }
             }
-//            currentUser = user
-//            TabBarViewController.fetchCurrentGamer(gamerID: user.uid)
         }
 
         
@@ -128,8 +130,8 @@ extension CreateYourEliteViewController : UIImagePickerControllerDelegate, UINav
         }
         let resizedImage = Toucan.init(image: originalImage).resize(CGSize(width: 500, height: 500))
         selectedImage = resizedImage.image
-        userImage.setImage(resizedImage.image, for: .normal)
-        userImage.setTitle("", for: .normal)
+        userView.backgroundColor = UIColor(patternImage: selectedImage!)
+        addPhotoLabel.isHidden = true
         dismiss(animated: true)
     }
 }

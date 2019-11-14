@@ -93,6 +93,10 @@ extension ParkRankingInfoEndGameViewController: UITableViewDelegate, UITableView
         let ranking = indexPath.row + 1
         cell.rankingLabel.text = ranking.description
         cell.userName.text = player.username
+        if let profileImageURL = URL(string: player.profileImage!) {
+            cell.profileImage.kf.setImage(with: profileImageURL)
+        }
+        
         cell.medalImage.image = medalHelper.getMedalImages(ranking: ranking)
         return cell
     }
