@@ -33,27 +33,18 @@ class HostJoinGameViewController: UIViewController{
 //                print(error.localizedDescription)
 //            }
 //        }
-        if !GameRestrictionsHelper.test {
-           checkFor20minsLimit()
-        }
+
         
-        MultiPeerConnectivityHelper.shared.multipeerDelegate = self
-        WaitingView.watingViewDelegate = self
+
         WaitingView.setViewContraints(titleText: "Searching for games", isHidden: true, delegate: self, view: self.view) { (waitingView) in
             self.waitingView = waitingView
         }
 
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        if !GameRestrictionsHelper.test {
-           checkFor20minsLimit()
-        }
-        MultiPeerConnectivityHelper.shared.multipeerDelegate = self
-        WaitingView.watingViewDelegate = self
-    }
 
-    func checkFor20minsLimit() {
+
+    func checkFor20minsLimit(completion: @escaping(Bool) -> Void) {
         GameRestrictionsHelper.checkIfGameIsWithin20Mins(gamerId: GamerModel.currentGamer.gamerID) { (error, okayToPlay, timeLeft) in
             if let error = error {
                 print(error.localizedDescription)
@@ -64,22 +55,51 @@ class HostJoinGameViewController: UIViewController{
                     self.time = 1200 - timeLeft
                     self.startTimer()
                     self.restrictionView.isHidden = false
+                    completion(false)
+                } else {
+                    completion(true)
                 }
             }
         }
     }
     
     @IBAction func hostGamePressed(_ sender: Any) {
+        if !GameRestrictionsHelper.test {
+            checkFor20minsLimit { (okayToPlay) in
+                if okayToPlay {
+                    let createGameVC = CreateGameViewController()
+                    MultiPeerConnectivityHelper.shared.role = .Host
+                    self.navigationController?.pushViewController(createGameVC, animated: true)
+                }
+            }
+        } else {
+            let createGameVC = CreateGameViewController()
+            MultiPeerConnectivityHelper.shared.role = .Host
+            self.navigationController?.pushViewController(createGameVC, animated: true)
+        }
 //        multiPeerConnectivityHelper.hostGame()
-        let createGameVC = CreateGameViewController()
-        MultiPeerConnectivityHelper.shared.role = .Host
-        self.navigationController?.pushViewController(createGameVC, animated: true)
+
+    }
+    
+    private func joinGame() {
+        MultiPeerConnectivityHelper.shared.multipeerDelegate = self
+        WaitingView.watingViewDelegate = self
+        MultiPeerConnectivityHelper.shared.joinGame(joiningGame: false)
+        self.waitingView?.isHidden = false
+        MultiPeerConnectivityHelper.shared.role = .Guest
     }
     
     @IBAction func joinGamePressed(_ sender: Any) {
-        MultiPeerConnectivityHelper.shared.joinGame(joiningGame: false)
-        waitingView?.isHidden = false
-        MultiPeerConnectivityHelper.shared.role = .Guest
+        if !GameRestrictionsHelper.test {
+            checkFor20minsLimit { (okayToPlay) in
+                if okayToPlay {
+                    self.joinGame()
+                }
+            }
+        } else {
+            self.joinGame()
+        }
+
     }
     
     func startTimer() {
@@ -184,7 +204,6 @@ extension HostJoinGameViewController: MultipeerConnectivityDelegate{
 extension HostJoinGameViewController: WaitingViewDelegate {
     func cancelPressed() {
         MultiPeerConnectivityHelper.shared.cancelJoinGame()
-        MultiPeerConnectivityHelper.shared.joiningGame = nil
         waitingView?.isHidden = true
     }
     

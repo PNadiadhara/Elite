@@ -192,14 +192,15 @@ class MultiPeerConnectivityHelper: NSObject {
     
     public func joinGame(joiningGame: Bool) {
         if joiningGame {
-            self.joiningGame = true
             serviceBrowser.stopBrowsingForPeers()
         }
+        self.joiningGame = joiningGame
         serviceBrowser.startBrowsingForPeers()
     }
     
     public func cancelJoinGame(){
         serviceBrowser.stopBrowsingForPeers()
+        joiningGame = Bool()
     }
     public func endSession() {
         session.disconnect()
@@ -406,20 +407,22 @@ extension MultiPeerConnectivityHelper : MCNearbyServiceBrowserDelegate {
         NSLog("%@", "foundPeer: \(peerID)")
         NSLog("%@", "invitePeer: \(peerID)")
 //        listOfAvailableGames.append(peerID.displayName)
-        DBService.fetchGamersBasedOnUserName(userName: peerID.displayName) { (error, listOfAvailableGames) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            if let listOfAvaliableGames = listOfAvailableGames {
-                self.multipeerDelegate?.foundAdverstiser(availableGames: listOfAvaliableGames)
-            }
-        }
+        guard let joiningGame = joiningGame else {return}
         
-        if joiningGame ?? false {
+        if joiningGame {
             browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 45)
             multipeerDelegate?.acceptedInvitation()
-            
+        } else {
+            DBService.fetchGamersBasedOnUserName(userName: peerID.displayName) { (error, listOfAvailableGames) in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                if let listOfAvaliableGames = listOfAvailableGames {
+                    self.multipeerDelegate?.foundAdverstiser(availableGames: listOfAvaliableGames)
+                }
+            }
         }
+
         listOfAvailableGames.removeAll()
         //multipeerDelegate?.invitationAccepted(session: session)
 //        multipeerDelegate?.displayAvailableGames(availableGames: listOfAvailableGames)
