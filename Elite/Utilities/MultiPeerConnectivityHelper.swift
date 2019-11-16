@@ -204,8 +204,8 @@ class MultiPeerConnectivityHelper: NSObject {
     }
     public func endSession() {
         session.disconnect()
-        serviceAdvertiser.stopAdvertisingPeer()
-        serviceBrowser.stopBrowsingForPeers()
+        stopHosting()
+        cancelJoinGame()
         team = nil
         role = nil
         redPlayer = nil
@@ -213,7 +213,6 @@ class MultiPeerConnectivityHelper: NSObject {
         rival = nil
         winnerVotes.removeAll()
         numberOfPlayersJoined = 0
-        joiningGame = Bool()
         MainTimer.shared.stopTimer()
     }
     
@@ -241,6 +240,7 @@ class MultiPeerConnectivityHelper: NSObject {
     
     public func stopHosting(){
         advertiserAssistant.stop()
+        serviceAdvertiser.stopAdvertisingPeer()
     }
     
     public func sendGameModel(gameModelToSend: GameModelToSend) {
@@ -333,6 +333,7 @@ extension MultiPeerConnectivityHelper: MCSessionDelegate {
 //        certificateHandler(true)
 //    }
 
+    
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         DispatchQueue.main.async { [weak self] in
             var dataRecieved: DataToSend?
@@ -436,7 +437,7 @@ extension MultiPeerConnectivityHelper : MCNearbyServiceBrowserDelegate {
         
 
     }
-    
+
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
         NSLog("%@", "lostPeer: \(peerID)")
     }

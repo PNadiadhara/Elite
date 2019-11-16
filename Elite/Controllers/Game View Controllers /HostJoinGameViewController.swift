@@ -171,33 +171,6 @@ extension HostJoinGameViewController: MultipeerConnectivityDelegate{
         
     }
     
-
-    
-
-    
-
-    
-
-    
-
-
-    
-//    func displayAvailableGames(handler: @escaping (Bool) -> Void) {
-//
-//
-//        
-////        invitationAlert(title: "Invited", message: "Invited") { (action) in
-////            if action.title == "Yes"{
-////                 handler(true)
-////            }
-////        }
-//
-//    }
-    
-
-
-
-    
     
 }
 
