@@ -13,6 +13,10 @@ class PostMessageViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textField: UITextView!
     @IBOutlet weak var postButton: UIButton!
     
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var characterCountLabel: UILabel!
+    
     var parkId: String!
     var parkName: String!
     

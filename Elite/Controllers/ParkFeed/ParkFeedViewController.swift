@@ -172,10 +172,22 @@ extension ParkFeedViewController: UITableViewDelegate, UITableViewDataSource {
         case .recentActivity:
             return 180
         case .messageBoard:
-            return 95
+            return UITableView.automaticDimension
         default:
             return 0
         }
     }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        switch parkViewFeed {
+            case .recentActivity:
+                return 180
+            case .messageBoard:
+                return UITableView.automaticDimension
+            default:
+                return 0
+            }
+     }
     
 }

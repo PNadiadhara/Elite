@@ -10,6 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PostMessageViewController" customModule="Elite" customModuleProvider="target">
             <connections>
+                <outlet property="bottomView" destination="VFf-0X-4EE" id="3Ga-El-4cz"/>
+                <outlet property="characterCountLabel" destination="jsC-fI-kzk" id="4CJ-un-h29"/>
+                <outlet property="doneButton" destination="wla-Cw-7SE" id="cOb-nV-awC"/>
                 <outlet property="parkLabel" destination="X1p-uW-7MG" id="g88-SN-i5A"/>
                 <outlet property="postButton" destination="Eb9-E5-A8e" id="kaC-64-icQ"/>
                 <outlet property="textField" destination="tRi-nm-pSK" id="mAC-se-bzi"/>
@@ -61,6 +64,32 @@
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VFf-0X-4EE">
+                    <rect key="frame" x="0.0" y="686" width="414" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wla-Cw-7SE">
+                            <rect key="frame" x="30" y="10" width="38" height="30"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="Done">
+                                <color key="titleColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="280" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jsC-fI-kzk">
+                            <rect key="frame" x="355.33333333333331" y="15" width="28.666666666666686" height="20"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="jsC-fI-kzk" firstAttribute="centerY" secondItem="VFf-0X-4EE" secondAttribute="centerY" id="6a1-wA-WZx"/>
+                        <constraint firstAttribute="trailing" secondItem="jsC-fI-kzk" secondAttribute="trailing" constant="30" id="clA-TP-SpG"/>
+                        <constraint firstItem="wla-Cw-7SE" firstAttribute="centerY" secondItem="VFf-0X-4EE" secondAttribute="centerY" id="eXF-a3-HyD"/>
+                        <constraint firstItem="wla-Cw-7SE" firstAttribute="leading" secondItem="VFf-0X-4EE" secondAttribute="leading" constant="30" id="h1J-8C-GVy"/>
+                        <constraint firstAttribute="height" constant="50" id="rNT-LG-keQ"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -68,7 +97,10 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="INw-ty-8eF" secondAttribute="trailing" id="GFy-23-aFP"/>
                 <constraint firstItem="INw-ty-8eF" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.1" id="IJD-wh-RJF"/>
                 <constraint firstItem="INw-ty-8eF" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="JrV-Uf-JIr"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="VFf-0X-4EE" secondAttribute="bottom" id="PsX-MS-mkM"/>
+                <constraint firstItem="VFf-0X-4EE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="QXh-5C-88k"/>
                 <constraint firstItem="tRi-nm-pSK" firstAttribute="top" secondItem="INw-ty-8eF" secondAttribute="bottom" constant="10" id="R97-9C-y0D"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VFf-0X-4EE" secondAttribute="trailing" id="bNP-8u-tI5"/>
                 <constraint firstItem="INw-ty-8eF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hkv-rW-QPR"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="tRi-nm-pSK" secondAttribute="trailing" constant="10" id="i2w-Ip-Obq"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="tRi-nm-pSK" secondAttribute="bottom" id="yHA-1d-83y"/>
