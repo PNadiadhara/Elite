@@ -19,7 +19,8 @@ class ParkFeedViewController: UIViewController {
     @IBOutlet weak var parkNameLabel: UILabel!
     @IBOutlet weak var recentActivityButton: RoundedButton!
     @IBOutlet weak var messageBoardButton: RoundedButton!
-    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var postCommentView: UIView!
+    
     @IBOutlet weak var tableView: UITableView!
     
     private var parkViewFeed: ParkFeedView! {
@@ -47,7 +48,10 @@ class ParkFeedViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "RecentActivityCell", bundle: nil), forCellReuseIdentifier: "RecentActivityCell")
+        tableView.register(UINib(nibName: "MessageBoardCell", bundle: nil), forCellReuseIdentifier: "MessageBoardCell")
         fetchParkGames()
+        fetchBoardMessages()
+        setupTapGestures()
         // Do any additional setup after loading the view.
     }
     
@@ -61,6 +65,35 @@ class ParkFeedViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setupTapGestures() {
+        let postMessageGesture = UITapGestureRecognizer(target: self, action: #selector(showMassageBoardText))
+        postCommentView.addGestureRecognizer(postMessageGesture)
+        
+    }
+    
+    @objc func showMassageBoardText() {
+        let postMessageVC = PostMessageViewController(nibName: nil, bundle: nil, parkId: parkId, parkName: parkName)
+        present(postMessageVC, animated: true, completion: nil)
+    }
+    
+    private func setupButtonColors() {
+        switch parkViewFeed {
+        case .recentActivity:
+            recentActivityButton.backgroundColor = #colorLiteral(red: 0, green: 0.4980392157, blue: 0.737254902, alpha: 1)
+            recentActivityButton.setTitleColor(.white, for: .normal)
+            messageBoardButton.backgroundColor = #colorLiteral(red: 0.1607843137, green: 0.1725490196, blue: 0.1843137255, alpha: 1)
+            messageBoardButton.setTitleColor(#colorLiteral(red: 0.995932281, green: 0.2765177786, blue: 0.3620784283, alpha: 1), for: .normal)
+            postCommentView.isHidden = true
+        case .messageBoard:
+            messageBoardButton.backgroundColor = #colorLiteral(red: 0.995932281, green: 0.2765177786, blue: 0.3620784283, alpha: 1)
+            messageBoardButton.setTitleColor(.white, for: .normal)
+            recentActivityButton.backgroundColor = #colorLiteral(red: 0.1607843137, green: 0.1725490196, blue: 0.1843137255, alpha: 1)
+            recentActivityButton.setTitleColor(#colorLiteral(red: 0, green: 0.4980392157, blue: 0.737254902, alpha: 1), for: .normal)
+            postCommentView.isHidden = false
+        default:
+            print("Error")
+        }
+    }
     private func fetchParkGames() {
         DBService.fetchGamesPlayedAtPark(parkId: parkId) { (error, gamesAtPark) in
             if let error = error {
@@ -72,17 +105,27 @@ class ParkFeedViewController: UIViewController {
         }
     }
     
+    private func fetchBoardMessages() {
+        DBService.fetchMessageBoardWithParkId(parkId: parkId) { (error, boardMessages) in
+            if let error = error {
+                self.showAlert(title: "Error fetching board messages", message: error.localizedDescription)
+            }
+            if let boardMessages = boardMessages {
+                self.messageBoardPosts = boardMessages
+            }
+        }
+    }
     @IBAction func recentActivityPressed(_ sender: Any) {
-        
+        parkViewFeed = .recentActivity
+        setupButtonColors()
     }
     
     @IBAction func messageBoardPressed(_ sender: Any) {
-        
+        parkViewFeed = .messageBoard
+        setupButtonColors()
     }
     
-    @IBAction func addButtonPressed(_ sender: Any) {
-        
-    }
+
     /*
     // MARK: - Navigation
 
@@ -115,14 +158,24 @@ extension ParkFeedViewController: UITableViewDelegate, UITableViewDataSource {
             cell.setupCell(with: activity)
             return cell
         case .messageBoard:
-            return UITableViewCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MessageBoardCell", for: indexPath) as? MessageBoardCell else {fatalError()}
+            let message = messageBoardPosts[indexPath.row]
+            cell.setupCell(with: message)
+            return cell
         default:
             return UITableViewCell()
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
+    switch parkViewFeed {
+        case .recentActivity:
+            return 180
+        case .messageBoard:
+            return 95
+        default:
+            return 0
+        }
     }
     
 }

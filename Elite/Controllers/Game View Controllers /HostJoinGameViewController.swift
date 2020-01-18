@@ -42,9 +42,13 @@ class HostJoinGameViewController: UIViewController{
 
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if !GameRestrictionsHelper.test {
+            checkFor20minsLimit()
+        }
+    }
 
-
-    func checkFor20minsLimit(completion: @escaping(Bool) -> Void) {
+    func checkFor20minsLimit() {
         GameRestrictionsHelper.checkIfGameIsWithin20Mins(gamerId: GamerModel.currentGamer.gamerID) { (error, okayToPlay, timeLeft) in
             if let error = error {
                 print(error.localizedDescription)
@@ -55,29 +59,17 @@ class HostJoinGameViewController: UIViewController{
                     self.time = 1200 - timeLeft
                     self.startTimer()
                     self.restrictionView.isHidden = false
-                    completion(false)
-                } else {
-                    completion(true)
                 }
             }
         }
     }
     
     @IBAction func hostGamePressed(_ sender: Any) {
-        if !GameRestrictionsHelper.test {
-            checkFor20minsLimit { (okayToPlay) in
-                if okayToPlay {
-                    let createGameVC = CreateGameViewController()
-                    MultiPeerConnectivityHelper.shared.role = .Host
-                    self.navigationController?.pushViewController(createGameVC, animated: true)
-                }
-            }
-        } else {
+
             let createGameVC = CreateGameViewController()
             MultiPeerConnectivityHelper.shared.role = .Host
             self.navigationController?.pushViewController(createGameVC, animated: true)
-        }
-//        multiPeerConnectivityHelper.hostGame()
+
 
     }
     
@@ -90,16 +82,7 @@ class HostJoinGameViewController: UIViewController{
     }
     
     @IBAction func joinGamePressed(_ sender: Any) {
-        if !GameRestrictionsHelper.test {
-            checkFor20minsLimit { (okayToPlay) in
-                if okayToPlay {
-                    self.joinGame()
-                }
-            }
-        } else {
             self.joinGame()
-        }
-
     }
     
     func startTimer() {
