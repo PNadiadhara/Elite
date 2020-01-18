@@ -51,6 +51,33 @@ class PostMessageViewController: UIViewController, UITextViewDelegate {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        registerKeyboardNotificationForBottomView()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        unregisterKeyboardNotifications()
+    }
+
+    private func registerKeyboardNotificationForBottomView(){
+        NotificationCenter.default.addObserver(self, selector: #selector(willTransfromBottomView(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willHideKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    @objc private func willTransfromBottomView(notification: Notification){
+        doneButton.isHidden = false
+        guard let info = notification.userInfo,
+            let keyboardFrame = info["UIKeyboardFrameEndUserInfoKey"] as? CGRect else {
+                print("UserInfo is nil")
+                return
+        }
+        
+        bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardFrame.height)
+    }
+    
+    @objc private func willHideKeyboard() {
+       bottomView.transform = CGAffineTransform.identity
+        doneButton.isHidden = true
+    }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == .lightGray {
             textView.text = nil
@@ -58,12 +85,28 @@ class PostMessageViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    func textViewDidChange(_ textView: UITextView) {
+        characterCountLabel.text = (280 - textView.text.count).description
+    }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let currentText = textView.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: text)
+        return updatedText.count <= 280
+    }
+
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "Message here"
             textView.textColor = UIColor.lightGray
         }
     }
+    
+    @IBAction func donePressed(_ sender: Any) {
+        self.view.endEditing(true)
+    }
+    
 }
 
 
