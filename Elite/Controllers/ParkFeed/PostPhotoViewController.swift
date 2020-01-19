@@ -15,7 +15,7 @@ class PostPhotoViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var postImage: UIImageView!
     
     var photoSelected: UIImage!
-    
+    var parkId: String!
     override func viewDidLoad() {
         super.viewDidLoad()
         postImage.image = photoSelected
@@ -23,9 +23,10 @@ class PostPhotoViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
     }
 
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, postImage: UIImage) {
+    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, postImage: UIImage, parkId: String) {
         super.init(nibName: nil, bundle: nil)
         self.photoSelected = postImage
+        self.parkId = parkId
     }
     
     required init?(coder: NSCoder) {
@@ -39,9 +40,28 @@ class PostPhotoViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func postPressed(_ sender: Any) {
         //TO DO: Store Image, and change post model
+        guard let postTitle = titleTextField.text else {
+            self.showAlert(title: "Please enter title", message: nil)
+            return
+        }
         let resizedImage = Toucan.init(image: photoSelected).resize(CGSize(width: 500, height: 500)).image
         guard let imageData = resizedImage?.jpegData(compressionQuality: 0.5) else {return}
-        StorageService.postImage(imageData: imageData, imageName: <#T##String#>, completion: <#T##(Error?, URL?) -> Void#>)
+        StorageService.postPostImage(imageData: imageData) { (error, url) in
+            if let error = error {
+                self.showAlert(title: "Error posting image", message: error.localizedDescription)
+            }
+            
+            if let url = url {
+                let messagePost = MessageBoardPost(parkId: self.parkId, post: postTitle , posterId: GamerModel.currentGamer.gamerID, postId: "", posterName: GamerModel.currentGamer.username ?? "", postDate: Date().toString(dateFormat: "MMM d, h:mm a"), postImage: url.absoluteString)
+                DBService.postMessage(message: messagePost) { (error) in
+                    if let error = error {
+                        self.showAlert(title: "Error posting", message: error.localizedDescription)
+                    } else {
+                        self.dismiss(animated: true)
+                    }
+                }
+            }
+        }
         
     }
 }

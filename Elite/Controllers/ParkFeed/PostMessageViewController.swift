@@ -44,7 +44,7 @@ class PostMessageViewController: UIViewController, UITextViewDelegate {
         if textField.text.isEmpty {
             showAlert(title: "Empty text", message: "Please enter message")
         } else {
-            let message = MessageBoardPost(parkId: parkId, post: textField.text, posterId: GamerModel.currentGamer.gamerID, postId: "", posterName: GamerModel.currentGamer.username ?? "", postDate: Date(), hasImage: false)
+            let message = MessageBoardPost(parkId: parkId, post: textField.text, posterId: GamerModel.currentGamer.gamerID, postId: "", posterName: GamerModel.currentGamer.username ?? "", postDate: Date().toString(dateFormat: "MMM d, h:mm a"), postImage: nil)
             DBService.postMessage(message: message) { (error) in
                 if let error = error {
                     self.showAlert(title: "Error posting", message: error.localizedDescription)

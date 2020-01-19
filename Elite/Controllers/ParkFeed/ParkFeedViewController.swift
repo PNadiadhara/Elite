@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 enum ParkFeedView {
     case recentActivity, messageBoard
@@ -21,6 +22,8 @@ class ParkFeedViewController: UIViewController {
         ip.delegate = self
         return ip
     }()
+    
+    private var listener: ListenerRegistration!
     
     @IBOutlet weak var parkNameLabel: UILabel!
     @IBOutlet weak var recentActivityButton: RoundedButton!
@@ -45,7 +48,13 @@ class ParkFeedViewController: UIViewController {
         }
     }
     
-    private var messageBoardPosts = [MessageBoardPost]()
+    private var messageBoardPosts = [MessageBoardPost]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +80,13 @@ class ParkFeedViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        listener.remove()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        fetchBoardMessages()
+    }
     private func setupTapGestures() {
         let postMessageGesture = UITapGestureRecognizer(target: self, action: #selector(showMassageBoardText))
         postCommentView.addGestureRecognizer(postMessageGesture)
@@ -112,7 +128,7 @@ class ParkFeedViewController: UIViewController {
     }
     
     private func fetchBoardMessages() {
-        DBService.fetchMessageBoardWithParkId(parkId: parkId) { (error, boardMessages) in
+        listener = DBService.fetchMessageBoardWithParkId(parkId: parkId) { (error, boardMessages) in
             if let error = error {
                 self.showAlert(title: "Error fetching board messages", message: error.localizedDescription)
             }
@@ -185,7 +201,12 @@ extension ParkFeedViewController: UITableViewDelegate, UITableViewDataSource {
         case .messageBoard:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "MessageBoardCell", for: indexPath) as? MessageBoardCell else {fatalError()}
             let message = messageBoardPosts[indexPath.row]
-            cell.setupCell(with: message)
+            cell.backgroundColor = .yellow
+            if indexPath.row % 2 == 0 {
+                cell.setupCell(with: message, backgroundColor: #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1))
+            } else {
+                cell.setupCell(with: message, backgroundColor: #colorLiteral(red: 0.2549019608, green: 0.2549019608, blue: 0.2549019608, alpha: 1))
+            }
             return cell
         default:
             return UITableViewCell()
@@ -229,7 +250,7 @@ extension ParkFeedViewController : UIImagePickerControllerDelegate, UINavigation
         }
         
 //        let resizedImage = Toucan.init(image: originalImage).resize(CGSize(width: 175, height: 175))
-    let postPhotoVC = PostPhotoViewController(nibName: nil, bundle: nil, postImage: originalImage)
+        let postPhotoVC = PostPhotoViewController(nibName: nil, bundle: nil, postImage: originalImage, parkId: self.parkId)
         dismiss(animated: true)
         present(postPhotoVC, animated: true)
     }
