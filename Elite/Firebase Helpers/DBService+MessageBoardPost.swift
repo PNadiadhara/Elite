@@ -16,6 +16,7 @@ struct MessageBoardPostCollectionKeys {
     static let posterIdKey = "PosterId"
     static let posterNameKey = "PosterName"
     static let postDateKey = "PostDate"
+    static let hasImageKey = "hasImage"
 }
 
 extension DBService {

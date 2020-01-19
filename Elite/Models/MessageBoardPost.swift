@@ -15,14 +15,16 @@ class MessageBoardPost: Codable {
     var postId: String
     var posterName: String
     var postDate: Date
+    var hasImage: Bool
     
-    init(parkId: String, post: String, posterId: String, postId: String, posterName: String, postDate: Date) {
+    init(parkId: String, post: String, posterId: String, postId: String, posterName: String, postDate: Date, hasImage: Bool) {
         self.parkId = parkId
         self.post = post
         self.posterId = posterId
         self.postId = postId
         self.posterName = posterName
         self.postDate = postDate
+        self.hasImage = hasImage
     }
     
     init(dict: [String: Any]) {
@@ -32,5 +34,6 @@ class MessageBoardPost: Codable {
         self.postId = dict[MessageBoardPostCollectionKeys.postIdKey] as? String ?? ""
         self.posterName = dict[MessageBoardPostCollectionKeys.posterNameKey] as? String ?? ""
         self.postDate = dict[MessageBoardPostCollectionKeys.postDateKey] as? Date ?? Date()
+        self.hasImage = dict[MessageBoardPostCollectionKeys.hasImageKey] as? Bool ?? false
      }
 }

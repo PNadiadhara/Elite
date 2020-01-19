@@ -120,6 +120,8 @@
 		D52FF49C23CFC4BB0047B7B8 /* PostMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D52FF49A23CFC4BB0047B7B8 /* PostMessageViewController.xib */; };
 		D52FF49F23D112160047B7B8 /* MessageBoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52FF49D23D112150047B7B8 /* MessageBoardCell.swift */; };
 		D52FF4A023D112160047B7B8 /* MessageBoardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D52FF49E23D112150047B7B8 /* MessageBoardCell.xib */; };
+		D52FF4AB23D3DB430047B7B8 /* PostPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52FF4A923D3DB420047B7B8 /* PostPhotoViewController.swift */; };
+		D52FF4AC23D3DB430047B7B8 /* PostPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D52FF4AA23D3DB420047B7B8 /* PostPhotoViewController.xib */; };
 		D541FE1C236B6DAB00B77D45 /* MedalsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D541FE1B236B6DAB00B77D45 /* MedalsHelper.swift */; };
 		D5555DD1236CCBCC005867A1 /* SearchCourtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5555DCF236CCBCC005867A1 /* SearchCourtViewController.swift */; };
 		D5555DD2236CCBCC005867A1 /* SearchCourtViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5555DD0236CCBCC005867A1 /* SearchCourtViewController.xib */; };
@@ -322,6 +324,8 @@
 		D52FF49A23CFC4BB0047B7B8 /* PostMessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostMessageViewController.xib; sourceTree = "<group>"; };
 		D52FF49D23D112150047B7B8 /* MessageBoardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoardCell.swift; sourceTree = "<group>"; };
 		D52FF49E23D112150047B7B8 /* MessageBoardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageBoardCell.xib; sourceTree = "<group>"; };
+		D52FF4A923D3DB420047B7B8 /* PostPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPhotoViewController.swift; sourceTree = "<group>"; };
+		D52FF4AA23D3DB420047B7B8 /* PostPhotoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostPhotoViewController.xib; sourceTree = "<group>"; };
 		D541FE1B236B6DAB00B77D45 /* MedalsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedalsHelper.swift; sourceTree = "<group>"; };
 		D5555DCF236CCBCC005867A1 /* SearchCourtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCourtViewController.swift; sourceTree = "<group>"; };
 		D5555DD0236CCBCC005867A1 /* SearchCourtViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCourtViewController.xib; sourceTree = "<group>"; };
@@ -815,6 +819,8 @@
 			children = (
 				D580DED92375F65D000CD1AF /* ParkFeedViewController.swift */,
 				D580DEDA2375F65D000CD1AF /* ParkFeedViewController.xib */,
+				D52FF4A923D3DB420047B7B8 /* PostPhotoViewController.swift */,
+				D52FF4AA23D3DB420047B7B8 /* PostPhotoViewController.xib */,
 				D52FF49923CFC4BB0047B7B8 /* PostMessageViewController.swift */,
 				D52FF49A23CFC4BB0047B7B8 /* PostMessageViewController.xib */,
 			);
@@ -947,6 +953,7 @@
 				BFD61E28227C985600EA408B /* RankChangeController.xib in Resources */,
 				D5E329242376006700A46138 /* RecentActivityCell.xib in Resources */,
 				D5EFCBFC2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib in Resources */,
+				D52FF4AC23D3DB430047B7B8 /* PostPhotoViewController.xib in Resources */,
 				2E381EB122613A1E0075C1CD /* ProfileViewController.xib in Resources */,
 				48F1B5C2226980F700B53E11 /* basketballCourtInfo.json in Resources */,
 				D52CDC6822C04E80008BADE7 /* TimerPopUp.xib in Resources */,
@@ -1172,6 +1179,7 @@
 				2E381E9F2260F31D0075C1CD /* GamePostView.swift in Sources */,
 				2E9FE66822557DF4004CA00B /* UIViewController+Navigation.swift in Sources */,
 				2E9FE66F22557EE8004CA00B /* Date+Extensions.swift in Sources */,
+				D52FF4AB23D3DB430047B7B8 /* PostPhotoViewController.swift in Sources */,
 				48EFEB83226D0B450006092D /* AVCapturePreviewView.swift in Sources */,
 				2EA2E5432289D91E005B48CA /* Animations.swift in Sources */,
 				2E171BAA225D011800D40DDF /* JsonModel.json in Sources */,

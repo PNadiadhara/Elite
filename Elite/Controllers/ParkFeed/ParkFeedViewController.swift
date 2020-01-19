@@ -16,12 +16,18 @@ class ParkFeedViewController: UIViewController {
     var parkId: String!
     var parkName: String!
     
+    private lazy var imagePickerController: UIImagePickerController = {
+        let ip = UIImagePickerController()
+        ip.delegate = self
+        return ip
+    }()
+    
     @IBOutlet weak var parkNameLabel: UILabel!
     @IBOutlet weak var recentActivityButton: RoundedButton!
     @IBOutlet weak var messageBoardButton: RoundedButton!
     @IBOutlet weak var postCommentView: UIView!
-    
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var cameraButton: UIButton!
     
     private var parkViewFeed: ParkFeedView! {
         didSet {
@@ -125,7 +131,26 @@ class ParkFeedViewController: UIViewController {
         setupButtonColors()
     }
     
-
+    @IBAction func cameraButtonPressed(_ sender: Any) {
+        showSheetAlert(title: "Please select option", message: nil) { (alertController) in
+            let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: { (action) in
+                self.imagePickerController.sourceType = .camera
+                self.present(self.imagePickerController, animated: true)
+            })
+            let photoLibaryAction = UIAlertAction(title: "Photo Library", style: .default, handler: { (action) in
+                self.imagePickerController.sourceType = .photoLibrary
+                self.present(self.imagePickerController, animated: true)
+            })
+            
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                alertController.addAction(cameraAction)
+                alertController.addAction(photoLibaryAction)
+            } else {
+                alertController.addAction(photoLibaryAction)
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -190,4 +215,22 @@ extension ParkFeedViewController: UITableViewDelegate, UITableViewDataSource {
             }
      }
     
+}
+
+extension ParkFeedViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
+    }
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            print("original image is nil")
+            return
+        }
+        
+//        let resizedImage = Toucan.init(image: originalImage).resize(CGSize(width: 175, height: 175))
+    let postPhotoVC = PostPhotoViewController(nibName: nil, bundle: nil, postImage: originalImage)
+        dismiss(animated: true)
+        present(postPhotoVC, animated: true)
+    }
 }

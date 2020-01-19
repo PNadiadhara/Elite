@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ParkFeedViewController" customModule="Elite" customModuleProvider="target">
             <connections>
+                <outlet property="cameraButton" destination="aPL-kd-8Bb" id="Q8u-dg-yDC"/>
                 <outlet property="messageBoardButton" destination="xHY-em-VGz" id="Qfi-4L-b5T"/>
                 <outlet property="parkNameLabel" destination="9hG-C1-ZAd" id="aE9-BF-c22"/>
                 <outlet property="postCommentView" destination="bqt-8b-zfU" id="DaS-mT-68l"/>
@@ -62,10 +63,10 @@
                     <rect key="frame" x="0.0" y="686" width="414" height="50"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sAg-D8-U5u" customClass="RoundedView" customModule="Elite" customModuleProvider="target">
-                            <rect key="frame" x="5" y="5" width="404" height="40"/>
+                            <rect key="frame" x="5" y="5" width="344" height="40"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mS1-Ue-SiN">
-                                    <rect key="frame" x="15" y="8" width="381" height="24"/>
+                                    <rect key="frame" x="15" y="8" width="107" height="24"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -75,16 +76,28 @@
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="mS1-Ue-SiN" secondAttribute="bottom" constant="8" id="AWx-UR-91F"/>
                                 <constraint firstItem="mS1-Ue-SiN" firstAttribute="top" secondItem="sAg-D8-U5u" secondAttribute="top" constant="8" id="cQb-Oz-cFx"/>
-                                <constraint firstAttribute="trailing" secondItem="mS1-Ue-SiN" secondAttribute="trailing" constant="8" id="o3a-Zx-M42"/>
                                 <constraint firstItem="mS1-Ue-SiN" firstAttribute="leading" secondItem="sAg-D8-U5u" secondAttribute="leading" constant="15" id="zY8-nG-CfO"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aPL-kd-8Bb">
+                            <rect key="frame" x="364" y="7.6666666666666288" width="35" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="ADR-py-oJP"/>
+                                <constraint firstAttribute="width" constant="35" id="vpQ-r0-aXR"/>
+                            </constraints>
+                            <state key="normal" image="camera"/>
+                            <connections>
+                                <action selector="cameraButtonPressed:" destination="-1" eventType="touchUpInside" id="iyo-qo-jj9"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.14117647059999999" green="0.14901960780000001" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
+                        <constraint firstItem="aPL-kd-8Bb" firstAttribute="leading" secondItem="sAg-D8-U5u" secondAttribute="trailing" constant="15" id="13a-Ll-w6g"/>
                         <constraint firstAttribute="height" constant="50" id="3dM-OS-adj"/>
                         <constraint firstAttribute="bottom" secondItem="sAg-D8-U5u" secondAttribute="bottom" constant="5" id="6rG-Tt-c31"/>
-                        <constraint firstAttribute="trailing" secondItem="sAg-D8-U5u" secondAttribute="trailing" constant="5" id="QQT-s3-OSK"/>
+                        <constraint firstAttribute="trailing" secondItem="aPL-kd-8Bb" secondAttribute="trailing" constant="15" id="L55-BC-lwe"/>
+                        <constraint firstItem="aPL-kd-8Bb" firstAttribute="centerY" secondItem="bqt-8b-zfU" secondAttribute="centerY" id="RfI-LJ-rV6"/>
                         <constraint firstItem="sAg-D8-U5u" firstAttribute="top" secondItem="bqt-8b-zfU" secondAttribute="top" constant="5" id="gnw-Yl-zTG"/>
                         <constraint firstItem="sAg-D8-U5u" firstAttribute="leading" secondItem="bqt-8b-zfU" secondAttribute="leading" constant="5" id="xuG-0l-X6t"/>
                     </constraints>
@@ -114,4 +127,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="152.44565217391306"/>
         </view>
     </objects>
+    <resources>
+        <image name="camera" width="50" height="50"/>
+    </resources>
 </document>

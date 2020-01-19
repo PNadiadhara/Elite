@@ -7,18 +7,23 @@
 //
 
 import UIKit
+import Toucan
 
 class PostMessageViewController: UIViewController, UITextViewDelegate {
+    
     @IBOutlet weak var parkLabel: UILabel!
     @IBOutlet weak var textField: UITextView!
     @IBOutlet weak var postButton: UIButton!
-    
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var characterCountLabel: UILabel!
+
+    
+
     
     var parkId: String!
     var parkName: String!
+    var imageSelected = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +44,7 @@ class PostMessageViewController: UIViewController, UITextViewDelegate {
         if textField.text.isEmpty {
             showAlert(title: "Empty text", message: "Please enter message")
         } else {
-            let message = MessageBoardPost(parkId: parkId, post: textField.text, posterId: GamerModel.currentGamer.gamerID, postId: "", posterName: GamerModel.currentGamer.username ?? "", postDate: Date())
+            let message = MessageBoardPost(parkId: parkId, post: textField.text, posterId: GamerModel.currentGamer.gamerID, postId: "", posterName: GamerModel.currentGamer.username ?? "", postDate: Date(), hasImage: false)
             DBService.postMessage(message: message) { (error) in
                 if let error = error {
                     self.showAlert(title: "Error posting", message: error.localizedDescription)
@@ -106,6 +111,8 @@ class PostMessageViewController: UIViewController, UITextViewDelegate {
     @IBAction func donePressed(_ sender: Any) {
         self.view.endEditing(true)
     }
+    
+  
     
 }
 
