@@ -122,6 +122,8 @@
 		D52FF4A023D112160047B7B8 /* MessageBoardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D52FF49E23D112150047B7B8 /* MessageBoardCell.xib */; };
 		D52FF4AB23D3DB430047B7B8 /* PostPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52FF4A923D3DB420047B7B8 /* PostPhotoViewController.swift */; };
 		D52FF4AC23D3DB430047B7B8 /* PostPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D52FF4AA23D3DB420047B7B8 /* PostPhotoViewController.xib */; };
+		D52FF4AF23D520CB0047B7B8 /* MessageBoardCellWithPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52FF4AD23D520CB0047B7B8 /* MessageBoardCellWithPicture.swift */; };
+		D52FF4B023D520CB0047B7B8 /* MessageBoardCellWithPicture.xib in Resources */ = {isa = PBXBuildFile; fileRef = D52FF4AE23D520CB0047B7B8 /* MessageBoardCellWithPicture.xib */; };
 		D541FE1C236B6DAB00B77D45 /* MedalsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D541FE1B236B6DAB00B77D45 /* MedalsHelper.swift */; };
 		D5555DD1236CCBCC005867A1 /* SearchCourtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5555DCF236CCBCC005867A1 /* SearchCourtViewController.swift */; };
 		D5555DD2236CCBCC005867A1 /* SearchCourtViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5555DD0236CCBCC005867A1 /* SearchCourtViewController.xib */; };
@@ -326,6 +328,8 @@
 		D52FF49E23D112150047B7B8 /* MessageBoardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageBoardCell.xib; sourceTree = "<group>"; };
 		D52FF4A923D3DB420047B7B8 /* PostPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPhotoViewController.swift; sourceTree = "<group>"; };
 		D52FF4AA23D3DB420047B7B8 /* PostPhotoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostPhotoViewController.xib; sourceTree = "<group>"; };
+		D52FF4AD23D520CB0047B7B8 /* MessageBoardCellWithPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoardCellWithPicture.swift; sourceTree = "<group>"; };
+		D52FF4AE23D520CB0047B7B8 /* MessageBoardCellWithPicture.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageBoardCellWithPicture.xib; sourceTree = "<group>"; };
 		D541FE1B236B6DAB00B77D45 /* MedalsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedalsHelper.swift; sourceTree = "<group>"; };
 		D5555DCF236CCBCC005867A1 /* SearchCourtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCourtViewController.swift; sourceTree = "<group>"; };
 		D5555DD0236CCBCC005867A1 /* SearchCourtViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCourtViewController.xib; sourceTree = "<group>"; };
@@ -629,6 +633,8 @@
 				D5E329222376006700A46138 /* RecentActivityCell.xib */,
 				D52FF49D23D112150047B7B8 /* MessageBoardCell.swift */,
 				D52FF49E23D112150047B7B8 /* MessageBoardCell.xib */,
+				D52FF4AD23D520CB0047B7B8 /* MessageBoardCellWithPicture.swift */,
+				D52FF4AE23D520CB0047B7B8 /* MessageBoardCellWithPicture.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -959,6 +965,7 @@
 				D52CDC6822C04E80008BADE7 /* TimerPopUp.xib in Resources */,
 				D5BCBBFB226F7FBD006B0015 /* TwoVsTwoProgressViewController.xib in Resources */,
 				BF74A1F32289F9DC002CC3B0 /* DiamondRank.gif in Resources */,
+				D52FF4B023D520CB0047B7B8 /* MessageBoardCellWithPicture.xib in Resources */,
 				D5DE77F2225FF61200439407 /* SearchPlayerViewController.xib in Resources */,
 				D52FF49C23CFC4BB0047B7B8 /* PostMessageViewController.xib in Resources */,
 				BFADB59622553FB300E746B5 /* Assets.xcassets in Resources */,
@@ -1212,6 +1219,7 @@
 				48D5C826225D33A100AFDE8F /* PrivateInfoFile.swift in Sources */,
 				D5555DD1236CCBCC005867A1 /* SearchCourtViewController.swift in Sources */,
 				2EF480A02256BE38008212DC /* PlaygroundModel.swift in Sources */,
+				D52FF4AF23D520CB0047B7B8 /* MessageBoardCellWithPicture.swift in Sources */,
 				D580DEDB2375F65D000CD1AF /* ParkFeedViewController.swift in Sources */,
 				D5E329232376006700A46138 /* RecentActivityCell.swift in Sources */,
 				D5EC8DF422DA929400FF1236 /* CreateYourEliteViewController.swift in Sources */,

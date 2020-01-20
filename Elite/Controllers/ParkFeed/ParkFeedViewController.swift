@@ -62,8 +62,10 @@ class ParkFeedViewController: UIViewController {
         parkViewFeed = .recentActivity
         tableView.delegate = self
         tableView.dataSource = self
+        
         tableView.register(UINib(nibName: "RecentActivityCell", bundle: nil), forCellReuseIdentifier: "RecentActivityCell")
         tableView.register(UINib(nibName: "MessageBoardCell", bundle: nil), forCellReuseIdentifier: "MessageBoardCell")
+                tableView.register(UINib(nibName: "MessageBoardCellWithPicture", bundle: nil), forCellReuseIdentifier: "MessageBoardCellWithPicture")
         fetchParkGames()
         fetchBoardMessages()
         setupTapGestures()
@@ -122,7 +124,7 @@ class ParkFeedViewController: UIViewController {
                 self.showAlert(title: "Error fetching parks", message: error.localizedDescription)
             }
             if let gamesAtPark = gamesAtPark {
-                self.parkActivity = gamesAtPark.sorted{$0.gameEndTime!.stringToDate() > $1.gameEndTime!.stringToDate()}
+                self.parkActivity = gamesAtPark.sorted{$0.gameEndTime!.stringToDate(format: "MMM d, yyyy hh:mm a") > $1.gameEndTime!.stringToDate(format: "MMM d, yyyy hh:mm a")}
             }
         }
     }
@@ -133,7 +135,7 @@ class ParkFeedViewController: UIViewController {
                 self.showAlert(title: "Error fetching board messages", message: error.localizedDescription)
             }
             if let boardMessages = boardMessages {
-                self.messageBoardPosts = boardMessages
+                self.messageBoardPosts = boardMessages.sorted{$0.postDate.stringToDate(format: "MMM d, h:mm a") > $1.postDate.stringToDate(format: "MMM d, h:mm a")}
             }
         }
     }
@@ -199,14 +201,19 @@ extension ParkFeedViewController: UITableViewDelegate, UITableViewDataSource {
             cell.setupCell(with: activity)
             return cell
         case .messageBoard:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MessageBoardCell", for: indexPath) as? MessageBoardCell else {fatalError()}
+            var cell = UITableViewCell()
             let message = messageBoardPosts[indexPath.row]
-            cell.backgroundColor = .yellow
-            if indexPath.row % 2 == 0 {
-                cell.setupCell(with: message, backgroundColor: #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1))
+            if message.postImage == "nil" {
+                
+                guard let messageBoardCell = tableView.dequeueReusableCell(withIdentifier: "MessageBoardCell", for: indexPath) as? MessageBoardCell else {fatalError()}
+                cell = messageBoardCell
+                messageBoardCell.setupCell(with: message, backgroundColor: #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1))
             } else {
-                cell.setupCell(with: message, backgroundColor: #colorLiteral(red: 0.2549019608, green: 0.2549019608, blue: 0.2549019608, alpha: 1))
+                guard let messageBoardCellWithPicture = tableView.dequeueReusableCell(withIdentifier: "MessageBoardCellWithPicture", for: indexPath) as? MessageBoardCellWithPicture else {fatalError()}
+                cell = messageBoardCellWithPicture
+                messageBoardCellWithPicture.setupCell(with: message)
             }
+
             return cell
         default:
             return UITableViewCell()
@@ -218,7 +225,13 @@ extension ParkFeedViewController: UITableViewDelegate, UITableViewDataSource {
         case .recentActivity:
             return 180
         case .messageBoard:
-            return UITableView.automaticDimension
+            let message = messageBoardPosts[indexPath.row]
+            if message.postImage == "nil"{
+                return UITableView.automaticDimension
+            } else {
+                return 275
+        }
+            
         default:
             return 0
         }
