@@ -28,16 +28,16 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="73.666666666666671"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="X1p-uW-7MG">
-                            <rect key="frame" x="15" y="14.999999999999996" width="271" height="43.666666666666657"/>
+                            <rect key="frame" x="15" y="14.999999999999996" width="312" height="43.666666666666657"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eb9-E5-A8e">
-                            <rect key="frame" x="361" y="21.666666666666671" width="31" height="30"/>
+                            <rect key="frame" x="342" y="11.666666666666664" width="50" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="31" id="2fY-6R-AxU"/>
-                                <constraint firstAttribute="height" constant="30" id="Kcv-sG-L0w"/>
+                                <constraint firstAttribute="width" constant="50" id="2fY-6R-AxU"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="cgP-a9-Mpy"/>
                             </constraints>
                             <state key="normal" title="Post">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -50,9 +50,9 @@
                     <color key="backgroundColor" red="0.14154749010000001" green="0.14956755790000001" blue="0.16078951080000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstItem="Eb9-E5-A8e" firstAttribute="centerY" secondItem="X1p-uW-7MG" secondAttribute="centerY" id="OOM-ev-SjA"/>
-                        <constraint firstItem="Eb9-E5-A8e" firstAttribute="leading" secondItem="X1p-uW-7MG" secondAttribute="trailing" constant="75" id="TTh-KL-LB0"/>
                         <constraint firstItem="X1p-uW-7MG" firstAttribute="top" secondItem="INw-ty-8eF" secondAttribute="top" constant="15" id="VtZ-Ax-oRq"/>
                         <constraint firstAttribute="trailing" secondItem="Eb9-E5-A8e" secondAttribute="trailing" constant="22" id="c4M-zZ-YAe"/>
+                        <constraint firstItem="Eb9-E5-A8e" firstAttribute="leading" secondItem="X1p-uW-7MG" secondAttribute="trailing" constant="15" id="hNk-l3-0pe"/>
                         <constraint firstItem="X1p-uW-7MG" firstAttribute="leading" secondItem="INw-ty-8eF" secondAttribute="leading" constant="15" id="jgm-91-flf"/>
                         <constraint firstAttribute="bottom" secondItem="X1p-uW-7MG" secondAttribute="bottom" constant="15" id="uuf-Un-Wkn"/>
                     </constraints>
