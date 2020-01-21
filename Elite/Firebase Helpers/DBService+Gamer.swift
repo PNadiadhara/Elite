@@ -49,7 +49,6 @@ extension DBService {
                        GamerCollectionKeys.JoinedDateKey  : gamer.joinedDate,
                        GamerCollectionKeys.GamerIDKey : gamer.gamerID,
                        GamerCollectionKeys.FriendsKey : gamer.friends ?? "",
-                       GamerCollectionKeys.deviceName: gamer.deviceName,
                        GamerCollectionKeys.HandBallGamesWinsByLocation : gamer.handBallWinsPlayedByLocation ?? "", GamerCollectionKeys.BasketBallWinsPlayedByLocation : gamer.basketBallGamesWinsByLocation ?? ""
             ]) { (error) in
                 if let error = error {

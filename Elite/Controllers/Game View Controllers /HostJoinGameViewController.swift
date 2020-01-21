@@ -33,12 +33,9 @@ class HostJoinGameViewController: UIViewController{
 //                print(error.localizedDescription)
 //            }
 //        }
-        if !GameRestrictionsHelper.test {
-           checkFor20minsLimit()
-        }
+
         
-        MultiPeerConnectivityHelper.shared.multipeerDelegate = self
-        WaitingView.watingViewDelegate = self
+
         WaitingView.setViewContraints(titleText: "Searching for games", isHidden: true, delegate: self, view: self.view) { (waitingView) in
             self.waitingView = waitingView
         }
@@ -47,10 +44,8 @@ class HostJoinGameViewController: UIViewController{
     
     override func viewDidAppear(_ animated: Bool) {
         if !GameRestrictionsHelper.test {
-           checkFor20minsLimit()
+            checkFor20minsLimit()
         }
-        MultiPeerConnectivityHelper.shared.multipeerDelegate = self
-        WaitingView.watingViewDelegate = self
     }
 
     func checkFor20minsLimit() {
@@ -70,16 +65,24 @@ class HostJoinGameViewController: UIViewController{
     }
     
     @IBAction func hostGamePressed(_ sender: Any) {
-//        multiPeerConnectivityHelper.hostGame()
-        let createGameVC = CreateGameViewController()
-        MultiPeerConnectivityHelper.shared.role = .Host
-        self.navigationController?.pushViewController(createGameVC, animated: true)
+
+            let createGameVC = CreateGameViewController()
+            MultiPeerConnectivityHelper.shared.role = .Host
+            self.navigationController?.pushViewController(createGameVC, animated: true)
+
+
+    }
+    
+    private func joinGame() {
+        MultiPeerConnectivityHelper.shared.multipeerDelegate = self
+        WaitingView.watingViewDelegate = self
+        MultiPeerConnectivityHelper.shared.joinGame(joiningGame: false)
+        self.waitingView?.isHidden = false
+        MultiPeerConnectivityHelper.shared.role = .Guest
     }
     
     @IBAction func joinGamePressed(_ sender: Any) {
-        MultiPeerConnectivityHelper.shared.joinGame(joiningGame: false)
-        waitingView?.isHidden = false
-        MultiPeerConnectivityHelper.shared.role = .Guest
+            self.joinGame()
     }
     
     func startTimer() {
@@ -151,40 +154,12 @@ extension HostJoinGameViewController: MultipeerConnectivityDelegate{
         
     }
     
-
-    
-
-    
-
-    
-
-    
-
-
-    
-//    func displayAvailableGames(handler: @escaping (Bool) -> Void) {
-//
-//
-//        
-////        invitationAlert(title: "Invited", message: "Invited") { (action) in
-////            if action.title == "Yes"{
-////                 handler(true)
-////            }
-////        }
-//
-//    }
-    
-
-
-
-    
     
 }
 
 extension HostJoinGameViewController: WaitingViewDelegate {
     func cancelPressed() {
         MultiPeerConnectivityHelper.shared.cancelJoinGame()
-        MultiPeerConnectivityHelper.shared.joiningGame = nil
         waitingView?.isHidden = true
     }
     

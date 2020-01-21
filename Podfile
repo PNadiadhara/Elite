@@ -15,6 +15,7 @@ platform :ios, '12.0'
     pod 'FBSDKLoginKit'
     pod 'SAConfettiView'
     pod 'Toucan'
+	pod 'GoogleSignIn'
   end
 
   target 'Elite' do

@@ -32,9 +32,10 @@ extension String {
     
 
     
-        public func stringToDate() -> Date {
+    public func stringToDate(format: String) -> Date {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMM d, yyyy hh:mm a"
+        //"MMM d, yyyy hh:mm a"
+            dateFormatter.dateFormat = format
             dateFormatter.locale = .current
             guard let date = dateFormatter.date(from: self) else {
                 return Date()
@@ -42,5 +43,7 @@ extension String {
             }
             return date
         }
+    
+    
 }
 //
