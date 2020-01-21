@@ -29,6 +29,17 @@
 			<string>my-app://abc/xy/z</string>
 		</dict>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.495347304342-f6m0pofo1pclaubalsgilouqtjb1kcr2</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>14</string>
 	<key>LSApplicationQueriesSchemes</key>

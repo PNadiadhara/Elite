@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,13 +19,16 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EliteLoginBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="rVG-kW-67r">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EliteHQ" translatesAutoresizingMaskIntoConstraints="NO" id="Z9F-b3-BI8">
                     <rect key="frame" x="62" y="220.66666666666663" width="290" height="147.33333333333337"/>
                 </imageView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Zct-AK-jtM">
                     <rect key="frame" x="188.66666666666666" y="398" width="37" height="37"/>
                 </activityIndicatorView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mS6-IQ-UXg">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mS6-IQ-UXg">
                     <rect key="frame" x="15" y="450" width="384" height="24"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -39,16 +42,21 @@
                 <constraint firstItem="Z9F-b3-BI8" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" multiplier="0.8" id="NXY-om-nCc"/>
                 <constraint firstItem="Z9F-b3-BI8" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.2" id="Swl-hJ-IdI"/>
                 <constraint firstItem="Z9F-b3-BI8" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="VCC-Vb-BCY"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="rVG-kW-67r" secondAttribute="bottom" id="a5m-iC-kdM"/>
+                <constraint firstItem="rVG-kW-67r" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="fgw-Li-uAb"/>
                 <constraint firstItem="Zct-AK-jtM" firstAttribute="top" secondItem="Z9F-b3-BI8" secondAttribute="bottom" constant="30" id="gti-FS-YS0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mS6-IQ-UXg" secondAttribute="trailing" constant="15" id="j5r-o4-cNy"/>
+                <constraint firstItem="rVG-kW-67r" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="n93-uf-yMW"/>
                 <constraint firstItem="mS6-IQ-UXg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="p6P-FC-zmZ"/>
                 <constraint firstItem="Zct-AK-jtM" firstAttribute="centerX" secondItem="Z9F-b3-BI8" secondAttribute="centerX" id="pDb-4N-xOp"/>
+                <constraint firstItem="rVG-kW-67r" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="yMO-gT-CIL"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="139" y="98"/>
+            <point key="canvasLocation" x="137.68115942028987" y="97.826086956521749"/>
         </view>
     </objects>
     <resources>
         <image name="EliteHQ" width="290" height="290"/>
+        <image name="EliteLoginBackGround" width="1563" height="2779"/>
     </resources>
 </document>
