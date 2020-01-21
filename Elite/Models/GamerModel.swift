@@ -24,12 +24,13 @@ class GamerModel: Codable {
     let numberOfHandballGamesPlayed : Double
     let numberOfBasketballGamesPlayed : Double
     let friends: [String]?
-    var deviceName: String
-    var handBallGamesPlayedByLocation: [String: Int]?
-    var basketBallGamesPlayedByLocation: [String: Int]? // [Name of park : Wins]
+    var handBallWinsPlayedByLocation: [String: Int]?
+    var basketBallGamesWinsByLocation: [String: Int]? // [Name of park : Wins]
     public var fullname: String {
         return ((firstname ) + " " + (lastname )).trimmingCharacters(in: .whitespacesAndNewlines)
     }
+    
+    static var currentGamer: GamerModel!
     
     init(profileImage: String?,
     fullname: String,
@@ -46,8 +47,7 @@ class GamerModel: Codable {
     myParks : [String]?,
     numberOfHandballGamesPlayed : Double,
     numberOfBasketballGamesPlayed : Double,
-    friends: [String]?,
-    deviceName: String, handBallGamesPlayedByLocation: [String: Int]?, basketBallGamesPlayedByLocation: [String : Int]?) {
+    friends: [String]?, handBallGamesWinsByLocation: [String: Int]?, basketBallGamesWinsByLocation: [String : Int]?) {
         self.profileImage = profileImage
         self.firstname = firstname
         self.lastname = lastname
@@ -63,9 +63,8 @@ class GamerModel: Codable {
         self.numberOfHandballGamesPlayed = numberOfHandballGamesPlayed
         self.numberOfBasketballGamesPlayed = numberOfBasketballGamesPlayed
         self.friends = friends
-        self.deviceName = deviceName
-        self.handBallGamesPlayedByLocation = handBallGamesPlayedByLocation
-        self.basketBallGamesPlayedByLocation = basketBallGamesPlayedByLocation
+        self.handBallWinsPlayedByLocation = handBallGamesWinsByLocation
+        self.basketBallGamesWinsByLocation = basketBallGamesWinsByLocation
     }
     
     init(dict: [String: Any]) {
@@ -84,9 +83,8 @@ class GamerModel: Codable {
         self.numberOfHandballGamesPlayed = dict[GamerCollectionKeys.NumberOfHandballGamesPlayed] as? Double ?? 0.0
         self.numberOfBasketballGamesPlayed = dict[GamerCollectionKeys.NumberOfBasketballGamesPlayer] as? Double ?? 0.0
         self.friends = dict[GamerCollectionKeys.FriendsKey] as? [String] ?? [""]
-        self.deviceName = dict[GamerCollectionKeys.deviceName] as? String ?? ""
-        self.handBallGamesPlayedByLocation = dict[GamerCollectionKeys.HandBallGamesPlayedByLocation] as? [String : Int]
-        self.basketBallGamesPlayedByLocation = dict[GamerCollectionKeys.BasketBallGamesPlayedByLocation] as? [String : Int]
+        self.handBallWinsPlayedByLocation = dict[GamerCollectionKeys.HandBallGamesWinsByLocation] as? [String : Int]
+        self.basketBallGamesWinsByLocation = dict[GamerCollectionKeys.BasketBallWinsPlayedByLocation] as? [String : Int]
     }
     
 

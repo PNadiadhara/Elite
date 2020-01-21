@@ -18,8 +18,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import <FBSDKCoreKit/FBSDKCopying.h>
+#import "FBSDKCopying.h"
+
+#ifdef BUCK
 #import <FBSDKCoreKit/FBSDKGraphRequestConnection.h>
+#else
+#import "FBSDKGraphRequestConnection.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

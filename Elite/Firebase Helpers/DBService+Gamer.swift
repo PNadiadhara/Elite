@@ -30,8 +30,8 @@ struct GamerCollectionKeys {
     static let RoleKey = "role"
     static let deviceName = "deviceName"
     static let PlayersKey = "players"
-    static let HandBallGamesPlayedByLocation = "handBallGamesPlayedByLocation"
-    static let BasketBallGamesPlayedByLocation = "basketBallGamesPlayeByLocation"
+    static let HandBallGamesWinsByLocation = "handBallGamesWinsByLocation"
+    static let BasketBallWinsPlayedByLocation = "basketBallGamesWinsByLocation"
 }
 extension DBService {
     static public func createUser(gamer: GamerModel, completion: @escaping (Error?) -> Void) {
@@ -49,8 +49,7 @@ extension DBService {
                        GamerCollectionKeys.JoinedDateKey  : gamer.joinedDate,
                        GamerCollectionKeys.GamerIDKey : gamer.gamerID,
                        GamerCollectionKeys.FriendsKey : gamer.friends ?? "",
-                       GamerCollectionKeys.deviceName: gamer.deviceName,
-                       GamerCollectionKeys.HandBallGamesPlayedByLocation : gamer.handBallGamesPlayedByLocation ?? ""
+                       GamerCollectionKeys.HandBallGamesWinsByLocation : gamer.handBallWinsPlayedByLocation ?? "", GamerCollectionKeys.BasketBallWinsPlayedByLocation : gamer.basketBallGamesWinsByLocation ?? ""
             ]) { (error) in
                 if let error = error {
                     completion(error)
@@ -68,12 +67,12 @@ extension DBService {
         }
     }
     
-    static public func updateGamesByLocation(parkId: String, sport: String) {
+    static public func updateWinsByLocation(parkId: String, sport: String) {
         if sport  == SportType.handball.rawValue {
-        guard var winsByLocation = TabBarViewController.currentGamer.handBallGamesPlayedByLocation else {
-            TabBarViewController.currentGamer.handBallGamesPlayedByLocation = [parkId : 1]
+        guard var winsByLocation = GamerModel.currentGamer.handBallWinsPlayedByLocation else {
+            GamerModel.currentGamer.handBallWinsPlayedByLocation = [parkId : 1]
             print("Dict is nil")
-            DBService.firestoreDB .collection(GamerCollectionKeys.CollectionKey).document(TabBarViewController.currentUser.uid).updateData([GamerCollectionKeys.HandBallGamesPlayedByLocation : TabBarViewController.currentGamer.handBallGamesPlayedByLocation!]) { (error) in
+            DBService.firestoreDB .collection(GamerCollectionKeys.CollectionKey).document(GamerModel.currentGamer.gamerID).updateData([GamerCollectionKeys.HandBallGamesWinsByLocation : GamerModel.currentGamer.handBallWinsPlayedByLocation!]) { (error) in
                 if let error = error {
                     print(error)
                 }
@@ -85,16 +84,16 @@ extension DBService {
         } else {
             winsByLocation[parkId] = 1
         }
-        DBService.firestoreDB .collection(GamerCollectionKeys.CollectionKey).document(TabBarViewController.currentUser.uid).updateData([GamerCollectionKeys.HandBallGamesPlayedByLocation : winsByLocation]) { (error) in
+            DBService.firestoreDB .collection(GamerCollectionKeys.CollectionKey).document(GamerModel.currentGamer.gamerID).updateData([GamerCollectionKeys.HandBallGamesWinsByLocation : winsByLocation]) { (error) in
                 if let error = error {
                     print(error)
                 }
         }
         } else {
-            guard var winsByLocation = TabBarViewController.currentGamer.basketBallGamesPlayedByLocation else {
-                TabBarViewController.currentGamer.basketBallGamesPlayedByLocation = [parkId : 1]
+            guard var winsByLocation = GamerModel.currentGamer.basketBallGamesWinsByLocation else {
+                GamerModel.currentGamer.basketBallGamesWinsByLocation = [parkId : 1]
                 print("Dict is nil")
-                DBService.firestoreDB .collection(GamerCollectionKeys.CollectionKey).document(TabBarViewController.currentUser.uid).updateData([GamerCollectionKeys.BasketBallGamesPlayedByLocation : TabBarViewController.currentGamer.basketBallGamesPlayedByLocation!]) { (error) in
+                DBService.firestoreDB .collection(GamerCollectionKeys.CollectionKey).document(GamerModel.currentGamer.gamerID).updateData([GamerCollectionKeys.BasketBallWinsPlayedByLocation : GamerModel.currentGamer.basketBallGamesWinsByLocation!]) { (error) in
                     if let error = error {
                         print(error)
                     }
@@ -106,7 +105,7 @@ extension DBService {
             } else {
                 winsByLocation[parkId] = 1
             }
-            DBService.firestoreDB .collection(GamerCollectionKeys.CollectionKey).document(TabBarViewController.currentUser.uid).updateData([GamerCollectionKeys.BasketBallGamesPlayedByLocation : winsByLocation]) { (error) in
+            DBService.firestoreDB .collection(GamerCollectionKeys.CollectionKey).document(GamerModel.currentGamer.gamerID).updateData([GamerCollectionKeys.BasketBallWinsPlayedByLocation : winsByLocation]) { (error) in
                     if let error = error {
                         print(error)
                     }
@@ -127,10 +126,11 @@ extension DBService {
                 }
         }
     }
-    static public func fetchGamerBasedOnDeviceName(deviceName: String, completion: @escaping(Error?, GamerModel?) -> Void) {
+    
+    static public func fetchGamerBasedOnUserName(userName: String, completion: @escaping(Error?, GamerModel?) -> Void) {
         DBService.firestoreDB
             .collection(GamerCollectionKeys.CollectionKey)
-            .whereField(GamerCollectionKeys.deviceName, isEqualTo: deviceName)
+            .whereField(GamerCollectionKeys.UserNameKey, isEqualTo: userName)
             .getDocuments { (snapshot, error) in
                 if let error = error {
                     completion(error, nil)
@@ -141,10 +141,10 @@ extension DBService {
         }
     }
     
-    static public func fetchGamersBasedOnDeviceName(deviceName: String, completion: @escaping(Error?, [GamerModel]?) -> Void) {
+    static public func fetchGamersBasedOnUserName(userName: String, completion: @escaping(Error?, [GamerModel]?) -> Void) {
         DBService.firestoreDB
             .collection(GamerCollectionKeys.CollectionKey)
-            .whereField(GamerCollectionKeys.deviceName, isEqualTo: deviceName)
+            .whereField(GamerCollectionKeys.UserNameKey, isEqualTo: userName)
             .getDocuments { (snapshot, error) in
                 if let error = error {
                     completion(error, nil)

@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WinnerViewController" customModule="Elite" customModuleProvider="target">
             <connections>
+                <outlet property="addFriendButton" destination="Nke-Do-Nac" id="3lq-GC-r86"/>
                 <outlet property="continueButton" destination="1fy-zL-K1T" id="sGS-Vs-Iqj"/>
                 <outlet property="playersImage" destination="I0Z-T1-IAk" id="rJG-Vw-AYl"/>
                 <outlet property="reportUser" destination="Kao-ni-Z8C" id="g9k-uC-A2G"/>
                 <outlet property="resultView" destination="gX9-Hn-XM8" id="Wj4-L9-KA3"/>
+                <outlet property="shareButton" destination="Po9-Q1-yen" id="N0G-Sp-B9c"/>
                 <outlet property="tieView" destination="NAe-0m-Ep6" id="g25-aX-0kO"/>
                 <outlet property="userResultLabel" destination="TuD-K9-G2U" id="7sA-2J-N9Q"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -95,19 +97,45 @@
                         <action selector="continueButtonPressed:" destination="-1" eventType="touchUpInside" id="PZs-dc-lwD"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Po9-Q1-yen">
+                    <rect key="frame" x="339" y="69" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="4kb-hc-Yaa"/>
+                        <constraint firstAttribute="width" constant="50" id="oG3-6l-cKG"/>
+                    </constraints>
+                    <state key="normal" image="share"/>
+                    <connections>
+                        <action selector="shareResult:" destination="-1" eventType="touchUpInside" id="ubG-9i-mQL"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nke-Do-Nac">
+                    <rect key="frame" x="264" y="69" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="gdi-wd-Ap2"/>
+                        <constraint firstAttribute="width" constant="50" id="nm9-OC-FDv"/>
+                    </constraints>
+                    <state key="normal" image="addFriend"/>
+                    <connections>
+                        <action selector="addFriend:" destination="-1" eventType="touchUpInside" id="0l6-Sg-fce"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="1fy-zL-K1T" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="6iT-Qf-yT6"/>
+                <constraint firstItem="Nke-Do-Nac" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="25" id="A3M-TB-RfT"/>
                 <constraint firstItem="gX9-Hn-XM8" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="AhG-1Z-nkG"/>
                 <constraint firstItem="1fy-zL-K1T" firstAttribute="top" secondItem="gX9-Hn-XM8" secondAttribute="bottom" constant="50" id="CMt-ry-MlC"/>
+                <constraint firstItem="Po9-Q1-yen" firstAttribute="leading" secondItem="Nke-Do-Nac" secondAttribute="trailing" constant="25" id="I3s-95-bcD"/>
                 <constraint firstItem="gX9-Hn-XM8" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.35" id="MB1-gO-EoS"/>
                 <constraint firstItem="gX9-Hn-XM8" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="Smy-20-h2b"/>
                 <constraint firstItem="NAe-0m-Ep6" firstAttribute="width" secondItem="gX9-Hn-XM8" secondAttribute="width" id="VwU-7X-Qrm"/>
                 <constraint firstItem="gX9-Hn-XM8" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="WYe-mf-aMY"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1fy-zL-K1T" secondAttribute="trailing" constant="50" id="fed-qW-H0B"/>
                 <constraint firstItem="NAe-0m-Ep6" firstAttribute="centerY" secondItem="gX9-Hn-XM8" secondAttribute="centerY" id="jWf-7v-94N"/>
+                <constraint firstItem="Po9-Q1-yen" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="25" id="ryt-1b-EJN"/>
                 <constraint firstItem="NAe-0m-Ep6" firstAttribute="centerX" secondItem="gX9-Hn-XM8" secondAttribute="centerX" id="u4S-Eq-1lp"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Po9-Q1-yen" secondAttribute="trailing" constant="25" id="uJf-4k-91W"/>
                 <constraint firstItem="NAe-0m-Ep6" firstAttribute="height" secondItem="gX9-Hn-XM8" secondAttribute="height" id="yDH-Mt-vkF"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -115,6 +143,8 @@
         </view>
     </objects>
     <resources>
+        <image name="addFriend" width="37.5" height="37.5"/>
+        <image name="share" width="37.5" height="37.5"/>
         <image name="winner" width="1000" height="1000"/>
     </resources>
 </document>

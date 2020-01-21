@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import MultipeerConnectivity
 class CreateAccountViewController: UIViewController {
     
     @IBOutlet weak var conteinerView: UIView!
@@ -17,8 +17,7 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var createAccountTitle: UILabel!
-    @IBOutlet weak var createNewUserBttn: RoundedButton!
+    @IBOutlet weak var createNewUserBttn: SignInButton!
     
     @IBOutlet weak var existingUserBttn: UIButton!
     private var authservice = AppDelegate.authservice
@@ -30,7 +29,6 @@ class CreateAccountViewController: UIViewController {
         super.viewDidLoad()
         setOutletsDelegates()
         setViewControllerSettings()
-        setupGradient()
         setupTap()
     }
     
@@ -57,12 +55,7 @@ class CreateAccountViewController: UIViewController {
         authservice.authserviceCreateNewAccountDelegate = self
         existingUserBttn.layer.cornerRadius = 5
     }
-    private func setupGradient(){
-        view.setGradientFromRightToLeft(colorOne: UIColor.black, colorTwo: UIColor.lightGrey)
-        createNewUserBttn.setGradientFromUpperLeftToBottmRight(colorOne: .eliteGold, colorTwo: .eliteGold2)
-        conteinerView.setGradientFromRightToLeft(colorOne: UIColor.black, colorTwo: UIColor.lightGrey)
-        createAccountTitle.textColor = .gold
-    }
+
     private func createNewUser(){
         guard let email = emailTextField.text,
             let password = passwordTextField.text,
@@ -81,7 +74,8 @@ class CreateAccountViewController: UIViewController {
         if password != confirmPassword {
             showAlert(title: "Passwords do not match", message: "Try again")
         } else {
-            authservice.createNewAccount(email: email, password: password, firstName: firstName, lastName: lastName, deviceName: UIDevice.current.name)
+            
+            authservice.createNewAccount(email: email, password: password, firstName: firstName, lastName: lastName)
         }
         
     }

@@ -22,6 +22,7 @@ class ParkListViewController: UIViewController {
     var googleMapsHelper = GoogleMapHelper()
     @IBOutlet weak var parkListTableView: UITableView!
     @IBOutlet weak var listTitleLabel: UILabel!
+    @IBOutlet weak var cancelButton: UIButton!
     
     public var basketBallCourts = [BasketBall]() {
         didSet {
@@ -63,8 +64,9 @@ class ParkListViewController: UIViewController {
 
         switch typeOfList {
         case .AvailableGameList:
+            cancelButton.isHidden = false
             listTitleLabel.text = "Select Player"
-            parkListTableView.register(UINib(nibName: "LeaderboardCell", bundle: nil), forCellReuseIdentifier: "LeaderboardCell")
+            parkListTableView.register(UINib(nibName: "PlayerCell", bundle: nil), forCellReuseIdentifier: "PlayerCell")
             parkListTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
             return
         case .ParkList:
@@ -86,16 +88,11 @@ class ParkListViewController: UIViewController {
     @IBAction func tapPressed(){
         dismiss(animated: true)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func cancelPressed(_ sender: Any) {
+        MultiPeerConnectivityHelper.shared.cancelJoinGame()
+        self.navigationController?.popViewController(animated: true)
     }
-    */
+    
 
 }
 
@@ -121,7 +118,7 @@ extension ParkListViewController: UITableViewDelegate, UITableViewDataSource {
 
         switch typeOfList {
         case .AvailableGameList:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "LeaderboardCell", for: indexPath) as? LeaderboardCell else {return UITableViewCell()}
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell", for: indexPath) as? PlayerCell else {return UITableViewCell()}
             let gameName = availableGames[indexPath.row]
             cell.userName.text = gameName.username
             cell.profileImage.kf.setImage(with: URL(string: gameName.profileImage!))
@@ -212,7 +209,6 @@ extension ParkListViewController: MultipeerConnectivityDelegate {
 
     
     func acceptedInvitation() {
-        
         let oneVsOne = OneVsOneViewController()
         self.navigationController?.pushViewController(oneVsOne, animated: true)
     }

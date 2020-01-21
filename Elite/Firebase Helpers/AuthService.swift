@@ -30,7 +30,7 @@ final class AuthService {
     weak var authserviceSignOutDelegate: AuthServiceSignOutDelegate?
     
     
-    public func createNewAccount(email: String, password: String, firstName: String, lastName: String, deviceName: String) {
+    public func createNewAccount(email: String, password: String, firstName: String, lastName: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (authDataResult, error) in
             if let error = error {
                 self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
@@ -38,7 +38,7 @@ final class AuthService {
             } else if let authDataResult = authDataResult {
                 
                 let joinedDate = Date.getISOTimestamp()
-                let user = GamerModel(profileImage: nil, fullname: "\(firstName) \(lastName)", firstname: firstName, lastname: lastName, username: nil, email: authDataResult.user.email!, status: nil, achievements: nil, bio: nil, qrCode: "fd", joinedDate: joinedDate.formatISODateString(dateFormat: "MMM d, yyyy hh:mm a") , gamerID: authDataResult.user.uid, myParks: nil, numberOfHandballGamesPlayed: 0.0, numberOfBasketballGamesPlayed: 0.0,friends: nil, deviceName: deviceName, handBallGamesPlayedByLocation: nil, basketBallGamesPlayedByLocation: nil)
+                let user = GamerModel(profileImage: nil, fullname: "\(firstName) \(lastName)", firstname: firstName, lastname: lastName, username: nil, email: authDataResult.user.email!, status: nil, achievements: nil, bio: nil, qrCode: "fd", joinedDate: joinedDate.formatISODateString(dateFormat: "MMM d, yyyy hh:mm a") , gamerID: authDataResult.user.uid, myParks: nil, numberOfHandballGamesPlayed: 0.0, numberOfBasketballGamesPlayed: 0.0,friends: nil, handBallGamesWinsByLocation: nil, basketBallGamesWinsByLocation: nil)
                 DBService.createUser(gamer: user, completion: { (error) in
                     if let error = error {
                        self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
