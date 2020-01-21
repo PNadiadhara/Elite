@@ -222,6 +222,26 @@ class RoundedView: UIView {
 }
 
 @IBDesignable
+class TextFieldView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = bounds.height / 2
+        layer.borderColor = UIColor.lightGray.cgColor
+        layer.borderWidth = 0.5
+        clipsToBounds = true
+    }
+}
+
+@IBDesignable
+class TitleTextField: UITextField {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        attributedPlaceholder = NSAttributedString(string: "Title",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
+    }
+}
+
+@IBDesignable
 class RoundedView10: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -278,3 +298,23 @@ class BorderButton: UIButton {
 }
 
 
+@IBDesignable
+class TitleView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        layer.borderWidth = 1
+
+    }
+}
+
+@IBDesignable
+class SignInButton: UIButton {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.borderWidth = 1
+        layer.borderColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
+        layer.cornerRadius = bounds.height / 2.0
+        clipsToBounds = true
+    }
+}

@@ -209,8 +209,11 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     }
     
     private func goToParkFeed() {
+        
         let parkFeed = ParkFeedViewController(nibName: nil, bundle: nil, parkId: GameModel.parkId!, parkName: GameModel.parkSelected!)
-        present(parkFeed, animated: true)
+        let navController = UINavigationController(rootViewController: parkFeed)
+        navController.isNavigationBarHidden = true
+        present(navController, animated: true)
     }
     //MARK: - Actions
     @IBAction func showBasketBallMarkers(_ sender: UIButton) {

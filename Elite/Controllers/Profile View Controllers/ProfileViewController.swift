@@ -126,7 +126,7 @@ class ProfileViewController: UIViewController {
                 print(error.localizedDescription)
             }
             if let games = games {
-                self.gamesPlayed = games.sorted{$0.gameEndTime!.stringToDate() > $1.gameEndTime!.stringToDate()}
+                self.gamesPlayed = games.sorted{$0.gameEndTime!.stringToDate(format: "MMM d, yyyy hh:mm a") > $1.gameEndTime!.stringToDate(format: "MMM d, yyyy hh:mm a")}
                 
                 for park in self.gamesPlayed {
                     if !self.parks.contains(where: { (game) -> Bool in
