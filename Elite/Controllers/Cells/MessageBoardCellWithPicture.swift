@@ -19,8 +19,8 @@ class MessageBoardCellWithPicture: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        layer.borderColor = #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 1)
-        layer.borderWidth = 0.5
+        layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+        layer.borderWidth = 0.25
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -29,10 +29,11 @@ class MessageBoardCellWithPicture: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    public func setupCell(with message: MessageBoardPost) {
+    public func setupCell(with message: MessageBoardPost, with backgroundColor: UIColor) {
         guard let url = URL(string: message.postImage!) else {
             return
         }
+        self.backgroundColor = backgroundColor
         postImage.kf.setImage(with: url)
         postUserAndDateLabel.text = "\(message.posterName) - \(message.postDate)"
         postTitleLabel.text = message.post

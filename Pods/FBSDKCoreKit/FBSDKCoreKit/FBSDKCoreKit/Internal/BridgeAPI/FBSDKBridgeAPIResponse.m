@@ -16,9 +16,12 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#import "TargetConditionals.h"
+
+#if !TARGET_OS_TV
+
 #import "FBSDKBridgeAPIResponse.h"
 
-#import "FBSDKBridgeAPICrypto.h"
 #import "FBSDKBridgeAPIProtocol.h"
 #import "FBSDKBridgeAPIProtocolType.h"
 #import "FBSDKBridgeAPIRequest+Private.h"
@@ -54,23 +57,18 @@ NS_DESIGNATED_INITIALIZER;
   switch (protocolType) {
     case FBSDKBridgeAPIProtocolTypeNative:{
       if (![FBSDKInternalUtility isFacebookBundleIdentifier:sourceApplication]) {
-        [FBSDKBridgeAPICrypto reset];
         return nil;
       }
       break;
     }
     case FBSDKBridgeAPIProtocolTypeWeb:{
       if (![FBSDKInternalUtility isSafariBundleIdentifier:sourceApplication]) {
-        [FBSDKBridgeAPICrypto reset];
         return nil;
       }
       break;
     }
   }
-  NSDictionary<NSString *, NSString *> *queryParameters = [FBSDKBasicUtility dictionaryWithQueryString:responseURL.query];
-  queryParameters = [FBSDKBridgeAPICrypto decryptResponseForRequest:request
-                                                    queryParameters:queryParameters
-                                                              error:errorRef];
+  NSDictionary<NSString *, NSString *> *const queryParameters = [FBSDKBasicUtility dictionaryWithQueryString:responseURL.query];
   if (!queryParameters) {
     return nil;
   }
@@ -125,3 +123,5 @@ NS_DESIGNATED_INITIALIZER;
 }
 
 @end
+
+#endif

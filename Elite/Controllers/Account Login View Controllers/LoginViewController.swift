@@ -8,18 +8,21 @@
 
 import UIKit
 import FirebaseAuth
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var logoView: CircularImageView!
+
     private var authservice = AppDelegate.authservice
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var contentView: UIView!
+
     @IBOutlet weak var loginBttn: RoundedButton!
-    @IBOutlet weak var loginWithFBBttn: RoundedButton!
+
     @IBOutlet weak var newUserBttn: UIButton!
-    @IBOutlet weak var loginViewTitle: UILabel!
+    @IBOutlet weak var SignInButton: GIDSignInButton!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,28 +36,16 @@ class LoginViewController: UIViewController {
         authservice.authserviceExistingAccountDelegate = self
         let screenTap = UITapGestureRecognizer.init(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(screenTap)
-        loginWithFBBttn.isHidden = true 
+
     }
     
     private func setupOutlets(){
-        setupBttnUI()
         setupTxtField()
-        setupViewGradient()
     }
     
-    private func setupBttnUI(){
-        newUserBttn.layer.cornerRadius = 5
-        loginBttn.setTitleColor(.white, for: .normal)
-        loginViewTitle.textColor = .gold
-    }
+
     
-    private func setupViewGradient(){
-        view.setGradientFromRightToLeft(colorOne: UIColor.black, colorTwo: UIColor.lightGrey)
-        loginBttn.setGradientFromUpperLeftToBottmRight(colorOne: .eliteGold, colorTwo: .eliteGold2)
-        loginWithFBBttn.setGradientFromBottomLeftToUpperRight(colorOne: .fbMessenger, colorTwo: .fbMessenger2)
-        
-        
-    }
+
     
     private func setupTxtField(){
         passwordTextField.delegate = self
@@ -86,7 +77,19 @@ class LoginViewController: UIViewController {
         registerKeyboardNotification()
     }
     
-
+    private func googleSignInSetup() {
+        SignInButton.layer.cornerRadius = 10
+        SignInButton.clipsToBounds = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(signinWithGoogle))
+        SignInButton.addGestureRecognizer(tap)
+        SignInButton.style = .wide
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+    }
+    
+    @objc func signinWithGoogle() {
+        GIDSignIn.sharedInstance().signIn()
+        
+    }
     
 
     
@@ -101,8 +104,7 @@ class LoginViewController: UIViewController {
         signInCurrentUser()
     }
     
-    @IBAction func facebookButtonPressed(_ sender: RoundedButton) {
-    }
+
     
     @IBAction func switchToCreateAccountVC(_ sender: UIButton){
         switchVCView()

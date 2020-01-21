@@ -75,7 +75,7 @@ class PostMessageViewController: UIViewController, UITextViewDelegate {
                 return
         }
         
-        bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardFrame.height)
+        bottomView.transform = CGAffineTransform(scaleX: 0, y: -30)
     }
     
     @objc private func willHideKeyboard() {

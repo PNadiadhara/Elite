@@ -60,9 +60,11 @@ class ParkFeedViewController: UIViewController {
         super.viewDidLoad()
         parkNameLabel.text = parkName
         parkViewFeed = .recentActivity
+        hidePostView(hide: true)
         tableView.delegate = self
         tableView.dataSource = self
-        
+        tableView.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+        tableView.layer.borderWidth = 0.25
         tableView.register(UINib(nibName: "RecentActivityCell", bundle: nil), forCellReuseIdentifier: "RecentActivityCell")
         tableView.register(UINib(nibName: "MessageBoardCell", bundle: nil), forCellReuseIdentifier: "MessageBoardCell")
                 tableView.register(UINib(nibName: "MessageBoardCellWithPicture", bundle: nil), forCellReuseIdentifier: "MessageBoardCellWithPicture")
@@ -107,13 +109,13 @@ class ParkFeedViewController: UIViewController {
             recentActivityButton.setTitleColor(.white, for: .normal)
             messageBoardButton.backgroundColor = #colorLiteral(red: 0.1607843137, green: 0.1725490196, blue: 0.1843137255, alpha: 1)
             messageBoardButton.setTitleColor(#colorLiteral(red: 0.995932281, green: 0.2765177786, blue: 0.3620784283, alpha: 1), for: .normal)
-            postCommentView.isHidden = true
+            
         case .messageBoard:
             messageBoardButton.backgroundColor = #colorLiteral(red: 0.995932281, green: 0.2765177786, blue: 0.3620784283, alpha: 1)
             messageBoardButton.setTitleColor(.white, for: .normal)
             recentActivityButton.backgroundColor = #colorLiteral(red: 0.1607843137, green: 0.1725490196, blue: 0.1843137255, alpha: 1)
             recentActivityButton.setTitleColor(#colorLiteral(red: 0, green: 0.4980392157, blue: 0.737254902, alpha: 1), for: .normal)
-            postCommentView.isHidden = false
+
         default:
             print("Error")
         }
@@ -129,6 +131,13 @@ class ParkFeedViewController: UIViewController {
         }
     }
     
+    private func hidePostView(hide: Bool) {
+        if hide {
+            postCommentView.isHidden = true
+        } else {
+            postCommentView.isHidden = false
+        }
+    }
     private func fetchBoardMessages() {
         listener = DBService.fetchMessageBoardWithParkId(parkId: parkId) { (error, boardMessages) in
             if let error = error {
@@ -141,11 +150,13 @@ class ParkFeedViewController: UIViewController {
     }
     @IBAction func recentActivityPressed(_ sender: Any) {
         parkViewFeed = .recentActivity
+        hidePostView(hide: true)
         setupButtonColors()
     }
     
     @IBAction func messageBoardPressed(_ sender: Any) {
         parkViewFeed = .messageBoard
+        hidePostView(hide: false)
         setupButtonColors()
     }
     
@@ -207,11 +218,21 @@ extension ParkFeedViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 guard let messageBoardCell = tableView.dequeueReusableCell(withIdentifier: "MessageBoardCell", for: indexPath) as? MessageBoardCell else {fatalError()}
                 cell = messageBoardCell
-                messageBoardCell.setupCell(with: message, backgroundColor: #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1))
+                if indexPath.row % 2 == 0 {
+                    messageBoardCell.setupCell(with: message, backgroundColor: #colorLiteral(red: 0.1607843137, green: 0.1725490196, blue: 0.1843137255, alpha: 1))
+                } else {
+                    messageBoardCell.setupCell(with: message, backgroundColor: #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1))
+                }
+  
             } else {
                 guard let messageBoardCellWithPicture = tableView.dequeueReusableCell(withIdentifier: "MessageBoardCellWithPicture", for: indexPath) as? MessageBoardCellWithPicture else {fatalError()}
                 cell = messageBoardCellWithPicture
-                messageBoardCellWithPicture.setupCell(with: message)
+                if indexPath.row % 2 == 0 {
+                    messageBoardCellWithPicture.setupCell(with: message, with: #colorLiteral(red: 0.1607843137, green: 0.1725490196, blue: 0.1843137255, alpha: 1))
+                } else {
+                    messageBoardCellWithPicture.setupCell(with: message, with: #colorLiteral(red: 0.2, green: 0.2117647059, blue: 0.2235294118, alpha: 1))
+                }
+
             }
 
             return cell

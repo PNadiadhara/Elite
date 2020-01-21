@@ -18,7 +18,7 @@ class MessageBoardCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
-        layer.borderWidth = 0.5
+        layer.borderWidth = 0.25
 
     }
 
