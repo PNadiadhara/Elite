@@ -44,13 +44,31 @@
                     <rect key="frame" x="45" y="175.66666666666669" width="324" height="515.33333333333326"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fh6-yg-kHf">
-                    <rect key="frame" x="359" y="20" width="35" height="33"/>
+                    <rect key="frame" x="314" y="20" width="100" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="ar9-DL-aLX"/>
+                        <constraint firstAttribute="height" constant="50" id="rMq-4J-sgQ"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="Post">
-                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
                         <action selector="postPressed:" destination="-1" eventType="touchUpInside" id="dfs-3s-sMq"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fST-Us-UVo">
+                    <rect key="frame" x="0.0" y="20" width="100" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="6s9-z6-bbK"/>
+                        <constraint firstAttribute="width" constant="100" id="SBu-Ne-BEK"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <state key="normal" title="Cancel">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="cancelPressed:" destination="-1" eventType="touchUpInside" id="pql-B4-SAG"/>
                     </connections>
                 </button>
             </subviews>
@@ -58,11 +76,13 @@
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rTG-eH-BA5" secondAttribute="trailing" constant="45" id="4b6-OY-fev"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rdn-bf-TLD" secondAttribute="trailing" id="8mi-ql-9G1"/>
+                <constraint firstItem="fST-Us-UVo" firstAttribute="centerY" secondItem="Fh6-yg-kHf" secondAttribute="centerY" id="Ahy-aM-dBU"/>
                 <constraint firstItem="rTG-eH-BA5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="45" id="Edv-vW-oEW"/>
                 <constraint firstItem="rTG-eH-BA5" firstAttribute="top" secondItem="rdn-bf-TLD" secondAttribute="bottom" constant="45" id="Fey-7C-dXO"/>
+                <constraint firstItem="fST-Us-UVo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="K6X-xi-DVF"/>
                 <constraint firstItem="rTG-eH-BA5" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.7" id="Oa2-6s-8qa"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="rTG-eH-BA5" secondAttribute="bottom" constant="45" id="WZ5-CU-vnK"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Fh6-yg-kHf" secondAttribute="trailing" constant="20" id="kop-Jh-xTr"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Fh6-yg-kHf" secondAttribute="trailing" id="kop-Jh-xTr"/>
                 <constraint firstItem="Fh6-yg-kHf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="p7Y-Xl-g3Z"/>
                 <constraint firstItem="rdn-bf-TLD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vbQ-3O-bsE"/>
             </constraints>

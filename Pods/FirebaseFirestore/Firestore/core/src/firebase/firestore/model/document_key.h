@@ -35,7 +35,7 @@ namespace model {
 /**
  * DocumentKey represents the location of a document in the Firestore database.
  */
-class DocumentKey : public util::InequalityComparable<DocumentKey> {
+class DocumentKey : public util::Comparable<DocumentKey> {
  public:
   /** Creates a "blank" document key not associated with any document. */
   DocumentKey() : path_{std::make_shared<ResourcePath>()} {
@@ -51,8 +51,8 @@ class DocumentKey : public util::InequalityComparable<DocumentKey> {
    * Creates and returns a new document key using '/' to split the string into
    * segments.
    */
-  static DocumentKey FromPathString(const std::string& path) {
-    return DocumentKey{ResourcePath::FromStringView(path)};
+  static DocumentKey FromPathString(absl::string_view path) {
+    return DocumentKey{ResourcePath::FromString(path)};
   }
 
   /** Creates and returns a new document key with the given segments. */
@@ -70,10 +70,6 @@ class DocumentKey : public util::InequalityComparable<DocumentKey> {
 
   util::ComparisonResult CompareTo(const DocumentKey& other) const;
 
-  friend bool operator==(const DocumentKey& lhs, const DocumentKey& rhs) {
-    return lhs.path() == rhs.path();
-  }
-
   size_t Hash() const {
     return util::Hash(ToString());
   }
@@ -87,8 +83,8 @@ class DocumentKey : public util::InequalityComparable<DocumentKey> {
     return path_ ? *path_ : Empty().path();
   }
 
-  /** Returns true if the document is in the specified collection_id. */
-  bool HasCollectionId(const std::string& collection_id) const {
+  /** Returns true if the document is in the specified collectionId. */
+  bool HasCollectionId(absl::string_view collection_id) const {
     size_t size = path().size();
     return size >= 2 && path()[size - 2] == collection_id;
   }

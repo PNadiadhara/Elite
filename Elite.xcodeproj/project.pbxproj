@@ -124,6 +124,8 @@
 		D52FF4AC23D3DB430047B7B8 /* PostPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D52FF4AA23D3DB420047B7B8 /* PostPhotoViewController.xib */; };
 		D52FF4AF23D520CB0047B7B8 /* MessageBoardCellWithPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52FF4AD23D520CB0047B7B8 /* MessageBoardCellWithPicture.swift */; };
 		D52FF4B023D520CB0047B7B8 /* MessageBoardCellWithPicture.xib in Resources */ = {isa = PBXBuildFile; fileRef = D52FF4AE23D520CB0047B7B8 /* MessageBoardCellWithPicture.xib */; };
+		D539B74323D7916F00B9CDCE /* GoogleUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D539B74123D7916E00B9CDCE /* GoogleUserViewController.swift */; };
+		D539B74423D7916F00B9CDCE /* GoogleUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D539B74223D7916F00B9CDCE /* GoogleUserViewController.xib */; };
 		D541FE1C236B6DAB00B77D45 /* MedalsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D541FE1B236B6DAB00B77D45 /* MedalsHelper.swift */; };
 		D5555DD1236CCBCC005867A1 /* SearchCourtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5555DCF236CCBCC005867A1 /* SearchCourtViewController.swift */; };
 		D5555DD2236CCBCC005867A1 /* SearchCourtViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5555DD0236CCBCC005867A1 /* SearchCourtViewController.xib */; };
@@ -179,8 +181,6 @@
 		D5E40058237488F70059B34F /* ParkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5E40056237488F70059B34F /* ParkCell.xib */; };
 		D5E4005B2374920E0059B34F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E400592374920E0059B34F /* LoadingViewController.swift */; };
 		D5E4005C2374920E0059B34F /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5E4005A2374920E0059B34F /* LoadingViewController.xib */; };
-		D5EC8DF422DA929400FF1236 /* CreateYourEliteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EC8DF222DA929400FF1236 /* CreateYourEliteViewController.swift */; };
-		D5EC8DF522DA929400FF1236 /* CreateYourEliteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EC8DF322DA929400FF1236 /* CreateYourEliteViewController.xib */; };
 		D5EFCBFB2263DD6A00D3C2E7 /* BoroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EFCBF92263DD6A00D3C2E7 /* BoroughCollectionViewCell.swift */; };
 		D5EFCBFC2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EFCBFA2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib */; };
 		D5EFCBFF2264000700D3C2E7 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EFCBFD2264000700D3C2E7 /* PlayerCell.swift */; };
@@ -330,6 +330,8 @@
 		D52FF4AA23D3DB420047B7B8 /* PostPhotoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostPhotoViewController.xib; sourceTree = "<group>"; };
 		D52FF4AD23D520CB0047B7B8 /* MessageBoardCellWithPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoardCellWithPicture.swift; sourceTree = "<group>"; };
 		D52FF4AE23D520CB0047B7B8 /* MessageBoardCellWithPicture.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageBoardCellWithPicture.xib; sourceTree = "<group>"; };
+		D539B74123D7916E00B9CDCE /* GoogleUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleUserViewController.swift; sourceTree = "<group>"; };
+		D539B74223D7916F00B9CDCE /* GoogleUserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoogleUserViewController.xib; sourceTree = "<group>"; };
 		D541FE1B236B6DAB00B77D45 /* MedalsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedalsHelper.swift; sourceTree = "<group>"; };
 		D5555DCF236CCBCC005867A1 /* SearchCourtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCourtViewController.swift; sourceTree = "<group>"; };
 		D5555DD0236CCBCC005867A1 /* SearchCourtViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCourtViewController.xib; sourceTree = "<group>"; };
@@ -385,8 +387,6 @@
 		D5E40056237488F70059B34F /* ParkCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParkCell.xib; sourceTree = "<group>"; };
 		D5E400592374920E0059B34F /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		D5E4005A2374920E0059B34F /* LoadingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
-		D5EC8DF222DA929400FF1236 /* CreateYourEliteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateYourEliteViewController.swift; sourceTree = "<group>"; };
-		D5EC8DF322DA929400FF1236 /* CreateYourEliteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateYourEliteViewController.xib; sourceTree = "<group>"; };
 		D5EFCBF92263DD6A00D3C2E7 /* BoroughCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoroughCollectionViewCell.swift; sourceTree = "<group>"; };
 		D5EFCBFA2263DD6A00D3C2E7 /* BoroughCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BoroughCollectionViewCell.xib; sourceTree = "<group>"; };
 		D5EFCBFD2264000700D3C2E7 /* PlayerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
@@ -438,8 +438,8 @@
 			children = (
 				2E9FE65722557AC4004CA00B /* LoginViewController.swift */,
 				2E9FE655225579E5004CA00B /* CreateAccountViewController.swift */,
-				D5EC8DF222DA929400FF1236 /* CreateYourEliteViewController.swift */,
-				D5EC8DF322DA929400FF1236 /* CreateYourEliteViewController.xib */,
+				D539B74123D7916E00B9CDCE /* GoogleUserViewController.swift */,
+				D539B74223D7916F00B9CDCE /* GoogleUserViewController.xib */,
 			);
 			path = "Account Login View Controllers";
 			sourceTree = "<group>";
@@ -844,8 +844,8 @@
 				BFADB58722553FB200E746B5 /* Sources */,
 				BFADB58822553FB200E746B5 /* Frameworks */,
 				BFADB58922553FB200E746B5 /* Resources */,
-				00002450A7DCEC66AC240C49 /* [CP] Embed Pods Frameworks */,
-				81BBCD17251826DD8E40D1C0 /* [CP] Copy Pods Resources */,
+				BD1B6E45971A89964C9DCBCE /* [CP] Embed Pods Frameworks */,
+				79CA3526DD03C97C07AAA2C3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -864,8 +864,8 @@
 				BFD61E292280CF0E00EA408B /* Sources */,
 				BFD61E2A2280CF0E00EA408B /* Frameworks */,
 				BFD61E2B2280CF0E00EA408B /* Resources */,
-				4FC73D7B5F61BD24C5C6C822 /* [CP] Embed Pods Frameworks */,
-				C0EDE548B7A28D875B194B32 /* [CP] Copy Pods Resources */,
+				11AE6CD89C2AB7CD90AA12E1 /* [CP] Embed Pods Frameworks */,
+				71055203E082087F073383FC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -936,7 +936,6 @@
 				D599A43922DE32A00060A24A /* AlertViewController.xib in Resources */,
 				D50E749722C50C570015D0F4 /* ParkRankingInfoEndGameViewController.xib in Resources */,
 				2EC6D56F225E9B5D00336362 /* FeedTableViewController.xib in Resources */,
-				D5EC8DF522DA929400FF1236 /* CreateYourEliteViewController.xib in Resources */,
 				D5EFCC002264000700D3C2E7 /* PlayerCell.xib in Resources */,
 				48F1B5C42269812500B53E11 /* handballCourtInfo.json in Resources */,
 				D5210879225E95A70044C440 /* TwoVsTwoFeedCell.xib in Resources */,
@@ -954,6 +953,7 @@
 				2EC6D55E225E79CB00336362 /* FiveVsFiveViewController.xib in Resources */,
 				D5210882225E960B0044C440 /* FeedCell.xib in Resources */,
 				D5210874225E956B0044C440 /* FiveVsFiveFeedCell.xib in Resources */,
+				D539B74423D7916F00B9CDCE /* GoogleUserViewController.xib in Resources */,
 				48980A4D225E346B0034D04F /* JsonModel.json in Resources */,
 				D5555DD6236CE088005867A1 /* OptionsViewController.xib in Resources */,
 				BFD61E28227C985600EA408B /* RankChangeController.xib in Resources */,
@@ -997,21 +997,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		00002450A7DCEC66AC240C49 /* [CP] Embed Pods Frameworks */ = {
+		11AE6CD89C2AB7CD90AA12E1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Elite/Pods-Elite-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Elite/Pods-Elite-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Elite/Pods-Elite-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		216C8E730A64A57FB0739263 /* [CP] Check Pods Manifest.lock */ = {
@@ -1058,24 +1058,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4FC73D7B5F61BD24C5C6C822 /* [CP] Embed Pods Frameworks */ = {
+		71055203E082087F073383FC /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		81BBCD17251826DD8E40D1C0 /* [CP] Copy Pods Resources */ = {
+		79CA3526DD03C97C07AAA2C3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1092,21 +1092,21 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Elite/Pods-Elite-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C0EDE548B7A28D875B194B32 /* [CP] Copy Pods Resources */ = {
+		BD1B6E45971A89964C9DCBCE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Elite/Pods-Elite-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Elite/Pods-Elite-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FirebaseTests/Pods-FirebaseTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Elite/Pods-Elite-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1222,7 +1222,7 @@
 				D52FF4AF23D520CB0047B7B8 /* MessageBoardCellWithPicture.swift in Sources */,
 				D580DEDB2375F65D000CD1AF /* ParkFeedViewController.swift in Sources */,
 				D5E329232376006700A46138 /* RecentActivityCell.swift in Sources */,
-				D5EC8DF422DA929400FF1236 /* CreateYourEliteViewController.swift in Sources */,
+				D539B74323D7916F00B9CDCE /* GoogleUserViewController.swift in Sources */,
 				BFED970F225E6E2900CC360B /* EloRankMethods.swift in Sources */,
 				D5210873225E956B0044C440 /* FiveVsFiveFeedCell.swift in Sources */,
 				D5DF86B422692FFC00E2972A /* CurrentPlayer.swift in Sources */,

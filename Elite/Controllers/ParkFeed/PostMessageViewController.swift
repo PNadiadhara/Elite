@@ -65,7 +65,7 @@ class PostMessageViewController: UIViewController, UITextViewDelegate {
 
     private func registerKeyboardNotificationForBottomView(){
         NotificationCenter.default.addObserver(self, selector: #selector(willTransfromBottomView(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(willHideKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willHideBottomView), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     @objc private func willTransfromBottomView(notification: Notification){
         doneButton.isHidden = false
@@ -75,10 +75,10 @@ class PostMessageViewController: UIViewController, UITextViewDelegate {
                 return
         }
         
-        bottomView.transform = CGAffineTransform(scaleX: 0, y: -30)
+        bottomView.transform = CGAffineTransform(translationX: 0, y: -keyboardFrame.height)
     }
     
-    @objc private func willHideKeyboard() {
+    @objc private func willHideBottomView() {
        bottomView.transform = CGAffineTransform.identity
         doneButton.isHidden = true
     }
@@ -97,6 +97,10 @@ class PostMessageViewController: UIViewController, UITextViewDelegate {
         let currentText = textView.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: text)
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
         return updatedText.count <= 280
     }
 

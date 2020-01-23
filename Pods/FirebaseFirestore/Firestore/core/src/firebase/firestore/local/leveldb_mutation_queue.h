@@ -17,11 +17,16 @@
 #ifndef FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_LOCAL_LEVELDB_MUTATION_QUEUE_H_
 #define FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_LOCAL_LEVELDB_MUTATION_QUEUE_H_
 
+#if !defined(__OBJC__)
+#error "For now, this file must only be included by ObjC source files."
+#endif  // !defined(__OBJC__)
+
+#import <Foundation/Foundation.h>
+
 #include <set>
 #include <string>
 #include <vector>
 
-#include "Firestore/Protos/nanopb/firestore/local/mutation.nanopb.h"
 #include "Firestore/core/include/firebase/firestore/timestamp.h"
 #include "Firestore/core/src/firebase/firestore/auth/user.h"
 #include "Firestore/core/src/firebase/firestore/local/leveldb_key.h"
@@ -29,17 +34,19 @@
 #include "Firestore/core/src/firebase/firestore/model/document_key.h"
 #include "Firestore/core/src/firebase/firestore/model/document_key_set.h"
 #include "Firestore/core/src/firebase/firestore/model/types.h"
-#include "Firestore/core/src/firebase/firestore/nanopb/message.h"
 #include "absl/strings/string_view.h"
-#include "absl/types/optional.h"
 #include "leveldb/db.h"
+
+@class FSTLocalSerializer;
+@class FSTPBMutationQueue;
+
+NS_ASSUME_NONNULL_BEGIN
 
 namespace firebase {
 namespace firestore {
 namespace local {
 
 class LevelDbPersistence;
-class LocalSerializer;
 
 /**
  * Returns one larger than the largest batch ID that has been stored. If there
@@ -51,7 +58,7 @@ class LevelDbMutationQueue : public MutationQueue {
  public:
   LevelDbMutationQueue(const auth::User& user,
                        LevelDbPersistence* db,
-                       LocalSerializer* serializer);
+                       FSTLocalSerializer* serializer);
 
   void Start() override;
 
@@ -90,7 +97,7 @@ class LevelDbMutationQueue : public MutationQueue {
 
   nanopb::ByteString GetLastStreamToken() override;
 
-  void SetLastStreamToken(nanopb::ByteString stream_token) override;
+  void SetLastStreamToken(const nanopb::ByteString& stream_token) override;
 
  private:
   /**
@@ -100,7 +107,7 @@ class LevelDbMutationQueue : public MutationQueue {
   std::vector<model::MutationBatch> AllMutationBatchesWithIds(
       const std::set<model::BatchId>& batch_ids);
 
-  std::string mutation_queue_key() const {
+  std::string mutation_queue_key() {
     return LevelDbMutationQueueKey::Key(user_id_);
   }
 
@@ -109,16 +116,14 @@ class LevelDbMutationQueue : public MutationQueue {
   }
 
   /** Parses the MutationQueue metadata from the given LevelDB row contents. */
-  nanopb::Message<firestore_client_MutationQueue> MetadataForKey(
-      const std::string& key);
+  FSTPBMutationQueue* _Nullable MetadataForKey(const std::string& key);
 
   model::MutationBatch ParseMutationBatch(absl::string_view encoded);
 
   // The LevelDbMutationQueue instance is owned by LevelDbPersistence.
   LevelDbPersistence* db_;
 
-  // Owned by LevelDbPersistence.
-  LocalSerializer* serializer_ = nullptr;
+  FSTLocalSerializer* serializer_;
 
   /**
    * The normalized user_id (i.e. after converting null to empty) as used in our
@@ -138,11 +143,13 @@ class LevelDbMutationQueue : public MutationQueue {
   /**
    * A write-through cache copy of the metadata describing the current queue.
    */
-  nanopb::Message<firestore_client_MutationQueue> metadata_;
+  FSTPBMutationQueue* _Nullable metadata_;
 };
 
 }  // namespace local
 }  // namespace firestore
 }  // namespace firebase
+
+NS_ASSUME_NONNULL_END
 
 #endif  // FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_LOCAL_LEVELDB_MUTATION_QUEUE_H_

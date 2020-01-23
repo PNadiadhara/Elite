@@ -30,15 +30,26 @@ final class AuthService {
     weak var authserviceSignOutDelegate: AuthServiceSignOutDelegate?
     
     
-    public func createNewAccount(email: String, password: String, firstName: String, lastName: String) {
+    public func createNewAccount(email: String, password: String, username: String, userImage: UIImage) {
+
         Auth.auth().createUser(withEmail: email, password: password) { (authDataResult, error) in
             if let error = error {
                 self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
                 return
             } else if let authDataResult = authDataResult {
-                
-                let joinedDate = Date.getISOTimestamp()
-                let user = GamerModel(profileImage: nil, fullname: "\(firstName) \(lastName)", firstname: firstName, lastname: lastName, username: nil, email: authDataResult.user.email!, status: nil, achievements: nil, bio: nil, qrCode: "fd", joinedDate: joinedDate.formatISODateString(dateFormat: "MMM d, yyyy hh:mm a") , gamerID: authDataResult.user.uid, myParks: nil, numberOfHandballGamesPlayed: 0.0, numberOfBasketballGamesPlayed: 0.0,friends: nil, handBallGamesWinsByLocation: nil, basketBallGamesWinsByLocation: nil)
+                let userId = authDataResult.user.uid
+                self.createUserDatabase(userId: userId, email: authDataResult.user.email!, username: username, userImage: userImage)
+            }
+        }
+    }
+    private func createUserDatabase(userId: String, email: String, username: String, userImage: UIImage) {
+         guard let userProfileImageData = userImage.jpegData(compressionQuality: 0.5) else {return}
+        StorageService.postImage(imageData: userProfileImageData, imageName: userId) { (error, url) in
+            if let error = error {
+                self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
+            }
+            if let url = url {
+                let user = GamerModel(profileImage: url.absoluteString, username: username, email: email, status: nil, achievements: nil, bio: nil, qrCode: "fd", joinedDate: Date().toString(dateFormat: "MMM d, yyyy hh:mm a") , gamerID: userId, myParks: nil, numberOfHandballGamesPlayed: 0.0, numberOfBasketballGamesPlayed: 0.0,friends: nil, handBallGamesWinsByLocation: nil, basketBallGamesWinsByLocation: nil)
                 DBService.createUser(gamer: user, completion: { (error) in
                     if let error = error {
                        self.authserviceCreateNewAccountDelegate?.didRecieveErrorCreatingAccount(self, error: error)
@@ -46,8 +57,13 @@ final class AuthService {
                         self.authserviceCreateNewAccountDelegate?.didCreateNewAccount(self, user: user)
                     }
                 })
+
             }
         }
+    }
+    
+    public func createGoogleAccount(userId: String, email: String, username: String, userImage: UIImage) {
+        createUserDatabase(userId: userId, email: email, username: username, userImage: userImage)
     }
     public func updateUserProfile(user: User, username: String) {
         let request = user.createProfileChangeRequest()

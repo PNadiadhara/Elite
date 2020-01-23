@@ -16,9 +16,9 @@
 
 #import "FIRInstanceIDTokenOperation.h"
 
-#import <FirebaseInstallations/FirebaseInstallations.h>
-
 #import "FIRInstanceIDCheckinPreferences.h"
+#import "FIRInstanceIDKeyPair.h"
+#import "FIRInstanceIDKeyPairUtilities.h"
 #import "FIRInstanceIDLogger.h"
 #import "FIRInstanceIDURLQueryItem.h"
 #import "FIRInstanceIDUtilities.h"
@@ -38,13 +38,11 @@ static NSString *const kFIRInstanceIDParamFCMLibVersion = @"X-cliv";
 }
 
 @property(nonatomic, readwrite, strong) FIRInstanceIDCheckinPreferences *checkinPreferences;
-@property(nonatomic, readwrite, strong) NSString *instanceID;
+@property(nonatomic, readwrite, strong) FIRInstanceIDKeyPair *keyPair;
 
 @property(atomic, strong) NSURLSessionDataTask *dataTask;
 @property(readonly, strong)
     NSMutableArray<FIRInstanceIDTokenOperationCompletion> *completionHandlers;
-
-@property(atomic, strong, nullable) NSString *FISAuthToken;
 
 // For testing only
 @property(nonatomic, readwrite, copy) FIRInstanceIDURLRequestTestBlock testBlock;
@@ -70,7 +68,7 @@ static NSString *const kFIRInstanceIDParamFCMLibVersion = @"X-cliv";
                          scope:(NSString *)scope
                        options:(NSDictionary<NSString *, NSString *> *)options
             checkinPreferences:(FIRInstanceIDCheckinPreferences *)checkinPreferences
-                    instanceID:(NSString *)instanceID {
+                       keyPair:(FIRInstanceIDKeyPair *)keyPair {
   self = [super init];
   if (self) {
     _action = action;
@@ -78,7 +76,7 @@ static NSString *const kFIRInstanceIDParamFCMLibVersion = @"X-cliv";
     _scope = [scope copy];
     _options = [options copy];
     _checkinPreferences = checkinPreferences;
-    _instanceID = instanceID;
+    _keyPair = keyPair;
     _completionHandlers = [NSMutableArray array];
 
     _isExecuting = NO;
@@ -93,7 +91,7 @@ static NSString *const kFIRInstanceIDParamFCMLibVersion = @"X-cliv";
   _scope = nil;
   _options = nil;
   _checkinPreferences = nil;
-  _instanceID = nil;
+  _keyPair = nil;
   [_completionHandlers removeAllObjects];
   _completionHandlers = nil;
 }
@@ -144,16 +142,7 @@ static NSString *const kFIRInstanceIDParamFCMLibVersion = @"X-cliv";
 
   [self setExecuting:YES];
 
-  [[FIRInstallations installations]
-      authTokenWithCompletion:^(FIRInstallationsAuthTokenResult *_Nullable tokenResult,
-                                NSError *_Nullable error) {
-        if (tokenResult.authToken.length > 0) {
-          self.FISAuthToken = tokenResult.authToken;
-          [self performTokenOperation];
-        } else {
-          [self finishWithResult:FIRInstanceIDTokenOperationError token:nil error:error];
-        }
-      }];
+  [self performTokenOperation];
 }
 
 - (void)finishWithResult:(FIRInstanceIDTokenOperationResult)result
@@ -183,24 +172,14 @@ static NSString *const kFIRInstanceIDParamFCMLibVersion = @"X-cliv";
 - (void)performTokenOperation {
 }
 
-- (NSMutableURLRequest *)tokenRequest {
-  NSString *authHeader =
-      [FIRInstanceIDTokenOperation HTTPAuthHeaderFromCheckin:self.checkinPreferences];
-  return [[self class] requestWithAuthHeader:authHeader FISAuthToken:self.FISAuthToken];
-}
-
 #pragma mark - Request Construction
-+ (NSMutableURLRequest *)requestWithAuthHeader:(NSString *)authHeaderString
-                                  FISAuthToken:(NSString *)FISAuthToken {
++ (NSMutableURLRequest *)requestWithAuthHeader:(NSString *)authHeaderString {
   NSURL *url = [NSURL URLWithString:FIRInstanceIDRegisterServer()];
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
 
   // Add HTTP headers
   [request setValue:authHeaderString forHTTPHeaderField:@"Authorization"];
   [request setValue:FIRInstanceIDAppIdentifier() forHTTPHeaderField:@"app"];
-  if (FISAuthToken) {
-    [request setValue:FISAuthToken forHTTPHeaderField:@"x-goog-firebase-installations-auth"];
-  }
   request.HTTPMethod = @"POST";
   return request;
 }
@@ -243,9 +222,13 @@ static NSString *const kFIRInstanceIDParamFCMLibVersion = @"X-cliv";
   return queryItems;
 }
 
-- (NSArray<FIRInstanceIDURLQueryItem *> *)queryItemsWithInstanceID:(NSString *)instanceID {
-  return @[ [FIRInstanceIDURLQueryItem queryItemWithName:kFIRInstanceIDParamInstanceID
-                                                   value:instanceID] ];
+- (NSArray<FIRInstanceIDURLQueryItem *> *)queryItemsWithKeyPair:(FIRInstanceIDKeyPair *)keyPair {
+  NSMutableArray<FIRInstanceIDURLQueryItem *> *items = [NSMutableArray arrayWithCapacity:3];
+  // appid=
+  NSString *instanceID = FIRInstanceIDAppIdentity(keyPair);
+  [items addObject:[FIRInstanceIDURLQueryItem queryItemWithName:kFIRInstanceIDParamInstanceID
+                                                          value:instanceID]];
+  return items;
 }
 
 #pragma mark - HTTP Header

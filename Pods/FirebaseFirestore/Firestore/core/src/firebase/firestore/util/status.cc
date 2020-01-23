@@ -26,9 +26,9 @@ namespace firebase {
 namespace firestore {
 namespace util {
 
-Status::Status(Error code, std::string msg) {
+Status::Status(Error code, absl::string_view msg) {
   HARD_ASSERT(code != Error::Ok);
-  state_ = State::MakePtr(code, std::move(msg));
+  state_ = State::MakePtr(code, static_cast<std::string>(msg));
 }
 
 void Status::Update(const Status& new_status) {

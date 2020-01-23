@@ -121,27 +121,14 @@ class Query {
   Query OrderBy(model::FieldPath field_path, core::Direction direction) const;
 
   /**
-   * Creates and returns a new `Query` that only returns the first matching
-   * documents up to the specified number.
+   * Creates and returns a new `Query` that's additionally limited to only
+   * return up to the specified number of documents.
    *
    * @param limit The maximum number of items to return.
    *
    * @return The created `Query`.
    */
-  Query LimitToFirst(int32_t limit) const;
-
-  /**
-   * Creates and returns a new `Query` that only returns the last matching
-   * documents up to the specified number.
-   *
-   * You must specify at least one `OrderBy` clause for `LimitToLast` queries,
-   * it is an error otherwise when the query is executed.
-   *
-   * @param limit The maximum number of items to return.
-   *
-   * @return The created `Query`.
-   */
-  Query LimitToLast(int32_t limit) const;
+  Query Limit(int32_t limit) const;
 
   /**
    * Creates and returns a new `Query` that starts at the given bound.  The
@@ -174,10 +161,9 @@ class Query {
 
  private:
   void ValidateNewFilter(const core::Filter& filter) const;
-  void ValidateNewOrderByPath(const model::FieldPath& field_path) const;
-  void ValidateOrderByField(const model::FieldPath& order_by_field,
-                            const model::FieldPath& inequality_field) const;
-  void ValidateHasExplicitOrderByForLimitToLast() const;
+  void ValidateNewOrderByPath(const model::FieldPath& fieldPath) const;
+  void ValidateOrderByField(const model::FieldPath& orderByField,
+                            const model::FieldPath& inequalityField) const;
   /**
    * Validates that the value passed into a disjunctive filter satisfies all
    * array requirements.

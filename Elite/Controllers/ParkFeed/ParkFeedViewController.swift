@@ -161,23 +161,7 @@ class ParkFeedViewController: UIViewController {
     }
     
     @IBAction func cameraButtonPressed(_ sender: Any) {
-        showSheetAlert(title: "Please select option", message: nil) { (alertController) in
-            let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: { (action) in
-                self.imagePickerController.sourceType = .camera
-                self.present(self.imagePickerController, animated: true)
-            })
-            let photoLibaryAction = UIAlertAction(title: "Photo Library", style: .default, handler: { (action) in
-                self.imagePickerController.sourceType = .photoLibrary
-                self.present(self.imagePickerController, animated: true)
-            })
-            
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                alertController.addAction(cameraAction)
-                alertController.addAction(photoLibaryAction)
-            } else {
-                alertController.addAction(photoLibaryAction)
-            }
-        }
+        showImagesSourceOptions(imagePickerController: imagePickerController)
     }
     
     /*
@@ -286,6 +270,6 @@ extension ParkFeedViewController : UIImagePickerControllerDelegate, UINavigation
 //        let resizedImage = Toucan.init(image: originalImage).resize(CGSize(width: 175, height: 175))
         let postPhotoVC = PostPhotoViewController(nibName: nil, bundle: nil, postImage: originalImage, parkId: self.parkId)
         dismiss(animated: true)
-        present(postPhotoVC, animated: true)
+        navigationController?.pushViewController(postPhotoVC, animated: true)
     }
 }

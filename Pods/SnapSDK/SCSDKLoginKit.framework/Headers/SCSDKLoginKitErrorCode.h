@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-#define SC_SDK_LOGINK_KIT_ERROR_DOMAIN @"SCSDKCreativeKitErrorDomain"
+#define SC_SDK_LOGIN_KIT_REFRESH_TOKEN_ERROR_DOMAIN @"SCSDKLoginKitRefreshTokenErrorDomain"
 
-typedef NS_ENUM(NSInteger, SCSDKLoginKitErrorCode) {
-    SCSDKLoginKitErrorCodeUnknown,
-    SCSDKLoginKitErrorCodeRevokedSession,
-    SCSDKLoginKitErrorCodeInvalidUser
+typedef NS_ENUM(NSInteger, SCSDKLoginKitRefreshTokenErrorCode) {
+    SCSDKLoginKitRefreshTokenErrorCodeNone,
+    SCSDKLoginKitRefreshTokenErrorCodeTokenRevoked,
+    SCSDKLoginKitRefreshTokenErrorCodeUnknown = 999
 };

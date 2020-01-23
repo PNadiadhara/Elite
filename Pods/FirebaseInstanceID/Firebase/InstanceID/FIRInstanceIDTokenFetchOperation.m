@@ -26,7 +26,6 @@
 #import "NSError+FIRInstanceID.h"
 
 #import <FirebaseCore/FIRAppInternal.h>
-#import <FirebaseCore/FIRHeartbeatInfo.h>
 
 // We can have a static int since this error should theoretically only
 // happen once (for the first time). If it repeats there is something
@@ -34,8 +33,6 @@
 static int phoneRegistrationErrorRetryCount = 0;
 static const int kMaxPhoneRegistrationErrorRetryCount = 10;
 NSString *const kFIRInstanceIDFirebaseUserAgentKey = @"X-firebase-client";
-NSString *const kFIRInstanceIDFirebaseHeartbeatKey = @"X-firebase-client-log-type";
-NSString *const kFIRInstanceIDHeartbeatTag = @"fire-iid";
 
 @implementation FIRInstanceIDTokenFetchOperation
 
@@ -43,26 +40,26 @@ NSString *const kFIRInstanceIDHeartbeatTag = @"fire-iid";
                                    scope:(NSString *)scope
                                  options:(nullable NSDictionary<NSString *, NSString *> *)options
                       checkinPreferences:(FIRInstanceIDCheckinPreferences *)checkinPreferences
-                              instanceID:(NSString *)instanceID {
+                                 keyPair:(FIRInstanceIDKeyPair *)keyPair {
   self = [super initWithAction:FIRInstanceIDTokenActionFetch
            forAuthorizedEntity:authorizedEntity
                          scope:scope
                        options:options
             checkinPreferences:checkinPreferences
-                    instanceID:instanceID];
+                       keyPair:keyPair];
   if (self) {
   }
   return self;
 }
 
 - (void)performTokenOperation {
-  NSMutableURLRequest *request = [self tokenRequest];
+  NSString *authHeader =
+      [FIRInstanceIDTokenOperation HTTPAuthHeaderFromCheckin:self.checkinPreferences];
+  NSMutableURLRequest *request = [[self class] requestWithAuthHeader:authHeader];
   NSString *checkinVersionInfo = self.checkinPreferences.versionInfo;
   [request setValue:checkinVersionInfo forHTTPHeaderField:@"info"];
   [request setValue:[FIRApp firebaseUserAgent]
       forHTTPHeaderField:kFIRInstanceIDFirebaseUserAgentKey];
-  [request setValue:@([FIRHeartbeatInfo heartbeatCodeForTag:kFIRInstanceIDHeartbeatTag]).stringValue
-      forHTTPHeaderField:kFIRInstanceIDFirebaseHeartbeatKey];
 
   // Build form-encoded body
   NSString *deviceAuthID = self.checkinPreferences.deviceID;
@@ -73,7 +70,7 @@ NSString *const kFIRInstanceIDHeartbeatTag = @"fire-iid";
   [queryItems addObject:[FIRInstanceIDURLQueryItem queryItemWithName:@"X-subtype"
                                                                value:self.authorizedEntity]];
 
-  [queryItems addObjectsFromArray:[self queryItemsWithInstanceID:self.instanceID]];
+  [queryItems addObjectsFromArray:[self queryItemsWithKeyPair:self.keyPair]];
 
   // Create query items from passed-in options
   id apnsTokenData = self.options[kFIRInstanceIDTokenOptionsAPNSKey];

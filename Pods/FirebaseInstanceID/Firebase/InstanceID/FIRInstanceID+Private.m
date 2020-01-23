@@ -16,18 +16,14 @@
 
 #import "FIRInstanceID+Private.h"
 
-#import <FirebaseInstallations/FirebaseInstallations.h>
-
-#import <FirebaseInstanceID/FIRInstanceID_Private.h>
 #import "FIRInstanceIDAuthService.h"
-#import "FIRInstanceIDDefines.h"
+#import "FIRInstanceIDKeyPairStore.h"
 #import "FIRInstanceIDTokenManager.h"
-
-@class FIRInstallations;
 
 @interface FIRInstanceID ()
 
 @property(nonatomic, readonly, strong) FIRInstanceIDTokenManager *tokenManager;
+@property(nonatomic, readonly, strong) FIRInstanceIDKeyPairStore *keyPairStore;
 
 @end
 
@@ -39,18 +35,8 @@
   [self.tokenManager.authService fetchCheckinInfoWithHandler:handler];
 }
 
-// TODO(#4486): Delete the method, `self.firebaseInstallationsID` and related
-// code for Firebase 7 release.
-- (NSString *)appInstanceID:(NSError **)outError {
-  return self.firebaseInstallationsID;
-}
-
-#pragma mark - Firebase Installations Compatibility
-
-/// Presence of this method indicates that this version of IID uses FirebaseInstallations under the
-/// hood. It is checked by FirebaseInstallations SDK.
-+ (BOOL)usesFIS {
-  return YES;
+- (NSString *)appInstanceID:(NSError **)error {
+  return [self.keyPairStore appIdentityWithError:error];
 }
 
 @end

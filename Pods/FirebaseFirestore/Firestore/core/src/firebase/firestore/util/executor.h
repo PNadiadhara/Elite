@@ -97,15 +97,8 @@ class Executor {
   // Note that this method has multiple definitions, depending on the platform.
   static std::unique_ptr<Executor> CreateSerial(const char* label);
 
-  // Creates a new concurrent Executor of the platform-appropriate type, with
-  // at least the given number of threads, and gives it the given label, if the
-  // implementation supports it.
-  //
-  // Note that this method has multiple definitions, depending on the platform.
-  static std::unique_ptr<Executor> CreateConcurrent(const char* label,
-                                                    int threads);
-
-  virtual ~Executor() = default;
+  virtual ~Executor() {
+  }
 
   // Schedules the `operation` to be asynchronously executed as soon as
   // possible, in FIFO order.

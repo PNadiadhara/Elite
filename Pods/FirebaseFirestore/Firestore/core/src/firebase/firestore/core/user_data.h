@@ -61,11 +61,6 @@ enum class UserDataSource {
    * false.
    */
   Argument,
-  /**
-   * Indicates that the source is an Argument that may directly contain nested
-   * arrays (e.g. the operand of a `in` query).
-   */
-  ArrayArgument
 };
 
 /**
@@ -288,7 +283,7 @@ class ParsedUpdateData {
  public:
   ParsedUpdateData(model::ObjectValue data,
                    model::FieldMask field_mask,
-                   std::vector<model::FieldTransform> field_transforms);
+                   std::vector<model::FieldTransform> fieldTransforms);
 
   const model::ObjectValue& data() const {
     return data_;

@@ -448,7 +448,7 @@ open class ImageCache {
 
     func retrieveImage(forKey key: String,
                        options: KingfisherParsedOptionsInfo,
-                       callbackQueue: CallbackQueue = .mainCurrentOrAsync,
+                       callbackQueue: CallbackQueue = .untouch,
                        completionHandler: ((Result<ImageCacheResult, KingfisherError>) -> Void)?)
     {
         // No completion handler. No need to start working and early return.
@@ -461,16 +461,16 @@ open class ImageCache {
         } else if options.fromMemoryCacheOrRefresh {
             callbackQueue.execute { completionHandler(.success(.none)) }
         } else {
-
             // Begin to disk search.
             self.retrieveImageInDiskCache(forKey: key, options: options, callbackQueue: callbackQueue) {
                 result in
+                // The callback queue is already correct in this closure.
                 switch result {
                 case .success(let image):
 
                     guard let image = image else {
                         // No image found in disk storage.
-                        callbackQueue.execute { completionHandler(.success(.none)) }
+                        completionHandler(.success(.none))
                         return
                     }
 
@@ -487,10 +487,10 @@ open class ImageCache {
                         toDisk: false)
                     {
                         _ in
-                        callbackQueue.execute { completionHandler(.success(.disk(finalImage))) }
+                        completionHandler(.success(.disk(finalImage)))
                     }
                 case .failure(let error):
-                    callbackQueue.execute { completionHandler(.failure(error)) }
+                    completionHandler(.failure(error))
                 }
             }
         }
@@ -503,14 +503,14 @@ open class ImageCache {
     /// - Parameters:
     ///   - key: The key used for caching the image.
     ///   - options: The `KingfisherOptionsInfo` options setting used for retrieving the image.
-    ///   - callbackQueue: The callback queue on which `completionHandler` is invoked. Default is `.mainCurrentOrAsync`.
+    ///   - callbackQueue: The callback queue on which `completionHandler` is invoked. Default is `.untouch`.
     ///   - completionHandler: A closure which is invoked when the image getting operation finishes. If the
     ///                        image retrieving operation finishes without problem, an `ImageCacheResult` value
     ///                        will be sent to this closure as result. Otherwise, a `KingfisherError` result
     ///                        with detail failing reason will be sent.
     open func retrieveImage(forKey key: String,
                                options: KingfisherOptionsInfo? = nil,
-                        callbackQueue: CallbackQueue = .mainCurrentOrAsync,
+                        callbackQueue: CallbackQueue = .untouch,
                      completionHandler: ((Result<ImageCacheResult, KingfisherError>) -> Void)?)
     {
         retrieveImage(

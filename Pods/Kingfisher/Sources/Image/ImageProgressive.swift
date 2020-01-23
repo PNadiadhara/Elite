@@ -64,11 +64,7 @@ final class ImageProgressiveProvider: DataReceivingSideEffect {
     var onShouldApply: () -> Bool = { return true }
     
     func onDataReceived(_ session: URLSession, task: SessionDataTask, data: Data) {
-
-        DispatchQueue.main.async {
-            guard self.onShouldApply() else { return }
-            self.update(data: task.mutableData, with: task.callbacks)
-        }
+        update(data: task.mutableData, with: task.callbacks)
     }
 
     private let option: ImageProgressive
@@ -92,9 +88,14 @@ final class ImageProgressiveProvider: DataReceivingSideEffect {
     
     func update(data: Data, with callbacks: [SessionDataTask.TaskCallback]) {
         guard !data.isEmpty else { return }
-
+        
         queue.add(minimum: option.scanInterval) { completion in
-
+            guard self.onShouldApply() else {
+                self.queue.clean()
+                completion()
+                return
+            }
+            
             func decode(_ data: Data) {
                 self.decoder.decode(data, with: callbacks) { image in
                     defer { completion() }
@@ -104,22 +105,9 @@ final class ImageProgressiveProvider: DataReceivingSideEffect {
                 }
             }
             
-            let semaphore = DispatchSemaphore(value: 0)
-            var onShouldApply: Bool = false
-            
-            CallbackQueue.mainAsync.execute {
-                onShouldApply = self.onShouldApply()
-                semaphore.signal()
-            }
-            semaphore.wait()
-            guard onShouldApply else {
-                self.queue.clean()
-                completion()
-                return
-            }
-
             if self.option.isFastestScan {
                 decode(self.decoder.scanning(data) ?? Data())
+                
             } else {
                 self.decoder.scanning(data).forEach { decode($0) }
             }

@@ -63,7 +63,7 @@ class CredentialsProvider {
    * Call with nullptr to remove previous listener.
    */
   virtual void SetCredentialChangeListener(
-      CredentialChangeListener change_listener) = 0;
+      CredentialChangeListener changeListener) = 0;
 
  protected:
   /**
