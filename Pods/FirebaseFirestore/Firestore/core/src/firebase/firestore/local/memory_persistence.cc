@@ -58,17 +58,23 @@ MemoryPersistence::MemoryPersistence()
     : query_cache_(this), remote_document_cache_(this), started_(true) {
 }
 
+<<<<<<< HEAD
 MemoryPersistence::~MemoryPersistence() = default;
 
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 ListenSequenceNumber MemoryPersistence::current_sequence_number() const {
   return reference_delegate_->current_sequence_number();
 }
 
+<<<<<<< HEAD
 void MemoryPersistence::set_reference_delegate(
     std::unique_ptr<ReferenceDelegate> delegate) {
   reference_delegate_ = std::move(delegate);
 }
 
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 void MemoryPersistence::Shutdown() {
   // No durable state to ensure is closed on shutdown.
   HARD_ASSERT(started_, "MemoryPersistence shutdown without start!");

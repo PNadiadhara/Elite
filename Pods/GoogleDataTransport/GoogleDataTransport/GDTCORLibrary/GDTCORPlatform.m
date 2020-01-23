@@ -18,6 +18,7 @@
 
 #import <GoogleDataTransport/GDTCORAssert.h>
 
+<<<<<<< HEAD
 #import "GDTCORLibrary/Private/GDTCORRegistrar_Private.h"
 
 #ifdef GDTCOR_VERSION
@@ -28,6 +29,8 @@ NSString *const kGDTCORVersion = @STR(GDTCOR_VERSION);
 NSString *const kGDTCORVersion = @"Unknown";
 #endif  // GDTCOR_VERSION
 
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 const GDTCORBackgroundIdentifier GDTCORBackgroundIdentifierInvalid = 0;
 
 NSString *const kGDTCORApplicationDidEnterBackgroundNotification =
@@ -38,7 +41,11 @@ NSString *const kGDTCORApplicationWillEnterForegroundNotification =
 
 NSString *const kGDTCORApplicationWillTerminateNotification =
     @"GDTCORApplicationWillTerminateNotification";
+<<<<<<< HEAD
 #if !TARGET_OS_WATCH
+=======
+
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 BOOL GDTCORReachabilityFlagsContainWWAN(SCNetworkReachabilityFlags flags) {
 #if TARGET_OS_IOS
   return (flags & kSCNetworkReachabilityFlagsIsWWAN) == kSCNetworkReachabilityFlagsIsWWAN;
@@ -46,7 +53,10 @@ BOOL GDTCORReachabilityFlagsContainWWAN(SCNetworkReachabilityFlags flags) {
   return NO;
 #endif  // TARGET_OS_IOS
 }
+<<<<<<< HEAD
 #endif  // !TARGET_OS_WATCH
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
 @interface GDTCORApplication ()
 /**
@@ -140,7 +150,11 @@ BOOL GDTCORReachabilityFlagsContainWWAN(SCNetworkReachabilityFlags flags) {
 #pragma mark - App environment helpers
 
 - (BOOL)isAppExtension {
+<<<<<<< HEAD
 #if TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_WATCH
+=======
+#if TARGET_OS_IOS || TARGET_OS_TV
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   BOOL appExtension = [[[NSBundle mainBundle] bundlePath] hasSuffix:@".appex"];
   return appExtension;
 #elif TARGET_OS_OSX

@@ -27,7 +27,10 @@
 #include "Firestore/core/src/firebase/firestore/core/bound.h"
 #include "Firestore/core/src/firebase/firestore/core/filter.h"
 #include "Firestore/core/src/firebase/firestore/core/order_by.h"
+<<<<<<< HEAD
 #include "Firestore/core/src/firebase/firestore/core/target.h"
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 #include "Firestore/core/src/firebase/firestore/immutable/append_only_list.h"
 #include "Firestore/core/src/firebase/firestore/model/document.h"
 #include "Firestore/core/src/firebase/firestore/model/document_set.h"
@@ -39,8 +42,11 @@ namespace core {
 
 using CollectionGroupId = std::shared_ptr<const std::string>;
 
+<<<<<<< HEAD
 enum class LimitType { None, First, Last };
 
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 /**
  * Encapsulates all the query attributes we support in the SDK. It represents
  * query features visible to user, and can be run against the LocalStore.
@@ -49,8 +55,19 @@ enum class LimitType { None, First, Last };
  */
 class Query {
  public:
+<<<<<<< HEAD
   Query() = default;
 
+=======
+  static constexpr int32_t kNoLimit = std::numeric_limits<int32_t>::max();
+
+  Query() = default;
+
+  static Query Invalid() {
+    return Query();
+  }
+
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   explicit Query(model::ResourcePath path,
                  CollectionGroupId collection_group = nullptr)
       : path_(std::move(path)), collection_group_(std::move(collection_group)) {
@@ -65,7 +82,10 @@ class Query {
         FilterList filters,
         OrderByList explicit_order_bys,
         int32_t limit,
+<<<<<<< HEAD
         LimitType limit_type,
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
         std::shared_ptr<Bound> start_at,
         std::shared_ptr<Bound> end_at)
       : path_(std::move(path)),
@@ -73,7 +93,10 @@ class Query {
         filters_(std::move(filters)),
         explicit_order_bys_(std::move(explicit_order_bys)),
         limit_(limit),
+<<<<<<< HEAD
         limit_type_(limit_type),
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
         start_at_(std::move(start_at)),
         end_at_(std::move(end_at)) {
   }
@@ -100,12 +123,15 @@ class Query {
     return collection_group_ != nullptr;
   }
 
+<<<<<<< HEAD
   /**
    * Returns true if this query does not specify any query constraints that
    * could remove results.
    */
   bool MatchesAllDocuments() const;
 
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   /** The filters on the documents returned by the query. */
   const FilterList& filters() const {
     return filters_;
@@ -138,7 +164,35 @@ class Query {
    */
   const OrderByList& explicit_order_bys() const {
     return explicit_order_bys_;
+<<<<<<< HEAD
+=======
   }
+
+  /**
+   * Returns the full list of ordering constraints on the query.
+   *
+   * This might include additional sort orders added implicitly to match the
+   * backend behavior.
+   */
+  const OrderByList& order_bys() const;
+
+  /** Returns the first field in an order-by constraint, or nullptr if none. */
+  const model::FieldPath* FirstOrderByField() const;
+
+  int32_t limit() const {
+    return limit_;
+  }
+
+  const std::shared_ptr<Bound>& start_at() const {
+    return start_at_;
+  }
+
+  const std::shared_ptr<Bound>& end_at() const {
+    return end_at_;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
+  }
+
+  // MARK: - Builder methods
 
   /**
    * Returns the full list of ordering constraints on the query.
@@ -184,13 +238,19 @@ class Query {
   Query AddingOrderBy(OrderBy order_by) const;
 
   /**
+<<<<<<< HEAD
    * Returns a new `Query` that returns the first matching documents up to
    * the specified number.
+=======
+   * Returns a copy of this Query with the given limit on how many results can
+   * be returned.
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
    *
    * @param limit The maximum number of results to return. If
    *     `limit == kNoLimit`, then no limit is applied. Otherwise, if
    *     `limit <= 0`, behavior is unspecified.
    */
+<<<<<<< HEAD
   Query WithLimitToFirst(int32_t limit) const;
 
   /**
@@ -205,6 +265,9 @@ class Query {
    *     `limit <= 0`, behavior is unspecified.
    */
   Query WithLimitToLast(int32_t limit) const;
+=======
+  Query WithLimit(int32_t limit) const;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   /**
    * Returns a copy of this Query starting at the provided bound.
@@ -235,6 +298,7 @@ class Query {
    */
   model::DocumentComparator Comparator() const;
 
+<<<<<<< HEAD
   const std::string CanonicalId() const;
 
   std::string ToString() const;
@@ -248,6 +312,14 @@ class Query {
   friend std::ostream& operator<<(std::ostream& os, const Query& query);
 
   friend bool operator==(const Query& lhs, const Query& rhs);
+=======
+  const std::string& CanonicalId() const;
+
+  std::string ToString() const;
+
+  friend std::ostream& operator<<(std::ostream& os, const Query& query);
+
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   size_t Hash() const;
 
  private:
@@ -264,6 +336,7 @@ class Query {
   // existing filters, plus the new one. (Both Query and Filter objects are
   // immutable.) Filters are not shared across unrelated Query instances.
   FilterList filters_;
+<<<<<<< HEAD
 
   // A list of fields given to sort by. This does not include the implicit key
   // sort at the end.
@@ -281,6 +354,24 @@ class Query {
   // The corresponding Target of this Query instance.
   mutable std::shared_ptr<const Target> memoized_target;
 };
+=======
+
+  // A list of fields given to sort by. This does not include the implicit key
+  // sort at the end.
+  OrderByList explicit_order_bys_;
+
+  // The memoized list of sort orders.
+  mutable OrderByList memoized_order_bys_;
+
+  int32_t limit_ = kNoLimit;
+  std::shared_ptr<Bound> start_at_;
+  std::shared_ptr<Bound> end_at_;
+
+  mutable std::string canonical_id_;
+};
+
+bool operator==(const Query& lhs, const Query& rhs);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
 bool operator==(const Query& lhs, const Query& rhs);
 inline bool operator!=(const Query& lhs, const Query& rhs) {

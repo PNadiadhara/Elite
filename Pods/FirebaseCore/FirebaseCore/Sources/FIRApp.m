@@ -22,6 +22,7 @@
 #import <AppKit/AppKit.h>
 #endif
 
+<<<<<<< HEAD:Pods/FirebaseCore/FirebaseCore/Sources/FIRApp.m
 #import <FirebaseCore/FIRApp.h>
 
 #import "FirebaseCore/Sources/FIRBundleUtil.h"
@@ -38,6 +39,19 @@
 #import <GoogleUtilities/GULAppEnvironmentUtil.h>
 
 #import <objc/runtime.h>
+=======
+#import "FIRApp.h"
+
+#import "Private/FIRAnalyticsConfiguration.h"
+#import "Private/FIRAppInternal.h"
+#import "Private/FIRBundleUtil.h"
+#import "Private/FIRComponentContainerInternal.h"
+#import "Private/FIRConfigurationInternal.h"
+#import "Private/FIRCoreDiagnosticsConnector.h"
+#import "Private/FIRLibrary.h"
+#import "Private/FIRLogger.h"
+#import "Private/FIROptionsInternal.h"
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseCore/Firebase/Core/FIRApp.m
 
 // The kFIRService strings are only here while transitioning CoreDiagnostics from the Analytics
 // pod to a Core dependency. These symbols are not used and should be deleted after the transition.
@@ -887,16 +901,28 @@ static dispatch_once_t sFirebaseUserAgentOnceToken;
 - (void)subscribeForAppDidBecomeActiveNotifications {
 #if TARGET_OS_IOS || TARGET_OS_TV
   NSNotificationName notificationName = UIApplicationDidBecomeActiveNotification;
+<<<<<<< HEAD:Pods/FirebaseCore/FirebaseCore/Sources/FIRApp.m
 #elif TARGET_OS_OSX
   NSNotificationName notificationName = NSApplicationDidBecomeActiveNotification;
 #endif
 
 #if !TARGET_OS_WATCH
+=======
+#endif
+
+#if TARGET_OS_OSX
+  NSNotificationName notificationName = NSApplicationDidBecomeActiveNotification;
+#endif
+
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseCore/Firebase/Core/FIRApp.m
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(appDidBecomeActive:)
                                                name:notificationName
                                              object:nil];
+<<<<<<< HEAD:Pods/FirebaseCore/FirebaseCore/Sources/FIRApp.m
 #endif
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseCore/Firebase/Core/FIRApp.m
 }
 
 - (void)appDidBecomeActive:(NSNotification *)notification {

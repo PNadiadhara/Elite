@@ -16,7 +16,10 @@
 
 #import "GDTCORLibrary/Private/GDTCORReachability.h"
 #import "GDTCORLibrary/Private/GDTCORReachability_Private.h"
+<<<<<<< HEAD
 #if !TARGET_OS_WATCH
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
 #import <GoogleDataTransport/GDTCORConsoleLogger.h>
 
@@ -111,5 +114,8 @@ static void GDTCORReachabilityCallback(SCNetworkReachabilityRef reachability,
                                        void *info) {
   [[GDTCORReachability sharedInstance] setCallbackFlags:flags];
 }
+<<<<<<< HEAD
 
 #endif
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d

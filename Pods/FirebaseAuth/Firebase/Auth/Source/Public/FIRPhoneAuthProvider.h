@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-#include <TargetConditionals.h>
-#if !TARGET_OS_OSX && !TARGET_OS_TV
-
 #import <Foundation/Foundation.h>
 
 @class FIRAuth;
@@ -106,5 +103,3 @@ NS_SWIFT_NAME(PhoneAuthProvider)
 @end
 
 NS_ASSUME_NONNULL_END
-
-#endif

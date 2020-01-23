@@ -17,8 +17,13 @@
  */
 
 #import "OIDAuthState+IOS.h"
+<<<<<<< HEAD
 #import "OIDExternalUserAgentIOS.h"
 #import "OIDExternalUserAgentCatalyst.h"
+=======
+
+#import "OIDExternalUserAgentIOS.h"
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
 @implementation OIDAuthState (IOS)
 
@@ -26,6 +31,7 @@
     authStateByPresentingAuthorizationRequest:(OIDAuthorizationRequest *)authorizationRequest
                      presentingViewController:(UIViewController *)presentingViewController
                                      callback:(OIDAuthStateAuthorizationCallback)callback {
+<<<<<<< HEAD
   id<OIDExternalUserAgent> externalUserAgent;
 #if TARGET_OS_MACCATALYST
   externalUserAgent = [[OIDExternalUserAgentCatalyst alloc]
@@ -33,12 +39,20 @@
 #else // TARGET_OS_MACCATALYST
   externalUserAgent = [[OIDExternalUserAgentIOS alloc] initWithPresentingViewController:presentingViewController];
 #endif // TARGET_OS_MACCATALYST
+=======
+    OIDExternalUserAgentIOS *externalUserAgent =
+        [[OIDExternalUserAgentIOS alloc]
+            initWithPresentingViewController:presentingViewController];
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   return [self authStateByPresentingAuthorizationRequest:authorizationRequest
                                        externalUserAgent:externalUserAgent
                                                 callback:callback];
 }
 
+<<<<<<< HEAD
 #if !TARGET_OS_MACCATALYST
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 + (id<OIDExternalUserAgentSession>)
     authStateByPresentingAuthorizationRequest:(OIDAuthorizationRequest *)authorizationRequest
                                   callback:(OIDAuthStateAuthorizationCallback)callback {
@@ -47,6 +61,9 @@
                                        externalUserAgent:externalUserAgent
                                                 callback:callback];
 }
+<<<<<<< HEAD
 #endif // !TARGET_OS_MACCATALYST
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
 @end

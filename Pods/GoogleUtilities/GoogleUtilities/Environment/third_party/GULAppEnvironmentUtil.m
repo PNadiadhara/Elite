@@ -129,7 +129,7 @@ static BOOL IsAppEncrypted() {
 }
 
 static BOOL HasSCInfoFolder() {
-#if TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_WATCH
+#if TARGET_OS_IOS || TARGET_OS_TV
   NSString *bundlePath = [NSBundle mainBundle].bundlePath;
   NSString *scInfoPath = [bundlePath stringByAppendingPathComponent:@"SC_Info"];
   return [[NSFileManager defaultManager] fileExistsAtPath:scInfoPath];
@@ -139,7 +139,7 @@ static BOOL HasSCInfoFolder() {
 }
 
 static BOOL HasEmbeddedMobileProvision() {
-#if TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_WATCH
+#if TARGET_OS_IOS || TARGET_OS_TV
   return [[NSBundle mainBundle] pathForResource:@"embedded" ofType:@"mobileprovision"].length > 0;
 #elif TARGET_OS_OSX
   return NO;
@@ -207,7 +207,6 @@ static BOOL HasEmbeddedMobileProvision() {
 #elif TARGET_OS_OSX
   return NO;
 #endif
-  return NO;
 }
 
 + (NSString *)deviceModel {
@@ -226,7 +225,7 @@ static BOOL HasEmbeddedMobileProvision() {
 + (NSString *)systemVersion {
 #if TARGET_OS_IOS
   return [UIDevice currentDevice].systemVersion;
-#elif TARGET_OS_OSX || TARGET_OS_TV || TARGET_OS_WATCH
+#elif TARGET_OS_OSX || TARGET_OS_TV
   // Assemble the systemVersion, excluding the patch version if it's 0.
   NSOperatingSystemVersion osVersion = [NSProcessInfo processInfo].operatingSystemVersion;
   NSMutableString *versionString = [[NSMutableString alloc]
@@ -239,7 +238,7 @@ static BOOL HasEmbeddedMobileProvision() {
 }
 
 + (BOOL)isAppExtension {
-#if TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_WATCH
+#if TARGET_OS_IOS || TARGET_OS_TV
   // Documented by <a href="https://goo.gl/RRB2Up">Apple</a>
   BOOL appExtension = [[[NSBundle mainBundle] bundlePath] hasSuffix:@".appex"];
   return appExtension;

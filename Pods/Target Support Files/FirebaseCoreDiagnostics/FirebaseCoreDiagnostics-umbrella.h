@@ -10,6 +10,10 @@
 #endif
 #endif
 
+<<<<<<< HEAD
+=======
+#import "FIRCoreDiagnosticsDateFileStorage.h"
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 #import "firebasecore.nanopb.h"
 
 FOUNDATION_EXPORT double FirebaseCoreDiagnosticsVersionNumber;

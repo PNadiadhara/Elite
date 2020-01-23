@@ -132,9 +132,12 @@
  * @return The current upload conditions.
  */
 - (GDTCORUploadConditions)uploadConditions {
+<<<<<<< HEAD
 #if TARGET_OS_WATCH
   return GDTCORUploadConditionNoNetwork;
 #else
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   SCNetworkReachabilityFlags currentFlags = [GDTCORReachability currentFlags];
   BOOL reachable =
       (currentFlags & kSCNetworkReachabilityFlagsReachable) == kSCNetworkReachabilityFlagsReachable;
@@ -152,7 +155,10 @@
   } else {
     return GDTCORUploadConditionWifiData;
   }
+<<<<<<< HEAD
 #endif
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 }
 
 #pragma mark - NSSecureCoding support
@@ -167,6 +173,7 @@ static NSString *const ktargetToInFlightPackagesKey =
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
   GDTCORUploadCoordinator *sharedCoordinator = [GDTCORUploadCoordinator sharedInstance];
+<<<<<<< HEAD
   dispatch_sync(sharedCoordinator->_coordinationQueue, ^{
     @try {
       sharedCoordinator->_targetToInFlightPackages =
@@ -177,10 +184,21 @@ static NSString *const ktargetToInFlightPackagesKey =
       sharedCoordinator->_targetToInFlightPackages = [NSMutableDictionary dictionary];
     }
   });
+=======
+  @try {
+    sharedCoordinator->_targetToInFlightPackages =
+        [aDecoder decodeObjectOfClass:[NSMutableDictionary class]
+                               forKey:ktargetToInFlightPackagesKey];
+
+  } @catch (NSException *exception) {
+    sharedCoordinator->_targetToInFlightPackages = [NSMutableDictionary dictionary];
+  }
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   return sharedCoordinator;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
+<<<<<<< HEAD
   dispatch_sync(_coordinationQueue, ^{
     // All packages that have been given to uploaders need to be tracked so that their expiration
     // timers can be called.
@@ -188,6 +206,13 @@ static NSString *const ktargetToInFlightPackagesKey =
       [aCoder encodeObject:self->_targetToInFlightPackages forKey:ktargetToInFlightPackagesKey];
     }
   });
+=======
+  // All packages that have been given to uploaders need to be tracked so that their expiration
+  // timers can be called.
+  if (_targetToInFlightPackages.count > 0) {
+    [aCoder encodeObject:_targetToInFlightPackages forKey:ktargetToInFlightPackagesKey];
+  }
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 }
 
 #pragma mark - GDTCORLifecycleProtocol

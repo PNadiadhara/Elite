@@ -329,6 +329,7 @@ static NSDictionary *sDefaultOptionsDictionary = nil;
   _appGroupID = [appGroupID copy];
 }
 
+<<<<<<< HEAD:Pods/FirebaseCore/FirebaseCore/Sources/FIROptions.m
 #pragma mark - Equality
 
 - (BOOL)isEqual:(id)object {
@@ -382,6 +383,8 @@ static NSDictionary *sDefaultOptionsDictionary = nil;
   return self.optionsDictionary.hash ^ self.deepLinkURLScheme.hash ^ self.appGroupID.hash;
 }
 
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseCore/Firebase/Core/FIROptions.m
 #pragma mark - Internal instance methods
 
 - (NSDictionary *)analyticsOptionsDictionaryWithInfoDictionary:(NSDictionary *)infoDictionary {

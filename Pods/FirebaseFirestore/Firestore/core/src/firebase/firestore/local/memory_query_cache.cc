@@ -28,7 +28,11 @@ namespace firebase {
 namespace firestore {
 namespace local {
 
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/memory_query_cache.cc
 using core::Target;
+=======
+using core::Query;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/memory_query_cache.mm
 using model::DocumentKey;
 using model::DocumentKeySet;
 using model::ListenSequenceNumber;
@@ -44,7 +48,11 @@ MemoryQueryCache::MemoryQueryCache(MemoryPersistence* persistence)
 }
 
 void MemoryQueryCache::AddTarget(const QueryData& query_data) {
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/memory_query_cache.cc
   targets_[query_data.target()] = query_data;
+=======
+  queries_[query_data.query()] = query_data;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/memory_query_cache.mm
   if (query_data.target_id() > highest_target_id_) {
     highest_target_id_ = query_data.target_id();
   }
@@ -59,6 +67,7 @@ void MemoryQueryCache::UpdateTarget(const QueryData& query_data) {
 }
 
 void MemoryQueryCache::RemoveTarget(const QueryData& query_data) {
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/memory_query_cache.cc
   targets_.erase(query_data.target());
   references_.RemoveReferences(query_data.target_id());
 }
@@ -66,6 +75,15 @@ void MemoryQueryCache::RemoveTarget(const QueryData& query_data) {
 absl::optional<QueryData> MemoryQueryCache::GetTarget(const Target& target) {
   auto iter = targets_.find(target);
   return iter == targets_.end() ? absl::optional<QueryData>{} : iter->second;
+=======
+  queries_.erase(query_data.query());
+  references_.RemoveReferences(query_data.target_id());
+}
+
+absl::optional<QueryData> MemoryQueryCache::GetTarget(const Query& query) {
+  auto iter = queries_.find(query);
+  return iter == queries_.end() ? absl::optional<QueryData>{} : iter->second;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/memory_query_cache.mm
 }
 
 void MemoryQueryCache::EnumerateTargets(const TargetCallback& callback) {
@@ -77,21 +95,36 @@ void MemoryQueryCache::EnumerateTargets(const TargetCallback& callback) {
 int MemoryQueryCache::RemoveTargets(
     model::ListenSequenceNumber upper_bound,
     const std::unordered_map<TargetId, QueryData>& live_targets) {
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/memory_query_cache.cc
   std::vector<const Target*> to_remove;
   for (const auto& kv : targets_) {
     const Target& target = kv.first;
+=======
+  std::vector<const Query*> to_remove;
+  for (const auto& kv : queries_) {
+    const Query& query = kv.first;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/memory_query_cache.mm
     const QueryData& query_data = kv.second;
 
     if (query_data.sequence_number() <= upper_bound) {
       if (live_targets.find(query_data.target_id()) == live_targets.end()) {
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/memory_query_cache.cc
         to_remove.push_back(&target);
+=======
+        to_remove.push_back(&query);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/memory_query_cache.mm
         references_.RemoveReferences(query_data.target_id());
       }
     }
   }
 
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/memory_query_cache.cc
   for (const Target* element : to_remove) {
     targets_.erase(*element);
+=======
+  for (const Query* element : to_remove) {
+    queries_.erase(*element);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/memory_query_cache.mm
   }
   return static_cast<int>(to_remove.size());
 }
@@ -122,7 +155,11 @@ bool MemoryQueryCache::Contains(const DocumentKey& key) {
 
 int64_t MemoryQueryCache::CalculateByteSize(const Sizer& sizer) {
   int64_t count = 0;
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/memory_query_cache.cc
   for (const auto& kv : targets_) {
+=======
+  for (const auto& kv : queries_) {
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/memory_query_cache.mm
     count += sizer.CalculateByteSize(kv.second);
   }
   return count;

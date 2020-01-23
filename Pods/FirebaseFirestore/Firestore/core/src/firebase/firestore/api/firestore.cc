@@ -21,6 +21,10 @@
 #include "Firestore/core/src/firebase/firestore/api/settings.h"
 #include "Firestore/core/src/firebase/firestore/api/snapshots_in_sync_listener_registration.h"
 #include "Firestore/core/src/firebase/firestore/api/write_batch.h"
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/firestore.cc
+=======
+#include "Firestore/core/src/firebase/firestore/auth/firebase_credentials_provider_apple.h"
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/firestore.mm
 #include "Firestore/core/src/firebase/firestore/core/firestore_client.h"
 #include "Firestore/core/src/firebase/firestore/core/query.h"
 #include "Firestore/core/src/firebase/firestore/core/transaction.h"
@@ -96,7 +100,11 @@ void Firestore::set_user_executor(std::unique_ptr<Executor> user_executor) {
 }
 
 CollectionReference Firestore::GetCollection(
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/firestore.cc
     const std::string& collection_path) {
+=======
+    absl::string_view collection_path) {
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/firestore.mm
   EnsureClientConfigured();
   ResourcePath path = ResourcePath::FromString(collection_path);
   return CollectionReference{std::move(path), shared_from_this()};

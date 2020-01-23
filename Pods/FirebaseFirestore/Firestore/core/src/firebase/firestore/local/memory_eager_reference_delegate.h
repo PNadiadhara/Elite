@@ -60,10 +60,17 @@ class MemoryEagerReferenceDelegate : public ReferenceDelegate {
       orphaned_;
 
   // This instance is owned by MemoryPersistence.
+<<<<<<< HEAD
   MemoryPersistence* persistence_ = nullptr;
 
   // The ReferenceSet is owned by LocalStore.
   ReferenceSet* additional_references_ = nullptr;
+=======
+  MemoryPersistence* persistence_;
+
+  // The ReferenceSet is owned by LocalStore.
+  ReferenceSet* additional_references_;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 };
 
 }  // namespace local

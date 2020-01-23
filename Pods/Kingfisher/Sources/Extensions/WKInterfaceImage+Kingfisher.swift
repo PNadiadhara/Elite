@@ -90,7 +90,10 @@ extension KingfisherWrapper where Base: WKInterfaceImage {
         let task = KingfisherManager.shared.retrieveImage(
             with: source,
             options: options,
+<<<<<<< HEAD
             downloadTaskUpdated: { mutatingSelf.imageTask = $0 },
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
             completionHandler: { result in
                 CallbackQueue.mainCurrentOrAsync.execute {
                     guard issuedIdentifier == self.taskIdentifier else {
@@ -154,7 +157,11 @@ extension KingfisherWrapper where Base: WKInterfaceImage {
         completionHandler: ((Result<RetrieveImageResult, KingfisherError>) -> Void)? = nil) -> DownloadTask?
     {
         return setImage(
+<<<<<<< HEAD
             with: resource?.convertToSource(),
+=======
+            with: resource.map { .network($0) },
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
             placeholder: placeholder,
             options: options,
             progressBlock: progressBlock,
@@ -179,6 +186,11 @@ extension KingfisherWrapper where Base: WKInterfaceImage {
     public private(set) var taskIdentifier: Source.Identifier.Value? {
         get {
             let box: Box<Source.Identifier.Value>? = getAssociatedObject(base, &taskIdentifierKey)
+<<<<<<< HEAD
+=======
+            defer { objc_sync_exit(self) }
+            objc_sync_enter(self)
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
             return box?.value
         }
         set {

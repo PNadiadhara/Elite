@@ -67,11 +67,14 @@ class TransformOperation {
     return rep().type();
   }
 
+<<<<<<< HEAD
  private:
   // TODO(b/146372592): Make this public once we can use Abseil across
   // iOS/public C++ library boundaries.
   friend class TransformMutation;
 
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   /**
    * Computes the local transform result against the provided `previous_value`,
    * optionally using the provided local_write_time.
@@ -111,7 +114,10 @@ class TransformOperation {
     return rep().ComputeBaseValue(previous_value);
   }
 
+<<<<<<< HEAD
  public:
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   /** Returns whether the two are equal. */
   friend bool operator==(const TransformOperation& lhs,
                          const TransformOperation& rhs);

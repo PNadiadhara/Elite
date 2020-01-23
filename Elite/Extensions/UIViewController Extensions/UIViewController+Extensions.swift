@@ -22,6 +22,7 @@ extension UIViewController {
         view.addGestureRecognizer(screenTap)
     }
     
+
     func registerKeyboardNotification(){
         NotificationCenter.default.addObserver(self, selector: #selector(willShowKeyboard(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(willHideKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -80,5 +81,30 @@ extension UIViewController {
         view.sendSubviewToBack(confettiView)
         confettiView.type = .Confetti
         confettiView.intensity = intensity
+    }
+    
+    func segueToLoadingScreen(gamerId: String) {
+        let loadingScreen = LoadingViewController(nibName: nil, bundle: nil, gamerID: gamerId)
+        navigationController?.pushViewController(loadingScreen, animated: true)
+    }
+    func showImagesSourceOptions(imagePickerController: UIImagePickerController) {
+        
+        showSheetAlert(title: "Please select option", message: nil) { (alertController) in
+            let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: { (action) in
+                imagePickerController.sourceType = .camera
+                self.present(imagePickerController, animated: true)
+            })
+            let photoLibaryAction = UIAlertAction(title: "Photo Library", style: .default, handler: { (action) in
+                imagePickerController.sourceType = .photoLibrary
+                self.present(imagePickerController, animated: true)
+            })
+            
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                alertController.addAction(cameraAction)
+                alertController.addAction(photoLibaryAction)
+            } else {
+                alertController.addAction(photoLibaryAction)
+            }
+        }
     }
 }

@@ -17,7 +17,6 @@
 #ifndef FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_LOCAL_MEMORY_REMOTE_DOCUMENT_CACHE_H_
 #define FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_LOCAL_MEMORY_REMOTE_DOCUMENT_CACHE_H_
 
-#include <utility>
 #include <vector>
 
 #include "Firestore/core/src/firebase/firestore/local/remote_document_cache.h"
@@ -38,17 +37,14 @@ class MemoryRemoteDocumentCache : public RemoteDocumentCache {
  public:
   explicit MemoryRemoteDocumentCache(MemoryPersistence* persistence);
 
-  void Add(const model::MaybeDocument& document,
-           const model::SnapshotVersion& read_time) override;
+  void Add(const model::MaybeDocument& document) override;
   void Remove(const model::DocumentKey& key) override;
 
   absl::optional<model::MaybeDocument> Get(
       const model::DocumentKey& key) override;
   model::OptionalMaybeDocumentMap GetAll(
       const model::DocumentKeySet& keys) override;
-  model::DocumentMap GetMatching(
-      const core::Query& query,
-      const model::SnapshotVersion& since_read_time) override;
+  model::DocumentMap GetMatching(const core::Query& query) override;
 
   std::vector<model::DocumentKey> RemoveOrphanedDocuments(
       MemoryLruReferenceDelegate* reference_delegate,
@@ -57,10 +53,8 @@ class MemoryRemoteDocumentCache : public RemoteDocumentCache {
   int64_t CalculateByteSize(const Sizer& sizer);
 
  private:
-  /** Underlying cache of documents and their read times. */
-  immutable::SortedMap<model::DocumentKey,
-                       std::pair<model::MaybeDocument, model::SnapshotVersion>>
-      docs_;
+  /** Underlying cache of documents. */
+  model::MaybeDocumentMap docs_;
 
   // This instance is owned by MemoryPersistence; avoid a retain cycle.
   MemoryPersistence* persistence_;

@@ -53,6 +53,7 @@ class TransactionRunner
   void Run();
 
  private:
+<<<<<<< HEAD
   void ContinueCommit(const std::shared_ptr<Transaction>& transaction,
                       util::Status maybe_result);
 
@@ -60,6 +61,16 @@ class TransactionRunner
                       util::Status status);
 
   void HandleTransactionError(const std::shared_ptr<Transaction>& transaction,
+=======
+  void ContinueCommit(const std::shared_ptr<Transaction> transaction,
+                      const util::StatusOr<absl::any> maybe_result);
+
+  void DispatchResult(const std::shared_ptr<Transaction> transaction,
+                      util::Status status,
+                      const util::StatusOr<absl::any> maybe_result);
+
+  void HandleTransactionError(const std::shared_ptr<Transaction> transaction,
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
                               util::Status status);
 
   std::shared_ptr<util::AsyncQueue> queue_;

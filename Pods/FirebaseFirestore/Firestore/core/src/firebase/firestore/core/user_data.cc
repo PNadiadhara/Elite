@@ -18,13 +18,20 @@
 
 #include <utility>
 
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/core/user_data.cc
+=======
+#include "Firestore/core/src/firebase/firestore/api/input_validation.h"
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/core/user_data.cc
 #include "Firestore/core/src/firebase/firestore/model/mutation.h"
 #include "Firestore/core/src/firebase/firestore/model/patch_mutation.h"
 #include "Firestore/core/src/firebase/firestore/model/set_mutation.h"
 #include "Firestore/core/src/firebase/firestore/model/transform_mutation.h"
 #include "Firestore/core/src/firebase/firestore/model/transform_operation.h"
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/core/user_data.cc
 #include "Firestore/core/src/firebase/firestore/util/exception.h"
 #include "absl/memory/memory.h"
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/core/user_data.cc
 #include "absl/strings/match.h"
 
 namespace firebase {

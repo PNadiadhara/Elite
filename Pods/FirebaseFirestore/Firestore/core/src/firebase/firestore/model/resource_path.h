@@ -27,10 +27,6 @@
 
 namespace firebase {
 namespace firestore {
-namespace remote {
-class Serializer;
-}  // namespace remote
-
 namespace model {
 
 /**
@@ -38,7 +34,7 @@ namespace model {
  * within Firestore. Immutable; all instances are fully independent.
  */
 class ResourcePath : public impl::BasePath<ResourcePath>,
-                     public util::InequalityComparable<ResourcePath> {
+                     public util::Comparable<ResourcePath> {
  public:
   ResourcePath() = default;
   /** Constructs the path from segments. */
@@ -53,17 +49,8 @@ class ResourcePath : public impl::BasePath<ResourcePath>,
    * Creates and returns a new path from the given resource-path string, where
    * the path segments are separated by a slash "/".
    */
-  static ResourcePath FromString(const std::string& path);
+  static ResourcePath FromString(absl::string_view path);
 
- private:
-  // TODO(b/146372592): Make this public once we can use Abseil across
-  // iOS/public C++ library boundaries.
-  friend class DocumentKey;
-  friend class remote::Serializer;
-
-  static ResourcePath FromStringView(absl::string_view path);
-
- public:
   static ResourcePath Empty() {
     return ResourcePath{};
   }

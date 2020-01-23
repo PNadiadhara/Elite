@@ -16,18 +16,28 @@
 
 #import <Foundation/Foundation.h>
 
+<<<<<<< HEAD
 #if !TARGET_OS_WATCH
 #import <SystemConfiguration/SCNetworkReachability.h>
 #endif
+=======
+#import <SystemConfiguration/SCNetworkReachability.h>
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
 NS_ASSUME_NONNULL_BEGIN
 
 /** This class helps determine upload conditions by determining connectivity. */
 @interface GDTCORReachability : NSObject
+<<<<<<< HEAD
 #if !TARGET_OS_WATCH
 /** The current set flags indicating network conditions */
 + (SCNetworkReachabilityFlags)currentFlags;
 #endif
+=======
+
+/** The current set flags indicating network conditions */
++ (SCNetworkReachabilityFlags)currentFlags;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
 @end
 

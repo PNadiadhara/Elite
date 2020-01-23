@@ -19,6 +19,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /** If present, is a BOOL wrapped in an NSNumber. */
+<<<<<<< HEAD
 #define kFIRCDIsDataCollectionDefaultEnabledKey @"FIRCDIsDataCollectionDefaultEnabledKey"
 
 /** If present, is an int32_t wrapped in an NSNumber. */
@@ -47,6 +48,38 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** If present, is an NSString. */
 #define kFIRCDFirebaseUserAgentKey @"FIRCDFirebaseUserAgentKey"
+=======
+static NSString *const kFIRCDIsDataCollectionDefaultEnabledKey =
+    @"FIRCDIsDataCollectionDefaultEnabledKey";
+
+/** If present, is an int32_t wrapped in an NSNumber. */
+static NSString *const kFIRCDConfigurationTypeKey = @"FIRCDConfigurationTypeKey";
+
+/** If present, is an NSString. */
+static NSString *const kFIRCDSdkNameKey = @"FIRCDSdkNameKey";
+
+/** If present, is an NSString. */
+static NSString *const kFIRCDSdkVersionKey = @"FIRCDSdkVersionKey";
+
+/** If present, is an int32_t wrapped in an NSNumber. */
+static NSString *const kFIRCDllAppsCountKey = @"FIRCDllAppsCountKey";
+
+/** If present, is an NSString. */
+static NSString *const kFIRCDGoogleAppIDKey = @"FIRCDGoogleAppIDKey";
+
+/** If present, is an NSString. */
+static NSString *const kFIRCDBundleIDKey = @"FIRCDBundleID";
+
+/** If present, is a BOOL wrapped in an NSNumber. */
+static NSString *const kFIRCDUsingOptionsFromDefaultPlistKey =
+    @"FIRCDUsingOptionsFromDefaultPlistKey";
+
+/** If present, is an NSString. */
+static NSString *const kFIRCDLibraryVersionIDKey = @"FIRCDLibraryVersionIDKey";
+
+/** If present, is an NSString. */
+static NSString *const kFIRCDFirebaseUserAgentKey = @"FIRCDFirebaseUserAgentKey";
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
 /** Defines the interface of a data object needed to log diagnostics data. */
 @protocol FIRCoreDiagnosticsData <NSObject>

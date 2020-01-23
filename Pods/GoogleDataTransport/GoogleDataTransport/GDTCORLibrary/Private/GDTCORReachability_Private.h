@@ -18,10 +18,15 @@
 
 @interface GDTCORReachability ()
 
+<<<<<<< HEAD
 #if !TARGET_OS_WATCH
 /** Allows manually setting the flags for testing purposes. */
 @property(nonatomic, readwrite) SCNetworkReachabilityFlags flags;
 #endif
+=======
+/** Allows manually setting the flags for testing purposes. */
+@property(nonatomic, readwrite) SCNetworkReachabilityFlags flags;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
 /** Creates/returns the singleton instance of this class.
  *

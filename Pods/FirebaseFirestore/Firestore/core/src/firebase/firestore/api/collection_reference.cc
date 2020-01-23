@@ -19,10 +19,17 @@
 #include <utility>
 
 #include "Firestore/core/src/firebase/firestore/api/document_reference.h"
+<<<<<<< HEAD
 #include "Firestore/core/src/firebase/firestore/model/document_key.h"
 #include "Firestore/core/src/firebase/firestore/model/resource_path.h"
 #include "Firestore/core/src/firebase/firestore/util/autoid.h"
 #include "Firestore/core/src/firebase/firestore/util/exception.h"
+=======
+#include "Firestore/core/src/firebase/firestore/api/input_validation.h"
+#include "Firestore/core/src/firebase/firestore/model/document_key.h"
+#include "Firestore/core/src/firebase/firestore/model/resource_path.h"
+#include "Firestore/core/src/firebase/firestore/util/autoid.h"
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 #include "Firestore/core/src/firebase/firestore/util/hashing.h"
 #include "Firestore/core/src/firebase/firestore/util/string_apple.h"
 
@@ -34,7 +41,10 @@ namespace {
 using core::Query;
 using model::DocumentKey;
 using model::ResourcePath;
+<<<<<<< HEAD
 using util::ThrowInvalidArgument;
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
 Query MakeQuery(model::ResourcePath path) {
   if (path.size() % 2 != 1) {
@@ -81,7 +91,11 @@ std::string CollectionReference::path() const {
 }
 
 DocumentReference CollectionReference::Document(
+<<<<<<< HEAD
     const std::string& document_path) const {
+=======
+    absl::string_view document_path) const {
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   ResourcePath sub_path = ResourcePath::FromString(document_path);
   ResourcePath path = query().path().Append(sub_path);
   return DocumentReference(std::move(path), firestore());

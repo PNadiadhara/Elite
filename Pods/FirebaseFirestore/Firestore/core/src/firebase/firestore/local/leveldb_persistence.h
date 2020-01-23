@@ -17,6 +17,13 @@
 #ifndef FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_LOCAL_LEVELDB_PERSISTENCE_H_
 #define FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_LOCAL_LEVELDB_PERSISTENCE_H_
 
+<<<<<<< HEAD
+=======
+#if !defined(__OBJC__)
+#error "This header only supports Objective-C++"
+#endif  // !defined(__OBJC__)
+
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 #include <memory>
 #include <set>
 #include <string>
@@ -28,11 +35,19 @@
 #include "Firestore/core/src/firebase/firestore/local/leveldb_query_cache.h"
 #include "Firestore/core/src/firebase/firestore/local/leveldb_remote_document_cache.h"
 #include "Firestore/core/src/firebase/firestore/local/leveldb_transaction.h"
+<<<<<<< HEAD
 #include "Firestore/core/src/firebase/firestore/local/local_serializer.h"
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 #include "Firestore/core/src/firebase/firestore/local/persistence.h"
 #include "Firestore/core/src/firebase/firestore/util/path.h"
 #include "Firestore/core/src/firebase/firestore/util/statusor.h"
 
+<<<<<<< HEAD
+=======
+@class FSTLocalSerializer;
+
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 namespace firebase {
 namespace firestore {
 namespace core {
@@ -54,13 +69,23 @@ class LevelDbPersistence : public Persistence {
    * containing details of the failure.
    */
   static util::StatusOr<std::unique_ptr<LevelDbPersistence>> Create(
+<<<<<<< HEAD
       util::Path dir, LocalSerializer serializer, const LruParams& lru_params);
+=======
+      util::Path dir,
+      FSTLocalSerializer* serializer,
+      const LruParams& lru_params);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   /**
    * Finds a suitable directory to serve as the root of all Firestore local
    * storage.
    */
+<<<<<<< HEAD
   static util::StatusOr<util::Path> AppDataDirectory();
+=======
+  static util::Path AppDataDirectory();
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   /**
    * Computes a unique storage directory for the given identifying components of
@@ -116,7 +141,11 @@ class LevelDbPersistence : public Persistence {
   LevelDbPersistence(std::unique_ptr<leveldb::DB> db,
                      util::Path directory,
                      std::set<std::string> users,
+<<<<<<< HEAD
                      LocalSerializer serializer,
+=======
+                     FSTLocalSerializer* serializer,
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
                      const LruParams& lru_params);
 
   /**
@@ -124,6 +153,15 @@ class LevelDbPersistence : public Persistence {
    */
   static util::Status EnsureDirectory(const util::Path& dir);
 
+<<<<<<< HEAD
+=======
+  /**
+   * Marks the given directory as excluded from platform-specific backup schemes
+   * like iCloud backup.
+   */
+  static util::Status ExcludeFromBackups(const util::Path& dir);
+
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   /** Opens the database within the given directory. */
   static util::StatusOr<std::unique_ptr<leveldb::DB>> OpenDb(
       const util::Path& dir);
@@ -134,7 +172,11 @@ class LevelDbPersistence : public Persistence {
 
   util::Path directory_;
   std::set<std::string> users_;
+<<<<<<< HEAD
   LocalSerializer serializer_;
+=======
+  FSTLocalSerializer* serializer_;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   bool started_ = false;
 
   std::unique_ptr<LevelDbMutationQueue> current_mutation_queue_;

@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-#include <TargetConditionals.h>
-#if !TARGET_OS_OSX && !TARGET_OS_TV
-
 #import <UIKit/UIKit.h>
 
 @class FIRAuthWebViewController;
@@ -74,5 +71,3 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-
-#endif

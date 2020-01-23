@@ -125,7 +125,11 @@ static NSString *GDTCORStoragePath() {
                                                              error:&error];
         [data writeToFile:[GDTCORStorage archivePath] atomically:YES];
       } else {
+<<<<<<< HEAD
 #if !TARGET_OS_MACCATALYST && !TARGET_OS_WATCH
+=======
+#if !TARGET_OS_MACCATALYST
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
         [NSKeyedArchiver archiveRootObject:self toFile:[GDTCORStorage archivePath]];
 #endif
       }
@@ -217,11 +221,17 @@ static NSString *GDTCORStoragePath() {
   if (@available(macOS 10.13, iOS 11.0, tvOS 11.0, *)) {
     NSError *error;
     NSData *data = [NSData dataWithContentsOfFile:[GDTCORStorage archivePath]];
+<<<<<<< HEAD
     if (data) {
       [NSKeyedUnarchiver unarchivedObjectOfClass:[GDTCORStorage class] fromData:data error:&error];
     }
   } else {
 #if !TARGET_OS_MACCATALYST && !TARGET_OS_WATCH
+=======
+    [NSKeyedUnarchiver unarchivedObjectOfClass:[GDTCORStorage class] fromData:data error:&error];
+  } else {
+#if !TARGET_OS_MACCATALYST
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
     [NSKeyedUnarchiver unarchiveObjectWithFile:[GDTCORStorage archivePath]];
 #endif
   }
@@ -245,7 +255,11 @@ static NSString *GDTCORStoragePath() {
                                                            error:&error];
       [data writeToFile:[GDTCORStorage archivePath] atomically:YES];
     } else {
+<<<<<<< HEAD
 #if !TARGET_OS_MACCATALYST && !TARGET_OS_WATCH
+=======
+#if !TARGET_OS_MACCATALYST
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
       [NSKeyedArchiver archiveRootObject:self toFile:[GDTCORStorage archivePath]];
 #endif
     }
@@ -264,7 +278,11 @@ static NSString *GDTCORStoragePath() {
                                                          error:&error];
     [data writeToFile:[GDTCORStorage archivePath] atomically:YES];
   } else {
+<<<<<<< HEAD
 #if !TARGET_OS_MACCATALYST && !TARGET_OS_WATCH
+=======
+#if !TARGET_OS_MACCATALYST
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
     [NSKeyedArchiver archiveRootObject:self toFile:[GDTCORStorage archivePath]];
 #endif
   }

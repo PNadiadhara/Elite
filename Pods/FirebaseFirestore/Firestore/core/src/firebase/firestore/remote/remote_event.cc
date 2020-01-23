@@ -26,7 +26,11 @@ namespace firestore {
 namespace remote {
 
 using core::DocumentViewChange;
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_event.cc
 using core::Target;
+=======
+using core::Query;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_event.cc
 using local::QueryData;
 using local::QueryPurpose;
 using model::DocumentKey;
@@ -215,8 +219,13 @@ void WatchChangeAggregator::HandleExistenceFilter(
 
   absl::optional<QueryData> query_data = QueryDataForActiveTarget(target_id);
   if (query_data) {
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_event.cc
     const Target& target = query_data->target();
     if (target.IsDocumentQuery()) {
+=======
+    const Query& query = query_data->query();
+    if (query.IsDocumentQuery()) {
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_event.cc
       if (expected_count == 0) {
         // The existence filter told us the document does not exist. We deduce
         // that this document does not exist and apply a deleted document to our
@@ -224,7 +233,11 @@ void WatchChangeAggregator::HandleExistenceFilter(
         // another query that will raise this document as part of a snapshot
         // until it is resolved, essentially exposing inconsistency between
         // queries.
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_event.cc
         DocumentKey key{target.path()};
+=======
+        DocumentKey key{query.path()};
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_event.cc
         RemoveDocumentFromTarget(
             target_id, key,
             NoDocument(key, SnapshotVersion::None(),
@@ -256,6 +269,7 @@ RemoteEvent WatchChangeAggregator::CreateRemoteEvent(
 
     absl::optional<QueryData> query_data = QueryDataForActiveTarget(target_id);
     if (query_data) {
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_event.cc
       if (target_state.current() && query_data->target().IsDocumentQuery()) {
         // Document queries for document that don't exist can produce an empty
         // result set. To update our local cache, we synthesize a document
@@ -263,6 +277,14 @@ RemoteEvent WatchChangeAggregator::CreateRemoteEvent(
         // the limbo state of the document, removing it from
         // SyncEngine::limbo_document_refs_.
         DocumentKey key{query_data->target().path()};
+=======
+      if (target_state.current() && query_data->query().IsDocumentQuery()) {
+        // Document queries for document that don't exist can produce an empty
+        // result set. To update our local cache, we synthesize a document
+        // delete if we have not previously received the document. This resolves
+        // the limbo state of the document, removing it from limboDocumentRefs.
+        DocumentKey key{query_data->query().path()};
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_event.cc
         if (pending_document_updates_.find(key) ==
                 pending_document_updates_.end() &&
             !TargetContainsDocument(target_id, key)) {
@@ -409,7 +431,11 @@ void WatchChangeAggregator::ResetTarget(TargetId target_id) {
   DocumentKeySet existing_keys =
       target_metadata_provider_->GetRemoteKeysForTarget(target_id);
 
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_event.cc
   for (const DocumentKey& key : existing_keys) {
+=======
+  for (const DocumentKey& key : existingKeys) {
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_event.cc
     RemoveDocumentFromTarget(target_id, key, absl::nullopt);
   }
 }

@@ -26,7 +26,10 @@
 #include "Firestore/core/src/firebase/firestore/local/reference_set.h"
 #include "Firestore/core/src/firebase/firestore/local/remote_document_cache.h"
 #include "Firestore/core/src/firebase/firestore/local/sizer.h"
+<<<<<<< HEAD
 #include "absl/memory/memory.h"
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
 namespace firebase {
 namespace firestore {
@@ -66,7 +69,13 @@ void MemoryLruReferenceDelegate::AddInMemoryPins(ReferenceSet* set) {
 }
 
 void MemoryLruReferenceDelegate::RemoveTarget(const QueryData& query_data) {
+<<<<<<< HEAD
   QueryData updated = query_data.WithSequenceNumber(current_sequence_number_);
+=======
+  QueryData updated =
+      query_data.Copy(query_data.snapshot_version(), query_data.resume_token(),
+                      current_sequence_number_);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   persistence_->query_cache()->UpdateTarget(updated);
 }
 

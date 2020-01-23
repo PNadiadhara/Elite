@@ -45,9 +45,9 @@ class WriteBatch {
   }
 
   void SetData(const DocumentReference& reference,
-               core::ParsedSetData&& set_data);
+               core::ParsedSetData&& setData);
   void UpdateData(const DocumentReference& reference,
-                  core::ParsedUpdateData&& update_data);
+                  core::ParsedUpdateData&& updateData);
   void DeleteData(const DocumentReference& reference);
 
   void Commit(util::StatusCallback callback);

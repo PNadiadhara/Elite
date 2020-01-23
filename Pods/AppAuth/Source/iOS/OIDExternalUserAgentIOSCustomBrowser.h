@@ -35,7 +35,10 @@ typedef NSURL *_Nullable (^OIDCustomBrowserURLTransformation)(NSURL *_Nullable r
         for browsers that require other modifications to the URL.  If the browser is not installed
         the user will be prompted to install it.
  */
+<<<<<<< HEAD
 API_UNAVAILABLE(macCatalyst)
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 @interface OIDExternalUserAgentIOSCustomBrowser : NSObject<OIDExternalUserAgent>
 
 /*! @brief URL transformation block for the browser.

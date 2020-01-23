@@ -26,7 +26,14 @@ namespace firebase {
 namespace firestore {
 namespace nanopb {
 
+<<<<<<< HEAD
 void Writer::Write(const pb_field_t fields[], const void* src_struct) {
+=======
+using nanopb::ByteString;
+
+void Writer::WriteNanopbMessage(const pb_field_t fields[],
+                                const void* src_struct) {
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   if (!pb_encode(&stream_, fields, src_struct)) {
     HARD_FAIL(PB_GET_ERROR(&stream_));
   }

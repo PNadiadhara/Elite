@@ -27,8 +27,11 @@
 #include "Firestore/core/src/firebase/firestore/nanopb/byte_string.h"
 #include "Firestore/core/src/firebase/firestore/util/hard_assert.h"
 #include "Firestore/core/src/firebase/firestore/util/nullability.h"
+<<<<<<< HEAD
 #include "absl/base/casts.h"
 #include "absl/memory/memory.h"
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
 namespace firebase {
 namespace firestore {
@@ -90,6 +93,7 @@ inline std::vector<uint8_t> MakeVector(const ByteString& str) {
   return {str.begin(), str.end()};
 }
 
+<<<<<<< HEAD
 /**
  * Due to the nanopb implementation, nanopb_boolean could be an integer
  * other than 0 or 1, (such as 2). This leads to undefined behaviour when
@@ -109,6 +113,8 @@ T* _Nonnull MakeArray(pb_size_t count) {
   return static_cast<T*>(calloc(count, sizeof(T)));
 }
 
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 #if __OBJC__
 inline ByteString MakeByteString(NSData* _Nullable value) {
   if (value == nil) return ByteString();

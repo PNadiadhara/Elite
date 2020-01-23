@@ -57,6 +57,7 @@ bool Query::IsDocumentQuery() const {
          filters_.empty();
 }
 
+<<<<<<< HEAD
 bool Query::MatchesAllDocuments() const {
   return filters_.empty() && limit_ == Target::kNoLimit && !start_at_ &&
          !end_at_ &&
@@ -65,6 +66,8 @@ bool Query::MatchesAllDocuments() const {
            explicit_order_bys_.front().field().IsKeyFieldPath()));
 }
 
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 const FieldPath* Query::InequalityFilterField() const {
   for (const auto& filter : filters_) {
     if (filter.IsInequality()) {
@@ -156,6 +159,7 @@ const FieldPath* Query::FirstOrderByField() const {
   return &explicit_order_bys_.front().field();
 }
 
+<<<<<<< HEAD
 LimitType Query::limit_type() const {
   return limit_type_;
 }
@@ -166,6 +170,8 @@ int32_t Query::limit() const {
   return limit_;
 }
 
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 // MARK: - Builder methods
 
 Query Query::AddingFilter(Filter filter) const {
@@ -183,7 +189,11 @@ Query Query::AddingFilter(Filter filter) const {
   // TODO(rsgowman): ensure first orderby must match inequality field
 
   return Query(path_, collection_group_, filters_.push_back(std::move(filter)),
+<<<<<<< HEAD
                explicit_order_bys_, limit_, limit_type_, start_at_, end_at_);
+=======
+               explicit_order_bys_, limit_, start_at_, end_at_);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 }
 
 Query Query::AddingOrderBy(OrderBy order_by) const {
@@ -197,6 +207,7 @@ Query Query::AddingOrderBy(OrderBy order_by) const {
 
   return Query(path_, collection_group_, filters_,
                explicit_order_bys_.push_back(std::move(order_by)), limit_,
+<<<<<<< HEAD
                limit_type_, start_at_, end_at_);
 }
 
@@ -208,22 +219,42 @@ Query Query::WithLimitToFirst(int32_t limit) const {
 Query Query::WithLimitToLast(int32_t limit) const {
   return Query(path_, collection_group_, filters_, explicit_order_bys_, limit,
                LimitType::Last, start_at_, end_at_);
+=======
+               start_at_, end_at_);
+}
+
+Query Query::WithLimit(int32_t limit) const {
+  return Query(path_, collection_group_, filters_, explicit_order_bys_, limit,
+               start_at_, end_at_);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 }
 
 Query Query::StartingAt(Bound bound) const {
   return Query(path_, collection_group_, filters_, explicit_order_bys_, limit_,
+<<<<<<< HEAD
                limit_type_, std::make_shared<Bound>(std::move(bound)), end_at_);
+=======
+               std::make_shared<Bound>(std::move(bound)), end_at_);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 }
 
 Query Query::EndingAt(Bound bound) const {
   return Query(path_, collection_group_, filters_, explicit_order_bys_, limit_,
+<<<<<<< HEAD
                limit_type_, start_at_,
                std::make_shared<Bound>(std::move(bound)));
+=======
+               start_at_, std::make_shared<Bound>(std::move(bound)));
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 }
 
 Query Query::AsCollectionQueryAtPath(ResourcePath path) const {
   return Query(path, /*collection_group=*/nullptr, filters_,
+<<<<<<< HEAD
                explicit_order_bys_, limit_, limit_type_, start_at_, end_at_);
+=======
+               explicit_order_bys_, limit_, start_at_, end_at_);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 }
 
 // MARK: - Matching
@@ -302,12 +333,52 @@ model::DocumentComparator Query::Comparator() const {
       });
 }
 
+<<<<<<< HEAD
 const std::string Query::CanonicalId() const {
   if (limit_type_ != LimitType::None) {
     return absl::StrCat(ToTarget().CanonicalId(),
                         "|lt:", (limit_type_ == LimitType::Last) ? "l" : "f");
   }
   return ToTarget().CanonicalId();
+=======
+const std::string& Query::CanonicalId() const {
+  if (!canonical_id_.empty()) return canonical_id_;
+
+  std::string result;
+  absl::StrAppend(&result, path_.CanonicalString());
+
+  if (collection_group_) {
+    absl::StrAppend(&result, "|cg:", *collection_group_);
+  }
+
+  // Add filters.
+  absl::StrAppend(&result, "|f:");
+  for (const auto& filter : filters_) {
+    absl::StrAppend(&result, filter.CanonicalId());
+  }
+
+  // Add order by.
+  absl::StrAppend(&result, "|ob:");
+  for (const OrderBy& order_by : order_bys()) {
+    absl::StrAppend(&result, order_by.CanonicalId());
+  }
+
+  // Add limit.
+  if (limit_ != kNoLimit) {
+    absl::StrAppend(&result, "|l:", limit_);
+  }
+
+  if (start_at_) {
+    absl::StrAppend(&result, "|lb:", start_at_->CanonicalId());
+  }
+
+  if (end_at_) {
+    absl::StrAppend(&result, "|ub:", end_at_->CanonicalId());
+  }
+
+  canonical_id_ = std::move(result);
+  return canonical_id_;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 }
 
 size_t Query::Hash() const {
@@ -318,6 +389,7 @@ std::string Query::ToString() const {
   return absl::StrCat("Query(canonical_id=", CanonicalId(), ")");
 }
 
+<<<<<<< HEAD
 const Target& Query::ToTarget() const& {
   if (memoized_target == nullptr) {
     if (limit_type_ == LimitType::Last) {
@@ -353,13 +425,24 @@ const Target& Query::ToTarget() const& {
   return *memoized_target;
 }
 
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 std::ostream& operator<<(std::ostream& os, const Query& query) {
   return os << query.ToString();
 }
 
 bool operator==(const Query& lhs, const Query& rhs) {
+<<<<<<< HEAD
   return (lhs.limit_type_ == rhs.limit_type_) &&
          (lhs.ToTarget() == rhs.ToTarget());
+=======
+  return lhs.path() == rhs.path() &&
+         util::Equals(lhs.collection_group(), rhs.collection_group()) &&
+         lhs.filters() == rhs.filters() && lhs.order_bys() == rhs.order_bys() &&
+         lhs.limit() == rhs.limit() &&
+         util::Equals(lhs.start_at(), rhs.start_at()) &&
+         util::Equals(lhs.end_at(), rhs.end_at());
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 }
 
 }  // namespace core

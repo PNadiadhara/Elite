@@ -24,17 +24,29 @@
 #import "Firestore/Source/API/FSTUserDataConverter.h"
 
 #include "Firestore/core/src/firebase/firestore/api/collection_reference.h"
+<<<<<<< HEAD
 #include "Firestore/core/src/firebase/firestore/model/resource_path.h"
 #include "Firestore/core/src/firebase/firestore/util/error_apple.h"
 #include "Firestore/core/src/firebase/firestore/util/exception.h"
+=======
+#include "Firestore/core/src/firebase/firestore/api/input_validation.h"
+#include "Firestore/core/src/firebase/firestore/model/resource_path.h"
+#include "Firestore/core/src/firebase/firestore/util/error_apple.h"
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 #include "Firestore/core/src/firebase/firestore/util/string_apple.h"
 
 namespace util = firebase::firestore::util;
 using firebase::firestore::api::CollectionReference;
 using firebase::firestore::api::DocumentReference;
+<<<<<<< HEAD
 using firebase::firestore::core::ParsedSetData;
 using firebase::firestore::model::ResourcePath;
 using firebase::firestore::util::ThrowInvalidArgument;
+=======
+using firebase::firestore::api::ThrowInvalidArgument;
+using firebase::firestore::core::ParsedSetData;
+using firebase::firestore::model::ResourcePath;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
 NS_ASSUME_NONNULL_BEGIN
 

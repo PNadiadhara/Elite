@@ -42,7 +42,11 @@ using util::TimerId;
 WatchStream::WatchStream(
     const std::shared_ptr<AsyncQueue>& async_queue,
     std::shared_ptr<CredentialsProvider> credentials_provider,
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/watch_stream.cc
     Serializer serializer,
+=======
+    FSTSerializerBeta* serializer,
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/watch_stream.mm
     GrpcConnection* grpc_connection,
     WatchStreamCallback* callback)
     : Stream{async_queue, std::move(credentials_provider), grpc_connection,

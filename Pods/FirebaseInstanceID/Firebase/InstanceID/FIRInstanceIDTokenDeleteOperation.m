@@ -29,21 +29,23 @@
 - (instancetype)initWithAuthorizedEntity:(NSString *)authorizedEntity
                                    scope:(NSString *)scope
                       checkinPreferences:(FIRInstanceIDCheckinPreferences *)checkinPreferences
-                              instanceID:(NSString *)instanceID
+                                 keyPair:(FIRInstanceIDKeyPair *)keyPair
                                   action:(FIRInstanceIDTokenAction)action {
   self = [super initWithAction:action
            forAuthorizedEntity:authorizedEntity
                          scope:scope
                        options:nil
             checkinPreferences:checkinPreferences
-                    instanceID:instanceID];
+                       keyPair:keyPair];
   if (self) {
   }
   return self;
 }
 
 - (void)performTokenOperation {
-  NSMutableURLRequest *request = [self tokenRequest];
+  NSString *authHeader =
+      [FIRInstanceIDTokenOperation HTTPAuthHeaderFromCheckin:self.checkinPreferences];
+  NSMutableURLRequest *request = [FIRInstanceIDTokenOperation requestWithAuthHeader:authHeader];
 
   // Build form-encoded body
   NSString *deviceAuthID = self.checkinPreferences.deviceID;
@@ -60,8 +62,8 @@
   }
   // Typically we include our public key-signed url items, but in some cases (like deleting all FCM
   // tokens), we don't.
-  if (self.instanceID.length > 0) {
-    [queryItems addObjectsFromArray:[self queryItemsWithInstanceID:self.instanceID]];
+  if (self.keyPair != nil) {
+    [queryItems addObjectsFromArray:[self queryItemsWithKeyPair:self.keyPair]];
   }
 
   NSString *content = FIRInstanceIDQueryFromQueryItems(queryItems);

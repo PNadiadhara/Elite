@@ -34,8 +34,11 @@ namespace core {
  */
 class SyncEngineCallback {
  public:
+<<<<<<< HEAD
   virtual ~SyncEngineCallback() = default;
 
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   /** Handles a change in online state. */
   virtual void HandleOnlineStateChange(model::OnlineState online_state) = 0;
   /** Handles new view snapshots. */

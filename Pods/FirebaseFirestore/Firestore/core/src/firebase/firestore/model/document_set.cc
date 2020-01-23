@@ -98,7 +98,11 @@ DocumentSet DocumentSet::insert(
   }
 
   // Remove any prior mapping of the document's key before adding, preventing
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/model/document_set.cc
   // the sorted_set_ from accumulating values that aren't in the index.
+=======
+  // sortedSet from accumulating values that aren't in the index.
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/model/document_set.cc
   const DocumentKey& key = document->key();
   DocumentSet removed = erase(key);
 

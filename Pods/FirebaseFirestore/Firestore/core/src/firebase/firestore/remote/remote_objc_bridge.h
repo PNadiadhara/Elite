@@ -25,6 +25,7 @@
 #include "Firestore/Protos/nanopb/google/firestore/v1/firestore.nanopb.h"
 #include "Firestore/core/src/firebase/firestore/core/database_info.h"
 #include "Firestore/core/src/firebase/firestore/local/query_data.h"
+<<<<<<< HEAD
 #include "Firestore/core/src/firebase/firestore/model/types.h"
 #include "Firestore/core/src/firebase/firestore/nanopb/byte_string.h"
 #include "Firestore/core/src/firebase/firestore/nanopb/message.h"
@@ -33,6 +34,19 @@
 #include "Firestore/core/src/firebase/firestore/util/status_fwd.h"
 #include "grpcpp/support/byte_buffer.h"
 
+=======
+#include "Firestore/core/src/firebase/firestore/model/snapshot_version.h"
+#include "Firestore/core/src/firebase/firestore/model/types.h"
+#include "Firestore/core/src/firebase/firestore/nanopb/byte_string.h"
+#include "Firestore/core/src/firebase/firestore/remote/watch_change.h"
+#include "Firestore/core/src/firebase/firestore/util/status_fwd.h"
+#include "absl/types/optional.h"
+#include "grpcpp/support/byte_buffer.h"
+
+#import "Firestore/Protos/objc/google/firestore/v1/Firestore.pbobjc.h"
+#import "Firestore/Source/Remote/FSTSerializerBeta.h"
+
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 namespace firebase {
 namespace firestore {
 
@@ -64,6 +78,7 @@ class WatchChange;
 
 class WatchStreamSerializer {
  public:
+<<<<<<< HEAD
   explicit WatchStreamSerializer(Serializer serializer);
 
   nanopb::Message<google_firestore_v1_ListenRequest> EncodeWatchRequest(
@@ -79,6 +94,29 @@ class WatchStreamSerializer {
   model::SnapshotVersion DecodeSnapshotVersion(
       nanopb::Reader* reader,
       const google_firestore_v1_ListenResponse& response) const;
+=======
+  explicit WatchStreamSerializer(FSTSerializerBeta* serializer)
+      : serializer_{serializer} {
+  }
+
+  GCFSListenRequest* CreateWatchRequest(const local::QueryData& query) const;
+  GCFSListenRequest* CreateUnwatchRequest(model::TargetId target_id) const;
+  static grpc::ByteBuffer ToByteBuffer(GCFSListenRequest* request);
+
+  /**
+   * If parsing fails, will return nil and write information on the error to
+   * `out_status`. Otherwise, returns the parsed proto and sets `out_status` to
+   * ok.
+   */
+  GCFSListenResponse* ParseResponse(const grpc::ByteBuffer& message,
+                                    util::Status* out_status) const;
+  std::unique_ptr<WatchChange> ToWatchChange(GCFSListenResponse* proto) const;
+  model::SnapshotVersion ToSnapshotVersion(GCFSListenResponse* proto) const;
+
+  /** Creates a pretty-printed description of the proto for debugging. */
+  static NSString* Describe(GCFSListenRequest* request);
+  static NSString* Describe(GCFSListenResponse* request);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
  private:
   Serializer serializer_;
@@ -86,6 +124,7 @@ class WatchStreamSerializer {
 
 class WriteStreamSerializer {
  public:
+<<<<<<< HEAD
   explicit WriteStreamSerializer(Serializer serializer);
 
   nanopb::Message<google_firestore_v1_WriteRequest> EncodeHandshake() const;
@@ -108,14 +147,60 @@ class WriteStreamSerializer {
 
  private:
   Serializer serializer_;
+=======
+  explicit WriteStreamSerializer(FSTSerializerBeta* serializer)
+      : serializer_{serializer} {
+  }
+
+  void UpdateLastStreamToken(GCFSWriteResponse* proto);
+  void SetLastStreamToken(const nanopb::ByteString& token) {
+    last_stream_token_ = token;
+  }
+  nanopb::ByteString GetLastStreamToken() const {
+    return last_stream_token_;
+  }
+
+  GCFSWriteRequest* CreateHandshake() const;
+  GCFSWriteRequest* CreateWriteMutationsRequest(
+      const std::vector<model::Mutation>& mutations) const;
+  GCFSWriteRequest* CreateEmptyMutationsList() {
+    return CreateWriteMutationsRequest({});
+  }
+  static grpc::ByteBuffer ToByteBuffer(GCFSWriteRequest* request);
+
+  /**
+   * If parsing fails, will return nil and write information on the error to
+   * `out_status`. Otherwise, returns the parsed proto and sets `out_status` to
+   * ok.
+   */
+  GCFSWriteResponse* ParseResponse(const grpc::ByteBuffer& message,
+                                   util::Status* out_status) const;
+  model::SnapshotVersion ToCommitVersion(GCFSWriteResponse* proto) const;
+  std::vector<model::MutationResult> ToMutationResults(
+      GCFSWriteResponse* proto) const;
+
+  /** Creates a pretty-printed description of the proto for debugging. */
+  static NSString* Describe(GCFSWriteRequest* request);
+  static NSString* Describe(GCFSWriteResponse* request);
+
+ private:
+  FSTSerializerBeta* serializer_;
+  nanopb::ByteString last_stream_token_;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 };
 
 class DatastoreSerializer {
  public:
   explicit DatastoreSerializer(const core::DatabaseInfo& database_info);
 
+<<<<<<< HEAD
   nanopb::Message<google_firestore_v1_CommitRequest> EncodeCommitRequest(
       const std::vector<model::Mutation>& mutations) const;
+=======
+  GCFSCommitRequest* CreateCommitRequest(
+      const std::vector<model::Mutation>& mutations) const;
+  static grpc::ByteBuffer ToByteBuffer(GCFSCommitRequest* request);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   nanopb::Message<google_firestore_v1_BatchGetDocumentsRequest>
   EncodeLookupRequest(const std::vector<model::DocumentKey>& keys) const;
@@ -124,8 +209,16 @@ class DatastoreSerializer {
    * Merges results of the streaming read together. The array is sorted by the
    * document key.
    */
+<<<<<<< HEAD
   util::StatusOr<std::vector<model::MaybeDocument>> MergeLookupResponses(
       const std::vector<grpc::ByteBuffer>& responses) const;
+=======
+  std::vector<model::MaybeDocument> MergeLookupResponses(
+      const std::vector<grpc::ByteBuffer>& responses,
+      util::Status* out_status) const;
+  model::MaybeDocument ToMaybeDocument(
+      GCFSBatchGetDocumentsResponse* response) const;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   const Serializer& serializer() const {
     return serializer_;

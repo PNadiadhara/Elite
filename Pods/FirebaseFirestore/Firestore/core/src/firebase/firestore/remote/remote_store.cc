@@ -39,13 +39,20 @@ using local::QueryData;
 using local::QueryPurpose;
 using model::BatchId;
 using model::DocumentKeySet;
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.cc
 using model::kBatchIdUnknown;
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.mm
 using model::MutationBatch;
 using model::MutationBatchResult;
 using model::MutationResult;
 using model::OnlineState;
 using model::SnapshotVersion;
 using model::TargetId;
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.cc
+=======
+using model::kBatchIdUnknown;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.mm
 using nanopb::ByteString;
 using util::AsyncQueue;
 using util::Status;
@@ -82,7 +89,11 @@ void RemoteStore::EnableNetwork() {
 
   if (CanUseNetwork()) {
     // Load any saved stream token from persistent storage
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.cc
     write_stream_->set_last_stream_token(local_store_->GetLastStreamToken());
+=======
+    write_stream_->SetLastStreamToken(local_store_->GetLastStreamToken());
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.mm
 
     if (ShouldStartWatchStream()) {
       StartWatchStream();
@@ -131,10 +142,16 @@ void RemoteStore::Shutdown() {
 // Watch Stream
 
 void RemoteStore::Listen(const QueryData& query_data) {
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.cc
   TargetId target_key = query_data.target_id();
   if (listen_targets_.find(target_key) != listen_targets_.end()) {
     return;
   }
+=======
+  TargetId targetKey = query_data.target_id();
+  HARD_ASSERT(listen_targets_.find(targetKey) == listen_targets_.end(),
+              "Listen called with duplicate target id: %s", targetKey);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.mm
 
   // Mark this as something the client is currently listening for.
   listen_targets_[target_key] = query_data;
@@ -277,9 +294,15 @@ void RemoteStore::RaiseWatchSnapshot(const SnapshotVersion& snapshot_version) {
   // view of these when applying the completed `RemoteEvent`.
   for (const auto& entry : remote_event.target_changes()) {
     const TargetChange& target_change = entry.second;
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.cc
     const ByteString& resume_token = target_change.resume_token();
 
     if (!resume_token.empty()) {
+=======
+    const ByteString& resumeToken = target_change.resume_token();
+
+    if (!resumeToken.empty()) {
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.mm
       TargetId target_id = entry.first;
       auto found = listen_targets_.find(target_id);
       absl::optional<QueryData> query_data;
@@ -289,8 +312,13 @@ void RemoteStore::RaiseWatchSnapshot(const SnapshotVersion& snapshot_version) {
 
       // A watched target might have been removed already.
       if (query_data) {
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.cc
         listen_targets_[target_id] =
             query_data->WithResumeToken(resume_token, snapshot_version);
+=======
+        listen_targets_[target_id] = query_data->Copy(
+            snapshot_version, resumeToken, query_data->sequence_number());
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.mm
       }
     }
   }
@@ -307,7 +335,11 @@ void RemoteStore::RaiseWatchSnapshot(const SnapshotVersion& snapshot_version) {
 
     // Clear the resume token for the query, since we're in a known mismatch
     // state.
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.cc
     query_data = QueryData(query_data.target(), target_id,
+=======
+    query_data = QueryData(query_data.query(), target_id,
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.mm
                            query_data.sequence_number(), query_data.purpose());
     listen_targets_[target_id] = query_data;
 
@@ -319,7 +351,11 @@ void RemoteStore::RaiseWatchSnapshot(const SnapshotVersion& snapshot_version) {
     // mismatch, but don't actually retain that in listen_targets_. This ensures
     // that we flag the first re-listen this way without impacting future
     // listens of this target (that might happen e.g. on reconnect).
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.cc
     QueryData request_query_data(query_data.target(), target_id,
+=======
+    QueryData request_query_data(query_data.query(), target_id,
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.mm
                                  query_data.sequence_number(),
                                  QueryPurpose::ExistenceFilterMismatch);
     SendWatchRequest(request_query_data);
@@ -399,7 +435,11 @@ void RemoteStore::OnWriteStreamOpen() {
 
 void RemoteStore::OnWriteStreamHandshakeComplete() {
   // Record the stream token.
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.cc
   local_store_->SetLastStreamToken(write_stream_->last_stream_token());
+=======
+  local_store_->SetLastStreamToken(write_stream_->GetLastStreamToken());
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.mm
 
   // Send the write pipeline now that the stream is established.
   for (const MutationBatch& write : write_pipeline_) {
@@ -419,7 +459,11 @@ void RemoteStore::OnWriteStreamMutationResult(
 
   MutationBatchResult batch_result(std::move(batch), commit_version,
                                    std::move(mutation_results),
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.cc
                                    write_stream_->last_stream_token());
+=======
+                                   write_stream_->GetLastStreamToken());
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.mm
   sync_engine_->HandleSuccessfulWrite(batch_result);
 
   // It's possible that with the completion of this mutation another slot has
@@ -465,6 +509,7 @@ void RemoteStore::HandleHandshakeError(const Status& status) {
   // no longer valid. Note that the handshake does not count as a write: see
   // comments on `Datastore::IsPermanentWriteError` for details.
   if (Datastore::IsPermanentError(status)) {
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.cc
     std::string token = util::ToString(write_stream_->last_stream_token());
     LOG_DEBUG(
         "RemoteStore %s error before completed handshake; resetting "
@@ -472,6 +517,14 @@ void RemoteStore::HandleHandshakeError(const Status& status) {
         "error code: '%s', details: '%s'",
         this, token, status.code(), status.error_message());
     write_stream_->set_last_stream_token({});
+=======
+    std::string token = util::ToString(write_stream_->GetLastStreamToken());
+    LOG_DEBUG("RemoteStore %s error before completed handshake; resetting "
+              "stream token %s: "
+              "error code: '%s', details: '%s'",
+              this, token, status.code(), status.error_message());
+    write_stream_->SetLastStreamToken({});
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/remote_store.mm
     local_store_->SetLastStreamToken({});
   } else {
     // Some other error, don't reset stream token. Our stream logic will just

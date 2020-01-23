@@ -35,7 +35,8 @@ namespace local {
 /** A queue of mutations to apply to the remote store. */
 class MutationQueue {
  public:
-  virtual ~MutationQueue() = default;
+  virtual ~MutationQueue() {
+  }
 
   /**
    * Starts the mutation queue, performing any initial reads that might be
@@ -161,7 +162,7 @@ class MutationQueue {
   virtual nanopb::ByteString GetLastStreamToken() = 0;
 
   /** Sets the stream token for this mutation queue. */
-  virtual void SetLastStreamToken(nanopb::ByteString stream_token) = 0;
+  virtual void SetLastStreamToken(const nanopb::ByteString& stream_token) = 0;
 };
 
 }  // namespace local

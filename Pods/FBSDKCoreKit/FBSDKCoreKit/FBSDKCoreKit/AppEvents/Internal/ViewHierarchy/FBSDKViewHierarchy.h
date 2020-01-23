@@ -16,6 +16,10 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+<<<<<<< HEAD
+<<<<<<< HEAD:Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/AppEvents/Internal/ViewHierarchy/FBSDKViewHierarchy.h
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 #import "TargetConditionals.h"
 
 #if !TARGET_OS_TV
@@ -68,6 +72,51 @@ NS_SWIFT_NAME(ViewHierarchy)
 + (NSDictionary<NSString *, id> *)recursiveCaptureTree:(NSObject *)obj withObject:(NSObject *)interact;
 
 + (BOOL)isUserInputView:(NSObject *)obj;
+<<<<<<< HEAD
+=======
+#import "FBSDKURLSessionTask.h"
+
+@implementation FBSDKURLSessionTask
+
+- (instancetype)init
+{
+  if ((self = [super init])) {
+    _requestStartDate = [NSDate date];
+  }
+  return self;
+}
+
+- (instancetype)initWithRequest:(NSURLRequest *)request
+                    fromSession:(NSURLSession *)session
+              completionHandler:(FBSDKURLSessionTaskBlock)handler
+{
+  if ((self = [self init])) {
+    self.requestStartTime = (uint64_t)([self.requestStartDate timeIntervalSince1970] * 1000);
+    self.task = [session dataTaskWithRequest:request completionHandler:handler];
+  }
+  return self;
+}
+
+- (NSURLSessionTaskState)state
+{
+  return self.task.state;
+}
+
+#pragma mark - Task State
+
+- (void)start
+{
+  [self.task resume];
+}
+
+- (void)cancel
+{
+  [self.task cancel];
+  self.handler = nil;
+}
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit/Basics/Internal/FBSDKURLSessionTask.m
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
 @end
 

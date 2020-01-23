@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+<<<<<<< HEAD:Pods/FirebaseStorage/FirebaseStorage/Sources/FIRStorageReference.m
 #import <FirebaseStorage/FIRStorageReference.h>
 
 #import <FirebaseStorage/FIRStorageTaskSnapshot.h>
@@ -30,6 +31,26 @@
 #import "FirebaseStorage/Sources/FIRStorageUploadTask_Private.h"
 #import "FirebaseStorage/Sources/FIRStorageUtils.h"
 #import "FirebaseStorage/Sources/FIRStorage_Private.h"
+=======
+#import "FIRStorageReference.h"
+
+#import "FIRStorageConstants_Private.h"
+#import "FIRStorageDeleteTask.h"
+#import "FIRStorageDownloadTask_Private.h"
+#import "FIRStorageGetDownloadURLTask.h"
+#import "FIRStorageGetMetadataTask.h"
+#import "FIRStorageListResult_Private.h"
+#import "FIRStorageListTask.h"
+#import "FIRStorageMetadata_Private.h"
+#import "FIRStorageReference_Private.h"
+#import "FIRStorageTaskSnapshot.h"
+#import "FIRStorageTaskSnapshot_Private.h"
+#import "FIRStorageTask_Private.h"
+#import "FIRStorageUpdateMetadataTask.h"
+#import "FIRStorageUploadTask_Private.h"
+#import "FIRStorageUtils.h"
+#import "FIRStorage_Private.h"
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseStorage/Firebase/Storage/FIRStorageReference.m
 
 #import <FirebaseCore/FIRApp.h>
 #import <FirebaseCore/FIROptions.h>

@@ -120,8 +120,14 @@ class Serializer {
   static pb_bytes_array_t* EncodeBytes(const std::vector<uint8_t>& bytes);
 
   /**
+<<<<<<< HEAD
    * Returns the database ID, such as
    * `projects/{project_id}/databases/{database_id}`.
+=======
+   * Release memory allocated by the Encode* methods that return protos.
+   *
+   * This essentially wraps calls to nanopb's pb_release() method.
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
    */
   pb_bytes_array_t* EncodeDatabaseName() const;
 
@@ -189,6 +195,7 @@ class Serializer {
       nanopb::Reader* reader,
       const google_firestore_v1_DocumentTransform_FieldTransform& proto) const;
 
+<<<<<<< HEAD
   model::MutationResult DecodeMutationResult(
       nanopb::Reader* reader,
       const google_firestore_v1_WriteResult& write_result,
@@ -199,6 +206,20 @@ class Serializer {
 
   static pb_bytes_array_t* EncodeFieldPath(const model::FieldPath& field_path);
   static model::FieldPath DecodeFieldPath(const pb_bytes_array_t* field_path);
+=======
+  static pb_bytes_array_t* EncodeFieldPath(const model::FieldPath& field_path);
+  static model::FieldPath DecodeFieldPath(const pb_bytes_array_t* field_path);
+
+  /**
+   * @brief Converts the Query into bytes, representing a
+   * firestore::v1::Target::QueryTarget.
+   */
+  google_firestore_v1_Target_QueryTarget EncodeQueryTarget(
+      const core::Query& query) const;
+
+  model::Document DecodeDocument(
+      nanopb::Reader* reader, const google_firestore_v1_Document& proto) const;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   static google_protobuf_Timestamp EncodeVersion(
       const model::SnapshotVersion& version);
@@ -212,6 +233,13 @@ class Serializer {
   static Timestamp DecodeTimestamp(
       nanopb::Reader* reader, const google_protobuf_Timestamp& timestamp_proto);
 
+<<<<<<< HEAD
+=======
+  static core::Query DecodeQueryTarget(
+      nanopb::Reader* reader,
+      const google_firestore_v1_Target_QueryTarget& proto);
+
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   static GeoPoint DecodeGeoPoint(nanopb::Reader* reader,
                                  const google_type_LatLng& latlng_proto);
 
@@ -223,6 +251,7 @@ class Serializer {
 
   google_firestore_v1_MapValue EncodeMapValue(
       const model::ObjectValue& object_value) const;
+<<<<<<< HEAD
 
   google_firestore_v1_Target EncodeTarget(
       const local::QueryData& query_data) const;
@@ -256,6 +285,8 @@ class Serializer {
   core::FilterList DecodeFilters(
       nanopb::Reader* reader,
       const google_firestore_v1_StructuredQuery_Filter& proto) const;
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
  private:
   google_firestore_v1_Value EncodeNull() const;
@@ -277,6 +308,7 @@ class Serializer {
       const google_firestore_v1_BatchGetDocumentsResponse& response) const;
 
   pb_bytes_array_t* EncodeQueryPath(const model::ResourcePath& path) const;
+<<<<<<< HEAD
   model::ResourcePath DecodeQueryPath(nanopb::Reader* reader,
                                       absl::string_view name) const;
 
@@ -294,6 +326,8 @@ class Serializer {
    */
   model::ResourcePath DecodeResourceName(nanopb::Reader* reader,
                                          absl::string_view encoded) const;
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   void ValidateDocumentKeyPath(nanopb::Reader* reader,
                                const model::ResourcePath& resource_name) const;
@@ -303,6 +337,13 @@ class Serializer {
   model::FieldValue::Map::value_type DecodeFieldsEntry(
       nanopb::Reader* reader,
       const google_firestore_v1_Document_FieldsEntry& fields) const;
+<<<<<<< HEAD
+=======
+  model::FieldValue::Map DecodeFields(
+      nanopb::Reader* reader,
+      size_t count,
+      const google_firestore_v1_Document_FieldsEntry* fields) const;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   model::FieldValue::Map DecodeMapValue(
       nanopb::Reader* reader,
@@ -312,6 +353,7 @@ class Serializer {
       nanopb::Reader* reader, const model::ResourcePath& resource_name) const;
   model::FieldValue DecodeReference(
       nanopb::Reader* reader, const pb_bytes_array_t* resource_name_raw) const;
+<<<<<<< HEAD
 
   std::string EncodeLabel(local::QueryPurpose purpose) const;
 
@@ -368,6 +410,8 @@ class Serializer {
   std::unique_ptr<remote::WatchChange> DecodeExistenceFilterWatchChange(
       nanopb::Reader* reader,
       const google_firestore_v1_ExistenceFilter& filter) const;
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   model::DatabaseId database_id_;
   // TODO(varconst): Android caches the result of calling `EncodeDatabaseName`

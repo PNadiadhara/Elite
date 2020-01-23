@@ -83,11 +83,16 @@ void Transaction::Lookup(const std::vector<DocumentKey>& keys,
     Status lookup_error = Status{Error::InvalidArgument,
                                  "Firestore transactions require all reads to "
                                  "be executed before all writes"};
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/core/transaction.cc
     callback(lookup_error);
+=======
+    callback({}, lookup_error);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/core/transaction.mm
     return;
   }
 
   datastore_->LookupDocuments(
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/core/transaction.cc
       keys, [this, callback](
                 const StatusOr<std::vector<MaybeDocument>>& maybe_documents) {
         if (!maybe_documents.ok()) {
@@ -96,6 +101,15 @@ void Transaction::Lookup(const std::vector<DocumentKey>& keys,
         }
 
         const auto& documents = maybe_documents.ValueOrDie();
+=======
+      keys, [this, callback](const std::vector<MaybeDocument>& documents,
+                             const Status& status) {
+        if (!status.ok()) {
+          callback({}, status);
+          return;
+        }
+
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/core/transaction.mm
         for (const MaybeDocument& doc : documents) {
           Status record_error = RecordVersion(doc);
           if (!record_error.ok()) {
@@ -211,11 +225,19 @@ void Transaction::Commit(util::StatusCallback&& callback) {
 }
 
 void Transaction::MarkPermanentlyFailed() {
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/core/transaction.cc
   permanent_error_ = true;
 }
 
 bool Transaction::IsPermanentlyFailed() const {
   return permanent_error_;
+=======
+  permanentError_ = true;
+}
+
+bool Transaction::IsPermanentlyFailed() const {
+  return permanentError_;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/core/transaction.mm
 }
 
 void Transaction::EnsureCommitNotCalled() {

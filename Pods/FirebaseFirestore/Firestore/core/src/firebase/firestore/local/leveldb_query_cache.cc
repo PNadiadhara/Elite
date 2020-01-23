@@ -19,10 +19,18 @@
 #include <string>
 #include <utility>
 
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.cc
 #include "Firestore/core/src/firebase/firestore/local/leveldb_key.h"
 #include "Firestore/core/src/firebase/firestore/local/leveldb_persistence.h"
 #include "Firestore/core/src/firebase/firestore/local/leveldb_util.h"
 #include "Firestore/core/src/firebase/firestore/local/local_serializer.h"
+=======
+#import "Firestore/Protos/objc/firestore/local/Target.pbobjc.h"
+#import "Firestore/Source/Local/FSTLocalSerializer.h"
+
+#include "Firestore/core/src/firebase/firestore/local/leveldb_key.h"
+#include "Firestore/core/src/firebase/firestore/local/leveldb_persistence.h"
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.mm
 #include "Firestore/core/src/firebase/firestore/local/query_data.h"
 #include "Firestore/core/src/firebase/firestore/local/reference_delegate.h"
 #include "Firestore/core/src/firebase/firestore/model/document_key.h"
@@ -36,8 +44,12 @@ namespace firebase {
 namespace firestore {
 namespace local {
 
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.cc
 using core::Target;
 using leveldb::Status;
+=======
+using core::Query;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.mm
 using model::DocumentKey;
 using model::DocumentKeySet;
 using model::ListenSequenceNumber;
@@ -52,6 +64,15 @@ LevelDbQueryCache::TryReadMetadata(leveldb::DB* db) {
   std::string key = LevelDbTargetGlobalKey::Key();
   std::string value;
   Status status = db->Get(StandardReadOptions(), key, &value);
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.cc
+=======
+  if (status.IsNotFound()) {
+    return nil;
+  } else if (!status.ok()) {
+    HARD_FAIL("metadataForKey: failed loading key %s with status: %s", key,
+              status.ToString());
+  }
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.mm
 
   StringReader reader{value};
   reader.set_status(ConvertStatus(status));
@@ -69,6 +90,7 @@ LevelDbQueryCache::TryReadMetadata(leveldb::DB* db) {
   return result;
 }
 
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.cc
 Message<firestore_client_TargetGlobal> LevelDbQueryCache::ReadMetadata(
     leveldb::DB* db) {
   auto maybe_metadata = TryReadMetadata(db);
@@ -83,11 +105,17 @@ Message<firestore_client_TargetGlobal> LevelDbQueryCache::ReadMetadata(
 LevelDbQueryCache::LevelDbQueryCache(LevelDbPersistence* db,
                                      LocalSerializer* serializer)
     : db_(NOT_NULL(db)), serializer_(NOT_NULL(serializer)) {
+=======
+LevelDbQueryCache::LevelDbQueryCache(LevelDbPersistence* db,
+                                     FSTLocalSerializer* serializer)
+    : db_(db), serializer_(serializer) {
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.mm
 }
 
 void LevelDbQueryCache::Start() {
   // TODO(gsoltis): switch this usage of ptr to current_transaction()
   metadata_ = ReadMetadata(db_->ptr());
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.cc
 
   StringReader reader;
   last_remote_snapshot_version_ = serializer_->DecodeVersion(
@@ -96,12 +124,23 @@ void LevelDbQueryCache::Start() {
     HARD_FAIL("Failed to decode last remote snapshot version, reason: '%s'",
               reader.status().ToString());
   }
+=======
+  HARD_ASSERT(metadata_ != nil,
+              "Found nil metadata, expected schema to be at version 0 which "
+              "ensures metadata existence");
+  last_remote_snapshot_version_ =
+      [serializer_ decodedVersion:metadata_.lastRemoteSnapshotVersion];
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.mm
 }
 
 void LevelDbQueryCache::AddTarget(const QueryData& query_data) {
   Save(query_data);
 
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.cc
   const std::string& canonical_id = query_data.target().CanonicalId();
+=======
+  const std::string& canonical_id = query_data.query().CanonicalId();
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.mm
   std::string index_key =
       LevelDbQueryTargetKey::Key(canonical_id, query_data.target_id());
   std::string empty_buffer;
@@ -129,18 +168,30 @@ void LevelDbQueryCache::RemoveTarget(const QueryData& query_data) {
   db_->current_transaction()->Delete(key);
 
   std::string index_key =
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.cc
       LevelDbQueryTargetKey::Key(query_data.target().CanonicalId(), target_id);
+=======
+      LevelDbQueryTargetKey::Key(query_data.query().CanonicalId(), target_id);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.mm
   db_->current_transaction()->Delete(index_key);
 
   metadata_->target_count--;
   SaveMetadata();
 }
 
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.cc
 absl::optional<QueryData> LevelDbQueryCache::GetTarget(const Target& target) {
   // Scan the query-target index starting with a prefix starting with the given
   // target's canonical_id. Note that this is a scan rather than a get because
   // canonical_ids are not required to be unique per target.
   const std::string& canonical_id = target.CanonicalId();
+=======
+absl::optional<QueryData> LevelDbQueryCache::GetTarget(const Query& query) {
+  // Scan the query-target index starting with a prefix starting with the given
+  // query's canonical_id. Note that this is a scan rather than a get because
+  // canonical_ids are not required to be unique per target.
+  const std::string& canonical_id = query.CanonicalId();
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.mm
   auto index_iterator = db_->current_transaction()->NewIterator();
   std::string index_prefix = LevelDbQueryTargetKey::KeyPrefix(canonical_id);
   index_iterator->Seek(index_prefix);
@@ -175,11 +226,19 @@ absl::optional<QueryData> LevelDbQueryCache::GetTarget(const Target& target) {
           DescribeKey(target_iterator));
     }
 
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.cc
     // Finally after finding a potential match, check that the target is
     // actually equal to the requested target.
     QueryData target_data = DecodeTarget(target_iterator->value());
     if (target_data.target() == target) {
       return target_data;
+=======
+    // Finally after finding a potential match, check that the query is actually
+    // equal to the requested query.
+    QueryData target = DecodeTarget(target_iterator->value());
+    if (target.query() == query) {
+      return target;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.mm
     }
   }
 
@@ -231,7 +290,11 @@ void LevelDbQueryCache::AddMatchingKeys(const DocumentKeySet& keys,
     db_->current_transaction()->Put(
         LevelDbDocumentTargetKey::Key(key, target_id), empty_buffer);
     db_->reference_delegate()->AddReference(key);
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.cc
   }
+=======
+  };
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.mm
 }
 
 void LevelDbQueryCache::RemoveMatchingKeys(const DocumentKeySet& keys,
@@ -360,11 +423,16 @@ void LevelDbQueryCache::Save(const QueryData& query_data) {
   TargetId target_id = query_data.target_id();
   std::string key = LevelDbTargetKey::Key(target_id);
   db_->current_transaction()->Put(key,
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.cc
                                   serializer_->EncodeQueryData(query_data));
+=======
+                                  [serializer_ encodedQueryData:query_data]);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.mm
 }
 
 bool LevelDbQueryCache::UpdateMetadata(const QueryData& query_data) {
   bool updated = false;
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.cc
   if (query_data.target_id() > metadata_->highest_target_id) {
     metadata_->highest_target_id = query_data.target_id();
     updated = true;
@@ -373,6 +441,15 @@ bool LevelDbQueryCache::UpdateMetadata(const QueryData& query_data) {
   if (query_data.sequence_number() >
       metadata_->highest_listen_sequence_number) {
     metadata_->highest_listen_sequence_number = query_data.sequence_number();
+=======
+  if (query_data.target_id() > metadata_.highestTargetId) {
+    metadata_.highestTargetId = query_data.target_id();
+    updated = true;
+  }
+
+  if (query_data.sequence_number() > metadata_.highestListenSequenceNumber) {
+    metadata_.highestListenSequenceNumber = query_data.sequence_number();
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.mm
     updated = true;
   }
 
@@ -384,11 +461,22 @@ void LevelDbQueryCache::SaveMetadata() {
 }
 
 QueryData LevelDbQueryCache::DecodeTarget(absl::string_view encoded) {
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.cc
   StringReader reader{encoded};
   auto message = Message<firestore_client_Target>::TryParse(&reader);
   auto result = serializer_->DecodeQueryData(&reader, *message);
   if (!reader.ok()) {
     HARD_FAIL("Target proto failed to parse: %s", reader.status().ToString());
+=======
+  NSData* data = [[NSData alloc] initWithBytesNoCopy:(void*)encoded.data()
+                                              length:encoded.size()
+                                        freeWhenDone:NO];
+
+  NSError* error;
+  FSTPBTarget* proto = [FSTPBTarget parseFromData:data error:&error];
+  if (!proto) {
+    HARD_FAIL("FSTPBTarget failed to parse: %s", error);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_query_cache.mm
   }
 
   return result;

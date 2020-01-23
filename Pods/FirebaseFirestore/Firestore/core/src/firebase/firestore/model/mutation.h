@@ -83,8 +83,11 @@ class MutationResult {
   friend std::ostream& operator<<(std::ostream& os,
                                   const MutationResult& result);
 
+<<<<<<< HEAD
   friend bool operator==(const MutationResult& lhs, const MutationResult& rhs);
 
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
  private:
   SnapshotVersion version_;
   absl::optional<const std::vector<FieldValue>> transform_results_;

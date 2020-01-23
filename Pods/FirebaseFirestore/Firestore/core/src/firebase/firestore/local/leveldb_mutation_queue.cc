@@ -19,15 +19,27 @@
 #include <memory>
 #include <utility>
 
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_mutation_queue.cc
 #include "Firestore/core/src/firebase/firestore/local/leveldb_persistence.h"
 #include "Firestore/core/src/firebase/firestore/local/leveldb_transaction.h"
 #include "Firestore/core/src/firebase/firestore/local/leveldb_util.h"
 #include "Firestore/core/src/firebase/firestore/local/local_serializer.h"
+=======
+#import "Firestore/Protos/objc/firestore/local/Mutation.pbobjc.h"
+#import "Firestore/Source/Local/FSTLocalSerializer.h"
+
+#include "Firestore/core/src/firebase/firestore/local/leveldb_persistence.h"
+#include "Firestore/core/src/firebase/firestore/local/leveldb_transaction.h"
+#include "Firestore/core/src/firebase/firestore/local/leveldb_util.h"
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_mutation_queue.mm
 #include "Firestore/core/src/firebase/firestore/local/reference_delegate.h"
 #include "Firestore/core/src/firebase/firestore/model/mutation_batch.h"
 #include "Firestore/core/src/firebase/firestore/model/resource_path.h"
 #include "Firestore/core/src/firebase/firestore/nanopb/nanopb_util.h"
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_mutation_queue.cc
 #include "Firestore/core/src/firebase/firestore/nanopb/reader.h"
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_mutation_queue.mm
 #include "Firestore/core/src/firebase/firestore/util/string_util.h"
 #include "Firestore/core/src/firebase/firestore/util/to_string.h"
 #include "absl/strings/match.h"
@@ -49,8 +61,13 @@ using model::Mutation;
 using model::MutationBatch;
 using model::ResourcePath;
 using nanopb::ByteString;
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_mutation_queue.cc
 using nanopb::Message;
 using nanopb::StringReader;
+=======
+using nanopb::MakeByteString;
+using nanopb::MakeNSData;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_mutation_queue.mm
 
 BatchId LoadNextBatchIdFromDb(DB* db) {
   // TODO(gsoltis): implement Prev() and SeekToLast() on
@@ -123,15 +140,31 @@ BatchId LoadNextBatchIdFromDb(DB* db) {
 
 LevelDbMutationQueue::LevelDbMutationQueue(const User& user,
                                            LevelDbPersistence* db,
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_mutation_queue.cc
                                            LocalSerializer* serializer)
     : db_(NOT_NULL(db)),
       serializer_(NOT_NULL(serializer)),
+=======
+                                           FSTLocalSerializer* serializer)
+    : db_(db),
+      serializer_(serializer),
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_mutation_queue.mm
       user_id_(user.is_authenticated() ? user.uid() : "") {
 }
 
 void LevelDbMutationQueue::Start() {
   next_batch_id_ = LoadNextBatchIdFromDb(db_->ptr());
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_mutation_queue.cc
   metadata_ = MetadataForKey(mutation_queue_key());
+=======
+
+  std::string key = mutation_queue_key();
+  FSTPBMutationQueue* metadata = MetadataForKey(key);
+  if (!metadata) {
+    metadata = [FSTPBMutationQueue message];
+  }
+  metadata_ = metadata;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_mutation_queue.mm
 }
 
 bool LevelDbMutationQueue::IsEmpty() {
@@ -162,7 +195,12 @@ MutationBatch LevelDbMutationQueue::AddMutationBatch(
   MutationBatch batch(batch_id, local_write_time, std::move(base_mutations),
                       std::move(mutations));
   std::string key = mutation_batch_key(batch_id);
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_mutation_queue.cc
   db_->current_transaction()->Put(key, serializer_->EncodeMutationBatch(batch));
+=======
+  db_->current_transaction()->Put(key,
+                                  [serializer_ encodedMutationBatch:batch]);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_mutation_queue.mm
 
   // Store an empty value in the index which is equivalent to serializing a
   // GPBEmpty message. In the future if we wanted to store some other kind of
@@ -417,6 +455,7 @@ void LevelDbMutationQueue::PerformConsistencyCheck() {
 }
 
 ByteString LevelDbMutationQueue::GetLastStreamToken() {
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_mutation_queue.cc
   return ByteString{metadata_->last_stream_token};
 }
 
@@ -424,6 +463,14 @@ void LevelDbMutationQueue::SetLastStreamToken(ByteString stream_token) {
   std::free(metadata_->last_stream_token);
 
   metadata_->last_stream_token = stream_token.release();
+=======
+  return MakeByteString(metadata_.lastStreamToken);
+}
+
+void LevelDbMutationQueue::SetLastStreamToken(const ByteString& stream_token) {
+  metadata_.lastStreamToken = MakeNullableNSData(stream_token);
+
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_mutation_queue.mm
   db_->current_transaction()->Put(mutation_queue_key(), metadata_);
 }
 
@@ -455,6 +502,7 @@ Message<firestore_client_MutationQueue> LevelDbMutationQueue::MetadataForKey(
     const std::string& key) {
   std::string value;
   Status status = db_->current_transaction()->Get(key, &value);
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_mutation_queue.cc
 
   StringReader reader{value};
   reader.set_status(ConvertStatus(status));
@@ -466,6 +514,22 @@ Message<firestore_client_MutationQueue> LevelDbMutationQueue::MetadataForKey(
     // Return a default-constructed message (`TryParse` is guaranteed to return
     // a default-constructed message on failure).
     return result;
+=======
+  if (status.ok()) {
+    NSData* data = [[NSData alloc] initWithBytesNoCopy:(void*)value.data()
+                                                length:value.size()
+                                          freeWhenDone:NO];
+
+    NSError* error;
+    FSTPBMutationQueue* proto = [FSTPBMutationQueue parseFromData:data
+                                                            error:&error];
+    if (!proto) {
+      HARD_FAIL("FSTPBMutationQueue failed to parse: %s", error);
+    }
+    return proto;
+  } else if (status.IsNotFound()) {
+    return nil;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/leveldb_mutation_queue.mm
   } else {
     HARD_FAIL("MetadataForKey: failed loading key %s with status: %s", key,
               reader.status().ToString());

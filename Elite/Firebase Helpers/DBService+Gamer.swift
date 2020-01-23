@@ -38,8 +38,6 @@ extension DBService {
         firestoreDB.collection(GamerCollectionKeys.CollectionKey)
             .document(gamer.gamerID)
             .setData([ GamerCollectionKeys.ProfileImageURLKey : gamer.profileImage ?? "",
-                       GamerCollectionKeys.FirstNameKey : gamer.firstname,
-                       GamerCollectionKeys.LastNameKey : gamer.lastname,
                        GamerCollectionKeys.UserNameKey : gamer.username ?? "",
                        GamerCollectionKeys.EmailKey : gamer.email,
                        GamerCollectionKeys.StatusKey : gamer.status ?? "",
@@ -123,6 +121,8 @@ extension DBService {
                 } else if let snapshot = snapshot?.documents.first {
                     let gameCreator = GamerModel(dict: snapshot.data())
                     completion(nil, gameCreator)
+                } else {
+                    completion(nil, nil)
                 }
         }
     }

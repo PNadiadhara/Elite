@@ -259,7 +259,11 @@ int64_t MemoryMutationQueue::CalculateByteSize(const Sizer& sizer) {
   int64_t count = 0;
   for (const auto& batch : queue_) {
     count += sizer.CalculateByteSize(batch);
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/memory_mutation_queue.cc
   }
+=======
+  };
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/memory_mutation_queue.mm
   return count;
 }
 
@@ -267,8 +271,13 @@ ByteString MemoryMutationQueue::GetLastStreamToken() {
   return last_stream_token_;
 }
 
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/memory_mutation_queue.cc
 void MemoryMutationQueue::SetLastStreamToken(ByteString token) {
   last_stream_token_ = std::move(token);
+=======
+void MemoryMutationQueue::SetLastStreamToken(const ByteString& token) {
+  last_stream_token_ = token;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/local/memory_mutation_queue.mm
 }
 
 std::vector<MutationBatch> MemoryMutationQueue::AllMutationBatchesWithIds(

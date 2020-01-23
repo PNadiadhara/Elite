@@ -57,6 +57,10 @@ using util::Executor;
 using util::LogIsDebugEnabled;
 using util::Status;
 using util::StatusOr;
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/datastore.cc
+=======
+using util::Executor;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/datastore.mm
 
 const auto kRpcNameCommit = "/google.firestore.v1.Firestore/Commit";
 const auto kRpcNameLookup = "/google.firestore.v1.Firestore/BatchGetDocuments";
@@ -250,7 +254,13 @@ void Datastore::OnLookupDocumentsResponse(
   }
 
   std::vector<grpc::ByteBuffer> responses = std::move(result).ValueOrDie();
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/datastore.cc
   callback(datastore_serializer_.MergeLookupResponses(responses));
+=======
+  std::vector<MaybeDocument> docs =
+      serializer_bridge_.MergeLookupResponses(responses, &parse_status);
+  callback(docs, parse_status);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/datastore.mm
 }
 
 void Datastore::ResumeRpcWithCredentials(const OnCredentials& on_credentials) {

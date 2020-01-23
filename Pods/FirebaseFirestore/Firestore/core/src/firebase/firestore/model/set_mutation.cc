@@ -61,7 +61,11 @@ MaybeDocument SetMutation::Rep::ApplyToRemoteDocument(
   HARD_ASSERT(mutation_result.transform_results() == absl::nullopt,
               "Transform results received by SetMutation.");
 
+<<<<<<< HEAD
   // Unlike ApplyToLocalView, if we're applying a mutation to a remote document
+=======
+  // Unlike applyToLocalView, if we're applying a mutation to a remote document
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   // the server has accepted the mutation so the precondition must have held.
 
   const SnapshotVersion& version = mutation_result.version();

@@ -18,6 +18,10 @@
 
 #include <utility>
 
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/query_snapshot.cc
+=======
+#include "Firestore/core/src/firebase/firestore/api/input_validation.h"
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/query_snapshot.cc
 #include "Firestore/core/src/firebase/firestore/api/query_core.h"
 #include "Firestore/core/src/firebase/firestore/core/view_snapshot.h"
 #include "Firestore/core/src/firebase/firestore/model/document_set.h"
@@ -71,10 +75,17 @@ void QuerySnapshot::ForEachDocument(
   DocumentSet document_set = snapshot_.documents();
   bool from_cache = metadata_.from_cache();
 
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/query_snapshot.cc
   for (const Document& document : document_set) {
     bool has_pending_writes = snapshot_.mutated_keys().contains(document.key());
     auto snap = DocumentSnapshot::FromDocument(
         firestore_, document, SnapshotMetadata(has_pending_writes, from_cache));
+=======
+  for (const Document& document : documentSet) {
+    bool has_pending_writes = snapshot_.mutated_keys().contains(document.key());
+    DocumentSnapshot snap(firestore_, document.key(), document, from_cache,
+                          has_pending_writes);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/query_snapshot.cc
     callback(std::move(snap));
   }
 }
@@ -116,8 +127,12 @@ void QuerySnapshot::ForEachChange(
       SnapshotMetadata metadata(
           /*pending_writes=*/snapshot_.mutated_keys().contains(doc.key()),
           /*from_cache=*/snapshot_.from_cache());
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/query_snapshot.cc
       auto document =
           DocumentSnapshot::FromDocument(firestore_, doc, std::move(metadata));
+=======
+      DocumentSnapshot document(firestore_, doc.key(), doc, metadata);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/query_snapshot.cc
 
       HARD_ASSERT(change.type() == DocumentViewChange::Type::Added,
                   "Invalid event type for first snapshot");
@@ -144,7 +159,11 @@ void QuerySnapshot::ForEachChange(
       SnapshotMetadata metadata(
           /*pending_writes=*/snapshot_.mutated_keys().contains(doc.key()),
           /*from_cache=*/snapshot_.from_cache());
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/query_snapshot.cc
       auto document = DocumentSnapshot::FromDocument(firestore_, doc, metadata);
+=======
+      DocumentSnapshot document(firestore_, doc.key(), doc, metadata);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/query_snapshot.cc
 
       size_t old_index = DocumentChange::npos;
       size_t new_index = DocumentChange::npos;

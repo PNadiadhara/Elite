@@ -22,15 +22,21 @@
 #include <vector>
 
 #include "Firestore/core/src/firebase/firestore/auth/user.h"
+<<<<<<< HEAD
 #include "Firestore/core/src/firebase/firestore/core/query.h"
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 #include "Firestore/core/src/firebase/firestore/core/target_id_generator.h"
 #include "Firestore/core/src/firebase/firestore/local/local_documents_view.h"
 #include "Firestore/core/src/firebase/firestore/local/local_view_changes.h"
 #include "Firestore/core/src/firebase/firestore/local/local_write_result.h"
 #include "Firestore/core/src/firebase/firestore/local/lru_garbage_collector.h"
 #include "Firestore/core/src/firebase/firestore/local/persistence.h"
+<<<<<<< HEAD
 #include "Firestore/core/src/firebase/firestore/local/query_engine.h"
 #include "Firestore/core/src/firebase/firestore/local/query_result.h"
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 #include "Firestore/core/src/firebase/firestore/local/reference_set.h"
 #include "Firestore/core/src/firebase/firestore/model/document_key_set.h"
 #include "Firestore/core/src/firebase/firestore/model/document_map.h"
@@ -85,9 +91,13 @@ namespace local {
  */
 class LocalStore {
  public:
+<<<<<<< HEAD
   LocalStore(Persistence* persistence,
              QueryEngine* query_engine,
              const auth::User& initial_user);
+=======
+  LocalStore(Persistence* persistence, const auth::User& initial_user);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   /** Performs any initial startup actions required by the local store. */
   void Start();
@@ -165,11 +175,16 @@ class LocalStore {
 
   /**
    * Returns the keys of the documents that are associated with the given
+<<<<<<< HEAD
    * target_id in the remote table.
+=======
+   * targetID in the remote table.
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
    */
   model::DocumentKeySet GetRemoteDocumentKeys(model::TargetId target_id);
 
   /**
+<<<<<<< HEAD
    * Assigns a target an internal ID so that its results can be pinned so they
    * don't get GC'd. A target must be allocated in the local store before the
    * store can be used to manage its view.
@@ -196,6 +211,22 @@ class LocalStore {
    */
   local::QueryResult ExecuteQuery(const core::Query& query,
                                   bool use_previous_results);
+=======
+   * Assigns a query an internal ID so that its results can be pinned so they
+   * don't get GC'd. A query must be allocated in the local store before the
+   * store can be used to manage its view.
+   */
+  local::QueryData AllocateQuery(core::Query query);
+
+  /** Unpin all the documents associated with a query. */
+  void ReleaseQuery(const core::Query& query);
+
+  /**
+   * Runs a query against all the documents in the local store and returns the
+   * results.
+   */
+  model::DocumentMap ExecuteQuery(const core::Query& query);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   /**
    * Notify the local store of the changed views to locally pin / unpin
@@ -205,7 +236,11 @@ class LocalStore {
       const std::vector<local::LocalViewChanges>& view_changes);
 
   /**
+<<<<<<< HEAD
    * Gets the mutation batch after the passed in batch_id in the mutation queue
+=======
+   * Gets the mutation batch after the passed in batchId in the mutation queue
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
    * or `nullopt` if empty.
    *
    * @param batch_id The batch to search after, or `kBatchIdUnknown` for the
@@ -225,8 +260,11 @@ class LocalStore {
       local::LruGarbageCollector* garbage_collector);
 
  private:
+<<<<<<< HEAD
   friend class LocalStoreTest;  // for `GetQueryData()`
 
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   void StartMutationQueue();
   void ApplyBatchResult(const model::MutationBatchResult& batch_result);
 
@@ -245,6 +283,7 @@ class LocalStore {
                               const local::QueryData& old_query_data,
                               const remote::TargetChange& change) const;
 
+<<<<<<< HEAD
   /**
    * Returns the QueryData as seen by the LocalStore, including updates that may
    * have not yet been persisted to the QueryCache.
@@ -255,6 +294,12 @@ class LocalStore {
   Persistence* persistence_ = nullptr;
 
   /** Used to generate target IDs for queries tracked locally. */
+=======
+  /** Manages our in-memory or durable persistence. Owned by FirestoreClient. */
+  Persistence* persistence_ = nullptr;
+
+  /** Used to generate targetIDs for queries tracked locally. */
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   core::TargetIdGenerator target_id_generator_;
 
   /**
@@ -270,12 +315,15 @@ class LocalStore {
   QueryCache* query_cache_ = nullptr;
 
   /**
+<<<<<<< HEAD
    * Performs queries over the localDocuments (and potentially maintains
    * indexes).
    */
   QueryEngine* query_engine_ = nullptr;
 
   /**
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
    * The "local" view of all documents (layering mutation queue on top of
    * remote_document_cache_).
    */
@@ -285,10 +333,14 @@ class LocalStore {
   ReferenceSet local_view_references_;
 
   /** Maps target ids to data about their queries. */
+<<<<<<< HEAD
   std::unordered_map<model::TargetId, QueryData> query_data_by_target_;
 
   /** Maps a target to its targetID. */
   std::unordered_map<core::Target, model::TargetId> target_id_by_target_;
+=======
+  std::unordered_map<model::TargetId, QueryData> target_ids;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 };
 
 }  // namespace local

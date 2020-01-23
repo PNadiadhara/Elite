@@ -169,9 +169,19 @@ class SyncEngine : public remote::RemoteStoreCallback, public QueryEventSource {
    */
   class QueryView {
    public:
+<<<<<<< HEAD
     QueryView(Query query, model::TargetId target_id, View view)
         : query_(std::move(query)),
           target_id_(target_id),
+=======
+    QueryView(Query query,
+              model::TargetId target_id,
+              nanopb::ByteString resume_token,
+              View view)
+        : query_(std::move(query)),
+          target_id_(target_id),
+          resume_token_(std::move(resume_token)),
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
           view_(std::move(view)) {
     }
 
@@ -188,6 +198,18 @@ class SyncEngine : public remote::RemoteStoreCallback, public QueryEventSource {
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * An identifier from the datastore backend that indicates the last state of
+     * the results that was received. This can be used to indicate where to
+     * continue receiving new doc changes for the query.
+     */
+    const nanopb::ByteString& resume_token() const {
+      return resume_token_;
+    }
+
+    /**
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
      * The view is responsible for computing the final merged truth of what docs
      * are in the query. It gets notified of local and remote changes, and
      * applies the query filters and limits to determine the most correct
@@ -200,6 +222,10 @@ class SyncEngine : public remote::RemoteStoreCallback, public QueryEventSource {
    private:
     Query query_;
     model::TargetId target_id_;
+<<<<<<< HEAD
+=======
+    nanopb::ByteString resume_token_;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
     View view_;
   };
 
@@ -215,7 +241,11 @@ class SyncEngine : public remote::RemoteStoreCallback, public QueryEventSource {
 
     /**
      * Set to true once we've received a document. This is used in
+<<<<<<< HEAD
      * RemoteKeysForTarget and ultimately used by `WatchChangeAggregator` to
+=======
+     * remoteKeysForTarget and ultimately used by `WatchChangeAggregator` to
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
      * decide whether it needs to manufacture a delete event for the target once
      * the target is CURRENT.
      */
@@ -224,10 +254,17 @@ class SyncEngine : public remote::RemoteStoreCallback, public QueryEventSource {
 
   void AssertCallbackExists(absl::string_view source);
 
+<<<<<<< HEAD
   ViewSnapshot InitializeViewAndComputeSnapshot(const Query& query,
                                                 model::TargetId target_id);
 
   void RemoveAndCleanupTarget(model::TargetId target_id, util::Status status);
+=======
+  ViewSnapshot InitializeViewAndComputeSnapshot(
+      const local::QueryData& query_data);
+
+  void RemoveAndCleanupQuery(const std::shared_ptr<QueryView>& query_view);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   void RemoveLimboTarget(const model::DocumentKey& key);
 
@@ -249,7 +286,11 @@ class SyncEngine : public remote::RemoteStoreCallback, public QueryEventSource {
    * server, if there are any.
    */
   void TriggerPendingWriteCallbacks(model::BatchId batch_id);
+<<<<<<< HEAD
   void FailOutstandingPendingWriteCallbacks(const std::string& message);
+=======
+  void FailOutstandingPendingWriteCallbacks(absl::string_view message);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   /** The local store, used to persist mutations and cached documents. */
   local::LocalStore* local_store_ = nullptr;
@@ -281,8 +322,14 @@ class SyncEngine : public remote::RemoteStoreCallback, public QueryEventSource {
   /** QueryViews for all active queries, indexed by query. */
   std::unordered_map<Query, std::shared_ptr<QueryView>> query_views_by_query_;
 
+<<<<<<< HEAD
   /** Queries mapped to Targets, indexed by target ID. */
   std::unordered_map<model::TargetId, std::vector<Query>> queries_by_target_;
+=======
+  /** QueryViews for all active queries, indexed by target ID. */
+  std::unordered_map<model::TargetId, std::shared_ptr<QueryView>>
+      query_views_by_target_;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   /**
    * When a document is in limbo, we create a special listen to resolve it. This

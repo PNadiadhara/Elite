@@ -48,8 +48,13 @@ LocalViewChanges LocalViewChanges::FromViewSnapshot(
     }
   }
 
+<<<<<<< HEAD
   return LocalViewChanges(target_id, snapshot.from_cache(),
                           std::move(added_keys), std::move(removed_keys));
+=======
+  return LocalViewChanges(target_id, std::move(added_keys),
+                          std::move(removed_keys));
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 }
 
 }  // namespace local

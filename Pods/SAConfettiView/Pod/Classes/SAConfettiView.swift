@@ -115,6 +115,6 @@ public class SAConfettiView: UIView {
     }
 
     public func isActive() -> Bool {
-    		return self.active
+            return self.active
     }
 }

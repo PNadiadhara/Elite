@@ -20,8 +20,12 @@
 #include <pb.h>
 #include <pb_decode.h>
 
+<<<<<<< HEAD
 #include <string>
 #include <utility>
+=======
+#include <cstdint>
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 #include <vector>
 
 #include "Firestore/core/include/firebase/firestore/firestore_errors.h"
@@ -41,6 +45,7 @@ namespace nanopb {
  */
 class ReadContext {
  public:
+<<<<<<< HEAD
   bool ok() const {
     return status_.ok();
   }
@@ -52,6 +57,23 @@ class ReadContext {
   void set_status(util::Status status) {
     status_ = std::move(status);
   }
+=======
+  Reader(const Reader&) = delete;
+  Reader(Reader&&) = delete;
+
+  /**
+   * Creates an input stream that reads from the specified bytes. Note that
+   * this reference must remain valid for the lifetime of this Reader.
+   *
+   * (This is roughly equivalent to the nanopb function
+   * pb_istream_from_buffer())
+   *
+   * @param bytes where the input should be deserialized from.
+   */
+  explicit Reader(const nanopb::ByteString& bytes);
+  explicit Reader(const std::vector<uint8_t>& bytes);
+  Reader(const uint8_t* bytes, size_t length);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   /**
    * Ensures this `ReadContext`'s status is `!ok()`.
@@ -61,6 +83,7 @@ class ReadContext {
    * `ReadContext`'s status will be set to `Error::DataLoss` with the specified
    * description.
    */
+<<<<<<< HEAD
   void Fail(std::string description) {
     status_.Update(util::Status(Error::DataLoss, std::move(description)));
   }
@@ -81,6 +104,9 @@ class ReadContext {
 class Reader {
  public:
   virtual ~Reader() = default;
+=======
+  explicit Reader(absl::string_view);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   /**
    * Reads a Nanopb proto from the stream associated with this `Reader`.
@@ -145,6 +171,7 @@ class StringReader : public Reader {
    * Creates an input stream that reads from the specified bytes. Note that
    * this reference must remain valid for the lifetime of this `StringReader`.
    *
+<<<<<<< HEAD
    * (This is roughly equivalent to the Nanopb function
    * `pb_istream_from_buffer()`)
    *
@@ -165,6 +192,16 @@ class StringReader : public Reader {
   explicit StringReader(absl::string_view);
 
   void Read(const pb_field_t fields[], void* dest_struct) override;
+=======
+   * If this Reader's status is already !ok(), then this may augment the
+   * description, but will otherwise leave it alone. Otherwise, this Reader's
+   * status will be set to Error::DataLoss with the specified
+   * description.
+   */
+  void Fail(absl::string_view description) {
+    status_.Update(util::Status(Error::DataLoss, description));
+  }
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
  private:
   /**

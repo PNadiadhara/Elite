@@ -17,6 +17,11 @@
 #ifndef FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_CORE_FIRESTORE_CLIENT_H_
 #define FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_CORE_FIRESTORE_CLIENT_H_
 
+<<<<<<< HEAD
+=======
+#import <Foundation/Foundation.h>
+
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 #include <memory>
 #include <vector>
 
@@ -45,9 +50,14 @@ namespace firebase {
 namespace firestore {
 namespace local {
 
+<<<<<<< HEAD
 class LruDelegate;
 class QueryEngine;
 class Persistence;
+=======
+class Persistence;
+class LruDelegate;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
 }  // namespace local
 
@@ -199,7 +209,10 @@ class FirestoreClient : public std::enable_shared_from_this<FirestoreClient> {
 
   std::unique_ptr<local::Persistence> persistence_;
   std::unique_ptr<local::LocalStore> local_store_;
+<<<<<<< HEAD
   std::unique_ptr<local::QueryEngine> query_engine_;
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   std::unique_ptr<remote::RemoteStore> remote_store_;
   std::unique_ptr<SyncEngine> sync_engine_;
   std::unique_ptr<EventManager> event_manager_;
@@ -207,7 +220,10 @@ class FirestoreClient : public std::enable_shared_from_this<FirestoreClient> {
   std::chrono::milliseconds initial_gc_delay_ = std::chrono::minutes(1);
   std::chrono::milliseconds regular_gc_delay_ = std::chrono::minutes(5);
   bool gc_has_run_ = false;
+<<<<<<< HEAD
   bool credentials_initialized_ = false;
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   local::LruDelegate* _Nullable lru_delegate_;
   util::DelayedOperation lru_callback_;
 };

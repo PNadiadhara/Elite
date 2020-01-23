@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-#include <TargetConditionals.h>
-#if !TARGET_OS_OSX
-
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -41,5 +38,3 @@ typedef NS_ENUM(NSInteger, FIRAuthAPNSTokenType) {
 } NS_SWIFT_NAME(AuthAPNSTokenType);
 
 NS_ASSUME_NONNULL_END
-
-#endif

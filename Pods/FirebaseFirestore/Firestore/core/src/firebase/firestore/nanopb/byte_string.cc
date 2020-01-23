@@ -55,14 +55,19 @@ ByteString::ByteString(const ByteString& other)
 }
 
 ByteString::ByteString(ByteString&& other) noexcept {
+<<<<<<< HEAD
   bytes_ = other.bytes_;
   other.bytes_ = nullptr;
+=======
+  swap(*this, other);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 }
 
 ByteString::~ByteString() {
   std::free(bytes_);
 }
 
+<<<<<<< HEAD
 ByteString& ByteString::operator=(const ByteString& other) {
   if (bytes_ != other.bytes_) {
     std::free(bytes_);
@@ -80,6 +85,8 @@ ByteString& ByteString::operator=(ByteString&& other) noexcept {
   return *this;
 }
 
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 /* static */ ByteString ByteString::Take(pb_bytes_array_t* bytes) {
   return ByteString{bytes, 0};
 }

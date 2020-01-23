@@ -31,6 +31,7 @@ using model::DocumentKey;
 using model::FieldPath;
 using model::FieldValue;
 using model::ObjectValue;
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/document_snapshot.cc
 
 DocumentSnapshot DocumentSnapshot::FromDocument(
     std::shared_ptr<Firestore> firestore,
@@ -46,7 +47,7 @@ DocumentSnapshot DocumentSnapshot::FromNoDocument(
     SnapshotMetadata metadata) {
   return DocumentSnapshot{std::move(firestore), key, absl::nullopt,
                           std::move(metadata)};
-}
+=======
 
 DocumentSnapshot::DocumentSnapshot(std::shared_ptr<Firestore> firestore,
                                    model::DocumentKey document_key,
@@ -56,6 +57,26 @@ DocumentSnapshot::DocumentSnapshot(std::shared_ptr<Firestore> firestore,
       internal_key_{std::move(document_key)},
       internal_document_{std::move(document)},
       metadata_{std::move(metadata)} {
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/document_snapshot.cc
+}
+
+DocumentSnapshot::DocumentSnapshot(std::shared_ptr<Firestore> firestore,
+                                   model::DocumentKey document_key,
+                                   absl::optional<Document> document,
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/document_snapshot.cc
+                                   SnapshotMetadata metadata)
+    : firestore_{std::move(firestore)},
+      internal_key_{std::move(document_key)},
+      internal_document_{std::move(document)},
+      metadata_{std::move(metadata)} {
+=======
+                                   bool from_cache,
+                                   bool has_pending_writes)
+    : firestore_{std::move(firestore)},
+      internal_key_{std::move(document_key)},
+      internal_document_{std::move(document)},
+      metadata_{has_pending_writes, from_cache} {
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/document_snapshot.cc
 }
 
 size_t DocumentSnapshot::Hash() const {

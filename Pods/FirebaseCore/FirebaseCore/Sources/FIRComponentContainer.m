@@ -98,16 +98,27 @@ static NSMutableSet<Class> *sFIRComponentRegistrants;
       // Store the creation block for later usage.
       self.components[protocolName] = component.creationBlock;
 
+<<<<<<< HEAD:Pods/FirebaseCore/FirebaseCore/Sources/FIRComponentContainer.m
       // Queue any protocols that should be eagerly instantiated. Don't instantiate them yet
       // because they could depend on other components that haven't been added to the components
       // array yet.
+=======
+      // Instantiate the instance if it has requested to be instantiated.
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseCore/Firebase/Core/FIRComponentContainer.m
       BOOL shouldInstantiateEager =
           (component.instantiationTiming == FIRInstantiationTimingAlwaysEager);
       BOOL shouldInstantiateDefaultEager =
           (component.instantiationTiming == FIRInstantiationTimingEagerInDefaultApp &&
            [app isDefaultApp]);
       if (shouldInstantiateEager || shouldInstantiateDefaultEager) {
+<<<<<<< HEAD:Pods/FirebaseCore/FirebaseCore/Sources/FIRComponentContainer.m
         [self.eagerProtocolsToInstantiate addObject:component.protocol];
+=======
+        @synchronized(self) {
+          [self instantiateInstanceForProtocol:component.protocol
+                                     withBlock:component.creationBlock];
+        }
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseCore/Firebase/Core/FIRComponentContainer.m
       }
     }
   }

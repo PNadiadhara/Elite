@@ -98,7 +98,12 @@ Message<firestore_client_MaybeDocument> LocalSerializer::EncodeMaybeDocument(
       return result;
 
     case MaybeDocument::Type::Invalid:
+<<<<<<< HEAD
       HARD_FAIL("Unknown document type %s", maybe_doc.type());
+=======
+      // TODO(rsgowman): Error handling
+      abort();
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   }
 
   UNREACHABLE();
@@ -185,6 +190,7 @@ firestore_client_NoDocument LocalSerializer::EncodeNoDocument(
 }
 
 NoDocument LocalSerializer::DecodeNoDocument(
+<<<<<<< HEAD
     Reader* reader,
     const firestore_client_NoDocument& proto,
     bool has_committed_mutations) const {
@@ -193,6 +199,17 @@ NoDocument LocalSerializer::DecodeNoDocument(
 
   return NoDocument(rpc_serializer_.DecodeKey(reader, proto.name), version,
                     has_committed_mutations);
+=======
+    Reader* reader, const firestore_client_NoDocument& proto) const {
+  SnapshotVersion version =
+      rpc_serializer_.DecodeSnapshotVersion(reader, proto.read_time);
+
+  // TODO(rsgowman): Fix hardcoding of has_committed_mutations.
+  // Instead, we should grab this from the proto (see other ports). However,
+  // we'll defer until the nanopb-master gets merged to master.
+  return NoDocument(rpc_serializer_.DecodeKey(reader, proto.name), version,
+                    /*has_committed_mutations=*/false);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 }
 
 firestore_client_UnknownDocument LocalSerializer::EncodeUnknownDocument(
@@ -226,6 +243,7 @@ Message<firestore_client_Target> LocalSerializer::EncodeQueryData(
   result->last_listen_sequence_number = query_data.sequence_number();
   result->snapshot_version = rpc_serializer_.EncodeTimestamp(
       query_data.snapshot_version().timestamp());
+<<<<<<< HEAD
   result->last_limbo_free_snapshot_version = rpc_serializer_.EncodeTimestamp(
       query_data.last_limbo_free_snapshot_version().timestamp());
 
@@ -237,6 +255,21 @@ Message<firestore_client_Target> LocalSerializer::EncodeQueryData(
   if (target.IsDocumentQuery()) {
     result->which_target_type = firestore_client_Target_documents_tag;
     result->documents = rpc_serializer_.EncodeDocumentsTarget(target);
+=======
+
+  // Force a copy because pb_release would otherwise double-free.
+  result.resume_token = nanopb::CopyBytesArray(query_data.resume_token().get());
+
+  const Query& query = query_data.query();
+  if (query.IsDocumentQuery()) {
+    // TODO(rsgowman): Implement. Probably like this (once EncodeDocumentsTarget
+    // exists):
+    /*
+    result.which_target_type = firestore_client_Target_document_tag;
+    result.documents = rpc_serializer_.EncodeDocumentsTarget(query);
+    */
+    abort();
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   } else {
     result->which_target_type = firestore_client_Target_query_tag;
     result->query = rpc_serializer_.EncodeQueryTarget(target);
@@ -254,12 +287,18 @@ QueryData LocalSerializer::DecodeQueryData(
       static_cast<model::ListenSequenceNumber>(
           proto.last_listen_sequence_number);
   SnapshotVersion version =
+<<<<<<< HEAD
       rpc_serializer_.DecodeVersion(reader, proto.snapshot_version);
   SnapshotVersion last_limbo_free_snapshot_version =
       rpc_serializer_.DecodeVersion(reader,
                                     proto.last_limbo_free_snapshot_version);
   ByteString resume_token(proto.resume_token);
   Target target;
+=======
+      rpc_serializer_.DecodeSnapshotVersion(reader, proto.snapshot_version);
+  ByteString resume_token(proto.resume_token);
+  Query query = Query::Invalid();
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   switch (proto.which_target_type) {
     case firestore_client_Target_query_tag:
@@ -276,9 +315,14 @@ QueryData LocalSerializer::DecodeQueryData(
   }
 
   if (!reader->status().ok()) return QueryData::Invalid();
+<<<<<<< HEAD
   return QueryData(std::move(target), target_id, sequence_number,
                    QueryPurpose::Listen, version,
                    last_limbo_free_snapshot_version, std::move(resume_token));
+=======
+  return QueryData(std::move(query), target_id, sequence_number,
+                   QueryPurpose::Listen, version, std::move(resume_token));
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 }
 
 Message<firestore_client_WriteBatch> LocalSerializer::EncodeMutationBatch(
@@ -287,6 +331,7 @@ Message<firestore_client_WriteBatch> LocalSerializer::EncodeMutationBatch(
 
   result->batch_id = mutation_batch.batch_id();
 
+<<<<<<< HEAD
   pb_size_t count = CheckedSize(mutation_batch.base_mutations().size());
   result->base_writes_count = count;
   result->base_writes = MakeArray<google_firestore_v1_Write>(count);
@@ -306,6 +351,29 @@ Message<firestore_client_WriteBatch> LocalSerializer::EncodeMutationBatch(
   }
 
   result->local_write_time =
+=======
+  result.batch_id = mutation_batch.batch_id();
+
+  pb_size_t count = CheckedSize(mutation_batch.base_mutations().size());
+  result.base_writes_count = count;
+  result.base_writes = MakeArray<google_firestore_v1_Write>(count);
+  int i = 0;
+  for (const auto& mutation : mutation_batch.base_mutations()) {
+    result.base_writes[i] = rpc_serializer_.EncodeMutation(mutation);
+    i++;
+  }
+
+  count = CheckedSize(mutation_batch.mutations().size());
+  result.writes_count = count;
+  result.writes = MakeArray<google_firestore_v1_Write>(count);
+  i = 0;
+  for (const auto& mutation : mutation_batch.mutations()) {
+    result.writes[i] = rpc_serializer_.EncodeMutation(mutation);
+    i++;
+  }
+
+  result.local_write_time =
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
       rpc_serializer_.EncodeTimestamp(mutation_batch.local_write_time());
 
   return result;

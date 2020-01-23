@@ -23,7 +23,10 @@
 #import <GoogleDataTransport/GDTCORTransport.h>
 
 #import <GoogleUtilities/GULAppEnvironmentUtil.h>
+<<<<<<< HEAD
 #import <GoogleUtilities/GULHeartbeatDateStorage.h>
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 #import <GoogleUtilities/GULLogger.h>
 
 #import <FirebaseCoreDiagnosticsInterop/FIRCoreDiagnosticsData.h>
@@ -35,6 +38,11 @@
 
 #import "FIRCDLibrary/Protogen/nanopb/firebasecore.nanopb.h"
 
+<<<<<<< HEAD
+=======
+#import "FIRCDLibrary/FIRCoreDiagnosticsDateFileStorage.h"
+
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 /** The logger service string to use when printing to the console. */
 static GULLoggerService kFIRCoreDiagnostics = @"[FirebaseCoreDiagnostics/FIRCoreDiagnostics]";
 
@@ -84,7 +92,10 @@ static NSString *const kFIRAppDiagnosticsConfigurationTypeKey =
 static NSString *const kFIRAppDiagnosticsFIRAppKey = @"FIRAppDiagnosticsFIRAppKey";
 static NSString *const kFIRAppDiagnosticsSDKNameKey = @"FIRAppDiagnosticsSDKNameKey";
 static NSString *const kFIRAppDiagnosticsSDKVersionKey = @"FIRAppDiagnosticsSDKVersionKey";
+<<<<<<< HEAD
 static NSString *const kFIRCoreDiagnosticsHeartbeatTag = @"FIRCoreDiagnostics";
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
 /**
  * The file name to the recent heartbeat date.
@@ -153,7 +164,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) GDTCORTransport *transport;
 
 /** The storage to store the date of the last sent heartbeat. */
+<<<<<<< HEAD
 @property(nonatomic, readonly) GULHeartbeatDateStorage *heartbeatDateStorage;
+=======
+@property(nonatomic, readonly) FIRCoreDiagnosticsDateFileStorage *heartbeatDateStorage;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
 @end
 
@@ -173,10 +188,17 @@ NS_ASSUME_NONNULL_END
 - (instancetype)init {
   GDTCORTransport *transport = [[GDTCORTransport alloc] initWithMappingID:@"137"
                                                              transformers:nil
+<<<<<<< HEAD
                                                                    target:kGDTCORTargetFLL];
 
   GULHeartbeatDateStorage *dateStorage =
       [[GULHeartbeatDateStorage alloc] initWithFileName:kFIRCoreDiagnosticsHeartbeatDateFileName];
+=======
+                                                                   target:kGDTCORTargetCCT];
+
+  FIRCoreDiagnosticsDateFileStorage *dateStorage = [[FIRCoreDiagnosticsDateFileStorage alloc]
+      initWithFileURL:[[self class] filePathURLWithName:kFIRCoreDiagnosticsHeartbeatDateFileName]];
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   return [self initWithTransport:transport heartbeatDateStorage:dateStorage];
 }
@@ -188,7 +210,11 @@ NS_ASSUME_NONNULL_END
  * @return Returns the initialized `FIRCoreDiagnostics` instance.
  */
 - (instancetype)initWithTransport:(GDTCORTransport *)transport
+<<<<<<< HEAD
              heartbeatDateStorage:(GULHeartbeatDateStorage *)heartbeatDateStorage {
+=======
+             heartbeatDateStorage:(FIRCoreDiagnosticsDateFileStorage *)heartbeatDateStorage {
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   self = [super init];
   if (self) {
     _diagnosticsQueue =
@@ -199,6 +225,40 @@ NS_ASSUME_NONNULL_END
   return self;
 }
 
+<<<<<<< HEAD
+=======
+#pragma mark - File path helpers
+
+/** Returns the URL path of the file with name fileName under the Application Support folder for
+ * local logging. Creates the Application Support folder if the folder doesn't exist.
+ *
+ * @return the URL path of the file with the name fileName in Application Support.
+ */
++ (NSURL *)filePathURLWithName:(NSString *)fileName {
+  @synchronized(self) {
+    NSArray<NSString *> *paths =
+        NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSArray<NSString *> *components = @[ paths.lastObject, @"Google/FIRApp" ];
+    NSString *directoryString = [NSString pathWithComponents:components];
+    NSURL *directoryURL = [NSURL fileURLWithPath:directoryString];
+
+    NSError *error;
+    if (![directoryURL checkResourceIsReachableAndReturnError:&error]) {
+      // If fail creating the Application Support directory, return nil.
+      if (![[NSFileManager defaultManager] createDirectoryAtURL:directoryURL
+                                    withIntermediateDirectories:YES
+                                                     attributes:nil
+                                                          error:&error]) {
+        GULLogWarning(kFIRCoreDiagnostics, YES, @"I-COR100001",
+                      @"Unable to create internal state storage: %@", error);
+        return nil;
+      }
+    }
+    return [directoryURL URLByAppendingPathComponent:fileName];
+  }
+}
+
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 #pragma mark - Metadata helpers
 
 /** Returns the model of iOS device. Sample platform strings are @"iPhone7,1" for iPhone 6 Plus,
@@ -617,8 +677,12 @@ void FIRPopulateProtoWithInfoPlistValues(logs_proto_mobilesdk_ios_ICoreConfigura
 - (void)setHeartbeatFlagIfNeededToConfig:(logs_proto_mobilesdk_ios_ICoreConfiguration *)config {
   // Check if need to send a heartbeat.
   NSDate *currentDate = [NSDate date];
+<<<<<<< HEAD
   NSDate *lastCheckin =
       [self.heartbeatDateStorage heartbeatDateForTag:kFIRCoreDiagnosticsHeartbeatTag];
+=======
+  NSDate *lastCheckin = [self.heartbeatDateStorage date];
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   if (lastCheckin) {
     // Ensure the previous checkin was on a different date in the past.
     if ([self isDate:currentDate inSameDayOrBeforeThan:lastCheckin]) {
@@ -627,7 +691,16 @@ void FIRPopulateProtoWithInfoPlistValues(logs_proto_mobilesdk_ios_ICoreConfigura
   }
 
   // Update heartbeat sent date.
+<<<<<<< HEAD
   [self.heartbeatDateStorage setHearbeatDate:currentDate forTag:kFIRCoreDiagnosticsHeartbeatTag];
+=======
+  NSError *error;
+  if (![self.heartbeatDateStorage setDate:currentDate error:&error]) {
+    GULLogError(kFIRCoreDiagnostics, NO, @"I-COR100004", @"Unable to persist internal state: %@",
+                error);
+  }
+
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   // Set the flag.
   config->sdk_name = logs_proto_mobilesdk_ios_ICoreConfiguration_ServiceType_ICORE;
   config->has_sdk_name = 1;

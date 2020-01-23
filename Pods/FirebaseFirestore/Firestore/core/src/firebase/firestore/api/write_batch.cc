@@ -20,10 +20,17 @@
 
 #include "Firestore/core/src/firebase/firestore/api/document_reference.h"
 #include "Firestore/core/src/firebase/firestore/api/firestore.h"
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/write_batch.cc
 #include "Firestore/core/src/firebase/firestore/core/firestore_client.h"
 #include "Firestore/core/src/firebase/firestore/core/user_data.h"
 #include "Firestore/core/src/firebase/firestore/model/delete_mutation.h"
 #include "Firestore/core/src/firebase/firestore/util/exception.h"
+=======
+#include "Firestore/core/src/firebase/firestore/api/input_validation.h"
+#include "Firestore/core/src/firebase/firestore/core/firestore_client.h"
+#include "Firestore/core/src/firebase/firestore/core/user_data.h"
+#include "Firestore/core/src/firebase/firestore/model/delete_mutation.h"
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/write_batch.mm
 
 namespace firebase {
 namespace firestore {
@@ -32,15 +39,22 @@ namespace api {
 using model::DeleteMutation;
 using model::Mutation;
 using model::Precondition;
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/write_batch.cc
 using util::ThrowIllegalState;
 using util::ThrowInvalidArgument;
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/write_batch.mm
 
 void WriteBatch::SetData(const DocumentReference& reference,
                          core::ParsedSetData&& set_data) {
   VerifyNotCommitted();
   ValidateReference(reference);
 
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/write_batch.cc
   std::vector<Mutation> append_mutations = std::move(set_data).ToMutations(
+=======
+  std::vector<Mutation> append_mutations = std::move(setData).ToMutations(
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/write_batch.mm
       reference.key(), model::Precondition::None());
   std::move(append_mutations.begin(), append_mutations.end(),
             std::back_inserter(mutations_));
@@ -52,7 +66,11 @@ void WriteBatch::UpdateData(const DocumentReference& reference,
   ValidateReference(reference);
 
   std::vector<Mutation> append_mutations =
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/write_batch.cc
       std::move(update_data)
+=======
+      std::move(updateData)
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/write_batch.mm
           .ToMutations(reference.key(), model::Precondition::Exists(true));
   std::move(append_mutations.begin(), append_mutations.end(),
             std::back_inserter(mutations_));

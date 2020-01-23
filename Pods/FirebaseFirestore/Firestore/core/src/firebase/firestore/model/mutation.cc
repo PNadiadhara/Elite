@@ -43,6 +43,7 @@ std::ostream& operator<<(std::ostream& os, const MutationResult& result) {
   return os << result.ToString();
 }
 
+<<<<<<< HEAD
 bool operator==(const MutationResult& lhs, const MutationResult& rhs) {
   return lhs.version() == rhs.version() &&
          lhs.transform_results() == rhs.transform_results();
@@ -65,6 +66,25 @@ void Mutation::Rep::VerifyKeyMatches(
   }
 }
 
+=======
+Mutation::Rep::Rep(DocumentKey&& key, Precondition&& precondition)
+    : key_(std::move(key)), precondition_(std::move(precondition)) {
+}
+
+bool Mutation::Rep::Equals(const Mutation::Rep& other) const {
+  return type() == other.type() && key_ == other.key_ &&
+         precondition_ == other.precondition_;
+}
+
+void Mutation::Rep::VerifyKeyMatches(
+    const absl::optional<MaybeDocument>& maybe_doc) const {
+  if (maybe_doc) {
+    HARD_ASSERT(maybe_doc->key() == key(),
+                "Can only apply a mutation to a document with the same key");
+  }
+}
+
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 SnapshotVersion Mutation::Rep::GetPostMutationVersion(
     const absl::optional<MaybeDocument>& maybe_doc) {
   if (maybe_doc && maybe_doc->type() == MaybeDocument::Type::Document) {
@@ -72,6 +92,7 @@ SnapshotVersion Mutation::Rep::GetPostMutationVersion(
   } else {
     return SnapshotVersion::None();
   }
+<<<<<<< HEAD
 }
 
 bool operator==(const Mutation& lhs, const Mutation& rhs) {
@@ -84,6 +105,20 @@ size_t Mutation::Rep::Hash() const {
   return util::Hash(type(), key(), precondition());
 }
 
+=======
+}
+
+bool operator==(const Mutation& lhs, const Mutation& rhs) {
+  return lhs.rep_ == nullptr
+             ? rhs.rep_ == nullptr
+             : (rhs.rep_ != nullptr && lhs.rep_->Equals(*rhs.rep_));
+}
+
+size_t Mutation::Rep::Hash() const {
+  return util::Hash(type(), key(), precondition());
+}
+
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 std::ostream& operator<<(std::ostream& os, const Mutation& mutation) {
   return os << mutation.ToString();
 }

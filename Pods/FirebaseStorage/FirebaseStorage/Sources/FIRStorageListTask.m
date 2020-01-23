@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "FirebaseStorage/Sources/FIRStorageListTask.h"
-#import "FirebaseStorage/Sources/FIRStorageListResult_Private.h"
-#import "FirebaseStorage/Sources/FIRStorageReference_Private.h"
-#import "FirebaseStorage/Sources/FIRStorageTask_Private.h"
+#import "FIRStorageListTask.h"
+#import "FIRStorageListResult_Private.h"
+#import "FIRStorageReference_Private.h"
+#import "FIRStorageTask_Private.h"
 
 @implementation FIRStorageListTask {
  @private

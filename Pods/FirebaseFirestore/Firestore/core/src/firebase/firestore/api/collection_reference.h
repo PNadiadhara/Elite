@@ -77,7 +77,11 @@ class CollectionReference : public Query {
    *
    * @return The `DocumentReference` for the specified document path.
    */
+<<<<<<< HEAD
   DocumentReference Document(const std::string& document_path) const;
+=======
+  DocumentReference Document(absl::string_view document_path) const;
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   /**
    * Add a new document to this collection with the specified data, assigning it

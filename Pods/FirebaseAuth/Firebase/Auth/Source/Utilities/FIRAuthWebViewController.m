@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-#include <TargetConditionals.h>
-#if !TARGET_OS_OSX && !TARGET_OS_TV
-
 #import "FIRAuthWebViewController.h"
 
 #import "FIRAuthWebView.h"
@@ -115,5 +112,3 @@ didFailNavigation:(null_unspecified WKNavigation *)navigation
 @end
 
 NS_ASSUME_NONNULL_END
-
-#endif

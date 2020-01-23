@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         FirebaseApp.configure()
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
-        AppDelegate.authservice.signOutAccount()
+//        AppDelegate.authservice.signOutAccount()
         window = UIWindow(frame: UIScreen.main.bounds)
         if let user = AppDelegate.authservice.getCurrentUser() {
             let loadingScreen = LoadingViewController(nibName: nil, bundle: nil, gamerID: user.uid)

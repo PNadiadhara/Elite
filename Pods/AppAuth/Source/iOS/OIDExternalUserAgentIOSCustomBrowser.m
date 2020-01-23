@@ -25,8 +25,11 @@
 #import "OIDErrorUtilities.h"
 #import "OIDURLQueryComponent.h"
 
+<<<<<<< HEAD
 #if !TARGET_OS_MACCATALYST
 
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 NS_ASSUME_NONNULL_BEGIN
 
 @implementation OIDExternalUserAgentIOSCustomBrowser
@@ -161,5 +164,8 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+<<<<<<< HEAD
 
 #endif // !TARGET_OS_MACCATALYST
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d

@@ -71,7 +71,7 @@
 
 - (void)fetchNewTokenWithAuthorizedEntity:(NSString *)authorizedEntity
                                     scope:(NSString *)scope
-                               instanceID:(NSString *)instanceID
+                                  keyPair:(FIRInstanceIDKeyPair *)keyPair
                                   options:(NSDictionary *)options
                                   handler:(FIRInstanceIDTokenHandler)handler {
   FIRInstanceIDLoggerDebug(kFIRInstanceIDMessageCodeTokenManager000,
@@ -81,7 +81,7 @@
       [self createFetchOperationWithAuthorizedEntity:authorizedEntity
                                                scope:scope
                                              options:options
-                                          instanceID:instanceID];
+                                             keyPair:keyPair];
   FIRInstanceID_WEAKIFY(self);
   FIRInstanceIDTokenOperationCompletion completion =
       ^(FIRInstanceIDTokenOperationResult result, NSString *_Nullable token,
@@ -143,7 +143,7 @@
 
 - (void)deleteTokenWithAuthorizedEntity:(NSString *)authorizedEntity
                                   scope:(NSString *)scope
-                             instanceID:(NSString *)instanceID
+                                keyPair:(FIRInstanceIDKeyPair *)keyPair
                                 handler:(FIRInstanceIDDeleteTokenHandler)handler {
   if ([self.instanceIDStore tokenInfoWithAuthorizedEntity:authorizedEntity scope:scope]) {
     [self.instanceIDStore removeCachedTokenWithAuthorizedEntity:authorizedEntity scope:scope];
@@ -155,7 +155,7 @@
       [self createDeleteOperationWithAuthorizedEntity:authorizedEntity
                                                 scope:scope
                                    checkinPreferences:checkinPreferences
-                                           instanceID:instanceID
+                                              keyPair:keyPair
                                                action:FIRInstanceIDTokenActionDeleteToken];
 
   if (handler) {
@@ -169,8 +169,8 @@
   [self.tokenOperations addOperation:operation];
 }
 
-- (void)deleteAllTokensWithInstanceID:(NSString *)instanceID
-                              handler:(FIRInstanceIDDeleteHandler)handler {
+- (void)deleteAllTokensWithKeyPair:(FIRInstanceIDKeyPair *)keyPair
+                           handler:(FIRInstanceIDDeleteHandler)handler {
   // delete all tokens
   FIRInstanceIDCheckinPreferences *checkinPreferences = self.authService.checkinPreferences;
   if (!checkinPreferences) {
@@ -185,7 +185,7 @@
       [self createDeleteOperationWithAuthorizedEntity:kFIRInstanceIDKeychainWildcardIdentifier
                                                 scope:kFIRInstanceIDKeychainWildcardIdentifier
                                    checkinPreferences:checkinPreferences
-                                           instanceID:instanceID
+                                              keyPair:keyPair
                                                action:FIRInstanceIDTokenActionDeleteTokenAndIID];
   if (handler) {
     [operation addCompletionHandler:^(FIRInstanceIDTokenOperationResult result,
@@ -222,7 +222,7 @@
       [self createDeleteOperationWithAuthorizedEntity:nil
                                                 scope:nil
                                    checkinPreferences:checkin
-                                           instanceID:nil
+                                              keyPair:nil
                                                action:FIRInstanceIDTokenActionDeleteToken];
   [operation addCompletionHandler:^(FIRInstanceIDTokenOperationResult result,
                                     NSString *_Nullable token, NSError *_Nullable error) {
@@ -245,14 +245,14 @@
     createFetchOperationWithAuthorizedEntity:(NSString *)authorizedEntity
                                        scope:(NSString *)scope
                                      options:(NSDictionary<NSString *, NSString *> *)options
-                                  instanceID:(NSString *)instanceID {
+                                     keyPair:(FIRInstanceIDKeyPair *)keyPair {
   FIRInstanceIDCheckinPreferences *checkinPreferences = self.authService.checkinPreferences;
   FIRInstanceIDTokenFetchOperation *operation =
       [[FIRInstanceIDTokenFetchOperation alloc] initWithAuthorizedEntity:authorizedEntity
                                                                    scope:scope
                                                                  options:options
                                                       checkinPreferences:checkinPreferences
-                                                              instanceID:instanceID];
+                                                                 keyPair:keyPair];
   return operation;
 }
 
@@ -261,19 +261,19 @@
     createDeleteOperationWithAuthorizedEntity:(NSString *)authorizedEntity
                                         scope:(NSString *)scope
                            checkinPreferences:(FIRInstanceIDCheckinPreferences *)checkinPreferences
-                                   instanceID:(NSString *)instanceID
+                                      keyPair:(FIRInstanceIDKeyPair *)keyPair
                                        action:(FIRInstanceIDTokenAction)action {
   FIRInstanceIDTokenDeleteOperation *operation =
       [[FIRInstanceIDTokenDeleteOperation alloc] initWithAuthorizedEntity:authorizedEntity
                                                                     scope:scope
                                                        checkinPreferences:checkinPreferences
-                                                               instanceID:instanceID
+                                                                  keyPair:keyPair
                                                                    action:action];
   return operation;
 }
 
 #pragma mark - Invalidating Cached Tokens
-- (BOOL)checkTokenRefreshPolicyWithIID:(NSString *)IID {
+- (BOOL)checkForTokenRefreshPolicy {
   // We know at least one cached token exists.
   BOOL shouldFetchDefaultToken = NO;
   NSArray<FIRInstanceIDTokenInfo *> *tokenInfos = [self.instanceIDStore cachedTokenInfos];
@@ -281,11 +281,12 @@
   NSMutableArray<FIRInstanceIDTokenInfo *> *tokenInfosToDelete =
       [NSMutableArray arrayWithCapacity:tokenInfos.count];
   for (FIRInstanceIDTokenInfo *tokenInfo in tokenInfos) {
-    if ([tokenInfo isFreshWithIID:IID]) {
-      // Token is fresh and in right format, do nothing
+    BOOL isTokenFresh = [tokenInfo isFresh];
+    if (isTokenFresh) {
+      // Token is fresh, do nothing.
       continue;
     }
-    if ([tokenInfo isDefaultToken]) {
+    if ([tokenInfo.scope isEqualToString:kFIRInstanceIDDefaultTokenScope]) {
       // Default token is expired, do not mark for deletion. Fetch directly from server to
       // replace the current one.
       shouldFetchDefaultToken = YES;

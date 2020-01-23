@@ -33,8 +33,11 @@ using auth::CredentialsProvider;
 using auth::Token;
 using model::Mutation;
 using nanopb::ByteString;
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/write_stream.cc
 using nanopb::Message;
 using remote::ByteBufferReader;
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/write_stream.mm
 using util::AsyncQueue;
 using util::Status;
 using util::TimerId;
@@ -42,7 +45,11 @@ using util::TimerId;
 WriteStream::WriteStream(
     const std::shared_ptr<AsyncQueue>& async_queue,
     std::shared_ptr<CredentialsProvider> credentials_provider,
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/write_stream.cc
     Serializer serializer,
+=======
+    FSTSerializerBeta* serializer,
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/write_stream.mm
     GrpcConnection* grpc_connection,
     WriteStreamCallback* callback)
     : Stream{async_queue, std::move(credentials_provider), grpc_connection,
@@ -51,12 +58,21 @@ WriteStream::WriteStream(
       callback_{NOT_NULL(callback)} {
 }
 
+<<<<<<< HEAD:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/write_stream.cc
 void WriteStream::set_last_stream_token(ByteString token) {
   last_stream_token_ = std::move(token);
 }
 
 const ByteString& WriteStream::last_stream_token() const {
   return last_stream_token_;
+=======
+void WriteStream::SetLastStreamToken(const ByteString& token) {
+  serializer_bridge_.SetLastStreamToken(token);
+}
+
+ByteString WriteStream::GetLastStreamToken() const {
+  return serializer_bridge_.GetLastStreamToken();
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d:Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/remote/write_stream.mm
 }
 
 void WriteStream::WriteHandshake() {

@@ -20,6 +20,7 @@ final class DBService {
         return db
     }()
     
+    
     static public var generateDocumentId: String {
         return firestoreDB.collection(GamerCollectionKeys.CollectionKey).document().documentID
     }

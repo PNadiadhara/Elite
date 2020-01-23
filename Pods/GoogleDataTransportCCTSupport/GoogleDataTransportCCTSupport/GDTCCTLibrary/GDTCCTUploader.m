@@ -29,6 +29,7 @@
 
 #import "GDTCCTLibrary/Protogen/nanopb/cct.nanopb.h"
 
+<<<<<<< HEAD
 #ifdef GDTCCTSUPPORT_VERSION
 #define STR(x) STR_EXPAND(x)
 #define STR_EXPAND(x) #x
@@ -37,6 +38,8 @@ static NSString *const kGDTCCTSupportSDKVersion = @STR(GDTCCTSUPPORT_VERSION);
 static NSString *const kGDTCCTSupportSDKVersion = @"UNKNOWN";
 #endif  // GDTCCTSUPPORT_VERSION
 
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 #if !NDEBUG
 NSNotificationName const GDTCCTUploadCompleteNotification = @"com.GDTCCTUploader.UploadComplete";
 #endif  // #if !NDEBUG
@@ -116,9 +119,12 @@ NSNotificationName const GDTCCTUploadCompleteNotification = @"com.GDTCCTUploader
     }
     NSURL *serverURL = self.serverURL ? self.serverURL : [self defaultServerURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:serverURL];
+<<<<<<< HEAD
     NSString *userAgent = [NSString stringWithFormat:@"datatransport/%@ fllsupport/%@ apple/",
                                                      kGDTCORVersion, kGDTCCTSupportSDKVersion];
     [request setValue:userAgent forHTTPHeaderField:@"User-Agent"];
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
     request.HTTPMethod = @"POST";
 
     id completionHandler = ^(NSData *_Nullable data, NSURLResponse *_Nullable response,
@@ -127,6 +133,7 @@ NSNotificationName const GDTCCTUploadCompleteNotification = @"com.GDTCCTUploader
         GDTCORLogWarning(GDTCORMCWUploadFailed, @"There was an error uploading events: %@", error);
       }
       NSError *decodingError;
+<<<<<<< HEAD
       if (data) {
         gdt_cct_LogResponse logResponse = GDTCCTDecodeLogResponse(data, &decodingError);
         if (!decodingError && logResponse.has_next_request_wait_millis) {
@@ -138,6 +145,17 @@ NSNotificationName const GDTCCTUploadCompleteNotification = @"com.GDTCCTUploader
         }
         pb_release(gdt_cct_LogResponse_fields, &logResponse);
       }
+=======
+      gdt_cct_LogResponse logResponse = GDTCCTDecodeLogResponse(data, &decodingError);
+      if (!decodingError && logResponse.has_next_request_wait_millis) {
+        self->_nextUploadTime =
+            [GDTCORClock clockSnapshotInTheFuture:logResponse.next_request_wait_millis];
+      } else {
+        // 15 minutes from now.
+        self->_nextUploadTime = [GDTCORClock clockSnapshotInTheFuture:15 * 60 * 1000];
+      }
+      pb_release(gdt_cct_LogResponse_fields, &logResponse);
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 #if !NDEBUG
       // Post a notification when in DEBUG mode to state how many packages were uploaded. Useful
       // for validation during tests.

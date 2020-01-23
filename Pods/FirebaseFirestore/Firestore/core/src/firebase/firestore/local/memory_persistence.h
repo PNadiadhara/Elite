@@ -61,8 +61,11 @@ class MemoryPersistence : public Persistence {
   static std::unique_ptr<MemoryPersistence> WithLruGarbageCollector(
       LruParams params, std::unique_ptr<Sizer> sizer);
 
+<<<<<<< HEAD
   ~MemoryPersistence() override;
 
+=======
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
   const MutationQueues& mutation_queues() const {
     return mutation_queues_;
   }
@@ -90,7 +93,13 @@ class MemoryPersistence : public Persistence {
  private:
   MemoryPersistence();
 
+<<<<<<< HEAD
   void set_reference_delegate(std::unique_ptr<ReferenceDelegate> delegate);
+=======
+  void set_reference_delegate(std::unique_ptr<ReferenceDelegate> delegate) {
+    reference_delegate_ = std::move(delegate);
+  }
+>>>>>>> 85cdc9998299efb8f2313da5d774f217a2cbce0d
 
   MutationQueues mutation_queues_;
 
