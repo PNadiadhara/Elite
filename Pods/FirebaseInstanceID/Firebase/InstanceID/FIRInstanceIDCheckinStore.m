@@ -130,6 +130,7 @@ static const NSInteger kOldCheckinPlistCount = 6;
     NSData *data = [checkinKeychainContent dataUsingEncoding:NSUTF8StringEncoding];
     [self.keychain setData:data
                 forService:kFIRInstanceIDCheckinKeychainService
+             accessibility:nil
                    account:self.bundleIdentifierForKeychainAccount
                    handler:^(NSError *error) {
                      if (error) {
@@ -224,6 +225,7 @@ static const NSInteger kOldCheckinPlistCount = 6;
     // Save to new location
     [self.keychain setData:dataInOldLocation
                 forService:kFIRInstanceIDCheckinKeychainService
+             accessibility:NULL
                    account:self.bundleIdentifierForKeychainAccount
                    handler:nil];
     // Remove from old location

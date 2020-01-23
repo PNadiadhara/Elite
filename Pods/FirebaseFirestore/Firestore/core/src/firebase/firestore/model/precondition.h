@@ -99,8 +99,7 @@ class Precondition {
   // The actual time of this precondition.
   Type type_ = Type::None;
 
-  // For UpdateTime type, preconditions a mutation based on the last
-  // update_time_.
+  // For UpdateTime type, preconditions a mutation based on the last updateTime.
   SnapshotVersion update_time_;
 
   // For Exists type, preconditions a mutation based on whether the document

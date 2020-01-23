@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-#include <TargetConditionals.h>
-#if !TARGET_OS_OSX
-
 #import <Foundation/Foundation.h>
 
 #import "FIRAuthAppCredential.h"
@@ -86,5 +83,3 @@ typedef void (^FIRAuthAppCredentialCallback)(FIRAuthAppCredential *credential);
 @end
 
 NS_ASSUME_NONNULL_END
-
-#endif

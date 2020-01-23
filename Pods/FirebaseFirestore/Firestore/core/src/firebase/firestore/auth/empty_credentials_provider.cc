@@ -29,9 +29,9 @@ void EmptyCredentialsProvider::GetToken(TokenListener completion) {
 }
 
 void EmptyCredentialsProvider::SetCredentialChangeListener(
-    CredentialChangeListener change_listener) {
-  if (change_listener) {
-    change_listener(User::Unauthenticated());
+    CredentialChangeListener changeListener) {
+  if (changeListener) {
+    changeListener(User::Unauthenticated());
   }
 }
 

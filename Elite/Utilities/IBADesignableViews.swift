@@ -318,3 +318,27 @@ class SignInButton: UIButton {
         clipsToBounds = true
     }
 }
+
+@IBDesignable
+class AddPhotoView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.borderWidth = 1
+        layer.borderColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
+        layer.cornerRadius = bounds.height / 2.0
+        clipsToBounds = true
+        backgroundColor = #colorLiteral(red: 0.139659673, green: 0.1499087512, blue: 0.1619653702, alpha: 1)
+    }
+}
+
+@IBDesignable
+class GoogleButtonView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.borderWidth = 1
+        layer.borderColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
+        layer.cornerRadius = bounds.height / 2.0
+        clipsToBounds = true
+        backgroundColor = .white
+    }
+}

@@ -10,8 +10,6 @@ import Foundation
 
 class GamerModel: Codable {
     let profileImage: String? //(Bitmoji image)
-    let firstname: String
-    let lastname: String
     let username: String?
     let email: String
     let status: String? //(rank i.e. Bronze, Gold< Diamond)
@@ -26,16 +24,10 @@ class GamerModel: Codable {
     let friends: [String]?
     var handBallWinsPlayedByLocation: [String: Int]?
     var basketBallGamesWinsByLocation: [String: Int]? // [Name of park : Wins]
-    public var fullname: String {
-        return ((firstname ) + " " + (lastname )).trimmingCharacters(in: .whitespacesAndNewlines)
-    }
     
     static var currentGamer: GamerModel!
     
     init(profileImage: String?,
-    fullname: String,
-    firstname: String,
-    lastname: String,
     username: String?,
     email: String,
     status: String?,
@@ -49,8 +41,6 @@ class GamerModel: Codable {
     numberOfBasketballGamesPlayed : Double,
     friends: [String]?, handBallGamesWinsByLocation: [String: Int]?, basketBallGamesWinsByLocation: [String : Int]?) {
         self.profileImage = profileImage
-        self.firstname = firstname
-        self.lastname = lastname
         self.username = username
         self.email = email
         self.status = status
@@ -69,8 +59,6 @@ class GamerModel: Codable {
     
     init(dict: [String: Any]) {
         self.profileImage = dict[GamerCollectionKeys.ProfileImageURLKey] as? String ?? ""
-        self.firstname = dict[GamerCollectionKeys.FirstNameKey] as? String ?? ""
-        self.lastname = dict[GamerCollectionKeys.LastNameKey] as? String ?? ""
         self.username = dict[GamerCollectionKeys.UserNameKey] as? String ?? ""
         self.email = dict[GamerCollectionKeys.EmailKey] as? String ?? ""
         self.status = dict[GamerCollectionKeys.StatusKey] as? String ?? ""

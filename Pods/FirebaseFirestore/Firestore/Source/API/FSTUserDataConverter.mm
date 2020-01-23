@@ -32,6 +32,7 @@
 #import "Firestore/Source/API/FIRGeoPoint+Internal.h"
 #import "Firestore/Source/API/converters.h"
 
+#include "Firestore/core/src/firebase/firestore/api/input_validation.h"
 #include "Firestore/core/src/firebase/firestore/core/user_data.h"
 #include "Firestore/core/src/firebase/firestore/model/database_id.h"
 #include "Firestore/core/src/firebase/firestore/model/document_key.h"
@@ -43,7 +44,6 @@
 #include "Firestore/core/src/firebase/firestore/model/transform_operation.h"
 #include "Firestore/core/src/firebase/firestore/nanopb/nanopb_util.h"
 #include "Firestore/core/src/firebase/firestore/timestamp_internal.h"
-#include "Firestore/core/src/firebase/firestore/util/exception.h"
 #include "Firestore/core/src/firebase/firestore/util/hard_assert.h"
 #include "Firestore/core/src/firebase/firestore/util/string_apple.h"
 #include "absl/memory/memory.h"
@@ -54,10 +54,11 @@ namespace util = firebase::firestore::util;
 using firebase::Timestamp;
 using firebase::TimestampInternal;
 using firebase::firestore::GeoPoint;
-using firebase::firestore::core::ParseAccumulator;
-using firebase::firestore::core::ParseContext;
+using firebase::firestore::api::ThrowInvalidArgument;
 using firebase::firestore::core::ParsedSetData;
 using firebase::firestore::core::ParsedUpdateData;
+using firebase::firestore::core::ParseAccumulator;
+using firebase::firestore::core::ParseContext;
 using firebase::firestore::core::UserDataSource;
 using firebase::firestore::model::ArrayTransform;
 using firebase::firestore::model::DatabaseId;
@@ -72,7 +73,6 @@ using firebase::firestore::model::Precondition;
 using firebase::firestore::model::ServerTimestampTransform;
 using firebase::firestore::model::TransformOperation;
 using firebase::firestore::nanopb::MakeByteString;
-using firebase::firestore::util::ThrowInvalidArgument;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -200,7 +200,7 @@ NS_ASSUME_NONNULL_BEGIN
     FieldPath path;
 
     if ([key isKindOfClass:[NSString class]]) {
-      path = FieldPath::FromDotSeparatedString(util::MakeString(key));
+      path = [FIRFieldPath pathWithDotSeparatedString:key].internalValue;
     } else if ([key isKindOfClass:[FIRFieldPath class]]) {
       path = ((FIRFieldPath *)key).internalValue;
     } else {
@@ -225,12 +225,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (FieldValue)parsedQueryValue:(id)input {
-  return [self parsedQueryValue:input allowArrays:false];
-}
-
-- (FieldValue)parsedQueryValue:(id)input allowArrays:(bool)allowArrays {
-  ParseAccumulator accumulator{allowArrays ? UserDataSource::ArrayArgument
-                                           : UserDataSource::Argument};
+  ParseAccumulator accumulator{UserDataSource::Argument};
 
   absl::optional<FieldValue> parsed = [self parseData:input context:accumulator.RootContext()];
   HARD_ASSERT(parsed, "Parsed data should not be nil.");
@@ -271,10 +266,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     if ([input isKindOfClass:[NSArray class]]) {
       // TODO(b/34871131): Include the path containing the array in the error message.
-      // In the case of IN queries, the parsed data is an array (representing the set of values to
-      // be included for the IN query) that may directly contain additional arrays (each
-      // representing an individual field value), so we disable this validation.
-      if (context.array_element() && context.data_source() != UserDataSource::ArrayArgument) {
+      if (context.array_element()) {
         ThrowInvalidArgument("Nested arrays are not supported");
       }
       return [self parseArray:(NSArray *)input context:std::move(context)];

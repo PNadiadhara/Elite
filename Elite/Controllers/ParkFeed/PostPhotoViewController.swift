@@ -38,6 +38,9 @@ class PostPhotoViewController: UIViewController, UITextFieldDelegate {
         return true
     }
 
+    @IBAction func cancelPressed(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
     @IBAction func postPressed(_ sender: Any) {
         //TO DO: Store Image, and change post model
         guard let postTitle = titleTextField.text else {

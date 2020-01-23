@@ -17,51 +17,49 @@
 #ifndef FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_LOCAL_LEVELDB_QUERY_CACHE_H_
 #define FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_LOCAL_LEVELDB_QUERY_CACHE_H_
 
+#if !defined(__OBJC__)
+#error "For now, this file must only be included by ObjC source files."
+#endif  // !defined(__OBJC__)
+
+#import <Foundation/Foundation.h>
+
 #include <unordered_map>
 
-#include "Firestore/Protos/nanopb/firestore/local/target.nanopb.h"
+#import "Firestore/Protos/objc/firestore/local/Target.pbobjc.h"
 #include "Firestore/core/src/firebase/firestore/local/query_cache.h"
 #include "Firestore/core/src/firebase/firestore/local/query_data.h"
 #include "Firestore/core/src/firebase/firestore/model/document_key.h"
 #include "Firestore/core/src/firebase/firestore/model/document_key_set.h"
 #include "Firestore/core/src/firebase/firestore/model/types.h"
-#include "Firestore/core/src/firebase/firestore/nanopb/message.h"
 #include "absl/strings/string_view.h"
-#include "absl/types/optional.h"
 #include "leveldb/db.h"
+
+@class FSTLocalSerializer;
+
+NS_ASSUME_NONNULL_BEGIN
 
 namespace firebase {
 namespace firestore {
 namespace local {
 
 class LevelDbPersistence;
-class LocalSerializer;
 
 /** Cached Queries backed by LevelDB. */
 class LevelDbQueryCache : public QueryCache {
  public:
   /**
-   * Retrieves the global singleton metadata row from the given database. If the
-   * metadata row doesn't exist, this will result in an assertion failure.
-   *
+   * Retrieves the global singleton metadata row from the given database, if it
+   * exists.
    * TODO(gsoltis): remove this method once fully ported to transactions.
    */
-  static nanopb::Message<firestore_client_TargetGlobal> ReadMetadata(
-      leveldb::DB* db);
-
-  /**
-   * Test-only -- same as `ReadMetadata`, but returns an empty optional if the
-   * metadata row doesn't exist.
-   */
-  static absl::optional<nanopb::Message<firestore_client_TargetGlobal>>
-  TryReadMetadata(leveldb::DB* db);
+  static FSTPBTargetGlobal* ReadMetadata(leveldb::DB* db);
 
   /**
    * Creates a new query cache in the given LevelDB.
    *
    * @param db The LevelDB in which to create the cache.
    */
-  LevelDbQueryCache(LevelDbPersistence* db, LocalSerializer* serializer);
+  LevelDbQueryCache(LevelDbPersistence* db, FSTLocalSerializer* serializer);
 
   // Target-related methods
   void AddTarget(const QueryData& query_data) override;
@@ -70,7 +68,7 @@ class LevelDbQueryCache : public QueryCache {
 
   void RemoveTarget(const QueryData& query_data) override;
 
-  absl::optional<QueryData> GetTarget(const core::Target& target) override;
+  absl::optional<QueryData> GetTarget(const core::Query& query) override;
 
   void EnumerateTargets(const TargetCallback& callback) override;
 
@@ -80,10 +78,8 @@ class LevelDbQueryCache : public QueryCache {
 
   // Key-related methods
 
-  /**
-   * Adds the given document keys to cached query results of the given target
-   * ID.
-   */
+  /** Adds the given document keys to cached query results of the given target
+   * ID. */
   void AddMatchingKeys(const model::DocumentKeySet& keys,
                        model::TargetId target_id) override;
 
@@ -104,15 +100,15 @@ class LevelDbQueryCache : public QueryCache {
 
   // Other methods and accessors
   size_t size() const override {
-    return metadata_->target_count;
+    return metadata_.targetCount;
   }
 
   model::TargetId highest_target_id() const override {
-    return metadata_->highest_target_id;
+    return metadata_.highestTargetId;
   }
 
   model::ListenSequenceNumber highest_listen_sequence_number() const override {
-    return metadata_->highest_listen_sequence_number;
+    return metadata_.highestListenSequenceNumber;
   }
 
   const model::SnapshotVersion& GetLastRemoteSnapshotVersion() const override;
@@ -128,26 +124,24 @@ class LevelDbQueryCache : public QueryCache {
   void Save(const QueryData& query_data);
   bool UpdateMetadata(const QueryData& query_data);
   void SaveMetadata();
-
   /**
-   * Parses the given bytes as a `firestore_client_Target` protocol buffer and
-   * then converts to the equivalent query data.
+   * Parses the given bytes as an FSTPBTarget protocol buffer and then converts
+   * to the equivalent query data.
    */
   QueryData DecodeTarget(absl::string_view encoded);
 
   // The LevelDbQueryCache is owned by LevelDbPersistence.
   LevelDbPersistence* db_;
-  // Owned by LevelDbPersistence.
-  LocalSerializer* serializer_ = nullptr;
-
+  FSTLocalSerializer* serializer_;
   /** A write-through cached copy of the metadata for the query cache. */
-  nanopb::Message<firestore_client_TargetGlobal> metadata_;
-
+  FSTPBTargetGlobal* metadata_;
   model::SnapshotVersion last_remote_snapshot_version_;
 };
 
 }  // namespace local
 }  // namespace firestore
 }  // namespace firebase
+
+NS_ASSUME_NONNULL_END
 
 #endif  // FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_LOCAL_LEVELDB_QUERY_CACHE_H_

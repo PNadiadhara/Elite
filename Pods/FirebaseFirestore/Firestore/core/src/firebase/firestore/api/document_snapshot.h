@@ -42,13 +42,16 @@ class DocumentSnapshot {
 
   DocumentSnapshot() = default;
 
-  static DocumentSnapshot FromDocument(std::shared_ptr<Firestore> firestore,
-                                       model::Document document,
-                                       SnapshotMetadata metadata);
+  DocumentSnapshot(std::shared_ptr<Firestore> firestore,
+                   model::DocumentKey document_key,
+                   absl::optional<model::Document> document,
+                   SnapshotMetadata metadata);
 
-  static DocumentSnapshot FromNoDocument(std::shared_ptr<Firestore> firestore,
-                                         model::DocumentKey key,
-                                         SnapshotMetadata metadata);
+  DocumentSnapshot(std::shared_ptr<Firestore> firestore,
+                   model::DocumentKey document_key,
+                   absl::optional<model::Document> document,
+                   bool from_cache,
+                   bool has_pending_writes);
 
   size_t Hash() const;
 
@@ -72,16 +75,6 @@ class DocumentSnapshot {
 
   friend bool operator==(const DocumentSnapshot& lhs,
                          const DocumentSnapshot& rhs);
-
- private:
-  // TODO(b/146372592): Make this public once we can use Abseil across
-  // iOS/public C++ library boundaries.
-  friend class DocumentReference;
-
-  DocumentSnapshot(std::shared_ptr<Firestore> firestore,
-                   model::DocumentKey document_key,
-                   absl::optional<model::Document> document,
-                   SnapshotMetadata metadata);
 
  private:
   std::shared_ptr<Firestore> firestore_;

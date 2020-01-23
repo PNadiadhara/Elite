@@ -39,7 +39,7 @@ class FirebaseTests: XCTestCase {
         let docRef = DBService.firestoreDB.collection(GamerCollectionKeys.CollectionKey).document()
 
 //        let gamer = GamerModel(profileImage: nil, fullname: fName! + " " + lName! , firstname: fName!, lastname: lName!, username: "@\(fName!)", email: "\(String(describing: lName))@test.com", status: rank.randomElement()!, achievements: [], bio: "", qrCode: "", joinedDate: Date.getISOTimestamp(), gamerID: docRef.documentID, myParks: [], numberOfHandballGamesPlayed: Double(Int.random(in: 0...100)), numberOfBasketballGamesPlayed: Double(Int.random(in: 0...100)), friends: [])
-        let gamer = GamerModel(profileImage: nil, fullname: fName! + " " + lName!, firstname: fName!, lastname: lName!, username: "@\(fName!)", email: "\(String(describing: lName))@test.com", status: nil, achievements: nil, bio: nil, qrCode: "nil", joinedDate: Date.getISOTimestamp(), gamerID: docRef.documentID, myParks: nil, numberOfHandballGamesPlayed: 0.0, numberOfBasketballGamesPlayed: 0.0, friends: nil, deviceName: "Iphone" + fName!, handBallGamesWinsByLocation: nil, basketBallGamesWinsByLocation: ["Q332": 3])
+        let gamer = GamerModel(profileImage: nil, username: "@\(fName!)", email: "\(String(describing: lName))@test.com", status: nil, achievements: nil, bio: nil, qrCode: "nil", joinedDate: Date.getISOTimestamp(), gamerID: docRef.documentID, myParks: nil, numberOfHandballGamesPlayed: 0.0, numberOfBasketballGamesPlayed: 0.0, friends: nil, handBallGamesWinsByLocation: nil, basketBallGamesWinsByLocation: ["Q332": 3])
 
 
         DBService.createUser(gamer: gamer) { (error) in

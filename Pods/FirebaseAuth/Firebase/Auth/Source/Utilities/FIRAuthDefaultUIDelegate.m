@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-#include <TargetConditionals.h>
-#if !TARGET_OS_OSX
-
 #import "FIRAuthDefaultUIDelegate.h"
 
 #import <GoogleUtilities/GULAppEnvironmentUtil.h>
@@ -73,31 +70,8 @@ NS_ASSUME_NONNULL_BEGIN
       applicationClass = cls;
     }
   }
-
-  UIViewController *topViewController;
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 130000
-  if (@available(iOS 13.0, tvOS 13.0, *)) {
-    UIApplication *application = [applicationClass sharedApplication];
-    NSSet<UIScene *> * connectedScenes = application.connectedScenes;
-    for (UIScene *scene in connectedScenes) {
-      if ([scene isKindOfClass:[UIWindowScene class]]) {
-        UIWindowScene *windowScene = (UIWindowScene *)scene;
-        for (UIWindow *window in windowScene.windows) {
-          if (window.isKeyWindow) {
-            topViewController = window.rootViewController;
-          }
-        }
-      }
-    }
-  } else {
-    UIApplication *application = [applicationClass sharedApplication];
-    topViewController = application.keyWindow.rootViewController;
-  }
-#else
   UIApplication *application = [applicationClass sharedApplication];
-  topViewController = application.keyWindow.rootViewController;
-#endif
-
+  UIViewController *topViewController = application.keyWindow.rootViewController;
   while (true){
     if (topViewController.presentedViewController) {
       topViewController = topViewController.presentedViewController;
@@ -117,5 +91,3 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-
-#endif

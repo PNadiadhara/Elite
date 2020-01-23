@@ -21,6 +21,7 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var newUserBttn: UIButton!
     @IBOutlet weak var SignInButton: GIDSignInButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
     override func viewDidLoad() {
@@ -29,6 +30,7 @@ class LoginViewController: UIViewController {
         setupVCSettings()
         setupTap()
         googleSignInSetup()
+        
     }
     
     private func setupVCSettings(){
@@ -59,6 +61,12 @@ class LoginViewController: UIViewController {
         navigationController?.pushViewController(createAnAccountVC, animated: true)
     }
     
+    private func segueToGoogleUserVC(user: User){
+        let googleUserVc = GoogleUserViewController(nibName: nil, bundle: nil, user: user)
+    
+        navigationController?.pushViewController(googleUserVc, animated: true)
+    }
+    
     private func signInCurrentUser(){
         guard let email = emailTextField.text,
             !email.isEmpty,
@@ -68,6 +76,7 @@ class LoginViewController: UIViewController {
                 showAlert(title: "Please enter information", message: "ex: yourmail@email.com")
                 return
         }
+        activityIndicator.startAnimating()
         authservice.signInExistingAccount(email: email, password: password)
     }
     
@@ -89,6 +98,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc func signinWithGoogle() {
+        activityIndicator.startAnimating()
         GIDSignIn.sharedInstance().signIn()
         
     }
@@ -120,8 +130,7 @@ extension LoginViewController: UITextFieldDelegate{
 }
 extension LoginViewController : AuthServiceExistingAccountDelegate {
     func didSignInToExistingAccount(_ authservice: AuthService, user: User) {
-        let loadingScreen = LoadingViewController(nibName: nil, bundle: nil, gamerID: user.uid)
-        present(loadingScreen, animated: true)
+        segueToLoadingScreen(gamerId: user.uid)
         
     }
     
@@ -162,7 +171,16 @@ extension LoginViewController: GIDSignInDelegate {
             }
             if let user = Auth.auth().currentUser {
                 
-//                authservice.createNewAccount(email: user.email, password: password, firstName: firstName, lastName: lastName)
+                DBService.fetchGamer(gamerID: user.uid) { (error, eliteUser) in
+                    if let error = error {
+                        self.showAlert(title: "Error Fecthing User", message: error.localizedDescription)
+                    }
+                    if let eliteUser = eliteUser {
+                        self.segueToLoadingScreen(gamerId: eliteUser.gamerID)
+                    } else {
+                        self.segueToGoogleUserVC(user: user)
+                    }
+                }
                 
                 
             }

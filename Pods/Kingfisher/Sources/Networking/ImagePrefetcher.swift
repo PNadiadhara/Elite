@@ -157,7 +157,7 @@ public class ImagePrefetcher: CustomStringConvertible {
         progressBlock: PrefetcherProgressBlock? = nil,
         completionHandler: PrefetcherCompletionHandler? = nil)
     {
-        self.init(sources: resources.map { $0.convertToSource() }, options: options)
+        self.init(sources: resources.map { .network($0) }, options: options)
         self.progressBlock = progressBlock
         self.completionHandler = completionHandler
     }
@@ -266,12 +266,9 @@ public class ImagePrefetcher: CustomStringConvertible {
 
         var downloadTask: DownloadTask.WrappedTask?
         ImagePrefetcher.requestingQueue.sync {
-            let context = RetrievingContext(
-                options: optionsInfo, originalSource: source
-            )
             downloadTask = manager.loadAndCacheImage(
                 source: source,
-                context: context,
+                options: optionsInfo,
                 completionHandler: downloadTaskCompletionHandler)
         }
 
@@ -302,10 +299,9 @@ public class ImagePrefetcher: CustomStringConvertible {
             append(cached: source)
         case .disk:
             if optionsInfo.alsoPrefetchToMemory {
-                let context = RetrievingContext(options: optionsInfo, originalSource: source)
                 _ = manager.retrieveImageFromCache(
                     source: source,
-                    context: context)
+                    options: optionsInfo)
                 {
                     _ in
                     self.append(cached: source)

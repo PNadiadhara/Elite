@@ -102,7 +102,7 @@ class GrpcUnaryCall : public GrpcCall {
   std::shared_ptr<util::AsyncQueue> worker_queue_;
   GrpcConnection* grpc_connection_ = nullptr;
 
-  std::shared_ptr<GrpcCompletion> finish_completion_;
+  GrpcCompletion* finish_completion_ = nullptr;
   Callback callback_;
 };
 
