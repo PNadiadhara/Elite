@@ -4,17 +4,17 @@ platform :ios, '12.0'
   
   def elite_pods
     pod 'SnapSDK'
-    pod 'Firebase/Core'
-    pod 'Firebase/Auth'
-    pod 'Firebase/Firestore'
-    pod 'Firebase/Storage'
     pod 'Kingfisher'
-    source 'https://github.com/CocoaPods/Specs.git'
     pod 'GoogleMaps'
     pod 'GooglePlaces'
     pod 'FBSDKLoginKit'
     pod 'SAConfettiView'
     pod 'Toucan'
+    pod 'GoogleSignIn'
+        pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Firestore'
+    pod 'Firebase/Storage'
   end
 
   target 'Elite' do

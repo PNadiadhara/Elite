@@ -41,7 +41,7 @@ class GameRestrictionsHelper {
                 var count = 0
                 for game in gamesPlayedAgainstEachOther {
                     let dayHourMinuteSecond: Set<Calendar.Component> = [.day, .hour, .minute, .second]
-                    let gameEndDate = game.gameEndTime?.stringToDate()
+                    let gameEndDate = game.gameEndTime?.stringToDate(format: "MMM d, yyyy hh:mm a")
                     guard let timeDifference = Calendar.current.dateComponents(dayHourMinuteSecond, from: gameEndDate!, to: Date()).hour else {return}
                     if timeDifference <= 12 {
                         count += 1

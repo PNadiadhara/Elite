@@ -11,9 +11,14 @@ import Firebase
 import GoogleMaps
 import MultipeerConnectivity
 import Toucan
+import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
+    }
+    
 
     var window: UIWindow?
     
@@ -23,14 +28,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         GMSServices.provideAPIKey(PrivateInfoFile.GoogleMapsApiKey)
         FirebaseApp.configure()
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+//        AppDelegate.authservice.signOutAccount()
         window = UIWindow(frame: UIScreen.main.bounds)
-        if let _ = AppDelegate.authservice.getCurrentUser() {
-            let tab = TabBarViewController.setTabBarVC()
-            MultiPeerConnectivityHelper.shared.stopHosting()
-            let nav = UINavigationController(rootViewController: tab)
-            tab.navigationController?.isNavigationBarHidden = true
+        if let user = AppDelegate.authservice.getCurrentUser() {
+            let loadingScreen = LoadingViewController(nibName: nil, bundle: nil, gamerID: user.uid)
+
             window = UIWindow(frame: UIScreen.main.bounds)
-            window?.rootViewController = nav
+            window?.rootViewController = loadingScreen
             
         } else {
             let storyboard = UIStoryboard(name: "LoginView", bundle: nil)
@@ -65,6 +71,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    @available(iOS 9.0, *)
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
+      -> Bool {
+      return GIDSignIn.sharedInstance().handle(url)
+    }
 }
 

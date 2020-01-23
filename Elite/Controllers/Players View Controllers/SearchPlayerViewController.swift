@@ -32,7 +32,7 @@ class SearchPlayerViewController: UIViewController {
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        if let friends = TabBarViewController.currentGamer.friends {
+        if let friends = GamerModel.currentGamer.friends {
           showFriends(friends: friends)
         }
 //        setupTapFunction()
@@ -63,9 +63,9 @@ class SearchPlayerViewController: UIViewController {
             }
             if let gamers = gamers{
                 for selectedPlayer in SearchPlayerViewController.selectedPlayers {
-                    self.gamers = gamers.filter{$0.username!.lowercased().contains(gamer.lowercased() ) && !$0.username!.lowercased().contains(TabBarViewController.currentGamer.username!.lowercased()) && !$0.gamerID.contains(selectedPlayer)}
+                    self.gamers = gamers.filter{$0.username!.lowercased().contains(gamer.lowercased() ) && !$0.username!.lowercased().contains(GamerModel.currentGamer.username!.lowercased()) && !$0.gamerID.contains(selectedPlayer)}
             }
-                self.gamers = gamers.filter{$0.username!.lowercased().contains(gamer.lowercased() ) && !$0.username!.lowercased().contains(TabBarViewController.currentGamer.username!.lowercased())}
+                self.gamers = gamers.filter{$0.username!.lowercased().contains(gamer.lowercased() ) && !$0.username!.lowercased().contains(GamerModel.currentGamer.username!.lowercased())}
             }
         }
     }

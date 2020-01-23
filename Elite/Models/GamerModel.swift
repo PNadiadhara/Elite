@@ -10,8 +10,6 @@ import Foundation
 
 class GamerModel: Codable {
     let profileImage: String? //(Bitmoji image)
-    let firstname: String
-    let lastname: String
     let username: String?
     let email: String
     let status: String? //(rank i.e. Bronze, Gold< Diamond)
@@ -24,17 +22,12 @@ class GamerModel: Codable {
     let numberOfHandballGamesPlayed : Double
     let numberOfBasketballGamesPlayed : Double
     let friends: [String]?
-    var deviceName: String
-    var handBallGamesPlayedByLocation: [String: Int]?
-    var basketBallGamesPlayedByLocation: [String: Int]? // [Name of park : Wins]
-    public var fullname: String {
-        return ((firstname ) + " " + (lastname )).trimmingCharacters(in: .whitespacesAndNewlines)
-    }
+    var handBallWinsPlayedByLocation: [String: Int]?
+    var basketBallGamesWinsByLocation: [String: Int]? // [Name of park : Wins]
+    
+    static var currentGamer: GamerModel!
     
     init(profileImage: String?,
-    fullname: String,
-    firstname: String,
-    lastname: String,
     username: String?,
     email: String,
     status: String?,
@@ -46,11 +39,8 @@ class GamerModel: Codable {
     myParks : [String]?,
     numberOfHandballGamesPlayed : Double,
     numberOfBasketballGamesPlayed : Double,
-    friends: [String]?,
-    deviceName: String, handBallGamesPlayedByLocation: [String: Int]?, basketBallGamesPlayedByLocation: [String : Int]?) {
+    friends: [String]?, handBallGamesWinsByLocation: [String: Int]?, basketBallGamesWinsByLocation: [String : Int]?) {
         self.profileImage = profileImage
-        self.firstname = firstname
-        self.lastname = lastname
         self.username = username
         self.email = email
         self.status = status
@@ -63,15 +53,12 @@ class GamerModel: Codable {
         self.numberOfHandballGamesPlayed = numberOfHandballGamesPlayed
         self.numberOfBasketballGamesPlayed = numberOfBasketballGamesPlayed
         self.friends = friends
-        self.deviceName = deviceName
-        self.handBallGamesPlayedByLocation = handBallGamesPlayedByLocation
-        self.basketBallGamesPlayedByLocation = basketBallGamesPlayedByLocation
+        self.handBallWinsPlayedByLocation = handBallGamesWinsByLocation
+        self.basketBallGamesWinsByLocation = basketBallGamesWinsByLocation
     }
     
     init(dict: [String: Any]) {
         self.profileImage = dict[GamerCollectionKeys.ProfileImageURLKey] as? String ?? ""
-        self.firstname = dict[GamerCollectionKeys.FirstNameKey] as? String ?? ""
-        self.lastname = dict[GamerCollectionKeys.LastNameKey] as? String ?? ""
         self.username = dict[GamerCollectionKeys.UserNameKey] as? String ?? ""
         self.email = dict[GamerCollectionKeys.EmailKey] as? String ?? ""
         self.status = dict[GamerCollectionKeys.StatusKey] as? String ?? ""
@@ -84,9 +71,8 @@ class GamerModel: Codable {
         self.numberOfHandballGamesPlayed = dict[GamerCollectionKeys.NumberOfHandballGamesPlayed] as? Double ?? 0.0
         self.numberOfBasketballGamesPlayed = dict[GamerCollectionKeys.NumberOfBasketballGamesPlayer] as? Double ?? 0.0
         self.friends = dict[GamerCollectionKeys.FriendsKey] as? [String] ?? [""]
-        self.deviceName = dict[GamerCollectionKeys.deviceName] as? String ?? ""
-        self.handBallGamesPlayedByLocation = dict[GamerCollectionKeys.HandBallGamesPlayedByLocation] as? [String : Int]
-        self.basketBallGamesPlayedByLocation = dict[GamerCollectionKeys.BasketBallGamesPlayedByLocation] as? [String : Int]
+        self.handBallWinsPlayedByLocation = dict[GamerCollectionKeys.HandBallGamesWinsByLocation] as? [String : Int]
+        self.basketBallGamesWinsByLocation = dict[GamerCollectionKeys.BasketBallWinsPlayedByLocation] as? [String : Int]
     }
     
 

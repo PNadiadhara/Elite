@@ -141,7 +141,7 @@ class MultiPeerConnectivityHelper: NSObject {
     
     public var joiningGame: Bool? //
     
-    private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
+    private let myPeerId = MCPeerID(displayName: GamerModel.currentGamer.username!)
     private var advertiserAssistant: MCAdvertiserAssistant!
     private let serviceBrowser : MCNearbyServiceBrowser
     private let serviceAdvertiser : MCNearbyServiceAdvertiser
@@ -192,19 +192,20 @@ class MultiPeerConnectivityHelper: NSObject {
     
     public func joinGame(joiningGame: Bool) {
         if joiningGame {
-            self.joiningGame = true
             serviceBrowser.stopBrowsingForPeers()
         }
+        self.joiningGame = joiningGame
         serviceBrowser.startBrowsingForPeers()
     }
     
     public func cancelJoinGame(){
         serviceBrowser.stopBrowsingForPeers()
+        joiningGame = Bool()
     }
     public func endSession() {
         session.disconnect()
-        serviceAdvertiser.stopAdvertisingPeer()
-        serviceBrowser.stopBrowsingForPeers()
+        stopHosting()
+        cancelJoinGame()
         team = nil
         role = nil
         redPlayer = nil
@@ -212,7 +213,6 @@ class MultiPeerConnectivityHelper: NSObject {
         rival = nil
         winnerVotes.removeAll()
         numberOfPlayersJoined = 0
-        joiningGame = Bool()
         MainTimer.shared.stopTimer()
     }
     
@@ -240,6 +240,7 @@ class MultiPeerConnectivityHelper: NSObject {
     
     public func stopHosting(){
         advertiserAssistant.stop()
+        serviceAdvertiser.stopAdvertisingPeer()
     }
     
     public func sendGameModel(gameModelToSend: GameModelToSend) {
@@ -297,6 +298,7 @@ class MultiPeerConnectivityHelper: NSObject {
             GameModel.parkId = gameSentData.parkId
             GameModel.gameName = gameSentData.gameName
             GameModel.parkSelected = gameSentData.parkName
+            GameModel.gameName = gameSentData.gameName
             
         } catch {
             print("Error decoding: \(error.localizedDescription)")
@@ -331,6 +333,7 @@ extension MultiPeerConnectivityHelper: MCSessionDelegate {
 //        certificateHandler(true)
 //    }
 
+    
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         DispatchQueue.main.async { [weak self] in
             var dataRecieved: DataToSend?
@@ -405,20 +408,22 @@ extension MultiPeerConnectivityHelper : MCNearbyServiceBrowserDelegate {
         NSLog("%@", "foundPeer: \(peerID)")
         NSLog("%@", "invitePeer: \(peerID)")
 //        listOfAvailableGames.append(peerID.displayName)
-        DBService.fetchGamersBasedOnDeviceName(deviceName: peerID.displayName) { (error, listOfAvailableGames) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            if let listOfAvaliableGames = listOfAvailableGames {
-                self.multipeerDelegate?.foundAdverstiser(availableGames: listOfAvaliableGames)
-            }
-        }
+        guard let joiningGame = joiningGame else {return}
         
-        if joiningGame ?? false {
+        if joiningGame {
             browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 45)
             multipeerDelegate?.acceptedInvitation()
-            
+        } else {
+            DBService.fetchGamersBasedOnUserName(userName: peerID.displayName) { (error, listOfAvailableGames) in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                if let listOfAvaliableGames = listOfAvailableGames {
+                    self.multipeerDelegate?.foundAdverstiser(availableGames: listOfAvaliableGames)
+                }
+            }
         }
+
         listOfAvailableGames.removeAll()
         //multipeerDelegate?.invitationAccepted(session: session)
 //        multipeerDelegate?.displayAvailableGames(availableGames: listOfAvailableGames)
@@ -432,7 +437,7 @@ extension MultiPeerConnectivityHelper : MCNearbyServiceBrowserDelegate {
         
 
     }
-    
+
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
         NSLog("%@", "lostPeer: \(peerID)")
     }
@@ -446,7 +451,7 @@ extension MultiPeerConnectivityHelper : MCNearbyServiceAdvertiserDelegate {
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         NSLog("%@", "didReceiveInvitationFromPeer \(peerID)")
-        DBService.fetchGamerBasedOnDeviceName(deviceName: peerID.displayName) { (error, gamer) in
+        DBService.fetchGamerBasedOnUserName(userName: peerID.displayName) { (error, gamer) in
             if let error = error{
                 print("error fetching device name: \(error.localizedDescription)")
             }

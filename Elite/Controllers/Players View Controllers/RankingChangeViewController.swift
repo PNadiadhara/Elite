@@ -21,11 +21,11 @@ class RankingChangeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         var highestRank = Int.random(in: 4250...4300)
-        playerImageView.image = UIImage(named: TabBarViewController.currentGamer.username!)
+        playerImageView.image = UIImage(named: GamerModel.currentGamer.username!)
         currentRankScore.text = String(rank)
         highestRankScore.text = String(highestRank)
         updateRank()
-        playerUserName.text = TabBarViewController.currentGamer.username
+        playerUserName.text = GamerModel.currentGamer.username
         parkSelectedLabel.text = MapViewController.parkSelected
         // Do any additional setup after loading the view.
     }

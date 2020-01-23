@@ -41,8 +41,8 @@ class OneVsOneViewController: UIViewController {
 //    var gamerSelected: GamerModel?
 //    var invitation: Invitation?
 //    var invitations = [Invitation]()
-    var gameName: GameName?
-
+    var gameName: String?
+    var medalHelper = MedalsHelper()
 
     var waitingView: UIView?
  
@@ -56,7 +56,7 @@ class OneVsOneViewController: UIViewController {
    
     //TO DO: Create a park
     var selectedInvitationOption: SelectedInvitationOption = .accepted
-    
+    private var rankingHelper = RankingHelper()
     private var listener: ListenerRegistration!
     
     var inviteResponse: Bool?
@@ -69,7 +69,7 @@ class OneVsOneViewController: UIViewController {
         MultiPeerConnectivityHelper.shared.multipeerGameModelDelegate = self
         playButton.isEnabled = false
 //        activityIndicator.startAnimating()
-        sportLabel.text = gameName?.rawValue.capitalized
+        sportLabel.text = gameName?.capitalized
 
         WaitingView.setViewContraints(titleText: "Waiting for\nplayers to join", isHidden: false, delegate: self, view: self.view) { (waitingView) in
             self.waitingView = waitingView
@@ -87,16 +87,7 @@ class OneVsOneViewController: UIViewController {
 
     }
     
-    func getPlayersRanking() {
-        DBService.getBBRankingByPark(parkId: "006049d9-835c-451e-ac17-a4eaf827b397") { (error, BBPlayers) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            if let BBPlayers = BBPlayers {
-                print(BBPlayers.count)
-            }
-        }
-    }
+
     
     func sendUserData(data: Data) {
         let action = MultiPeerConnectivityHelper.Action.sendUserInfo.rawValue
@@ -114,7 +105,7 @@ class OneVsOneViewController: UIViewController {
 
     func fetchAndSendUser() {
         
-        let gamer = TabBarViewController.currentGamer
+        let gamer = GamerModel.currentGamer
             if let gamer = gamer {
                 do{
                     let data = try PropertyListEncoder().encode(gamer)
@@ -136,13 +127,39 @@ class OneVsOneViewController: UIViewController {
         redPlayerImage.kf.setImage(with: redPlayerImageURL)
         bluePlayerLabel.text = bluePlayer.username
         redPlayerLabel.text = redPlayer.username
+        
+            findPlayerRanking(players: [redPlayer, bluePlayer], sport: GameModel.gameName!)
+        
     }
 
+    func findPlayerRanking(players: [GamerModel],sport: String) {
+        var count = 0
+        for player in players {
+            rankingHelper.findPlayerRanking(gamerId: player.gamerID, parkId: GameModel.parkId!, sport: sport) { (error, ranking) in
+                if let error = error {
+                    self.showAlert(title: "Error", message: error.localizedDescription)
+                }
+                if let ranking = ranking {
+                    if count == 0 {
+                      self.redPlayerRanking.text = ranking.description
+                        self.redPlayerMedalImage.image = self.medalHelper.getMedalImages(ranking: ranking)
+                    } else {
+                      self.bluePlayerRanking.text = ranking.description
+                        self.bluePlayerMedal.image = self.medalHelper.getMedalImages(ranking: ranking)
+                    }
+                    
+                }
+                count += 1
+            }
+            
+        }
+//        setupSentUI()
+    }
     @IBAction func playButtonPressed(_ sender: UIButton) {
         printValues()
         if MultiPeerConnectivityHelper.shared.role == .Host {
             
-            GameModel.createGame(gameName: GameModel.gameName!, gameType: "1 vs. 1", redTeam: [MultiPeerConnectivityHelper.shared.redPlayer!.gamerID], blueTeam: [MultiPeerConnectivityHelper.shared.bluePlayer!.gamerID], parkId: GameModel.parkId ?? "", formattedAdress: GameModel.formattedAddress ?? "", parkName: GameModel.parkSelected!, lat: GameModel.parkLat!, lon: GameModel.parkLon!, gameId: "", players: [MultiPeerConnectivityHelper.shared.redPlayer!.gamerID, MultiPeerConnectivityHelper.shared.bluePlayer!.gamerID])
+            GameModel.createGame(gameName: GameModel.gameName!, gameType: "1 vs. 1", redTeam: [MultiPeerConnectivityHelper.shared.redPlayer!.gamerID], blueTeam: [MultiPeerConnectivityHelper.shared.bluePlayer!.gamerID], parkId: GameModel.parkId ?? "", parkName: GameModel.parkSelected!, lat: GameModel.parkLat!, lon: GameModel.parkLon!, gameId: "", players: [MultiPeerConnectivityHelper.shared.redPlayer!.gamerID, MultiPeerConnectivityHelper.shared.bluePlayer!.gamerID])
         }
         
         let timerPopUp = TimerPopUp()
@@ -180,8 +197,7 @@ class OneVsOneViewController: UIViewController {
 
 extension OneVsOneViewController: MultipeerConnectivityPlayerWantsToJoinDelegate {
     func playerWantsToJoinGame(player: GamerModel, handler: @escaping (Bool) -> Void) {
-        let invitationPopUp = InvitationAlertViewController()
-        invitationPopUp.gamer = player
+
         invitationAlert(title: "\(player.username!) wants to join game", message: nil) { (anwser) in
             if anwser.title == "Yes" {
                 handler(true)
@@ -200,8 +216,6 @@ extension OneVsOneViewController: MultipeerConnectivityDelegate{
             let gameToSend = GameModelToSend(gameName: GameModel.gameName!, parkId: GameModel.parkId!, parkName: GameModel.parkSelected!)
             MultiPeerConnectivityHelper.shared.sendGameModel(game: gameToSend)
             setupSentUI()
-        } else {
-            setupSentUI()
         }
         
     }
@@ -211,13 +225,13 @@ extension OneVsOneViewController: MultipeerConnectivityDelegate{
             let playerData =  try PropertyListDecoder().decode(GamerModel.self, from: data)
             
             if role == MultiPeerConnectivityHelper.Role.Guest.rawValue {
-                MultiPeerConnectivityHelper.shared.redPlayer = TabBarViewController.currentGamer
+                MultiPeerConnectivityHelper.shared.redPlayer = GamerModel.currentGamer
                 MultiPeerConnectivityHelper.shared.bluePlayer = playerData
                 print("Red Player: \(String(describing: MultiPeerConnectivityHelper.shared.bluePlayer!.username))")
 
             }
             if role == MultiPeerConnectivityHelper.Role.Host.rawValue {
-                MultiPeerConnectivityHelper.shared.bluePlayer = TabBarViewController.currentGamer
+                MultiPeerConnectivityHelper.shared.bluePlayer = GamerModel.currentGamer
                 MultiPeerConnectivityHelper.shared.redPlayer = playerData
                 print("Blue Player:  \(String(describing: MultiPeerConnectivityHelper.shared.redPlayer!.username))")
                
@@ -263,7 +277,7 @@ extension OneVsOneViewController: MultipeerConnectivityDelegate{
 extension OneVsOneViewController: WaitingViewDelegate{
     func cancelPressed() {
         MultiPeerConnectivityHelper.shared.stopHosting()
-        dismiss(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     
@@ -272,6 +286,7 @@ extension OneVsOneViewController: WaitingViewDelegate{
 extension OneVsOneViewController: MultipeerConnectivityGameModelDelegate {
     func hostSentGame(data: Data) {
         MultiPeerConnectivityHelper.shared.decodeDataToGameSendModel(gameModelData: data)
+        setupSentUI()
     }
     
 

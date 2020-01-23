@@ -182,14 +182,6 @@ struct Comparator<double> {
   ComparisonResult Compare(double left, double right) const;
 };
 
-/** Compare two byte sequences. */
-// TODO(wilhuff): perhaps absl::Span<uint8_t> would be better?
-template <>
-struct Comparator<std::vector<uint8_t>> {
-  ComparisonResult Compare(const std::vector<uint8_t>& left,
-                           const std::vector<uint8_t>& right) const;
-};
-
 /**
  * Perform a three-way comparison between the left and right values using
  * the appropriate Comparator for the values based on their type.
@@ -328,7 +320,7 @@ bool DoubleBitwiseEquals(double left, double right);
 
 /**
  * Computes a bitwise hash of a double, but normalizes NaN values, suitable for
- * use when using FSTDoublesAreBitwiseEqual for equality.
+ * use when using DoubleBitwiseEquals for equality.
  */
 size_t DoubleBitwiseHash(double d);
 

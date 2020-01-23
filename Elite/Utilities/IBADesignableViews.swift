@@ -36,8 +36,8 @@ class CircularImageView: UIImageView {
         super.layoutSubviews()
         contentMode = .scaleAspectFill
         layer.cornerRadius = bounds.width / 2.0
-        // layer.borderColor = UIColor.lightGray.cgColor
-        //layer.borderWidth = 5
+         layer.borderColor = UIColor.lightGray.cgColor
+        layer.borderWidth = 1
         backgroundColor = .clear
         clipsToBounds = true
     }
@@ -51,6 +51,38 @@ class CircularRedImageView: UIImageView {
         layer.borderColor = #colorLiteral(red: 0.995932281, green: 0.2765177786, blue: 0.3620784283, alpha: 1)
         layer.borderWidth = 5
         backgroundColor = .clear
+        clipsToBounds = true
+    }
+}
+@IBDesignable
+class CircularRedView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = bounds.width / 2.0
+        layer.borderColor = #colorLiteral(red: 0.995932281, green: 0.2765177786, blue: 0.3620784283, alpha: 1)
+        layer.borderWidth = 5
+        clipsToBounds = true
+    }
+}
+
+@IBDesignable
+class CircularGreenImageView: UIImageView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentMode = .scaleAspectFill
+        layer.cornerRadius = bounds.width / 2.0
+        layer.borderColor = #colorLiteral(red: 0, green: 0.7077997327, blue: 0, alpha: 1)
+        layer.borderWidth = 5
+        backgroundColor = .clear
+        clipsToBounds = true
+    }
+}
+
+@IBDesignable
+class CircularLabel: UILabel {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = bounds.width / 2.0
         clipsToBounds = true
     }
 }
@@ -190,6 +222,37 @@ class RoundedView: UIView {
 }
 
 @IBDesignable
+class TextFieldView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = bounds.height / 2
+        layer.borderColor = UIColor.lightGray.cgColor
+        layer.borderWidth = 0.5
+        clipsToBounds = true
+    }
+}
+
+@IBDesignable
+class TitleTextField: UITextField {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        attributedPlaceholder = NSAttributedString(string: "Title",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
+    }
+}
+
+@IBDesignable
+class RoundedView10: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = 10.0
+        layer.borderColor = UIColor.lightGray.cgColor
+        layer.borderWidth = 0.5
+        clipsToBounds = true
+    }
+}
+
+@IBDesignable
 class RankingView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -205,12 +268,77 @@ class RankingView: UIView {
 class RoundedTextField: UITextField {
     override func layoutSubviews() {
         super.layoutSubviews()
-        backgroundColor = #colorLiteral(red: 0.1607843137, green: 0.1725490196, blue: 0.1843137255, alpha: 1)
         layer.cornerRadius = bounds.height / 2.0
-        layer.borderWidth = 3.0
-        layer.borderColor = #colorLiteral(red: 0.995932281, green: 0.2765177786, blue: 0.3620784283, alpha: 1)
+        layer.borderWidth = 1
+        layer.borderColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        clipsToBounds = true
+    }
+}
+@IBDesignable
+class RoundedTopCornersView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = 30
+        layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        layer.borderWidth = 1
+        layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner ]
+        clipsToBounds = true
+
+    }
+}
+
+@IBDesignable
+class BorderButton: UIButton {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        layer.borderWidth = 1
+
     }
 }
 
 
+@IBDesignable
+class TitleView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        layer.borderWidth = 1
 
+    }
+}
+
+@IBDesignable
+class SignInButton: UIButton {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.borderWidth = 1
+        layer.borderColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
+        layer.cornerRadius = bounds.height / 2.0
+        clipsToBounds = true
+    }
+}
+
+@IBDesignable
+class AddPhotoView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.borderWidth = 1
+        layer.borderColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
+        layer.cornerRadius = bounds.height / 2.0
+        clipsToBounds = true
+        backgroundColor = #colorLiteral(red: 0.139659673, green: 0.1499087512, blue: 0.1619653702, alpha: 1)
+    }
+}
+
+@IBDesignable
+class GoogleButtonView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.borderWidth = 1
+        layer.borderColor = #colorLiteral(red: 0.5704585314, green: 0.5704723597, blue: 0.5704649091, alpha: 1)
+        layer.cornerRadius = bounds.height / 2.0
+        clipsToBounds = true
+        backgroundColor = .white
+    }
+}

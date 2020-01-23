@@ -27,13 +27,13 @@ typedef void(^SCOAuth2GetResourcesSuccessCompletionBlock)(NSDictionary * _Nullab
 typedef void(^SCOAuth2GetResourcesFailureCompletionBlock)(NSError * _Nullable error, BOOL isUserLoggedOut);
 
 /**
- * The completion handler to call when getting a requeset token is complete. The access token returned, if present,
- * is always valid.
+ * The completion handler to when getting a refreshed access token is complete. The access token returned, if present,
+ * is valid.
  *
- * @param accessToken   Raw string value of an OAuth 2.0 acces token.
- * @param error         Error returned in case of a failure getting an access token.
+ * @param accessToken Refreshed access token
+ * @param error       Error returned in case of a failure refreshing the access token.
  */
-typedef void(^SCOAuth2GetAccessTokenCompletionBlock)(NSString * _Nullable accessToken, NSError *_Nullable error);
+typedef void(^SCOAuth2RefreshAccessTokenCompletionBlock)(NSString *_Nullable accessToken, NSError *_Nullable error);
 
 /**
  * Protocol for observing all changes that occur for a user's login status. Notifications will always occur
@@ -42,6 +42,12 @@ typedef void(^SCOAuth2GetAccessTokenCompletionBlock)(NSString * _Nullable access
 @protocol SCSDKLoginStatusObserver <NSObject>
 
 @optional
+/**
+ * Called whenever a user begins to authorize with their Snapchat account. This can happen when calling
+ * {@link +loginFromViewController:completion:} or when tapping a login button, like {@link SCSDKLoginButton}.
+ */
+- (void)scsdkLoginLinkDidStart;
+
 /**
  * Called whenever a user successfully authorizes with their Snapchat account.
  */
@@ -85,18 +91,9 @@ typedef void(^SCOAuth2GetAccessTokenCompletionBlock)(NSString * _Nullable access
             options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *_Nullable)options;
 
 /**
- * Revoke current session.
- *
- * @param completion block be trigged when finish revoking session.
+ * Clears the local access token and refresh token if they exist.
  */
-+ (void)unlinkCurrentSessionWithCompletion:(nullable void (^)(BOOL success))completion DEPRECATED_ATTRIBUTE;
-
-/**
- * Revoke all sessions.
- *
- * @param completion block be trigged when finish revoking session.
- */
-+ (void)unlinkAllSessionsWithCompletion:(void (^)(BOOL success))completion;
++ (void)clearToken;
 
 /**
  * Interface to fetch user data from resource server.
@@ -111,11 +108,16 @@ typedef void(^SCOAuth2GetAccessTokenCompletionBlock)(NSString * _Nullable access
                        failure:(SCOAuth2GetResourcesFailureCompletionBlock)failure;
 
 /**
- * Performs a task to get an OAuth 2.0 access token.
- *
- * @param completion The completion handler to call when task to get an access token is complete.
+ * Gets the access token cached locally.
  */
-+ (void)getAccessTokenWithCompletion:(nullable SCOAuth2GetAccessTokenCompletionBlock)completion;
++ (NSString *)getAccessToken;
+
+/**
+ * Refreshes the access token.
+ *
+ * @param completion The completion handler to call when tak to refresh the access token is complete.
+ */
++ (void)refreshAccessTokenWithCompletion:(nullable SCOAuth2RefreshAccessTokenCompletionBlock)completion;
 
 /**
  * Determines whether the user has authorized the current session to have access to resources
