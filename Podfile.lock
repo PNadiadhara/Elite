@@ -349,7 +349,7 @@ DEPENDENCIES:
   - Toucan
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - abseil
     - AppAuth
     - BoringSSL-GRPC
@@ -425,6 +425,6 @@ SPEC CHECKSUMS:
   SnapSDK: 19a5502296554ffc4606f11d3caba1b3d7fccf59
   Toucan: 8f228fabb21521b9658692df9325fe76e71d74b2
 
-PODFILE CHECKSUM: 56f1b215164293daae4e17cbb995c075a827dd1d
+PODFILE CHECKSUM: f476a06e722c6fad0afc4bd809d7910347230cd7
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.6.0

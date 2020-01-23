@@ -1,7 +1,7 @@
 platform :ios, '12.0'
 
   use_frameworks!
-  
+
   def elite_pods
     pod 'SnapSDK'
     pod 'Firebase/Core'
@@ -25,7 +25,3 @@ platform :ios, '12.0'
   target 'FirebaseTests' do
     elite_pods
   end
-	
-
-
-

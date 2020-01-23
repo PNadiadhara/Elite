@@ -50,12 +50,12 @@ public class SAConfettiView: UIView {
         emitter = CAEmitterLayer()
 
         emitter.emitterPosition = CGPoint(x: frame.size.width / 2.0, y: 0)
-        emitter.emitterShape = CAEmitterLayerEmitterShape.line
+        emitter.emitterShape = kCAEmitterLayerLine
         emitter.emitterSize = CGSize(width: frame.size.width, height: 1)
 
         var cells = [CAEmitterCell]()
         for color in colors {
-            cells.append(confettiWithColor(color: color))
+            cells.append(confettiWithColor(color))
         }
 
         emitter.emitterCells = cells
@@ -85,13 +85,13 @@ public class SAConfettiView: UIView {
             return customImage
         }
 
-        let path = Bundle(for: SAConfettiView.self).path(forResource: "SAConfettiView", ofType: "bundle")
-        let bundle = Bundle(path: path!)
-        let imagePath = bundle?.path(forResource: fileName, ofType: "png")
+        let path = NSBundle(forClass: SAConfettiView.self).pathForResource("SAConfettiView", ofType: "bundle")
+        let bundle = NSBundle(path: path!)
+        let imagePath = bundle?.pathForResource(fileName, ofType: "png")
         let url = NSURL(fileURLWithPath: imagePath!)
-        let data = NSData(contentsOf: url as URL)
+        let data = NSData(contentsOfURL: url)
         if let data = data {
-            return UIImage(data: data as Data)!
+            return UIImage(data: data)!
         }
         return nil
     }
@@ -101,16 +101,16 @@ public class SAConfettiView: UIView {
         confetti.birthRate = 6.0 * intensity
         confetti.lifetime = 14.0 * intensity
         confetti.lifetimeRange = 0
-        confetti.color = color.cgColor
+        confetti.color = color.CGColor
         confetti.velocity = CGFloat(350.0 * intensity)
         confetti.velocityRange = CGFloat(80.0 * intensity)
-        confetti.emissionLongitude = CGFloat(Double.pi)
-        confetti.emissionRange = CGFloat(Double.pi)
+        confetti.emissionLongitude = CGFloat(M_PI)
+        confetti.emissionRange = CGFloat(M_PI_4)
         confetti.spin = CGFloat(3.5 * intensity)
         confetti.spinRange = CGFloat(4.0 * intensity)
         confetti.scaleRange = CGFloat(intensity)
         confetti.scaleSpeed = CGFloat(-0.1 * intensity)
-        confetti.contents = imageForType(type: type)!.cgImage
+        confetti.contents = imageForType(type)!.CGImage
         return confetti
     }
 
