@@ -16,6 +16,7 @@ final class DBService {
     public static var firestoreDB: Firestore = {
         let db = Firestore.firestore()
         let settings = db.settings
+        settings.isPersistenceEnabled = true
         db.settings = settings
         return db
     }()

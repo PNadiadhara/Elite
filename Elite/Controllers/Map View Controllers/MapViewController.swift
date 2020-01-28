@@ -31,6 +31,8 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     @IBOutlet weak var parkAddressLabel: UILabel!
     @IBOutlet weak var eliteUserImage: UIImageView!
     @IBOutlet weak var eliteUserName: UILabel!
+    @IBOutlet weak var searchThisAreaButton: RoundedButton!
+    
     
     let popUpVC = MapViewPopupController()
     let rankingHelper = RankingHelper()
@@ -45,7 +47,12 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     private var userLocation = CLLocation()
     private var handballCourts = [HandBall]()
     private var basketballCourts = [BasketBall]()
-    private var handballResults = [HandBall]()
+    private var handballResults = [HandBall]() {
+        didSet {
+            googleMapsMapView.reloadInputViews()
+            googleMapsMVEditingState = .showHandBallMarkers
+        }
+    }
     
     private var basketballResults = [BasketBall](){
         didSet{
@@ -66,11 +73,13 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     var typeValue = String()
     static var parkSelected = String()
     var locationManager = LocationManager()
+    var targetLocation = CLLocation()
     
     // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         googleMapsMapView.bringSubviewToFront(parkDetailView)
+        googleMapsMapView.bringSubviewToFront(searchThisAreaButton)
         callFlagFeatures()
         googleMapsHelper.setupMapViewSettings(mapView: googleMapsMapView)
         callSetups()
@@ -183,7 +192,18 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
     }
     
     
-
+    @IBAction func searchThisAreaPressed(_ sender: Any) {
+        switch googleMapsMVEditingState {
+        case .showBasketBallMarkers:
+            basketballResults = googleMapsHelper.getBasketBallParksNearMe(targetLocation, basketballCourts, range: range)
+        case .showHandBallMarkers:
+            handballResults = googleMapsHelper.getHandBallParksNearMe(targetLocation, handballCourts, range: range)
+        default:
+            return
+        }
+        
+    }
+    
     
     func getMilesFromUser(miles: String) {
         switch miles {
@@ -284,6 +304,15 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
 //MARK: - Extensions
 extension MapViewController: GMSMapViewDelegate
 {
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        let target = CLLocation(latitude: position.target.latitude, longitude: position.target.longitude)
+        let distance = userLocation.distance(from: target) / 1609
+        targetLocation = target
+        if distance > 1.5 {
+            searchThisAreaButton.isHidden = false
+        }
+    }
+    
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
 
         parkDetailView.isHidden = false
@@ -329,7 +358,7 @@ extension MapViewController: LocationManagerDelegate {
         
         googleMapsMapView.animate(to: customStartPosition)
         basketballResults = googleMapsHelper.getBasketBallParksNearMe(userLocation, basketballCourts, range: range)
-        handballResults = googleMapsHelper.getHandBallParksNearMe(userLocation, handballCourts, range: range)
+//        handballResults = googleMapsHelper.getHandBallParksNearMe(userLocation, handballCourts, range: range)
     }
     
     

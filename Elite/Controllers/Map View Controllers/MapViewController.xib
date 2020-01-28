@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,6 +19,7 @@
                 <outlet property="parkAddressLabel" destination="dQG-K0-L82" id="Ppp-4h-De4"/>
                 <outlet property="parkDetailView" destination="QZV-lC-z4u" id="lmr-gK-bpP"/>
                 <outlet property="parkNameLabel" destination="I0y-Xm-c4p" id="dnx-mj-4IW"/>
+                <outlet property="searchThisAreaButton" destination="IPY-pi-D7h" id="hm2-xd-9El"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -91,6 +92,17 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6if-CE-cwq" customClass="GMSMapView">
                     <rect key="frame" x="0.0" y="186.66666666666669" width="375" height="591.33333333333326"/>
                     <subviews>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPY-pi-D7h" customClass="RoundedButton" customModule="Elite" customModuleProvider="target">
+                            <rect key="frame" x="50" y="25" width="275" height="32"/>
+                            <color key="backgroundColor" red="0.12958416340000001" green="0.13710233569999999" blue="0.1450994313" alpha="0.7128371147" colorSpace="custom" customColorSpace="displayP3"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <state key="normal" title="Search this area">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="searchThisAreaPressed:" destination="-1" eventType="touchUpInside" id="tDn-J5-a56"/>
+                            </connections>
+                        </button>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZV-lC-z4u" customClass="RoundedTopCornersView" customModule="Elite" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="355" width="375" height="236.33333333333337"/>
                             <subviews>
@@ -207,8 +219,11 @@
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="IPY-pi-D7h" secondAttribute="trailing" constant="50" id="Bsh-Gq-zFG"/>
                         <constraint firstItem="QZV-lC-z4u" firstAttribute="leading" secondItem="6if-CE-cwq" secondAttribute="leading" id="CVo-ij-TuN"/>
+                        <constraint firstItem="IPY-pi-D7h" firstAttribute="top" secondItem="6if-CE-cwq" secondAttribute="top" constant="25" id="HUZ-ik-JX9"/>
                         <constraint firstAttribute="trailing" secondItem="QZV-lC-z4u" secondAttribute="trailing" id="II3-kM-f8k"/>
+                        <constraint firstItem="IPY-pi-D7h" firstAttribute="leading" secondItem="6if-CE-cwq" secondAttribute="leading" constant="50" id="dBr-eG-vZb"/>
                         <constraint firstItem="QZV-lC-z4u" firstAttribute="height" secondItem="6if-CE-cwq" secondAttribute="height" multiplier="0.4" id="fKH-K5-xza"/>
                         <constraint firstAttribute="bottom" secondItem="QZV-lC-z4u" secondAttribute="bottom" id="n88-rP-Sgs"/>
                     </constraints>

@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -20,14 +22,7 @@
 	<string>1.0.1</string>
 	<key>CFBundleURLSchemes</key>
 	<array>
-		<dict>
-			<key>URL Schemes</key>
-			<array>
-				<string>my-app</string>
-			</array>
-			<key>URL identifier</key>
-			<string>my-app://abc/xy/z</string>
-		</dict>
+		<string>myapp</string>
 	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
@@ -53,15 +48,19 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Elite app requires use of your camera to add user's photo</string>
+	<string>Elite app requires use of your camera to add user&apos;s photo</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>In order for us to find parks near you and create a game we need access to location.</string>
 	<key>SCSDKClientId</key>
-	<string></string>
+	<string>cd7cf581-82b0-4ced-a4bb-2e9b194bc3d4</string>
 	<key>SCSDKRedirectUrl</key>
-	<string></string>
+	<string>myapp://snap-kit/oauth2</string>
 	<key>SCSDKScopes</key>
-	<array/>
+	<array>
+		<string>https://auth.snapchat.com/oauth2/api/user.display_name</string>
+		<string>https://auth.snapchat.com/oauth2/api/user.external_id</string>
+		<string>https://auth.snapchat.com/oauth2/api/user.bitmoji.avatar</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

@@ -112,6 +112,7 @@ class WinnerViewController: UIViewController {
     }
 
     @IBAction func addFriend(_ sender: Any) {
+        
     }
     
     @IBAction func shareResult(_ sender: Any) {
