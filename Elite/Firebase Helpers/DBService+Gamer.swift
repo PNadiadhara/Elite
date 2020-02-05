@@ -34,6 +34,12 @@ struct GamerCollectionKeys {
     static let BasketBallWinsPlayedByLocation = "basketBallGamesWinsByLocation"
 }
 extension DBService {
+    static public func sendFriendRequest(gamer: GamerModel, completion: @escaping (Error?) -> Void){
+        firestoreDB.collection(GamerCollectionKeys.FriendsKey)
+    }
+    static public func acceptFriendRequest(gamer: GamerModel, completion: @escaping (Error?) -> Void){
+        firestoreDB.collection(GamerCollectionKeys.FriendsKey)
+    }
     static public func createUser(gamer: GamerModel, completion: @escaping (Error?) -> Void) {
         firestoreDB.collection(GamerCollectionKeys.CollectionKey)
             .document(gamer.gamerID)
