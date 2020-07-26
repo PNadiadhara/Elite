@@ -127,11 +127,37 @@ class OneVsOneViewController: UIViewController {
         redPlayerImage.kf.setImage(with: redPlayerImageURL)
         bluePlayerLabel.text = bluePlayer.username
         redPlayerLabel.text = redPlayer.username
+        findRedPlayerRanking()
+        findBluePlayerRanking()
         
-            findPlayerRanking(players: [redPlayer, bluePlayer], sport: GameModel.gameName!)
         
     }
 
+    private func findRedPlayerRanking() {
+        guard let redPlayer = MultiPeerConnectivityHelper.shared.redPlayer else {return}
+        rankingHelper.findPlayerRanking(gamerId: redPlayer.gamerID, parkId: GameModel.parkId!, sport: GameModel.gameName!) { (error, ranking) in
+            if let error = error {
+                self.showAlert(title: "Error", message: error.localizedDescription)
+            }
+            if let ranking = ranking {
+                self.redPlayerRanking.text = ranking.description
+                  self.redPlayerMedalImage.image = self.medalHelper.getMedalImages(ranking: ranking)
+            }
+        }
+    }
+    
+    private func findBluePlayerRanking() {
+        guard let bluePlayer = MultiPeerConnectivityHelper.shared.bluePlayer else {return}
+        rankingHelper.findPlayerRanking(gamerId: bluePlayer.gamerID, parkId: GameModel.parkId!, sport: GameModel.gameName!) { (error, ranking) in
+            if let error = error {
+                self.showAlert(title: "Error", message: error.localizedDescription)
+            }
+            if let ranking = ranking {
+                self.bluePlayerRanking.text = ranking.description
+                  self.bluePlayerMedal.image = self.medalHelper.getMedalImages(ranking: ranking)
+            }
+        }
+    }
     func findPlayerRanking(players: [GamerModel],sport: String) {
         var count = 0
         for player in players {
@@ -181,7 +207,7 @@ class OneVsOneViewController: UIViewController {
 //        GameModel.parkLon = gameSentData.lon
     }
     @IBAction func cancelPressed(_ sender: UIButton) {
-        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
 

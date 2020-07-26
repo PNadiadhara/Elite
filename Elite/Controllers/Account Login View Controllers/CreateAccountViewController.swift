@@ -32,6 +32,7 @@ class CreateAccountViewController: UIViewController {
     
     @IBOutlet weak var existingUserBttn: UIButton!
     private var authservice = AppDelegate.authservice
+    private var snapchatHelper = SnapchatHelper()
     
     
     var keyboardHeight = CGFloat()
@@ -64,6 +65,7 @@ class CreateAccountViewController: UIViewController {
     private func setViewControllerSettings(){
         setupTap()
         authservice.authserviceCreateNewAccountDelegate = self
+        snapchatHelper.delegate = self
         existingUserBttn.layer.cornerRadius = 5
     }
 
@@ -73,7 +75,7 @@ class CreateAccountViewController: UIViewController {
     }
     
     @objc private func photoViewTapped() {
-        showImagesSourceOptions(imagePickerController: imagePickerController)
+        showImagesSourceOptionsForCreatingUser(imagePickerController: imagePickerController)
     }
     
     private func createNewUser(){
@@ -157,5 +159,37 @@ extension CreateAccountViewController : UIImagePickerControllerDelegate, UINavig
         selectedImage = resizedUserImage
         userPhoto.image = resizedUserImage
         dismiss(animated: true)
+    }
+}
+
+extension CreateAccountViewController: SnapchatDelegate {
+    func snapchatAvatarFound() {
+        
+    }
+    
+    func showImagesSourceOptionsForCreatingUser(imagePickerController: UIImagePickerController) {
+        
+        showSheetAlert(title: "Please select option", message: nil) { (alertController) in
+            let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: { (action) in
+                imagePickerController.sourceType = .camera
+                self.present(imagePickerController, animated: true)
+            })
+            let photoLibaryAction = UIAlertAction(title: "Photo Library", style: .default, handler: { (action) in
+                imagePickerController.sourceType = .photoLibrary
+                self.present(imagePickerController, animated: true)
+            })
+            
+            let snapchatPhoto = UIAlertAction(title: "Snapchat", style: .default) { (action) in
+                self.snapchatHelper.getSnapchatAvatar(viewController: self)
+            }
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                alertController.addAction(cameraAction)
+                alertController.addAction(photoLibaryAction)
+                alertController.addAction(snapchatPhoto)
+            } else {
+                alertController.addAction(photoLibaryAction)
+                alertController.addAction(snapchatPhoto)
+            }
+        }
     }
 }

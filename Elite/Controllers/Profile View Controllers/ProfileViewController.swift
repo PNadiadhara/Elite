@@ -33,6 +33,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var gameButton: RoundedButton!
     @IBOutlet weak var parkButton: RoundedButton!
     @IBOutlet weak var friendsButton: RoundedButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
     private var authservice = AppDelegate.authservice
@@ -135,7 +136,7 @@ class ProfileViewController: UIViewController {
                         self.parks.append(park)
                     }
                 }
-                
+                self.activityIndicator.stopAnimating()
             }
         }
     }

@@ -123,7 +123,10 @@ extension DBService {
                 completion(nil, games.filter({ (game) -> Bool in
                     (game.winners?.contains(gamerId))! || game.losers!.contains(gamerId)
                 }))
+                let source = snapshot.metadata.isFromCache ? "local cache" : "server"
+                print("Metadata: Data fetched from \(source)")
             }
+            
         }
         
 

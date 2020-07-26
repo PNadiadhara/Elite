@@ -133,6 +133,7 @@
 		D5555DD6236CE088005867A1 /* OptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5555DD4236CE088005867A1 /* OptionsViewController.xib */; };
 		D5650D3822C3261E00A012E3 /* WaitingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5650D3722C3261E00A012E3 /* WaitingView.swift */; };
 		D5650D3A22C3263F00A012E3 /* WaitingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5650D3922C3263F00A012E3 /* WaitingView.xib */; };
+		D56B3EAF23E0AED400BCD8CA /* SnapchatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56B3EAE23E0AED400BCD8CA /* SnapchatHelper.swift */; };
 		D56B6C042370B41000065DA9 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56B6C022370B41000065DA9 /* LeaderboardCell.swift */; };
 		D56B6C052370B41000065DA9 /* LeaderboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D56B6C032370B41000065DA9 /* LeaderboardCell.xib */; };
 		D56FE69E2262B28800A5553E /* MainTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56FE69D2262B28800A5553E /* MainTimer.swift */; };
@@ -339,6 +340,7 @@
 		D5555DD4236CE088005867A1 /* OptionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionsViewController.xib; sourceTree = "<group>"; };
 		D5650D3722C3261E00A012E3 /* WaitingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingView.swift; sourceTree = "<group>"; };
 		D5650D3922C3263F00A012E3 /* WaitingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaitingView.xib; sourceTree = "<group>"; };
+		D56B3EAE23E0AED400BCD8CA /* SnapchatHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapchatHelper.swift; sourceTree = "<group>"; };
 		D56B6C022370B41000065DA9 /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
 		D56B6C032370B41000065DA9 /* LeaderboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardCell.xib; sourceTree = "<group>"; };
 		D56FE69D2262B28800A5553E /* MainTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTimer.swift; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 				D5CDEA222363DA300023D349 /* LocationHelper.swift */,
 				D5CDEA26236A24610023D349 /* RankingHelper.swift */,
 				D541FE1B236B6DAB00B77D45 /* MedalsHelper.swift */,
+				D56B3EAE23E0AED400BCD8CA /* SnapchatHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1189,6 +1192,7 @@
 				D52FF4AB23D3DB430047B7B8 /* PostPhotoViewController.swift in Sources */,
 				48EFEB83226D0B450006092D /* AVCapturePreviewView.swift in Sources */,
 				2EA2E5432289D91E005B48CA /* Animations.swift in Sources */,
+				D56B3EAF23E0AED400BCD8CA /* SnapchatHelper.swift in Sources */,
 				2E171BAA225D011800D40DDF /* JsonModel.json in Sources */,
 				2E171B9F225CF90700D40DDF /* LeaderboardViewController.swift in Sources */,
 				2E9FE66422557D02004CA00B /* IBADesignableViews.swift in Sources */,
