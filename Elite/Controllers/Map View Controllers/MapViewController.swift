@@ -225,7 +225,7 @@ class MapViewController: UIViewController, MapViewPopupControllerDelegate {
 
     private func goToLeaderBoard(){
         let leaderBoardVC = LeaderboardViewController(nibName: nil, bundle: nil, parkId: GameModel.parkId!, sport: GameModel.gameName!,parkName: GameModel.parkSelected!)
-        self.navigationController?.pushViewController(leaderBoardVC, animated: true)
+       self.navigationController?.pushViewController(leaderBoardVC, animated: true)
     }
     
     private func goToParkFeed() {

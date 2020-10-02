@@ -18,12 +18,12 @@ struct MedalsHelper {
     static let platinumMedalImage = UIImage(named: "platinumMedal")!
     static let diamondMedalImage = UIImage(named: "diamondMedal")!
     
-    let medals = [1 :  eliteImage, 2 : diamondMedalImage, 3 : platinumMedalImage, 4 : goldMedalImage, 5 : silverMedalImage, 6 : bronzeMedalImage]
+//    let medals = [1 :  eliteImage, 2 : diamondMedalImage, 3 : platinumMedalImage, 4 : goldMedalImage, 5 : silverMedalImage, 6 : bronzeMedalImage]
     
     func getMedalImages(ranking: Int) -> UIImage? {
-        if let image = medals[ranking] {
-            return image
-        }
+//        if let image = medals[ranking] {
+//            return image
+//        }
         return nil
     }
 }

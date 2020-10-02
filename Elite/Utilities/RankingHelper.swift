@@ -38,21 +38,26 @@ class RankingHelper {
             var gamersAtPark = [GamerModel]()
             if let gamers = gamers {
 //                let sortedByValueDictionary = myDictionary.sorted { $0.1 < $1.1 }
+                var rankedGamers: [GamerModel]
                 for gamer in gamers {
                     if sport == SportType.basketball.rawValue {
                         if (gamer.basketBallGamesWinsByLocation?[parkId]) != nil {
                             gamersAtPark.append(gamer)
                         }
+                        rankedGamers = gamersAtPark.sorted(by: {($0.basketBallGamesWinsByLocation![parkId]!) > $1.basketBallGamesWinsByLocation![parkId]!})
+                        completion(rankedGamers, nil)
                     }
                     if sport == SportType.handball.rawValue {
                         if (gamer.handBallWinsPlayedByLocation?[parkId]) != nil {
                             gamersAtPark.append(gamer)
                         }
+                        rankedGamers = gamersAtPark.sorted(by: {($0.handBallWinsPlayedByLocation![parkId]!) > $1.handBallWinsPlayedByLocation![parkId]!})
+                        completion(rankedGamers, nil)
                     }
 
                 }
-                let rankedGamers = gamersAtPark.sorted(by: {($0.basketBallGamesWinsByLocation![parkId]!) > $1.basketBallGamesWinsByLocation![parkId]!})
-                completion(rankedGamers, nil)
+//                let rankedGamers = gamersAtPark.sorted(by: {($0.basketBallGamesWinsByLocation![parkId]!) > $1.basketBallGamesWinsByLocation![parkId]!})
+                //completion(rankedGamers, nil)
             }
         }
     }
