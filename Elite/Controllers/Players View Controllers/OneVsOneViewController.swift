@@ -16,7 +16,6 @@ enum SelectedInvitationOption {
     case accepted
     case declined
 }
-
 class OneVsOneViewController: UIViewController {
 
     @IBOutlet weak var cancelButton: UIButton!
